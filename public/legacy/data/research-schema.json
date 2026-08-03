@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 7,
+  "modelId": "sgz-research-model-v7",
+  "historicalScope": "168—316",
+  "migrationPolicy": "preserve-and-annotate",
+  "entities": {
+    "polity": ["id", "name", "aliases", "startYear", "endYear"],
+    "office": ["entityId", "name", "factionKey", "parent", "category", "officeStartYear", "officeEndYear", "evidence", "researchStatus"],
+    "title": ["entityId", "name", "factionKey", "parent", "nobleRank", "fief", "evidence", "researchStatus"],
+    "person": ["personId", "name", "aliases", "portrait"],
+    "appointment": ["id", "personId", "officeId", "jurisdictionId", "polity", "startYear", "endYear", "appointmentStatus", "evidence", "researchStatus"],
+    "jurisdiction": ["jurisdictionId", "name", "polity", "parentId", "startYear", "endYear"],
+    "source": ["id", "title", "level", "role", "locator", "excerpt", "url", "confidence", "note"],
+    "event": ["id", "operation", "subject", "year", "parentBefore", "label", "confidence", "sourceLevel"],
+    "period": ["id", "year", "eraId", "polities", "confidence", "sourceIds"],
+    "periodSnapshot": ["id", "periodId", "year", "eraId", "auditStatus", "controlMode", "polities", "administration", "claims", "sourceIds", "caveats"],
+    "controlClaim": ["id", "periodId", "subjectType", "subject", "status", "statement", "sourceIds"],
+    "mapBoundary": ["id", "jurisdictionId", "validFrom", "validTo", "geometry", "confidence", "sourceIds"]
+  },
+  "controlledVocabularies": {
+    "researchStatus": ["确定", "推定", "存疑", "争议"],
+    "sourceLevel": ["一手史料", "文档考据", "二手索引", "地图几何", "待核"],
+    "geometryCoverage": ["full", "partial", "unknown"],
+    "auditStatus": ["通过", "通过（示意）", "待核", "存在冲突"]
+  }
+}
