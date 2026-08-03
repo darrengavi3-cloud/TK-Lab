@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-03T13:52:23.955Z",
+  "offlineRuntime": true,
+  "fileCount": 52,
+  "totalBytes": 11142716,
+  "files": [
+    {
+      "path": "assets/map/css/style.css",
+      "bytes": 28751,
+      "sha256": "0c0d9e73342c490f4a9c59fc00f290646ba50e769f5ee27a861aa3a1002183eb"
+    },
+    {
+      "path": "assets/map/data/administrative-events.js",
+      "bytes": 4492,
+      "sha256": "4bc8f3ac5e53ecf82745605cf2ca0b05823c9416f158cbf76f4eb66021011a24"
+    },
+    {
+      "path": "assets/map/data/administrative-snapshots.js",
+      "bytes": 4883,
+      "sha256": "9d10b159433bf32c604fb1f85feba58ad4e0a6b7a974282879c5ce0d79b2e57f"
+    },
+    {
+      "path": "assets/map/data/All_Provinces.json",
+      "bytes": 3160935,
+      "sha256": "d146462ff2143a5351acb9bf6171950b874e8cac66a0d455a5aaf7579b13af3e"
+    },
+    {
+      "path": "assets/map/data/all-provinces-local.js",
+      "bytes": 3160964,
+      "sha256": "1f042ecfc61db4e8cb24d77dbe1cdceb3be95d3d68948b522fbf22f57cd50e5c"
+    },
+    {
+      "path": "assets/map/data/county-registry.js",
+      "bytes": 19837,
+      "sha256": "d36d5e5e54ee74571bd191b83a691f5666e0990bab9f0b1b50d173fd19339ca2"
+    },
+    {
+      "path": "assets/map/data/geo-coastline.js",
+      "bytes": 18008,
+      "sha256": "850b8fdb9943c2c2340be294016eed33dbc74840c5d5161c6e1f51e3c20f9c41"
+    },
+    {
+      "path": "assets/map/data/geo-water.js",
+      "bytes": 415172,
+      "sha256": "09cea6217f84bcdfe25a631111881b580b7592b3de73d35fc0548c9371a1ef3f"
+    },
+    {
+      "path": "assets/map/data/history-evidence.js",
+      "bytes": 29339,
+      "sha256": "0e44b7db9cdae2102ccd6ac72a8816a25f7573209e01da1d87481ff6edd5b40f"
+    },
+    {
+      "path": "assets/map/data/political-snapshots.js",
+      "bytes": 10098,
+      "sha256": "5abdefac51245cad1284ef4e15353e8f89a4bba1c6a6412ce8027e23d30f40de"
+    },
+    {
+      "path": "assets/map/data/strategic-geography.js",
+      "bytes": 4135,
+      "sha256": "503dc26b06d5dfb10cd2c8362dd199c3847822f36c1f4332756d05879fd979fc"
+    },
+    {
+      "path": "assets/map/data/three-kingdoms.js",
+      "bytes": 40417,
+      "sha256": "a42b51e4f2ae44b565e90f04a3c34eb8ff4caa792a1771bc749c28def25a0d6b"
+    },
+    {
+      "path": "assets/map/js/app.js",
+      "bytes": 19045,
+      "sha256": "29a2e3a10517a6aabea4b915723625c6520c0dc68cef8eb55ec056cf90898d1e"
+    },
+    {
+      "path": "assets/map/js/base-layer.js",
+      "bytes": 6045,
+      "sha256": "badd198ef32ab995431393c9a76ae207b756c1830b2ab131604b5c2498ed7490"
+    },
+    {
+      "path": "assets/map/js/bridge.js",
+      "bytes": 4170,
+      "sha256": "b3788d46b32c8a1492b5cc7e361aabfab115ef595578f36e0f5ac13e24fc5b45"
+    },
+    {
+      "path": "assets/map/js/commanderies.js",
+      "bytes": 6114,
+      "sha256": "321d222470adef9cee5e07fdc8b1f82098b7ba3e042ac4b6ac960a2d0248a2e8"
+    },
+    {
+      "path": "assets/map/js/config.js",
+      "bytes": 21787,
+      "sha256": "541793cb03a21f340f6c3a3ed419735f89b83bcacb6dc5b2c9bcf99b2a732d37"
+    },
+    {
+      "path": "assets/map/js/counties.js",
+      "bytes": 3221,
+      "sha256": "5353af5243ac2dd96b7698df9202a7f52e3ed7eb949efa4b5206c9bb92199262"
+    },
+    {
+      "path": "assets/map/js/markers.js",
+      "bytes": 2065,
+      "sha256": "246466a4d2aae268e28c3f4daa845ae5aca8f468b60aeb0c603137c01dbdea16"
+    },
+    {
+      "path": "assets/map/js/panel.js",
+      "bytes": 7049,
+      "sha256": "123671c491ed6460cbdd0799bde6da75a961d50a98a9bac61d6ef767ff375011"
+    },
+    {
+      "path": "assets/map/js/routes.js",
+      "bytes": 2058,
+      "sha256": "9d983ec557d001ca5f63d6f74969d2f50d0e6f7f8e5c53b269a9cc1834e90708"
+    },
+    {
+      "path": "assets/map/js/strategic-layers.js",
+      "bytes": 3056,
+      "sha256": "3e3124eec7f80da4674787de62ee82fb931e8f28ee623fa212992e1c881dd74f"
+    },
+    {
+      "path": "assets/map/js/territories.js",
+      "bytes": 14278,
+      "sha256": "40fdc8f01dfffc65fe00ec3b2e9e3f3fda9703037b01355577a4901bb86e4c4c"
+    },
+    {
+      "path": "assets/map/js/timeline.js",
+      "bytes": 2643,
+      "sha256": "9c50155979e9eb569d1f99fde45d4fec6794db3f3d85e9b79daf3885a2b1e0af"
+    },
+    {
+      "path": "assets/map/js/wu-commanderies.js",
+      "bytes": 5720,
+      "sha256": "806c01fc41fe1c3647e70c2961860ccf1c1edfab8dd8901c51960ef766a1ad7c"
+    },
+    {
+      "path": "assets/map/tiles/paper.svg",
+      "bytes": 739,
+      "sha256": "a861fc0911fbf6b189752e229f943ec167e33d3daf05e9d449369fe8c7f48755"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/layers-2x.png",
+      "bytes": 1259,
+      "sha256": "066daca850d8ffbef007af00b06eac0015728dee279c51f3cb6c716df7c42edf"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/layers.png",
+      "bytes": 696,
+      "sha256": "1dbbe9d028e292f36fcba8f8b3a28d5e8932754fc2215b9ac69e4cdecf5107c6"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/marker-icon-2x.png",
+      "bytes": 2464,
+      "sha256": "00179c4c1ee830d3a108412ae0d294f55776cfeb085c60129a39aa6fc4ae2528"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/marker-icon.png",
+      "bytes": 1466,
+      "sha256": "574c3a5cca85f4114085b6841596d62f00d7c892c7b03f28cbfa301deb1dc437"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/marker-shadow.png",
+      "bytes": 618,
+      "sha256": "264f5c640339f042dd729062cfc04c17f8ea0f29882b538e3848ed8f10edb4da"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/leaflet.css",
+      "bytes": 14806,
+      "sha256": "a7837102824184820dfa198d1ebcd109ff6d0ff9a2672a074b9a1b4d147d04c6"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/leaflet.js",
+      "bytes": 147552,
+      "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a"
+    },
+    {
+      "path": "assets/vendor/element-plus/index.css",
+      "bytes": 339861,
+      "sha256": "a8f36a018c0aab2e3cfe939af8fb7086a16d0e1505af865a0da534076bbe854a"
+    },
+    {
+      "path": "assets/vendor/element-plus/index.full.min.js",
+      "bytes": 1069733,
+      "sha256": "095e4cff1f5ffe7567ccf988949f6b0eca58cfbfbfd47163c0d18013795f0583"
+    },
+    {
+      "path": "assets/vendor/gojs/go.js",
+      "bytes": 1046515,
+      "sha256": "9e1b7c0e6f3ae77cd3f6d43f08894d28ff17f05ab9489fc7549f5baab25fd362"
+    },
+    {
+      "path": "assets/vendor/vue/vue.global.min.js",
+      "bytes": 218437,
+      "sha256": "1c888e4de1724c9e3bc34ee05c40bdf564181e1ff45cf1186a6ef68cc56d85b3"
+    },
+    {
+      "path": "assets/vendor/xlsx/xlsx.full.min.js",
+      "bytes": 881727,
+      "sha256": "c9506197caf809a075b6dee1da0d36fb19da7158ffe8a88e7b0c96c5d8623c99"
+    },
+    {
+      "path": "data/battle-records.js",
+      "bytes": 25855,
+      "sha256": "0bf935c85164a5f6aa5ebe0e2a32ae1c71d37095cf33c9dec3c164d178011a06"
+    },
+    {
+      "path": "data/historical-audit.json",
+      "bytes": 12426,
+      "sha256": "600f1088b026a5263c4d06fa70e2f7a25ad0ba8b4a2e4b76eb61b8570ece5fbb"
+    },
+    {
+      "path": "data/history-evidence.js",
+      "bytes": 29339,
+      "sha256": "0e44b7db9cdae2102ccd6ac72a8816a25f7573209e01da1d87481ff6edd5b40f"
+    },
+    {
+      "path": "data/history-evidence.json",
+      "bytes": 37247,
+      "sha256": "80d5f94ded18ab8f454a55425739625b3c446bcb752432dda3683255f2a96783"
+    },
+    {
+      "path": "data/map-period-registry.js",
+      "bytes": 25473,
+      "sha256": "eb55c22e7a137909ead42047d33e9fd0f896ea503083a3f5595d556b091f8b72"
+    },
+    {
+      "path": "data/map-period-registry.json",
+      "bytes": 20258,
+      "sha256": "aa299e2ef578b03cd2c1196879e76d74d94b3cb54a63d761029797a5f4ef2dc3"
+    },
+    {
+      "path": "data/migration-v6.json",
+      "bytes": 892,
+      "sha256": "ea88be4d5e34ed6e0a681813c27f6cce1eeef4a4e9475fbec45e8630304b62c0"
+    },
+    {
+      "path": "data/migration-v7.json",
+      "bytes": 842,
+      "sha256": "47c6e9c72191420374226b079bf77c09ed63c79f0672a0250fef0d480c388252"
+    },
+    {
+      "path": "data/research-model.js",
+      "bytes": 9957,
+      "sha256": "bb923477f13f3328a31fe16a5c2b8ef939e27a75ec8082cb2b67fb55024b6634"
+    },
+    {
+      "path": "data/research-schema.json",
+      "bytes": 1758,
+      "sha256": "830e6b5e8e554aa786438bb45ea38aa9a84f334377b57f5668fa13269af8cf35"
+    },
+    {
+      "path": "data/shu-fangzhen-records.js",
+      "bytes": 13384,
+      "sha256": "11f254ec325c873f1b4130ad0d6cb60c891b69aafa86d364ff7821616864ccf0"
+    },
+    {
+      "path": "data/wikipedia-commandery-audit.json",
+      "bytes": 3623,
+      "sha256": "c67cc22336eae70d1f533295baf592298f8ea9a1d531b9c9e15dff04579aca3a"
+    },
+    {
+      "path": "data/wu-fangzhen-records.js",
+      "bytes": 237582,
+      "sha256": "b3216e10e4151d2e333556db54df5bcae1efd1141fc7b85b94009d24a7a5ffe0"
+    },
+    {
+      "path": "data/wu-import-audit.json",
+      "bytes": 3925,
+      "sha256": "798499bd81cc196ab1b38504fc14a58d72b0b4367eb0c5b7069ae41a171f35ec"
+    }
+  ]
+}

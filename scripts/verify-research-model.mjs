@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const context={window:{}};context.window.window=context.window;vm.createContext(context);
+const run=(relative)=>new vm.Script(fs.readFileSync(path.join(root,relative),'utf8'),{filename:relative}).runInContext(context);
+run('data/research-model.js');
+run('data/history-evidence.js');
+run('assets/map/data/administrative-events.js');
+const model=context.window.SGZResearchModel;
+const events=context.window.ADMINISTRATIVE_EVENT_MODEL;
+const evidence=context.window.SGZ_HISTORY_EVIDENCE;
+const assert=(value,message)=>{if(!value)throw new Error(message);};
+
+const legacy={schemaVersion:3,trees:{wei:{office:[{key:'root',kind:'root',name:'曹魏官制'},{key:'a',parent:'root',kind:'office',name:'司徒',figures:[{name:'华歆'}]}],noble:[]}},fangzhenRecords:[{polity:'曹魏',commander:'华歆',title:'司徒',jurisdiction:'司州',startYear:220,sourceTitle:'《三国志》'}]};
+const migrated=model.migrate(legacy);
+assert(migrated.schemaVersion===7&&migrated.migratedFrom===3,'旧存档未迁移到 v7');
+assert(migrated.fangzhenRecords[0].polity==='魏','曹魏国名未规范为魏');
+assert(migrated.fangzhenRecords[0].personId.startsWith('person:'),'任官记录缺少稳定人物 ID');
+assert(migrated.trees.wei.office[1].entityId.startsWith('office:'),'官职节点缺少稳定实体 ID');
+const indexes=model.buildIndexes(migrated);
+assert(indexes.people.size===1&&Array.from(indexes.people.values())[0].appointments.length===2,'人物履历未汇合官职与州镇任官');
+assert(events.events.length===51,'行政沿革事件数量错误');
+assert(Object.keys(events.mergesAtYear(184)).length===51&&Object.keys(events.mergesAtYear(200)).length===46,'184/200 年郡级事件状态推导错误');
+assert(!events.mergesAtYear(220).Baxi&&events.mergesAtYear(220).Guangwei==='Tianshui','220 年郡级事件状态推导错误');
+assert(evidence.schemaVersion===7&&evidence.modelId==='sgz-history-evidence-v7','V7历史证据索引未载入');
+assert(evidence.periods.length===16&&evidence.validate().valid,'V7时期快照缺少时期或来源引用');
+assert(evidence.getPeriod('xingping').administration.provinceCount===14,'V7未登记194年州级快照数量');
+assert(evidence.getPeriod('hui_di') && evidence.getPeriod('yongjia'),'V7未登记290/311年快照');
+assert(evidence.getPeriod('guandu').administration.mappedCommanderyCount===99,'V7未登记200年地图郡级快照数量');
+assert(evidence.getPeriod('guijin').administration.referenceBenchmarks.some(item=>item.count===22),'V7未登记263年汉二十二郡基准');
+assert(evidence.findJurisdiction({name:'雍州',sourceName:'Yongzhou'},'guandu').status==='确定','V7未登记200年河西雍州证据');
+assert(evidence.findJurisdiction({name:'夷洲',sourceName:'YizhouIsland'},'guijin').sourceIds.includes('sanguozhi_wu_2'),'V7未登记夷洲史料来源');
+
+console.log('统一研究数据模型验证通过');
+console.log(`研究模型 v${model.schemaVersion}；行政沿革事件 ${events.events.length} 条；V7时期快照 ${evidence.periods.length} 期、来源 ${evidence.sources.length} 条`);
