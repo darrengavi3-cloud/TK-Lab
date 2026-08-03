@@ -8,6 +8,7 @@ const sourcePath = path.join(root, 'index.html');
 const registryPath = path.join(root, 'data', 'map-period-registry.js');
 const wuRecordsPath = path.join(root, 'data', 'wu-fangzhen-records.js');
 const shuRecordsPath = path.join(root, 'data', 'shu-fangzhen-records.js');
+const fangzhenSupplementPath = path.join(root, 'data', 'fangzhen-term-supplement.js');
 const researchModelPath = path.join(root, 'data', 'research-model.js');
 const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
 const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
@@ -20,6 +21,7 @@ let html = fs.readFileSync(sourcePath, 'utf8');
 const registryScript = fs.readFileSync(registryPath, 'utf8').trim();
 const wuRecordsScript = fs.readFileSync(wuRecordsPath, 'utf8').trim();
 const shuRecordsScript = fs.readFileSync(shuRecordsPath, 'utf8').trim();
+const fangzhenSupplementScript = fs.readFileSync(fangzhenSupplementPath, 'utf8').trim();
 const researchModelScript = fs.readFileSync(researchModelPath, 'utf8').trim();
 const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim();
 const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
@@ -60,6 +62,10 @@ const replacements = [
   [
     '<script src="./data/shu-fangzhen-records.js"></script>',
     `<script>\n${shuRecordsScript}\n</script>`
+  ],
+  [
+    '<script src="./data/fangzhen-term-supplement.js"></script>',
+    `<script>\n${fangzhenSupplementScript}\n</script>`
   ],
   [
     '<script src="./data/research-model.js"></script>',
