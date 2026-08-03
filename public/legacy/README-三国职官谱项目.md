@@ -12,6 +12,7 @@
 - `data/wikipedia-commandery-audit.json`：维基百科州郡数量基准与十四期快照对照。
 - `data/wu-fangzhen-records.js`：由《孙吴州郡长官考》提取的 212 条有效记录。
 - `data/shu-fangzhen-records.js`：用户提供《蜀汉郡守考》截图整理的 93 条汉国郡守职任记录。
+- `data/fangzhen-term-supplement.js`：州镇录任期补全表；无可靠年代锚点的记录统一标注“待考”，原文保留在 `sourceTenureText`。
 - `data/research-model.js`：v7 统一研究数据模型、旧档迁移、稳定实体编号与跨模块索引。
 - `data/research-schema.json`：统一实体字段与受控词表的机器可读说明。
 - `data/migration-v6.json`：本轮迁移前后数量、备份位置与验收规则。
@@ -39,6 +40,8 @@
 - `docs/V25时间轴精简与食货志.md`：时间轴统一为年份+事件名、新增食货志第一期（屯田/赋役/货币/盐铁/漕运）。
 - `docs/V26食货志札记补充.md`：据《三国食货志》札记补充户口、劳动、土地、农业水利、物价、交通、工商业与财政条目。
 - `docs/V27人物记十六期与中央分类.md`：人物志更名人物记、新增290/311地图、中央官制十类细分。
+- `docs/V28数据收口与任期待补.md`：州镇录任期补全、沿革待考标注与审计规则修正。
+- `docs/V29西晋泰始官制与汉官制深化.md`：西晋官制树按《晋书·职官志》展开、泰始官品落实与季汉官制历任补充。
 - `assets/map/`：地图程序、Leaflet、州郡几何与水系。
 - `assets/vendor/`：页面运行依赖。
 - `scripts/`：资源下载、注册表构建与完整性验证脚本。

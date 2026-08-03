@@ -13,6 +13,7 @@
 <script src="./data/map-period-registry.js"></script>
 <script src="./data/wu-fangzhen-records.js"></script>
 <script src="./data/shu-fangzhen-records.js"></script>
+<script src="./data/fangzhen-term-supplement.js"></script>
 <script src="./data/research-model.js"></script>
 <script src="./data/history-evidence.js"></script>
 <script src="./data/battle-records.js"></script>
@@ -237,7 +238,7 @@ body{
 .metric-card .value{font:700 20px 'Noto Serif SC','Songti SC',serif;color:var(--seal);}
 .metric-card .label{font-size:11px;color:var(--ink-soft);margin-top:2px;}
 .batch-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.compare-grid{display:grid;grid-template-columns:repeat(3,minmax(240px,1fr));gap:12px;height:calc(100vh - 120px);}
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;height:calc(100vh - 120px);}
 .compare-column{border:1px solid var(--rule);border-radius:6px;overflow:auto;background:rgba(255,255,255,.42);}
 .compare-head{position:sticky;top:0;z-index:1;padding:10px 12px;color:white;font:700 15px 'Noto Serif SC',serif;}
 .compare-node{font-size:12px;line-height:1.65;border-bottom:1px dashed rgba(43,38,34,.08);padding-right:8px;}
@@ -1137,6 +1138,23 @@ const FANGZHEN_PRESETS = [
   {id:'fz_jin_zuti',eraGroup:'eastjin',archiveScope:'东晋扩展',polity:'东晋',recordType:'cishi',commander:'祖逖',title:'奋威将军、豫州刺史',commission:'豫州刺史',relation:'职任记录',appointmentStatus:'实授',jurisdiction:'豫州及河南收复区',seat:'谯城一线',startYear:317,endYear:321,tenureText:'建武元年（317年）—太兴四年（321年）',note:'原始任命始于西晋建兴年间；本条仅将 317 年后的东晋段归入扩展档案。',sourceLevel:'一手史料',confidence:'中',sourceTitle:'《晋书》卷六十二·祖逖传',sourceUrl:'https://zh.wikisource.org/zh-hans/晉書/卷062'},
   {id:'fz_jin_taokan',eraGroup:'eastjin',archiveScope:'东晋扩展',polity:'东晋',recordType:'dudu',commander:'陶侃',title:'都督荆雍益梁州诸军事、荆州刺史',commission:'都督荆雍益梁州诸军事',relation:'兼领职任',appointmentStatus:'实授',jurisdiction:'荆、雍、益、梁等州',seat:'荆州',startYear:324,endYear:334,tenureText:'太宁二年（324年）—咸和九年（334年）',note:'太宁二年再镇荆州，后因平乱之功扩大都督范围。',sourceLevel:'一手史料',confidence:'高',sourceTitle:'《晋书》卷六十六·陶侃传',sourceUrl:'https://zh.wikisource.org/zh-hans/晉書/卷066'},
 ];
+// V28：把州镇录任期待补表合并进预置档案；原文仍保留在 sourceTenureText。
+(function applyFangzhenTermSupplement(){
+  const supplements = window.FANGZHEN_TERM_SUPPLEMENTS || [];
+  const byId = new Map(FANGZHEN_PRESETS.map(record=>[record.id, record]));
+  supplements.forEach(sup=>{
+    const target = byId.get(String(sup.id||''));
+    if(!target) return;
+    target.startYear = normalizeYear(sup.startYear);
+    target.endYear = normalizeYear(sup.endYear);
+    target.tenureText = String(sup.tenureText || target.tenureText || '');
+    target.sourceTenureText = String(target.sourceTenureText || target.tenureText || '');
+    target.confidence = String(sup.confidence || target.confidence || '待考');
+    if(sup.appointmentStatus) target.appointmentStatus = String(sup.appointmentStatus);
+    if(sup.sourceLevel) target.sourceLevel = String(sup.sourceLevel);
+    target.note = [String(sup.note||''), String(target.note||'')].filter(Boolean).join('；');
+  });
+})();
 const FANGZHEN_ARCHIVE_DEFS = [
   {key:'all',label:'综合州镇录',seal:'总',period:'core',polity:'all',color:'#59635B',pale:'#EEF1EE',deep:'#29322B',description:'汉末、三国与西晋核心职任记录'},
   {key:'wei',label:'魏国州镇档案',seal:'魏',period:'three',polity:'魏',color:'#376B9E',pale:'#EAF2F8',deep:'#173A5D',description:'刺史、司隶校尉与都督职任'},
@@ -2549,7 +2567,6 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'jin',parent:'',name:'秘书监',category:'散骑集书',note:'晋秘书监，掌图籍。'},
   {faction:'jin',parent:'',name:'领军将军',category:'将军武职',note:'晋领军将军，掌禁军。'},
   {faction:'jin',parent:'',name:'护军将军',category:'将军武职',note:'晋护军将军。'},
-  {faction:'jin',parent:'',name:'四征将军',category:'将军武职',note:'晋四征将军承曹魏旧号。'},
   {faction:'jin',parent:'州刺史（制度分组）',name:'别驾从事',category:'幕府属官',note:'晋州属官。'},
   {faction:'jin',parent:'州刺史（制度分组）',name:'治中从事',category:'幕府属官',note:'晋州属官。'}
 ];
@@ -2857,7 +2874,8 @@ function buildLocalRegionTree(prefix, parentKey, preset, attach){
     relationType:'视图分组（非直属）',
     duty:'按政区层级展开：州→郡国→县邑',
     sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志',
-    note:'郡国与县邑为制度层级示意；具体辖区、沿革与职任以州镇录和形势图为准。'
+    note:'郡国与县邑为制度层级示意；具体辖区、沿革与职任以州镇录和形势图为准。',
+    evolution:'州—郡国—县邑政区层级随本势力存续而存在；具体分置、省并与治所沿革以形势图与沿革时间轴为准。'
   });
   nodes.push(root);
   const staffGroups=[
@@ -2868,13 +2886,15 @@ function buildLocalRegionTree(prefix, parentKey, preset, attach){
   staffGroups.forEach(function(group){
     const groupNode=O(prefix,root.key,group[0],'州郡属官','','',{
       sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志',
-      note:group[2]
+      note:group[2],
+      evolution:'州郡县属吏随政区存续而设，员额依户数多寡而有差。'
     });
     nodes.push(groupNode);
     BAIGUANZHI_STAFF[group[1]].forEach(nm=>{
       nodes.push(O(prefix,groupNode.key,nm,'州郡属官','','',{
         sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志',
-        note:group[2]
+        note:group[2],
+        evolution:'随所属州郡县存续而设，员额与品秩按时期、政区核校。'
       }));
     });
   });
@@ -2882,7 +2902,8 @@ function buildLocalRegionTree(prefix, parentKey, preset, attach){
     const stateNode=O(prefix,root.key,state.office||(state.state+'刺史'),'州牧刺史','','',{
       region:state.state, relationType:'视图分组（非直属）',
       duty:'州级长官；西汉部刺史秩六百石，东汉末州牧、领兵刺史秩位不一，须按具体任命核定',
-      sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志'
+      sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志',
+      evolution:'州级政区随本势力存续而存在；领兵刺史、州牧为特殊任命，沿革以形势图与州镇录为准。'
     });
     nodes.push(stateNode);
     (state.commanderies||[]).forEach((item)=>{
@@ -2891,13 +2912,15 @@ function buildLocalRegionTree(prefix, parentKey, preset, attach){
       const cmdNode=O(prefix,stateNode.key,cmdName,'郡国守相','','',{
         region:state.state+'·'+cmdName, relationType:'视图分组（非直属）',
         duty:'郡国长官，秩二千石；国相职同太守，边郡或置都尉',
-        sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志'
+        sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志',
+        evolution:'郡国沿革以形势图与沿革时间轴为准；此处为制度层级示意。'
       });
       nodes.push(cmdNode);
       const countyNode=O(prefix,cmdNode.key,seat?(seat+'令／长'):'县邑令长（诸县）','县邑令长','','',{
         region:state.state+'·'+cmdName, relationType:'视图分组（非直属）',
         duty:'万户以上置令，减万户为长；秩千石至三百石不等',
-        sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志'
+        sources:'《后汉书》志·百官志五；《晋书》卷二十四·职官志',
+        evolution:'县邑置废与升县为郡、升郡为州等沿革，以形势图与沿革时间轴为准。'
       });
       nodes.push(countyNode);
       (attach[cmdName]||[]).forEach(function(item){
@@ -3001,30 +3024,117 @@ function buildPresets(){
 
   /* ---------------- 汉 ---------------- */
   {
-    const root = O('shu_o', null, '汉昭烈帝／汉后主', '宗室诸王', '', '', {kind:'root'});
-    const chengxiang = O('shu_o', root.key, '丞相（录尚书事）', '丞相／相国', '一品', '万石', {
-      kaifu:true, jie:'假节钺', lushangshushi:true, figures:['诸葛亮'], duty:'开府治事，统摄军政',
-      officeStartYear:221, officeEndYear:234, evolution:'章武元年置；建兴十二年后不复置'
+    const root = O('shu_o', null, '汉昭烈帝／汉后主', '宗室诸王', '', '', {
+      kind:'root', officeStartYear:221, officeEndYear:263,
+      note:'本树覆盖昭烈帝章武至后主炎兴（221—263）；汉不实行曹魏九品中正官品体系，仅保留汉代秩俸。'
     });
-    const damasi = O('shu_o', root.key, '大司马', '大将军／大司马', '一品', '万石', {kaifu:true, jie:'使持节', figures:['蒋琬']});
-    const dajiangjun = O('shu_o', root.key, '大将军（录尚书事）', '大将军／大司马', '一品', '万石', {kaifu:true, jie:'使持节', lushangshushi:true, figures:['姜维']});
-    const shangshuling = O('shu_o', chengxiang.key, '尚书令', '尚书台省', '三品', '千石', {});
-    const shangshupy = O('shu_o', shangshuling.key, '尚书仆射', '尚书台省', '四品', '六百石', {});
+    const chengxiang = O('shu_o', root.key, '丞相（录尚书事）', '丞相／相国', '', '万石', {
+      kaifu:true, jie:'假节钺', lushangshushi:true, figures:['诸葛亮（221—234）'], duty:'开府治事，统摄军政',
+      officeStartYear:221, officeEndYear:234, evolution:'章武元年（221）置；建兴十二年（234）诸葛亮卒后不复置。',
+      sources:'《三国志》卷三十五·诸葛亮传'
+    });
+    const damasi = O('shu_o', root.key, '大司马', '大将军／大司马', '', '万石', {
+      kaifu:true, jie:'使持节', figures:['蒋琬（239—246）'],
+      officeStartYear:239, officeEndYear:246, evolution:'延熙二年（239）蒋琬自大将军加大司马；延熙九年（246）琬卒。',
+      sources:'《三国志》卷四十四·蒋琬传'
+    });
+    const dajiangjun = O('shu_o', root.key, '大将军（录尚书事）', '大将军／大司马', '', '万石', {
+      kaifu:true, jie:'使持节', lushangshushi:true, figures:['蒋琬（234—239）','费祎（244—253）','姜维（256—263）'],
+      officeStartYear:234, officeEndYear:263,
+      evolution:'建兴十二年（234）蒋琬拜大将军录尚书事；延熙七年（244）费祎迁大将军；延熙十九年（256）姜维拜大将军。',
+      sources:'《三国志》卷四十四'
+    });
+    const shangshuling = O('shu_o', root.key, '尚书令', '尚书台省', '', '千石', {
+      figures:['法正（219—220）','刘巴（220—222）','蒋琬（234—238）','费祎（238—244）','董允（244—246）','陈祗（251—258）','董厥（258—263）'],
+      officeStartYear:219, officeEndYear:263,
+      evolution:'建安二十四年（219）法正为尚书令；其后刘巴、蒋琬、费祎、董允、陈祗、董厥相继任职。',
+      sources:'《三国志》卷三十七·法正传；卷三十九·刘巴传、董允传；卷四十四；卷四十五'
+    });
+    const shangshupy = O('shu_o', shangshuling.key, '尚书仆射', '尚书台省', '', '六百石', {
+      figures:['李福（待核）'],
+      note:'季汉尚书仆射见于《三国志》者较少，具体历任与年代仍待补考。'
+    });
     const jiuqing = ['太常','光禄勋','卫尉','太仆','廷尉','大鸿胪','宗正','大司农','少府']
-      .map(nm=>O('shu_o', chengxiang.key, nm, '九卿', '三品', '中二千石', {
-        note:(nm==='廷尉'||nm==='宗正')?'维基百科《三国官制》称季汉置七卿、无廷尉与宗正；本节点保留供考据，须结合《三国志》核校。':''
+      .map(nm=>O('shu_o', root.key, nm, '九卿', '', '中二千石', {
+        note:(nm==='廷尉'||nm==='宗正')?'维基百科《三国官制》称季汉置七卿、无廷尉与宗正；本节点保留供考据，须结合《三国志》核校。':'季汉九卿依汉制设置，具体任职记载零散，须结合《三国志》逐传核校。',
+        sources:'《晋书》卷二十四·职官志“孙吴、刘蜀，多依汉制”'
       }));
+    const dafu = [
+      O('shu_o', root.key, '光禄大夫', '光禄大夫', '', '比二千石', {
+        figures:['来敏（约244年前后在任）'], officeStartYear:244,
+        sources:'《三国志》卷四十四·费祎传（延熙七年光禄大夫来敏）'
+      }),
+      O('shu_o', root.key, '中散大夫', '中散大夫', '', '六百石', {
+        figures:['谯周（约251—263）','李譔（238后—景耀中）'], officeStartYear:238,
+        sources:'《三国志》卷四十二·谯周传、李譔传'
+      }),
+      O('shu_o', root.key, '谏议大夫', '谏议大夫', '', '六百石', {
+        figures:['杜琼（223—?）'], officeStartYear:223,
+        sources:'《三国志》卷四十二·杜琼传'
+      })
+    ];
+    const shizhong = O('shu_o', root.key, '侍中', '散骑集书', '', '比二千石', {
+      figures:['郭攸之（约227—?）','费祎（?—234）','董允（约227—246）','陈祗（246—258）'],
+      officeStartYear:221, officeEndYear:263,
+      evolution:'诸葛亮《出师表》举郭攸之、费祎、董允为侍中；董允以侍中守尚书令，陈祗代之为侍中。',
+      sources:'《三国志》卷三十九·董允传；卷四十四·费祎传'
+    });
+    const huangmen = O('shu_o', root.key, '黄门侍郎', '黄门侍郎', '', '六百石', {
+      figures:['费祎（223—?）','董允（223—?）'], officeStartYear:223,
+      sources:'《三国志》卷三十九·董允传；卷四十四·费祎传'
+    });
     const weijiangjun = ['卫将军','镇军将军','镇北将军','镇南将军','车骑将军']
-      .map(nm=>O('shu_o', dajiangjun.key, nm, '将军武职', '二品', '中二千石', {jie:'持节'}));
-    const yizhoumu = O('shu_o', chengxiang.key, '益州牧／刺史', '州牧刺史', '', '真二千石', {figures:['诸葛亮（领）'], duty:'汉以益州为根本，州牧与刺史依任命区分'});
+      .map(nm=>O('shu_o', dajiangjun.key, nm, '将军武职', '', '中二千石', {jie:'持节'}));
+    const zhongs = [
+      O('shu_o', dajiangjun.key, '中领军', '将军武职', '', '比二千石', {
+        figures:['向宠（约227—240）'], officeStartYear:227,
+        sources:'《三国志》卷四十一·向朗传附向宠'
+      }),
+      O('shu_o', dajiangjun.key, '中护军', '将军武职', '', '比二千石', {
+        figures:['费祎（230—234）'], officeStartYear:230,
+        sources:'《三国志》卷四十四·费祎传'
+      }),
+      O('shu_o', dajiangjun.key, '右监军', '将军武职', '', '比二千石', {
+        figures:['姜维（234—238）'], officeStartYear:234,
+        sources:'《三国志》卷四十四·姜维传'
+      })
+    ];
+    const yizhoumu = O('shu_o', chengxiang.key, '益州牧／刺史', '州牧刺史', '', '真二千石', {
+      figures:['诸葛亮（领，221—234）','蒋琬（领，234—246）'], officeStartYear:214, officeEndYear:263,
+      duty:'汉以益州为根本，州牧与刺史依任命区分',
+      sources:'《三国志》卷三十五·诸葛亮传；卷四十四·蒋琬传'
+    });
     const yaoling = ['雍州刺史（遥领）','凉州刺史（遥领）']
       .map(nm=>O('shu_o', dajiangjun.key, nm, '州牧刺史', '', '真二千石', {jie:'持节', yaoling:true, region:nm.replace('（遥领）',''), note:'遥领为名义职任，不实辖其州。'}));
     const nanzhong = O('shu_o', chengxiang.key, '庲降都督（南中都督）', '属国护官', '', '比二千石', {jie:'持节', duty:'监领南中诸郡、抚夷', officeStartYear:221, officeEndYear:263});
     const shuguo = ['汶山属国都尉','汉嘉属国都尉']
       .map(nm=>O('shu_o', nanzhong.key, nm, '属国护官', '', '比六百石', {}));
+    const taizi = [
+      O('shu_o', root.key, '太子仆', '太子官属', '', '千石', {
+        figures:['谯周（238—?）'], officeStartYear:238,
+        sources:'《三国志》卷四十二·谯周传'
+      }),
+      O('shu_o', root.key, '太子家令', '太子官属', '', '千石', {
+        figures:['谯周（?—约251）'], officeStartYear:238,
+        sources:'《三国志》卷四十二·谯周传'
+      }),
+      O('shu_o', root.key, '太子庶子', '太子官属', '', '四百石', {
+        figures:['费祎（221—223）','李譔（238—?）'], officeStartYear:221,
+        sources:'《三国志》卷四十二·李譔传；卷四十四·费祎传'
+      }),
+      O('shu_o', root.key, '太子舍人', '太子官属', '', '二百石', {
+        figures:['费祎（221—223）','董允（221—223）'], officeStartYear:221,
+        sources:'《三国志》卷三十九·董允传；卷四十四·费祎传'
+      }),
+      O('shu_o', root.key, '太子洗马', '太子官属', '', '六百石', {
+        figures:['董允（221—223）'], officeStartYear:221,
+        sources:'《三国志》卷三十九·董允传'
+      })
+    ];
 
     const officeNodes = [root, chengxiang, damasi, dajiangjun, shangshuling, shangshupy, ...jiuqing,
-      ...weijiangjun, yizhoumu, ...yaoling, nanzhong, ...shuguo, ...buildLocalRegionTree('shu_o', root.key, LOCAL_REGION_PRESETS.shu)];
+      ...dafu, shizhong, huangmen, ...weijiangjun, ...zhongs, yizhoumu, ...yaoling, nanzhong, ...shuguo, ...taizi,
+      ...buildLocalRegionTree('shu_o', root.key, LOCAL_REGION_PRESETS.shu)];
     // 汉未实行曹魏的九品中正官品体系，本工具仅保留汉代秩俸字段。
     officeNodes.forEach(node=>{ node.rank9 = ''; });
 
@@ -3076,32 +3186,312 @@ function buildPresets(){
 
   /* ---------------- 西晋 ---------------- */
   {
-    const root = O('jin_o', null, '晋帝（西晋皇帝）', '宗室诸王', '', '', {kind:'root'});
-    const taizai = O('jin_o', root.key, '太宰', '三公', '一品', '万石', {kaifu:true, note:'与太傅、太保合称"上公"，多用以优礼元老重臣，不常置'});
-    const taifu = O('jin_o', root.key, '太傅', '三公', '一品', '万石', {kaifu:true});
-    const taibao = O('jin_o', root.key, '太保', '三公', '一品', '万石', {kaifu:true});
-    const damasi = O('jin_o', root.key, '大司马', '大将军／大司马', '一品', '万石', {kaifu:true, jie:'假黄钺'});
-    const dajiangjun = O('jin_o', root.key, '大将军', '大将军／大司马', '一品', '万石', {kaifu:true, jie:'使持节', jiaguan:'侍中'});
-    const sangong = ['太尉','司徒','司空']
-      .map(nm=>O('jin_o', root.key, nm, '三公', '一品', '万石', {kaifu:true,relationType:'制度并列'}));
-    const yushi = O('jin_o', sangong[0].key, '御史中丞', '御史台', '四品', '千石', {duty:'总领御史台，纠劾百官'});
+    const root = O('jin_o', null, '晋帝（西晋皇帝）', '宗室诸王', '', '', {
+      kind:'root', officeStartYear:266, officeEndYear:316,
+      note:'本树覆盖泰始元年（266）至建兴四年（316）西晋官制；晋官品依《通典》卷三十七晋官品（泰始官品令系统）。'
+    });
+    const taizai = O('jin_o', root.key, '太宰', '三公', '一品', '万石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      evolution:'泰始元年（266）因避景帝司马师讳置太宰以代太师，与太傅、太保并为上公；泰始八年（272）司马孚薨后不常置。',
+      figures:['司马孚（266—272）'], sources:'《晋书》卷二十四·职官志；卷三·武帝纪',
+      note:'论道经邦、燮理阴阳，无其人则阙。'
+    });
+    const taifu = O('jin_o', root.key, '太傅', '三公', '一品', '万石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['郑冲（266—274）','何曾（276—278）'],
+      sources:'《晋书》卷三·武帝纪；卷三十三·郑冲传、何曾传'
+    });
+    const taibao = O('jin_o', root.key, '太保', '三公', '一品', '万石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['王祥（266—268）','何曾（267—276）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const taiwei = O('jin_o', root.key, '太尉', '三公', '一品', '万石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['何曾（266—267）','司马望（267—271）','陈骞（274—276）','贾充（276—280后）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const situ = O('jin_o', root.key, '司徒', '三公', '一品', '万石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['何曾（266—267）','荀顗（267—?）','石苞（约272—273）','李胤（278—?）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const sikong = O('jin_o', root.key, '司空', '三公', '一品', '万石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['荀顗（266—267）','裴秀（268—271）','郑袤（271—273）','贾充（272—276）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const damasi = O('jin_o', root.key, '大司马', '大将军／大司马', '一品', '万石', {
+      kaifu:true, jie:'假黄钺', officeStartYear:266, officeEndYear:316,
+      figures:['石苞（266—约272）','司马望（约271）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const dajiangjun = O('jin_o', root.key, '大将军', '大将军／大司马', '一品', '万石', {
+      kaifu:true, jie:'使持节', jiaguan:'侍中', officeStartYear:266, officeEndYear:316,
+      figures:['陈骞（266—274）'],
+      evolution:'晋初依魏制在大将军位在太尉下，后复旧在三司上。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const chengxiang = O('jin_o', root.key, '丞相／相国（非常置）', '丞相／相国', '一品', '万石', {
+      officeStartYear:291, officeEndYear:316,
+      note:'《晋书·职官志》：晋受魏禅并不置，自惠帝之后省置无常；为之者皆非寻常人臣之职。',
+      figures:['赵王伦','梁王肜','成都王颖','南阳王保'],
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const yushi = O('jin_o', root.key, '御史中丞', '御史台', '四品', '千石', {
+      duty:'御史台主，外督部刺史、内领侍御史，受公卿奏事、举劾案章',
+      officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
+    });
+    const zhishu = O('jin_o', yushi.key, '治书侍御史（员四人）', '御史台', '六品', '六百石', {
+      evolution:'晋唯置治书侍御史员四人；泰始四年（268）又置黄沙狱治书侍御史一人，后省；太康中又省治书侍御史二员。',
+      officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
+    });
+    const shiyushi = O('jin_o', yushi.key, '侍御史（员九人）', '御史台', '六品', '六百石', {
+      note:'晋置员九人，凡十三曹：吏曹、课第曹、直事曹、印曹、中都督曹、外都督曹、媒曹、符节曹、水曹、中垒曹、营军曹、法曹、算曹。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const dianzhong = O('jin_o', yushi.key, '殿中侍御史（四人）', '御史台', '七品', '', {
+      note:'魏兰台遣二御史居殿中伺察非法；晋置四人。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const fujie = O('jin_o', yushi.key, '符节御史', '御史台', '六品', '', {
+      evolution:'魏别为一台，位次御史中丞；泰始九年（273）省并兰台，置符节御史掌其事。',
+      officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
+    });
     const jiuqing = [
       ['太常','宗庙礼仪'],['光禄勋','宿卫宫殿门户'],['卫尉','宫门屯兵'],['太仆','舆马畜牧'],
       ['廷尉','刑狱'],['大鸿胪','诸侯及四夷朝聘'],['宗正','宗室属籍'],['大司农','钱谷租税'],['少府','山泽税收供御']
-    ].map(([nm,duty])=>O('jin_o', sangong[0].key, nm, '九卿', '三品', '中二千石', {duty}));
-    const shangshuling = O('jin_o', dajiangjun.key, '尚书令', '尚书台省', '三品', '千石', {});
-    const shangshupy = O('jin_o', shangshuling.key, '尚书仆射', '尚书台省', '四品', '六百石', {});
-    const liucao = ['吏部尚书','三公尚书','度支尚书','左民尚书','祠部尚书','五兵尚书']
-      .map(nm=>O('jin_o', shangshuling.key, nm, '尚书台省', '四品', '六百石', {}));
-    const zhongshu = O('jin_o', dajiangjun.key, '中书监／中书令', '中书门下', '三品', '千石', {});
-    const shizhong = O('jin_o', dajiangjun.key, '侍中', '散骑集书', '三品', '比二千石', {});
-    const sanji = O('jin_o', dajiangjun.key, '散骑常侍', '散骑集书', '三品', '比二千石', {});
+    ].map(([nm,duty])=>O('jin_o', root.key, nm, '九卿', '三品', '中二千石', {
+      duty, officeStartYear:266, officeEndYear:316,
+      note:'太常统太学诸博士、祭酒及太史、太庙、太乐、鼓吹、陵等令；光禄勋统武贲、羽林、五官中郎将及诸令；其余各卿寺亦各置丞、功曹、主簿、五官等员。',
+      sources:'《晋书》卷二十四·职官志'
+    }));
+    const jiangzuo = O('jin_o', root.key, '将作大匠', '列卿', '三品', '二千石', {
+      note:'有事则置，无事则罢。', sources:'《晋书》卷二十四·职官志'
+    });
+    const taihouSanqing = O('jin_o', root.key, '太后三卿（卫尉·少府·太仆）', '列卿', '三品', '二千石', {
+      note:'皆随太后宫号为官号，在同名卿上；无太后则阙。', sources:'《晋书》卷二十四·职官志'
+    });
+    const dachangqiu = O('jin_o', root.key, '大长秋', '列卿', '三品', '二千石', {
+      note:'皇后卿，有后则置，无后则省。', sources:'《晋书》卷二十四·职官志'
+    });
+    const tejin = O('jin_o', root.key, '特进', '大夫', '二品', '', {
+      officeStartYear:266, officeEndYear:316,
+      note:'以加官从本官车服，无吏卒；品秩第二，位次诸公。',
+      figures:['羊琇（泰始中拜特进、加散骑常侍）'],
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const zuoyouGuanglu = O('jin_o', root.key, '左右光禄大夫（金章紫绶）', '光禄大夫', '二品', '中二千石', {
+      officeStartYear:266, officeEndYear:316,
+      note:'假金章紫绶，禄赐班位与特进同；以为加官者唯假章绶、禄赐班位而已。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const guanglu = O('jin_o', root.key, '光禄大夫（银章青绶）', '光禄大夫', '三品', '中二千石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['裴秀（266—268，尚书令兼光禄大夫）'],
+      note:'假银章青绶，位在金紫将军下、诸卿上；诸公告老者多家拜此位。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const shangshuling = O('jin_o', root.key, '尚书令', '尚书台省', '三品', '千石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['裴秀（266—268）','贾充（约271—272，待核）','李胤（?—278）','卫瓘（278—?）'],
+      note:'秩千石，以在端右故受拜则策命；贾充为尚书令时以目疾表置省事吏四人，省事自此始。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const shangshupy = O('jin_o', shangshuling.key, '尚书仆射', '尚书台省', '三品', '六百石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['羊祜（268—269，左）','东莞王伷（268—?，右）','王业（271—?，左）','高阳王珪（271—?，右）','卢钦（?—278，左）','山涛（278—?，左）','魏舒（280—?，右）'],
+      note:'服秩印绶与令同；置二则为左右仆射，或不两置。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const zuoyoucheng = O('jin_o', shangshuling.key, '尚书左·右丞', '尚书台省', '六品', '四百石', {
+      note:'左丞主台内禁令、宗庙祠祀、朝仪礼制、选用署吏；右丞掌台内库藏庐舍、刑狱兵器、督录远道文书章表奏事。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const liucaoRoot = O('jin_o', shangshuling.key, '列曹尚书（泰始六曹／太康六曹）', '尚书诸曹', '三品', '六百石', {
+      officeStartYear:266, officeEndYear:316,
+      evolution:'泰始初置吏部、三公、客曹、驾部、屯田、度支六曹而无五兵；咸宁二年（276）省驾部尚书，四年（278）复置；太康中为吏部、殿中、五兵、田曹、度支、左民六曹。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const liucao = [
+      ['吏部尚书','266—316','泰始至太康均置。'],
+      ['三公尚书','266—约280','泰始六曹之一，太康六曹已无。'],
+      ['客曹尚书','266—约280','泰始六曹之一，太康六曹已无。'],
+      ['驾部尚书','266—280','咸宁二年省，咸宁四年复置，太康六曹已无。'],
+      ['屯田尚书','266—约280','泰始六曹之一。'],
+      ['度支尚书','266—316','泰始、太康六曹均有度支。'],
+      ['殿中尚书','约280—289','太康六曹之一。'],
+      ['五兵尚书','约280—289','太康六曹之一（泰始六曹无五兵）。'],
+      ['左民尚书','约280—289','太康六曹之一。'],
+      ['田曹尚书','约280—289','太康六曹之一。']
+    ].map(([nm,years,evo])=>O('jin_o', liucaoRoot.key, nm, '尚书诸曹', '三品', '六百石', {
+      evolution:evo, sources:'《晋书》卷二十四·职官志'
+    }));
+    const shangshulang = O('jin_o', shangshuling.key, '尚书郎（三十五曹）', '尚书台省', '六品', '四百石', {
+      evolution:'晋初罢魏农部、定课，置三十四曹郎，后又置运曹，凡三十五曹，置郎二十三人。',
+      officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
+    });
+    const zhongshu = O('jin_o', root.key, '中书监／中书令', '中书门下', '三品', '千石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['荀勖（约275—289，中书监，待核）'],
+      note:'魏文帝黄初初置监、令；晋因之，并置员一人。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const zhongshushilang = O('jin_o', zhongshu.key, '中书侍郎（员四人）', '中书侍郎', '五品', '六百石', {
+      note:'魏通事郎，晋改曰中书侍郎，员四人。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const zhongshusheshuren = O('jin_o', zhongshu.key, '中书舍人、通事', '中书门下', '', '', {
+      note:'晋初置舍人、通事各一人，掌呈奏案章。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const mishujian = O('jin_o', root.key, '秘书监', '中书门下', '三品', '', {
+      officeStartYear:266, officeEndYear:316,
+      evolution:'晋初以秘书并中书省，著作之局不废；惠帝永平中（291）复置秘书监，属官有丞、郎，统著作省。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const zhuzuolang = O('jin_o', mishujian.key, '著作郎（佐著作郎八人）', '中书门下', '', '', {
+      evolution:'晋初隶中书省，武帝以缪徵为中书著作郎；元康二年（292）改属秘书省。',
+      officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
+    });
+    const shizhong = O('jin_o', root.key, '侍中（员四人）', '散骑集书', '三品', '比二千石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['荀勖（266—约275）'],
+      note:'掌傧赞威仪；与散骑常侍对扶，侍中居左、常侍居右。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const huangmen = O('jin_o', root.key, '给事黄门侍郎（员四人）', '黄门侍郎', '五品', '六百石', {
+      note:'与侍中俱管门下众事，无员（定制四人）。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const sanji = O('jin_o', root.key, '散骑常侍', '散骑常侍', '三品', '比二千石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['皇甫陶（268）','傅玄（268）'],
+      note:'同掌规谏，不典事；与侍中、黄门侍郎共平尚书奏事。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const tongzhiSanji = O('jin_o', root.key, '通直散骑常侍', '散骑常侍', '', '', {
+      evolution:'泰始十年（274）武帝使二人与散骑常侍通员直，谓之通直散骑常侍。',
+      officeStartYear:274, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
+    });
+    const yuanwaiSanji = O('jin_o', root.key, '员外散骑常侍', '散骑常侍', '', '', {
+      note:'魏末置，无员。', sources:'《晋书》卷二十四·职官志'
+    });
+    const sanjishilang = O('jin_o', root.key, '散骑侍郎（四人）', '散骑常侍', '', '', {
+      note:'魏初与散骑常侍同置，自魏至晋常侍、侍郎与侍中、黄门侍郎共平尚书奏事。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const jishizhong = O('jin_o', root.key, '给事中', '散骑集书', '五品', '', {
+      note:'所加或大夫、博士、议郎，掌顾问应对，位次中常侍；在散骑常侍下、给事黄门侍郎上，无员。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const fengchaoqing = O('jin_o', root.key, '奉朝请', '散骑集书', '', '', {
+      note:'本不为官，无员；以宗室、外戚为奉车、驸马、骑三都尉而奉朝请。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const piaoqi = O('jin_o', root.key, '骠骑将军', '将军武职', '二品', '中二千石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['王沈（266—268）'],
+      note:'开府位从公者为武官公。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const cheqi = O('jin_o', root.key, '车骑将军', '将军武职', '二品', '中二千石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['贾充（266—?）','羊祜（272—278）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const weijiangjun = O('jin_o', root.key, '卫将军', '将军武职', '二品', '中二千石', {
+      kaifu:true, officeStartYear:266, officeEndYear:316,
+      figures:['贾充（266）','步阐（272—273）'],
+      sources:'《晋书》卷三·武帝纪'
+    });
+    const sizheng = O('jin_o', root.key, '四征·四镇·四安·四平将军', '将军武职', '二品', '中二千石', {
+      officeStartYear:266, officeEndYear:316,
+      figures:['羊祜（征南大将军 276—278）','汝阴王骏（镇西／征西大将军 270—276）','卫瓘（镇北大将军 266—278）','王濬（龙骧将军 279—280）'],
+      note:'四征兴于汉代，四安起于魏初，四镇通于柔远；加大将军不开府、持节都督者品秩第二。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const lingjun = O('jin_o', root.key, '领军将军（中领军）', '将军武职', '三品', '中二千石', {
+      officeStartYear:266, officeEndYear:316,
+      evolution:'晋初省领军，使中军将军统二卫、前后左右骁卫等营；泰始四年（268）罢中军将军置北军中候；怀帝永嘉中改中军为中领军。',
+      figures:['羊祜（中军将军 267—268）'],
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const hujun = O('jin_o', root.key, '护军将军', '将军武职', '三品', '中二千石', {
+      note:'主武官选，魏时隶领军，晋世则不隶；资重者为领军、护军，资轻者为中领军、中护军。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const zuoyouwei = O('jin_o', root.key, '左右卫将军', '将军武职', '三品', '中二千石', {
+      evolution:'武帝受命分为左右卫，以羊琇为左卫、赵序为右卫。',
+      officeStartYear:266, officeEndYear:316, figures:['羊琇（266—?）','赵序（266—?）'],
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const liujun = O('jin_o', root.key, '骁骑·游击将军（六军之一）', '将军武职', '四品', '二千石', {
+      note:'晋以领军、护军、左右卫、骁骑、游击为六军。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const sijun = O('jin_o', root.key, '左右前后军将军', '将军武职', '四品', '二千石', {
+      evolution:'泰始初置前军、右军，泰始八年（272）又置后军，是为四军。',
+      officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const wuxiao = O('jin_o', root.key, '五校（屯骑·步兵·越骑·长水·射声）', '将军武职', '四品', '二千石', {
+      note:'五校并汉官，魏晋逮于江左犹领营兵，并置司马、功曹、主簿。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const sizhonglang = O('jin_o', root.key, '四中郎将（东西南北中郎将）', '将军武职', '四品', '二千石', {
+      note:'并后汉置，历魏及晋，江左弥重。',
+      sources:'《晋书》卷二十四·职官志'
+    });
     const duduzhongwai = O('jin_o', root.key, '都督职任（见州镇录）', '都督军事', '', '', {
       jie:'依任命', duty:'都督中外或都督诸州军事均属附加军政职任，辖区随人随时变化',
-      relationType:'职任关联', note:'《晋书·职官志》明言持节、都督无定员；具体任期移入州镇录。'
+      relationType:'职任关联', note:'《晋书·职官志》明言持节、都督无定员；具体任期移入州镇录。',
+      officeStartYear:266, officeEndYear:316
     });
-    const huguan = ['护匈奴中郎将','护羌校尉']
-      .map(nm=>O('jin_o', duduzhongwai.key, nm, '属国护官', '四品', '比二千石', {jie:'持节', duty:'沿汉魏旧制，监护、征调边疆诸族'}));
+    const huguan = [
+      ['护匈奴中郎将','护匈奴、羌、戎、蛮、夷、越中郎将之一；武帝置四中郎将，或领刺史，或持节为之。'],
+      ['护羌校尉','沿汉魏旧制；元康中护羌校尉为凉州刺史。'],
+      ['南蛮校尉','武帝置南蛮校尉于襄阳；元康中南蛮校尉为荆州刺史。'],
+      ['西戎校尉','武帝置西戎校尉于长安；元康中西戎校尉为雍州刺史。'],
+      ['南夷校尉','武帝置南夷校尉于宁州。'],
+      ['平越中郎将','武帝置，居广州，主护南越。']
+    ].map(([nm,note])=>O('jin_o', duduzhongwai.key, nm, '属国护官', '四品', '比二千石', {
+      jie:'持节', duty:'沿汉魏旧制，监护、征调边疆诸族', note, sources:'《晋书》卷二十四·职官志'
+    }));
+    const taiziFu = O('jin_o', root.key, '太子太傅·少傅', '太子太傅', '', '中二千石／二千石', {
+      evolution:'泰始三年（267）武帝始建官，各置一人，尚未置詹事；咸宁元年（275）置詹事后，二傅不领官属。',
+      officeStartYear:267, officeEndYear:316, figures:['李憙（267—?）'],
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+    });
+    const zhanshi = O('jin_o', root.key, '太子詹事', '太子詹事', '', '二千石', {
+      evolution:'咸宁元年（275）置，以给事黄门侍郎杨珧为詹事，掌宫事；元康元年（291）复置。',
+      officeStartYear:275, officeEndYear:316, figures:['杨珧（275—?）'],
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const taiziOfficers = [
+      ['太子中庶子（四人）','职如侍中。'],
+      ['太子中舍人（四人）','咸宁四年（278）置，与中庶子共掌文翰。'],
+      ['太子庶子（四人）','职比散骑常侍、中书监令。'],
+      ['太子舍人（十六人）','职比散骑、中书等侍郎。'],
+      ['太子洗马（八人）','掌图籍，释奠讲经则掌其事。'],
+      ['太子率更令','主宫殿门户及赏罚事，职如光禄勋、卫尉。'],
+      ['太子家令','主刑狱、谷货、饮食，职比司农、少府。'],
+      ['太子仆','主车马、亲族，职如太仆、宗正。'],
+      ['太子左右卫率','泰始五年（269）分为左右，各领一军。']
+    ].map(([nm,note])=>O('jin_o', root.key, nm, '太子官属', '', '', {note, sources:'《晋书》卷二十四·职官志'}));
+    const wangguo = O('jin_o', root.key, '王国官属（师友文学·三卿）', '王国官属', '', '', {
+      note:'王置傅（避景帝讳改师为傅）、友、文学各一人；改太守为内史，省相及仆；郎中令、中尉、大农为三卿。',
+      sources:'《晋书》卷二十四·职官志'
+    });
+    const wangguoOfficers = [
+      ['王国傅／友／文学','各一人；咸宁三年五等封建制下按国大小损益。'],
+      ['王国郎中令','王国三卿之一。'],
+      ['王国中尉','王国三卿之一；咸宁三年起中尉领兵。'],
+      ['王国大农','王国三卿之一。'],
+      ['国相／内史','改太守为内史，掌太守之任。'],
+      ['王国常侍·侍郎','大国置左右常侍各一人，省郎中，置侍郎二人。'],
+      ['典书·典祠·典卫·学官令','王国文教官署。'],
+      ['治书·中大夫·舍人','大国有治书四人、中大夫六人、舍人十人。']
+    ].map(([nm,note])=>O('jin_o', wangguo.key, nm, '王国官属', '', '', {note, sources:'《晋书》卷二十四·职官志'}));
     const jinLocalTree = buildLocalRegionTree('jin_o', root.key, LOCAL_REGION_PRESETS.jin, {
       '河南尹': [['洛阳令','县邑令长','七品','六百石',{note:'洛阳为京畿重县，令秩特高。'}]],
       '丹阳郡': [['秣陵令／建邺令','县邑令长','七品','六百石',{
@@ -3111,8 +3501,15 @@ function buildPresets(){
       }]]
     });
 
-    const officeNodes = [root, taizai, taifu, taibao, damasi, dajiangjun, ...sangong, yushi, ...jiuqing,
-      shangshuling, shangshupy, ...liucao, zhongshu, shizhong, sanji, duduzhongwai, ...huguan, ...jinLocalTree];
+    const officeNodes = [root, taizai, taifu, taibao, taiwei, situ, sikong, damasi, dajiangjun,
+      ...jiuqing, jiangzuo, taihouSanqing, dachangqiu, tejin, zuoyouGuanglu, guanglu,
+      shangshuling, shangshupy, zuoyoucheng, liucaoRoot, ...liucao, shangshulang,
+      zhongshu, zhongshushilang, zhongshusheshuren, mishujian, zhuzuolang,
+      yushi, zhishu, shiyushi, dianzhong, fujie,
+      shizhong, huangmen, sanji, tongzhiSanji, yuanwaiSanji, sanjishilang, jishizhong, fengchaoqing,
+      piaoqi, cheqi, weijiangjun, sizheng, lingjun, hujun, zuoyouwei, liujun, sijun, wuxiao, sizhonglang,
+      chengxiang, duduzhongwai, ...huguan, taiziFu, zhanshi, ...taiziOfficers, wangguo, ...wangguoOfficers,
+      ...jinLocalTree];
 
     const nroot = N('jin_n', null, '西晋爵制（承魏咸熙元年复五等封）', '', {
       kind:'root', note:'魏咸熙元年（264）复五等爵，晋受禅后承袭并调整；五等封爵与汉魏旧有列侯系统分列。'
@@ -3307,6 +3704,11 @@ function normalizeAndValidateNodes(nodes, label, factionKey){
       node.sourceLevel = String(node.sourceLevel || '');
       node.confidence = String(node.confidence || '');
       node.historicalStatus = String(node.historicalStatus || '有效');
+      // V28：无可靠设立／裁撤年且无沿革说明的官职，统一标注“待考”，不臆造年份。
+      if(!node.archived && node.officeStartYear===null && node.officeEndYear===null && !String(node.evolution||'').trim()){
+        node.evolution = '沿革年代待考';
+        node.confidence = node.confidence || '待考';
+      }
     } else if(node.kind==='noble'){
       node.actualFief = node.actualFief !== false;
     }
@@ -5388,6 +5790,17 @@ const app = createApp({
           });
         });
       }));
+      // V28：无可靠沿革年份的官职统一标注“待考”，汇总为一条待补清单。
+      let chronologyPendingCount=0;
+      factions.forEach(faction=>{
+        data.trees[faction.key].office.forEach(node=>{
+          if(node.kind==='root'||node.archived) return;
+          if(node.officeStartYear===null && node.officeEndYear===null && String(node.evolution||'').includes('待考')) chronologyPendingCount++;
+        });
+      });
+      if(chronologyPendingCount){
+        add('info','职官谱','沿革年代已标注待考',chronologyPendingCount+' 个官职节点无可靠设立／裁撤年，已统一标注“沿革年代待考”，可继续据史料补充。',{type:'summary'});
+      }
       // 上下级时期冲突：子节点设立晚于父节点裁撤，或子节点裁撤早于父节点设立
       factions.forEach(faction=>{
         const byKey=new Map(data.trees[faction.key].office.map(n=>[n.key,n]));
@@ -5453,7 +5866,10 @@ const app = createApp({
         if(!String(record.sourceTitle||'').trim() && !String(record.sourceUrl||'').trim()){
           add('info','州镇录','史料出处待补','「'+record.commander+'」任「'+record.title+'」缺少史料出处。',{type:'fangzhen',record});
         }
-        const overlapKey=record.polity+'|'+record.commander+'|'+record.title;
+        if(!Number.isFinite(record.startYear) && !Number.isFinite(record.endYear) && /[?？]|未详|未知|待考/.test(String(record.tenureText||''))){
+          add('info','州镇录','任期待考','「'+record.commander+'」任「'+record.title+'」无可靠年代锚点，任期标注为待考。',{type:'fangzhen',record});
+        }
+        const overlapKey=record.polity+'|'+record.commander+'|'+record.title+'|'+String(record.jurisdiction||'').trim();
         if(!fzIndex[overlapKey]) fzIndex[overlapKey]=[];
         fzIndex[overlapKey].push(record);
       });
@@ -5464,7 +5880,9 @@ const app = createApp({
             const a=list[i],b=list[j];
             const as=normalizeYear(a.startYear)??-9999, ae=normalizeYear(a.endYear)??9999;
             const bs=normalizeYear(b.startYear)??-9999, be=normalizeYear(b.endYear)??9999;
-            if(as<=be && bs<=ae){
+            // 同辖区同职任才判重叠；首尾相接的连任（220—226 与 226—231）不视为重叠。
+            const overlaps = (as<be && bs<ae) || (as===ae && bs===be && as===bs);
+            if(overlaps){
               add('error','州镇录','同期任职重叠','「'+a.commander+'」的「'+a.title+'」存在两段重叠任期（'+recordYearLabel(a)+' 与 '+recordYearLabel(b)+'）。请核对应为兼领还是记录重复。',{type:'fangzhen',record:a});
             }
           }
@@ -5568,7 +5986,7 @@ const app = createApp({
       (children.get('__root__')||[]).forEach(root=>walk(root,0));
       return out;
     }
-    const comparisonTrees = computed(()=>['wei','shu','wu'].map(key=>{
+    const comparisonTrees = computed(()=>['wei','shu','wu','jin'].map(key=>{
       const faction=factions.find(f=>f.key===key); return {...faction,nodes:flattenComparison(key)};
     }));
 
@@ -7418,7 +7836,7 @@ const app = createApp({
       </template>
     </el-drawer>
 
-    <el-drawer v-model="showCompare" title="魏 · 汉 · 吴官制三栏对比" size="92%">
+    <el-drawer v-model="showCompare" title="魏 · 汉 · 吴 · 晋官制对比" size="92%">
       <div class="compare-grid">
         <div v-for="column in comparisonTrees" :key="column.key" class="compare-column">
           <div class="compare-head" :style="{background:column.color}">{{column.name}} · {{column.nodes.length}} 项</div>
@@ -7636,7 +8054,7 @@ const app = createApp({
       </template>
     </el-dialog>
 
-    <el-dialog v-model="showTongdian" title="官品体系（据《通典》卷三十六·卷三十七整理）" width="760px">
+    <el-dialog v-model="showTongdian" title="官品体系（据《通典》卷三十六魏官品·卷三十七晋泰始官品整理）" width="760px">
       <div class="tongdian-note">下表为对《通典》卷三十六（魏官品）、卷三十七（晋官品）内容的简编整理，非原文逐句迻录，仅供品级比对参考；具体条目请以原书及《太平御览》等互见材料核校。</div>
       <el-table :data="TONGDIAN_TABLE" border size="small">
         <el-table-column prop="rank" label="品级" width="70" />

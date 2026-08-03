@@ -80,6 +80,12 @@ assert(html.includes('层级谱牒') && html.includes('catalog-workbench'), '职
 assert(html.includes('data/wu-fangzhen-records.js'), '孙吴州郡长官文档数据未接入');
 assert(html.includes('fangzhenStateOptions') && html.includes('fangzhenState') && html.includes('吴州镇档案按规范只填写时间年份'), '州镇录州筛选或吴档案任期规范未接入');
 assert(html.includes('data/shu-fangzhen-records.js') && html.includes('SHU_COMMANDERY_FANGZHEN_PRESETS'), '蜀汉郡守考据档案未接入');
+assert(html.includes('data/fangzhen-term-supplement.js') && html.includes('FANGZHEN_TERM_SUPPLEMENTS'), 'V28 州镇录任期待补数据未接入');
+assert(html.includes('沿革年代已标注待考') && html.includes('任期待考'), 'V28 审计待补清单未接入');
+assert(html.includes("root.key, '太宰'") && html.includes('《晋书》卷二十四·职官志'), 'V29 西晋官制树未按《晋书·职官志》展开');
+assert(html.includes('泰始六曹／太康六曹') && html.includes('中书侍郎（员四人）') && html.includes('太子太傅·少傅'), 'V29 晋官制中央分类未补齐');
+assert(html.includes("['wei','shu','wu','jin']") && html.includes('魏 · 汉 · 吴 · 晋官制对比'), 'V29 官制对比未纳入西晋');
+assert(html.includes('卷三十七晋泰始官品'), 'V29 泰始官品未标注');
 assert(html.includes('data/research-model.js') && html.includes('schemaVersion:7'), '统一研究数据模型或 v7 迁移层未接入');
 assert(html.includes('data/history-evidence.js') && html.includes('SGZ_HISTORY_EVIDENCE'), 'V7历史证据索引或证据面板未接入');
 assert(html.includes('showHistoryAudit') && html.includes('openMapSelectionAudit'), 'V7时期审计面板或地图辖区证据联动未接入');
@@ -152,6 +158,8 @@ assert(portable.includes('SGZ_BATTLE_RECORDS') && portable.includes('战事纪')
 assert(portable.includes('官制对照') && portable.includes('沿革事件（结构化）') && portable.includes('bulk-edit-grid'), '联网便携版未同步职官谱第一阶段增强');
 assert(portable.includes('官品秩俸三轨对照') && portable.includes('官署模板库') && portable.includes('OFFICE_TEMPLATE_LIBRARY'), '联网便携版未同步职官谱第二阶段增强');
 assert(portable.includes('季汉官制') && portable.includes('WIKI_OFFICE_SUPPLEMENTS'), '联网便携版未同步季汉官制或维基补充');
+assert(portable.includes('FANGZHEN_TERM_SUPPLEMENTS') && portable.includes('沿革年代已标注待考'), '联网便携版未同步 V28 州镇录补全');
+assert(portable.includes("root.key, '太宰'") && portable.includes('泰始六曹／太康六曹'), '联网便携版未同步 V29 西晋官制');
 assert(portable.includes('曹魏代汉'), '联网便携版未同步 220 年节点改名');
 assert(!portable.includes('州郡边界与水系 © Zhou Dadudu'), '联网便携版仍保留左侧署名');
 assert(!portable.includes('<strong>V7证据快照</strong>') && !portable.includes('<strong>考据说明</strong>'), '联网便携版右侧面板仍保留考据或证据快照');

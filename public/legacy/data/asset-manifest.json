@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T13:52:23.955Z",
+  "generatedAt": "2026-08-03T17:15:40.480Z",
   "offlineRuntime": true,
-  "fileCount": 52,
-  "totalBytes": 11142716,
+  "fileCount": 53,
+  "totalBytes": 11152742,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -199,6 +199,11 @@
       "path": "data/battle-records.js",
       "bytes": 25855,
       "sha256": "0bf935c85164a5f6aa5ebe0e2a32ae1c71d37095cf33c9dec3c164d178011a06"
+    },
+    {
+      "path": "data/fangzhen-term-supplement.js",
+      "bytes": 10026,
+      "sha256": "60173e882e311366815097b90b9966680ac8f27910dfc69a6b69567613209aec"
     },
     {
       "path": "data/historical-audit.json",
