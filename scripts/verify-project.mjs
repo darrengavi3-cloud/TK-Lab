@@ -104,6 +104,7 @@ const mapNarrative = read('assets/map/data/three-kingdoms.js');
 const mapTerritories = read('assets/map/js/territories.js');
 const mapStrategic = read('assets/map/data/strategic-geography.js');
 const mapStrategicLayers = read('assets/map/js/strategic-layers.js');
+const worldContext = read('assets/map/data/geo-world-context.js');
 const mapPanel = read('assets/map/js/panel.js');
 const mapBridge = read('assets/map/js/bridge.js');
 const mapCommanderies = read('assets/map/js/commanderies.js');
@@ -143,6 +144,8 @@ assert(mapStrategicLayers.includes('renderMinorities') && mapStrategicLayers.inc
 assert(mapStrategicLayers.includes('minorityLayer.addLayer(region)') && mapStrategicLayers.includes('minorityLayer.addLayer(label)'), '周边族群矢量区域或标签未接入');
 assert(mapStyle.includes('world-context-country') && mapStyle.includes('world-context-label'), '素色底图域外世界背景样式未接入');
 assert(mapBaseLayer.includes('GEO_WORLD_CONTEXT') && mapBaseLayer.includes('setWorldContextVisible'), '素色底图域外世界背景图层未接入');
+assert(mapBaseLayer.includes("WORLD_CONTEXT_PANE = 'world-context'") && mapBaseLayer.includes("zIndex = '350'"), '域外世界背景未使用稳定独立图层 pane');
+assert(worldContext.includes('尼泊尔') && worldContext.includes('Kazakhstan') && worldContext.includes('Sri Lanka'), '素色底图域外国家范围仍不完整');
 assert(html.includes('data/geo-world-context.js') && !html.includes('minority-region{stroke:none!important'), '单文件地图未同步域外背景或仍强制隐藏族群边界');
 assert(!mapApp.includes('initPeninsulaOutlines') && !mapConfig.includes('PENINSULA_OUTLINES'), '手绘半岛轮廓未移除');
 assert(mapBaseLayer.includes("let currentKey = 'terrain'") && html.includes('id="bm-terrain" name="basemap" value="terrain" type="radio" checked'), '素色底图未设为默认');
