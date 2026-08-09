@@ -11,6 +11,7 @@ const BaseLayer = (function () {
   let worldContextLayer = null;
   let waterLayer = null;
   let coastlineLayer = null;
+  const WORLD_CONTEXT_PANE = 'world-context';
 
   function makeLayer(key) {
     const def = BASE_MAPS[key];
@@ -80,7 +81,7 @@ const BaseLayer = (function () {
         className: 'world-context-country',
         color: '#f6f2e8', weight: 0.78, opacity: 0.88,
         fillColor: palette[index % palette.length], fillOpacity: 0.72,
-        lineJoin: 'round', interactive: false,
+        lineJoin: 'round', interactive: false, pane: WORLD_CONTEXT_PANE,
       };
       if (geometry.type === 'Polygon') {
         geometry.coordinates.forEach((ring) => grp.addLayer(L.polygon(toLatLngs(ring), options)));
@@ -183,13 +184,19 @@ const BaseLayer = (function () {
   }
 
   function init(map) {
+    // 独立 pane 固定在纸色底图之上、历史行政层之下，避免行政层重绘时
+    // 依赖同一 SVG 的 bringToBack 顺序而使域外国家轮廓看似消失。
+    if (!map.getPane(WORLD_CONTEXT_PANE)) {
+      const pane = map.createPane(WORLD_CONTEXT_PANE);
+      pane.style.zIndex = '350';
+      pane.style.pointerEvents = 'none';
+    }
     current = makeLayer(currentKey).addTo(map);
     worldContextLayer = buildWorldContextLayer();
     worldContextLayer.addTo(map);
     waterLayer = buildWaterLayer().addTo(map);
     coastlineLayer = buildCoastlineLayer().addTo(map);
     setWorldContextVisible(map, currentKey === 'terrain');
-    worldContextLayer.eachLayer((layer) => { if (layer.bringToBack) layer.bringToBack(); });
     coastlineLayer.eachLayer((layer) => layer.bringToBack());
     map.getContainer().classList.add('tinted');
     return current;
@@ -208,7 +215,6 @@ const BaseLayer = (function () {
     if (!worldContextLayer) return;
     if (on) {
       if (!map.hasLayer(worldContextLayer)) map.addLayer(worldContextLayer);
-      worldContextLayer.eachLayer((layer) => { if (layer.bringToBack) layer.bringToBack(); });
     }
     else if (map.hasLayer(worldContextLayer)) map.removeLayer(worldContextLayer);
   }

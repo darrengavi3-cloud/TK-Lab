@@ -8,22 +8,24 @@ const inputPath = process.argv[2] || '/tmp/ne_countries.geojson';
 const outputPath = path.join(root, 'assets', 'map', 'data', 'geo-world-context.js');
 const source = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 
-// 素色底图只需要东亚可见范围，保留域外现代陆地轮廓；中国本土由历史州郡层表达。
-const bounds = { west: 88, east: 146, south: 7, north: 54 };
+// 素色底图需要覆盖当前地图在最小缩放级别下的可见域外范围；中国本土由历史州郡层表达。
+// 只保留这一视窗内的国家轮廓，避免把现代全球政区误读成汉末至西晋历史疆界。
+const bounds = { west: 76, east: 146, south: 4, north: 56 };
 const keep = new Set([
-  'Russia', 'Mongolia', 'India', 'Bangladesh', 'Bhutan', 'Myanmar', 'Thailand',
-  'Laos', 'Vietnam', 'Cambodia', 'North Korea', 'South Korea', 'Japan',
-  'Philippines', 'Taiwan',
+  'Kazakhstan', 'Indonesia', 'Russia', 'Cambodia', 'Thailand', 'Laos', 'Myanmar',
+  'Vietnam', 'North Korea', 'South Korea', 'Mongolia', 'India', 'Bangladesh',
+  'Bhutan', 'Nepal', 'Pakistan', 'Kyrgyzstan', 'Sri Lanka', 'Taiwan',
+  'Philippines', 'Malaysia', 'Brunei', 'Japan',
 ]);
 const names = {
   Russia: '俄罗斯', Mongolia: '蒙古', India: '印度', Bangladesh: '孟加拉',
-  Bhutan: '不丹', Myanmar: '缅甸', Thailand: '暹罗', Laos: '老挝',
+  Bhutan: '不丹', Nepal: '尼泊尔', Myanmar: '缅甸', Thailand: '暹罗', Laos: '老挝',
   Vietnam: '交趾', Cambodia: '真腊', 'North Korea': '高丽', 'South Korea': '新罗',
   Japan: '倭', Philippines: '吕宋', Taiwan: '夷洲',
 };
 const labels = {
   Russia: [48.5, 133.0], Mongolia: [46.4, 103.2], India: [25.0, 84.0],
-  Bangladesh: [23.9, 90.5], Bhutan: [27.5, 90.4], Myanmar: [19.2, 96.0],
+  Bangladesh: [23.9, 90.5], Bhutan: [27.5, 90.4], Nepal: [28.1, 84.1], Myanmar: [19.2, 96.0],
   Thailand: [15.2, 101.1], Laos: [19.4, 103.4], Vietnam: [16.2, 106.8],
   Cambodia: [12.6, 104.8], 'North Korea': [40.2, 127.3], 'South Korea': [36.1, 127.8],
   Japan: [37.4, 138.0], Philippines: [12.0, 122.0], Taiwan: [23.6, 121.0],
