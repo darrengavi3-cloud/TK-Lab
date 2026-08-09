@@ -177,10 +177,15 @@ html, body {
 .faction-annotation b { font:700 15px "Noto Serif SC","Songti SC",serif; letter-spacing:1px; }
 .faction-annotation small { font-size:9.5px; color:#5F584E; font-weight:600; }
 
-/* 周边族群与古国活动范围：只显示名称，不弹出解释性注释。 */
-.minority-region { stroke: none !important; stroke-width: 0 !important; mix-blend-mode: multiply; pointer-events: none; }
+/* 周边族群与古国：研究示意矢量层，不等同于汉魏吴晋正式行政边界。 */
+.minority-region { stroke: rgba(247,243,233,.92) !important; stroke-width: 1.05 !important; stroke-linejoin: round; mix-blend-mode: multiply; pointer-events: none; }
 .minority-label { font-family:"KaiTi","STKaiti",serif; display:flex!important; justify-content:center; align-items:center; pointer-events:none; }
-.minority-label span { display:inline-block; transform:translate(-50%,-50%); color:var(--minority-color,#625b52); font-size:13px; letter-spacing:2px; white-space:nowrap; }
+.minority-label span { display:inline-block; transform:translate(-50%,-50%); color:var(--minority-color,#625b52); font-size:13px; font-weight:700; letter-spacing:2px; white-space:nowrap; text-shadow:0 0 3px rgba(247,243,233,.96),0 0 1px rgba(247,243,233,.96); }
+
+/* 素色底图的域外现代陆地背景，不代表汉末至西晋历史政区。 */
+.world-context-country { stroke:#f6f2e8 !important; stroke-width:.78 !important; stroke-opacity:.88 !important; fill-opacity:.72 !important; pointer-events:none; }
+.world-context-label { font-family:"KaiTi","STKaiti",serif; display:flex!important; justify-content:center; align-items:center; pointer-events:none; }
+.world-context-label span { display:inline-block; transform:translate(-50%,-50%); color:rgba(78,87,82,.72); font-size:12px; letter-spacing:1px; white-space:nowrap; text-shadow:0 0 3px rgba(247,243,233,.92); }
 
 /* 夷洲标注 */
 .yizhou-label {
@@ -1036,10 +1041,15 @@ html, body {
 .pv-roster { display: flex; flex-direction: column; gap: 8px; }
 .roster-group { padding: 7px 8px; background: rgba(255,252,244,.48); border-left: 2px solid rgba(141,61,50,.38); }
 .roster-group > b { display: block; margin-bottom: 5px; color: var(--seal); font-size: 11px; letter-spacing: 1px; }
-.roster-group > div { display: flex; flex-wrap: wrap; gap: 4px 8px; }
-.roster-item { display: inline-flex; align-items: baseline; gap: 4px; max-width: 100%; font-size: 11.5px; color: var(--ink-light); }
+.roster-group > div { display: flex; flex-wrap: wrap; gap: 5px 8px; }
+.roster-item { display: inline-flex; align-items: baseline; gap: 4px; max-width: 100%; font-size: 11.5px; color: var(--ink-light); line-height: 1.55; }
+.roster-meta { color: var(--ink-faint); font-size: 9.5px; white-space: nowrap; }
 .roster-item strong { color: var(--ink); font-weight: 600; }
 .roster-item small { color: var(--ink-faint); font-size: 10.5px; }
+.roster-status { display: inline-block; margin-left: 2px; padding: 1px 4px; border-radius: 3px; font-style: normal; font-size: 9px; font-weight: 700; color: #6b5530; background: #f7f1e4; }
+.roster-status.s-tuiding { color: #356044; background: #edf4ee; }
+.roster-status.s-cunyi { color: #8b4338; background: #f7ece9; }
+.roster-status.s-daikao { color: #5f584e; background: #efebe1; }
 
 .pv-result {
   margin-top: 14px;

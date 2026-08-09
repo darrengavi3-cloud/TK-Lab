@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T17:15:40.480Z",
+  "generatedAt": "2026-08-09T12:17:30.425Z",
   "offlineRuntime": true,
-  "fileCount": 53,
-  "totalBytes": 11152742,
+  "fileCount": 54,
+  "totalBytes": 11207980,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 28751,
-      "sha256": "0c0d9e73342c490f4a9c59fc00f290646ba50e769f5ee27a861aa3a1002183eb"
+      "bytes": 29994,
+      "sha256": "e8b2eaf1319b8d0e16c0f4a3c410070f711ba6709e8f926ec43b821bfb35709b"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -46,9 +46,14 @@
       "sha256": "09cea6217f84bcdfe25a631111881b580b7592b3de73d35fc0548c9371a1ef3f"
     },
     {
+      "path": "assets/map/data/geo-world-context.js",
+      "bytes": 19777,
+      "sha256": "f31bb991db2ba465d0dfaea6b4e2221dc3cb719deac37be2c2489f792890be6c"
+    },
+    {
       "path": "assets/map/data/history-evidence.js",
-      "bytes": 29339,
-      "sha256": "0e44b7db9cdae2102ccd6ac72a8816a25f7573209e01da1d87481ff6edd5b40f"
+      "bytes": 29412,
+      "sha256": "c8eb041e34129924b07f0dffddf03bb1ab6cdd7f5621674b055daaf4c1aec973"
     },
     {
       "path": "assets/map/data/political-snapshots.js",
@@ -57,13 +62,13 @@
     },
     {
       "path": "assets/map/data/strategic-geography.js",
-      "bytes": 4135,
-      "sha256": "503dc26b06d5dfb10cd2c8362dd199c3847822f36c1f4332756d05879fd979fc"
+      "bytes": 5433,
+      "sha256": "504bb78236f57cbf7e996d1081847c624a3facab5dd3fac4b6b0a675f44718cf"
     },
     {
       "path": "assets/map/data/three-kingdoms.js",
-      "bytes": 40417,
-      "sha256": "a42b51e4f2ae44b565e90f04a3c34eb8ff4caa792a1771bc749c28def25a0d6b"
+      "bytes": 70540,
+      "sha256": "75d286d93198907d505d74fe4e0b0e311444b6a93dbc8c52a0bfa3ec01012775"
     },
     {
       "path": "assets/map/js/app.js",
@@ -72,8 +77,8 @@
     },
     {
       "path": "assets/map/js/base-layer.js",
-      "bytes": 6045,
-      "sha256": "badd198ef32ab995431393c9a76ae207b756c1830b2ab131604b5c2498ed7490"
+      "bytes": 8022,
+      "sha256": "55cdc7a215337521c9e493c76c420e9621b00da7b6113aeb5a55ace3ef0a781b"
     },
     {
       "path": "assets/map/js/bridge.js",
@@ -112,8 +117,8 @@
     },
     {
       "path": "assets/map/js/strategic-layers.js",
-      "bytes": 3056,
-      "sha256": "3e3124eec7f80da4674787de62ee82fb931e8f28ee623fa212992e1c881dd74f"
+      "bytes": 3656,
+      "sha256": "7628f17535256a13d30ab89870c324a0f09b02c6c6955557ea5f32537d555e27"
     },
     {
       "path": "assets/map/js/territories.js",
@@ -212,13 +217,13 @@
     },
     {
       "path": "data/history-evidence.js",
-      "bytes": 29339,
-      "sha256": "0e44b7db9cdae2102ccd6ac72a8816a25f7573209e01da1d87481ff6edd5b40f"
+      "bytes": 29412,
+      "sha256": "c8eb041e34129924b07f0dffddf03bb1ab6cdd7f5621674b055daaf4c1aec973"
     },
     {
       "path": "data/history-evidence.json",
-      "bytes": 37247,
-      "sha256": "80d5f94ded18ab8f454a55425739625b3c446bcb752432dda3683255f2a96783"
+      "bytes": 37321,
+      "sha256": "7c276a339dc0da7e3a590ab75b79c3d00a876ab8083efb64636e6329667bc251"
     },
     {
       "path": "data/map-period-registry.js",

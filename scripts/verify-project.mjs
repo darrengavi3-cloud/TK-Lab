@@ -112,6 +112,12 @@ const mapStyle = read('assets/map/css/style.css');
 const politicalSnapshots = read('assets/map/data/political-snapshots.js');
 assert(mapNarrative.includes('"id": "shaodi"') && mapNarrative.includes('"year": 189'), '189 年地图叙事节点未接入');
 assert(mapNarrative.includes('"officialRoster"') && mapNarrative.includes('"name":"何进"'), '189 年官员名录未接入时期详情');
+assert(mapNarrative.includes('"section":"诸公"') && mapNarrative.includes('"status":"存疑"') && mapNarrative.includes('"status":"待考"'), '189 年官员名录状态与细分类未接入');
+assert(mapNarrative.includes('"name":"司马防"') && mapNarrative.includes('"name":"第五儁"') && mapNarrative.includes('"name":"樊敏"'), '189 年官员名录未按知乎文章补全');
+const rosterStart = mapNarrative.indexOf('"officialRoster"');
+const rosterEnd = mapNarrative.indexOf('"routes"', rosterStart);
+const rosterItems = (mapNarrative.slice(rosterStart, rosterEnd).match(/\{"group"/g) || []).length;
+assert(rosterItems > 180, '189 年官员名录条目数不足，未完成少帝、献帝之际补录');
 assert(politicalSnapshots.includes('shaodi:{year:189') && politicalSnapshots.includes("name:'何进'") && politicalSnapshots.includes("name:'董卓军'"), '189 年中央百官与董卓入京注记未接入');
 assert(mapTerritories.includes('ringAreaCentroid') && mapTerritories.includes('faction-annotation') && politicalSnapshots.includes('夏口—樊口联军'), '势力中心标签或年度军势注记未接入');
 assert(mapTerritories.includes('ensureHatchPattern') && mapTerritories.includes('commanderySourceNames') && politicalSnapshots.includes('commanderySourceNames'), '黄巾郡块斜线图层未接入');
@@ -132,8 +138,12 @@ assert(mapBridge.includes('clearSelection') && mapBridge.includes('selected'), '
 assert(mapStyle.includes('faction-filter') && mapStyle.includes('map-filter-status') && mapStyle.includes('zoom-gte-7'), 'V8地图控件或标签样式未接入');
 assert(html.includes('lg-group-title') && html.includes('lg-county-swatch') && html.includes('lg-hint'), '形势图图例分组或县政区图例未接入');
 assert(mapStrategic.includes('MINORITY_REGIONS') && mapStrategic.includes("name:'匈奴'") && mapStrategic.includes("name:'高句丽'"), '周边少数民族政权与活动范围未接入');
-assert(mapStrategicLayers.includes('renderMinorities') && mapStrategicLayers.includes('setMinoritiesVisible') && !mapStrategicLayers.includes("dashArray:'5 4'"), '周边族群图层渲染或无框线样式未接入');
-assert(!mapStrategicLayers.includes('L.polygon(item.pts') && mapStrategicLayers.includes('minorityLayer.addLayer(label)'), '周边族群范围投影多边形未移除');
+assert(mapStrategic.includes("vectorKind:'activity-zone'") && mapStrategic.includes("status:'推定'"), '周边族群矢量边界缺少研究状态标记');
+assert(mapStrategicLayers.includes('renderMinorities') && mapStrategicLayers.includes('setMinoritiesVisible') && mapStrategicLayers.includes('L.polygon(item.pts') && !mapStrategicLayers.includes("dashArray:'5 4'"), '周边族群矢量图层渲染或实线边界未接入');
+assert(mapStrategicLayers.includes('minorityLayer.addLayer(region)') && mapStrategicLayers.includes('minorityLayer.addLayer(label)'), '周边族群矢量区域或标签未接入');
+assert(mapStyle.includes('world-context-country') && mapStyle.includes('world-context-label'), '素色底图域外世界背景样式未接入');
+assert(mapBaseLayer.includes('GEO_WORLD_CONTEXT') && mapBaseLayer.includes('setWorldContextVisible'), '素色底图域外世界背景图层未接入');
+assert(html.includes('data/geo-world-context.js') && !html.includes('minority-region{stroke:none!important'), '单文件地图未同步域外背景或仍强制隐藏族群边界');
 assert(!mapApp.includes('initPeninsulaOutlines') && !mapConfig.includes('PENINSULA_OUTLINES'), '手绘半岛轮廓未移除');
 assert(mapBaseLayer.includes("let currentKey = 'terrain'") && html.includes('id="bm-terrain" name="basemap" value="terrain" type="radio" checked'), '素色底图未设为默认');
 assert(mapBaseLayer.includes('buildCoastlineLayer') && html.includes('data/geo-coastline.js') && mapBaseLayer.includes('GEO_COASTLINES'), '真实海岸轮廓图层未接入');
@@ -218,6 +228,7 @@ const requiredFiles = [
   'assets/map/css/style.css',
   'assets/map/data/political-snapshots.js',
   'assets/map/data/strategic-geography.js',
+  'assets/map/data/geo-world-context.js',
   'assets/map/js/base-layer.js',
   'assets/map/js/bridge.js',
   'assets/map/js/config.js',

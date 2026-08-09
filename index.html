@@ -1225,7 +1225,8 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 .province-label span{padding:3px 7px;border:1px solid rgba(84,78,66,.28);border-radius:7px;background:rgba(250,248,242,.88);box-shadow:0 1px 5px rgba(43,38,34,.10)}
 .historical-influence{stroke-linecap:round;filter:drop-shadow(0 1px 2px rgba(247,243,233,.9))}.historical-influence-hatch{stroke:none!important;stroke-width:0!important;stroke-linejoin:round;stroke-linecap:round;mix-blend-mode:multiply;pointer-events:none}
 .faction-annotation{z-index:700!important;pointer-events:none}.faction-annotation span{display:flex;flex-direction:column;align-items:center;gap:0;transform:translate(-50%,-50%);padding:0;border:0;background:transparent;color:var(--annotation-color);white-space:nowrap;filter:drop-shadow(0 1px 0 #f7f3e9) drop-shadow(0 -1px 0 #f7f3e9) drop-shadow(1px 0 0 #f7f3e9) drop-shadow(-1px 0 0 #f7f3e9)}.faction-annotation b{font:700 15px "Noto Serif SC","Songti SC",serif;letter-spacing:1px}.faction-annotation small{font-size:9.5px;color:#5f584e;font-weight:600}
-.minority-region{stroke:none!important;stroke-width:0!important;mix-blend-mode:multiply;pointer-events:none}.minority-label{font-family:"KaiTi","STKaiti",serif;display:flex!important;justify-content:center;align-items:center;pointer-events:none}.minority-label span{display:inline-block;transform:translate(-50%,-50%);color:var(--minority-color,#625b52);font-size:13px;letter-spacing:2px;white-space:nowrap}
+  .minority-region{stroke:rgba(247,243,233,.94)!important;stroke-width:1.05!important;stroke-linejoin:round;mix-blend-mode:multiply;pointer-events:none}.minority-label{font-family:"KaiTi","STKaiti",serif;display:flex!important;justify-content:center;align-items:center;pointer-events:none}.minority-label span{display:inline-block;transform:translate(-50%,-50%);color:var(--minority-color,#625b52);font-size:13px;font-weight:700;letter-spacing:2px;white-space:nowrap;text-shadow:0 0 3px rgba(247,243,233,.96),0 0 1px rgba(247,243,233,.96)}
+  .world-context-country{stroke:#f6f2e8!important;stroke-width:.78!important;stroke-opacity:.88!important;fill-opacity:.72!important;pointer-events:none}.world-context-label{font-family:"KaiTi","STKaiti",serif;display:flex!important;justify-content:center;align-items:center;pointer-events:none}.world-context-label span{display:inline-block;transform:translate(-50%,-50%);color:rgba(78,87,82,.72);font-size:12px;letter-spacing:1px;white-space:nowrap;text-shadow:0 0 3px rgba(247,243,233,.92)}
 .faction-filter{width:100%;border:0;border-radius:4px;background:transparent;font:inherit;text-align:left;cursor:pointer;transition:background .15s ease,color .15s ease}.faction-filter:hover,.faction-filter.active{background:rgba(141,61,50,.08);color:#202420}.faction-filter.active .lg-swatch{box-shadow:0 0 0 2px rgba(141,61,50,.2)}
 .lg-layer-row{font-size:11px;letter-spacing:.6px}.lg-admin-swatch{background:rgba(112,128,113,.42)}.lg-state-swatch{background:linear-gradient(135deg,#dce7df 0 50%,#e5e0ed 50% 100%)}.lg-commandery-swatch{background:rgba(197,207,200,.62);border-style:dashed}.lg-influence-line{width:18px;height:12px;border:0;border-radius:2px;background:repeating-linear-gradient(135deg,rgba(156,59,46,.72) 0 2px,transparent 2px 6px);opacity:.8}
 .lg-group{margin:7px 0 3px}.lg-group:first-of-type{margin-top:0}.lg-group-title{display:flex;align-items:center;gap:6px;margin-bottom:4px;padding:2px 0;color:#8a8477;font-size:9.5px;font-weight:700;letter-spacing:1.4px}.lg-group-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(160,152,138,.35),transparent)}.lg-county-swatch{width:13px;height:13px;border-radius:50%;background:#8f8a7d;box-shadow:inset 0 0 0 2px rgba(255,252,244,.65)}.lg-hint{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed rgba(160,152,138,.35);color:#a29b8e;font-size:9px;line-height:1.55;letter-spacing:.3px}
@@ -1239,7 +1240,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 .pv-year,.pv-label{color:#8d3d32}
 .pv-summary{font-size:13px;line-height:1.8;color:#414741}
 .pv-tag,.pv-kind,.pv-hint{color:#6f756f}
-.pv-source-note{margin-top:14px;padding:10px 11px;border-left:3px solid #a78345;border-radius:5px;background:#f7f3ea;color:#6c675e;font-size:11px;line-height:1.65}.pv-roster{display:flex;flex-direction:column;gap:8px}.roster-group{padding:7px 8px;background:rgba(255,252,244,.48);border-left:2px solid rgba(141,61,50,.38)}.roster-group>b{display:block;margin-bottom:5px;color:#8d3d32;font-size:11px;letter-spacing:1px}.roster-group>div{display:flex;flex-wrap:wrap;gap:4px 8px}.roster-item{display:inline-flex;align-items:baseline;gap:4px;max-width:100%;font-size:11.5px;color:#6c675e}.roster-item strong{color:#202420;font-weight:600}.roster-item small{color:#9a9489;font-size:10.5px}
+.pv-source-note{margin-top:14px;padding:10px 11px;border-left:3px solid #a78345;border-radius:5px;background:#f7f3ea;color:#6c675e;font-size:11px;line-height:1.65}.pv-roster{display:flex;flex-direction:column;gap:8px}.roster-group{padding:7px 8px;background:rgba(255,252,244,.48);border-left:2px solid rgba(141,61,50,.38)}.roster-group>b{display:block;margin-bottom:5px;color:#8d3d32;font-size:11px;letter-spacing:1px}.roster-group>div{display:flex;flex-wrap:wrap;gap:5px 8px}.roster-item{display:inline-flex;align-items:baseline;gap:4px;max-width:100%;font-size:11.5px;color:#6c675e;line-height:1.55}.roster-meta{color:#a39b8c;font-size:9.5px;white-space:nowrap}.roster-item strong{color:#202420;font-weight:600}.roster-item small{color:#9a9489;font-size:10.5px}.roster-status{display:inline-block;margin-left:2px;padding:1px 4px;border-radius:3px;font-style:normal;font-size:9px;font-weight:700;color:#6b5530;background:#f7f1e4}.roster-status.s-tuiding{color:#356044;background:#edf4ee}.roster-status.s-cunyi{color:#8b4338;background:#f7ece9}.roster-status.s-daikao{color:#5f584e;background:#efebe1}
 .pv-confidence{display:flex;align-items:center;gap:8px;margin:10px 0 2px;color:#5e655e;font-size:11px}
 .pv-confidence-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;padding:3px 8px;border:1px solid #d5cbb7;border-radius:999px;background:#f7f3ea;color:#6b5530;font-weight:700}
 .pv-confidence-badge.high{border-color:#aec4b2;background:#edf4ee;color:#356044}
@@ -1319,6 +1320,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 <script src="js/config.js"><\/script>
 <script src="data/geo-water.js"><\/script>
 <script src="data/geo-coastline.js"><\/script>
+<script src="data/geo-world-context.js?v=33"><\/script>
 <script src="data/three-kingdoms.js"><\/script>
 <script src="data/political-snapshots.js"><\/script>
 <script src="data/administrative-events.js"><\/script>
@@ -2140,7 +2142,7 @@ THREE_KINGDOMS.cities.forEach(function(city){
   };
 })();
 <\/script>
-<script src="js/base-layer.js"><\/script>
+<script src="js/base-layer.js?v=33"><\/script>
 <script src="js/territories.js"><\/script>
 <script src="js/wu-commanderies.js"><\/script>
 <script src="js/commanderies.js"><\/script>
@@ -2247,7 +2249,7 @@ THREE_KINGDOMS.cities.forEach(function(city){
   }
   window.addEventListener('resize',scheduleLabelLayout);
   var mapApp=document.getElementById('app');
-  if(mapApp){
+  if(mapApp && typeof mapApp.nodeType==='number'){
     new MutationObserver(scheduleLabelLayout).observe(mapApp,{attributes:true,attributeFilter:['class']});
   }
   var renderTerritories=Territories.render;
@@ -2289,7 +2291,7 @@ THREE_KINGDOMS.cities.forEach(function(city){
 <\/script>
 <script src="js/markers.js"><\/script>
 <script src="js/routes.js"><\/script>
-<script src="js/strategic-layers.js"><\/script>
+<script src="js/strategic-layers.js?v=33"><\/script>
 <script src="js/panel.js"><\/script>
 <script>
 (function(){
@@ -2314,10 +2316,14 @@ THREE_KINGDOMS.cities.forEach(function(city){
     }).join('');
     var rosterGroups={};
     (p.officialRoster||[]).forEach(function(item){(rosterGroups[item.group]||(rosterGroups[item.group]=[])).push(item);});
+    var statusClass={推定:'s-tuiding',存疑:'s-cunyi',待考:'s-daikao'};
     var roster=Object.keys(rosterGroups).map(function(group){
-      return '<div class="roster-group"><b>'+group+'</b><div>'+rosterGroups[group].map(function(item){return '<span class="roster-item"><strong>'+item.name+'</strong><small>'+item.office+'</small></span>';}).join('')+'</div></div>';
+      return '<div class="roster-group"><b>'+group+'</b><div>'+rosterGroups[group].map(function(item){
+        var status=item.status||'推定';
+        return '<span class="roster-item"><span class="roster-meta">'+(item.period||'')+(item.section?' · '+item.section:'')+'</span><strong>'+item.name+'</strong><small>'+item.office+'</small><em class="roster-status '+(statusClass[status]||'s-tuiding')+'">'+status+'</em></span>';
+      }).join('')+'</div></div>';
     }).join('');
-    var rosterHtml=roster?'<div class="pv-section"><div class="pv-label">中央与州郡长吏</div><div class="pv-roster">'+roster+'</div></div>':'';
+    var rosterHtml=roster?'<div class="pv-section"><div class="pv-label">中央与州郡长吏</div><div class="pv-roster">'+roster+'</div><div class="pv-source-note">名录据不可户说《汉少帝、献帝之际中央百官、州郡长吏名录》（知乎）整理；存疑与待考条目保留原表状态，不视为确定实授。</div></div>':'';
     var terr=factionsFor(p.id).map(function(f){
       return '<span class="chip" style="--c:'+f.color+'">'+f.name+'</span>';
     }).join('');
@@ -6473,22 +6479,8 @@ const app = createApp({
       if(!snap || !snap.payload){ ElementPlus.ElMessage.warning('暂无最近自动快照（每次自动保存会保留上一版）'); return; }
       applyLocalPayload(snap.payload,'最近自动快照',snap.hash);
     }
-    function maybePromptRecovery(){
-      try{
-        const raw=localStorage.getItem(AUTOSAVE_KEY);
-        if(!raw) return;
-        const hash=hashPayload(raw);
-        let recovery=null;
-        try{ recovery=JSON.parse(localStorage.getItem(RECOVERY_KEY)||'null'); }catch(_){ recovery=null; }
-        if(recovery && recovery.ackHash===hash) return;
-        const savedAt=cacheSavedAt(raw);
-        const time=new Date(savedAt).toLocaleString('zh-CN');
-        ElementPlus.ElMessageBox.confirm(
-          '检测到浏览器本地保存过一份工程（上次保存 '+time+'）。是否恢复？\n\n选择「忽略」会保留该缓存，但本次以空白预设工程开始，可随时从顶部“工程 → 从本地缓存恢复”找回。',
-          '恢复上次工程', {confirmButtonText:'恢复缓存',cancelButtonText:'忽略',type:'warning'}
-        ).then(()=>{ loadLocal(); }).catch(()=>{ ackRecovery(hash); });
-      }catch(_){}
-    }
+    // 启动时不再自动弹出恢复框：beforeunload 在刷新、嵌入页和文件页中并不可靠，
+    // 旧会话标记会把正常打开误判为异常退出。缓存仍持续自动保存，恢复保留在“工程”菜单。
     function readArchives(){
       try{ const raw=localStorage.getItem('sgz_zhiguanpu_archives_v3'); archives.list=raw?JSON.parse(raw):[]; }
       catch(_){ archives.list=[]; }
@@ -6588,7 +6580,7 @@ const app = createApp({
     function beforeUnload(){ saveLocal(true); }
     onMounted(()=>{
       readArchives();
-      maybePromptRecovery();
+      // 不在启动时阻断页面；需要恢复时从“工程 → 从本地缓存恢复”进入。
       const initialModule=String(location.hash||'').replace('#','');
       if(['offices','people','battle','fangzhen','map'].includes(initialModule)) switchModule(initialModule);
       window.addEventListener('keydown',handleShortcut);

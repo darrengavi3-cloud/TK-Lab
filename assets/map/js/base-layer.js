@@ -8,6 +8,7 @@
 const BaseLayer = (function () {
   let current = null;
   let currentKey = 'terrain';
+  let worldContextLayer = null;
   let waterLayer = null;
   let coastlineLayer = null;
 
@@ -65,6 +66,39 @@ const BaseLayer = (function () {
         icon:L.divIcon({className:'major-river-label',html:`<span>${label.name}</span>`,iconSize:[120,20],iconAnchor:[60,10]}),
         interactive:false,
       }));
+    });
+    return grp;
+  }
+
+  function buildWorldContextLayer() {
+    const grp = L.layerGroup();
+    const palette = ['#c6cdca', '#cdd2cf', '#bcc6c4', '#d2d4cc'];
+    const toLatLngs = (ring) => ring.map((point) => [point[1], point[0]]);
+    (window.GEO_WORLD_CONTEXT || []).forEach((item, index) => {
+      const geometry = item.geometry || {};
+      const options = {
+        className: 'world-context-country',
+        color: '#f6f2e8', weight: 0.78, opacity: 0.88,
+        fillColor: palette[index % palette.length], fillOpacity: 0.72,
+        lineJoin: 'round', interactive: false,
+      };
+      if (geometry.type === 'Polygon') {
+        geometry.coordinates.forEach((ring) => grp.addLayer(L.polygon(toLatLngs(ring), options)));
+      } else if (geometry.type === 'MultiPolygon') {
+        geometry.coordinates.forEach((polygon) => {
+          polygon.forEach((ring) => grp.addLayer(L.polygon(toLatLngs(ring), options)));
+        });
+      }
+      if (Array.isArray(item.label)) {
+        grp.addLayer(L.marker(item.label, {
+          icon: L.divIcon({
+            className: 'world-context-label',
+            html: `<span>${item.name}</span>`,
+            iconSize: [80, 18], iconAnchor: [40, 9],
+          }),
+          interactive: false,
+        }));
+      }
     });
     return grp;
   }
@@ -150,8 +184,12 @@ const BaseLayer = (function () {
 
   function init(map) {
     current = makeLayer(currentKey).addTo(map);
+    worldContextLayer = buildWorldContextLayer();
+    worldContextLayer.addTo(map);
     waterLayer = buildWaterLayer().addTo(map);
     coastlineLayer = buildCoastlineLayer().addTo(map);
+    setWorldContextVisible(map, currentKey === 'terrain');
+    worldContextLayer.eachLayer((layer) => { if (layer.bringToBack) layer.bringToBack(); });
     coastlineLayer.eachLayer((layer) => layer.bringToBack());
     map.getContainer().classList.add('tinted');
     return current;
@@ -163,6 +201,16 @@ const BaseLayer = (function () {
     if (current) map.removeLayer(current);
     current = makeLayer(key).addTo(map);
     currentKey = key;
+    setWorldContextVisible(map, key === 'terrain');
+  }
+
+  function setWorldContextVisible(map, on) {
+    if (!worldContextLayer) return;
+    if (on) {
+      if (!map.hasLayer(worldContextLayer)) map.addLayer(worldContextLayer);
+      worldContextLayer.eachLayer((layer) => { if (layer.bringToBack) layer.bringToBack(); });
+    }
+    else if (map.hasLayer(worldContextLayer)) map.removeLayer(worldContextLayer);
   }
 
   function setTint(map, on) {
@@ -178,5 +226,5 @@ const BaseLayer = (function () {
   function getWaterLayer() { return waterLayer; }
   function getCurrentKey() { return currentKey; }
 
-  return { init, setBase, setTint, setWaterVisible, getWaterLayer, getCurrentKey };
+  return { init, setBase, setTint, setWaterVisible, setWorldContextVisible, getWaterLayer, getCurrentKey };
 })();

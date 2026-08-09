@@ -44,11 +44,25 @@ const StrategicLayers = (function () {
     if (minorityLayer && map.hasLayer(minorityLayer)) map.removeLayer(minorityLayer);
     minorityLayer = L.layerGroup();
     (window.MINORITY_REGIONS || []).filter((item) => yearVisible(item, year)).forEach((item) => {
+      if (Array.isArray(item.pts) && item.pts.length >= 3) {
+        const region = L.polygon(item.pts, {
+          className: 'minority-region',
+          color: item.borderColor || '#f7f3e9',
+          weight: item.borderWeight || 1,
+          opacity: item.borderOpacity ?? .88,
+          fillColor: item.color || '#8b765f',
+          fillOpacity: item.fillOpacity ?? .38,
+          lineJoin: 'round',
+          interactive: false,
+        });
+        minorityLayer.addLayer(region);
+      }
+      const labelWidth = Math.max(78, String(item.name || '').length * 20 + 18);
       const label = L.marker(item.label, {
         icon:L.divIcon({
           className:'minority-label',
-          html:`<span style="--minority-color:${item.color || '#625b52'}">${item.name}</span>`,
-          iconSize:[104,22], iconAnchor:[52,11],
+          html:`<span style="--minority-color:${item.labelColor || '#625b52'}">${item.name}</span>`,
+          iconSize:[labelWidth,24], iconAnchor:[labelWidth / 2,12],
         }),
         interactive:false,
       });
