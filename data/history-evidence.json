@@ -124,6 +124,15 @@
       "note": "底稿为研究示意；早期年份的后置郡几何经过母郡归并，不能视为实测边界。"
     },
     {
+      "id": "sinica_western_jin_map",
+      "title": "中央研究院：西晋历史地图（W. Jing）",
+      "level": "地图校验",
+      "role": "280年西晋统一后十九州名单与空间关系参照",
+      "locator": "CCTS 图层 ad0281，版本 1.0.0",
+      "url": "https://gis.sinica.edu.tw/showwmts/index.php?s=ccts&l=ad0281",
+      "note": "2026-08-09复核公开栅格图层：与《晋书·地理志》十九州清单一致；仅用于州级空间关系交叉校验，不直接复制版权图砖，也不把图中的鲜卑、夫余、高句丽、沃沮或西域长史府计入十九州。"
+    },
+    {
       "id": "jinshu_juan5",
       "title": "《晋书》卷五·孝怀帝纪",
       "level": "一手史料",
@@ -886,17 +895,23 @@
             "label": "太康平吴十九州",
             "count": 19,
             "scope": "州级数量"
+          },
+          {
+            "label": "中研院西晋历史地图",
+            "count": 19,
+            "scope": "州级名单与空间关系交叉校验"
           }
         ],
         "geometryCoverage": "full",
         "geometryConfidence": "推定",
-        "geometryBasis": "《晋书·地理志》十九州与现有郡界底稿归并"
+        "geometryBasis": "《晋书·地理志》十九州与现有郡界底稿归并，并参照中研院西晋图层校验州级空间关系"
       },
       "polities": [
         "晋"
       ],
       "sourceIds": [
         "jinshu_juan14",
+        "sinica_western_jin_map",
         "map_geometry_archive"
       ],
       "claims": [
@@ -907,7 +922,8 @@
           "status": "确定",
           "statement": "280年平吴后按《晋书·地理志》表达十九州，吴国号不再显示。",
           "sourceIds": [
-            "jinshu_juan14"
+            "jinshu_juan14",
+            "sinica_western_jin_map"
           ]
         },
         {
@@ -920,10 +936,23 @@
             "jinshu_juan14",
             "map_geometry_archive"
           ]
+        },
+        {
+          "id": "taikang-sinica-crosscheck",
+          "subjectType": "地图校验",
+          "subject": "西晋统一州界",
+          "status": "推定",
+          "statement": "中研院栅格图与本项目十九州名录及大体空间关系一致；该图层不作为可直接复制的郡界矢量数据。",
+          "sourceIds": [
+            "jinshu_juan14",
+            "sinica_western_jin_map",
+            "map_geometry_archive"
+          ]
         }
       ],
       "caveats": [
-        "郡界几何为现有资料归并结果，不等于现代测绘边界。"
+        "郡界几何为现有资料归并结果，不等于现代测绘边界。",
+        "中研院图层为专题栅格并标有版权限制，本项目仅作参考校验，不移植图砖或描摹边界。"
       ]
     },
     {
