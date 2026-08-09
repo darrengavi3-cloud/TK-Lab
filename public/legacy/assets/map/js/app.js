@@ -206,7 +206,7 @@
       //   · 220 年前（东汉）显示全部郡界，统一为汉色；
       //   · sanguo / beifa 显示汉的郡级边界；
       //   · guijin / hanwang / jinchu 显示全境郡色，避免只绘吴郡造成巴郡、巴西等空白；
-      //   · taikang 显示晋朝 148 郡。
+      //   · taikang 显示晋朝 144 个郡级几何块。
       const preSanguoIds = ['huangjin', 'shaodi', 'dongzhuo', 'xingping', 'jianbing', 'guandu', 'chibi', 'xiangfan'];
       const fullCommanderyIds = ['guijin', 'hanwang', 'jinchu', 'hui_di', 'yongjia'];
       if (fullCommanderyIds.includes(p.id)) {

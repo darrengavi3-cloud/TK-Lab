@@ -110,6 +110,7 @@ const mapCommanderies = read('assets/map/js/commanderies.js');
 const mapWuCommanderies = read('assets/map/js/wu-commanderies.js');
 const mapStyle = read('assets/map/css/style.css');
 const politicalSnapshots = read('assets/map/data/political-snapshots.js');
+const historyEvidence = read('data/history-evidence.json');
 assert(mapNarrative.includes('"id": "shaodi"') && mapNarrative.includes('"year": 189'), '189 年地图叙事节点未接入');
 assert(mapNarrative.includes('"officialRoster"') && mapNarrative.includes('"name":"何进"'), '189 年官员名录未接入时期详情');
 assert(mapNarrative.includes('"section":"诸公"') && mapNarrative.includes('"status":"存疑"') && mapNarrative.includes('"status":"待考"'), '189 年官员名录状态与细分类未接入');
@@ -154,6 +155,7 @@ assert(mapWuCommanderies.includes('labelPosition') && mapWuCommanderies.includes
 assert(html.includes('V10：郡名是行政信息本身') && !html.includes("label.style.visibility='hidden'"), 'V10郡名仍会被碰撞逻辑隐藏');
 assert(html.includes('cmd-label-compact') && html.includes('--cmd-shift-y'), 'V10缩略郡名错位布局未接入');
 assert(!mapBaseLayer.includes('今黄河') && !mapBaseLayer.includes('今长江'), '河水、江水仍附有现代名称');
+assert(historyEvidence.includes('sinica_western_jin_map') && historyEvidence.includes('taikang-sinica-crosscheck'), '280 年中研院西晋地图交叉校验未接入证据索引');
 [mapConfig,mapBaseLayer,mapNarrative].forEach(source => assert(!source.includes('（今') && !source.includes('(今'), '地图可见文字仍含“今××”现代地名括注'));
 assert(!html.includes('cdnjs.cloudflare.com/ajax/libs'), '本地项目仍依赖 cdnjs');
 assert(!html.includes('workbuddy-space-static.codebuddy.work/page/'), '本地项目仍依赖 WorkBuddy 运行资源');
