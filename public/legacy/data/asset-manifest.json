@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-09T14:09:14.192Z",
+  "generatedAt": "2026-08-09T14:30:53.139Z",
   "offlineRuntime": true,
-  "fileCount": 54,
-  "totalBytes": 11216885,
+  "fileCount": 52,
+  "totalBytes": 11184952,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 29994,
-      "sha256": "e8b2eaf1319b8d0e16c0f4a3c410070f711ba6709e8f926ec43b821bfb35709b"
+      "bytes": 29381,
+      "sha256": "839919022142f19ccadc0147e9b2ff12ca45a2cccffc408c36e6805480f548b5"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -46,11 +46,6 @@
       "sha256": "09cea6217f84bcdfe25a631111881b580b7592b3de73d35fc0548c9371a1ef3f"
     },
     {
-      "path": "assets/map/data/geo-world-context.js",
-      "bytes": 28357,
-      "sha256": "7a574a371f2246139679004cbb683cba3f2fdbb65e6878ed88b8f080eaec91d5"
-    },
-    {
       "path": "assets/map/data/history-evidence.js",
       "bytes": 29412,
       "sha256": "c8eb041e34129924b07f0dffddf03bb1ab6cdd7f5621674b055daaf4c1aec973"
@@ -77,8 +72,8 @@
     },
     {
       "path": "assets/map/js/base-layer.js",
-      "bytes": 8269,
-      "sha256": "b1797f0d6dd346f2130c8296c8b1d6e699d32c1ed0a776dda5fa30ae6852a12c"
+      "bytes": 6045,
+      "sha256": "badd198ef32ab995431393c9a76ae207b756c1830b2ab131604b5c2498ed7490"
     },
     {
       "path": "assets/map/js/bridge.js",
@@ -134,11 +129,6 @@
       "path": "assets/map/js/wu-commanderies.js",
       "bytes": 5720,
       "sha256": "806c01fc41fe1c3647e70c2961860ccf1c1edfab8dd8901c51960ef766a1ad7c"
-    },
-    {
-      "path": "assets/map/tiles/paper.svg",
-      "bytes": 739,
-      "sha256": "a861fc0911fbf6b189752e229f943ec167e33d3daf05e9d449369fe8c7f48755"
     },
     {
       "path": "assets/map/vendor/leaflet/images/layers-2x.png",

@@ -104,7 +104,6 @@ const mapNarrative = read('assets/map/data/three-kingdoms.js');
 const mapTerritories = read('assets/map/js/territories.js');
 const mapStrategic = read('assets/map/data/strategic-geography.js');
 const mapStrategicLayers = read('assets/map/js/strategic-layers.js');
-const worldContext = read('assets/map/data/geo-world-context.js');
 const mapPanel = read('assets/map/js/panel.js');
 const mapBridge = read('assets/map/js/bridge.js');
 const mapCommanderies = read('assets/map/js/commanderies.js');
@@ -142,11 +141,9 @@ assert(mapStrategic.includes('MINORITY_REGIONS') && mapStrategic.includes("name:
 assert(mapStrategic.includes("vectorKind:'activity-zone'") && mapStrategic.includes("status:'推定'"), '周边族群矢量边界缺少研究状态标记');
 assert(mapStrategicLayers.includes('renderMinorities') && mapStrategicLayers.includes('setMinoritiesVisible') && mapStrategicLayers.includes('L.polygon(item.pts') && !mapStrategicLayers.includes("dashArray:'5 4'"), '周边族群矢量图层渲染或实线边界未接入');
 assert(mapStrategicLayers.includes('minorityLayer.addLayer(region)') && mapStrategicLayers.includes('minorityLayer.addLayer(label)'), '周边族群矢量区域或标签未接入');
-assert(mapStyle.includes('world-context-country') && mapStyle.includes('world-context-label'), '素色底图域外世界背景样式未接入');
-assert(mapBaseLayer.includes('GEO_WORLD_CONTEXT') && mapBaseLayer.includes('setWorldContextVisible'), '素色底图域外世界背景图层未接入');
-assert(mapBaseLayer.includes("WORLD_CONTEXT_PANE = 'world-context'") && mapBaseLayer.includes("zIndex = '350'"), '域外世界背景未使用稳定独立图层 pane');
-assert(worldContext.includes('尼泊尔') && worldContext.includes('Kazakhstan') && worldContext.includes('Sri Lanka'), '素色底图域外国家范围仍不完整');
-assert(html.includes('data/geo-world-context.js') && !html.includes('minority-region{stroke:none!important'), '单文件地图未同步域外背景或仍强制隐藏族群边界');
+assert(!mapBaseLayer.includes('GEO_WORLD_CONTEXT') && !mapBaseLayer.includes('WORLD_CONTEXT_PANE') && !mapBaseLayer.includes('setWorldContextVisible'), '独立世界背景图层仍有运行时代码残留');
+assert(!html.includes('geo-world-context.js') && !mapStyle.includes('world-context-country') && !mapStyle.includes('world-context-label'), '独立世界背景数据或样式仍有残留');
+assert(!html.includes('minority-region{stroke:none!important'), '单文件地图仍强制隐藏族群边界');
 assert(!mapApp.includes('initPeninsulaOutlines') && !mapConfig.includes('PENINSULA_OUTLINES'), '手绘半岛轮廓未移除');
 assert(mapBaseLayer.includes("let currentKey = 'terrain'") && html.includes('id="bm-terrain" name="basemap" value="terrain" type="radio" checked'), '素色底图未设为默认');
 assert(mapBaseLayer.includes('buildCoastlineLayer') && html.includes('data/geo-coastline.js') && mapBaseLayer.includes('GEO_COASTLINES'), '真实海岸轮廓图层未接入');
@@ -231,7 +228,6 @@ const requiredFiles = [
   'assets/map/css/style.css',
   'assets/map/data/political-snapshots.js',
   'assets/map/data/strategic-geography.js',
-  'assets/map/data/geo-world-context.js',
   'assets/map/js/base-layer.js',
   'assets/map/js/bridge.js',
   'assets/map/js/config.js',
