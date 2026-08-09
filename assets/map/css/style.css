@@ -182,11 +182,6 @@ html, body {
 .minority-label { font-family:"KaiTi","STKaiti",serif; display:flex!important; justify-content:center; align-items:center; pointer-events:none; }
 .minority-label span { display:inline-block; transform:translate(-50%,-50%); color:var(--minority-color,#625b52); font-size:13px; font-weight:700; letter-spacing:2px; white-space:nowrap; text-shadow:0 0 3px rgba(247,243,233,.96),0 0 1px rgba(247,243,233,.96); }
 
-/* 素色底图的域外现代陆地背景，不代表汉末至西晋历史政区。 */
-.world-context-country { stroke:#f6f2e8 !important; stroke-width:.78 !important; stroke-opacity:.88 !important; fill-opacity:.72 !important; pointer-events:none; }
-.world-context-label { font-family:"KaiTi","STKaiti",serif; display:flex!important; justify-content:center; align-items:center; pointer-events:none; }
-.world-context-label span { display:inline-block; transform:translate(-50%,-50%); color:rgba(78,87,82,.72); font-size:12px; letter-spacing:1px; white-space:nowrap; text-shadow:0 0 3px rgba(247,243,233,.92); }
-
 /* 夷洲标注 */
 .yizhou-label {
   font-family: "KaiTi", "STKaiti", serif;

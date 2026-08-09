@@ -121,7 +121,6 @@ function escapeForOuterTemplate(source) {
   'data/history-evidence.js',
   'data/strategic-geography.js',
   'data/geo-coastline.js',
-  'data/geo-world-context.js',
   'data/all-provinces-local.js',
   'js/config.js',
   'js/base-layer.js',
