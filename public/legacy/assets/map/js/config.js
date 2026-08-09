@@ -21,9 +21,9 @@ const MAP_CONFIG = {
 // 底图（瓦片图层）：素色地形为默认
 const BASE_MAPS = {
   terrain: {
-    name: '本地纸色',
-    url: 'tiles/paper.svg',
-    attribution: '本地纸色底图',
+    name: '素色地形',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}',
+    attribution: 'Tiles © Esri',
     maxZoom: 18,
   },
   topo: {
