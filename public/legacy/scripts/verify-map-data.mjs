@@ -29,7 +29,7 @@ inlineScripts.forEach((match, index) => {
 });
 
 const start = srcdoc.indexOf("(function(){\n  var GEO_SOURCE='data/All_Provinces.json';");
-const endMarker = '})();\n</script>\n<script src="js/base-layer.js"';
+const endMarker = '})();\n</script>\n<script src="js/base-layer.js';
 const end = srcdoc.indexOf(endMarker, start);
 if (start < 0 || end < 0) throw new Error('无法提取州郡转换脚本');
 

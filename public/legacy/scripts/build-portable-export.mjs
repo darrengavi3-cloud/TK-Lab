@@ -121,6 +121,7 @@ function escapeForOuterTemplate(source) {
   'data/history-evidence.js',
   'data/strategic-geography.js',
   'data/geo-coastline.js',
+  'data/geo-world-context.js',
   'data/all-provinces-local.js',
   'js/config.js',
   'js/base-layer.js',
@@ -134,9 +135,12 @@ function escapeForOuterTemplate(source) {
   'js/app.js',
 ].forEach(relative => {
   const marker = `<script src="${relative}"><\\/script>`;
-  if (!html.includes(marker)) throw new Error(`便携导出构建失败，未找到地图脚本：${relative}`);
+  const escapedRelative = relative.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+  const versionedMarker = html.match(new RegExp(`<script src="${escapedRelative}\\?v=[0-9]+"><\\\\/script>`))?.[0];
+  const activeMarker = html.includes(marker) ? marker : versionedMarker;
+  if (!html.includes(activeMarker)) throw new Error(`便携导出构建失败，未找到地图脚本：${relative}`);
   const source = fs.readFileSync(path.join(root, 'assets', 'map', relative), 'utf8');
-  html = html.replace(marker, `<script>\n${escapeForOuterTemplate(source)}\n<\\/script>`);
+  html = html.replace(activeMarker, `<script>\n${escapeForOuterTemplate(source)}\n<\\/script>`);
 });
 
 // 战事纪档案同时供主页面与地图 iframe 使用；便携版统一内嵌进 srcdoc。
