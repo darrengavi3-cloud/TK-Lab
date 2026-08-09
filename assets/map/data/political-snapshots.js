@@ -110,13 +110,13 @@ window.POLITICAL_SNAPSHOT_AUDIT = {
   jinchu:{year:266,expected:['jin','wu'],displayNames:{jin:'晋',wu:'吴'},note:'晋受魏禅，吴仍存。'},
   taikang:{year:280,expected:['jin'],displayNames:{jin:'晋'},note:'晋灭吴后统一。'}
   ,hui_di:{year:290,expected:['jin'],displayNames:{jin:'晋'},note:'惠帝嗣位，西晋仍统一；八王之乱属权力斗争，未改变州郡版图。'}
-  ,yongjia:{year:311,expected:['jin','hantuo','shile'],displayNames:{jin:'晋',hantuo:'汉赵',shile:'石勒'},note:'永嘉五年洛阳陷落，汉赵据并州、石勒纵横河北，晋室控制区残破；州制按西晋十九州框架示意。'}
+  ,yongjia:{year:311,expected:['jin','hantuo','shile'],displayNames:{jin:'晋',hantuo:'汉赵',shile:'石勒'},note:'永嘉五年洛阳陷落，汉赵据并州、石勒纵横河北；扬州已分江州，晋室控制区残破。'}
 };
 
 window.PROVINCE_COLOR_PALETTE = {
   sili:'#D8C6A1',yongzhou:'#D8B58A',liangzhou:'#C8B68D',qinzhou:'#C99275',
   bingzhou:'#AFC2A8',jizhou:'#AFC2D1',youzhou:'#9DBFC2',pingzhou:'#A7B8C7',
   qingzhou:'#A9C9BD',yanzhou:'#C0B5CA',yuzhou:'#D3B2AE',xuzhou:'#B3C9A9',
-  yangzhou:'#D6B5BC',jingzhou:'#C9C89E',yizhou:'#AFC59A',liang_state:'#B5BD8E',
+  yangzhou:'#D6B5BC',jiangzhou:'#C7AEB6',jingzhou:'#C9C89E',yizhou:'#AFC59A',liang_state:'#B5BD8E',
   ningzhou:'#C7B78C',jiaozhou:'#9FC2B4',guangzhou:'#D0AA91'
 };

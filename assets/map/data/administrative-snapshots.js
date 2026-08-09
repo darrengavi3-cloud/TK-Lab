@@ -15,7 +15,7 @@ window.ADMINISTRATIVE_SNAPSHOTS = {
   jinchu:{year:266,provinceSource:'jin266',commanderySource:'jin266',note:'晋、吴并立；梁、秦、宁、平四州尚未全部设置。'},
   taikang:{year:280,provinceSource:'jin280',commanderySource:'jin280',note:'平吴后十九州。'}
   ,hui_di:{year:290,provinceSource:'jin290',commanderySource:'jin290',note:'惠帝嗣位，州制延续太康十九州。'}
-  ,yongjia:{year:311,provinceSource:'jin311',commanderySource:'jin311',note:'永嘉之乱，洛阳陷落；中原控制破碎，州制仍按西晋十九州框架示意。'}
+  ,yongjia:{year:311,provinceSource:'jin311',commanderySource:'jin311',note:'永嘉之乱，洛阳陷落；扬州已分置江州，晋陵、义兴、历阳依永兴元年后建置显示。'}
 };
 
 /* sourceName -> 当期所属郡。由行政沿革事件在目标年份推导；未列者沿用几何底稿名称。 */

@@ -53,6 +53,14 @@
       "url": "https://zh.wikisource.org/zh-hans/晋书/卷014"
     },
     {
+      "id": "jinshu_juan15",
+      "title": "《晋书》卷十五·地理志下",
+      "level": "一手史料",
+      "role": "扬州、江州郡县沿革与西晋分郡年代",
+      "locator": "卷十五·扬州",
+      "url": "https://zh.wikisource.org/zh-hans/晋书/卷015"
+    },
+    {
       "id": "huayangguozhi_juan3",
       "title": "《华阳国志》卷三·蜀志",
       "level": "一手史料",
@@ -962,12 +970,12 @@
       "auditStatus": "通过（示意）",
       "controlMode": "西晋统一格局",
       "administration": {
-        "provinceCount": 19,
-        "mappedCommanderyCount": 144,
+        "provinceCount": 20,
+        "mappedCommanderyCount": 150,
         "referenceBenchmarks": [
           {
-            "label": "太康十九州",
-            "count": 19
+            "label": "太康十九州加元康元年分置江州",
+            "count": 20
           }
         ],
         "geometryCoverage": "full",
@@ -1015,7 +1023,7 @@
         ],
         "geometryCoverage": "full",
         "geometryConfidence": "低",
-        "geometryBasis": "西晋十九州框架叠加永嘉失控注记"
+        "geometryBasis": "西晋底稿按《晋书·地理志下》补分江州，并回切吴兴、东阳、宣城、义兴、历阳等扬州郡界"
       },
       "polities": [
         "晋",
@@ -1025,6 +1033,7 @@
       "sourceIds": [
         "jinshu_juan5",
         "jinshu_juan102",
+        "jinshu_juan15",
         "map_geometry_archive"
       ],
       "claims": [
@@ -1048,10 +1057,22 @@
             "jinshu_juan102",
             "map_geometry_archive"
           ]
+        },
+        {
+          "id": "yongjia-yangzhou-recalibration",
+          "subjectType": "州郡沿革",
+          "subject": "扬州与江州",
+          "status": "推定",
+          "statement": "311年扬州已分出江州；晋陵、义兴、历阳按永兴元年后建置显示。郡界由262年底稿依郡治方位回切，不能视为实测界线。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
         }
       ],
       "caveats": [
-        "永嘉乱局为快速变化态势，州色与注记共同表达，不表示同一日精确边界。"
+        "永嘉乱局为快速变化态势，州色与注记共同表达，不表示同一日精确边界。",
+        "326年参考图中的永嘉郡为太宁元年（323）分临海所置，不前移到311年快照。"
       ]
     }
   ],
@@ -1219,6 +1240,49 @@
           "statement": "263年巴西郡必须保留汉的郡色层。",
           "sourceIds": [
             "wikipedia_shuhan_admin",
+            "map_geometry_archive"
+          ]
+        }
+      }
+    },
+    {
+      "id": "jurisdiction:jin-yangzhou",
+      "name": "扬州",
+      "level": "州",
+      "aliases": [
+        "Yangzhou",
+        "晋扬州"
+      ],
+      "defaultClaim": {
+        "status": "推定",
+        "statement": "扬州郡界继承262年几何底稿，并依据《晋书·地理志下》所载分郡关系按郡治方位回切。",
+        "sourceIds": [
+          "jinshu_juan15",
+          "map_geometry_archive"
+        ]
+      },
+      "claims": {
+        "taikang": {
+          "status": "推定",
+          "statement": "280年显示吴兴、东阳、新安等平吴后扬州郡；太康二年才置的宣城、毗陵不提前到280年。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
+        },
+        "hui_di": {
+          "status": "推定",
+          "statement": "290年显示太康二年以后已置的宣城、毗陵；江州尚未在元康元年分置。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
+        },
+        "yongjia": {
+          "status": "推定",
+          "statement": "311年扬州已分出江州，并显示晋陵、义兴、历阳；323年才置的永嘉郡不前移。",
+          "sourceIds": [
+            "jinshu_juan15",
             "map_geometry_archive"
           ]
         }
