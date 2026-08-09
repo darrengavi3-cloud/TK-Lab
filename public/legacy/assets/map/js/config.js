@@ -394,7 +394,7 @@ const PROVINCE_PERIODS = {
       jingzhou: 'jin', yangzhou: 'jin', jiaozhou: 'jin', guangzhou: 'jin',
     },
   },
-  // 311 永嘉之乱：洛阳陷落，并州为汉赵、河北为石勒，其余仍按西晋框架示意
+  // 311 永嘉之乱：扬州已分江州；洛阳陷落，并州为汉赵、河北为石勒
   yongjia: {
     dataSource: 'jin311',
     provinces: {
@@ -402,7 +402,7 @@ const PROVINCE_PERIODS = {
       qingzhou: 'jin', jizhou: 'shile', youzhou: 'jin', pingzhou: 'jin',
       bingzhou: 'hantuo', liangzhou: 'jin', qinzhou: 'jin', yongzhou: 'jin',
       liang_state: 'jin', yizhou: 'jin', ningzhou: 'jin',
-      jingzhou: 'jin', yangzhou: 'jin', jiaozhou: 'jin', guangzhou: 'jin',
+      jingzhou: 'jin', yangzhou: 'jin', jiangzhou: 'jin', jiaozhou: 'jin', guangzhou: 'jin',
     },
   },
 };

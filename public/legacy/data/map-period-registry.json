@@ -534,7 +534,7 @@
       "summary": "永嘉五年，刘聪遣刘曜、石勒等攻陷洛阳，俘怀帝；中原大乱，琅邪王司马睿经营江东，西晋名存实亡。",
       "mapVariant": "jin311",
       "required": true,
-      "expectedProvinceCount": 19,
+      "expectedProvinceCount": 20,
       "polities": [
         "晋",
         "汉赵",
@@ -546,10 +546,11 @@
         "provinceRoster": "medium",
         "geometry": "low"
       },
-      "researchNote": "311 年以洛阳陷落为节点：中原及河北残破，刘渊汉赵据并州、石勒纵横河北，晋室控制区限于关东残部与江淮；南迁后另属东晋扩展。",
+      "researchNote": "311 年以洛阳陷落为节点：中原及河北残破；扬州按元康元年已分江州、永兴元年已置义兴与历阳且毗陵已改晋陵的建置表达。边界为据郡治方位回切的研究示意。",
       "sourceIds": [
         "jinshu_juan5",
         "jinshu_juan102",
+        "jinshu_juan15",
         "map_geometry_archive"
       ]
     }
@@ -578,6 +579,12 @@
       "title": "《晋书》卷十四·地理上",
       "type": "primary",
       "url": "https://zh.wikisource.org/zh-hans/晋书/卷014"
+    },
+    {
+      "id": "jinshu_juan15",
+      "title": "《晋书》卷十五·地理下",
+      "type": "primary",
+      "url": "https://zh.wikisource.org/zh-hans/晋书/卷015"
     },
     {
       "id": "huayangguozhi_juan3",

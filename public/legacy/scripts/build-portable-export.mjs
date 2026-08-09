@@ -12,6 +12,8 @@ const fangzhenSupplementPath = path.join(root, 'data', 'fangzhen-term-supplement
 const researchModelPath = path.join(root, 'data', 'research-model.js');
 const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
 const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
+const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
+const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const rootCopyPath = path.resolve(root, '..', '三国职官谱 .html');
 const downloadsCopyPath = process.env.HOME ? path.join(process.env.HOME, 'Downloads', '三国职官谱 .html') : null;
@@ -25,6 +27,8 @@ const fangzhenSupplementScript = fs.readFileSync(fangzhenSupplementPath, 'utf8')
 const researchModelScript = fs.readFileSync(researchModelPath, 'utf8').trim();
 const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim();
 const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
+const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').trim();
+const courtBackgroundData = `data:image/png;base64,${fs.readFileSync(courtBackgroundPath).toString('base64')}`;
 
 const replacements = [
   [
@@ -78,6 +82,14 @@ const replacements = [
   [
     '<script src="./data/battle-records.js"></script>',
     `<script>\n${battleRecordsScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-biographies.js"></script>',
+    `<script>\n${personBiographiesScript}\n</script>`
+  ],
+  [
+    "url('./assets/ui/court-ink-palace.png')",
+    `url('${courtBackgroundData}')`
   ],
   [
     "const HISTORY_MAP_BASE = './assets/map/';",
