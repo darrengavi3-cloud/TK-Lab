@@ -13,6 +13,9 @@ const researchModelPath = path.join(root, 'data', 'research-model.js');
 const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
 const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
 const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
+const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
+const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
+const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const rootCopyPath = path.resolve(root, '..', '三国职官谱 .html');
@@ -28,12 +31,24 @@ const researchModelScript = fs.readFileSync(researchModelPath, 'utf8').trim();
 const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim();
 const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
 const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').trim();
+let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
+const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
+for (const polityDir of fs.readdirSync(portraitDir)) {
+  const fullDir = path.join(portraitDir, polityDir);
+  if (!fs.statSync(fullDir).isDirectory()) continue;
+  for (const file of fs.readdirSync(fullDir).filter(name => /\.(png|jpe?g|webp)$/i.test(name))) {
+    const relative = `./assets/portraits/${polityDir}/${file}`;
+    const mime = file.toLowerCase().endsWith('.png') ? 'image/png' : (file.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
+    const data = `data:${mime};base64,${fs.readFileSync(path.join(fullDir, file)).toString('base64')}`;
+    personPortraitsScript = personPortraitsScript.split(relative).join(data);
+  }
+}
 const courtBackgroundData = `data:image/png;base64,${fs.readFileSync(courtBackgroundPath).toString('base64')}`;
 
 const replacements = [
   [
     '<title>职官谱 · 三国官职爵位管理系统</title>',
-    '<title>中华三国志 · 职官谱｜州镇录｜形势图</title>'
+    '<title>中华三国志 · 职官谱｜州镇表｜形势图</title>'
   ],
   [
     '<link rel="stylesheet" href="./assets/vendor/element-plus/index.css" />',
@@ -86,6 +101,14 @@ const replacements = [
   [
     '<script src="./data/person-biographies.js"></script>',
     `<script>\n${personBiographiesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-portraits.js"></script>',
+    `<script>\n${personPortraitsScript}\n</script>`
+  ],
+  [
+    '<script src="./data/epigraphic-records.js"></script>',
+    `<script>\n${epigraphicRecordsScript}\n</script>`
   ],
   [
     "url('./assets/ui/court-ink-palace.png')",

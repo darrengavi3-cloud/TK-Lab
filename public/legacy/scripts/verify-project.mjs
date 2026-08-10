@@ -40,12 +40,15 @@ assert(registry.periods.find(period => period.year === 311)?.expectedProvinceCou
 assert(registry.periods.find(period => period.year === 220)?.name === '曹魏代汉', '220 年节点名称未完成史实修订');
 assert(registry.periods.find(period => period.year === 220)?.polities.join('、') === '魏、刘备、孙权', '220 年不得把刘备、孙权提前标作已建国的汉、吴');
 assert(audit.periodReview.length === expectedIds.length, '逐期史实审校必须覆盖十六期');
-assert(html.includes('>职官谱</strong>') && html.includes('>州镇录</strong>') && html.includes('>形势图</strong>'), '三模块“谱、录、图”命名缺失');
+assert(html.includes('>职官谱</strong>') && html.includes('>州镇表</strong>') && html.includes('>形势图</strong>'), '职官谱、州镇表或形势图命名缺失');
+assert(html.includes('>金石录</strong>') && html.includes("activeModule==='jinshi'") && html.includes('材料待补'), '金石录空白板块未接入');
 assert(html.includes('>食货志</strong>') && html.includes('SHIHUO_RECORDS') && html.includes('shihuo-workbench'), '食货志模块未接入');
 assert(html.includes('>人物记</strong>') && html.includes('>战事纪</strong>'), '人物记或战事纪模块命名缺失');
 assert(html.includes("sub:['诸公','列卿','大夫','尚书台','中书台','御史台','常伯','将军','太子官属','诸王官属']"), '职官谱中央细分类未接入');
 assert(html.includes('data/battle-records.js') && html.includes('SGZ_BATTLE_RECORDS'), '战事纪统一档案未接入');
-assert(html.includes('battle-workbench') && html.includes('battle-card-grid'), '战事纪页面结构未接入');
+assert(html.includes('battle-workbench') && html.includes('battle-vertical-scroll') && html.includes('battleBranchGroups'), '战事纪纵向支线时间轴未接入');
+assert(html.includes('historyMapBooted') && html.includes('loading="lazy"'), '形势图延迟创建与复用策略未接入');
+assert(html.includes('personPortraitFor') && html.includes('portraitStyleFor') && html.includes('SGZ_PERSON_PORTRAITS'), '人物立绘索引或势力色框未接入');
 assert(read('data/battle-records.js').includes('title:titles[ev.id]') && read('data/battle-records.js').includes('ev_dongxing_252') && read('data/battle-records.js').includes('ev_jieqiao_191'), '战事纪编年标题或补充条目未接入');
 assert(html.includes('官制对照') && html.includes('office-compare-card'), '跨势力官制对照未接入');
 assert(html.includes('沿革事件（结构化）') && html.includes('EVOLUTION_TYPES'), '结构化沿革事件未接入');
@@ -81,9 +84,9 @@ assert(html.includes('中央官署谱系') && html.includes('court-canvas') && h
 assert(html.includes("name:'储君'") && html.includes("courtSlotKey(node)==='储君'"), '储君单席位规则未接入');
 assert(html.includes("['晋陵郡','毗陵'") && html.includes("['义兴郡','阳羡'") && html.includes("['历阳郡','历阳'"), '西晋扬州郡级沿革未接入职官谱');
 assert(html.includes('data/wu-fangzhen-records.js'), '孙吴州郡长官文档数据未接入');
-assert(html.includes('fangzhenStateOptions') && html.includes('fangzhenState') && html.includes('吴州镇档案按规范只填写时间年份'), '州镇录州筛选或吴档案任期规范未接入');
+assert(html.includes('fangzhenStateOptions') && html.includes('fangzhenState') && html.includes('吴州镇档案按规范只填写时间年份'), '州镇表州筛选或吴档案任期规范未接入');
 assert(html.includes('data/shu-fangzhen-records.js') && html.includes('SHU_COMMANDERY_FANGZHEN_PRESETS'), '蜀汉郡守考据档案未接入');
-assert(html.includes('data/fangzhen-term-supplement.js') && html.includes('FANGZHEN_TERM_SUPPLEMENTS'), 'V28 州镇录任期待补数据未接入');
+assert(html.includes('data/fangzhen-term-supplement.js') && html.includes('FANGZHEN_TERM_SUPPLEMENTS'), 'V28 州镇表任期待补数据未接入');
 assert(html.includes('沿革年代已标注待考') && html.includes('任期待考'), 'V28 审计待补清单未接入');
 assert(html.includes("root.key, '太宰'") && html.includes('《晋书》卷二十四·职官志'), 'V29 西晋官制树未按《晋书·职官志》展开');
 assert(html.includes('泰始六曹／太康六曹') && html.includes('中书侍郎（员四人）') && html.includes('太子太傅·少傅'), 'V29 晋官制中央分类未补齐');
@@ -166,7 +169,7 @@ assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes('d
 assert(!html.includes('cdnjs.cloudflare.com/ajax/libs'), '本地项目仍依赖 cdnjs');
 assert(!html.includes('workbuddy-space-static.codebuddy.work/page/'), '本地项目仍依赖 WorkBuddy 运行资源');
 assert(!html.includes('raw.githubusercontent.com/Heliog3nesis'), '本地项目仍依赖 GitHub 原始几何文件');
-assert(portable.includes('中华三国志 · 职官谱｜州镇录｜形势图'), '联网便携版尚未同步新界面标题');
+assert(portable.includes('中华三国志 · 职官谱｜州镇表｜形势图'), '联网便携版尚未同步新界面标题');
 assert(portable.includes('window.HISTORY_MAP_REGISTRY='), '联网便携版未内嵌十六期地图注册表');
 assert(portable.includes('"id":"shaodi"') && portable.includes('"year":189'), '联网便携版未同步189年地图');
 assert(portable.includes('"id":"hanwang"') && portable.includes('"year":264'), '联网便携版未同步 264 年地图');
@@ -174,6 +177,8 @@ assert(portable.includes('SGZResearchModel') && portable.includes('HistoryMapBri
 assert(portable.includes('SGZ_HISTORY_EVIDENCE'), '联网便携版未内嵌 V7 历史证据索引');
 assert(portable.includes('SGZ_BATTLE_RECORDS') && portable.includes('战事纪'), '联网便携版未同步战事纪档案');
 assert(portable.includes('SGZ_PERSON_BIOGRAPHIES') && portable.includes('court-ink-palace')===false, '联网便携版未内嵌人物生平或朝堂背景');
+assert(portable.includes('SGZ_PERSON_PORTRAITS') && portable.includes('data:image/png;base64,'), '联网便携版未内嵌人物立绘资源');
+assert(portable.includes('SGZ_EPIGRAPHIC_RECORDS') && portable.includes('金石材料目录尚未补录'), '联网便携版未同步金石录空白板块');
 assert(portable.includes('官制对照') && portable.includes('沿革事件（结构化）') && portable.includes('bulk-edit-grid'), '联网便携版未同步职官谱第一阶段增强');
 assert(portable.includes('官品秩俸三轨对照') && portable.includes('官署模板库') && portable.includes('OFFICE_TEMPLATE_LIBRARY'), '联网便携版未同步职官谱第二阶段增强');
 assert(portable.includes('季汉官制') && portable.includes('WIKI_OFFICE_SUPPLEMENTS'), '联网便携版未同步季汉官制或维基补充');
@@ -198,6 +203,8 @@ const requiredFiles = [
   'data/history-evidence.js',
   'data/battle-records.js',
   'data/person-biographies.js',
+  'data/person-portraits.js',
+  'data/epigraphic-records.js',
   'data/wu-fangzhen-records.js',
   'data/shu-fangzhen-records.js',
   'data/wu-import-audit.json',
@@ -221,6 +228,7 @@ const requiredFiles = [
   'docs/V26食货志札记补充.md',
   'docs/V27人物记十六期与中央分类.md',
   'docs/V34朝堂谱系扬州重校与人物生平.md',
+  'docs/V35人物立绘战事时间轴爵位与金石录.md',
   'assets/ui/court-ink-palace.png',
   'assets/vendor/element-plus/index.css',
   'assets/vendor/vue/vue.global.min.js',
@@ -298,4 +306,4 @@ assert(!portableMapContext.__mapSrcdoc.includes('（今') && !portableMapContext
 console.log('项目验证通过');
 console.log(`十六期：${registry.periods.map(period => period.year).join('、')}`);
 console.log('184/189/190 十三州、194/200 河西雍州、263 魏汉吴、264 魏吴、266 晋吴、280 十九州均已锁定');
-console.log('职官谱｜州镇录｜形势图命名、官品规则与东晋扩展边界已锁定');
+console.log('职官谱｜州镇表｜金石录｜形势图命名、官品规则与东晋扩展边界已锁定');
