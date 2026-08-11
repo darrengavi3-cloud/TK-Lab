@@ -1,0 +1,28 @@
+/* 州镇表治所／驻地补充。只填入可作为该类职任常见驻地的保守值，未列者继续显示“待补”。 */
+window.SGZ_FANGZHEN_SEAT_SUPPLEMENT = Object.freeze({
+  '汉|司隶': {seat:'洛阳／长安', confidence:'中', note:'东汉末中央迁徙频繁，按任职阶段区分洛阳与长安。'},
+  '汉|豫州': {seat:'许县', confidence:'中', note:'建安以后汉廷所在许县；具体刺史驻地仍需逐任核对。'},
+  '汉|冀州': {seat:'邺', confidence:'中'},
+  '汉|益州': {seat:'绵竹／成都', confidence:'中', note:'刘焉、刘璋时期治所由绵竹转成都。'},
+  '汉|荆州': {seat:'襄阳／江陵', confidence:'中', note:'刘表及刘备、孙吴控制阶段治所随控制关系变化。'},
+  '汉|扬州': {seat:'寿春／建业', confidence:'待考', note:'淮南与江东分治，不能将扬州刺史部长期压缩为单一驻地。'},
+  '魏|司隶': {seat:'洛阳', confidence:'高'},
+  '魏|雍州': {seat:'长安', confidence:'中'},
+  '魏|凉州': {seat:'姑臧', confidence:'中'},
+  '魏|扬州': {seat:'寿春', confidence:'中'},
+  '魏|荆州': {seat:'宛／襄阳', confidence:'中'},
+  '魏|益州': {seat:'成都', confidence:'中'},
+  '吴|扬州': {seat:'建业', confidence:'高'},
+  '吴|荆州': {seat:'武昌／江陵', confidence:'中', note:'孙吴荆州军政驻点随时期在武昌、江陵等地变化。'},
+  '吴|交州': {seat:'龙编', confidence:'中'},
+  '吴|广州': {seat:'番禺', confidence:'中'},
+  '汉|南中诸郡': {seat:'平夷／味县', confidence:'中'},
+  '汉|巴东郡': {seat:'永安', confidence:'中'},
+  '汉|汉中郡': {seat:'汉中／南郑', confidence:'中'},
+  '西晋|司隶': {seat:'洛阳', confidence:'高'},
+  '西晋|荆州': {seat:'襄阳', confidence:'高'},
+  '西晋|扬州': {seat:'建业', confidence:'高'},
+  '西晋|益州': {seat:'成都', confidence:'高'},
+  '西晋|梁州': {seat:'汉中', confidence:'中'},
+  '西晋|交州': {seat:'龙编', confidence:'中'}
+});
