@@ -555,7 +555,19 @@ body{background:#F4F3EF;}
 .people-workbench .page-kicker{color:var(--people-accent);}
 .people-toolbar{display:flex;align-items:center;gap:9px;margin-bottom:14px;padding:12px;background:#fff;border:1px solid var(--rule);border-radius:12px;flex-wrap:wrap;}
 .people-toolbar .el-input{max-width:360px;}
-.people-metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+  .people-metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+  .people-period-panel{margin:0 0 14px;padding:13px 14px;border:1px solid var(--rule);border-radius:12px;background:rgba(255,255,255,.82);}
+  .people-period-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+  .people-period-title{font:700 15px 'Noto Serif SC','Songti SC',serif;color:var(--people-deep);}
+  .people-period-title small{margin-left:8px;font:400 10.5px system-ui;color:#8A918A;}
+  .people-period-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:7px;max-height:330px;overflow:auto;padding-right:2px;}
+  .people-period-item{padding:9px 10px;border:1px solid #E2E4DF;border-radius:9px;background:#FAFAF8;}
+  .people-period-item-head{display:flex;align-items:center;gap:6px;justify-content:space-between;}
+  .people-period-item-head b{font:700 12.5px 'Noto Serif SC','Songti SC',serif;color:#38423A;}
+  .people-period-item .holder{margin-top:4px;font-size:12px;color:#5E665E;}
+  .people-period-item .meta{margin-top:4px;font-size:10.5px;color:#8A918A;line-height:1.45;}
+  .people-period-item .note{margin-top:4px;font-size:10.5px;color:#6D746D;line-height:1.45;}
+  .people-period-item .el-button{padding:0;margin-top:4px;}
 .people-metric{background:#fff;border:1px solid var(--rule);border-top:2px solid color-mix(in srgb,var(--people-accent) 55%,#fff);border-radius:11px;padding:13px 15px;}
 .people-metric strong{display:block;font:700 22px 'Noto Serif SC','Songti SC',serif;color:var(--people-deep);}
 .people-metric span{font-size:11px;color:var(--ink-soft);}
@@ -573,6 +585,7 @@ body{background:#F4F3EF;}
 .person-pill.office{background:#EAF2F8;color:#315F8D;}
 .person-pill.noble{background:#F6EFE3;color:#8A6B35;}
 .person-pill.fangzhen{background:#EAF3ED;color:#356A49;}
+.person-pill.roster{background:#F2EEE8;color:#726453;}
 .person-pill.han{background:#F8ECE9;color:#91372E;}
 .person-pill.wei{background:#EAF2F8;color:#315F8D;}
 .person-pill.wu{background:#EAF3ED;color:#356A49;}
@@ -4187,6 +4200,7 @@ const app = createApp({
     const peoplePolity = ref('all');
     const peopleKind = ref('all');
     const peopleOnlyPortrait = ref(false);
+    const periodRosterPhase = ref('all');
     const showPeopleDetail = ref(false);
     const activePeopleDetail = ref(null);
     const personMeta = reactive({ map:{} });
@@ -5869,6 +5883,13 @@ const app = createApp({
     });
 
     /* ---------- 任职人物、立绘与时期汇总 ---------- */
+    function rosterFactionKey(record){
+      const map={汉:'han',魏:'wei',蜀:'shu',吴:'wu',晋:'jin','西晋':'jin'};
+      return map[record?.polity]||'han';
+    }
+    function rosterFactionName(record){
+      return (record?.polity||'')+' · '+(record?.phase||'时期官员录');
+    }
     function periodByKey(key){
       if(!key) return null;
       for(const list of Object.values(PERIODS)){
@@ -5886,7 +5907,7 @@ const app = createApp({
     }
     function recordPeriodLabel(record){
       if(record.treeType==='fangzhen'||record.source==='fangzhen') return (record.polity||'')+' · '+(record.eraGroup==='jin'?'西晋':record.eraGroup==='eastjin'?'东晋扩展':'汉末／三国');
-      if(record.treeType==='roster'||record.source==='eraRoster') return (record.polity||'')+' · '+(record.phase||'末期官员录');
+      if(record.treeType==='roster'||record.source==='eraRoster') return (record.polity||'')+' · '+(record.phase||'时期官员录');
       const period = periodByKey(record.rulerKey);
       return period ? period.name : '未指定君主时期';
     }
@@ -6169,7 +6190,7 @@ const app = createApp({
       });
       (window.SGZ_PERSON_ERA_ROSTERS?.records||[]).forEach(record=>{
         if(personKeyOf(record.person)!==key) return;
-        records.push({...record,name:record.person,source:'eraRoster',factionKey:record.polity==='吴'?'wu':'shu',factionName:(record.polity||'')+'末期官员录',nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
+        records.push({...record,name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
       });
       return records.sort((a,b)=>(normalizeYear(a.startYear)??9999)-(normalizeYear(b.startYear)??9999));
     }
@@ -6195,7 +6216,7 @@ const app = createApp({
         switchModule('fangzhen');selectFangzhenArchive(fangzhenArchiveKeyFor(item));fangzhenQuery.value=item.commander;return;
       }
       if(item.source==='eraRoster'||item.treeType==='roster'){
-        selectedEvidence.value={title:item.sourceTitle||'末期官员录',level:item.sourceLevel||'文档考据',locator:item.phase||'末期官员录',excerpt:item.sourceExcerpt||'',url:item.sourceUrl||'',confidence:item.confidence||'推定',note:item.note||''};
+        selectedEvidence.value={title:item.sourceTitle||'时期官员录',level:item.sourceLevel||'文档考据',locator:item.phase||'时期官员录',excerpt:item.sourceExcerpt||'',url:item.sourceUrl||'',confidence:item.confidence||'推定',note:item.note||''};
         showEvidence.value=true;
         return;
       }
@@ -6226,7 +6247,7 @@ const app = createApp({
       (window.SGZ_PERSON_ERA_ROSTERS?.records||[]).forEach(record=>{
         const e=entry(record.person); if(!e) return;
         e.politics.push(record.polity||'');
-        e.appointments.push({...record,name:record.person,source:'eraRoster',factionKey:record.polity==='吴'?'wu':'shu',factionName:(record.polity||'')+'末期官员录',nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
+        e.appointments.push({...record,name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
       });
       Object.entries(window.SGZ_PERSON_BIOGRAPHIES||{}).forEach(([key,bio])=>{
         const e=map.get(personKeyOf(key))||entry(key); if(!e) return;
@@ -6281,6 +6302,12 @@ const app = createApp({
         p.appointments.forEach(a=>{ if(a.treeType==='office') stats.office++; else if(a.treeType==='noble') stats.noble++; else if(a.treeType==='fangzhen') stats.fangzhen++; else if(a.treeType==='roster') stats.roster++; });
       });
       return stats;
+    });
+    const periodRosterPhases = computed(()=>Array.from(new Set((window.SGZ_PERSON_ERA_ROSTERS?.officeSnapshots||[]).map(item=>item.phase).filter(Boolean))));
+    const filteredPeriodOfficeSnapshots = computed(()=>{
+      const rows=(window.SGZ_PERSON_ERA_ROSTERS?.officeSnapshots||[]).slice();
+      return rows.filter(item=>periodRosterPhase.value==='all'||item.phase===periodRosterPhase.value)
+        .sort((a,b)=>String(a.phase).localeCompare(String(b.phase),'zh-CN') || (a.sortOrder??999)-(b.sortOrder??999) || String(a.office).localeCompare(String(b.office),'zh-CN'));
     });
     function polityPillClass(pol){
       if(!pol) return '';
@@ -7255,6 +7282,7 @@ const app = createApp({
       addFigureRecord, removeFigureRecord, onFigureRulerChanged, uploadPortrait, clearPortrait,
       recordPeriodLabel, recordYearLabel, openPersonProfile, jumpToPersonAppointment,
       peopleQuery, peoplePolity, peopleKind, peopleOnlyPortrait, filteredPeople, peopleMetrics,
+      periodRosterPhase, periodRosterPhases, filteredPeriodOfficeSnapshots,
       showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass,
       personPortraitFor, portraitStyleFor,
       personMetaDialog, openPersonMetaEditor, savePersonMeta, uploadPersonPortrait,
@@ -7975,7 +8003,7 @@ const app = createApp({
             <el-option label="任官记录" value="office" />
             <el-option label="受爵记录" value="noble" />
             <el-option label="州镇职任" value="fangzhen" />
-            <el-option label="末期官员录" value="roster" />
+            <el-option label="时期官员录" value="roster" />
           </el-select>
           <el-checkbox v-model="peopleOnlyPortrait" size="small">仅有立绘</el-checkbox>
           <div class="spacer"></div>
@@ -7986,10 +8014,28 @@ const app = createApp({
           <div class="people-metric"><strong>{{peopleMetrics.office}}</strong><span>任官记录</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.noble}}</strong><span>受爵记录</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.fangzhen}}</strong><span>州镇职任</span></div>
-          <div class="people-metric"><strong>{{peopleMetrics.roster}}</strong><span>末期官员录</span></div>
+          <div class="people-metric"><strong>{{peopleMetrics.roster}}</strong><span>时期官员录</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.curated}}</strong><span>史传提要</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.portrait}}</strong><span>已有立绘</span></div>
         </div>
+        <section class="people-period-panel" aria-label="213与220年时期官署快照">
+          <div class="people-period-head">
+            <div class="people-period-title">213／220 年时期官署快照<small>具名官员与人名未详官职分列，点击史料可回查来源</small></div>
+            <el-select v-model="periodRosterPhase" size="small" style="width:250px;" aria-label="时期官署快照筛选">
+              <el-option label="213／220 年全部快照" value="all" />
+              <el-option v-for="phase in periodRosterPhases" :key="phase" :label="phase" :value="phase" />
+            </el-select>
+          </div>
+          <div class="people-period-grid">
+            <div v-for="item in filteredPeriodOfficeSnapshots" :key="item.id" class="people-period-item">
+              <div class="people-period-item-head"><b>{{item.office}}</b><span class="person-pill" :class="polityPillClass(item.polity)">{{item.polity}}</span></div>
+              <div class="holder">{{item.holder}}</div>
+              <div class="meta">{{item.phase}} · {{item.status}} · {{item.confidence}}</div>
+              <div v-if="item.note" class="note">{{item.note}}</div>
+              <el-button size="small" text type="primary" @click="openEvidence(item)">史料卡 ›</el-button>
+            </div>
+          </div>
+        </section>
         <div v-if="!filteredPeople.length" class="summary-empty">没有匹配的人物。可减少筛选条件，或在职官谱、州镇表中录入人物后回到本页查看汇总。</div>
         <div v-else class="person-card-grid">
           <div v-for="p in filteredPeople" :key="p.key" class="person-card" @click="openPeopleDetail(p.name)">
@@ -8001,7 +8047,7 @@ const app = createApp({
               </div>
               <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>年份待核</span><br/>籍贯：{{p.birthplace||'待补'}}</div>
               <div class="person-card-bio">{{p.bio}}</div>
-              <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 末期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
+              <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 时期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
             </div>
           </div>
         </div>
@@ -8390,7 +8436,7 @@ const app = createApp({
         <div v-if="!activePeopleDetail.appointments.length" class="summary-empty">暂无履历记录。</div>
         <div v-else class="people-career-list">
           <div v-for="(item,index) in activePeopleDetail.appointments" :key="index" class="people-career-item" @click="jumpToPersonAppointment(item)">
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><b>{{item.nodeName}}</b><span class="person-pill" :class="item.treeType==='fangzhen'?'fangzhen':(item.treeType==='office'?'office':'noble')">{{item.treeType==='fangzhen'?'州镇职任':(item.treeType==='office'?'任官':'受爵')}}</span></div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><b>{{item.nodeName}}</b><span class="person-pill" :class="item.treeType==='fangzhen'?'fangzhen':(item.treeType==='office'?'office':(item.treeType==='roster'?'roster':'noble'))">{{item.treeType==='fangzhen'?'州镇职任':(item.treeType==='office'?'任官':(item.treeType==='roster'?'时期官员录':'受爵'))}}</span></div>
             <div class="meta">{{item.factionName}} · {{recordPeriodLabel(item)}} · {{recordYearLabel(item)}}</div>
             <div v-if="item.jurisdiction" class="excerpt">辖区：{{item.jurisdiction}}</div>
             <div v-if="item.note" class="excerpt">{{item.note}}</div>

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-11T08:15:46.037Z",
+  "generatedAt": "2026-08-11T12:28:35.702Z",
   "offlineRuntime": true,
-  "fileCount": 80,
-  "totalBytes": 21931706,
+  "fileCount": 88,
+  "totalBytes": 22082862,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -164,6 +164,46 @@
       "path": "assets/map/vendor/leaflet/leaflet.js",
       "bytes": 147552,
       "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a"
+    },
+    {
+      "path": "assets/portraits/generated/hua-xin.png",
+      "bytes": 16226,
+      "sha256": "dadfe9cf598eb40a236b2c235a1a8e19d3ffdfc5563f959531af99c3552b92bc"
+    },
+    {
+      "path": "assets/portraits/generated/jia-xu.png",
+      "bytes": 16244,
+      "sha256": "669574a735e946c9144355ccbedb3dfdedba5f3477d050c807477efcb713fe43"
+    },
+    {
+      "path": "assets/portraits/generated/kuai-yue.png",
+      "bytes": 16056,
+      "sha256": "5b5c354c67520ae177c301c113a0bd0b44c487a7fda30ce06420d515737044c9"
+    },
+    {
+      "path": "assets/portraits/generated/wei-ji.png",
+      "bytes": 16881,
+      "sha256": "5578fa34ae6284c82cf253a10c7b7a1a1fd5102504f114909d23a3783e1b6f7c"
+    },
+    {
+      "path": "assets/portraits/generated/wei-zhen.png",
+      "bytes": 16047,
+      "sha256": "2984a893c0f771d32d2983ad3f6ea012117ae411b63ece3d9b2f3c41e9daa78d"
+    },
+    {
+      "path": "assets/portraits/generated/xi-lu.png",
+      "bytes": 16235,
+      "sha256": "7081722f3f2e94ee936f2cbdcfad95f618974a05412f73ad39b4d4ae4faa09a7"
+    },
+    {
+      "path": "assets/portraits/generated/xin-pi.png",
+      "bytes": 15639,
+      "sha256": "545494262b05a992ca3012a8cf0237875fbed2dd037cc8b71ed8743aac3b7ba4"
+    },
+    {
+      "path": "assets/portraits/generated/zhong-you.png",
+      "bytes": 16871,
+      "sha256": "30cf4e78f489e1724ca85029445a3324ced9981e256f25651d45e2934072c168"
     },
     {
       "path": "assets/portraits/jin/chen-tai.png",
@@ -357,18 +397,18 @@
     },
     {
       "path": "data/person-biographies.js",
-      "bytes": 15990,
-      "sha256": "a95af23215ce7b3d75efab32147ec9404fcf5aafb4e63042676fd3eb8b85782d"
+      "bytes": 21353,
+      "sha256": "9a5dd3d32b36ab0659aabb33f45a6f7f036c9ab8c4ba968901ba9b70295fcf52"
     },
     {
       "path": "data/person-era-rosters.js",
-      "bytes": 7038,
-      "sha256": "2593321824e1d0d3c359e9d77344d73f11bc676e50e0364c715c440522df9139"
+      "bytes": 21032,
+      "sha256": "bab5a938ca83f957515d2509a887ada321eb4d5f93d85fcb6014a51d2a8c091d"
     },
     {
       "path": "data/person-portraits.js",
-      "bytes": 3697,
-      "sha256": "36f1af92e67861259cbabe066af56c44da8f0feb2f593f7da076e8f17fa931f1"
+      "bytes": 5297,
+      "sha256": "bf641994b65f9199292b7cdc41cd440f23f68b9864e6c99ab241e652459918f2"
     },
     {
       "path": "data/public-vector-audit.json",

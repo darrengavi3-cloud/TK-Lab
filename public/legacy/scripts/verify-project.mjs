@@ -125,6 +125,8 @@ const mapStyle = read('assets/map/css/style.css');
 const politicalSnapshots = read('assets/map/data/political-snapshots.js');
 const historyEvidence = read('data/history-evidence.json');
 const biographySource = read('data/person-biographies.js');
+const rosterSource = read('data/person-era-rosters.js');
+const portraitSource = read('data/person-portraits.js');
 assert(mapNarrative.includes('"id": "shaodi"') && mapNarrative.includes('"year": 189'), '189 年地图叙事节点未接入');
 assert(mapNarrative.includes('"officialRoster"') && mapNarrative.includes('"name":"何进"'), '189 年官员名录未接入时期详情');
 assert(mapNarrative.includes('"section":"诸公"') && mapNarrative.includes('"status":"存疑"') && mapNarrative.includes('"status":"待考"'), '189 年官员名录状态与细分类未接入');
@@ -175,6 +177,11 @@ assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes('d
 assert(!biographySource.includes('乐綝') && biographySource.includes('乐𬘭'), '乐𬘭姓名规范化未完成');
 assert(biographySource.includes('后与诸葛诞争执，甘露三年被诸葛诞杀死') && !biographySource.includes('最终为吴将文鸯所杀') && !biographySource.includes('受贾充指使刺杀曹髦'), '人物记史实修正未接入');
 assert(biographySource.includes('成济') && biographySource.includes('《三国志》卷四《三少帝纪》及裴松之注'), '成济传记来源未校正');
+assert(rosterSource.includes('sourceWeiDuke213') && rosterSource.includes('sourceHanEnd220') && rosterSource.includes('schemaVersion:2'), '213/220时期名录来源或版本未接入');
+assert(rosterSource.includes('曹操') && rosterSource.includes('丞相') && rosterSource.includes('魏公国') && rosterSource.includes('延康元年·曹丕践祚前'), '213年魏公国与220年汉廷具名官员未接入');
+assert(rosterSource.includes('officeSnapshots') && rosterSource.includes("'未详'") && rosterSource.includes('光禄勋'), '220年人名未详官职快照未保留');
+assert(html.includes('periodRosterPhase') && html.includes('213／220 年时期官署快照') && html.includes('rosterFactionKey'), '时期官署快照或汉魏吴晋人物归档映射未接入');
+assert(portraitSource.includes("'华歆'") && portraitSource.includes("'贾诩'") && portraitSource.includes('ai-illustration'), '新增人物生成头像索引未接入');
 [mapConfig,mapBaseLayer,mapNarrative].forEach(source => assert(!source.includes('（今') && !source.includes('(今'), '地图可见文字仍含“今××”现代地名括注'));
 assert(!html.includes('cdnjs.cloudflare.com/ajax/libs'), '本地项目仍依赖 cdnjs');
 assert(!html.includes('workbuddy-space-static.codebuddy.work/page/'), '本地项目仍依赖 WorkBuddy 运行资源');
@@ -240,6 +247,7 @@ const requiredFiles = [
   'docs/V27人物记十六期与中央分类.md',
   'docs/V34朝堂谱系扬州重校与人物生平.md',
   'docs/V35人物立绘战事时间轴爵位与金石录.md',
+  'docs/V39魏公国与汉廷末代百官补录.md',
   'assets/ui/court-ink-palace.png',
   'assets/vendor/element-plus/index.css',
   'assets/vendor/vue/vue.global.min.js',

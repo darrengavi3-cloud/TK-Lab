@@ -1,4 +1,4 @@
-/* 人物立绘索引：仅记录用户提供参考图的裁切资源；未列人物由人物记使用势力色首字占位。 */
+/* 人物立绘索引：用户参考图裁切与项目生成头像分列；未列人物由人物记使用势力色首字占位。 */
 window.SGZ_PERSON_PORTRAITS = {
   '司马昭': { src:'./assets/portraits/jin/sima-zhao.png', polity:'西晋', color:'#665483', sourceTitle:'用户提供参考图裁切（核心幕僚）', sourceUrl:'' },
   '贾充': { src:'./assets/portraits/jin/jia-chong.png', polity:'西晋', color:'#665483', sourceTitle:'用户提供参考图裁切（核心幕僚）', sourceUrl:'' },
@@ -9,6 +9,14 @@ window.SGZ_PERSON_PORTRAITS = {
   '何曾': { src:'./assets/portraits/jin/he-zeng.png', polity:'西晋', color:'#665483', sourceTitle:'用户提供参考图裁切（核心幕僚）', sourceUrl:'' },
   '王沈': { src:'./assets/portraits/jin/wang-chen.png', polity:'西晋', color:'#665483', sourceTitle:'用户提供参考图裁切（核心幕僚）', sourceUrl:'' },
   '陈泰': { src:'./assets/portraits/jin/chen-tai.png', polity:'西晋', color:'#665483', sourceTitle:'用户提供参考图裁切（核心幕僚）', sourceUrl:'' },
+  '华歆': { src:'./assets/portraits/generated/hua-xin.png', polity:'汉／魏', color:'#687681', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '郗虑': { src:'./assets/portraits/generated/xi-lu.png', polity:'汉', color:'#77736B', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '卫臻': { src:'./assets/portraits/generated/wei-zhen.png', polity:'汉／魏', color:'#687681', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '蒯越': { src:'./assets/portraits/generated/kuai-yue.png', polity:'汉／魏', color:'#687681', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '钟繇': { src:'./assets/portraits/generated/zhong-you.png', polity:'汉／魏', color:'#687681', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '辛毗': { src:'./assets/portraits/generated/xin-pi.png', polity:'魏', color:'#376B9E', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '卫觊': { src:'./assets/portraits/generated/wei-ji.png', polity:'汉／魏', color:'#687681', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '贾诩': { src:'./assets/portraits/generated/jia-xu.png', polity:'魏', color:'#376B9E', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '诸葛诞': { src:'./assets/portraits/wei/zhuge-dan.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '文钦': { src:'./assets/portraits/wei/wen-qin.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '毌丘俭': { src:'./assets/portraits/wei/guanqiu-jian.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
