@@ -946,7 +946,7 @@ const WEI_CISHI_GROUPS = [
     ['孙礼','正始初在位','迁少府'],
     ['诸葛诞','未详—嘉平三年（251年）','迁都督扬州诸军事'],
     ['文钦','嘉平三年（251年）—正元二年（255年）','叛乱入吴'],
-    ['乐綝','未详—甘露二年五月乙亥（257年6月4日）','死于任上'],
+    ['乐𬘭','未详—甘露二年五月乙亥（257年6月4日）','死于任上'],
   ]},
   {region:'豫州', office:'豫州刺史', entries:[
     ['贾逵','黄初元年（220年）—太和二年（228年）','死于任上'],
@@ -3176,9 +3176,12 @@ function appendHanBaiGuanZhi(tree){
         duty:record.duty||'',
         note:record.note||'',
         relationType:record.relationType||'制度并列',
+        hidden:record.hidden===true,
+        sortOrder:Number.isFinite(Number(record.sortOrder))?Number(record.sortOrder):null,
         sources:record.sourceTitle||payload.source.title,
         sourceLevel:record.sourceLevel||payload.source.level,
         sourceLocator:record.sourceLocator||payload.source.locator,
+        sourceUrl:record.sourceUrl||payload.source.url||'',
         sourceExcerpt:record.sourceExcerpt||'',
         confidence:record.confidence||'推定',
         researchStatus:record.researchStatus||'推定',
@@ -3191,15 +3194,23 @@ function appendHanBaiGuanZhi(tree){
       if(record.hanRank && !node.hanRank) node.hanRank=record.hanRank;
       if(record.duty && !node.duty) node.duty=record.duty;
       if(record.note) node.note=node.note?node.note+' '+record.note:record.note;
+      if(record.hidden!==undefined) node.hidden=!!record.hidden;
+      if(record.sortOrder!==undefined && Number.isFinite(Number(record.sortOrder))) node.sortOrder=Number(record.sortOrder);
       node.sources=node.sources||record.sourceTitle||payload.source.title;
       node.sourceLevel=node.sourceLevel||record.sourceLevel||payload.source.level;
       node.sourceLocator=node.sourceLocator||record.sourceLocator||payload.source.locator;
+      node.sourceUrl=node.sourceUrl||record.sourceUrl||payload.source.url||'';
       node.sourceExcerpt=node.sourceExcerpt||record.sourceExcerpt||'';
       node.confidence=node.confidence||record.confidence||'推定';
       node.researchStatus=node.researchStatus||record.researchStatus||'推定';
       node.customTags=Array.from(new Set([...(node.customTags||[]),...(record.customTags||[]),'东汉百官志补录']));
     }
     createdByName.set(record.name,node);
+  });
+  // 兼容旧预设：旧版的汇总项保留在用户树中，但不再作为朝堂可见席位。
+  const legacyAggregateNames=new Set(['尚书六曹','前后左右将军','四征将军','四镇将军','四安四平将军','中郎将系统','校尉系统','中央将军系统']);
+  tree.forEach(node=>{
+    if(node.kind==='office' && legacyAggregateNames.has(normalizeName(node.name))) node.hidden=true;
   });
 }
 
@@ -4764,6 +4775,19 @@ const app = createApp({
       if(node?.virtualSlot) return '册立时置';
       return node?.rank9||node?.hanRank||node?.category||'品秩待考';
     }
+    function courtNodeOrder(node){
+      const explicit=Number(node?.sortOrder);
+      if(Number.isFinite(explicit)) return explicit;
+      const rank=String(node?.rank9||node?.hanRank||'');
+      if(rank.includes('三公')||rank.includes('比公')) return 100;
+      if(rank.includes('万石')) return 110;
+      if(rank.includes('千石')) return 300;
+      if(rank.includes('二千石')) return 400;
+      if(rank.includes('六百石')) return 500;
+      if(rank.includes('四百石')) return 600;
+      if(rank.includes('二百石')) return 700;
+      return 900;
+    }
     const courtHierarchy = computed(()=>{
       const nodes=currentArr.value;
       const root=nodes.find(node=>node.kind==='root')||nodes.find(node=>node.parent===undefined)||null;
@@ -4779,7 +4803,7 @@ const app = createApp({
       }
       const central=nodes.filter(node=>node.kind==='office'&&!localKeys.has(node.key)&&courtNodeVisible(node));
       const apexPattern=/^(储君|皇太子|太子|太傅|丞相|相国|左丞相|右丞相|太尉|司徒|司空|大司马|大将军|太宰|太保)(（.*）)?$/;
-      const apexAll=uniqueCourtSlots(central.filter(node=>apexPattern.test(String(node.name||'').replace(/[（(].*?[)）]/g,'').trim())));
+      const apexAll=uniqueCourtSlots(central.filter(node=>apexPattern.test(String(node.name||'').replace(/[（(].*?[)）]/g,'').trim())).sort((a,b)=>courtNodeOrder(a)-courtNodeOrder(b)||String(a.name).localeCompare(String(b.name),'zh-CN')));
       const heir=apexAll.find(node=>courtSlotKey(node)==='储君') || {key:'court-heir-'+currentFaction.value,kind:'office',name:'储君',category:'太子官属',virtualSlot:true,figures:[]};
       const apex=apexAll.filter(node=>courtSlotKey(node)!=='储君');
       const apexKeys=new Set(apex.filter(node=>!node.virtualSlot).map(node=>node.key));
@@ -4791,7 +4815,7 @@ const app = createApp({
         grouped.get(label).push(node);
       });
       const departments=[...grouped.entries()].map(([label,items])=>({
-        label,items:uniqueCourtSlots(items),order:departmentOrder.indexOf(label)===-1?999:departmentOrder.indexOf(label)
+        label,items:uniqueCourtSlots(items.slice().sort((a,b)=>courtNodeOrder(a)-courtNodeOrder(b)||String(a.name).localeCompare(String(b.name),'zh-CN'))),order:departmentOrder.indexOf(label)===-1?999:departmentOrder.indexOf(label)
       })).filter(group=>group.items.length).sort((a,b)=>a.order-b.order||a.label.localeCompare(b.label,'zh-CN'));
       const states=localRoot?(children.get(localRoot.key)||[]).filter(node=>node.category==='州牧刺史'&&courtNodeVisible(node)).map(state=>({
         node:state,

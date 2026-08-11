@@ -42,7 +42,11 @@ assert(registry.periods.find(period => period.year === 220)?.polities.join('、'
 assert(audit.periodReview.length === expectedIds.length, '逐期史实审校必须覆盖十六期');
 assert(html.includes('>职官谱</strong>') && html.includes('>州镇表</strong>') && html.includes('>形势图</strong>'), '职官谱、州镇表或形势图命名缺失');
 assert(html.includes('>金石录</strong>') && html.includes("activeModule==='jinshi'") && html.includes('材料待补'), '金石录空白板块未接入');
-assert(html.includes('data/han-bai-guan-zhi.js') && read('data/han-bai-guan-zhi.js').includes('尚书台') && read('data/han-bai-guan-zhi.js').includes('御史台') && read('data/han-bai-guan-zhi.js').includes('中央将军系统'), '东汉百官志中央官署补录未接入');
+const hanOfficeSource = read('data/han-bai-guan-zhi.js');
+assert(html.includes('data/han-bai-guan-zhi.js') && hanOfficeSource.includes('尚书令') && hanOfficeSource.includes('御史中丞') && hanOfficeSource.includes('将军府'), '东汉百官志中央官署补录未接入');
+assert(hanOfficeSource.includes('sortOrder:100') && hanOfficeSource.includes('sortOrder:210') && hanOfficeSource.includes('sortOrder:310'), '东汉具体官职位阶排序未接入');
+assert(hanOfficeSource.includes("hidden:true") && hanOfficeSource.includes('尚书令史') && hanOfficeSource.includes('羽林中郎将'), '东汉汇总锚点隐藏或具体官职补录不完整');
+assert(!hanOfficeSource.includes("'中央将军系统'") && !hanOfficeSource.includes("'中郎将系统'"), '东汉朝堂仍把旧系统名称作为数据官职');
 assert(html.includes("label:'东汉'") && html.includes('currentFactionLabel') && html.includes(':label="f.label||f.short||f.name"'), '政权选择器短标签或兼容字段未接入');
 assert(read('data/epigraphic-records.js').includes('schemaVersion: 2') && read('data/epigraphic-records.js').includes('fields:') && html.includes('filteredEpigraphicRecords') && html.includes('epigraphicRecords:cloneJSON'), '金石录结构化字段、筛选或工程持久化未接入');
 assert(html.includes('>食货志</strong>') && html.includes('SHIHUO_RECORDS') && html.includes('shihuo-workbench'), '食货志模块未接入');
@@ -168,6 +172,9 @@ assert(!mapBaseLayer.includes('今黄河') && !mapBaseLayer.includes('今长江'
 assert(historyEvidence.includes('sinica_western_jin_map') && historyEvidence.includes('taikang-sinica-crosscheck'), '280 年中研院西晋地图交叉校验未接入证据索引');
 assert(historyEvidence.includes('jinshu_juan15') && historyEvidence.includes('yongjia-yangzhou-recalibration'), '扬州郡界重校缺少《晋书·地理志下》证据');
 assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes('derivePersonBiography'), '人物记史传提要或履历归纳未接入');
+assert(!biographySource.includes('乐綝') && biographySource.includes('乐𬘭'), '乐𬘭姓名规范化未完成');
+assert(biographySource.includes('后与诸葛诞争执，甘露三年被诸葛诞杀死') && !biographySource.includes('最终为吴将文鸯所杀') && !biographySource.includes('受贾充指使刺杀曹髦'), '人物记史实修正未接入');
+assert(biographySource.includes('成济') && biographySource.includes('《三国志》卷四《三少帝纪》及裴松之注'), '成济传记来源未校正');
 [mapConfig,mapBaseLayer,mapNarrative].forEach(source => assert(!source.includes('（今') && !source.includes('(今'), '地图可见文字仍含“今××”现代地名括注'));
 assert(!html.includes('cdnjs.cloudflare.com/ajax/libs'), '本地项目仍依赖 cdnjs');
 assert(!html.includes('workbuddy-space-static.codebuddy.work/page/'), '本地项目仍依赖 WorkBuddy 运行资源');
