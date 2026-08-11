@@ -15,11 +15,13 @@ const evidence=context.window.SGZ_HISTORY_EVIDENCE;
 const assert=(value,message)=>{if(!value)throw new Error(message);};
 
 const legacy={schemaVersion:3,trees:{wei:{office:[{key:'root',kind:'root',name:'曹魏官制'},{key:'a',parent:'root',kind:'office',name:'司徒',figures:[{name:'华歆'}]}],noble:[]}},fangzhenRecords:[{polity:'曹魏',commander:'华歆',title:'司徒',jurisdiction:'司州',startYear:220,sourceTitle:'《三国志》'}]};
+legacy.epigraphicRecords=[{id:'ep_1',name:'待核碑刻',type:'碑刻',yearText:'年代待考',researchStatus:'待补'}];
 const migrated=model.migrate(legacy);
 assert(migrated.schemaVersion===7&&migrated.migratedFrom===3,'旧存档未迁移到 v7');
 assert(migrated.fangzhenRecords[0].polity==='魏','曹魏国名未规范为魏');
 assert(migrated.fangzhenRecords[0].personId.startsWith('person:'),'任官记录缺少稳定人物 ID');
 assert(migrated.trees.wei.office[1].entityId.startsWith('office:'),'官职节点缺少稳定实体 ID');
+assert(migrated.epigraphicRecords[0].entityType==='epigraphicRecord'&&migrated.epigraphicRecords[0].researchStatus==='待补','金石材料未迁移为可审计实体');
 const indexes=model.buildIndexes(migrated);
 assert(indexes.people.size===1&&Array.from(indexes.people.values())[0].appointments.length===2,'人物履历未汇合官职与州镇任官');
 assert(events.events.length===51,'行政沿革事件数量错误');

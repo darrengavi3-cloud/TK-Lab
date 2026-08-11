@@ -12,6 +12,7 @@
     "jurisdiction": ["jurisdictionId", "name", "polity", "parentId", "startYear", "endYear"],
     "source": ["id", "title", "level", "role", "locator", "excerpt", "url", "confidence", "note"],
     "event": ["id", "operation", "subject", "year", "parentBefore", "label", "confidence", "sourceLevel"],
+    "epigraphicRecord": ["id", "name", "type", "year", "yearText", "polity", "place", "region", "scriptStyle", "form", "inscription", "bibliography", "media", "people", "offices", "sourceTitle", "sourceUrl", "sourceLevel", "sourceLocator", "confidence", "researchStatus", "disputeNote", "note"],
     "period": ["id", "year", "eraId", "polities", "confidence", "sourceIds"],
     "periodSnapshot": ["id", "periodId", "year", "eraId", "auditStatus", "controlMode", "polities", "administration", "claims", "sourceIds", "caveats"],
     "controlClaim": ["id", "periodId", "subjectType", "subject", "status", "statement", "sourceIds"],

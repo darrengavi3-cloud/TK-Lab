@@ -5,7 +5,7 @@
   const ENTITY_TYPES = Object.freeze({
     polity:'政权', office:'官职', title:'爵位', person:'人物', appointment:'任官',
     jurisdiction:'辖区', source:'史料', period:'时期', periodSnapshot:'时期快照',
-    controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件'
+    controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料'
   });
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
   const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','待核']);
@@ -103,6 +103,23 @@
     row.aliases=Array.isArray(row.aliases)?row.aliases.map(text).filter(Boolean):[];
     return row;
   }
+  function normalizeEpigraphicRecord(record,index){
+    const row=clone(record||{});
+    row.entityType='epigraphicRecord';
+    row.id=text(row.id)||stableId('epigraphic',[row.name||'待补',row.year||row.yearText||'',index]);
+    row.name=text(row.name)||'未命名金石材料';
+    row.type=text(row.type)||'其他';
+    row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
+    row.yearText=text(row.yearText);
+    row.researchStatus=['待补','确定','推定','存疑','争议'].includes(text(row.researchStatus))?text(row.researchStatus):'待补';
+    row.confidence=normalizeConfidence(row.confidence||row.researchStatus);
+    row.sourceLevel=text(row.sourceLevel)||'待核';
+    row.sourceTitle=text(row.sourceTitle);
+    row.sourceUrl=text(row.sourceUrl);
+    row.sourceLocator=text(row.sourceLocator);
+    row.disputeNote=text(row.disputeNote);
+    return row;
+  }
   function normalizeNode(node,factionKey,type){
     const row=clone(node||{});
     const entityType=type==='noble'?'title':(row.kind==='root'?'institution':'office');
@@ -129,6 +146,7 @@
       });
     });
     out.fangzhenRecords=(out.fangzhenRecords||fallback.fangzhenRecords||[]).map(normalizeFangzhen);
+    out.epigraphicRecords=(out.epigraphicRecords||fallback.epigraphicRecords||[]).map(normalizeEpigraphicRecord);
     out.researchMeta=Object.assign({modelId:'sgz-research-model-v7',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate'},out.researchMeta||{});
     out.researchMeta.schemaVersion=SCHEMA_VERSION;
     return out;
@@ -165,6 +183,6 @@
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
-    normalizeFangzhen,normalizeNode,migrate,buildIndexes,recordsAtYear
+    normalizeFangzhen,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
   });
 })(window);

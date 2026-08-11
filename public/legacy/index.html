@@ -18,8 +18,11 @@
 <script src="./data/history-evidence.js"></script>
 <script src="./data/battle-records.js"></script>
 <script src="./data/person-biographies.js"></script>
+<script src="./data/person-era-rosters.js"></script>
 <script src="./data/person-portraits.js"></script>
 <script src="./data/epigraphic-records.js"></script>
+<script src="./data/han-bai-guan-zhi.js"></script>
+<script src="./data/fangzhen-seat-supplement.js"></script>
 
 <style>
 @font-face { font-family: 'sys-serif'; src: local('Noto Serif SC'), local('Songti SC'), local('SimSun'); }
@@ -289,6 +292,10 @@ body{background:#F4F3EF;}
 .faction-tabs{gap:4px;padding-left:4px;}
 .faction-tab{padding:6px 11px;border-radius:8px;}
 .topbar-actions{gap:6px;}
+.faction-tabs{flex:0 1 184px;min-width:158px;max-width:204px;overflow:visible;padding-left:0;}
+.faction-select{width:100%;}
+.faction-select .el-input__wrapper{min-height:36px;border-radius:8px;box-shadow:0 0 0 1px var(--rule) inset;background:#fff;}
+.faction-select .el-input__inner{font-size:12px;font-weight:600;}
 .left-toolbar{width:54px;background:#FAFAF8;border-right:1px solid var(--rule);padding:9px 0;gap:4px;}
 .tool-btn{width:36px;height:36px;border-radius:9px;font-size:15px;color:#555C55;}
 .tool-btn:hover{background:#ECEEEA;border-color:transparent;}
@@ -382,12 +389,16 @@ body{background:#F4F3EF;}
   background-repeat:no-repeat;background-position:center top;background-size:100% auto;color:#302D28;
 }
 .court-heading{text-align:center;max-width:720px;margin:0 auto 18px;position:relative;z-index:1;}
+.court-heading-actions{display:flex;justify-content:center;gap:6px;margin-top:10px;}
 .court-heading .kicker{font-size:10px;color:#81786C;margin-bottom:5px;}
 .court-heading h2{margin:0;font:700 24px 'Noto Serif SC','Songti SC',serif;color:#312D28;}
 .court-heading p{margin:5px 0 0;font-size:11px;color:#736B61;}
 .court-sovereign-row{display:flex;justify-content:center;position:relative;z-index:1;}
 .court-link-vertical{width:1px;height:23px;margin:0 auto;background:#6C645A;opacity:.62;}
 .court-tier{position:relative;z-index:1;margin:0 auto 22px;}
+.court-heir-tier{margin-bottom:14px;}
+.court-heir-tier .court-tier-grid{min-height:150px;}
+.court-heir-tier .heir-slot{border-color:var(--court-accent);box-shadow:0 5px 16px rgba(51,45,38,.13);}
 .court-tier-title{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;}
 .court-tier-title:before,.court-tier-title:after{content:'';height:1px;flex:1;max-width:170px;background:#8F877B;opacity:.42;}
 .court-tier-title span{min-width:104px;padding:5px 12px;border:1px solid #4B4640;background:#292622;color:#F4EFE3;text-align:center;font:650 12px 'Noto Serif SC','Songti SC',serif;}
@@ -531,6 +542,13 @@ body{background:#F4F3EF;}
 .jinshi-empty-panel .seal{width:52px;height:52px;margin:0 auto 13px;border:1px solid #A7ADA5;border-radius:50%;display:grid;place-items:center;color:#7D847D;font:700 22px 'Noto Serif SC','Songti SC',serif;}
 .jinshi-empty-panel h2{margin:0;color:#5B625B;font:700 20px 'Noto Serif SC','Songti SC',serif;}
 .jinshi-empty-panel p{max-width:620px;margin:9px auto 0;font-size:12px;line-height:1.75;}
+.jinshi-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;margin-top:14px;border:1px solid #D5D9D3;border-radius:10px;background:rgba(249,250,248,.86);}
+.jinshi-toolbar .el-input{max-width:300px;}
+.jinshi-table-card{margin-top:10px;border:1px solid #D5D9D3;border-radius:10px;background:rgba(249,250,248,.86);overflow:hidden;}
+.jinshi-table-card .el-table{--el-table-border-color:#E0E3DF;--el-table-header-bg-color:#EEF0ED;--el-table-row-hover-bg-color:#F4F6F3;background:transparent;}
+.jinshi-table-card .el-table th.el-table__cell{color:#5B625B;font-size:11px;}
+.jinshi-table-card .el-table td.el-table__cell{font-size:11.5px;color:#4D554D;}
+.jinshi-status-note{padding:10px 12px;border-top:1px dashed #D5D9D3;color:#7E857E;font-size:11px;line-height:1.6;}
 /* ---------- 人物志 ---------- */
 .people-workbench{--people-accent:#8D3D32;--people-pale:#F7F0EA;--people-deep:#5F2E26;background:linear-gradient(180deg,var(--people-pale) 0,#F4F3EF 320px);}
 .people-workbench .page-heading h1{color:var(--people-deep);}
@@ -727,7 +745,7 @@ body{background:#F4F3EF;}
   .map-link-card{left:52px;right:52px;bottom:10px;width:auto;transform:none}.map-link-records{max-height:70px;overflow:auto}
 }
 @media(max-width:1380px){
-  .faction-tab{padding:6px 9px}.faction-full{display:none}.faction-short{display:inline}
+  .faction-tabs{flex-basis:154px;min-width:142px;max-width:166px;}
 }
 
 @media print{
@@ -771,12 +789,12 @@ const { createApp, ref, reactive, computed, onMounted, onBeforeUnmount, nextTick
    常量与预设数据
    ========================================================================= */
 const FACTIONS = [
-  { key:'han',    name:'东汉官制', short:'东汉', polity:'汉', color:'#77736B' },
-  { key:'wei',    name:'曹魏官制', short:'曹魏', polity:'魏', color:'#376B9E' },
-  { key:'shu',    name:'季汉官制', short:'季汉', polity:'汉', color:'#A54136' },
-  { key:'wu',     name:'孙吴官制', short:'孙吴', polity:'吴', color:'#3F7652' },
-  { key:'jin',    name:'西晋官制', short:'西晋', polity:'晋', color:'#6E5A9E' },
-  { key:'tribal', name:'异族官制', short:'异族', polity:'异族诸部', color:'#7A5230' },
+  { key:'han',    name:'东汉官制', label:'东汉', short:'东汉', polity:'汉', color:'#77736B' },
+  { key:'wei',    name:'曹魏官制', label:'曹魏', short:'曹魏', polity:'魏', color:'#376B9E' },
+  { key:'shu',    name:'季汉官制', label:'季汉', short:'季汉', polity:'汉', color:'#A54136' },
+  { key:'wu',     name:'孙吴官制', label:'孙吴', short:'孙吴', polity:'吴', color:'#3F7652' },
+  { key:'jin',    name:'西晋官制', label:'西晋', short:'西晋', polity:'晋', color:'#6E5A9E' },
+  { key:'tribal', name:'异族官制', label:'异族', short:'异族', polity:'异族诸部', color:'#7A5230' },
 ];
 
 const PERIODS = {
@@ -2927,6 +2945,11 @@ function makeFigureRecord(source){
     startYear: normalizeYear(raw.startYear),
     endYear: normalizeYear(raw.endYear),
     note: String(raw.note || ''),
+    status: String(raw.status || ''),
+    confidence: String(raw.confidence || ''),
+    sourceTitle: String(raw.sourceTitle || ''),
+    sourceUrl: String(raw.sourceUrl || ''),
+    sourceExcerpt: String(raw.sourceExcerpt || ''),
   };
 }
 
@@ -3131,6 +3154,55 @@ function buildLocalRegionTree(prefix, parentKey, preset, attach){
   return nodes;
 }
 
+/* 将《后汉书·百官志》制度补录接入东汉预设；同名旧节点保留人物与用户编辑，只补证据和父级。 */
+function appendHanBaiGuanZhi(tree){
+  const payload=window.SGZ_HAN_BAI_GUAN_ZHI;
+  if(!payload || !Array.isArray(payload.records) || !Array.isArray(tree)) return;
+  const root=tree.find(node=>node.kind==='root');
+  if(!root) return;
+  const normalizeName=value=>String(value||'').replace(/[（(].*?[)）]/g,'').trim();
+  const findExisting=name=>{
+    const target=normalizeName(name);
+    return tree.find(node=>normalizeName(node.name)===target) ||
+      (target==='大将军' ? tree.find(node=>normalizeName(node.name).startsWith('大将军')) : null);
+  };
+  const createdByName=new Map();
+  payload.records.forEach(record=>{
+    const parentName=record.parent==='__root__'?'__root__':record.parent;
+    const parent=parentName==='__root__' ? root : (createdByName.get(parentName)||findExisting(parentName)||root);
+    let node=findExisting(record.name) || createdByName.get(record.name);
+    if(!node){
+      node=O('han_o',parent.key,record.name,record.category||'其他',record.rank9||'',record.hanRank||'',{
+        duty:record.duty||'',
+        note:record.note||'',
+        relationType:record.relationType||'制度并列',
+        sources:record.sourceTitle||payload.source.title,
+        sourceLevel:record.sourceLevel||payload.source.level,
+        sourceLocator:record.sourceLocator||payload.source.locator,
+        sourceExcerpt:record.sourceExcerpt||'',
+        confidence:record.confidence||'推定',
+        researchStatus:record.researchStatus||'推定',
+        customTags:Array.isArray(record.customTags)?record.customTags.slice():['东汉百官志补录']
+      });
+      tree.push(node);
+    }else{
+      if(node.kind==='office' && node!==root) node.parent=parent.key;
+      node.category=record.category||node.category;
+      if(record.hanRank && !node.hanRank) node.hanRank=record.hanRank;
+      if(record.duty && !node.duty) node.duty=record.duty;
+      if(record.note) node.note=node.note?node.note+' '+record.note:record.note;
+      node.sources=node.sources||record.sourceTitle||payload.source.title;
+      node.sourceLevel=node.sourceLevel||record.sourceLevel||payload.source.level;
+      node.sourceLocator=node.sourceLocator||record.sourceLocator||payload.source.locator;
+      node.sourceExcerpt=node.sourceExcerpt||record.sourceExcerpt||'';
+      node.confidence=node.confidence||record.confidence||'推定';
+      node.researchStatus=node.researchStatus||record.researchStatus||'推定';
+      node.customTags=Array.from(new Set([...(node.customTags||[]),...(record.customTags||[]),'东汉百官志补录']));
+    }
+    createdByName.set(record.name,node);
+  });
+}
+
 function buildPresets(){
   const P = {};
 
@@ -3240,6 +3312,56 @@ function buildPresets(){
       officeStartYear:221, officeEndYear:234, evolution:'章武元年（221）置；建兴十二年（234）诸葛亮卒后不复置。',
       sources:'《三国志》卷三十五·诸葛亮传'
     });
+    const liubeiFuSource = '知乎：左将军刘备府属';
+    const liubeiFuUrl = 'https://zhuanlan.zhihu.com/p/586069483';
+    const zhugeliangFuSource = '知乎：丞相诸葛亮府属';
+    const zhugeliangFuUrl = 'https://zhuanlan.zhihu.com/p/586400783';
+    const sourcedFigure = (name, sourceTitle, sourceUrl, extra)=>Object.assign({
+      name, sourceTitle, sourceUrl,
+      sourceExcerpt:'本文为来源文章所列府属研究；具体任职与任期按 status/confidence 保留。'
+    }, extra||{});
+    const liubeiFu = O('shu_o', root.key, '左将军府属（刘备）', '幕府属官', '', '府属', {
+      virtual:true, customTags:['府属分组','来源文章'],
+      note:'建安年间刘备左将军府属的来源型分组，不等同于汉廷常设官署；文章提示开府时间与部分职名仍有考订空间。',
+      sources:liubeiFuSource+'；'+liubeiFuUrl, relationType:'史料整理'
+    });
+    const liubeiFuRoles = [
+      O('shu_o', liubeiFu.key, '军师', '幕府属官', '', '府属', {figures:[sourcedFigure('诸葛亮',liubeiFuSource,liubeiFuUrl,{confidence:'存疑',status:'存疑',note:'史书未明载其在左将军府具体职名，来源文章作推测。'})], note:'来源文章推测，史书未明载在府具体职。'}),
+      O('shu_o', liubeiFu.key, '长史', '幕府属官', '', '府属', {figures:[sourcedFigure('许靖',liubeiFuSource,liubeiFuUrl,{startYear:214,endYear:219})]}),
+      O('shu_o', liubeiFu.key, '司马', '幕府属官', '', '府属', {figures:[sourcedFigure('庞羲',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '议曹从事', '幕府属官', '', '府属', {figures:[sourcedFigure('射援',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '从事中郎', '幕府属官', '', '府属', {figures:['麋竺','孙乾','简雍','伊籍'].map(name=>sourcedFigure(name,liubeiFuSource,liubeiFuUrl,{confidence:'推定'}))}),
+      O('shu_o', liubeiFu.key, '西曹掾', '幕府属官', '', '府属', {figures:[sourcedFigure('刘巴',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '兵曹掾', '幕府属官', '', '府属', {figures:[sourcedFigure('杨仪',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '掾', '幕府属官', '', '府属', {figures:[sourcedFigure('马良',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '属', '幕府属官', '', '府属', {figures:[sourcedFigure('马勋',liubeiFuSource,liubeiFuUrl,{confidence:'存疑',status:'待考'})]}),
+      O('shu_o', liubeiFu.key, '营司马', '幕府属官', '', '府属', {figures:[sourcedFigure('赵云',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '部曲将', '幕府属官', '', '府属', {figures:[sourcedFigure('魏延',liubeiFuSource,liubeiFuUrl,{confidence:'推定'})]}),
+      O('shu_o', liubeiFu.key, '掌府事', '幕府属官', '', '府属', {figures:[sourcedFigure('董和',liubeiFuSource,liubeiFuUrl,{confidence:'存疑',status:'存疑',note:'来源文章据“与诸葛亮并掌左将军大司马府事”归入，非明确官名。'})]})
+    ];
+    const zhugeliangFuRoles = [
+      ['中都护',['李严'],{officeStartYear:228,officeEndYear:230}],
+      ['军师祭酒',['尹默','来敏'],{}],
+      ['长史',['王连','向朗','张裔','蒋琬','杨仪'],{}],
+      ['司马',['魏延','费祎'],{}],
+      ['门下督',['马忠'],{}],
+      ['参军',['张裔','廖化','马谡','蒋琬','杨仪','宗预','费祎','李邈','姚伷','王平','胡济','马忠'],{}],
+      ['东曹掾',['蒋琬'],{}],
+      ['西曹掾',['李邵','李朝','蒲元'],{}],
+      ['仓曹掾',['姜维'],{}],
+      ['从事中郎',['李丰','射援','马齐'],{}],
+      ['属',['董恢'],{}],
+      ['东曹属',['杨颙'],{}],
+      ['主簿',['宗预','杨颙','杨戏','胡济','董厥'],{}],
+      ['祭酒',['射援'],{}],
+      ['令史',['董厥','赖厷'],{}],
+      ['记室',['霍弋'],{}]
+    ].map(([role,names,extra])=>O('shu_o',chengxiang.key,role,'幕府属官','','府属',Object.assign({
+      figures:names.map(name=>sourcedFigure(name,zhugeliangFuSource,zhugeliangFuUrl,{confidence:'推定'})),
+      customTags:['丞相府属','来源文章'], sources:zhugeliangFuSource+'；'+zhugeliangFuUrl,
+      note:'诸葛亮开府治事时期的府属整理；部分任期与“疑是”条目没有并入此确认层。', relationType:'史料整理'
+    },extra)));
+    const chengxiangFuRoles = [...liubeiFuRoles, ...zhugeliangFuRoles];
     const damasi = O('shu_o', root.key, '大司马', '大将军／大司马', '', '万石', {
       kaifu:true, jie:'使持节', figures:['蒋琬（239—246）'],
       officeStartYear:239, officeEndYear:246, evolution:'延熙二年（239）蒋琬自大将军加大司马；延熙九年（246）琬卒。',
@@ -3339,7 +3461,7 @@ function buildPresets(){
       })
     ];
 
-    const officeNodes = [root, chengxiang, damasi, dajiangjun, shangshuling, shangshupy, ...jiuqing,
+    const officeNodes = [root, chengxiang, liubeiFu, ...chengxiangFuRoles, damasi, dajiangjun, shangshuling, shangshupy, ...jiuqing,
       ...dafu, shizhong, huangmen, ...weijiangjun, ...zhongs, yizhoumu, ...yaoling, nanzhong, ...shuguo, ...taizi,
       ...buildLocalRegionTree('shu_o', root.key, LOCAL_REGION_PRESETS.shu)];
     // 汉未实行曹魏的九品中正官品体系，本工具仅保留汉代秩俸字段。
@@ -3794,6 +3916,7 @@ function buildPresets(){
     node._presetParentName = parentNode.name;
     tree.push(node);
   });
+  appendHanBaiGuanZhi(P.han && P.han.office);
   return P;
 }
 
@@ -3827,6 +3950,16 @@ function mergePresetSupplement(targetTrees){
 
 
 function cloneJSON(value){ return JSON.parse(JSON.stringify(value)); }
+function applyFangzhenSeatSupplement(record){
+  const key=String(record.polity||'')+'|'+String(record.jurisdiction||'');
+  const supplement=(window.SGZ_FANGZHEN_SEAT_SUPPLEMENT||{})[key];
+  if(!supplement || record.seat) return record;
+  record.seat=supplement.seat||'';
+  record.seatConfidence=supplement.confidence||'待考';
+  record.seatNote=supplement.note||'';
+  record.seatSourceTitle='州镇表治所补充表（待逐条回查）';
+  return record;
+}
 function normalizeFangzhenRecords(rows){
   return cloneJSON(Array.isArray(rows)?rows:[]).map((record,index)=>{
     if(record.polity==='季汉'||record.polity==='蜀汉') record.polity='汉';
@@ -3858,6 +3991,7 @@ function normalizeFangzhenRecords(rows){
         record.tenureText=String(start)+'—';
       }
     }
+    applyFangzhenSeatSupplement(record);
     return window.SGZResearchModel.normalizeFangzhen(record,index);
   });
 }
@@ -4092,7 +4226,21 @@ const app = createApp({
     const shihuoCategory = ref('all');
     const shihuoRecords = ref(cloneJSON(SHIHUO_RECORDS));
     const epigraphicRecords = ref(cloneJSON(window.SGZ_EPIGRAPHIC_RECORDS?.records||[]));
-    const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.type).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year).filter(Boolean)).size}));
+    const epigraphicTypes = window.SGZ_EPIGRAPHIC_RECORDS?.types||['碑刻','墓志','摩崖','砖瓦题记','印章','其他'];
+    const epigraphicStatuses = window.SGZ_EPIGRAPHIC_RECORDS?.researchStatuses||['待补','确定','推定','存疑','争议'];
+    const epigraphicQuery = ref('');
+    const epigraphicType = ref('all');
+    const epigraphicStatus = ref('all');
+    const filteredEpigraphicRecords = computed(()=>{
+      const q=epigraphicQuery.value.trim().toLowerCase();
+      return epigraphicRecords.value.filter(item=>{
+        if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
+        if(epigraphicStatus.value!=='all' && (item.researchStatus||'待补')!==epigraphicStatus.value) return false;
+        if(q && !['name','type','year','yearText','polity','place','region','scriptStyle','inscription','bibliography','people','offices','sourceTitle','sourceLocator','note'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
+        return true;
+      });
+    });
+    const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.type).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.yearText).filter(Boolean)).size}));
     const shihuoEvents = SHIHUO_EVENTS.slice().sort((a,b)=>Number(a.year)-Number(b.year));
     const shihuoHousehold = ref(cloneJSON(SHIHUO_HOUSEHOLD));
     const filteredShihuoHousehold = computed(()=>{
@@ -4146,6 +4294,7 @@ const app = createApp({
 
     const currentArr = computed(()=> data.trees[currentFaction.value][treeType.value]);
     const currentFactionDef = computed(()=> factions.find(f=>f.key===currentFaction.value));
+    const currentFactionLabel = computed(()=>currentFactionDef.value?.label||currentFactionDef.value?.short||currentFactionDef.value?.name||'');
     const rank9Enabled = computed(()=>RANK9_FACTIONS.includes(currentFaction.value));
     const periodOptions = computed(()=> PERIODS[currentFaction.value] || []);
     const currentPeriodKey = computed({
@@ -4576,6 +4725,7 @@ const app = createApp({
     const courtStateKey = ref('');
     function courtNodeVisible(node){
       if(!node || node.archived || node.hidden) return false;
+      if(node.virtual) return false;
       if(timelineEnabled.value){
         const start=normalizeYear(node.officeStartYear), end=normalizeYear(node.officeEndYear);
         if(start!==null && timelineYear.value<start) return false;
@@ -4587,7 +4737,7 @@ const app = createApp({
       const name=String(node?.name||'').replace(/[（(].*?[)）]/g,'').trim();
       if(/左丞相/.test(name)) return '左丞相';
       if(/右丞相/.test(name)) return '右丞相';
-      const canonical=[['储君',/储君|皇太子|太子$/],['太傅',/^太傅$/],['丞相',/^丞相$/],['相国',/^相国$/],['太尉',/^太尉$/],['司徒',/^司徒$/],['司空',/^司空$/],['大司马',/^大司马/],['太宰',/^太宰$/],['太保',/^太保$/]];
+      const canonical=[['储君',/储君|皇太子|太子$/],['太傅',/^太傅$/],['丞相',/^丞相$/],['相国',/^相国$/],['太尉',/^太尉$/],['司徒',/^司徒$/],['司空',/^司空$/],['大司马',/^大司马/],['大将军',/^大将军/],['太宰',/^太宰$/],['太保',/^太保$/]];
       const hit=canonical.find(([,pattern])=>pattern.test(name));
       return hit?hit[0]:node.key;
     }
@@ -4617,7 +4767,7 @@ const app = createApp({
     const courtHierarchy = computed(()=>{
       const nodes=currentArr.value;
       const root=nodes.find(node=>node.kind==='root')||nodes.find(node=>node.parent===undefined)||null;
-      if(treeType.value!=='office'||!root) return {root:null,apex:[],departments:[],states:[]};
+      if(treeType.value!=='office'||!root) return {root:null,heir:null,apex:[],departments:[],states:[]};
       const byKey=new Map(nodes.map(node=>[node.key,node]));
       const children=new Map();
       nodes.forEach(node=>{const parent=node.parent===undefined?null:node.parent;(children.get(parent)||children.set(parent,[]).get(parent)).push(node);});
@@ -4628,11 +4778,10 @@ const app = createApp({
         while(stack.length){const key=stack.pop();localKeys.add(key);(children.get(key)||[]).forEach(child=>stack.push(child.key));}
       }
       const central=nodes.filter(node=>node.kind==='office'&&!localKeys.has(node.key)&&courtNodeVisible(node));
-      const apexPattern=/^(储君|皇太子|太子|太傅|丞相|相国|左丞相|右丞相|太尉|司徒|司空|大司马|太宰|太保)$/;
-      const apex=uniqueCourtSlots(central.filter(node=>apexPattern.test(String(node.name||'').replace(/[（(].*?[)）]/g,'').trim())));
-      if(!apex.some(node=>courtSlotKey(node)==='储君')){
-        apex.unshift({key:'court-heir-'+currentFaction.value,kind:'office',name:'储君',category:'太子官属',virtualSlot:true,figures:[]});
-      }
+      const apexPattern=/^(储君|皇太子|太子|太傅|丞相|相国|左丞相|右丞相|太尉|司徒|司空|大司马|大将军|太宰|太保)(（.*）)?$/;
+      const apexAll=uniqueCourtSlots(central.filter(node=>apexPattern.test(String(node.name||'').replace(/[（(].*?[)）]/g,'').trim())));
+      const heir=apexAll.find(node=>courtSlotKey(node)==='储君') || {key:'court-heir-'+currentFaction.value,kind:'office',name:'储君',category:'太子官属',virtualSlot:true,figures:[]};
+      const apex=apexAll.filter(node=>courtSlotKey(node)!=='储君');
       const apexKeys=new Set(apex.filter(node=>!node.virtualSlot).map(node=>node.key));
       const departmentOrder=['列卿','尚书台','中书台','御史台','常伯','大夫','将军','太子官属','诸王官属'];
       const grouped=new Map();
@@ -4648,7 +4797,7 @@ const app = createApp({
         node:state,
         commanderies:(children.get(state.key)||[]).filter(node=>node.category==='郡国守相'&&courtNodeVisible(node))
       })):[];
-      return {root,apex,departments,states,byKey};
+      return {root,heir,apex,departments,states,byKey};
     });
     const courtActiveState = computed(()=>{
       const states=courtHierarchy.value.states||[];
@@ -5317,6 +5466,32 @@ const app = createApp({
       selectedKey.value = nn.key;
       refreshDiagramData(true);
     }
+    function addCourtPosition(){
+      if(treeType.value!=='office') return;
+      const selected=selectedNode.value;
+      const parent=(selected && selected.kind!=='root' && !selected.virtual) ? selected : currentArr.value.find(node=>node.kind==='root');
+      if(!parent){ ElementPlus.ElMessage.warning('当前官制没有可挂载的根节点'); return; }
+      ElementPlus.ElMessageBox.prompt('输入要添加的朝堂官职名称', '添加朝堂位置', {
+        inputValue:'新设官职',
+        inputPlaceholder:'如：太傅、尚书仆射、军师祭酒',
+        confirmButtonText:'添加',
+        cancelButtonText:'取消',
+        inputPattern:/\S+/,
+        inputErrorMessage:'官职名称不能为空'
+      }).then(({value})=>{
+        const name=String(value||'').trim();
+        const category=/^(太傅|太尉|司徒|司空)$/.test(name)?'三公':(/^(丞相|相国)$/.test(name)?'丞相／相国':(/^(大司马|大将军)$/.test(name)?'大将军／大司马':(/太子/.test(name)?'太子官属':'幕府属官')));
+        const prefix=currentFaction.value+'_o';
+        const occupied=new Set(currentArr.value.map(node=>node.key));
+        const node=O(prefix,parent.key,name,category,'','',{customTags:['朝堂界面新增'],note:'由朝堂谱系界面新增；官制归属、品秩与史料出处待补。',relationType:'用户新增'});
+        if(occupied.has(node.key)) node.key=nextUniqueKey(prefix,occupied);
+        currentArr.value.push(node);
+        pushHistory('朝堂界面新增官职：'+name);
+        selectedKey.value=node.key;
+        refreshDiagramData(false);
+        ElementPlus.ElMessage.success('已添加「'+name+'」，可在编辑谱系中补充沿革与人物。');
+      }).catch(()=>{});
+    }
     function duplicateBranch(){
       const sel = selectedNode.value;
       if(!sel){ ElementPlus.ElMessage.warning('请先选中要复制的分支根节点'); return; }
@@ -5687,6 +5862,7 @@ const app = createApp({
     }
     function recordPeriodLabel(record){
       if(record.treeType==='fangzhen'||record.source==='fangzhen') return (record.polity||'')+' · '+(record.eraGroup==='jin'?'西晋':record.eraGroup==='eastjin'?'东晋扩展':'汉末／三国');
+      if(record.treeType==='roster'||record.source==='eraRoster') return (record.polity||'')+' · '+(record.phase||'末期官员录');
       const period = periodByKey(record.rulerKey);
       return period ? period.name : '未指定君主时期';
     }
@@ -5967,6 +6143,10 @@ const app = createApp({
         if(personKeyOf(record.commander)!==key) return;
         records.push({...record,source:'fangzhen',factionKey:fangzhenArchiveKeyFor(record),factionName:(record.polity||'')+'州镇表',nodeName:record.title,treeType:'fangzhen',nodeKey:record.id});
       });
+      (window.SGZ_PERSON_ERA_ROSTERS?.records||[]).forEach(record=>{
+        if(personKeyOf(record.person)!==key) return;
+        records.push({...record,name:record.person,source:'eraRoster',factionKey:record.polity==='吴'?'wu':'shu',factionName:(record.polity||'')+'末期官员录',nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
+      });
       return records.sort((a,b)=>(normalizeYear(a.startYear)??9999)-(normalizeYear(b.startYear)??9999));
     }
     function derivePersonBiography(entry){
@@ -5989,6 +6169,11 @@ const app = createApp({
       showPeopleDetail.value=false;
       if(item.source==='fangzhen'||item.treeType==='fangzhen'){
         switchModule('fangzhen');selectFangzhenArchive(fangzhenArchiveKeyFor(item));fangzhenQuery.value=item.commander;return;
+      }
+      if(item.source==='eraRoster'||item.treeType==='roster'){
+        selectedEvidence.value={title:item.sourceTitle||'末期官员录',level:item.sourceLevel||'文档考据',locator:item.phase||'末期官员录',excerpt:item.sourceExcerpt||'',url:item.sourceUrl||'',confidence:item.confidence||'推定',note:item.note||''};
+        showEvidence.value=true;
+        return;
       }
       jumpToSearchResult({factionKey:item.factionKey,treeType:item.treeType,node:{key:item.nodeKey}});
     }
@@ -6013,6 +6198,11 @@ const app = createApp({
         const e=entry(record.commander); if(!e) return;
         e.politics.push(record.polity||'');
         e.appointments.push({...record,source:'fangzhen',factionKey:fangzhenArchiveKeyFor(record),factionName:(record.polity||'')+'州镇表',nodeName:record.title,treeType:'fangzhen',nodeKey:record.id});
+      });
+      (window.SGZ_PERSON_ERA_ROSTERS?.records||[]).forEach(record=>{
+        const e=entry(record.person); if(!e) return;
+        e.politics.push(record.polity||'');
+        e.appointments.push({...record,name:record.person,source:'eraRoster',factionKey:record.polity==='吴'?'wu':'shu',factionName:(record.polity||'')+'末期官员录',nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
       });
       Object.entries(window.SGZ_PERSON_BIOGRAPHIES||{}).forEach(([key,bio])=>{
         const e=map.get(personKeyOf(key))||entry(key); if(!e) return;
@@ -6053,17 +6243,18 @@ const app = createApp({
         if(peopleKind.value==='office' && !p.appointments.some(a=>a.treeType==='office')) return false;
         if(peopleKind.value==='noble' && !p.appointments.some(a=>a.treeType==='noble')) return false;
         if(peopleKind.value==='fangzhen' && !p.appointments.some(a=>a.treeType==='fangzhen')) return false;
+        if(peopleKind.value==='roster' && !p.appointments.some(a=>a.treeType==='roster')) return false;
         if(!q) return true;
         const hay=[p.name,p.zi,p.birthplace,p.bio].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.sourceTitle,a.polity].join(' '))).join('\n').toLowerCase();
         return hay.includes(q);
       });
     });
     const peopleMetrics = computed(()=>{
-      const stats={people:personRegistry.value.length,office:0,noble:0,fangzhen:0,portrait:0,curated:0};
+      const stats={people:personRegistry.value.length,office:0,noble:0,fangzhen:0,roster:0,portrait:0,curated:0};
       personRegistry.value.forEach(p=>{
         if(personPortraitFor(p.name,p.appointments)) stats.portrait++;
         if(p.bioKind==='史传提要') stats.curated++;
-        p.appointments.forEach(a=>{ if(a.treeType==='office') stats.office++; else if(a.treeType==='noble') stats.noble++; else stats.fangzhen++; });
+        p.appointments.forEach(a=>{ if(a.treeType==='office') stats.office++; else if(a.treeType==='noble') stats.noble++; else if(a.treeType==='fangzhen') stats.fangzhen++; else if(a.treeType==='roster') stats.roster++; });
       });
       return stats;
     });
@@ -6514,7 +6705,7 @@ const app = createApp({
 
     /* ---------- 文件功能 ---------- */
     function exportJSON(){
-      const payload = window.SGZResearchModel.migrate({ schemaVersion:7, exportedAt:new Date().toISOString(), periods:PERIODS, factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map) });
+      const payload = window.SGZResearchModel.migrate({ schemaVersion:7, exportedAt:new Date().toISOString(), periods:PERIODS, factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), epigraphicRecords:cloneJSON(epigraphicRecords.value) });
       downloadBlob(JSON.stringify(payload, null, 2), 'application/json', '三国职官谱_' + currentFaction.value + '.json');
       pushHistory('导出 JSON');
     }
@@ -6670,6 +6861,7 @@ const app = createApp({
             const migrated=window.SGZResearchModel.migrate(parsed,{trees:buildPresets(),fangzhenRecords:FANGZHEN_PRESETS});
             data.trees = normalizeAndValidateTrees(migrated.trees);
             if(Array.isArray(migrated.fangzhenRecords)) fangzhenRecords.value=normalizeFangzhenRecords(migrated.fangzhenRecords);
+            if(Array.isArray(migrated.epigraphicRecords)) epigraphicRecords.value=cloneJSON(migrated.epigraphicRecords);
             if(Array.isArray(migrated.factionPalette)) migrated.factionPalette.forEach(saved=>{ const f=factions.find(x=>x.key===saved.key); if(f&&saved.color) f.color=saved.color; });
           } else if(Array.isArray(parsed.nodes)){
             data.trees[currentFaction.value][treeType.value] = normalizeAndValidateNodes(cloneJSON(parsed.nodes), '拆分存档数据', currentFaction.value);
@@ -6790,7 +6982,7 @@ const app = createApp({
     }
     function projectPayload(){
       return window.SGZResearchModel.migrate({schemaVersion:7,trees:data.trees,fangzhenRecords:cloneJSON(fangzhenRecords.value),versions:versions.list,periodSelections:cloneJSON(periodSelections),
-        factionPalette:cloneJSON(factions),personMeta:cloneJSON(personMeta.map),savedAt:Date.now()});
+        factionPalette:cloneJSON(factions),personMeta:cloneJSON(personMeta.map),epigraphicRecords:cloneJSON(epigraphicRecords.value),savedAt:Date.now()});
     }
     const AUTOSAVE_KEY='sgz_zhiguanpu_project';
     const SNAPSHOT_KEY='sgz_zhiguanpu_snapshot';
@@ -6834,6 +7026,7 @@ const app = createApp({
         const parsed = window.SGZResearchModel.migrate(JSON.parse(raw),{trees:buildPresets(),fangzhenRecords:FANGZHEN_PRESETS});
         data.trees = normalizeAndValidateTrees(mergePresetSupplement(parsed.trees));
         if(Array.isArray(parsed.fangzhenRecords)) fangzhenRecords.value=normalizeFangzhenRecords(parsed.fangzhenRecords);
+        if(Array.isArray(parsed.epigraphicRecords)) epigraphicRecords.value=cloneJSON(parsed.epigraphicRecords);
         versions.list = Array.isArray(parsed.versions) ? parsed.versions : [];
         personMeta.map = normalizePersonMeta(parsed.personMeta);
         if(Array.isArray(parsed.factionPalette)) parsed.factionPalette.forEach(saved=>{
@@ -6888,6 +7081,7 @@ const app = createApp({
         const migrated=window.SGZResearchModel.migrate(item.payload,{trees:buildPresets(),fangzhenRecords:FANGZHEN_PRESETS});
         data.trees=normalizeAndValidateTrees(mergePresetSupplement(migrated.trees));
         if(Array.isArray(migrated.fangzhenRecords)) fangzhenRecords.value=normalizeFangzhenRecords(migrated.fangzhenRecords);
+        if(Array.isArray(migrated.epigraphicRecords)) epigraphicRecords.value=cloneJSON(migrated.epigraphicRecords);
         versions.list=Array.isArray(migrated.versions)?migrated.versions:[];
         personMeta.map=normalizePersonMeta(migrated.personMeta);
         if(migrated.periodSelections) Object.assign(periodSelections,migrated.periodSelections);
@@ -6985,7 +7179,7 @@ const app = createApp({
       showEvidence, selectedEvidence, openEvidence,
       showHistoryAudit, historyAuditSelection, currentHistoryEvidence, historyAuditClaims, historyAuditSources,
       historyAuditSelectionSources, mapSelectionEvidence, openHistoryAudit, openMapSelectionAudit, historyStatusClass,
-      selectedNode, currentFactionDef, currentArr, rank9Enabled,
+      selectedNode, currentFactionDef, currentFactionLabel, currentArr, rank9Enabled,
       officeGroup, officeSub, officeSub2, officeGroupDef, officeSubOptions, officeSub2Options, officeClassStats, setOfficeGroup, setOfficeSub, setOfficeSub2,
       officeRows, selectOfficeRow, officeClassOf, officeGroupOf, officeSubOf, officeGroupLabel, officeGroupColor,
       catalogFocusKey, catalogTreeRows, catalogFocusNode, catalogCards, catalogPath, catalogRowExpanded,
@@ -7009,7 +7203,7 @@ const app = createApp({
       RELATION_OPTIONS, REGION_OPTIONS, EVOLUTION_TYPES, BATCH_TEMPLATES, TONGDIAN_TABLE, CATEGORY_RANK9_MAP, calibrateRank9,
       HAN_RANK_FAMILIES, OFFICE_TEMPLATE_LIBRARY, OFFICE_GROUP_DEFS,
       switchFaction, switchTreeType, switchViewMode,
-      addChildNode, addSiblingNode, duplicateBranch, toggleLock, deleteNode, setColor, setIcon,
+      addChildNode, addSiblingNode, addCourtPosition, duplicateBranch, toggleLock, deleteNode, setColor, setIcon,
       copyBranches, cutBranches, pasteBranches, batchAddTemplate, generateKaifuTemplate,
       toggleSelectedBranches, toggleCategoryBranches, archiveSelected,
       standardizeCurrentTree,
@@ -7047,7 +7241,7 @@ const app = createApp({
       showBattleDetail, activeBattleDetail, openBattleDetail, battleDetailYear, battlePeriodForItem, battleRelatedPeople, jumpToBattlePeriod,
       SHIHUO_POLITIES, SHIHUO_CATEGORIES, shihuoQuery, shihuoPolity, shihuoCategory,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
-      epigraphicRecords, epigraphicMetrics,
+      epigraphicRecords, epigraphicTypes, epigraphicStatuses, epigraphicQuery, epigraphicType, epigraphicStatus, filteredEpigraphicRecords, epigraphicMetrics,
       mountOptions, jumpToMount,
       footnoteDialog, openFootnoteDialog, confirmFootnote, removeFootnote, footnotesFor, footnoteIndex,
     };
@@ -7070,10 +7264,11 @@ const app = createApp({
         <button class="module-tab" :class="{active:activeModule==='map'}" title="疆域 · 州郡 · 城池 · 战役" @click="switchModule('map')"><strong>形势图</strong><small>疆域 · 州郡</small></button>
       </nav>
       <div v-if="activeModule==='offices'" class="faction-tabs">
-        <div v-for="f in factions" :key="f.key" class="faction-tab"
-             :class="{active: currentFaction===f.key}"
-             :style="currentFaction===f.key ? {background:f.color, borderColor:f.color} : {}"
-             :title="f.name" @click="switchFaction(f.key)"><span class="faction-full">{{ f.name }}</span><span class="faction-short">{{ f.short }}</span></div>
+        <el-select v-model="currentFaction" class="faction-select" size="small" aria-label="当前政权" @change="switchFaction">
+          <el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.key">
+            <span style="display:flex;align-items:center;gap:7px;"><i :style="{width:'8px',height:'8px',borderRadius:'50%',background:f.color,display:'inline-block'}"></i>{{f.label||f.short||f.name}}</span>
+          </el-option>
+        </el-select>
       </div>
       <div v-else class="module-context">{{moduleContextLabel}}</div>
       <div v-if="activeModule==='offices'" class="topbar-actions">
@@ -7246,6 +7441,10 @@ const app = createApp({
               <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}}</div>
               <h2>{{currentFactionDef.short||currentFactionDef.name}}中央官署谱系</h2>
               <p>官位单席显示；同一官位的历任人物收束于一个席位。</p>
+              <div class="court-heading-actions">
+                <el-button size="small" type="primary" plain @click="addCourtPosition">＋ 添加朝堂位置</el-button>
+                <el-button size="small" text @click="setOfficePresentation('diagram')">编辑谱系</el-button>
+              </div>
             </header>
             <div class="court-sovereign-row">
               <article class="court-slot sovereign" :class="{selected:selectedNode&&selectedNode.key===courtHierarchy.root.key}" @click="selectCourtSlot(courtHierarchy.root)">
@@ -7258,10 +7457,10 @@ const app = createApp({
               </article>
             </div>
             <div class="court-link-vertical"></div>
-            <section class="court-tier">
-              <div class="court-tier-title"><span>储贰与诸公</span></div>
+            <section class="court-tier court-heir-tier">
+              <div class="court-tier-title"><span>储君</span></div>
               <div class="court-tier-grid">
-                <article v-for="node in courtHierarchy.apex" :key="node.key" class="court-slot"
+                <article v-for="node in [courtHierarchy.heir]" :key="node.key" class="court-slot heir-slot"
                          :class="{selected:selectedNode&&selectedNode.key===node.key,virtual:node.virtualSlot}" @click="selectCourtSlot(node)">
                   <div class="court-slot-name">{{node.name}}</div>
                   <div class="court-slot-person">
@@ -7270,6 +7469,25 @@ const app = createApp({
                       <div class="court-person-name">{{courtPrimaryFigure(node).name}}</div>
                     </template>
                     <div v-else class="court-person-empty">{{node.virtualSlot?'未立或待录':'任官人物待录'}}</div>
+                  </div>
+                  <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
+                  <span v-if="courtFigureCount(node)>1" class="court-slot-count" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
+                </article>
+              </div>
+            </section>
+            <div class="court-link-vertical"></div>
+            <section class="court-tier">
+              <div class="court-tier-title"><span>诸公</span></div>
+              <div class="court-tier-grid">
+                <article v-for="node in courtHierarchy.apex" :key="node.key" class="court-slot"
+                         :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="selectCourtSlot(node)">
+                  <div class="court-slot-name">{{node.name}}</div>
+                  <div class="court-slot-person">
+                    <template v-if="courtPrimaryFigure(node)">
+                      <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
+                      <div class="court-person-name">{{courtPrimaryFigure(node).name}}</div>
+                    </template>
+                    <div v-else class="court-person-empty">任官人物待录</div>
                   </div>
                   <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
                   <span v-if="courtFigureCount(node)>1" class="court-slot-count" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
@@ -7726,13 +7944,14 @@ const app = createApp({
           <el-input v-model="peopleQuery" clearable placeholder="检索人物、字号、籍贯、官职、辖区、史料…" prefix-icon="Search" />
           <el-select v-model="peoplePolity" size="small" style="width:132px;" aria-label="势力筛选">
             <el-option label="全部势力" value="all" />
-            <el-option v-for="f in factions" :key="f.key" :label="f.name" :value="f.short||f.name" />
+            <el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.short||f.label||f.name" />
           </el-select>
           <el-select v-model="peopleKind" size="small" style="width:132px;" aria-label="记录类别">
             <el-option label="全部记录" value="all" />
             <el-option label="任官记录" value="office" />
             <el-option label="受爵记录" value="noble" />
             <el-option label="州镇职任" value="fangzhen" />
+            <el-option label="末期官员录" value="roster" />
           </el-select>
           <el-checkbox v-model="peopleOnlyPortrait" size="small">仅有立绘</el-checkbox>
           <div class="spacer"></div>
@@ -7743,6 +7962,7 @@ const app = createApp({
           <div class="people-metric"><strong>{{peopleMetrics.office}}</strong><span>任官记录</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.noble}}</strong><span>受爵记录</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.fangzhen}}</strong><span>州镇职任</span></div>
+          <div class="people-metric"><strong>{{peopleMetrics.roster}}</strong><span>末期官员录</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.curated}}</strong><span>史传提要</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.portrait}}</strong><span>已有立绘</span></div>
         </div>
@@ -7757,7 +7977,7 @@ const app = createApp({
               </div>
               <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>年份待核</span><br/>籍贯：{{p.birthplace||'待补'}}</div>
               <div class="person-card-bio">{{p.bio}}</div>
-              <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}}</span><span>履历 ›</span></div>
+              <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 末期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
             </div>
           </div>
         </div>
@@ -7889,7 +8109,12 @@ const app = createApp({
               <template #default="scope"><div>{{scope.row.appointmentStatus||'—'}}</div><div class="fz-title">{{scope.row.relation||''}}</div></template>
             </el-table-column>
             <el-table-column label="辖区" min-width="145"><template #default="scope"><span class="person-link" @click="jumpFangzhenToMap(scope.row)">{{scope.row.jurisdiction||'—'}}</span></template></el-table-column>
-            <el-table-column prop="seat" label="治所／驻地" min-width="135" />
+            <el-table-column label="治所／驻地" min-width="150">
+              <template #default="scope">
+                <div>{{scope.row.seat||'待补'}}</div>
+                <div v-if="scope.row.seatConfidence" class="fz-title">{{scope.row.seatConfidence}}<span v-if="scope.row.seatNote"> · {{scope.row.seatNote}}</span></div>
+              </template>
+            </el-table-column>
             <el-table-column label="任期" min-width="220">
               <template #default="scope">
                 <div>{{scope.row.tenureText||((scope.row.startYear||'？')+'—'+(scope.row.endYear||'？'))}}</div>
@@ -7924,11 +8149,36 @@ const app = createApp({
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.types}}</strong><span>材料类型</span></div>
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.periods}}</strong><span>年代锚点</span></div>
         </div>
-        <section class="jinshi-empty-panel">
+        <div class="jinshi-toolbar">
+          <el-input v-model="epigraphicQuery" clearable placeholder="检索名称、出土地、人物、著录或释文…" prefix-icon="Search" />
+          <el-select v-model="epigraphicType" clearable style="width:140px" placeholder="材料类型">
+            <el-option label="全部类型" value="all" />
+            <el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type" />
+          </el-select>
+          <el-select v-model="epigraphicStatus" clearable style="width:140px" placeholder="研究状态">
+            <el-option label="全部状态" value="all" />
+            <el-option v-for="status in epigraphicStatuses" :key="status" :label="status" :value="status" />
+          </el-select>
+          <span style="flex:1"></span>
+          <span style="font-size:11px;color:#7E857E;">显示 {{filteredEpigraphicRecords.length}} / {{epigraphicRecords.length}} 条</span>
+        </div>
+        <section v-if="!filteredEpigraphicRecords.length" class="jinshi-empty-panel">
           <div class="seal">金</div>
           <h2>金石材料目录尚未补录</h2>
           <p>后续按“器物／碑刻名称、年代、出土地、书体、释文、著录、拓本或照片、来源层级、争议状态”逐条建立。异族材料不纳入本板块；灰色状态仅表示空白待补，不表示已经确认。</p>
         </section>
+        <section v-else class="jinshi-table-card">
+          <el-table :data="filteredEpigraphicRecords" size="small" empty-text="暂无符合条件的金石材料">
+            <el-table-column prop="name" label="名称" min-width="180" />
+            <el-table-column prop="type" label="类型" width="100" />
+            <el-table-column label="年代" width="110"><template #default="scope">{{scope.row.yearText||scope.row.year||'待考'}}</template></el-table-column>
+            <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.place||scope.row.region||'待补'}}</template></el-table-column>
+            <el-table-column label="关联人物／官职" min-width="180"><template #default="scope">{{[scope.row.people,scope.row.offices].filter(Boolean).join(' · ')||'—'}}</template></el-table-column>
+            <el-table-column label="研究状态" width="100"><template #default="scope">{{scope.row.researchStatus||'待补'}}</template></el-table-column>
+            <el-table-column label="来源" min-width="180"><template #default="scope">{{scope.row.sourceTitle||'待补'}}</template></el-table-column>
+          </el-table>
+        </section>
+        <div class="jinshi-status-note">录入边界：汉末至西晋；异族材料暂不纳入。所有新增记录必须保留来源、年代状态、著录和争议说明，未核材料不得直接标记为“确定”。</div>
       </div>
     </main>
 
@@ -8059,7 +8309,7 @@ const app = createApp({
     </main>
 
     <div v-show="activeModule==='offices'" class="statusbar">
-      <div class="item">当前：{{ currentFactionDef.name }} · {{ treeType==='office' ? '官职体系' : '爵位体系' }}</div>
+      <div class="item">当前：{{ currentFactionLabel }} · {{ treeType==='office' ? '官职体系' : '爵位体系' }}</div>
       <div class="item">时期：{{ currentPeriodLabel }}</div>
       <div class="item" v-if="timelineEnabled">年号：{{ currentEraLabel }}</div>
       <div class="item">节点数：{{ totalNodeCount }}</div>
@@ -8189,7 +8439,7 @@ const app = createApp({
       </div>
     </el-drawer>
 
-    <el-drawer v-model="showOfficials" :title="'官员汇总 · '+currentFactionDef.name" size="520px">
+    <el-drawer v-model="showOfficials" :title="'官员汇总 · '+currentFactionLabel" size="520px">
       <div class="summary-head">
         统计时期：{{ currentPeriodLabel }}<br/>
         共 {{ officialSummaryGroups.length }} 位人物、{{ officialSummaryRecords.length }} 条任职记录。
@@ -8243,7 +8493,7 @@ const app = createApp({
     <el-drawer v-model="showSearch" title="全局高级检索" size="620px">
       <el-input v-model="searchFilters.query" class="global-search-input" size="large" clearable placeholder="模糊匹配官职、职权、人物、备注、出处与别称" />
       <div class="filter-bar" style="padding:10px 0;border:0;background:transparent;">
-        <el-select v-model="searchFilters.faction" class="compact-select" size="small"><el-option label="全部势力" value="all"/><el-option v-for="f in factions" :key="f.key" :label="f.name" :value="f.key"/></el-select>
+        <el-select v-model="searchFilters.faction" class="compact-select" size="small"><el-option label="全部势力" value="all"/><el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.key"/></el-select>
         <el-select v-model="searchFilters.treeType" class="compact-select" size="small"><el-option label="官职与爵位" value="all"/><el-option label="仅官职" value="office"/><el-option label="仅爵位" value="noble"/></el-select>
         <el-select v-model="searchFilters.category" class="compact-select" size="small" clearable placeholder="官职类别"><el-option v-for="c in CATEGORY_OPTIONS" :key="c" :label="c" :value="c"/></el-select>
         <el-select v-model="searchFilters.rank" class="compact-select" size="small" clearable filterable placeholder="品级／秩俸"><el-option v-for="r in [...RANK9_OPTIONS,...HAN_RANK_OPTIONS]" :key="r" :label="r" :value="r"/></el-select>
@@ -8385,7 +8635,7 @@ const app = createApp({
       <div class="office-compare-toolbar">
         <el-select v-model="templateLibraryFaction" size="large" style="width:150px;">
           <el-option label="全部势力" value="all" />
-          <el-option v-for="f in factions" :key="f.key" :label="f.name" :value="f.key" />
+          <el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.key" />
         </el-select>
         <el-input v-model="templateLibrarySearch" clearable size="large" prefix-icon="Search" placeholder="检索模板名或官职名…" style="max-width:360px;" />
         <span style="font-size:11px;color:#8A918A;">共 {{filteredTemplateLibrary.length}} 个模板；导入按模板所属势力写入，不污染当前树</span>
@@ -8408,7 +8658,7 @@ const app = createApp({
 
     <el-drawer v-model="showPalette" title="势力节点配色" size="340px">
       <div class="summary-head">颜色会自动应用于对应势力全部节点，并随完整 JSON 与多存档保存。</div>
-      <div v-for="f in factions" :key="f.key" class="palette-row"><span>{{f.name}}</span><el-color-picker v-model="f.color" /></div>
+      <div v-for="f in factions" :key="f.key" class="palette-row"><span>{{f.label||f.short||f.name}}</span><el-color-picker v-model="f.color" /></div>
       <el-button size="small" text @click="resetFactionColors">恢复默认配色</el-button>
     </el-drawer>
 

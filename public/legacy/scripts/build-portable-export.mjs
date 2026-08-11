@@ -15,6 +15,7 @@ const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
 const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
 const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
+const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
@@ -33,6 +34,7 @@ const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
 const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').trim();
 let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
+const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
 for (const polityDir of fs.readdirSync(portraitDir)) {
   const fullDir = path.join(portraitDir, polityDir);
   if (!fs.statSync(fullDir).isDirectory()) continue;
@@ -111,6 +113,10 @@ const replacements = [
     `<script>\n${epigraphicRecordsScript}\n</script>`
   ],
   [
+    '<script src="./data/han-bai-guan-zhi.js"></script>',
+    `<script>\n${hanBaiGuanZhiScript}\n</script>`
+  ],
+  [
     "url('./assets/ui/court-ink-palace.png')",
     `url('${courtBackgroundData}')`
   ],
@@ -186,12 +192,17 @@ fs.mkdirSync(path.dirname(exportPath), { recursive: true });
 fs.writeFileSync(exportPath, html, 'utf8');
 fs.writeFileSync(rootCopyPath, html, 'utf8');
 if (downloadsCopyPath && fs.existsSync(path.dirname(downloadsCopyPath))) {
-  if (fs.existsSync(downloadsCopyPath) && downloadsBackupPath && !fs.existsSync(downloadsBackupPath)) {
-    fs.copyFileSync(downloadsCopyPath, downloadsBackupPath);
+  try {
+    if (fs.existsSync(downloadsCopyPath) && downloadsBackupPath && !fs.existsSync(downloadsBackupPath)) {
+      fs.copyFileSync(downloadsCopyPath, downloadsBackupPath);
+    }
+    fs.writeFileSync(downloadsCopyPath, html, 'utf8');
+    console.log(`已同步下载目录使用副本：${downloadsCopyPath}`);
+  } catch (error) {
+    if (!['EACCES', 'EPERM', 'EROFS'].includes(error?.code)) throw error;
+    console.warn(`警告：无法写入下载目录，已保留项目内导出文件：${downloadsCopyPath}`);
   }
-  fs.writeFileSync(downloadsCopyPath, html, 'utf8');
 }
 
 console.log(`已生成联网便携版：${exportPath}`);
 console.log(`已同步工作区根目录副本：${rootCopyPath}`);
-if (downloadsCopyPath) console.log(`已同步下载目录使用副本：${downloadsCopyPath}`);

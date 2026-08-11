@@ -42,6 +42,9 @@ assert(registry.periods.find(period => period.year === 220)?.polities.join('、'
 assert(audit.periodReview.length === expectedIds.length, '逐期史实审校必须覆盖十六期');
 assert(html.includes('>职官谱</strong>') && html.includes('>州镇表</strong>') && html.includes('>形势图</strong>'), '职官谱、州镇表或形势图命名缺失');
 assert(html.includes('>金石录</strong>') && html.includes("activeModule==='jinshi'") && html.includes('材料待补'), '金石录空白板块未接入');
+assert(html.includes('data/han-bai-guan-zhi.js') && read('data/han-bai-guan-zhi.js').includes('尚书台') && read('data/han-bai-guan-zhi.js').includes('御史台') && read('data/han-bai-guan-zhi.js').includes('中央将军系统'), '东汉百官志中央官署补录未接入');
+assert(html.includes("label:'东汉'") && html.includes('currentFactionLabel') && html.includes(':label="f.label||f.short||f.name"'), '政权选择器短标签或兼容字段未接入');
+assert(read('data/epigraphic-records.js').includes('schemaVersion: 2') && read('data/epigraphic-records.js').includes('fields:') && html.includes('filteredEpigraphicRecords') && html.includes('epigraphicRecords:cloneJSON'), '金石录结构化字段、筛选或工程持久化未接入');
 assert(html.includes('>食货志</strong>') && html.includes('SHIHUO_RECORDS') && html.includes('shihuo-workbench'), '食货志模块未接入');
 assert(html.includes('>人物记</strong>') && html.includes('>战事纪</strong>'), '人物记或战事纪模块命名缺失');
 assert(html.includes("sub:['诸公','列卿','大夫','尚书台','中书台','御史台','常伯','将军','太子官属','诸王官属']"), '职官谱中央细分类未接入');
@@ -205,6 +208,7 @@ const requiredFiles = [
   'data/person-biographies.js',
   'data/person-portraits.js',
   'data/epigraphic-records.js',
+  'data/han-bai-guan-zhi.js',
   'data/wu-fangzhen-records.js',
   'data/shu-fangzhen-records.js',
   'data/wu-import-audit.json',
