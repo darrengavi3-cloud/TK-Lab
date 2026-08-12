@@ -21,6 +21,7 @@
 <script src="./data/person-era-rosters.js"></script>
 <script src="./data/person-portraits.js"></script>
 <script src="./data/epigraphic-records.js"></script>
+<script src="./data/research-candidates.js"></script>
 <script src="./data/han-bai-guan-zhi.js"></script>
 <script src="./data/fangzhen-seat-supplement.js"></script>
 
@@ -403,6 +404,23 @@ body{background:#F4F3EF;}
 .court-tier-title:before,.court-tier-title:after{content:'';height:1px;flex:1;max-width:170px;background:#8F877B;opacity:.42;}
 .court-tier-title span{min-width:104px;padding:5px 12px;border:1px solid #4B4640;background:#292622;color:#F4EFE3;text-align:center;font:650 12px 'Noto Serif SC','Songti SC',serif;}
 .court-tier-grid{display:flex;justify-content:center;align-items:flex-start;gap:14px;flex-wrap:wrap;max-width:1320px;margin:0 auto;}
+.court-apex-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1160px;margin:0 auto;}
+.court-apex-branch{min-width:0;padding:10px 12px 12px;border:1px solid #D5CFC4;border-radius:6px;background:rgba(250,248,242,.56);}
+.court-apex-branch.civil{border-top:3px solid #8D3D32;}
+.court-apex-branch.military{border-top:3px solid #376B9E;}
+.court-apex-branch-title{display:flex;align-items:center;gap:7px;margin:0 0 10px;font:650 12px 'Noto Serif SC','Songti SC',serif;color:#4B4640;}
+.court-apex-branch-title:before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor;}
+.court-apex-branch.civil .court-apex-branch-title{color:#8D3D32;}
+.court-apex-branch.military .court-apex-branch-title{color:#376B9E;}
+.court-apex-branch .court-tier-grid{gap:10px;}
+.court-slot.civil .court-slot-name{background:#8D3D32;}
+.court-slot.military .court-slot-name{background:#376B9E;}
+.court-slot.civil{border-color:#C9968E;}
+.court-slot.military{border-color:#8DAAC5;}
+.court-branch-badge{position:absolute;left:5px;top:35px;width:15px;height:15px;border-radius:50%;color:#fff;font:700 9px/15px sans-serif;text-align:center;}
+.court-slot.civil .court-branch-badge{background:#8D3D32;}
+.court-slot.military .court-branch-badge{background:#376B9E;}
+@media(max-width:760px){.court-apex-columns{grid-template-columns:1fr;}}
 .court-department{margin:0 auto 22px;position:relative;z-index:1;}
 .court-department-head{display:flex;align-items:center;gap:10px;margin:0 auto 11px;max-width:1180px;color:#655D53;font:650 12px 'Noto Serif SC','Songti SC',serif;}
 .court-department-head:after{content:'';height:1px;flex:1;background:#8F877B;opacity:.34;}
@@ -3614,12 +3632,12 @@ function buildPresets(){
       officeStartYear:266, officeEndYear:316, sources:'《晋书》卷二十四·职官志'
     });
     const jiuqing = [
-      ['太常','宗庙礼仪'],['光禄勋','宿卫宫殿门户'],['卫尉','宫门屯兵'],['太仆','舆马畜牧'],
-      ['廷尉','刑狱'],['大鸿胪','诸侯及四夷朝聘'],['宗正','宗室属籍'],['大司农','钱谷租税'],['少府','山泽税收供御']
-    ].map(([nm,duty])=>O('jin_o', root.key, nm, '九卿', '三品', '中二千石', {
+      ['太常','宗庙礼仪','jin_taichang'],['光禄勋','宿卫宫殿门户','jin_guangluxun'],['卫尉','宫门屯兵','jin_weiwei'],['太仆','舆马畜牧','jin_taipu'],
+      ['廷尉','刑狱','jin_tingwei'],['大鸿胪','诸侯及四夷朝聘','jin_dahonglu'],['宗正','宗室属籍','jin_zongzheng'],['大司农','钱谷租税','jin_dasinong'],['少府','山泽税收供御','jin_shaofu']
+    ].map(([nm,duty,sourceId])=>O('jin_o', root.key, nm, '九卿', '三品', '中二千石', {
       duty, officeStartYear:266, officeEndYear:316,
       note:'太常统太学诸博士、祭酒及太史、太庙、太乐、鼓吹、陵等令；光禄勋统武贲、羽林、五官中郎将及诸令；其余各卿寺亦各置丞、功曹、主簿、五官等员。',
-      sources:'《晋书》卷二十四·职官志'
+      sources:'《晋书》卷二十四·职官志', sourceLevel:'一手史料', researchStatus:'确定', sourceId
     }));
     const jiangzuo = O('jin_o', root.key, '将作大匠', '列卿', '三品', '二千石', {
       note:'有事则置，无事则罢。', sources:'《晋书》卷二十四·职官志'
@@ -3747,20 +3765,26 @@ function buildPresets(){
     const piaoqi = O('jin_o', root.key, '骠骑将军', '将军武职', '二品', '中二千石', {
       kaifu:true, officeStartYear:266, officeEndYear:316,
       figures:['王沈（266—268）'],
-      note:'开府位从公者为武官公。',
-      sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
+      courtTier:'military-public', courtOrder:210,
+      note:'开府、位从公者列入武官公位视觉层级；骠骑将军本身的品秩仍按时期单独显示。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪', sourceLevel:'一手史料', researchStatus:'确定', sourceId:'jin_piaoqi'
     });
     const cheqi = O('jin_o', root.key, '车骑将军', '将军武职', '二品', '中二千石', {
       kaifu:true, officeStartYear:266, officeEndYear:316,
       figures:['贾充（266—?）','羊祜（272—278）'],
-      sources:'《晋书》卷三·武帝纪'
+      courtTier:'military-public', courtOrder:220,
+      note:'与骠骑将军同列武官公位视觉层级；不将其与大司马、大将军直接合并为同一品秩。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪', sourceLevel:'一手史料', researchStatus:'确定', sourceId:'jin_piaoqi'
     });
     const weijiangjun = O('jin_o', root.key, '卫将军', '将军武职', '二品', '中二千石', {
       kaifu:true, officeStartYear:266, officeEndYear:316,
       figures:['贾充（266）','步阐（272—273）'],
-      sources:'《晋书》卷三·武帝纪'
+      courtTier:'military-public', courtOrder:230,
+      note:'晋官品表列二品；仅在当前时期有开府或位从公证据时，作为武官公位显示。',
+      sources:'《晋书》卷二十四·职官志；卷三·武帝纪', sourceLevel:'一手史料', researchStatus:'确定', sourceId:'jin_piaoqi'
     });
     const sizheng = O('jin_o', root.key, '四征·四镇·四安·四平将军', '将军武职', '二品', '中二千石', {
+      hidden:true, relationType:'官号族',
       officeStartYear:266, officeEndYear:316,
       figures:['羊祜（征南大将军 276—278）','汝阴王骏（镇西／征西大将军 270—276）','卫瓘（镇北大将军 266—278）','王濬（龙骧将军 279—280）'],
       note:'四征兴于汉代，四安起于魏初，四镇通于柔远；加大将军不开府、持节都督者品秩第二。',
@@ -4762,7 +4786,7 @@ const app = createApp({
       const name=String(node?.name||'').replace(/[（(].*?[)）]/g,'').trim();
       if(/左丞相/.test(name)) return '左丞相';
       if(/右丞相/.test(name)) return '右丞相';
-      const canonical=[['储君',/储君|皇太子|太子$/],['太傅',/^太傅$/],['丞相',/^丞相$/],['相国',/^相国$/],['太尉',/^太尉$/],['司徒',/^司徒$/],['司空',/^司空$/],['大司马',/^大司马/],['大将军',/^大将军/],['太宰',/^太宰$/],['太保',/^太保$/]];
+      const canonical=[['储君',/储君|皇太子|太子$/],['太傅',/^太傅$/],['丞相',/^丞相$/],['相国',/^相国$/],['太尉',/^太尉$/],['司徒',/^司徒$/],['司空',/^司空$/],['大司马',/^大司马/],['大将军',/^大将军/],['骠骑将军',/^骠骑将军/],['车骑将军',/^车骑将军/],['卫将军',/^卫将军/],['太宰',/^太宰$/],['太保',/^太保$/]];
       const hit=canonical.find(([,pattern])=>pattern.test(name));
       return hit?hit[0]:node.key;
     }
@@ -4789,7 +4813,11 @@ const app = createApp({
       if(node?.virtualSlot) return '册立时置';
       return node?.rank9||node?.hanRank||node?.category||'品秩待考';
     }
+    function courtBranchOf(node){
+      return officeClassOf(node).branch==='military'?'military':'civil';
+    }
     function courtNodeOrder(node){
+      if(Number.isFinite(Number(node?.courtOrder))) return Number(node.courtOrder);
       const explicit=Number(node?.sortOrder);
       if(Number.isFinite(explicit)) return explicit;
       const rank=String(node?.rank9||node?.hanRank||'');
@@ -4805,7 +4833,7 @@ const app = createApp({
     const courtHierarchy = computed(()=>{
       const nodes=currentArr.value;
       const root=nodes.find(node=>node.kind==='root')||nodes.find(node=>node.parent===undefined)||null;
-      if(treeType.value!=='office'||!root) return {root:null,heir:null,apex:[],departments:[],states:[]};
+      if(treeType.value!=='office'||!root) return {root:null,heir:null,apex:[],apexCivil:[],apexMilitary:[],departments:[],states:[]};
       const byKey=new Map(nodes.map(node=>[node.key,node]));
       const children=new Map();
       nodes.forEach(node=>{const parent=node.parent===undefined?null:node.parent;(children.get(parent)||children.set(parent,[]).get(parent)).push(node);});
@@ -4816,10 +4844,12 @@ const app = createApp({
         while(stack.length){const key=stack.pop();localKeys.add(key);(children.get(key)||[]).forEach(child=>stack.push(child.key));}
       }
       const central=nodes.filter(node=>node.kind==='office'&&!localKeys.has(node.key)&&courtNodeVisible(node));
-      const apexPattern=/^(储君|皇太子|太子|太傅|丞相|相国|左丞相|右丞相|太尉|司徒|司空|大司马|大将军|太宰|太保)(（.*）)?$/;
+      const apexPattern=/^(储君|皇太子|太子|太傅|丞相|相国|左丞相|右丞相|太尉|司徒|司空|大司马|大将军|骠骑将军|车骑将军|卫将军|太宰|太保)(（.*）)?$/;
       const apexAll=uniqueCourtSlots(central.filter(node=>apexPattern.test(String(node.name||'').replace(/[（(].*?[)）]/g,'').trim())).sort((a,b)=>courtNodeOrder(a)-courtNodeOrder(b)||String(a.name).localeCompare(String(b.name),'zh-CN')));
       const heir=apexAll.find(node=>courtSlotKey(node)==='储君') || {key:'court-heir-'+currentFaction.value,kind:'office',name:'储君',category:'太子官属',virtualSlot:true,figures:[]};
       const apex=apexAll.filter(node=>courtSlotKey(node)!=='储君');
+      const apexCivil=apex.filter(node=>courtBranchOf(node)==='civil');
+      const apexMilitary=apex.filter(node=>courtBranchOf(node)==='military');
       const apexKeys=new Set(apex.filter(node=>!node.virtualSlot).map(node=>node.key));
       const departmentOrder=['列卿','尚书台','中书台','御史台','常伯','大夫','将军','太子官属','诸王官属'];
       const grouped=new Map();
@@ -4835,7 +4865,7 @@ const app = createApp({
         node:state,
         commanderies:(children.get(state.key)||[]).filter(node=>node.category==='郡国守相'&&courtNodeVisible(node))
       })):[];
-      return {root,heir,apex,departments,states,byKey};
+      return {root,heir,apex,apexCivil,apexMilitary,departments,states,byKey};
     });
     const courtActiveState = computed(()=>{
       const states=courtHierarchy.value.states||[];
@@ -7237,6 +7267,7 @@ const app = createApp({
       toggleCatalogRow, selectCatalogNode, selectCatalogCard, catalogNodeIcon, catalogNodeMeta, catalogNodeSummary, catalogYearLabel,
       courtHierarchy, courtActiveState, courtStateKey, selectCourtState, selectCourtSlot,
       courtPrimaryFigure, courtFigureCount, courtSeatMeta, courtRulerLabel,
+      courtBranchOf,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
@@ -7529,21 +7560,46 @@ const app = createApp({
             </section>
             <div class="court-link-vertical"></div>
             <section class="court-tier">
-              <div class="court-tier-title"><span>诸公</span></div>
-              <div class="court-tier-grid">
-                <article v-for="node in courtHierarchy.apex" :key="node.key" class="court-slot"
-                         :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="selectCourtSlot(node)">
-                  <div class="court-slot-name">{{node.name}}</div>
-                  <div class="court-slot-person">
-                    <template v-if="courtPrimaryFigure(node)">
-                      <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
-                      <div class="court-person-name">{{courtPrimaryFigure(node).name}}</div>
-                    </template>
-                    <div v-else class="court-person-empty">任官人物待录</div>
+              <div class="court-tier-title"><span>公位</span></div>
+              <div class="court-apex-columns">
+                <section class="court-apex-branch civil">
+                  <div class="court-apex-branch-title">文官公位</div>
+                  <div class="court-tier-grid">
+                    <article v-for="node in courtHierarchy.apexCivil" :key="node.key" class="court-slot civil"
+                             :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="selectCourtSlot(node)">
+                      <span class="court-branch-badge" aria-label="文官">文</span>
+                      <div class="court-slot-name">{{node.name}}</div>
+                      <div class="court-slot-person">
+                        <template v-if="courtPrimaryFigure(node)">
+                          <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
+                          <div class="court-person-name">{{courtPrimaryFigure(node).name}}</div>
+                        </template>
+                        <div v-else class="court-person-empty">任官人物待录</div>
+                      </div>
+                      <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
+                      <span v-if="courtFigureCount(node)>1" class="court-slot-count" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
+                    </article>
                   </div>
-                  <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
-                  <span v-if="courtFigureCount(node)>1" class="court-slot-count" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
-                </article>
+                </section>
+                <section class="court-apex-branch military">
+                  <div class="court-apex-branch-title">武官公位</div>
+                  <div class="court-tier-grid">
+                    <article v-for="node in courtHierarchy.apexMilitary" :key="node.key" class="court-slot military"
+                             :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="selectCourtSlot(node)">
+                      <span class="court-branch-badge" aria-label="武官">武</span>
+                      <div class="court-slot-name">{{node.name}}</div>
+                      <div class="court-slot-person">
+                        <template v-if="courtPrimaryFigure(node)">
+                          <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
+                          <div class="court-person-name">{{courtPrimaryFigure(node).name}}</div>
+                        </template>
+                        <div v-else class="court-person-empty">任官人物待录</div>
+                      </div>
+                      <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
+                      <span v-if="courtFigureCount(node)>1" class="court-slot-count" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
+                    </article>
+                  </div>
+                </section>
               </div>
             </section>
             <section v-for="group in courtHierarchy.departments" :key="group.label" class="court-department">

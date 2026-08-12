@@ -25,6 +25,14 @@ window.SGZ_PERSON_PORTRAITS = {
   '王基': { src:'./assets/portraits/wei/wang-ji.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '邓艾': { src:'./assets/portraits/wei/deng-ai.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '诸葛瞻': { src:'./assets/portraits/shu/zhuge-zhan.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '诸葛亮': { src:'./assets/portraits/shu/zhuge-liang.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '蒋琬': { src:'./assets/portraits/shu/jiang-wan.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '费祎': { src:'./assets/portraits/shu/fei-yi.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '姜维': { src:'./assets/portraits/shu/jiang-wei.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '刘禅': { src:'./assets/portraits/shu/liushan.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '董允': { src:'./assets/portraits/shu/dong-yun.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '廖化': { src:'./assets/portraits/shu/liao-hua.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '张翼': { src:'./assets/portraits/shu/zhang-yi.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '罗宪': { src:'./assets/portraits/shu/luo-xian.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '周处': { src:'./assets/portraits/wu/zhou-chu.png', polity:'吴', color:'#3F7652', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' }
 };

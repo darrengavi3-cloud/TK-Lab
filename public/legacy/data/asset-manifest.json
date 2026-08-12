@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-11T12:28:35.702Z",
+  "generatedAt": "2026-08-12T02:12:14.886Z",
   "offlineRuntime": true,
-  "fileCount": 88,
-  "totalBytes": 22082862,
+  "fileCount": 97,
+  "totalBytes": 36669045,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -251,9 +251,49 @@
       "sha256": "f53e5dd09ecfc38c7f17109a3dcc147634c3195c1512630c8ed5c7a935adc577"
     },
     {
+      "path": "assets/portraits/shu/dong-yun.png",
+      "bytes": 2051465,
+      "sha256": "e673f9082a87176572d513f68c9965f5d2f40866f8ef422ba3e3486afea082fa"
+    },
+    {
+      "path": "assets/portraits/shu/fei-yi.png",
+      "bytes": 1961220,
+      "sha256": "d8e0c07be2a6ff08e878f60713bbc69ae111b853888dcc2334cbce5f64f96d4b"
+    },
+    {
+      "path": "assets/portraits/shu/jiang-wan.png",
+      "bytes": 1715332,
+      "sha256": "659f81efa616fcefb866103bee7ae15e0a07e3c6f61c0f0c7a06188c74d0e07a"
+    },
+    {
+      "path": "assets/portraits/shu/jiang-wei.png",
+      "bytes": 1972927,
+      "sha256": "726712bf3caeffabfab29184a9456ef8e05374b7b26551f3e3651d7bea069c85"
+    },
+    {
+      "path": "assets/portraits/shu/liao-hua.png",
+      "bytes": 1992951,
+      "sha256": "b4e5171db4e428ac795d2f965b08d47b2d65c55a72390040684a0bc7f046bea8"
+    },
+    {
+      "path": "assets/portraits/shu/liushan.png",
+      "bytes": 1674506,
+      "sha256": "d32ee95d5a806deb035116d3015247c9989e37bbc14bc43742005e0b9edfa20b"
+    },
+    {
       "path": "assets/portraits/shu/luo-xian.png",
       "bytes": 2754462,
       "sha256": "d1fc773d02e75e14f5096737ddcadef865f574c6f2a46a5f00979bbc65d571ed"
+    },
+    {
+      "path": "assets/portraits/shu/zhang-yi.png",
+      "bytes": 1640261,
+      "sha256": "47d7729d853772263cbaa681e104235ec92a58dcc58ec6a6a79a99deda08c6b9"
+    },
+    {
+      "path": "assets/portraits/shu/zhuge-liang.png",
+      "bytes": 1569188,
+      "sha256": "982dee20facb760e12726875f52d012a3dfb710566bfe45acf05de6344281291"
     },
     {
       "path": "assets/portraits/shu/zhuge-zhan.png",
@@ -377,8 +417,8 @@
     },
     {
       "path": "data/map-period-registry.js",
-      "bytes": 26436,
-      "sha256": "6e92d9f0ef16f88af754fde8f2cdadfe761771397669913835cc1740c3a29ba4"
+      "bytes": 25752,
+      "sha256": "3b5a1eec047bca29f390a8231c456dc24d93ebe6783233547920876817c07e88"
     },
     {
       "path": "data/map-period-registry.json",
@@ -397,8 +437,8 @@
     },
     {
       "path": "data/person-biographies.js",
-      "bytes": 21353,
-      "sha256": "9a5dd3d32b36ab0659aabb33f45a6f7f036c9ab8c4ba968901ba9b70295fcf52"
+      "bytes": 24091,
+      "sha256": "82c99e4384d1ee49ccf0376131406ec8c65b178a4cf2f495cdac7e1fc8b0932b"
     },
     {
       "path": "data/person-era-rosters.js",
@@ -407,13 +447,18 @@
     },
     {
       "path": "data/person-portraits.js",
-      "bytes": 5297,
-      "sha256": "bf641994b65f9199292b7cdc41cd440f23f68b9864e6c99ab241e652459918f2"
+      "bytes": 6830,
+      "sha256": "29bd8912b6a5e4e5e6537daa0a5e5aa1747724edf29cd00640cf287cabd8a1d2"
     },
     {
       "path": "data/public-vector-audit.json",
       "bytes": 3148,
       "sha256": "b06ed5c813762b9530219ffcb26fc825e86c72ca9832296eec19d38079931db0"
+    },
+    {
+      "path": "data/research-candidates.js",
+      "bytes": 4746,
+      "sha256": "03755de3726cddf8fe5fa9b442bdb59fa7a2f4474ff41c395973e4dca99b3c9f"
     },
     {
       "path": "data/research-model.js",
