@@ -111,12 +111,15 @@
     row.type=text(row.type)||'其他';
     row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
     row.yearText=text(row.yearText);
+    row.polity=normalizePolity(row.polity);
     row.researchStatus=['待补','确定','推定','存疑','争议'].includes(text(row.researchStatus))?text(row.researchStatus):'待补';
     row.confidence=normalizeConfidence(row.confidence||row.researchStatus);
     row.sourceLevel=text(row.sourceLevel)||'待核';
     row.sourceTitle=text(row.sourceTitle);
+    row.sourceDocument=text(row.sourceDocument||row.sourceTitle);
     row.sourceUrl=text(row.sourceUrl);
     row.sourceLocator=text(row.sourceLocator);
+    row.archiveKind=['核心','扩展','争议'].includes(text(row.archiveKind))?text(row.archiveKind):'核心';
     row.disputeNote=text(row.disputeNote);
     return row;
   }

@@ -502,6 +502,9 @@ body{background:#F4F3EF;}
   .court-local{max-width:850px;}
   .court-commandery-grid{grid-template-columns:repeat(4,minmax(138px,1fr));}
 }
+@media(max-width:760px){
+  .court-columns{grid-template-columns:1fr;}
+}
 .module-page{flex:1;min-width:0;min-height:0;overflow:auto;padding:24px 28px 34px;background:#F4F3EF;}
 .module-page-inner{max-width:1380px;margin:0 auto;}
 .page-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px;}
@@ -4235,7 +4238,7 @@ const app = createApp({
     const activeModule = ref('offices'); // offices | people | battle | fangzhen | jinshi | shihuo | map
     const moduleContextLabel = computed(()=>({
       fangzhen:'州镇职任 · 刺史、州牧、都督与辖区档案',
-      jinshi:'金石录 · 碑刻、墓志与摩崖材料（待补）',
+      jinshi:'金石录 · 碑刻、墓志与摩崖材料（文档考据）',
       people:'人物记 · 任官、受爵与州镇履历汇总',
       battle:'战事纪 · 编年、战役与战场考据',
       shihuo:'食货志 · 屯田、赋役、货币、盐铁与漕运',
@@ -8382,6 +8385,10 @@ const app = createApp({
           <div class="battle-metric"><strong>{{historyMapPeriods.length}}</strong><span>地图时期</span></div>
         </div>
         <div class="battle-branch-toolbar" aria-label="战事支线筛选">
+          <strong>州组</strong>
+          <button class="battle-branch-button" :class="{active:battleProvince==='all'}" @click="battleProvince='all'">全州</button>
+          <button v-for="province in battleProvinceOptions" :key="province" class="battle-branch-button" :class="{active:battleProvince===province}" @click="battleProvince=province">{{province}}</button>
+          <span style="width:10px"></span>
           <strong>时间支线</strong>
           <button class="battle-branch-button" :class="{active:battleBranch==='all'}" @click="battleBranch='all'">全线</button>
           <button v-for="branch in battleBranchOptions" :key="branch" class="battle-branch-button" :class="{active:battleBranch===branch}" @click="battleBranch=branch">{{branch}}</button>

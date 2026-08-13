@@ -12,7 +12,7 @@
     "jurisdiction": ["jurisdictionId", "name", "polity", "parentId", "startYear", "endYear"],
     "source": ["id", "title", "level", "role", "locator", "excerpt", "url", "confidence", "note"],
     "event": ["id", "operation", "subject", "year", "parentBefore", "label", "confidence", "sourceLevel"],
-    "epigraphicRecord": ["id", "name", "type", "year", "yearText", "polity", "place", "region", "scriptStyle", "form", "inscription", "bibliography", "media", "people", "offices", "sourceTitle", "sourceUrl", "sourceLevel", "sourceLocator", "confidence", "researchStatus", "disputeNote", "note"],
+    "epigraphicRecord": ["id", "name", "type", "year", "yearText", "polity", "place", "region", "scriptStyle", "form", "inscription", "bibliography", "media", "people", "offices", "sourceTitle", "sourceDocument", "sourceUrl", "sourceLevel", "sourceLocator", "confidence", "researchStatus", "archiveKind", "disputeNote", "note"],
     "period": ["id", "year", "eraId", "polities", "confidence", "sourceIds"],
     "periodSnapshot": ["id", "periodId", "year", "eraId", "auditStatus", "controlMode", "polities", "administration", "claims", "sourceIds", "caveats"],
     "controlClaim": ["id", "periodId", "subjectType", "subject", "status", "statement", "sourceIds"],
@@ -22,6 +22,7 @@
     "researchStatus": ["确定", "推定", "存疑", "争议"],
     "sourceLevel": ["一手史料", "文档考据", "二手索引", "地图几何", "待核"],
     "geometryCoverage": ["full", "partial", "unknown"],
-    "auditStatus": ["通过", "通过（示意）", "待核", "存在冲突"]
+    "auditStatus": ["通过", "通过（示意）", "待核", "存在冲突"],
+    "epigraphicArchiveKind": ["核心", "扩展", "争议"]
   }
 }
