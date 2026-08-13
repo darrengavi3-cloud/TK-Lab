@@ -23,6 +23,7 @@ window.SGZ_PERSON_PORTRAITS = {
   '乐𬘭': { src:'./assets/portraits/wei/le-lin.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '成济': { src:'./assets/portraits/wei/cheng-ji.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '王基': { src:'./assets/portraits/wei/wang-ji.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
+  '牵招': { src:'./assets/portraits/wei/qian-zhao.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（边将参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '邓艾': { src:'./assets/portraits/wei/deng-ai.png', polity:'魏', color:'#376B9E', sourceTitle:'用户提供参考图裁切（府署职官参考图）', sourceUrl:'', portraitKind:'reference-crop' },
   '诸葛瞻': { src:'./assets/portraits/shu/zhuge-zhan.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '诸葛亮': { src:'./assets/portraits/shu/zhuge-liang.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
@@ -34,5 +35,13 @@ window.SGZ_PERSON_PORTRAITS = {
   '廖化': { src:'./assets/portraits/shu/liao-hua.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '张翼': { src:'./assets/portraits/shu/zhang-yi.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '罗宪': { src:'./assets/portraits/shu/luo-xian.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '许靖': { src:'./assets/portraits/shu/xu-jing.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '魏延': { src:'./assets/portraits/shu/wei-yan.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '马谡': { src:'./assets/portraits/shu/ma-su.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '杨仪': { src:'./assets/portraits/shu/yang-yi.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '马良': { src:'./assets/portraits/shu/ma-liang.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '来敏': { src:'./assets/portraits/shu/lai-min.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '王平': { src:'./assets/portraits/shu/wang-ping.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
+  '董厥': { src:'./assets/portraits/shu/dong-jue.png', polity:'汉', color:'#A54136', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' },
   '周处': { src:'./assets/portraits/wu/zhou-chu.png', polity:'吴', color:'#3F7652', sourceTitle:'项目生成头像（非史实肖像）', sourceUrl:'', portraitKind:'ai-illustration' }
 };

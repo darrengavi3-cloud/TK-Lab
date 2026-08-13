@@ -3,7 +3,33 @@
  * 标识与坐标，避免同一战役在地图与战事纪出现两套数据。
  * 本文件同时供主页面战事纪模块与地图 iframe 使用。
  */
-window.SGZ_BATTLE_RECORDS = {
+const BATTLE_PROVINCE_BY_ID = Object.freeze({
+  ev_lingdi_168:['司隶'], ev_huangjin_184:['冀州','豫州','荆州'], ev_liuzhang_188:['中央'],
+  ev_hejin_189:['司隶'], ev_taodong_190:['司隶','豫州'], ev_wangyun_192:['司隶'],
+  ev_dadou_195:['司隶'], ev_xuchang_196:['豫州'], ev_guandu_200:['豫州'],
+  ev_ye_204:['冀州'], ev_guandu_yuan_202:['冀州'], ev_jianbing_199:['冀州','幽州','扬州','徐州'],
+  ev_xiangfan_219:['益州','荆州','扬州'], ev_chibi_208:['荆州'], ev_jiangling_209:['荆州'],
+  ev_yizhou_211:['益州'], ev_caopi_220:['司隶'], ev_liubei_221:['益州'],
+  ev_yiling_222:['荆州','益州'], ev_sunquan_229:['荆州'], ev_jieting_228:['雍州'],
+  ev_shiting_228:['扬州'], ev_wuzhang_234:['雍州'], ev_gaoping_249:['司隶'],
+  ev_shouchun_251:['扬州'], ev_caomao_260:['司隶'], ev_weifa_263:['益州','雍州'],
+  ev_jinchuan_266:['司隶'], ev_miewu_280:['益州','荆州','扬州'], ev_jieqiao_191:['冀州'],
+  ev_taozhou_193:['徐州','兖州'], ev_puyang_194:['兖州','徐州'], ev_yuanshu_197:['扬州'],
+  ev_wuhuan_207:['幽州'], ev_tongguan_211:['司隶','雍州'], ev_ruxu_213:['扬州'],
+  ev_hantian_215:['益州'], ev_baidi_223:['益州'], ev_nanzheng_225:['益州'],
+  ev_yizhou_expedition_230:['扬州'], ev_liaodong_238:['幽州'], ev_dongxing_252:['扬州'],
+  ev_shouchun_257:['扬州'],
+  huangjin:['冀州'], hulaoguan:['司隶'], xiapi:['徐州'], puyang:['兖州'], guandu:['豫州'],
+  chibi:['荆州'], jiangling:['荆州'], dingjunshan:['益州'], xiangfan:['荆州'], hefei:['扬州'],
+  yiling:['荆州'], jieting:['雍州'], shiting:['扬州'], wuzhangyuan:['雍州'], jieqiao:['冀州'],
+  tongguan:['司隶'], ruxu:['扬州'], hanzhong_zhan:['益州'], dongxing:['扬州'], shouchun_257:['扬州'],
+  jianwei:['益州'], miewu:['益州','荆州','扬州'],
+  'guandu-field':['豫州'], 'chibi-field':['荆州'], 'xiangfan-field':['荆州'], 'hefei-field':['扬州'],
+  'ruxu-field':['扬州'], 'yiling-field':['荆州'], 'jieting-field':['雍州'], 'qishan-field':['雍州'],
+  'wuzhang-field':['雍州'], 'tongguan-field':['司隶'], 'shouchun-field':['扬州'], 'dongxing-field':['扬州']
+});
+
+const battleData = {
   schemaVersion: 1,
   scope: '汉末至西晋（168—316）战事与军政沿革',
   note: '编年要事用于串联形势图时间轴；战役与战场字段沿用地图图层。史料出处优先原典，维基条目仅作检索索引。',
@@ -107,3 +133,11 @@ window.SGZ_BATTLE_RECORDS = {
     { id:'dongxing-field', name:'东兴—巢湖战场', lat:31.15, lng:117.72, from:213, to:280, note:'吴筑东兴堤后的江淮水战枢纽。' }
   ]
 };
+
+['events','battles','battlefields'].forEach(function(kind){
+  battleData[kind]=battleData[kind].map(function(item){
+    return Object.assign({},item,{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||['跨区域']))});
+  });
+});
+battleData.provinceIndex=Object.freeze(['中央','司隶','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','跨区域']);
+window.SGZ_BATTLE_RECORDS = battleData;

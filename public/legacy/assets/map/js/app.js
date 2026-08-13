@@ -252,6 +252,7 @@
 
       Markers.setActiveCities(p.cities || []);
       Panel.renderLegend(periodFactions(p.id));
+      Panel.renderCapitalLegend(periodFactions(p.id));
       applyMapFilters();
       Panel.periodView(p);
 

@@ -153,13 +153,20 @@ const Panel = (function () {
     ).join('');
   }
 
+  function renderCapitalLegend(factions) {
+    const box = document.getElementById('legend-capitals');
+    if (!box) return;
+    const list = (factions || Object.values(FACTIONS)).filter((f) => f && f.capital);
+    box.innerHTML = list.map((f) => `<div class="lg-item capital-legend-row"><span class="lg-capital-icon" style="--capital-color:${f.color}"></span><span><b>${f.name}</b><small>${f.capital}</small></span></div>`).join('');
+  }
+
   let _onBack = function () {};
   function setBackHandler(fn) { _onBack = fn; }
   function back() { _onBack(); }
 
   const api = {
     periodView, cityView, battleView, factionView, commanderyView, countyView,
-    renderLegend, setBackHandler, back, close,
+    renderLegend, renderCapitalLegend, setBackHandler, back, close,
   };
   window.Panel = api;
   return api;

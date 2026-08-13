@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-12T02:12:14.886Z",
+  "generatedAt": "2026-08-12T16:44:44.701Z",
   "offlineRuntime": true,
-  "fileCount": 97,
-  "totalBytes": 36669045,
+  "fileCount": 105,
+  "totalBytes": 39251875,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 29381,
-      "sha256": "839919022142f19ccadc0147e9b2ff12ca45a2cccffc408c36e6805480f548b5"
+      "bytes": 30020,
+      "sha256": "04d16ee55f7dd1a850064d83567c637a419d430d1ef9a9d3eeb05cb57d69602a"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -67,8 +67,8 @@
     },
     {
       "path": "assets/map/js/app.js",
-      "bytes": 19060,
-      "sha256": "aa1da2f4c2cf8b458d3e3f587edb5cb7e0d2cea895e61b4414b2c35ab084f3e8"
+      "bytes": 19115,
+      "sha256": "6823becb9ac728d2ddc05eda7ca2b1fce65165c5fd200b319cead5ab074bed8d"
     },
     {
       "path": "assets/map/js/base-layer.js",
@@ -88,7 +88,7 @@
     {
       "path": "assets/map/js/config.js",
       "bytes": 21871,
-      "sha256": "6d9ba1319ee8967066ec5b517898785ece7478c747eaa1c70bd6ae33ec621634"
+      "sha256": "f4fdca7f72de4d83b6eb7d35e436bffe87c7453919b4f860d51ac1a6d5ba44fc"
     },
     {
       "path": "assets/map/js/counties.js",
@@ -102,8 +102,8 @@
     },
     {
       "path": "assets/map/js/panel.js",
-      "bytes": 7049,
-      "sha256": "123671c491ed6460cbdd0799bde6da75a961d50a98a9bac61d6ef767ff375011"
+      "bytes": 7510,
+      "sha256": "6f8833ec92d3015d550e605d40c4a335ecbfa006a198e45e9ef412b376d78ea4"
     },
     {
       "path": "assets/map/js/routes.js",
@@ -112,8 +112,8 @@
     },
     {
       "path": "assets/map/js/strategic-layers.js",
-      "bytes": 3656,
-      "sha256": "7628f17535256a13d30ab89870c324a0f09b02c6c6955557ea5f32537d555e27"
+      "bytes": 3892,
+      "sha256": "54bbb25e64fe6f1a87ac9ad6de7c5bea059df9d7ba10ae3301bfa83426ca84f6"
     },
     {
       "path": "assets/map/js/territories.js",
@@ -251,6 +251,11 @@
       "sha256": "f53e5dd09ecfc38c7f17109a3dcc147634c3195c1512630c8ed5c7a935adc577"
     },
     {
+      "path": "assets/portraits/shu/dong-jue.png",
+      "bytes": 308893,
+      "sha256": "f24f693006a5153fa97580d65d481b363b03d84af29aeee8d27b74def9d3cdf4"
+    },
+    {
       "path": "assets/portraits/shu/dong-yun.png",
       "bytes": 2051465,
       "sha256": "e673f9082a87176572d513f68c9965f5d2f40866f8ef422ba3e3486afea082fa"
@@ -271,6 +276,11 @@
       "sha256": "726712bf3caeffabfab29184a9456ef8e05374b7b26551f3e3651d7bea069c85"
     },
     {
+      "path": "assets/portraits/shu/lai-min.png",
+      "bytes": 319689,
+      "sha256": "f2506c57ff5cd521c2a02891b3ea1235ba841379444a5c91761318d145f81a0a"
+    },
+    {
       "path": "assets/portraits/shu/liao-hua.png",
       "bytes": 1992951,
       "sha256": "b4e5171db4e428ac795d2f965b08d47b2d65c55a72390040684a0bc7f046bea8"
@@ -284,6 +294,36 @@
       "path": "assets/portraits/shu/luo-xian.png",
       "bytes": 2754462,
       "sha256": "d1fc773d02e75e14f5096737ddcadef865f574c6f2a46a5f00979bbc65d571ed"
+    },
+    {
+      "path": "assets/portraits/shu/ma-liang.png",
+      "bytes": 328188,
+      "sha256": "de84d2c48f4563128a4a44ceec6cd7b2cc0f4fa4fec8f156f0f7ee2e60daee6d"
+    },
+    {
+      "path": "assets/portraits/shu/ma-su.png",
+      "bytes": 304114,
+      "sha256": "188d7df95ddba45c7bb3276f68180e487d265671b483ffe28a14c079687b110b"
+    },
+    {
+      "path": "assets/portraits/shu/wang-ping.png",
+      "bytes": 334391,
+      "sha256": "95cb9fcb385d78c6afb5f2c75c8671b38a1f1ca794f46663daf6551318e4db7a"
+    },
+    {
+      "path": "assets/portraits/shu/wei-yan.png",
+      "bytes": 334577,
+      "sha256": "171ded64c64672fbf428eae96f3576f8ffa14a2ca377f2650b70864762f89eea"
+    },
+    {
+      "path": "assets/portraits/shu/xu-jing.png",
+      "bytes": 312771,
+      "sha256": "d62f2762d24dc48e2814ca44c4891d1acaeef6606f99461fa5778cab6e98b318"
+    },
+    {
+      "path": "assets/portraits/shu/yang-yi.png",
+      "bytes": 311718,
+      "sha256": "8e3e9380cb64643229dc227bd351539b08e2035ff413ae04a186e421a06939bf"
     },
     {
       "path": "assets/portraits/shu/zhang-yi.png",
@@ -377,13 +417,13 @@
     },
     {
       "path": "data/battle-records.js",
-      "bytes": 25855,
-      "sha256": "0bf935c85164a5f6aa5ebe0e2a32ae1c71d37095cf33c9dec3c164d178011a06"
+      "bytes": 28519,
+      "sha256": "0afde606e5d39e11e35df5f76f62ec376e6d8d09335f125ae52894e6cc00b2ec"
     },
     {
       "path": "data/epigraphic-records.js",
-      "bytes": 999,
-      "sha256": "948828536e76b75a3b149d327fa537caffb68542cdd7a822c1d2b96f6abec872"
+      "bytes": 23027,
+      "sha256": "6600e238423f0113f36ea7c57d65f735ea546806657637f15d866a116ce32a14"
     },
     {
       "path": "data/fangzhen-seat-supplement.js",
@@ -417,8 +457,8 @@
     },
     {
       "path": "data/map-period-registry.js",
-      "bytes": 25752,
-      "sha256": "3b5a1eec047bca29f390a8231c456dc24d93ebe6783233547920876817c07e88"
+      "bytes": 26436,
+      "sha256": "6e92d9f0ef16f88af754fde8f2cdadfe761771397669913835cc1740c3a29ba4"
     },
     {
       "path": "data/map-period-registry.json",
@@ -447,8 +487,8 @@
     },
     {
       "path": "data/person-portraits.js",
-      "bytes": 6830,
-      "sha256": "29bd8912b6a5e4e5e6537daa0a5e5aa1747724edf29cd00640cf287cabd8a1d2"
+      "bytes": 8552,
+      "sha256": "27da1378f25cb28568c6f374419b1a83217337cd8f7fcc2bd14cc5e91d22c7d2"
     },
     {
       "path": "data/public-vector-audit.json",
