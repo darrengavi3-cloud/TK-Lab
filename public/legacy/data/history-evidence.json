@@ -1,0 +1,1311 @@
+{
+  "schemaVersion": 7,
+  "modelId": "sgz-history-evidence-v7",
+  "scope": "汉末至西晋（168—316）的十四期历史舆图",
+  "policy": "source-first-and-derived-geometry",
+  "sources": [
+    {
+      "id": "houhanshu_juan9",
+      "title": "《后汉书》卷九·孝献帝纪",
+      "level": "一手史料",
+      "role": "汉末纪年与州郡建置",
+      "locator": "卷九·孝献帝纪",
+      "url": "https://zh.wikisource.org/zh-hans/後漢書/卷9"
+    },
+    {
+      "id": "houhanshu_juan72",
+      "title": "《后汉书》卷七十二·董卓列传",
+      "level": "一手史料",
+      "role": "董卓、关东诸军与凉州军势",
+      "locator": "卷七十二",
+      "url": "https://zh.wikisource.org/wiki/後漢書/卷72"
+    },
+    {
+      "id": "sanguozhi",
+      "title": "《三国志》",
+      "level": "一手史料",
+      "role": "三国政权、战争与人物活动",
+      "locator": "魏书、蜀书、吴书相关传记",
+      "url": "https://zh.wikisource.org/zh-hans/三國志"
+    },
+    {
+      "id": "sanguozhi_wu_2",
+      "title": "《三国志·吴书·吴主传》",
+      "level": "一手史料",
+      "role": "夷洲远征记载",
+      "locator": "吴主传·黄龙二年",
+      "url": "https://zh.wikisource.org/wiki/三國志/卷47"
+    },
+    {
+      "id": "jinshu_juan2",
+      "title": "《晋书》卷二·帝纪第二",
+      "level": "一手史料",
+      "role": "西晋建立与纪年",
+      "locator": "卷二·文帝、武帝纪",
+      "url": "https://zh.wikisource.org/zh-hant/晉書/卷002"
+    },
+    {
+      "id": "jinshu_juan14",
+      "title": "《晋书》卷十四·地理志上",
+      "level": "一手史料",
+      "role": "西晋州郡与太康行政区划",
+      "locator": "卷十四·地理志上",
+      "url": "https://zh.wikisource.org/zh-hans/晋书/卷014"
+    },
+    {
+      "id": "jinshu_juan15",
+      "title": "《晋书》卷十五·地理志下",
+      "level": "一手史料",
+      "role": "扬州、江州郡县沿革与西晋分郡年代",
+      "locator": "卷十五·扬州",
+      "url": "https://zh.wikisource.org/zh-hans/晋书/卷015"
+    },
+    {
+      "id": "huayangguozhi_juan3",
+      "title": "《华阳国志》卷三·蜀志",
+      "level": "一手史料",
+      "role": "蜀汉益州、梁州与郡国沿革",
+      "locator": "卷三·蜀志",
+      "url": "https://zh.wikisource.org/wiki/華陽國志/卷三"
+    },
+    {
+      "id": "wikipedia_han_admin",
+      "title": "维基百科：东汉行政区划",
+      "level": "二手索引",
+      "role": "东汉州郡数量与建置索引",
+      "locator": "东汉十三州及郡国表",
+      "url": "https://zh.wikipedia.org/wiki/东汉行政区划",
+      "note": "仅作为检索和数量基准，不替代正史定论。"
+    },
+    {
+      "id": "wikipedia_yongzhou",
+      "title": "维基百科：雍州刺史部",
+      "level": "二手索引",
+      "role": "194年河西雍州建置索引",
+      "locator": "雍州沿革与所辖四郡",
+      "url": "https://zh.wikipedia.org/wiki/雍州刺史部",
+      "note": "用于提醒194—213年雍州位于河西，不能套用魏晋关中雍州。"
+    },
+    {
+      "id": "wikipedia_shuhan_admin",
+      "title": "维基百科：蜀汉行政区划",
+      "level": "二手索引",
+      "role": "263年蜀汉郡数与郡名索引",
+      "locator": "蜀汉行政区划表",
+      "url": "https://zh.wikipedia.org/wiki/蜀漢行政區劃",
+      "note": "263年汉辖二十二郡作为校验基准。"
+    },
+    {
+      "id": "wikipedia_caowei_admin",
+      "title": "维基百科：曹魏行政区划",
+      "level": "二手索引",
+      "role": "曹魏州郡数量索引",
+      "locator": "曹魏州郡表",
+      "url": "https://zh.wikipedia.org/wiki/曹魏行政區劃",
+      "note": "地图几何块数包含分治和特殊辖区，不直接等同于曹魏郡国总数。"
+    },
+    {
+      "id": "zhihu_han_officials",
+      "title": "知乎：汉少帝、献帝之际中央百官、州郡长吏名录",
+      "level": "文档考据",
+      "role": "189年少帝、献帝之际中央百官与州郡长吏名录",
+      "locator": "专栏文章正文与州郡长吏表",
+      "url": "https://zhuanlan.zhihu.com/p/2011820350049128578",
+      "note": "2026-08-06复核正文：少帝期与献帝初两段中央百官、州郡长吏按原文录入；带星号、未详、未到任或伪授条目按存疑或待考处理，不替代《后汉书》等一手史料。"
+    },
+    {
+      "id": "wikipedia_dongzhuo",
+      "title": "维基百科：讨伐董卓之战",
+      "level": "二手索引",
+      "role": "190—191年讨董参与者、屯驻与战事顺序索引",
+      "locator": "讨董之战条目",
+      "url": "https://zh.wikipedia.org/wiki/討伐董卓之戰",
+      "note": "用于核对用户所称“199年群雄讨董”的年份；史实应为190—191年。"
+    },
+    {
+      "id": "map_geometry_archive",
+      "title": "Zhou Dadudu / Threekingdoms Archive 州郡几何数据",
+      "level": "地图几何",
+      "role": "州郡边界底稿与几何归并来源",
+      "locator": "All_Provinces.json及相关州郡资料",
+      "url": "https://github.com/Heliog3nesis/Threekingdoms_Archive",
+      "note": "底稿为研究示意；早期年份的后置郡几何经过母郡归并，不能视为实测边界。"
+    },
+    {
+      "id": "sinica_western_jin_map",
+      "title": "中央研究院：西晋历史地图（W. Jing）",
+      "level": "地图校验",
+      "role": "280年西晋统一后十九州名单与空间关系参照",
+      "locator": "CCTS 图层 ad0281，版本 1.0.0",
+      "url": "https://gis.sinica.edu.tw/showwmts/index.php?s=ccts&l=ad0281",
+      "note": "2026-08-09复核公开栅格图层：与《晋书·地理志》十九州清单一致；仅用于州级空间关系交叉校验，不直接复制版权图砖，也不把图中的鲜卑、夫余、高句丽、沃沮或西域长史府计入十九州。"
+    },
+    {
+      "id": "jinshu_juan5",
+      "title": "《晋书》卷五·孝怀帝纪",
+      "level": "一手史料",
+      "role": "永嘉之乱与洛阳陷落",
+      "locator": "卷五",
+      "url": "https://zh.wikisource.org/zh-hans/晉書/卷005"
+    },
+    {
+      "id": "jinshu_juan102",
+      "title": "《晋书》卷一百二·刘聪载记",
+      "level": "一手史料",
+      "role": "刘渊刘聪与汉赵政权",
+      "locator": "卷一百二",
+      "url": "https://zh.wikisource.org/zh-hans/晉書/卷102"
+    },
+    {
+      "id": "jinshu_juan3",
+      "title": "《晋书》卷三·武帝纪",
+      "level": "一手史料",
+      "role": "西晋武帝在位与太熙崩逝",
+      "locator": "卷三",
+      "url": "https://zh.wikisource.org/zh-hant/晉書/卷003"
+    }
+  ],
+  "periods": [
+    {
+      "periodId": "huangjin",
+      "year": 184,
+      "eraId": "han",
+      "auditStatus": "通过",
+      "controlMode": "汉代行政归属",
+      "administration": {
+        "provinceCount": 13,
+        "mappedCommanderyCount": 94,
+        "referenceBenchmarks": [
+          {
+            "label": "东汉十三州基准郡国表",
+            "count": 105,
+            "scope": "东汉基准，不锁定184年同一天"
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "后期州郡底稿按东汉母郡归并"
+      },
+      "polities": [
+        "汉"
+      ],
+      "sourceIds": [
+        "houhanshu_juan9",
+        "wikipedia_han_admin",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "huangjin-no-yongzhou",
+          "subjectType": "州",
+          "subject": "雍州",
+          "status": "确定",
+          "statement": "184年不绘常设雍州，关中归司隶，河西与陇右归凉州。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_han_admin"
+          ]
+        },
+        {
+          "id": "huangjin-derived-geometry",
+          "subjectType": "地图边界",
+          "subject": "东汉十三州郡界",
+          "status": "推定",
+          "statement": "郡界采用后期几何归并，州级结构可用于时期比较，但不表示184年的精确测绘边界。",
+          "sourceIds": [
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "郡级几何为后期资料回溯归并。"
+      ]
+    },
+    {
+      "periodId": "shaodi",
+      "year": 189,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "东汉官制＋宫廷与入京军势注记",
+      "administration": {
+        "provinceCount": 13,
+        "mappedCommanderyCount": 94,
+        "referenceBenchmarks": [
+          {
+            "label": "东汉十三州基准郡国表",
+            "count": 105,
+            "scope": "东汉基准，不锁定189年同一天"
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "东汉州郡底稿按母郡归并，另叠加少帝、献帝之际官员注记"
+      },
+      "polities": [
+        "汉廷",
+        "董卓"
+      ],
+      "sourceIds": [
+        "houhanshu_juan9",
+        "zhihu_han_officials",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "shaodi-officials",
+          "subjectType": "人物与职任",
+          "subject": "少帝、献帝之际中央百官与州郡长吏",
+          "status": "推定",
+          "statement": "中央百官和州郡长吏按考据名录作为地图注记；带星号、未详或征辟未到任者保留状态，不改写为确定实授。",
+          "sourceIds": [
+            "zhihu_han_officials",
+            "houhanshu_juan9"
+          ]
+        },
+        {
+          "id": "shaodi-no-yongzhou",
+          "subjectType": "州",
+          "subject": "雍州",
+          "status": "确定",
+          "statement": "189年行政底图仍按东汉十三州部，不因董卓入京而提前绘制后来的雍州。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_han_admin"
+          ]
+        },
+        {
+          "id": "shaodi-dongzhuo-route",
+          "subjectType": "军势活动",
+          "subject": "董卓入京",
+          "status": "推定",
+          "statement": "董卓从陇右率军入洛阳，地图路线为叙事示意，不等于沿线全部郡县已改为董卓领土。",
+          "sourceIds": [
+            "houhanshu_juan72",
+            "zhihu_han_officials",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "189年是宫廷政变和军队入京的过渡年，局势注记不应解释为稳定国界。"
+      ]
+    },
+    {
+      "periodId": "dongzhuo",
+      "year": 190,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "汉代行政归属＋地方军势示意",
+      "administration": {
+        "provinceCount": 13,
+        "mappedCommanderyCount": 95,
+        "referenceBenchmarks": [
+          {
+            "label": "东汉十三州基准郡国表",
+            "count": 105,
+            "scope": "东汉基准，不锁定190年同一天"
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "存疑",
+        "geometryBasis": "东汉州郡底稿，叠加关东与凉州军势分郡标记"
+      },
+      "polities": [
+        "汉廷州郡",
+        "董卓",
+        "韩馥",
+        "关东诸军",
+        "韩遂",
+        "马腾"
+      ],
+      "sourceIds": [
+        "houhanshu_juan9",
+        "houhanshu_juan72",
+        "wikipedia_han_admin",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "dongzhuo-no-yongzhou",
+          "subjectType": "州",
+          "subject": "雍州",
+          "status": "确定",
+          "statement": "190年仍不绘正式雍州；关中为司隶，陇右和河西为凉州。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_han_admin"
+          ]
+        },
+        {
+          "id": "dongzhuo-local-control",
+          "subjectType": "控制关系",
+          "subject": "关东诸军",
+          "status": "推定",
+          "statement": "颍川、河内、陈留、东郡、济北、广陵、山阳等为军势活动和主要控制区，不表示统一政权边界。",
+          "sourceIds": [
+            "houhanshu_juan72",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "军势注记表示集结或活动区域，不等于稳定领土边界。"
+      ]
+    },
+    {
+      "periodId": "xingping",
+      "year": 194,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "汉代行政归属＋群雄割据示意",
+      "administration": {
+        "provinceCount": 14,
+        "mappedCommanderyCount": 96,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "存疑",
+        "geometryBasis": "东汉州郡归并，叠加兴平元年新置河西雍州与兖徐变局"
+      },
+      "polities": [
+        "汉廷（李傕郭汜）",
+        "曹操",
+        "吕布",
+        "刘备",
+        "袁绍",
+        "公孙瓒",
+        "刘表",
+        "刘璋",
+        "张鲁",
+        "孙策",
+        "公孙度",
+        "凉州诸部",
+        "士燮"
+      ],
+      "sourceIds": [
+        "houhanshu_juan9",
+        "sanguozhi",
+        "wikipedia_yongzhou",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "xingping-yongzhou",
+          "subjectType": "州",
+          "subject": "雍州",
+          "status": "确定",
+          "statement": "兴平元年（194）分凉州河西四郡置雍州，本期仅含武威、张掖、酒泉、敦煌。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_yongzhou"
+          ]
+        },
+        {
+          "id": "xingping-sunce",
+          "subjectType": "军势活动",
+          "subject": "孙策",
+          "status": "确定",
+          "statement": "194 年孙策仍依袁术，尚未渡江，不把江东画作孙策稳定领土。",
+          "sourceIds": [
+            "sanguozhi"
+          ]
+        },
+        {
+          "id": "xingping-yanzhou",
+          "subjectType": "控制关系",
+          "subject": "兖州",
+          "status": "推定",
+          "statement": "吕布袭据兖州大部、曹操据兖州南部与豫州，州域色按年度变局表达。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "194 年为兖徐易主、益州承继的年度变局，州色不表示同一日精确边界。"
+      ]
+    },
+    {
+      "periodId": "jianbing",
+      "year": 199,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "汉代行政归属＋割据势力示意",
+      "administration": {
+        "provinceCount": 14,
+        "mappedCommanderyCount": 96,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "存疑",
+        "geometryBasis": "东汉州郡归并，叠加张鲁汉中、公孙度辽东分郡标记"
+      },
+      "polities": [
+        "曹操",
+        "袁绍",
+        "刘表",
+        "刘璋",
+        "孙策",
+        "张鲁",
+        "公孙度",
+        "士燮",
+        "凉州诸部"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "jianbing-snapshot",
+          "subjectType": "控制关系",
+          "subject": "群雄兼并",
+          "status": "推定",
+          "statement": "199年为年度变局：袁绍灭公孙瓒据河北，孙策定江东；张鲁汉中、公孙度辽东按郡级分色表达。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "州界与郡级分色为考据示意，不等于稳定国界。"
+      ]
+    },
+    {
+      "periodId": "guandu",
+      "year": 200,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "汉代行政归属＋割据势力示意",
+      "administration": {
+        "provinceCount": 14,
+        "mappedCommanderyCount": 99,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "存疑",
+        "geometryBasis": "194年建置的河西雍州与东汉州郡归并"
+      },
+      "polities": [
+        "汉廷及曹操",
+        "袁绍",
+        "刘表",
+        "刘璋",
+        "孙氏",
+        "凉州诸部"
+      ],
+      "sourceIds": [
+        "houhanshu_juan9",
+        "wikipedia_yongzhou",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "guandu-yongzhou-four",
+          "subjectType": "州",
+          "subject": "雍州",
+          "status": "确定",
+          "statement": "200年雍州严格限定武威、张掖、酒泉、敦煌四郡；关中三辅仍属司隶。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_yongzhou"
+          ]
+        },
+        {
+          "id": "guandu-no-later-yongzhou",
+          "subjectType": "地图边界",
+          "subject": "雍州几何",
+          "status": "确定",
+          "statement": "不得把220年以后以关中、陇右为核心的雍州范围倒套到200年。",
+          "sourceIds": [
+            "wikipedia_yongzhou",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "194—213年的雍州是河西雍州，不等于曹魏以后关中雍州。"
+      ]
+    },
+    {
+      "periodId": "chibi",
+      "year": 208,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "汉代行政归属＋年度变局",
+      "administration": {
+        "provinceCount": 14,
+        "mappedCommanderyCount": 105,
+        "referenceBenchmarks": [
+          {
+            "label": "东汉基准郡国表",
+            "count": 105,
+            "scope": "作为州郡数量参照，不代表同日控制权"
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "存疑",
+        "geometryBasis": "汉208州郡快照与刘表卒、刘琮降曹、刘备夏口军势叠加"
+      },
+      "polities": [
+        "汉廷及曹操",
+        "荆州刘氏旧部",
+        "刘备",
+        "孙权",
+        "刘璋",
+        "凉州诸部"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "chibi-transition",
+          "subjectType": "控制关系",
+          "subject": "荆州",
+          "status": "推定",
+          "statement": "208年是年度变局：刘表卒、刘琮降曹，刘备退至夏口并与孙权结盟，不能压缩成一条稳定国界。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        },
+        {
+          "id": "chibi-commandery-coverage",
+          "subjectType": "地图边界",
+          "subject": "巴郡、巴西郡",
+          "status": "推定",
+          "statement": "巴郡与巴西郡在本期均保留郡色；巴东尚未按后期定名强行提前显示。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "州色与虚线军势共同表达年度过程，不表示同一日的精确边界。"
+      ]
+    },
+    {
+      "periodId": "xiangfan",
+      "year": 219,
+      "eraId": "han",
+      "auditStatus": "通过（示意）",
+      "controlMode": "汉代行政归属＋年度变局",
+      "administration": {
+        "provinceCount": 14,
+        "mappedCommanderyCount": 118,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "存疑",
+        "geometryBasis": "东汉州郡归并与晚置郡回溯，叠加襄樊战局"
+      },
+      "polities": [
+        "曹操",
+        "刘备",
+        "孙权",
+        "士燮",
+        "公孙氏"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "xiangfan-snapshot",
+          "subjectType": "控制关系",
+          "subject": "荆州",
+          "status": "推定",
+          "statement": "219年为年度变局：刘备据益州、汉中与荆南，曹操据荆州北部，孙权于年底袭取江陵。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "襄樊战局以年度主态势概括，不表示同一日边界。"
+      ]
+    },
+    {
+      "periodId": "sanguo",
+      "year": 220,
+      "eraId": "three",
+      "auditStatus": "通过（政治格局节点）",
+      "controlMode": "三国形成期政治格局",
+      "administration": {
+        "provinceCount": null,
+        "mappedCommanderyCount": 126,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "魏初州制与后期郡界回溯归并"
+      },
+      "polities": [
+        "魏",
+        "刘备",
+        "孙权"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "sanguo-220-name",
+          "subjectType": "政权",
+          "subject": "220年国家标签",
+          "status": "确定",
+          "statement": "220年仅魏已建国；刘备于221年称帝，孙权于229年称帝，故本节点用刘备、孙权势力名。",
+          "sourceIds": [
+            "sanguozhi"
+          ]
+        },
+        {
+          "id": "sanguo-qinzhou",
+          "subjectType": "州",
+          "subject": "秦州",
+          "status": "推定",
+          "statement": "220年州级快照保留魏文帝时期秦州分置；郡界使用归并后的研究示意。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "220年是三国形成节点，不应与229年后的完整称帝格局混同。"
+      ]
+    },
+    {
+      "periodId": "beifa",
+      "year": 228,
+      "eraId": "three",
+      "auditStatus": "通过",
+      "controlMode": "魏、汉、吴三国并立",
+      "administration": {
+        "provinceCount": null,
+        "mappedCommanderyCount": 135,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "228年州制与北伐时期郡界归并"
+      },
+      "polities": [
+        "魏",
+        "汉",
+        "吴"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "beifa-qinzhou",
+          "subjectType": "州",
+          "subject": "秦州",
+          "status": "确定",
+          "statement": "魏初秦州一度暂废，228年图中归入雍州，不把220年分置状态持续套用。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        },
+        {
+          "id": "beifa-three-polities",
+          "subjectType": "政权",
+          "subject": "三国格局",
+          "status": "确定",
+          "statement": "228年显示魏、汉、吴三国并立，汉国号统一使用“汉”。",
+          "sourceIds": [
+            "sanguozhi"
+          ]
+        }
+      ],
+      "caveats": [
+        "北伐路线和前线为历史示意线，不作精确军事测绘。"
+      ]
+    },
+    {
+      "periodId": "guijin",
+      "year": 263,
+      "eraId": "three",
+      "auditStatus": "通过",
+      "controlMode": "魏伐汉前的年度主态势",
+      "administration": {
+        "provinceCount": null,
+        "mappedCommanderyCount": 146,
+        "referenceBenchmarks": [
+          {
+            "label": "汉行政区划",
+            "count": 22,
+            "scope": "汉投降前核心郡数"
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "魏、汉、吴全境郡级色层，汉二十二郡单独校验"
+      },
+      "polities": [
+        "魏",
+        "汉",
+        "吴"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "huayangguozhi_juan3",
+        "wikipedia_shuhan_admin",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "guijin-han-exists",
+          "subjectType": "政权",
+          "subject": "汉",
+          "status": "确定",
+          "statement": "263年刘禅至十一月才投降，本节点保留投降前的汉，并不提前抹去汉。",
+          "sourceIds": [
+            "sanguozhi",
+            "huayangguozhi_juan3"
+          ]
+        },
+        {
+          "id": "guijin-shuhan-22",
+          "subjectType": "郡国",
+          "subject": "汉二十二郡",
+          "status": "推定",
+          "statement": "汉疆域按二十二郡校验，巴郡、巴西郡等均应有郡色层。",
+          "sourceIds": [
+            "wikipedia_shuhan_admin",
+            "huayangguozhi_juan3",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "固定为刘禅投降前的年度主态势，不表示263年十一月以后的接收状态。"
+      ]
+    },
+    {
+      "periodId": "hanwang",
+      "year": 264,
+      "eraId": "three",
+      "auditStatus": "通过",
+      "controlMode": "汉亡后魏、吴并立",
+      "administration": {
+        "provinceCount": null,
+        "mappedCommanderyCount": 146,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "原汉郡域转为魏色并保留吴境"
+      },
+      "polities": [
+        "魏",
+        "吴"
+      ],
+      "sourceIds": [
+        "sanguozhi",
+        "huayangguozhi_juan3",
+        "wikipedia_caowei_admin",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "hanwang-no-han",
+          "subjectType": "政权",
+          "subject": "汉",
+          "status": "确定",
+          "statement": "264年稳定截面不再显示汉；原汉疆域由魏接收，但不能提前写作晋。",
+          "sourceIds": [
+            "sanguozhi",
+            "huayangguozhi_juan3"
+          ]
+        },
+        {
+          "id": "hanwang-derived",
+          "subjectType": "地图边界",
+          "subject": "魏接收汉境",
+          "status": "推定",
+          "statement": "接收过程按年度稳定截面概括，益州、梁州分置与魏接收的细部仍需逐郡考订。",
+          "sourceIds": [
+            "wikipedia_caowei_admin",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "汉亡后的益州、梁州分置过程以年度截面概括。"
+      ]
+    },
+    {
+      "periodId": "jinchu",
+      "year": 266,
+      "eraId": "jin",
+      "auditStatus": "通过",
+      "controlMode": "晋、吴并立",
+      "administration": {
+        "provinceCount": null,
+        "mappedCommanderyCount": 146,
+        "referenceBenchmarks": [],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "西晋建立当年州制，后置四州不提前绘入"
+      },
+      "polities": [
+        "晋",
+        "吴"
+      ],
+      "sourceIds": [
+        "jinshu_juan2",
+        "jinshu_juan14",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "jinchu-founded-266",
+          "subjectType": "政权",
+          "subject": "西晋",
+          "status": "确定",
+          "statement": "司马炎于咸熙二年十二月受魏禅，折合进入266年；页面以266年作为西晋建立节点。",
+          "sourceIds": [
+            "jinshu_juan2"
+          ]
+        },
+        {
+          "id": "jinchu-later-provinces",
+          "subjectType": "州",
+          "subject": "梁、秦、宁、平州",
+          "status": "确定",
+          "statement": "梁、秦、宁、平四州分别在267、269、271、276年以后形成，不在266年提前绘入。",
+          "sourceIds": [
+            "jinshu_juan14"
+          ]
+        }
+      ],
+      "caveats": [
+        "传统纪年以咸熙二年十二月受禅，页面同时保留纪年和公历节点说明。"
+      ]
+    },
+    {
+      "periodId": "taikang",
+      "year": 280,
+      "eraId": "jin",
+      "auditStatus": "通过",
+      "controlMode": "西晋统一",
+      "administration": {
+        "provinceCount": 19,
+        "mappedCommanderyCount": 144,
+        "referenceBenchmarks": [
+          {
+            "label": "太康平吴十九州",
+            "count": 19,
+            "scope": "州级数量"
+          },
+          {
+            "label": "中研院西晋历史地图",
+            "count": 19,
+            "scope": "州级名单与空间关系交叉校验"
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "《晋书·地理志》十九州与现有郡界底稿归并，并参照中研院西晋图层校验州级空间关系"
+      },
+      "polities": [
+        "晋"
+      ],
+      "sourceIds": [
+        "jinshu_juan14",
+        "sinica_western_jin_map",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "taikang-nineteen-provinces",
+          "subjectType": "州",
+          "subject": "太康十九州",
+          "status": "确定",
+          "statement": "280年平吴后按《晋书·地理志》表达十九州，吴国号不再显示。",
+          "sourceIds": [
+            "jinshu_juan14",
+            "sinica_western_jin_map"
+          ]
+        },
+        {
+          "id": "taikang-geometry",
+          "subjectType": "地图边界",
+          "subject": "晋郡界",
+          "status": "推定",
+          "statement": "当前郡级几何为研究归并结果；地图块数不得直接当作《晋书》郡国总数。",
+          "sourceIds": [
+            "jinshu_juan14",
+            "map_geometry_archive"
+          ]
+        },
+        {
+          "id": "taikang-sinica-crosscheck",
+          "subjectType": "地图校验",
+          "subject": "西晋统一州界",
+          "status": "推定",
+          "statement": "中研院栅格图与本项目十九州名录及大体空间关系一致；该图层不作为可直接复制的郡界矢量数据。",
+          "sourceIds": [
+            "jinshu_juan14",
+            "sinica_western_jin_map",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "郡界几何为现有资料归并结果，不等于现代测绘边界。",
+        "中研院图层为专题栅格并标有版权限制，本项目仅作参考校验，不移植图砖或描摹边界。"
+      ]
+    },
+    {
+      "periodId": "hui_di",
+      "year": 290,
+      "eraId": "jin",
+      "auditStatus": "通过（示意）",
+      "controlMode": "西晋统一格局",
+      "administration": {
+        "provinceCount": 20,
+        "mappedCommanderyCount": 150,
+        "referenceBenchmarks": [
+          {
+            "label": "太康十九州加元康元年分置江州",
+            "count": 20
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "推定",
+        "geometryBasis": "延续太康十九州与现有晋代郡界底稿"
+      },
+      "polities": [
+        "晋"
+      ],
+      "sourceIds": [
+        "jinshu_juan3",
+        "jinshu_juan14",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "hui_di-nineteen",
+          "subjectType": "州",
+          "subject": "十九州",
+          "status": "确定",
+          "statement": "290年延续太康平吴后的十九州格局，八王之乱未改变州郡版图。",
+          "sourceIds": [
+            "jinshu_juan14"
+          ]
+        }
+      ],
+      "caveats": [
+        "八王之乱为权力斗争，本图不表现逐年内战前线。"
+      ]
+    },
+    {
+      "periodId": "yongjia",
+      "year": 311,
+      "eraId": "jin",
+      "auditStatus": "通过（示意）",
+      "controlMode": "永嘉乱局",
+      "administration": {
+        "provinceCount": 19,
+        "mappedCommanderyCount": 144,
+        "referenceBenchmarks": [
+          {
+            "label": "太康十九州",
+            "count": 19
+          }
+        ],
+        "geometryCoverage": "full",
+        "geometryConfidence": "低",
+        "geometryBasis": "西晋底稿按《晋书·地理志下》补分江州，并回切吴兴、东阳、宣城、义兴、历阳等扬州郡界"
+      },
+      "polities": [
+        "晋",
+        "汉赵",
+        "石勒"
+      ],
+      "sourceIds": [
+        "jinshu_juan5",
+        "jinshu_juan102",
+        "jinshu_juan15",
+        "map_geometry_archive"
+      ],
+      "claims": [
+        {
+          "id": "yongjia-luoyang",
+          "subjectType": "事件",
+          "subject": "洛阳陷落",
+          "status": "确定",
+          "statement": "永嘉五年刘曜、石勒等攻陷洛阳，俘怀帝。",
+          "sourceIds": [
+            "jinshu_juan5"
+          ]
+        },
+        {
+          "id": "yongjia-region",
+          "subjectType": "控制关系",
+          "subject": "并州河北",
+          "status": "推定",
+          "statement": "311年汉赵据并州、石勒纵横河北，晋室控制区残破；州色为年度示意。",
+          "sourceIds": [
+            "jinshu_juan102",
+            "map_geometry_archive"
+          ]
+        },
+        {
+          "id": "yongjia-yangzhou-recalibration",
+          "subjectType": "州郡沿革",
+          "subject": "扬州与江州",
+          "status": "推定",
+          "statement": "311年扬州已分出江州；晋陵、义兴、历阳按永兴元年后建置显示。郡界由262年底稿依郡治方位回切，不能视为实测界线。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
+        }
+      ],
+      "caveats": [
+        "永嘉乱局为快速变化态势，州色与注记共同表达，不表示同一日精确边界。",
+        "326年参考图中的永嘉郡为太宁元年（323）分临海所置，不前移到311年快照。"
+      ]
+    }
+  ],
+  "jurisdictions": [
+    {
+      "id": "jurisdiction:yongzhou",
+      "name": "雍州",
+      "level": "州",
+      "aliases": [
+        "Yongzhou",
+        "雍州刺史部"
+      ],
+      "defaultClaim": {
+        "status": "推定",
+        "statement": "本州采用对应时期的行政快照；早期和魏晋时期的雍州范围不能互相套用。",
+        "sourceIds": [
+          "wikipedia_yongzhou",
+          "map_geometry_archive"
+        ]
+      },
+      "claims": {
+        "huangjin": {
+          "status": "确定",
+          "statement": "184年尚无常设雍州，本期不显示。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_han_admin"
+          ]
+        },
+        "dongzhuo": {
+          "status": "确定",
+          "statement": "190年仍不显示正式雍州。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_han_admin"
+          ]
+        },
+        "guandu": {
+          "status": "确定",
+          "statement": "200年为河西雍州，仅含武威、张掖、酒泉、敦煌四郡。",
+          "sourceIds": [
+            "houhanshu_juan9",
+            "wikipedia_yongzhou"
+          ]
+        },
+        "sanguo": {
+          "status": "推定",
+          "statement": "220年雍州转为魏初关中—陇右行政格局，不能沿用200年河西四郡定义。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        },
+        "beifa": {
+          "status": "确定",
+          "statement": "228年秦州暂废，陇右部分归入雍州。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      }
+    },
+    {
+      "id": "jurisdiction:jianwei",
+      "name": "犍为郡",
+      "level": "郡",
+      "aliases": [
+        "Jianwei",
+        "楗为郡",
+        "楗为"
+      ],
+      "defaultClaim": {
+        "status": "推定",
+        "statement": "犍为郡归益州系统；名称统一为“犍为郡”，不归入凉州、梁州或汉中。",
+        "sourceIds": [
+          "sanguozhi",
+          "huayangguozhi_juan3",
+          "map_geometry_archive"
+        ]
+      },
+      "claims": {
+        "guijin": {
+          "status": "确定",
+          "statement": "263年犍为郡仍属汉的益州系统。",
+          "sourceIds": [
+            "huayangguozhi_juan3",
+            "wikipedia_shuhan_admin"
+          ]
+        },
+        "hanwang": {
+          "status": "推定",
+          "statement": "264年随原汉境转由魏接收，郡名仍应保持犍为。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        }
+      }
+    },
+    {
+      "id": "jurisdiction:ba",
+      "name": "巴郡",
+      "level": "郡",
+      "aliases": [
+        "Ba",
+        "巴"
+      ],
+      "defaultClaim": {
+        "status": "推定",
+        "statement": "巴郡是益州巴地的母郡；后置巴西、巴东等郡应按建置年份从母郡分出。",
+        "sourceIds": [
+          "sanguozhi",
+          "huayangguozhi_juan3",
+          "map_geometry_archive"
+        ]
+      },
+      "claims": {
+        "chibi": {
+          "status": "推定",
+          "statement": "208年保留巴郡，巴西郡已单独显示，巴东不提前定名。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        },
+        "guijin": {
+          "status": "确定",
+          "statement": "263年巴郡必须保留汉的郡色层。",
+          "sourceIds": [
+            "wikipedia_shuhan_admin",
+            "map_geometry_archive"
+          ]
+        }
+      }
+    },
+    {
+      "id": "jurisdiction:baxi",
+      "name": "巴西郡",
+      "level": "郡",
+      "aliases": [
+        "Baxi",
+        "巴西"
+      ],
+      "defaultClaim": {
+        "status": "推定",
+        "statement": "巴西郡由巴郡分置，显示时应与巴郡保持独立郡色。",
+        "sourceIds": [
+          "sanguozhi",
+          "huayangguozhi_juan3",
+          "map_geometry_archive"
+        ]
+      },
+      "claims": {
+        "chibi": {
+          "status": "推定",
+          "statement": "208年巴西郡已显示，巴东尚未按后期定名强行提前。",
+          "sourceIds": [
+            "sanguozhi",
+            "map_geometry_archive"
+          ]
+        },
+        "guijin": {
+          "status": "确定",
+          "statement": "263年巴西郡必须保留汉的郡色层。",
+          "sourceIds": [
+            "wikipedia_shuhan_admin",
+            "map_geometry_archive"
+          ]
+        }
+      }
+    },
+    {
+      "id": "jurisdiction:jin-yangzhou",
+      "name": "扬州",
+      "level": "州",
+      "aliases": [
+        "Yangzhou",
+        "晋扬州"
+      ],
+      "defaultClaim": {
+        "status": "推定",
+        "statement": "扬州郡界继承262年几何底稿，并依据《晋书·地理志下》所载分郡关系按郡治方位回切。",
+        "sourceIds": [
+          "jinshu_juan15",
+          "map_geometry_archive"
+        ]
+      },
+      "claims": {
+        "taikang": {
+          "status": "推定",
+          "statement": "280年显示吴兴、东阳、新安等平吴后扬州郡；太康二年才置的宣城、毗陵不提前到280年。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
+        },
+        "hui_di": {
+          "status": "推定",
+          "statement": "290年显示太康二年以后已置的宣城、毗陵；江州尚未在元康元年分置。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
+        },
+        "yongjia": {
+          "status": "推定",
+          "statement": "311年扬州已分出江州，并显示晋陵、义兴、历阳；323年才置的永嘉郡不前移。",
+          "sourceIds": [
+            "jinshu_juan15",
+            "map_geometry_archive"
+          ]
+        }
+      }
+    },
+    {
+      "id": "special:yizhou-island",
+      "name": "夷洲",
+      "level": "特殊区域",
+      "aliases": [
+        "YizhouIsland",
+        "夷洲岛",
+        "夷洲"
+      ],
+      "defaultClaim": {
+        "status": "确定",
+        "statement": "夷洲作为《三国志·吴书·吴主传》所载远征目的地常驻标识；它不是中原州郡边界的一部分。",
+        "sourceIds": [
+          "sanguozhi_wu_2"
+        ],
+        "note": "轮廓为示意性标注，不能理解为吴国正式行政疆界。"
+      },
+      "claims": {}
+    }
+  ]
+}

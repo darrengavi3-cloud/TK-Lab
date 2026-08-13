@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-08-11",
+  "scope": "266—311年西晋州级政区与公开矢量候选",
+  "conclusion": "现有266、280、290、311年快照已覆盖当前注册表需要的州级状态；266年不提前绘入269、271、276年才出现的秦、宁、平州。缺少的是这些中间年份的独立时间节点，而不是280年十九州清单中的州名。",
+  "periodFindings": [
+    {"year":264,"status":"已补","items":["梁州","广州"],"note":"汉亡后魏、吴并立；东广汉郡省并入广汉。"},
+    {"year":266,"status":"已补","items":["梁州"],"omittedUntil":["秦州（269）","宁州（271）","平州（276）"],"note":"建晋当年不把后置州提前绘入。"},
+    {"year":269,"status":"沿革已记、无独立快照","items":["秦州"],"note":"当前在266年说明与280年十九州快照中表达，未单列269年地图。"},
+    {"year":271,"status":"沿革已记、无独立快照","items":["宁州"],"note":"当前在266年说明与280年十九州快照中表达，未单列271年地图。"},
+    {"year":276,"status":"沿革已记、无独立快照","items":["平州"],"note":"当前在266年说明与280年十九州快照中表达，未单列276年地图。"},
+    {"year":280,"status":"已补","items":["司隶","冀州","兖州","豫州","荆州","徐州","扬州","青州","幽州","平州","并州","雍州","凉州","秦州","梁州","益州","宁州","交州","广州"],"note":"《晋书·地理志》十九州基准；通过项目地图验证。"},
+    {"year":290,"status":"已补","items":["太康十九州延续"],"note":"项目另处理太康二年后宣城、毗陵等郡级变化。"},
+    {"year":311,"status":"已补","items":["江州分置后的西晋州级状态"],"note":"项目另处理晋陵、义兴、历阳等扬州郡级变化；永嘉郡不前移到311年。"}
+  ],
+  "publicCandidates": [
+    {
+      "name":"Heliog3nesis/Threekingdoms_Archive",
+      "url":"https://github.com/Heliog3nesis/Threekingdoms_Archive",
+      "branch":"v2",
+      "license":"CC BY-NC-SA 4.0（README声明；GitHub API未提供机器可读 license 字段）",
+      "fit":"可作州郡几何与专题地图的交叉参考",
+      "decision":"继续作为参考，不直接替换现有几何",
+      "reason":"项目已有本地快照和来源标注；几何仍是研究性资料，须经过各期行政沿革归并与验证。"
+    },
+    {
+      "name":"eSericaLab/eSerica-geojson-map",
+      "url":"https://github.com/eSericaLab/eSerica-geojson-map",
+      "branch":"main",
+      "license":"未声明",
+      "observedFiles":["region.geojson（61个Feature）","city.geojson"],
+      "fit":"可作城池和区域名称的检索参考",
+      "decision":"不导入行政边界",
+      "reason":"README明确称为个人爱好绘制，不能反映三国时期真实行政区划，且未见可直接采用的许可声明。"
+    }
+  ],
+  "nextSafeStep":"若需要表现264—280年之间的州制变化，应新增269、271、276三个只读行政节点，并沿用现有几何归并与证据模型；在获得明确许可和逐州核验前，不替换本地几何。"
+}
