@@ -10,6 +10,12 @@
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
   const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','待核']);
   const HISTORY_SNAPSHOT_STATUS = Object.freeze(['通过','通过（示意）','待核','存在冲突']);
+  const READING_META_FIELDS = Object.freeze([
+    'evidence','sourceIds','sourceTitle','sourceDocument','sourceUrl','sourceLevel','sourceLocator','sourceExcerpt',
+    'sources','bibliography','confidence','researchStatus','auditStatus','archiveKind','archiveScope','importBatch',
+    'sourceTenureText','verificationState','evidenceNote','footnotes'
+  ]);
+  const READING_META_FIELD_SET = new Set(READING_META_FIELDS);
 
   function clone(value){ return JSON.parse(JSON.stringify(value)); }
   function text(value){ return String(value == null ? '' : value).trim(); }
@@ -19,9 +25,10 @@
   function stableId(type, parts){ return [type].concat((parts||[]).map(slug)).join(':'); }
   function normalizePolity(value){
     const raw=text(value);
-    if(raw==='蜀汉'||raw==='季汉') return '汉';
+    if(raw==='东汉'||raw==='蜀汉'||raw==='季汉') return '汉';
     if(raw==='曹魏') return '魏';
     if(raw==='孙吴') return '吴';
+    if(raw==='西晋'||raw==='东晋'||raw==='晋朝') return '晋';
     return raw;
   }
   function normalizeConfidence(value){
@@ -182,10 +189,27 @@
     });
   }
 
+  function projectForReading(value){
+    if(Array.isArray(value)) return value.map(projectForReading);
+    if(!value || typeof value!=='object') return value;
+    const out={};
+    Object.entries(value).forEach(([key,item])=>{
+      if(READING_META_FIELD_SET.has(key)||key==='disputeNote') return;
+      out[key]=projectForReading(item);
+    });
+    const dispute=text(value.disputeNote);
+    if(dispute){
+      const note=text(out.note);
+      out.note=note ? note+'；异说：'+dispute : '异说：'+dispute;
+    }
+    return out;
+  }
+
   global.SGZResearchModel=Object.freeze({
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
+    readingMetaFields:READING_META_FIELDS,projectForReading,
     normalizeFangzhen,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
   });
 })(window);

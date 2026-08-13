@@ -63,7 +63,8 @@ assert(!names('tribal').includes('大都护（西域）'), '异族树仍含时�
 assert(!names('tribal', 'noble').some(name => /^(仟长|什长)/.test(name)), '异族爵位树仍混入军事编制');
 assert(archives.some(item => item.key === 'eastjin'), '缺少东晋扩展档案');
 assert(records.filter(record => record.commander === '姜维' && record.polity === '汉').length === 4, '姜维职任未拆成四段');
-assert(records.some(record => record.polity === '西晋' && /跨朝|同一职任/.test(record.note || '')), '曹魏跨266年职任未拆入西晋');
+assert(records.some(record => record.polity === '晋' && /跨朝|同一职任/.test(record.note || '')), '曹魏跨266年职任未拆入西晋');
+assert(records.every(record => ['汉','魏','吴','晋'].includes(record.polity)), '州镇表政权字段未统一为汉、魏、吴、晋');
 assert(records.every(record => record.sourceLevel && record.confidence && record.appointmentStatus), '州镇录存在未迁移的史料状态字段');
 assert(records.every(record => record.entityType==='appointment' && record.personId && record.officeId && record.jurisdictionId), '州镇录存在未迁移的统一实体关联');
 assert(Object.values(trees).every(group=>['office','noble'].every(type=>group[type].every(node=>node.entityId&&node.evidence&&node.researchStatus))), '职官或爵位节点存在未迁移的研究实体字段');
