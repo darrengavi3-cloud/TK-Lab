@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-13T22:45:49.687Z",
+  "generatedAt": "2026-08-14T01:37:46.544Z",
   "offlineRuntime": true,
-  "fileCount": 105,
-  "totalBytes": 39252192,
+  "fileCount": 106,
+  "totalBytes": 39261173,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 30020,
-      "sha256": "04d16ee55f7dd1a850064d83567c637a419d430d1ef9a9d3eeb05cb57d69602a"
+      "bytes": 29636,
+      "sha256": "da110f0e95290bcfb0d3747ba67e4a52ece4f02c733e02b373946bb6faeeb960"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -57,8 +57,8 @@
     },
     {
       "path": "assets/map/data/strategic-geography.js",
-      "bytes": 5433,
-      "sha256": "504bb78236f57cbf7e996d1081847c624a3facab5dd3fac4b6b0a675f44718cf"
+      "bytes": 5442,
+      "sha256": "b7d4d979a8d6570f85e13150159219dbf5cf3ff99aa3de700b3daf6444cdb6d1"
     },
     {
       "path": "assets/map/data/three-kingdoms.js",
@@ -68,7 +68,7 @@
     {
       "path": "assets/map/js/app.js",
       "bytes": 19115,
-      "sha256": "6823becb9ac728d2ddc05eda7ca2b1fce65165c5fd200b319cead5ab074bed8d"
+      "sha256": "18794f99c97c8ee83d2bba3e3ecbefa096b996961cb69259840ff5592cdd9d44"
     },
     {
       "path": "assets/map/js/base-layer.js",
@@ -102,8 +102,8 @@
     },
     {
       "path": "assets/map/js/panel.js",
-      "bytes": 7510,
-      "sha256": "6f8833ec92d3015d550e605d40c4a335ecbfa006a198e45e9ef412b376d78ea4"
+      "bytes": 6931,
+      "sha256": "802441adbd1244dfeb67b20fe0ea981c3bef93899edc379752f375f591f831d2"
     },
     {
       "path": "assets/map/js/routes.js",
@@ -112,8 +112,8 @@
     },
     {
       "path": "assets/map/js/strategic-layers.js",
-      "bytes": 3892,
-      "sha256": "54bbb25e64fe6f1a87ac9ad6de7c5bea059df9d7ba10ae3301bfa83426ca84f6"
+      "bytes": 3839,
+      "sha256": "a46218dd881e2dbab771e69f103ed180bc930099fd8c03fd034c81f66b468b48"
     },
     {
       "path": "assets/map/js/territories.js",
@@ -417,23 +417,23 @@
     },
     {
       "path": "data/battle-records.js",
-      "bytes": 28519,
-      "sha256": "0afde606e5d39e11e35df5f76f62ec376e6d8d09335f125ae52894e6cc00b2ec"
+      "bytes": 29193,
+      "sha256": "43354b7456e576b7e68b428019cda6a784d43b6fda851a22b0e0fd99250d24bf"
     },
     {
       "path": "data/epigraphic-records.js",
-      "bytes": 23027,
-      "sha256": "6600e238423f0113f36ea7c57d65f735ea546806657637f15d866a116ce32a14"
+      "bytes": 23033,
+      "sha256": "accf1c51aab7ab4e50a9e68eeb1da029799619195444fb3ebf87c1550d356ed6"
     },
     {
       "path": "data/fangzhen-seat-supplement.js",
-      "bytes": 2017,
-      "sha256": "6a7ee78bfe2a176ac7561fb23fbc85d4e565f599b3d7df4643f3db7f9460d717"
+      "bytes": 1999,
+      "sha256": "36907ca3a09b8d9b521306b011073c4efeed69305f3a0cb239dec75c65fc4a61"
     },
     {
       "path": "data/fangzhen-term-supplement.js",
-      "bytes": 10026,
-      "sha256": "60173e882e311366815097b90b9966680ac8f27910dfc69a6b69567613209aec"
+      "bytes": 9888,
+      "sha256": "2dc25ae2d5fc13742f5f96664ab8d4901e90925d0245fe17c386d1062f177eb7"
     },
     {
       "path": "data/han-bai-guan-zhi.js",
@@ -457,13 +457,13 @@
     },
     {
       "path": "data/map-period-registry.js",
-      "bytes": 26436,
-      "sha256": "6e92d9f0ef16f88af754fde8f2cdadfe761771397669913835cc1740c3a29ba4"
+      "bytes": 27185,
+      "sha256": "ee64c158e2606e3bd20cbea81797ff9e417022cee03ef7fa0d55b597139dcc75"
     },
     {
       "path": "data/map-period-registry.json",
-      "bytes": 20598,
-      "sha256": "628de4acc239ae53a6320e4695a3d9df6c3619c8b0ac14ec0c4e80e0374664a2"
+      "bytes": 21475,
+      "sha256": "fe3894be8f88512a77431d3e2dc9b7242ca488b580e0341c306d97b8c04147a8"
     },
     {
       "path": "data/migration-v6.json",
@@ -477,8 +477,8 @@
     },
     {
       "path": "data/person-biographies.js",
-      "bytes": 24091,
-      "sha256": "82c99e4384d1ee49ccf0376131406ec8c65b178a4cf2f495cdac7e1fc8b0932b"
+      "bytes": 23998,
+      "sha256": "8bd2158297d79661f032a8a06a808ff20f3bea70ef360ab09f034f8b0855046e"
     },
     {
       "path": "data/person-era-rosters.js",
@@ -487,8 +487,8 @@
     },
     {
       "path": "data/person-portraits.js",
-      "bytes": 8552,
-      "sha256": "27da1378f25cb28568c6f374419b1a83217337cd8f7fcc2bd14cc5e91d22c7d2"
+      "bytes": 8525,
+      "sha256": "b5d723f5fff561a30544f9afde00f9b23dd8b424094b1bbf72380003b276481e"
     },
     {
       "path": "data/public-vector-audit.json",
@@ -502,18 +502,23 @@
     },
     {
       "path": "data/research-model.js",
-      "bytes": 11241,
-      "sha256": "4a92adf1cf2cb431f8f9d2bd9785b411ceeb5125324deb97e5c3b724e0b40319"
+      "bytes": 13642,
+      "sha256": "5d2bafe7bfad12a3e3e851083e628cb83e7bf9d9811a7da93110fe7a271afde5"
     },
     {
       "path": "data/research-schema.json",
-      "bytes": 2148,
-      "sha256": "7a298937b3e2b5d68e9126af7e589f5bc9ae026da4cf26b06750e7deb1523a00"
+      "bytes": 2166,
+      "sha256": "6ff6ae6e683a8940e9c2dcc0290532362a805278958d666dc19b82425ba86cbb"
     },
     {
       "path": "data/shu-fangzhen-records.js",
-      "bytes": 13384,
-      "sha256": "11f254ec325c873f1b4130ad0d6cb60c891b69aafa86d364ff7821616864ccf0"
+      "bytes": 13345,
+      "sha256": "e60abe43b5ca13e8994e00b6ad779e99b3f2dae343af4ade47576a4844b4db2e"
+    },
+    {
+      "path": "data/v41-correction-audit.json",
+      "bytes": 5578,
+      "sha256": "805011ba07845818cc1cd8b7f2218b7b596c35794dd4ff7b07c124fad04efd7a"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

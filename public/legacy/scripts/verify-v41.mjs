@@ -15,11 +15,15 @@ const idsUnique=(rows,label)=>{
 
 const registry=JSON.parse(read('data/map-period-registry.json'));
 const historyEvidence=JSON.parse(read('data/history-evidence.json'));
+const correctionAudit=JSON.parse(read('data/v41-correction-audit.json'));
 assert(registry.periods.length===16,'地图时期应为 16 期');
 assert(registry.periods.every(period=>String(period.snapshotMoment||'').trim()),'地图时期缺少 snapshotMoment');
 assert(historyEvidence.periods.length===16,'历史证据未覆盖 16 期');
 assert(historyEvidence.periods.reduce((count,period)=>count+(period.claims||[]).length,0)===33,'行政断言应为 33 条');
 idsUnique(registry.periods,'地图时期');
+assert(correctionAudit.release==='V41' && correctionAudit.modules.length===7,'V41 纠错审计应覆盖七版块');
+assert(new Set(correctionAudit.modules.map(module=>module.id)).size===7,'V41 纠错审计版块 ID 重复');
+assert(correctionAudit.primaryTextChecks.length>=4,'V41 原典定位记录不足');
 
 const dataContext={window:{}};
 dataContext.window.window=dataContext.window;
@@ -71,31 +75,51 @@ assert(canonical.fangzhen.filter(row=>!String(row.seat||'').trim()).length===389
 assert(canonical.fangzhen.filter(row=>/未详|待考|未知|[?？]|约/.test(String(row.tenureText||row.sourceTenureText||''))).length===197,'含不确定任期限定的职任应为 197 条');
 assert(canonical.fangzhen.every(row=>['汉','魏','吴','晋'].includes(row.polity)),'州镇表国名未统一');
 idsUnique(canonical.fangzhen,'州镇表');
+const officeFigures=Object.values(canonical.trees).flatMap(group=>group.office).flatMap(node=>node.figures||[]);
+assert(officeFigures.every(figure=>!/[（(]|\d{3}/.test(String(figure.name||''))),'任期或注记仍被拼入人物姓名');
 
-assert(canonical.food.length===72,'食货志校正后应为 72 条制度记录');
+assert(canonical.food.length===71,'食货志校正后应为 71 条制度记录');
+assert(canonical.foodEvents.length===19,'食货编年校正后应为 19 条');
 assert(canonical.household.length===8,'食货户口数据应为 8 组');
 idsUnique(canonical.food,'食货志');
 idsUnique(canonical.foodEvents,'食货编年');
 idsUnique(canonical.household,'食货户口');
 const foodIds=new Set(canonical.food.map(row=>row.id));
 assert(canonical.household.every(row=>foodIds.has(row.recordId)),'户口数据存在失效 recordId');
-assert(!['sh_226_wubi','sh_221_zhizhi','sh_264_chu','sh_240_jin_tuntian','sh_234_dengai_tuntian'].some(id=>foodIds.has(id)),'食货志仍含已删除的重复或错误记录');
+assert(!['sh_226_wubi','sh_221_zhizhi','sh_264_chu','sh_240_jin_tuntian','sh_234_dengai_tuntian','sh_203_hudi','sh_195_caocao'].some(id=>foodIds.has(id)),'食货志仍含已删除的重复或错误记录');
 assert(canonical.food.find(row=>row.id==='sh_mingdi_wubi')?.year===null,'明帝复五铢不应伪定为 227 年');
 assert(canonical.food.find(row=>row.id==='sh_243_dengai_tuntian')?.year===243,'邓艾淮上屯田年份未校正为 243');
+assert(canonical.food.find(row=>row.id==='sh_204_hu_diao')?.year===204,'建安九年田租户调未校正为 204 年');
+assert(canonical.food.find(row=>row.id==='sh_268_changping')?.year===268,'泰始四年常平仓未校正为 268 年');
+assert(canonical.food.find(row=>row.id==='sh_xuzhou_caocao')?.year===null && canonical.food.find(row=>row.id==='sh_xuzhou_caocao')?.yearText.includes('193—194'),'徐州人口损失仍被误系为 195 年');
+assert(canonical.foodEvents.filter(row=>row.recordId).every(row=>foodIds.has(row.recordId)),'食货编年存在失效 recordId');
+assert(canonical.foodEvents.find(row=>row.id==='se_204_tax')?.recordId==='sh_204_hu_diao','田租户调编年未回指制度记录');
+assert(canonical.foodEvents.find(row=>row.id==='se_268')?.recordId==='sh_268_changping','常平仓编年未回指制度记录');
 
 const evidenceSample={id:'sample',name:'材料',note:'释读',disputeNote:'另一释读',sourceTitle:'《原典》',confidence:'存疑',researchStatus:'待核',evidence:{title:'《原典》'}};
 const reading=model.projectForReading(evidenceSample);
 assert(reading.name==='材料' && reading.note==='释读；异说：另一释读','阅读投影未保留自然异说说明');
 assert(!model.readingMetaFields.some(field=>Object.hasOwn(reading,field)) && !Object.hasOwn(reading,'disputeNote'),'阅读投影仍含研究元数据');
 assert(evidenceSample.sourceTitle==='《原典》' && evidenceSample.evidence.title==='《原典》','阅读投影修改了规范对象');
+const projectedCorpus=model.projectForReading({
+  trees:canonical.trees,fangzhen:canonical.fangzhen,food:canonical.food,foodEvents:canonical.foodEvents,
+  household:canonical.household,epigraphic,biographies,battles,mapPeriods:registry.periods
+});
+const projectedText=JSON.stringify(projectedCorpus);
+const forbiddenProjectedTerms=[...forbiddenReadingLabels,'本项目','履历归纳'];
+assert(forbiddenProjectedTerms.every(term=>!projectedText.includes(term)),`动态阅读数据仍含禁用文案：${forbiddenProjectedTerms.filter(term=>projectedText.includes(term)).join('、')}`);
+assert(!/"(?:evidence|sourceTitle|sourceDocument|sourceUrl|sourceLevel|sourceLocator|sourceExcerpt|confidence|researchStatus|auditStatus|sourceTenureText)"\s*:/.test(projectedText),'动态阅读数据仍含研究元数据键');
+assert(JSON.stringify(canonical).includes('"sourceTitle"') && JSON.stringify(canonical).includes('"confidence"'),'规范数据未保留来源与判断字段');
 
-const roundTripSource={schemaVersion:7,trees:{wei:{office:[{key:'root',kind:'root',name:'魏官制',sources:'《三国志》',confidence:'确定'}],noble:[]}},fangzhenRecords:[{id:'a',polity:'西晋',commander:'甲',title:'刺史',jurisdiction:'州',sourceTitle:'《晋书》',sourceExcerpt:'原文'}]};
+const roundTripSource={schemaVersion:7,trees:{wei:{office:[{key:'root',kind:'root',name:'魏官制',sources:'《三国志》',confidence:'确定'}],noble:[]}},fangzhenRecords:[{id:'a',polity:'西晋',commander:'甲',title:'刺史',jurisdiction:'州',sourceTitle:'《晋书》',sourceExcerpt:'原文'}],battleRecords:{events:[{id:'event',battleId:'battle',sourceTitle:'《三国志》'}]},shihuoRecords:[{id:'food',sourceTitle:'《晋书》',confidence:'存疑'}],mapPeriods:[{id:'period',snapshotMoment:'年末态势',sourceIds:['source']} ]};
 const first=model.migrate(roundTripSource);
 const second=model.migrate(JSON.parse(JSON.stringify(first)));
 assert(second.trees.wei.office[0].evidence.title==='《三国志》','JSON 往返丢失官职证据');
 assert(second.fangzhenRecords[0].evidence.title==='《晋书》' && second.fangzhenRecords[0].evidence.excerpt==='原文','JSON 往返丢失州镇证据');
 assert(second.fangzhenRecords[0].polity==='晋','旧国名迁移未归一为晋');
+assert(second.battleRecords.events[0].sourceTitle==='《三国志》' && second.shihuoRecords[0].confidence==='存疑','JSON 往返丢失补充版块证据');
+assert(second.mapPeriods[0].snapshotMoment==='年末态势' && second.mapPeriods[0].sourceIds[0]==='source','JSON 往返丢失地图快照元数据');
 
 console.log('V41 数据与兼容性断言通过');
 console.log(`官职 ${officeCount}；州镇 ${canonical.fangzhen.length}；人物 ${Object.keys(biographies).length}；头像 ${Object.keys(portraits).length}`);
-console.log(`战事 ${battles.events.length}/${battles.battles.length}/${battles.battlefields.length}；金石 ${epigraphic.length}；食货 ${canonical.food.length}/${canonical.household.length}；地图 ${registry.periods.length} 期`);
+console.log(`战事 ${battles.events.length}/${battles.battles.length}/${battles.battlefields.length}；金石 ${epigraphic.length}；食货 ${canonical.food.length}/${canonical.foodEvents.length}/${canonical.household.length}；地图 ${registry.periods.length} 期`);

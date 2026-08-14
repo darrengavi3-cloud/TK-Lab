@@ -12,13 +12,37 @@
   const HISTORY_SNAPSHOT_STATUS = Object.freeze(['通过','通过（示意）','待核','存在冲突']);
   const READING_META_FIELDS = Object.freeze([
     'evidence','sourceIds','sourceTitle','sourceDocument','sourceUrl','sourceLevel','sourceLocator','sourceExcerpt',
-    'sources','bibliography','confidence','researchStatus','auditStatus','archiveKind','archiveScope','importBatch',
-    'sourceTenureText','verificationState','evidenceNote','footnotes'
+    'source','sources','bioSource','portraitSource','bibliography','confidence','status','researchStatus','auditStatus',
+    'archiveKind','archiveScope','importBatch','sourceTenureText','verificationState','evidenceNote','footnotes'
   ]);
   const READING_META_FIELD_SET = new Set(READING_META_FIELDS);
 
   function clone(value){ return JSON.parse(JSON.stringify(value)); }
   function text(value){ return String(value == null ? '' : value).trim(); }
+  function readingText(value){
+    return text(value)
+      .replace(/本项目/g,'')
+      .replace(/履历归纳/g,'履历提要')
+      .replace(/研究示意/g,'大致范围')
+      .replace(/研究文档|文档考据/g,'整理记录')
+      .replace(/来源文章/g,'相关整理')
+      .replace(/来源型/g,'汇列')
+      .replace(/研究结论/g,'说明')
+      .replace(/研究状态/g,'状态')
+      .replace(/录入边界/g,'范围')
+      .replace(/已执行/g,'已完成')
+      .replace(/史料校验|史实可信度|来源层级|史料状态|查看史料|边界可信度|史料证据卡|核心材料|资料来源|史料摘录|史料出处|数据审计|史料卡/g,'')
+      .replace(/沿革年代待考/g,'沿革年代未详')
+      .replace(/任期待考/g,'任期未详')
+      .replace(/年代待考/g,'年代未详')
+      .replace(/待补考/g,'未详')
+      .replace(/待核|待补|待考/g,'未详')
+      .replace(/资料置信度|置信度/g,'判断')
+      .replace(/[；，、]{2,}/g,'；')
+      .replace(/\s{2,}/g,' ')
+      .replace(/^\s*[；，、]|[；，、]\s*$/g,'')
+      .trim();
+  }
   function slug(value){
     return text(value).toLowerCase().replace(/蜀汉|季汉/g,'汉').replace(/[\s·／/（）()—–-]+/g,'_').replace(/[^\w\u3400-\u9fff_]/g,'').replace(/^_+|_+$/g,'') || 'unknown';
   }
@@ -191,13 +215,14 @@
 
   function projectForReading(value){
     if(Array.isArray(value)) return value.map(projectForReading);
+    if(typeof value==='string') return readingText(value);
     if(!value || typeof value!=='object') return value;
     const out={};
     Object.entries(value).forEach(([key,item])=>{
-      if(READING_META_FIELD_SET.has(key)||key==='disputeNote') return;
+      if(READING_META_FIELD_SET.has(key)||key==='disputeNote'||key.startsWith('_')||/^source[A-Z_]/.test(key)) return;
       out[key]=projectForReading(item);
     });
-    const dispute=text(value.disputeNote);
+    const dispute=readingText(value.disputeNote);
     if(dispute){
       const note=text(out.note);
       out.note=note ? note+'；异说：'+dispute : '异说：'+dispute;
@@ -209,7 +234,7 @@
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
-    readingMetaFields:READING_META_FIELDS,projectForReading,
+    readingMetaFields:READING_META_FIELDS,readingText,projectForReading,
     normalizeFangzhen,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
   });
 })(window);

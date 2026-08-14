@@ -46,8 +46,7 @@
       tenureText: tenure,
       sourceTenureText: tenure,
       note: [
-        '按用户提供“蜀汉郡守考”表录入。',
-        uncertain ? '原表含疑问或未知标记，任期待考。' : '',
+        uncertain ? '任期中的疑问号或未知标记按原文保留，任期未详。' : '',
       ].filter(Boolean).join(''),
       sourceLevel: '文档考据',
       confidence: uncertain ? '待考' : '中',

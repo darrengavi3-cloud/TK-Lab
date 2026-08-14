@@ -125,7 +125,7 @@
   function filterStatusText(){
     const faction=mapFilters.faction==='all'?'全部势力':(FACTIONS[mapFilters.faction]?.name||mapFilters.faction);
     const state=mapFilters.state==='all'?'全部州':mapFilters.state;
-    const mode=view.displayMode==='administrative'?'行政层':'研究示意';
+    const mode=view.displayMode==='administrative'?'行政层':'综合态势';
     return `${mode} · ${faction} · ${state}`;
   }
 

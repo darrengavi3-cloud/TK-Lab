@@ -1047,10 +1047,6 @@ html, body {
 .roster-meta { color: var(--ink-faint); font-size: 9.5px; white-space: nowrap; }
 .roster-item strong { color: var(--ink); font-weight: 600; }
 .roster-item small { color: var(--ink-faint); font-size: 10.5px; }
-.roster-status { display: inline-block; margin-left: 2px; padding: 1px 4px; border-radius: 3px; font-style: normal; font-size: 9px; font-weight: 700; color: #6b5530; background: #f7f1e4; }
-.roster-status.s-tuiding { color: #356044; background: #edf4ee; }
-.roster-status.s-cunyi { color: #8b4338; background: #f7ece9; }
-.roster-status.s-daikao { color: #5f584e; background: #efebe1; }
 
 .pv-result {
   margin-top: 14px;

@@ -106,7 +106,7 @@ const Panel = (function () {
     const reg = (window.COUNTY_REGISTRY || {}).commanderies && (window.COUNTY_REGISTRY.commanderies[feature.sourceName] || null);
     const cmdName = reg ? reg.label : (feature.name || feature.sourceName);
     const countyChips = reg
-      ? reg.counties.map((c) => `<a class="county-chip" target="_blank" rel="noopener" href="${Counties.wikiSearchUrl(c.name + (reg ? ' ' + reg.label : ''))}">${c.name}${c.seat ? '<i>治</i>' : ''}</a>`).join('')
+      ? reg.counties.map((c) => `<span class="county-chip">${c.name}${c.seat ? '<i>治</i>' : ''}</span>`).join('')
       : '';
     render(`
       <div class="pv-head">
@@ -114,12 +114,11 @@ const Panel = (function () {
         <h2 class="pv-title">${cmdName}</h2>
         <div class="pv-tag">${feature.state || ''} · ${feature.kingdom || ''}</div>
       </div>
-      <p class="pv-summary">${reg ? '县名索引依据维基百科及郡县沿革资料整理；坐标仅标注郡治与重要县。' : '本郡暂未收入县名单，可通过维基百科检索郡名获取县属。'}</p>
+      <p class="pv-summary">${reg ? '县名表列郡治与重要县，边界与坐标不表示精确测绘结果。' : '本郡县属未详。'}</p>
       <div class="pv-section">
         <div class="pv-label">下辖县政区</div>
         <div class="county-grid">${countyChips || '<span class="pv-empty">暂无收录</span>'}</div>
       </div>
-      <a class="pv-link" target="_blank" rel="noopener" href="${reg ? reg.url : Counties.wikiSearchUrl(cmdName)}">维基百科检索 · ${cmdName}</a>
       <button class="pv-back" onclick="Panel.back()">‹ 返回本期概览</button>
     `);
   }
@@ -133,12 +132,11 @@ const Panel = (function () {
         <h2 class="pv-title">${county.name}</h2>
         <div class="pv-tag">${cmdName}${county.seat ? ' · 郡治' : ''}</div>
       </div>
-      <p class="pv-summary">${county.fallback ? '该点为地图重要城邑回退标注，坐标仅供参考。' : '县名与治所信息依据维基百科及郡县沿革资料整理。'}</p>
+      <p class="pv-summary">${county.fallback ? '该点为重要城邑标注，坐标仅表示大致位置。' : '县名与治所按本期郡县表显示。'}</p>
       <div class="pv-section">
         <div class="pv-label">同郡县政区</div>
-        <div class="county-grid">${reg ? reg.counties.map((c) => `<a class="county-chip" target="_blank" rel="noopener" href="${Counties.wikiSearchUrl(c.name + ' ' + reg.label)}">${c.name}${c.seat ? '<i>治</i>' : ''}</a>`).join('') : ''}</div>
+        <div class="county-grid">${reg ? reg.counties.map((c) => `<span class="county-chip">${c.name}${c.seat ? '<i>治</i>' : ''}</span>`).join('') : ''}</div>
       </div>
-      <a class="pv-link" target="_blank" rel="noopener" href="${Counties.wikiSearchUrl(searchText)}">维基百科检索 · ${county.name}</a>
       <button class="pv-back" onclick="Panel.back()">‹ 返回本期概览</button>
     `);
   }

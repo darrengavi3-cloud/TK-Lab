@@ -67,7 +67,7 @@ const StrategicLayers = (function () {
         }),
         interactive:false,
       });
-      label.bindTooltip(`<strong>${item.name}</strong><br>${item.status || '待考'} · ${item.vectorKind || 'activity-zone'}<br>${item.note || ''}`, {sticky:true,className:'tt-minority'});
+      label.bindTooltip(`<strong>${item.name}</strong><br>${item.note || '活动范围未详'}`, {sticky:true,className:'tt-minority'});
       minorityLayer.addLayer(label);
     });
     minorityLayer.addTo(map);

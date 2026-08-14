@@ -118,7 +118,7 @@
     }),
     record('wu-yongning-marquis','永宁侯相碑','碑刻',null,'年代未详','吴',{
       sourceDocument:sourceDoc.wu, researchStatus:'存疑', confidence:'存疑', form:'墓碑', bibliography:'《孙吴金石录》',
-      disputeNote:'碑主、年代与是否为孙吴核心材料尚待原石及著录复核。'
+      disputeNote:'碑主、年代及是否属于孙吴时期，仍需结合原石与著录判断。'
     }),
     record('wu-liulishan','六里山石刻','摩崖',275,'天册元年','吴',{
       sourceDocument:sourceDoc.wu, researchStatus:'推定', confidence:'推定', place:'六里山', bibliography:'《孙吴金石录》'
