@@ -16,6 +16,10 @@ const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
 const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
 const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
+const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
+const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
+const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
+const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
@@ -35,6 +39,10 @@ const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').t
 let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
 const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
+const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
+const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
+const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
+const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
 for (const polityDir of fs.readdirSync(portraitDir)) {
   const fullDir = path.join(portraitDir, polityDir);
   if (!fs.statSync(fullDir).isDirectory()) continue;
@@ -117,7 +125,23 @@ const replacements = [
     `<script>\n${hanBaiGuanZhiScript}\n</script>`
   ],
   [
-    "url('./assets/ui/court-ink-palace.png')",
+    '<script src="./data/kaifu-policies.js"></script>',
+    `<script>\n${kaifuPoliciesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/office-seat-policies.js"></script>',
+    `<script>\n${seatPoliciesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/office-residences.js"></script>',
+    `<script>\n${officeResidencesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-source-index.js"></script>',
+    `<script>\n${personSourceIndexScript}\n</script>`
+  ],
+  [
+    /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,
     `url('${courtBackgroundData}')`
   ],
   [
@@ -139,8 +163,9 @@ const replacements = [
 ];
 
 replacements.forEach(([from, to]) => {
-  if (!html.includes(from)) throw new Error(`便携导出构建失败，未找到替换标记：${from.slice(0, 80)}`);
-  html = html.replace(from, to);
+  const pattern = from instanceof RegExp ? from : new RegExp(from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+  if (!pattern.test(html)) throw new Error(`便携导出构建失败，未找到替换标记：${String(from).slice(0, 80)}`);
+  html = html.replace(pattern, to);
 });
 
 // 新增地图图层与行政快照尚未部署到历史远端包；便携版把这些小型运行脚本
@@ -161,6 +186,7 @@ function escapeForOuterTemplate(source) {
   'data/county-registry.js',
   'data/history-evidence.js',
   'data/strategic-geography.js',
+  'data/hydronym-audit.js',
   'data/geo-coastline.js',
   'data/all-provinces-local.js',
   'js/config.js',
@@ -172,6 +198,7 @@ function escapeForOuterTemplate(source) {
   'js/commanderies.js',
   'js/counties.js',
   'js/strategic-layers.js',
+  'js/hydronyms.js',
   'js/app.js',
 ].forEach(relative => {
   const marker = `<script src="${relative}"><\\/script>`;

@@ -29,8 +29,10 @@ const StrategicLayers = (function () {
     if (battlefieldLayer && map.hasLayer(battlefieldLayer)) map.removeLayer(battlefieldLayer);
     battlefieldLayer = L.layerGroup();
     (window.STRATEGIC_BATTLEFIELDS || []).filter((item) => yearVisible(item, year)).forEach((item) => {
+      const placeLabel = item.placeLabel || item.name.replace(/战场$/,'');
+      const labelWidth = Math.max(70, String(placeLabel).length * 16 + 14);
       const marker = L.marker([item.lat,item.lng], {
-        icon:L.divIcon({className:'battlefield-label',html:`<span>⚔ ${item.name}</span>`,iconSize:[126,22],iconAnchor:[8,11]}),
+        icon:L.divIcon({className:'battlefield-label',html:`<span>⚔ ${placeLabel}</span>`,iconSize:[labelWidth,22],iconAnchor:[8,11]}),
         interactive:true,
       });
       marker.bindTooltip(item.note, {direction:'top',className:'tt-battle'});

@@ -18,6 +18,12 @@
 - `data/epigraphic-records.js`：金石录文档考据目录；首批纳入《蜀汉金石录》《孙吴金石录》《魏金石录》条目，按国别、材料层级、年代和研究状态筛选；不纳入异族核心材料，争议与承吴地材料保留在扩展档案。
 - `data/research-model.js`：v7 统一研究数据模型、旧档迁移、稳定实体编号与跨模块索引。
 - `data/research-schema.json`：统一实体字段与受控词表的机器可读说明。
+- `data/kaifu-policies.js`：开府资格政策（法定、加号、特诏、事实见府属、待考）与人物任官依据。
+- `data/office-seat-policies.js`：府署属官制度员额与展示席位规则。
+- `data/office-residences.js`：丞相府、三公府、将军府、都督府、州府、郡府、东宫等府署定义与属官分类。
+- `data/person-source-index.js`：《三国志》《晋书》逐卷人物与任官/爵位候选索引（正文与裴注分层）。
+- `data/person-volume-coverage.json`：195 卷逐卷处理状态与排除依据。
+- `data/hydronym-audit.json`：285 段水系几何、257 个唯一古水名与《水经注》40 卷卷次出处审计。
 - `data/migration-v6.json`：本轮迁移前后数量、备份位置与验收规则。
 - `data/migration-v7.json`：V7时期快照、证据断言与来源索引的迁移说明。
 - `data/history-evidence.json`：V41 十六期历史快照、来源目录、关键辖区断言和审计规则的 canonical 数据。
@@ -52,6 +58,7 @@
 - `docs/V30少帝献帝之际百官州郡长吏补录.md`：189 年少帝、献帝之际中央百官与州郡长吏名录补录与状态标注。
 - `docs/V31缓存恢复与周边族群矢量层.md`：异常退出恢复提示、周边族群研究矢量层、乌桓时期边界与史实核验说明。
 - `docs/V32缓存启动策略与族群边界样式.md`：恢复弹窗根因修复与族群边界样式同步。
+- `docs/V43府署古水系与人物记优化.md`：V43 开府府署、战场地名、古水名层、人物逐卷覆盖与发布记录。
 - `assets/map/`：地图程序、Leaflet、州郡几何与水系。
 - `assets/vendor/`：页面运行依赖。
 - `scripts/`：资源下载、注册表构建与完整性验证脚本。

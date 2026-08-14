@@ -15,12 +15,15 @@
 <script src="./data/wu-fangzhen-records.js"></script>
 <script src="./data/shu-fangzhen-records.js"></script>
 <script src="./data/fangzhen-term-supplement.js"></script>
+<script src="./data/person-identities.js"></script>
 <script src="./data/research-model.js"></script>
 <script src="./data/office-seat-policies.js"></script>
+<script src="./data/kaifu-policies.js"></script>
 <script src="./data/office-residences.js"></script>
 <script src="./data/history-evidence.js"></script>
 <script src="./data/battle-records.js"></script>
 <script src="./data/person-biographies.js"></script>
+<script src="./data/person-source-index.js"></script>
 <script src="./data/person-era-rosters.js"></script>
 <script src="./data/person-portraits.js"></script>
 <script src="./data/epigraphic-records.js"></script>
@@ -495,6 +498,12 @@ body{background:#F4F3EF;}
 .office-residence-canvas.residence-style-plain{background:linear-gradient(rgba(239,236,230,.86),rgba(239,236,230,.96)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
 .residence-owner-note{color:#6E665C;}
 .residence-owner-note strong{color:#302D28;}
+.residence-policy-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:8px auto 0;max-width:980px;}
+.residence-policy-tag{padding:3px 7px;border:1px solid #C9BFAE;border-radius:10px;background:rgba(250,248,242,.86);color:#675D50;font-size:10px;}
+.residence-policy-tag.verified{border-color:#8DA28E;color:#48664D;background:#EFF5EE;}
+.residence-counts{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:5px 6px;border-top:1px solid #D8D0C3;background:#F2EDE3;color:#6B6257;font-size:9px;text-align:center;}
+.residence-counts b{display:block;color:#302D28;font-size:11px;}
+.residence-counts .uncertain b{color:#8B6D42;}
 .residence-role-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:14px;max-width:1240px;margin:0 auto;padding:2px 4px 14px;}
 .residence-role-card{min-height:190px;border:1px solid #AAA091;border-radius:5px;background:rgba(250,248,242,.95);box-shadow:0 5px 13px rgba(51,45,38,.08);cursor:pointer;overflow:hidden;position:relative;}
 .residence-role-card:hover,.residence-role-card.selected{border-color:var(--court-accent);box-shadow:inset 0 0 0 1px var(--court-accent),0 7px 17px rgba(51,45,38,.13);}
@@ -525,6 +534,7 @@ body{background:#F4F3EF;}
   .court-column .court-slot{width:100%;}
   .court-commandery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 8px;}
   .residence-role-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+  .residence-policy-strip{justify-content:flex-start;}
 }
 .module-page{flex:1;min-width:0;min-height:0;overflow:auto;padding:24px 28px 34px;background:#F4F3EF;}
 .module-page-inner{max-width:1380px;margin:0 auto;}
@@ -679,6 +689,7 @@ body{background:#F4F3EF;}
 .people-detail-main h3{font:700 24px 'Noto Serif SC','Songti SC',serif;margin:0 0 6px;color:#2D342E;}
 .people-detail-main p{margin:4px 0;font-size:12px;color:#6F766F;line-height:1.65;}
 .people-bio{padding:9px 11px;border-left:3px solid #C9B39F;border-radius:5px;background:#F8F4EC;color:#6A6358;white-space:pre-wrap;}
+.homonym-note{margin-top:8px;padding:5px 9px;border:1px dashed #B7AC98;border-radius:5px;background:#FBF8F1;color:#8A7357;font-size:11px;line-height:1.5;}
 .people-bio-source{font-size:10.5px!important;color:#8B8277!important;}
 .person-card-bio{margin-top:7px;color:#6D746D;font-size:10.5px;line-height:1.55;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
 .people-career-list{display:flex;flex-direction:column;gap:7px;}
@@ -1249,7 +1260,9 @@ function buildWeiArchiveRecords(type, groups){
 const WEI_CISHI_RECORDS = buildWeiArchiveRecords('cishi', WEI_CISHI_GROUPS);
 const WEI_DUDU_RECORDS = buildWeiArchiveRecords('dudu', WEI_DUDU_GROUPS);
 
-const CATEGORY_OPTIONS = ['宗室诸王','丞相／相国','三公','大将军／大司马','九卿','尚书台省','中书门下','散骑集书','御史台','将军武职','都督军事','州牧刺史','郡国守相','县邑令长','幕府属官','散官','属国护官','部族首领','爵禄勋位','其他'];
+const CATEGORY_OPTIONS = ['宗室诸王','丞相／相国','三公','大将军／大司马','九卿','尚书台省','中书门下','散骑集书','御史台','将军武职','都督军事','州牧刺史','郡国守相','县邑令长','州郡属官','太子官属','诸王官属','幕府属官','散官','属国护官','部族首领','爵禄勋位','其他'];
+const SERVICE_DOMAIN_OPTIONS = ['文官','武官','文武兼','待考'];
+const INSTITUTION_TYPE_OPTIONS = ['朝廷机关','丞相府','三公府','将军府','都督府','州府','郡府','县署','东宫','王府','属国机构','部族机构','待考'];
 const OFFICE_CLASS_META = {
   central_civil:{domain:'central',domainLabel:'中央',branch:'civil',branchLabel:'文职'},
   central_military:{domain:'central',domainLabel:'中央',branch:'military',branchLabel:'武职'},
@@ -1257,7 +1270,7 @@ const OFFICE_CLASS_META = {
   local_commandery:{domain:'local',domainLabel:'地方',branch:'commandery',branchLabel:'郡国级'},
   local_county:{domain:'local',domainLabel:'地方',branch:'county',branchLabel:'县邑级'},
 };
-const LOCAL_CATEGORY_CLASS = {'州牧刺史':'local_province','部族首领':'local_province','郡国守相':'local_commandery','县邑令长':'local_county'};
+const LOCAL_CATEGORY_CLASS = {'州牧刺史':'local_province','部族首领':'local_province','郡国守相':'local_commandery','县邑令长':'local_county','州郡属官':'local_province'};
 const MILITARY_CATEGORIES = ['大将军／大司马','将军武职','都督军事','属国护官'];
 const OFFICE_GROUP_DEFS = [
   { key:'all', label:'全部', color:'#59635B', pale:'#EEF1EE', sub:[] },
@@ -1470,7 +1483,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
   .minority-region{stroke:rgba(112,103,89,.76)!important;stroke-width:1.05!important;stroke-dasharray:5 5!important;stroke-linejoin:round;mix-blend-mode:multiply;pointer-events:none}.minority-label{font-family:"KaiTi","STKaiti",serif;display:flex!important;justify-content:center;align-items:center;pointer-events:none}.minority-label span{display:inline-block;transform:translate(-50%,-50%);color:var(--minority-color,#625b52);font-size:13px;font-weight:700;letter-spacing:2px;white-space:nowrap;text-shadow:0 0 3px rgba(247,243,233,.96),0 0 1px rgba(247,243,233,.96)}
 .faction-filter{width:100%;border:0;border-radius:4px;background:transparent;font:inherit;text-align:left;cursor:pointer;transition:background .15s ease,color .15s ease}.faction-filter:hover,.faction-filter.active{background:rgba(141,61,50,.08);color:#202420}.faction-filter.active .lg-swatch{box-shadow:0 0 0 2px rgba(141,61,50,.2)}
 .lg-layer-row{font-size:11px;letter-spacing:.6px}.lg-admin-swatch{background:rgba(112,128,113,.42)}.lg-state-swatch{background:linear-gradient(135deg,#dce7df 0 50%,#e5e0ed 50% 100%)}.lg-commandery-swatch{background:rgba(197,207,200,.62);border-style:dashed}.lg-influence-line{width:18px;height:12px;border:0;border-radius:2px;background:repeating-linear-gradient(135deg,rgba(156,59,46,.72) 0 2px,transparent 2px 6px);opacity:.8}
-.lg-group{margin:7px 0 3px}.lg-group:first-of-type{margin-top:0}.lg-group-title{display:flex;align-items:center;gap:6px;margin-bottom:4px;padding:2px 0;color:#8a8477;font-size:9.5px;font-weight:700;letter-spacing:1.4px}.lg-group-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(160,152,138,.35),transparent)}.lg-county-swatch{width:13px;height:13px;border-radius:50%;background:#8f8a7d;box-shadow:inset 0 0 0 2px rgba(255,252,244,.65)}.lg-capital-icon{width:14px;height:14px;flex:0 0 auto;border:2px solid var(--capital-color,#8D3D32);border-radius:50%;background:#FFFDF8;box-shadow:inset 0 0 0 3px rgba(255,255,255,.65);margin-top:1px}.lg-minority-swatch{width:18px;height:12px;border:1px dashed #8A8170;background:rgba(168,151,120,.12)}.lg-hint{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed rgba(160,152,138,.35);color:#a29b8e;font-size:9px;line-height:1.55;letter-spacing:.3px}
+.lg-group{margin:7px 0 3px}.lg-group:first-of-type{margin-top:0}.lg-group-title{display:flex;align-items:center;gap:6px;margin-bottom:4px;padding:2px 0;color:#8a8477;font-size:9.5px;font-weight:700;letter-spacing:1.4px}.lg-group-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(160,152,138,.35),transparent)}.lg-county-swatch{width:13px;height:13px;border-radius:50%;background:#8f8a7d;box-shadow:inset 0 0 0 2px rgba(255,252,244,.65)}.lg-capital-icon{width:14px;height:14px;flex:0 0 auto;border:2px solid var(--capital-color,#8D3D32);border-radius:50%;background:#FFFDF8;box-shadow:inset 0 0 0 3px rgba(255,255,255,.65);margin-top:1px}.lg-minority-swatch{width:18px;height:12px;border:1px dashed #8A8170;background:rgba(168,151,120,.12)}.lg-hydronym-swatch{width:18px;height:12px;border:1px solid rgba(53,96,107,.42);background:rgba(200,224,226,.55);position:relative}.lg-hydronym-swatch::after{content:'';position:absolute;left:3px;right:3px;top:50%;height:1px;background:rgba(53,96,107,.65)}.lg-hint{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed rgba(160,152,138,.35);color:#a29b8e;font-size:9px;line-height:1.55;letter-spacing:.3px}
 .map-filter-status{margin-top:8px;padding:6px 8px;border:1px solid rgba(84,78,66,.14);border-radius:5px;background:rgba(247,243,234,.78);color:#6f756f;font-size:10.5px;line-height:1.45;letter-spacing:.4px}#map-state-filter{width:100%;min-height:28px;padding:4px 7px;border:1px solid #d6d0c3;border-radius:4px;background:rgba(255,255,255,.72);color:#6f756f;font:inherit;font-size:11px}.map-clear-filter{width:100%;margin-top:7px;padding:5px 8px;border:1px solid #d6d0c3;border-radius:4px;background:transparent;color:#6f756f;font:inherit;font-size:11px;cursor:pointer}.map-clear-filter:hover{background:rgba(141,61,50,.08);color:#202420}
 .leaflet-top.leaflet-left{margin-top:10px;margin-left:10px}
 #sidebox{top:88px;left:14px;bottom:14px;background:rgba(255,255,255,.95);border:1px solid #daddd7;border-radius:11px;box-shadow:0 7px 20px rgba(30,37,30,.10);font-family:inherit}
@@ -1512,6 +1525,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
         <div class="lg-item"><span class="lg-dot battle"></span>战役</div>
         <div class="lg-item"><span class="lg-route"></span>进军路线</div>
         <div class="lg-item lg-layer-row"><span class="lg-minority-swatch"></span>域外活动范围（推定）</div>
+        <div class="lg-item lg-layer-row"><span class="lg-hydronym-swatch"></span>古水名（《水经注》卷次标注）</div>
       </div>
       <span class="lg-hint">点击势力名称可聚焦；放大至 7 级以上显示县政区点。</span>
     </div>
@@ -1542,6 +1556,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
       <label><input id="lyr-minorities" type="checkbox" checked> 周边族群范围</label>
       <label><input id="lyr-city" type="checkbox" checked> 重要城池</label>
       <label><input id="lyr-water" type="checkbox" checked> 河湖水系</label>
+      <label><input id="lyr-hydronym" type="checkbox" checked> 古水名标注</label>
       <label><input id="lyr-tint" type="checkbox" checked> 古韵纸色</label>
     </div>
   </div>
@@ -1557,6 +1572,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 <script src="vendor/leaflet/leaflet.js"><\/script>
 <script src="js/config.js?v=41"><\/script>
 <script src="data/geo-water.js"><\/script>
+<script src="data/hydronym-audit.js"><\/script>
 <script src="data/geo-coastline.js"><\/script>
 <script src="data/three-kingdoms.js"><\/script>
 <script src="data/political-snapshots.js"><\/script>
@@ -2607,6 +2623,7 @@ THREE_KINGDOMS.cities.forEach(function(city){
 <script src="js/markers.js"><\/script>
 <script src="js/routes.js"><\/script>
 <script src="js/strategic-layers.js?v=41"><\/script>
+<script src="js/hydronyms.js"><\/script>
 <script src="js/panel.js"><\/script>
 <script>
 (function(){
@@ -2649,7 +2666,7 @@ THREE_KINGDOMS.cities.forEach(function(city){
       '</p><div class="pv-section"><div class="pv-label">国家与政权</div><div class="pv-chips">'+terr+
       '</div></div><div class="pv-section"><div class="pv-label">年号与皇帝</div><div class="pv-reigns">'+reigns+
       '</div></div>'+rosterHtml+'<div class="pv-section"><div class="pv-label">编年要事</div><ul class="ev-list">'+events+
-      '</ul></div><div class="pv-hint">点击地图上的城池、战役或州郡，以观其详。</div>';
+      '</ul></div><button class="pv-back" onclick="Panel.hydronymIndex()">古水名索引</button><div class="pv-hint">点击地图上的城池、战役、古水名或州郡，以观其详。</div>';
     panel.classList.add('is-open');
   };
   document.addEventListener('DOMContentLoaded',function(){
@@ -2696,7 +2713,7 @@ const ICONS = ['🐉','⚔️','🛡️','📜','🏹','👑','🏯','🐎','⚜
 const CATEGORY_ICONS = {
   '宗室诸王':'宗','丞相／相国':'相','三公':'鼎','大将军／大司马':'帅','九卿':'卿','尚书台省':'牍','中书门下':'诏',
   '散骑集书':'散','御史台':'御','将军武职':'⚔','都督军事':'旌','州牧刺史':'州','郡国守相':'郡','县邑令长':'县',
-  '幕府属官':'幕','散官':'官','属国护官':'护','部族首领':'酋','爵禄勋位':'爵','其他':'•'
+  '州郡属官':'署','太子官属':'宫','诸王官属':'邸','幕府属官':'幕','散官':'官','属国护官':'护','部族首领':'酋','爵禄勋位':'爵','其他':'•'
 };
 const CORE_CATEGORIES = ['丞相／相国','三公','大将军／大司马','九卿','尚书台省','中书门下','散骑集书','御史台','将军武职','都督军事','州牧刺史','郡国守相','县邑令长','属国护官','部族首领'];
 const CATEGORY_PARENT_RULES = {
@@ -2710,6 +2727,9 @@ const CATEGORY_PARENT_RULES = {
   '州牧刺史':['大将军／大司马','都督军事','州牧刺史'],
   '郡国守相':['州牧刺史','郡国守相'],
   '县邑令长':['郡国守相','县邑令长'],
+  '州郡属官':['州牧刺史','郡国守相','州郡属官'],
+  '太子官属':['太子官属'],
+  '诸王官属':['宗室诸王','诸王官属'],
   '幕府属官':['丞相／相国','三公','将军武职','都督军事','州牧刺史','幕府属官'],
   '属国护官':['大将军／大司马','都督军事','州牧刺史','属国护官'],
 };
@@ -2742,34 +2762,34 @@ const REGION_OPTIONS = [
 const BATCH_TEMPLATES = {
   shangshu:{ label:'魏晋尚书诸曹（据时期核校）', category:'尚书台省', names:['吏部尚书','度支尚书','左民尚书','客曹尚书','五兵尚书'] },
   staff:{ label:'幕府标准僚属', category:'幕府属官', names:['长史','司马','主簿','参军','祭酒','掾属'] },
-  prefecture:{ label:'郡守标准僚属', category:'幕府属官', names:['郡丞','长史','功曹史','五官掾','主簿','督邮'] },
+  prefecture:{ label:'郡守标准僚属', category:'州郡属官', names:['郡丞','长史','功曹史','五官掾','主簿','督邮'] },
 };
 const OFFICE_TEMPLATE_LIBRARY = [
   { id:'tpl_han_sangong', label:'东汉三公府僚属', faction:'han', category:'幕府属官', applies:[[168,220]], note:'太尉府、司徒府、司空府长史、司直、掾属等；建安年间三公多为名义虚衔。', names:['长史','司直','功曹','主簿','奏曹','议曹','簿曹','兵曹','掾属'] },
   { id:'tpl_han_shangshu', label:'东汉尚书台基本结构', faction:'han', category:'尚书台省', applies:[[168,220]], note:'东汉尚书台设尚书令、尚书仆射、左右丞、六曹尚书与尚书郎；曹数在不同时期有损益。', names:['尚书令','尚书仆射','左丞','右丞','吏曹尚书','左民曹尚书','客曹尚书','二千石曹尚书','三公曹尚书','尚书郎'] },
   { id:'tpl_han_jiuqing', label:'东汉九卿寺署', faction:'han', category:'九卿', applies:[[168,220]], note:'太常、光禄勋、卫尉、太仆、廷尉、大鸿胪、宗正、大司农、少府九卿及其属官；各卿寺另有丞、掾属。', names:['太常','光禄勋','卫尉','太仆','廷尉','大鸿胪','宗正','大司农','少府'] },
-  { id:'tpl_han_donggong', label:'东汉太子官属', faction:'han', category:'幕府属官', applies:[[168,220]], note:'太子太傅、少傅与太子詹事、率更令、家令、仆、门大夫等；随太子册立而置。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆','太子门大夫'] },
+  { id:'tpl_han_donggong', label:'东汉太子官属', faction:'han', category:'太子官属', applies:[[168,220]], note:'太子太傅、少傅与太子詹事、率更令、家令、仆、门大夫等；随太子册立而置。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆','太子门大夫'] },
   { id:'tpl_han_wangguo', label:'东汉王国官属', faction:'han', category:'郡国守相', applies:[[168,220]], note:'王国设傅、相（国相行太守事）、中尉、郎中令、仆、治书等；东汉后期王国多为虚封。', names:['王国傅','国相','王国中尉','郎中令','王国仆','治书'] },
-  { id:'tpl_han_junliao', label:'东汉郡国僚属', faction:'han', category:'幕府属官', applies:[[168,220]], note:'郡丞、长史、功曹、五官掾、主簿、督邮、决曹、贼曹、议曹等；郡国佐吏随州郡并置。', names:['郡丞','长史','功曹史','五官掾','主簿','督邮','决曹史','贼曹史','议曹史'] },
+  { id:'tpl_han_junliao', label:'东汉郡国僚属', faction:'han', category:'州郡属官', applies:[[168,220]], note:'郡丞、长史、功曹、五官掾、主簿、督邮、决曹、贼曹、议曹等；归郡府，不并入军府。', names:['郡丞','长史','功曹史','五官掾','主簿','督邮','决曹史','贼曹史','议曹史'] },
   { id:'tpl_han_xianliao', label:'东汉县邑僚属', faction:'han', category:'县邑令长', applies:[[168,220]], note:'县令、县长及县丞、县尉、主簿、功曹、廷掾等；千石以上称令，减万户为长。', names:['县令／长','县丞','县尉','县主簿','功曹史','廷掾'] },
   { id:'tpl_wei_shangshu', label:'曹魏尚书诸曹', faction:'wei', category:'尚书台省', applies:[[220,265]], note:'魏尚书台设尚书令、仆射、吏部、左民、客曹、五兵、度支等曹，曹名与数量随时期调整。', names:['吏部尚书','度支尚书','左民尚书','客曹尚书','五兵尚书'] },
   { id:'tpl_wei_jiuqing', label:'曹魏九卿寺署', faction:'wei', category:'九卿', applies:[[220,265]], note:'魏九卿承汉制设太常、光禄勋、卫尉、太仆、廷尉、大鸿胪、宗正、大司农、少府；品级依《通典》卷三十六。', names:['太常','光禄勋','卫尉','太仆','廷尉','大鸿胪','宗正','大司农','少府'] },
-  { id:'tpl_wei_donggong', label:'曹魏太子官属', faction:'wei', category:'幕府属官', applies:[[220,265]], note:'魏置太子太傅、少傅、詹事、率更令、家令、仆、门大夫、中庶子、洗马等；文帝、明帝朝最完备。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆','太子门大夫','太子中庶子','太子洗马'] },
+  { id:'tpl_wei_donggong', label:'曹魏太子官属', faction:'wei', category:'太子官属', applies:[[220,265]], note:'魏置太子太傅、少傅、詹事、率更令、家令、仆、门大夫、中庶子、洗马等；归东宫。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆','太子门大夫','太子中庶子','太子洗马'] },
   { id:'tpl_wei_wangguo', label:'曹魏王国官属', faction:'wei', category:'郡国守相', applies:[[220,265]], note:'魏王国设国相、郎中令、中尉、傅、友、文学、治书等；景初中王国官属有定制。', names:['王国傅','国相','王国中尉','郎中令','王国友','王国文学','治书'] },
-  { id:'tpl_wei_zhoumu', label:'曹魏州牧刺史僚属', faction:'wei', category:'州牧刺史', applies:[[220,265]], note:'魏州牧、刺史设治中、别驾、功曹、簿曹、兵曹、都官从事、簿曹从事等；领兵者另开军府。', names:['治中从事','别驾从事','功曹从事','簿曹从事','兵曹从事','都官从事','部郡从事','州主簿'] },
+  { id:'tpl_wei_zhoumu', label:'曹魏州牧刺史僚属', faction:'wei', category:'州郡属官', applies:[[220,265]], note:'魏州牧、刺史设治中、别驾、功曹、簿曹、兵曹、都官从事、部郡从事等；归州府，领兵者另开军府。', names:['治中从事','别驾从事','功曹从事','簿曹从事','兵曹从事','都官从事','部郡从事','州主簿'] },
   { id:'tpl_wei_dudu', label:'曹魏都督军府僚属', faction:'wei', category:'幕府属官', applies:[[220,265]], note:'都督诸州军事开府后置长史、司马、主簿、参军、掾属等；《通典》卷三十六列都督府长史司马品级。', names:['长史','司马','主簿','参军','祭酒','掾属'] },
   { id:'tpl_han_shu', label:'季汉中央与州府官属', faction:'shu', category:'其他', applies:[[221,263]], note:'汉承汉制不设九品；丞相府开府置长史、司马、主簿、参军、掾属，州府与郡国僚属大体依东汉旧制。', names:['丞相长史','丞相司马','主簿','参军','祭酒','掾属','治中从事','别驾从事','郡丞','功曹史'] },
-  { id:'tpl_han_donggong', label:'季汉太子官属', faction:'shu', category:'幕府属官', applies:[[221,263]], note:'汉置太子太傅、少傅、詹事、率更令、家令、仆等；蜀汉史料零散，部分官名仅见于个别传记。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆'] },
+  { id:'tpl_han_donggong', label:'季汉太子官属', faction:'shu', category:'太子官属', applies:[[221,263]], note:'汉置太子太傅、少傅、詹事、率更令、家令、仆等；归东宫，部分官名仅见个别传记。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆'] },
   { id:'tpl_wu_shangshu', label:'孙吴尚书台与选曹', faction:'wu', category:'尚书台省', applies:[[222,280]], note:'吴设尚书令、仆射、选曹尚书、吏部尚书、左曹、右曹等；选曹主铨选。', names:['尚书令','尚书仆射','选曹尚书','吏部尚书','左曹尚书','右曹尚书'] },
   { id:'tpl_wu_jiuqing', label:'孙吴九卿寺署', faction:'wu', category:'九卿', applies:[[222,280]], note:'《晋书·职官志》称吴多依汉制；吴置太常、光禄勋、卫尉、太仆、廷尉、大鸿胪、宗正、大司农、少府等，具体官职仍需逐传核校。', names:['太常','光禄勋','卫尉','太仆','廷尉','大鸿胪','宗正','大司农','少府'] },
   { id:'tpl_wu_dudu', label:'孙吴都督军府僚属', faction:'wu', category:'幕府属官', applies:[[222,280]], note:'吴都督、领军开府置长史、司马、主簿、参军、掾属等；部曲世袭背景较浓，属官设置未必整齐。', names:['长史','司马','主簿','参军','祭酒','掾属'] },
-  { id:'tpl_wu_zhoumu', label:'孙吴州牧刺史僚属', faction:'wu', category:'州牧刺史', applies:[[222,280]], note:'吴州牧、刺史设别驾、治中、功曹、簿曹、部郡从事等，大体承汉制。', names:['别驾从事','治中从事','功曹从事','簿曹从事','部郡从事','州主簿'] },
+  { id:'tpl_wu_zhoumu', label:'孙吴州牧刺史僚属', faction:'wu', category:'州郡属官', applies:[[222,280]], note:'吴州牧、刺史设别驾、治中、功曹、簿曹、部郡从事等；归州府。', names:['别驾从事','治中从事','功曹从事','簿曹从事','部郡从事','州主簿'] },
   { id:'tpl_jin_shangshu', label:'西晋尚书台诸曹', faction:'jin', category:'尚书台省', applies:[[266,316]], note:'晋尚书台设尚书令、仆射、吏部、三公、客曹、驾部、屯田、度支等曹；太康中尚书六曹有定制。', names:['吏部尚书','三公尚书','客曹尚书','驾部尚书','屯田尚书','度支尚书'] },
   { id:'tpl_jin_jiuqing', label:'西晋九卿寺署', faction:'jin', category:'九卿', applies:[[266,316]], note:'晋九卿承魏晋旧制，设太常、光禄勋、卫尉、太仆、廷尉、大鸿胪、宗正、大司农、少府；品级依《通典》卷三十七。', names:['太常','光禄勋','卫尉','太仆','廷尉','大鸿胪','宗正','大司农','少府'] },
-  { id:'tpl_jin_donggong', label:'西晋太子官属', faction:'jin', category:'幕府属官', applies:[[266,316]], note:'晋太子太傅、少傅、詹事、率更令、家令、仆、中庶子、洗马等；惠帝、愍怀太子时期最盛。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆','太子中庶子','太子洗马'] },
+  { id:'tpl_jin_donggong', label:'西晋太子官属', faction:'jin', category:'太子官属', applies:[[266,316]], note:'晋太子太傅、少傅、詹事、率更令、家令、仆、中庶子、洗马等；归东宫。', names:['太子太傅','太子少傅','太子詹事','太子率更令','太子家令','太子仆','太子中庶子','太子洗马'] },
   { id:'tpl_jin_wangguo', label:'西晋王国官属', faction:'jin', category:'郡国守相', applies:[[266,316]], note:'晋王国设国相、内史、郎中令、中尉、大农、文学、友等；五等爵分封下王国制度较完备。', names:['王国傅','国相／内史','王国中尉','郎中令','王国大农','王国文学','治书'] },
   { id:'tpl_jin_dudu', label:'西晋都督军府僚属', faction:'jin', category:'幕府属官', applies:[[266,316]], note:'晋都督诸州军事开府置长史、司马、主簿、参军、掾属等；《通典》卷三十七列都督府长史司马品级。', names:['长史','司马','主簿','参军','祭酒','掾属'] },
-  { id:'tpl_jin_zhoumu', label:'西晋州牧刺史僚属', faction:'jin', category:'州牧刺史', applies:[[266,316]], note:'晋州牧、刺史设别驾、治中、功曹、簿曹、部郡从事等；领兵者另有军府属官。', names:['别驾从事','治中从事','功曹从事','簿曹从事','部郡从事','州主簿'] }
+  { id:'tpl_jin_zhoumu', label:'西晋州牧刺史僚属', faction:'jin', category:'州郡属官', applies:[[266,316]], note:'晋州牧、刺史设别驾、治中、功曹、簿曹、部郡从事等；归州府，领兵者另有军府属官。', names:['别驾从事','治中从事','功曹从事','簿曹从事','部郡从事','州主簿'] }
 ];
 /* 维基百科《三国官制》条目补充（二手索引，正式引用须回查原典）。
  * 只补充原树缺失且可考的核心官署/职官；节点按 parent 名挂靠，找不到时挂势力根节点。 */
@@ -2798,10 +2818,10 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'shu',parent:'',name:'征西将军',category:'将军武职',note:'季汉诸号将军之一；与东吴联合抗曹，故无征东将军名号。'},
   {faction:'shu',parent:'',name:'安汉将军',category:'将军武职',note:'刘备特为麋竺设，无实权，位在诸葛亮上。'},
   {faction:'shu',parent:'',name:'司隶校尉（季汉）',category:'州牧刺史',note:'季汉置司隶校尉掌京城及监察，与东汉制度不同。'},
-  {faction:'shu',parent:'益州牧',name:'别驾从事',category:'幕府属官',note:'益州属官。'},
-  {faction:'shu',parent:'益州牧',name:'治中从事',category:'幕府属官',note:'益州属官。'},
-  {faction:'shu',parent:'益州牧',name:'劝学从事',category:'幕府属官',note:'益州属官，掌劝学。'},
-  {faction:'shu',parent:'益州牧',name:'督军从事',category:'幕府属官',note:'益州属官，掌督军事。'},
+  {faction:'shu',parent:'益州牧',name:'别驾从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'益州府属官。'},
+  {faction:'shu',parent:'益州牧',name:'治中从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'益州府属官。'},
+  {faction:'shu',parent:'益州牧',name:'劝学从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'益州府属官，掌劝学。'},
+  {faction:'shu',parent:'益州牧',name:'督军从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文武兼',note:'益州府属官，掌督军事；文职性质与军务职掌并列显示。'},
   {faction:'shu',parent:'',name:'犍为属国都尉',category:'郡国守相',note:'犍为郡置属国都尉。'},
   {faction:'shu',parent:'',name:'牂柯五部都尉',category:'郡国守相',note:'牂柯郡置五部都尉。'},
 
@@ -2839,9 +2859,9 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'wei',parent:'州刺史与司隶校尉',name:'功曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
   {faction:'wei',parent:'州刺史与司隶校尉',name:'簿曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
   {faction:'wei',parent:'州刺史与司隶校尉',name:'兵曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'督邮',category:'幕府属官',note:'魏州属官，掌督察。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'督邮',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州府属官，掌督察。'},
   {faction:'wei',parent:'州刺史与司隶校尉',name:'州主簿',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'大中正',category:'幕府属官',note:'魏州置大中正，掌品评人物。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'大中正',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州置大中正，掌品评人物。'},
 
   {faction:'wu',parent:'',name:'左丞相',category:'丞相／相国',note:'孙吴宝鼎元年（266年）分置左右丞相。'},
   {faction:'wu',parent:'',name:'右丞相',category:'丞相／相国',note:'孙吴宝鼎元年（266年）分置左右丞相。'},
@@ -2868,22 +2888,22 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'wu',parent:'',name:'抚军将军',category:'将军武职',note:'吴诸号将军之一。'},
   {faction:'wu',parent:'',name:'征南将军',category:'将军武职',note:'吴有征南、征西、征北，无征东。'},
   {faction:'wu',parent:'',name:'平南将军',category:'将军武职',note:'吴有平南、平西、平北，无平东。'},
-  {faction:'wu',parent:'',name:'太子太傅',category:'幕府属官',note:'吴太子官属。'},
-  {faction:'wu',parent:'',name:'太子少傅',category:'幕府属官',note:'吴太子官属。'},
-  {faction:'wu',parent:'',name:'左辅都尉',category:'幕府属官',note:'黄龙元年置，太子四友之一。'},
-  {faction:'wu',parent:'',name:'右弼都尉',category:'幕府属官',note:'黄龙元年置，太子四友之一。'},
-  {faction:'wu',parent:'',name:'辅正都尉',category:'幕府属官',note:'黄龙元年置，太子四友之一。'},
-  {faction:'wu',parent:'',name:'翼正都尉',category:'幕府属官',note:'黄龙元年置，太子四友之一。'},
+  {faction:'wu',parent:'',name:'太子太傅',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'吴太子官属。'},
+  {faction:'wu',parent:'',name:'太子少傅',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'吴太子官属。'},
+  {faction:'wu',parent:'',name:'左辅都尉',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'黄龙元年置，太子四友之一。'},
+  {faction:'wu',parent:'',name:'右弼都尉',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'黄龙元年置，太子四友之一。'},
+  {faction:'wu',parent:'',name:'辅正都尉',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'黄龙元年置，太子四友之一。'},
+  {faction:'wu',parent:'',name:'翼正都尉',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'黄龙元年置，太子四友之一。'},
   {faction:'wu',parent:'',name:'典农都尉',category:'郡国守相',note:'吴屯田郡置典农都尉，职如太守。'},
-  {faction:'wu',parent:'',name:'部郡从事',category:'幕府属官',note:'吴州属官。'},
-  {faction:'wu',parent:'',name:'大中正',category:'州牧刺史',note:'吴州置大中正。'},
+  {faction:'wu',parent:'',name:'部郡从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'吴州府属官。'},
+  {faction:'wu',parent:'',name:'大中正',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'吴州置大中正。'},
 
   {faction:'jin',parent:'中书监／中书令',name:'中书侍郎',category:'中书门下',note:'晋中书省属官，承曹魏制。'},
   {faction:'jin',parent:'',name:'秘书监',category:'散骑集书',note:'晋秘书监，掌图籍。'},
   {faction:'jin',parent:'',name:'领军将军',category:'将军武职',note:'晋领军将军，掌禁军。'},
   {faction:'jin',parent:'',name:'护军将军',category:'将军武职',note:'晋护军将军。'},
-  {faction:'jin',parent:'州刺史（制度分组）',name:'别驾从事',category:'幕府属官',note:'晋州属官。'},
-  {faction:'jin',parent:'州刺史（制度分组）',name:'治中从事',category:'幕府属官',note:'晋州属官。'}
+  {faction:'jin',parent:'州刺史（制度分组）',name:'别驾从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'晋州府属官。'},
+  {faction:'jin',parent:'州刺史（制度分组）',name:'治中从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'晋州府属官。'}
 ];
 
 // 《通典》卷三十六（魏官品）、卷三十七（晋官品）节录整理。
@@ -4335,12 +4355,20 @@ const app = createApp({
     const peopleQuery = ref('');
     const peoplePolity = ref('all');
     const peopleKind = ref('all');
+    const peopleEra = ref('all');
+    const peopleYear = ref(220);
+    const peopleSource = ref('all');
+    const peopleEvidence = ref('all');
+    const peopleServiceDomain = ref('all');
+    const peopleInstitutionType = ref('all');
     const peopleOnlyPortrait = ref(false);
+    const peoplePage = ref(1);
+    const peoplePageSize = 96;
     const periodRosterPhase = ref('all');
     const showPeopleDetail = ref(false);
     const activePeopleDetail = ref(null);
     const personMeta = reactive({ map:{} });
-    const personMetaDialog = reactive({ visible:false, name:'', form:{} });
+    const personMetaDialog = reactive({ visible:false, personId:'', name:'', form:{} });
     const showAuditCenter = ref(false);
     const auditIssues = ref([]);
     const auditFilters = reactive({ severity:'all', module:'all' });
@@ -4754,8 +4782,11 @@ const app = createApp({
     }
     function officeClassOf(node){
       if(!node || node.kind!=='office') return OFFICE_CLASS_META.central_civil;
-      let classKey=LOCAL_CATEGORY_CLASS[node.category] || (MILITARY_CATEGORIES.includes(node.category)?'central_military':'central_civil');
-      if(node.category==='幕府属官'){
+      let classKey=node.institutionType==='州府'?'local_province'
+        :(node.institutionType==='郡府'?'local_commandery'
+        :(node.institutionType==='县署'?'local_county'
+        :(LOCAL_CATEGORY_CLASS[node.category] || (MILITARY_CATEGORIES.includes(node.category)?'central_military':'central_civil'))));
+      if(node.category==='幕府属官' && !['州府','郡府','县署'].includes(node.institutionType)){
         const byKey=new Map(currentArr.value.map(n=>[n.key,n]));
         let cursor=byKey.get(node.parent), guard=0;
         while(cursor && guard++<80){
@@ -4965,7 +4996,7 @@ const app = createApp({
     function courtSeatCount(node){
       const declared=Number(node?.seatCount);
       if(Number.isFinite(declared)&&declared>0) return declared;
-      const policy=(window.SGZ_SEAT_POLICIES||[]).find(item=>item.officeId===node?.entityId || item.officeId===node?.key);
+      const policy=seatPolicyFor(null,node);
       if(policy && Number(policy.displayCapacity)>0) return Number(policy.displayCapacity);
       return Math.max(1,courtFigures(node).length);
     }
@@ -4977,7 +5008,8 @@ const app = createApp({
     function courtSeatMeta(node){
       if(node?.virtualSlot) return '册立时置';
       const rank=node?.rank9||node?.hanRank||node?.category||'品秩未详';
-      return node?.seatCount ? String(node.seatCount)+'席 · '+rank : rank;
+      const stats=courtSeatStats(null,node);
+      return `${rank} · 编${stats.authorized===null?'待考':stats.authorized}／席${stats.display}／实${stats.actual}`;
     }
     function courtBranchOf(node){
       return officeClassOf(node).branch==='military'?'military':'civil';
@@ -5058,15 +5090,117 @@ const app = createApp({
       ['从事中郎',70],['祭酒',80],['门下督',90],['曹掾',100],['曹属',110],['记室',120],
       ['令史',130],['掌府事',140],['掾',150],['属',160],['部曲将',170]
     ];
+    function canonicalOfficeName(value){ return String(value||'').replace(/[（(].*?[)）]/g,'').replace(/^(?:左右|左|右)/,'').replace(/^丞相(?=.)/,'').trim(); }
+    function courtSelectedYear(){
+      if(timelineEnabled.value) return Number(timelineYear.value);
+      const period=currentPeriodDef.value;
+      if(Number.isFinite(Number(period?.startYear))) return Number(period.startYear);
+      return null;
+    }
+    function currentCourtPolity(){ return window.SGZResearchModel.normalizePolity(currentFactionDef.value?.short||currentFactionDef.value?.name||currentFaction.value); }
+    function recordValidAtCourtYear(record){
+      const from=normalizeYear(record?.validFrom),to=normalizeYear(record?.validTo);
+      if(timelineEnabled.value){
+        const year=courtSelectedYear();
+        return !Number.isFinite(year)||(from===null||from<=year)&&(to===null||to>=year);
+      }
+      const period=currentPeriodDef.value;
+      const periodStart=normalizeYear(period?.startYear),periodEnd=normalizeYear(period?.endYear);
+      if(periodStart===null&&periodEnd===null) return true;
+      return (to===null||periodStart===null||to>=periodStart)&&(from===null||periodEnd===null||from<=periodEnd);
+    }
+    function policyPolityMatches(record){
+      if(!record?.polity) return true;
+      return window.SGZResearchModel.normalizePolity(record.polity)===currentCourtPolity();
+    }
+    function courtKaifuPolicyFor(owner){
+      if(!owner) return null;
+      const ownerName=canonicalOfficeName(owner.name);
+      const figures=courtFigures(owner);
+      const rows=(window.SGZ_KAIFU_POLICIES||[]).filter(policy=>policy.id!=='kaifu:generic:unverified'&&policyPolityMatches(policy)&&recordValidAtCourtYear(policy)).filter(policy=>{
+        const office=canonicalOfficeName(policy.officeName);
+        if(office && office!=='未匹配开府官职' && !(ownerName===office||ownerName.includes(office)||office.includes(ownerName))) return false;
+        if(policy.personName && figures.length && !figures.some(person=>String(person.name||'')===policy.personName)) return false;
+        return true;
+      }).sort((a,b)=>Number(Boolean(b.personName))*20+Number(Boolean(b.validFrom))*5-Number(Boolean(a.personName))*20-Number(Boolean(a.validFrom))*5);
+      if(rows[0]) return rows[0];
+      if(owner.kaifu) return (window.SGZ_KAIFU_POLICIES||[]).find(policy=>policy.id==='kaifu:generic:unverified')||null;
+      return null;
+    }
+    function residenceDefinitionFor(owner){
+      if(!owner) return null;
+      const ownerName=canonicalOfficeName(owner.name),figures=courtFigures(owner),kaifu=courtKaifuPolicyFor(owner);
+      return (window.SGZ_OFFICE_RESIDENCES||[]).filter(item=>!item.isFallback&&policyPolityMatches(item)&&recordValidAtCourtYear(item)).map(item=>{
+        let score=0;
+        const names=(item.ownerOfficeNames||[]).map(canonicalOfficeName);
+        if(names.includes(ownerName)) score+=60;
+        else if(canonicalOfficeName(item.ownerOfficeName)===ownerName) score+=50;
+        if((item.ownerCategories||[]).includes(owner.category)) score+=25;
+        if(item.ownerPersonName){
+          if(figures.some(person=>String(person.name||'')===item.ownerPersonName)) score+=100;
+          else if(figures.length) return {item,score:-1};
+          else score+=10;
+        }
+        if(item.kaifuPolicyId && kaifu?.id===item.kaifuPolicyId) score+=35;
+        if(item.id==='residence:jin:military-kaifu'&&!kaifu) return {item,score:-1};
+        return {item,score};
+      }).filter(match=>match.score>0).sort((a,b)=>b.score-a.score)[0]?.item||null;
+    }
+    function seatPolicyOwnerMatches(policy,owner){
+      if(!policy?.ownerOfficeName) return !owner;
+      if(!owner) return false;
+      const ownerName=canonicalOfficeName(owner.name),family=String(policy.ownerOfficeName||''),definition=residenceDefinitionFor(owner);
+      if(canonicalOfficeName(family)===ownerName) return true;
+      if(family==='相国／丞相府') return /相国|丞相/.test(ownerName);
+      if(family==='大将军府') return /大将军|上大将军/.test(ownerName);
+      if(family==='晋诸公及开府位从公') return definition?.id==='residence:jin:public-office';
+      if(family==='晋开府加兵公') return definition?.id==='residence:jin:military-kaifu';
+      return false;
+    }
+    function seatPolicyFor(owner,node){
+      if(!node) return null;
+      const name=canonicalOfficeName(node.name||node.officeName);
+      return (window.SGZ_SEAT_POLICIES||[]).filter(policy=>policyPolityMatches(policy)&&recordValidAtCourtYear(policy)).find(policy=>{
+        if(policy.officeId && (policy.officeId===node.entityId||policy.officeId===node.key)) return true;
+        if(!policy.officeName||!seatPolicyOwnerMatches(policy,owner)) return false;
+        const policyName=canonicalOfficeName(policy.officeName);
+        return name===policyName||name.endsWith(policyName);
+      })||null;
+    }
+    function courtActualAppointmentCount(node){
+      const ids=new Set();
+      courtFigures(node).forEach((person,index)=>ids.add(person.personId||person.appointmentId||`${person.name}:${index}`));
+      return ids.size;
+    }
+    function courtSeatStats(owner,node){
+      const policy=seatPolicyFor(owner,node);
+      const authorized=policy&&Number.isFinite(Number(policy.authorizedCount))?Number(policy.authorizedCount):null;
+      const display=policy&&Number.isFinite(Number(policy.displayCapacity))?Number(policy.displayCapacity):Math.max(1,courtActualAppointmentCount(node));
+      return {authorized,display,actual:courtActualAppointmentCount(node),countStatus:policy?.countStatus||'待考',sourceText:policy?.sourceText||'',policy};
+    }
     function courtResidenceRolesFor(owner){
       if(!owner) return [];
-      const roles=currentArr.value.filter(node=>node.parent===owner.key&&node.kind==='office'&&(['幕府属官','州郡属官'].includes(node.category))&&courtNodeVisible(node));
+      const roles=currentArr.value.filter(node=>node.parent===owner.key&&node.kind==='office'&&(['幕府属官','州郡属官','太子官属','诸王官属'].includes(node.category))&&courtNodeVisible(node));
+      const definition=residenceDefinitionFor(owner);
+      if(definition?.roles?.length){
+        const consumed=new Set();
+        const merged=definition.roles.map((template,index)=>{
+          const match=roles.find(node=>!consumed.has(node.key)&&canonicalOfficeName(node.name)===canonicalOfficeName(template.officeName));
+          if(match){
+            consumed.add(match.key);
+            return Object.assign({},template,match,{serviceDomain:match.serviceDomain||template.serviceDomain,institutionType:match.institutionType||template.institutionType,residenceOrder:(index+1)*10});
+          }
+          const category=template.institutionType==='州府'||template.institutionType==='郡府'?'州郡属官':(template.institutionType==='东宫'?'太子官属':(template.institutionType==='王府'?'诸王官属':'幕府属官'));
+          return Object.assign({},template,{key:`${owner.key}::residence::${index}`,kind:'office',name:template.officeName,category,figures:[],virtualResidenceRole:true,residenceOrder:(index+1)*10,note:template.note||'制度席位；具体任官未录。'});
+        });
+        return merged.concat(roles.filter(node=>!consumed.has(node.key)));
+      }
       if(roles.length || !['州牧刺史','郡国守相'].includes(owner.category)) return roles;
       const names=owner.category==='州牧刺史'?(window.SGZ_BAIGUANZHI_STAFF?.province||['别驾从事','治中从事','功曹','簿曹','主簿']):(window.SGZ_BAIGUANZHI_STAFF?.commandery||['郡丞','功曹','主簿','督邮']);
-      return names.map((name,index)=>({key:owner.key+'::staff::'+index,kind:'office',name,category:'州郡属官',hanRank:'未详',figures:[],virtualResidenceRole:true,residenceOrder:(index+1)*10,note:'按州郡属官制度展示；具体到任人物与员额须另行录入。'}));
+      return names.map((name,index)=>({key:owner.key+'::staff::'+index,kind:'office',name,category:'州郡属官',institutionType:owner.category==='州牧刺史'?'州府':'郡府',serviceDomain:/兵曹|督军/.test(name)?'文武兼':'文官',hanRank:'未详',figures:[],virtualResidenceRole:true,residenceOrder:(index+1)*10,note:'按州郡属官制度展示；具体到任人物与员额须另行录入。'}));
     }
     function courtResidenceAvailable(node){
-      return Boolean(node&&node.kind==='office'&&(node.kaifu||courtResidenceRolesFor(node).length||['州牧刺史','郡国守相'].includes(node.category)));
+      return Boolean(node&&node.kind==='office'&&(residenceDefinitionFor(node)||courtKaifuPolicyFor(node)||courtResidenceRolesFor(node).length||['州牧刺史','郡国守相'].includes(node.category)));
     }
     function courtResidenceRoleOrder(node){
       const name=String(node?.name||'');
@@ -5076,15 +5210,17 @@ const app = createApp({
       return hit?hit[1]:500;
     }
     function courtResidenceRoleMeta(node){
-      return [node?.hanRank,node?.rank9,node?.note&&/待考|未详/.test(node.note)?'任职未详':''].filter(Boolean).join(' · ')||'府属官次未详';
+      return [node?.serviceDomain,node?.institutionType,node?.hanRank,node?.rank9,node?.note&&/待考|未详/.test(node.note)?'任职未详':''].filter(Boolean).join(' · ')||'府属官次未详';
     }
     const courtResidence = computed(()=>{
       const owner=currentArr.value.find(node=>node.key===activeCourtResidenceKey.value)||null;
       const roles=courtResidenceRolesFor(owner).slice().sort((a,b)=>courtResidenceRoleOrder(a)-courtResidenceRoleOrder(b)||String(a.name).localeCompare(String(b.name),'zh-CN'));
-      return {owner,roles};
+      return {owner,roles,definition:residenceDefinitionFor(owner),kaifuPolicy:courtKaifuPolicyFor(owner)};
     });
     function residenceStyleFor(owner){
       if(!owner) return 'plain';
+      const definition=residenceDefinitionFor(owner);
+      if(definition?.backgroundStyle) return definition.backgroundStyle;
       const category=String(owner.category||'');
       const name=String(owner.name||'');
       if(category==='州牧刺史') return 'province';
@@ -5097,9 +5233,11 @@ const app = createApp({
     }
     const courtResidenceStyle = computed(()=>({'--residence-style':residenceStyleFor(courtResidence.value.owner),'--court-accent':currentFactionDef.value.color}));
     const courtResidenceClass = computed(()=>`residence-style-${courtResidenceStyle.value['--residence-style']}`);
-    const courtResidenceType = computed(()=>({
+    const courtResidenceType = computed(()=>courtResidence.value.definition?.residenceType||({
       'grand-minister':'丞相三公府','general':'将军府','du-du':'都督府','province':'州府','commandery':'郡府','prince':'太子王府','plain':'府署'
     }[courtResidenceStyle.value['--residence-style']]||'府署'));
+    const courtResidenceName = computed(()=>courtResidence.value.definition?.name||courtResidenceType.value);
+    function courtKaifuLabel(owner){ return courtKaifuPolicyFor(owner)?.qualificationType||'待考'; }
     function openCourtResidence(node){
       if(!courtResidenceAvailable(node)) return selectCourtSlot(node);
       selectedKey.value=node.key;
@@ -6421,18 +6559,26 @@ const app = createApp({
 
     function openPersonProfile(name){ activePersonName.value=name; showPersonProfile.value=true; }
     /* ---------- 人物志：统一人物档案 ---------- */
-    function personKeyOf(name){ return String(name||'').replace(/[（(].*?[)）]/g,'').trim(); }
+    function personKeyOf(name){ return String(name||'').trim(); }
+    function personIdOf(name,context={}){
+      if(context?.personId) return String(context.personId);
+      return window.SGZResearchModel.personIdFor(personKeyOf(name),context||{});
+    }
+    function personRecordId(record,name,context={}){
+      return personIdOf(name,{...context,...record,personId:record?.personId});
+    }
     const PORTRAIT_POLITY_COLORS = {汉:'#8D3D32',季汉:'#A54136',蜀汉:'#A54136',魏:'#376B9E',吴:'#3F7652',晋:'#665483',西晋:'#665483',东晋:'#756194',匈奴:'#7A5230',鲜卑:'#7A5230',乌桓:'#7A5230',羌:'#7A5230'};
     function portraitMetaFor(name){
       const key=personKeyOf(name);
       const item=(window.SGZ_PERSON_PORTRAITS||{})[key];
       return typeof item==='string' ? {src:item,polity:'',color:''} : (item||{});
     }
-    function personPortraitFor(name, records){
+    function personPortraitFor(name, records, personId){
       const list=Array.isArray(records)?records:[];
       const record=list.find(item=>item&&item.portrait);
       if(record?.portrait) return record.portrait;
-      const custom=personMeta.map[personKeyOf(name)]?.portrait;
+      const resolvedId=personId||list.find(item=>item?.personId)?.personId||'';
+      const custom=(resolvedId&&personMeta.map[resolvedId]?.portrait)||personMeta.map[personKeyOf(name)]?.portrait;
       return custom || portraitMetaFor(name).src || '';
     }
     function polityColorFor(value){
@@ -6452,6 +6598,7 @@ const app = createApp({
         Object.entries(raw).forEach(([key,item])=>{
           if(!item || typeof item!=='object') return;
           out[String(key).trim()] = {
+            personId: String(item.personId||(String(key).startsWith('person:')?key:'')).trim(),
             name: String(item.name||key||'').trim(),
             zi: String(item.zi||'').trim(),
             birthplace: String(item.birthplace||'').trim(),
@@ -6465,42 +6612,41 @@ const app = createApp({
       }
       return out;
     }
-    function collectPersonAppointments(name){
+    function collectPersonAppointments(personRef){
       const records=[];
-      const key=personKeyOf(name);
+      const targetId=String(personRef||'').startsWith('person:')?String(personRef):'';
+      const targetName=targetId?'':personKeyOf(personRef);
+      const matches=(record,name,context={})=>targetId?personRecordId(record,name,context)===targetId:personKeyOf(name)===targetName;
       factions.forEach(faction=>['office','noble'].forEach(type=>{
         data.trees[faction.key][type].filter(n=>n.kind!=='root').forEach(node=>{
           (node.figures||[]).forEach(f=>{
-            if(personKeyOf(f.name)!==key) return;
-            records.push({...f,source:'officeTree',factionKey:faction.key,factionName:faction.name,treeType:type,nodeKey:node.key,nodeName:node.name,polity:faction.name});
+            if(!matches(f,f.name,{polity:faction.short||faction.name,factionKey:faction.key})) return;
+            records.push({...f,personId:personRecordId(f,f.name,{polity:faction.short||faction.name,factionKey:faction.key}),source:'officeTree',factionKey:faction.key,factionName:faction.name,treeType:type,nodeKey:node.key,nodeName:node.name,polity:faction.name,serviceDomain:f.serviceDomain||node.serviceDomain||'',institutionType:f.institutionType||node.institutionType||''});
           });
         });
       }));
       fangzhenRecords.value.forEach(record=>{
-        if(personKeyOf(record.commander)!==key) return;
-        records.push({...record,source:'fangzhen',factionKey:fangzhenArchiveKeyFor(record),factionName:(record.polity||'')+'州镇表',nodeName:record.title,treeType:'fangzhen',nodeKey:record.id});
+        if(!matches(record,record.commander,{polity:record.polity})) return;
+        records.push({...record,personId:personRecordId(record,record.commander,{polity:record.polity}),source:'fangzhen',factionKey:fangzhenArchiveKeyFor(record),factionName:(record.polity||'')+'州镇表',nodeName:record.title,treeType:'fangzhen',nodeKey:record.id,serviceDomain:record.serviceDomain||'文武兼',institutionType:record.institutionType||(/太守|郡/.test(record.title||'')?'郡府':'州府')});
       });
       (window.SGZ_PERSON_ERA_ROSTERS?.records||[]).forEach(record=>{
-        if(personKeyOf(record.person)!==key) return;
-        records.push({...record,name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
+        if(!matches(record,record.person,{polity:record.polity})) return;
+        records.push({...record,personId:personRecordId(record,record.person,{polity:record.polity}),name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity,serviceDomain:record.serviceDomain||'',institutionType:record.institutionType||''});
       });
-      return projectForReading(records).sort((a,b)=>(normalizeYear(a.startYear)??9999)-(normalizeYear(b.startYear)??9999));
-    }
-    function derivePersonBiography(entry){
-      const appointments=(entry.appointments||[]).slice().sort((a,b)=>(normalizeYear(a.startYear)??9999)-(normalizeYear(b.startYear)??9999));
-      const roles=Array.from(new Set(appointments.map(item=>item.nodeName||item.title).filter(Boolean))).slice(0,6);
-      const years=appointments.flatMap(item=>[normalizeYear(item.startYear),normalizeYear(item.endYear)]).filter(year=>year!==null);
-      const span=years.length?Math.min(...years)+'—'+Math.max(...years)+'年':'任期未详';
-      const roleText=roles.length?'已录履历涉及'+roles.join('、')+(appointments.length>roles.length?'等职任':'')+'。':'尚未形成可连续核对的任官序列。';
-      return {
-        bio:entry.name+'。'+roleText+'可见任职年代为'+span+'；生卒、籍贯或事功未见明确记载者，书作未详。',
-        bioSource:'',
-        bioKind:'履历提要'
-      };
+      (window.SGZ_PERSON_SOURCE_INDEX?.appointments||[]).forEach(record=>{
+        if(targetId?record.personId!==targetId:personKeyOf(record.name)!==targetName) return;
+        records.push({...record,source:'sourceIndex',name:record.name,nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
+      });
+      const seen=new Set();
+      return projectForReading(records).filter(record=>{
+        const id=record.id||record.appointmentId||[record.personId,record.nodeKey,record.nodeName,record.startYear,record.endYear,record.sourceLocator].join('|');
+        if(seen.has(id)) return false; seen.add(id); return true;
+      }).sort((a,b)=>(normalizeYear(a.startYear)??9999)-(normalizeYear(b.startYear)??9999)||String(a.sourceLocator||a.nodeName||'').localeCompare(String(b.sourceLocator||b.nodeName||''),'zh-CN'));
     }
     const activePersonAppointments = computed(()=>collectPersonAppointments(activePersonName.value));
     const activePersonPortrait = computed(()=>personPortraitFor(activePersonName.value,activePersonAppointments.value));
     function jumpToPersonAppointment(item){
+      if(item.source==='sourceIndex') return;
       showPersonProfile.value=false;
       showPeopleDetail.value=false;
       if(item.source==='fangzhen'||item.treeType==='fangzhen'){
@@ -6515,39 +6661,78 @@ const app = createApp({
     }
     const personRegistry = computed(()=>{
       const map = new Map();
-      function entry(name){
-        const key=personKeyOf(name);
-        if(!key) return null;
-        if(!map.has(key)) map.set(key,{key,name:key,zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],appointments:[]});
-        return map.get(key);
+      function entry(name,context={}){
+        const displayName=personKeyOf(name);
+        if(!displayName) return null;
+        const personId=personIdOf(displayName,context);
+        if(!map.has(personId)) map.set(personId,{key:personId,personId,name:displayName,aliases:[],zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],homonymStatus:'',homonymGroupId:'',appointments:[]});
+        return map.get(personId);
+      }
+      function addAppointment(target,record){
+        if(!target||!record) return;
+        const normalized={...record,personId:target.personId};
+        const recordId=normalized.id||normalized.appointmentId||[target.personId,normalized.source,normalized.nodeKey,normalized.nodeName,normalized.startYear,normalized.endYear,normalized.sourceLocator].join('|');
+        if(target.appointments.some(item=>(item.id||item.appointmentId||item.__recordId)===recordId)) return;
+        normalized.__recordId=recordId;
+        target.appointments.push(normalized);
+        if(normalized.polity) target.politics.push(normalized.polity);
+        if(normalized.serviceDomain) target.serviceDomains.push(normalized.serviceDomain);
+        if(normalized.institutionType) target.institutionTypes.push(normalized.institutionType);
+        if(normalized.sourceWork) target.sourceWorks.push(normalized.sourceWork);
+        if(normalized.sourceVolume) target.sourceVolumes.push(`${normalized.sourceWork||''}卷${normalized.sourceVolume}`);
+        if(normalized.evidenceLayer) target.evidenceLayers.push(normalized.evidenceLayer);
+        if(normalized.researchStatus) target.researchStatuses.push(normalized.researchStatus);
+        if(normalized.scopeStatus) target.scopeStatuses.push(normalized.scopeStatus);
+      }
+      function preferredByName(name){
+        const candidates=[...map.values()].filter(item=>item.name===personKeyOf(name)||(item.aliases||[]).includes(personKeyOf(name)));
+        return candidates.sort((a,b)=>{
+          const aPrimary=a.appointments.some(item=>item.source!=='sourceIndex')?1:0;
+          const bPrimary=b.appointments.some(item=>item.source!=='sourceIndex')?1:0;
+          return bPrimary-aPrimary||b.appointments.length-a.appointments.length;
+        })[0]||null;
       }
       factions.forEach(faction=>['office','noble'].forEach(type=>{
         data.trees[faction.key][type].filter(n=>n.kind!=='root').forEach(node=>{
           (node.figures||[]).forEach(f=>{
-            const e=entry(f.name); if(!e) return;
-            e.politics.push(faction.short||faction.name);
-            e.appointments.push({...f,source:'officeTree',factionKey:faction.key,factionName:faction.name,treeType:type,nodeKey:node.key,nodeName:node.name,polity:faction.name});
+            const e=entry(f.name,{...f,polity:faction.short||faction.name,factionKey:faction.key}); if(!e) return;
+            addAppointment(e,{...f,source:'officeTree',factionKey:faction.key,factionName:faction.name,treeType:type,nodeKey:node.key,nodeName:node.name,polity:faction.short||faction.name,serviceDomain:f.serviceDomain||node.serviceDomain||'',institutionType:f.institutionType||node.institutionType||''});
           });
         });
       }));
       fangzhenRecords.value.forEach(record=>{
-        const e=entry(record.commander); if(!e) return;
-        e.politics.push(record.polity||'');
-        e.appointments.push({...record,source:'fangzhen',factionKey:fangzhenArchiveKeyFor(record),factionName:(record.polity||'')+'州镇表',nodeName:record.title,treeType:'fangzhen',nodeKey:record.id});
+        const e=entry(record.commander,{...record,polity:record.polity}); if(!e) return;
+        addAppointment(e,{...record,source:'fangzhen',factionKey:fangzhenArchiveKeyFor(record),factionName:(record.polity||'')+'州镇表',nodeName:record.title,treeType:'fangzhen',nodeKey:record.id,serviceDomain:record.serviceDomain||'文武兼',institutionType:record.institutionType||(/太守|郡/.test(record.title||'')?'郡府':'州府')});
       });
       (window.SGZ_PERSON_ERA_ROSTERS?.records||[]).forEach(record=>{
-        const e=entry(record.person); if(!e) return;
-        e.politics.push(record.polity||'');
-        e.appointments.push({...record,name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity});
+        const e=entry(record.person,{...record,polity:record.polity}); if(!e) return;
+        addAppointment(e,{...record,name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity,serviceDomain:record.serviceDomain||'',institutionType:record.institutionType||''});
+      });
+      (window.SGZ_PERSON_SOURCE_INDEX?.people||[]).forEach(person=>{
+        const e=entry(person.name,{personId:person.personId}); if(!e) return;
+        e.aliases.push(...(person.aliases||[]));
+        if(person.homonymStatus)e.homonymStatus=person.homonymStatus;
+        if(person.homonymGroupId)e.homonymGroupId=person.homonymGroupId;
+        e.sourceWorks.push(person.sourceWork||'');
+        if(person.sourceVolume)e.sourceVolumes.push(`${person.sourceWork||''}卷${person.sourceVolume}`);
+        if(person.evidenceLayer)e.evidenceLayers.push(person.evidenceLayer);
+        if(person.researchStatus)e.researchStatuses.push(person.researchStatus);
+      });
+      (window.SGZ_PERSON_SOURCE_INDEX?.appointments||[]).forEach(record=>{
+        const e=entry(record.name,{personId:record.personId}); if(!e) return;
+        e.aliases.push(...(record.aliases||[]));
+        if(record.homonymStatus)e.homonymStatus=record.homonymStatus;
+        if(record.homonymGroupId&&!e.homonymGroupId)e.homonymGroupId=record.homonymGroupId;
+        addAppointment(e,{...record,source:'sourceIndex',nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
       });
       Object.entries(window.SGZ_PERSON_BIOGRAPHIES||{}).forEach(([key,bio])=>{
-        const e=map.get(personKeyOf(key))||entry(key); if(!e) return;
+        const e=preferredByName(key)||entry(key,{sourcePersonKey:`biography:${key}`}); if(!e) return;
         e.zi=bio.zi||e.zi;e.birthplace=bio.birthplace||e.birthplace;
         e.birthYear=bio.birthYear??e.birthYear;e.deathYear=bio.deathYear??e.deathYear;
         e.bio=readingText(bio.bio||e.bio);e.bioSource=bio.bioSource||'';e.bioKind='史传提要';
       });
       Object.entries(window.SGZ_PERSON_PORTRAITS||{}).forEach(([key,portrait])=>{
-        const e=map.get(personKeyOf(key))||entry(key); if(!e) return;
+        const e=preferredByName(key)||entry(key,{sourcePersonKey:`portrait:${key}`}); if(!e) return;
         const item=typeof portrait==='string'?{src:portrait}:portrait;
         if(item.src)e.portrait=item.src;
         e.portraitPolity=item.polity||e.portraitPolity;
@@ -6555,7 +6740,7 @@ const app = createApp({
         e.portraitSource=item.sourceTitle||e.portraitSource;
       });
       Object.entries(personMeta.map).forEach(([key,meta])=>{
-        const e=map.get(key)||entry(key); if(!e) return;
+        const e=map.get(key)||preferredByName(meta.name||key)||entry(meta.name||key,{sourcePersonKey:`user:${key}`}); if(!e) return;
         if(meta.zi)e.zi=meta.zi;if(meta.birthplace)e.birthplace=meta.birthplace;
         if(meta.birthYear!==null)e.birthYear=meta.birthYear;if(meta.deathYear!==null)e.deathYear=meta.deathYear;
         if(meta.bio){e.bio=meta.bio;e.bioSource='用户维护的人物档案';e.bioKind='档案补充';}
@@ -6563,38 +6748,91 @@ const app = createApp({
       });
       return [...map.values()].map(e=>{
         e.politics=[...new Set(e.politics.filter(Boolean))];
+        e.aliases=[...new Set(e.aliases.filter(value=>value&&value!==e.name))];
+        e.serviceDomains=[...new Set(e.serviceDomains.filter(Boolean))];
+        e.institutionTypes=[...new Set(e.institutionTypes.filter(Boolean))];
+        e.sourceWorks=[...new Set(e.sourceWorks.filter(Boolean))];
+        e.sourceVolumes=[...new Set(e.sourceVolumes.filter(Boolean))];
+        e.evidenceLayers=[...new Set(e.evidenceLayers.filter(Boolean))];
+        e.researchStatuses=[...new Set(e.researchStatuses.filter(Boolean))];
+        e.scopeStatuses=[...new Set(e.scopeStatuses.filter(Boolean))];
         e.appointmentCount=e.appointments.length;
         const years=e.appointments.map(a=>[normalizeYear(a.startYear),normalizeYear(a.endYear)]).flat().filter(n=>n!==null);
         e.startYear=years.length?Math.min(...years):null;
         e.endYear=years.length?Math.max(...years):null;
-        if(!e.bio) Object.assign(e,derivePersonBiography(e));
+        if(!e.bio){e.bio='暂无本传摘要';e.bioSource='仅显示可核验任官／爵位档案';e.bioKind='无摘要';}
+        e.sourceOnly=e.appointments.length>0&&e.appointments.every(item=>item.source==='sourceIndex');
         e.appointments=projectForReading(e.appointments);
         return e;
       }).sort((a,b)=>String(a.name).localeCompare(String(b.name),'zh-CN'));
     });
+    function personEraRange(){
+      if(peopleEra.value==='latehan') return [168,219];
+      if(peopleEra.value==='three') return [220,265];
+      if(peopleEra.value==='jin') return [266,316];
+      return null;
+    }
+    function personRelevantAt(person,year){
+      const target=Number(year);
+      if(!Number.isFinite(target)) return false;
+      if(person.birthYear!==null&&person.deathYear!==null&&person.birthYear<=target&&person.deathYear>=target) return true;
+      return person.appointments.some(record=>{
+        const start=normalizeYear(record.startYear),end=normalizeYear(record.endYear);
+        return (start!==null||end!==null)&&(start===null||start<=target)&&(end===null||end>=target);
+      });
+    }
+    function personRelevanceScore(person){
+      const year=Number(peopleYear.value);
+      if(personRelevantAt(person,year)) return 0;
+      const points=person.appointments.flatMap(record=>[normalizeYear(record.startYear),normalizeYear(record.endYear)]).filter(value=>value!==null);
+      if(person.birthYear!==null)points.push(person.birthYear);
+      if(person.deathYear!==null)points.push(person.deathYear);
+      return points.length?Math.min(...points.map(value=>Math.abs(value-year)))+1:10000;
+    }
     const filteredPeople = computed(()=>{
       const q=peopleQuery.value.trim().toLowerCase();
+      const eraRange=personEraRange();
       return personRegistry.value.filter(p=>{
         if(peoplePolity.value!=='all' && !p.politics.includes(peoplePolity.value)) return false;
-        if(peopleOnlyPortrait.value && !personPortraitFor(p.name,p.appointments)) return false;
-        if(peopleKind.value==='office' && !p.appointments.some(a=>a.treeType==='office')) return false;
-        if(peopleKind.value==='noble' && !p.appointments.some(a=>a.treeType==='noble')) return false;
+        if(peopleOnlyPortrait.value && !personPortraitFor(p.name,p.appointments,p.personId)) return false;
+        if(peopleKind.value==='office' && !p.appointments.some(a=>a.treeType==='office'||a.sourceCategory==='office')) return false;
+        if(peopleKind.value==='noble' && !p.appointments.some(a=>a.treeType==='noble'||a.sourceCategory==='noble')) return false;
         if(peopleKind.value==='fangzhen' && !p.appointments.some(a=>a.treeType==='fangzhen')) return false;
         if(peopleKind.value==='roster' && !p.appointments.some(a=>a.treeType==='roster')) return false;
+        if(peopleKind.value==='source' && !p.appointments.some(a=>a.source==='sourceIndex')) return false;
+        if(eraRange){
+          const known=(p.startYear!==null||p.endYear!==null||p.birthYear!==null||p.deathYear!==null);
+          if(!known) return false;
+          const start=p.startYear??p.birthYear??p.endYear??p.deathYear;
+          const end=p.endYear??p.deathYear??p.startYear??p.birthYear;
+          if(start>eraRange[1]||end<eraRange[0]) return false;
+        }
+        if(peopleSource.value!=='all'){
+          const sourceMatch=p.appointments.some(a=>peopleSource.value==='sgz'?a.sourceWork==='《三国志》'&&a.evidenceLayer!=='裴松之注':peopleSource.value==='pei'?a.evidenceLayer==='裴松之注':peopleSource.value==='jinshu'?a.sourceWork==='《晋书》':peopleSource.value==='curated'?a.source!=='sourceIndex':true);
+          if(!sourceMatch) return false;
+        }
+        if(peopleEvidence.value==='confirmed'&&!p.appointments.some(a=>['确定','推定'].includes(a.researchStatus||a.confidence))) return false;
+        if(peopleEvidence.value==='pending'&&!p.appointments.some(a=>['存疑','待考'].includes(a.researchStatus||a.confidence)||a.scopeStatus?.includes('待'))) return false;
+        if(peopleServiceDomain.value!=='all'&&!p.serviceDomains.includes(peopleServiceDomain.value)) return false;
+        if(peopleInstitutionType.value!=='all'&&!p.institutionTypes.includes(peopleInstitutionType.value)) return false;
         if(!q) return true;
-        const hay=[p.name,p.zi,p.birthplace,p.bio].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity].join(' '))).join('\n').toLowerCase();
+        const hay=[p.name,p.aliases.join(' '),p.zi,p.birthplace,p.bio,p.personId,p.sourceVolumes.join(' ')].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity,a.sourceLocator,a.sourceExcerpt].join(' '))).join('\n').toLowerCase();
         return hay.includes(q);
-      });
+      }).sort((a,b)=>personRelevanceScore(a)-personRelevanceScore(b)||String(a.name).localeCompare(String(b.name),'zh-CN')||String(a.personId).localeCompare(String(b.personId)));
     });
+    const pagedPeople=computed(()=>filteredPeople.value.slice((peoplePage.value-1)*peoplePageSize,peoplePage.value*peoplePageSize));
+    const peoplePageCount=computed(()=>Math.max(1,Math.ceil(filteredPeople.value.length/peoplePageSize)));
+    watch([peopleQuery,peoplePolity,peopleKind,peopleEra,peopleYear,peopleSource,peopleEvidence,peopleServiceDomain,peopleInstitutionType,peopleOnlyPortrait],()=>{peoplePage.value=1;});
     const peopleMetrics = computed(()=>{
-      const stats={people:personRegistry.value.length,office:0,noble:0,fangzhen:0,roster:0,portrait:0,curated:0};
+      const stats={people:personRegistry.value.length,office:0,noble:0,fangzhen:0,roster:0,source:0,portrait:0,curated:0};
       personRegistry.value.forEach(p=>{
-        if(personPortraitFor(p.name,p.appointments)) stats.portrait++;
+        if(personPortraitFor(p.name,p.appointments,p.personId)) stats.portrait++;
         if(p.bioKind==='史传提要') stats.curated++;
-        p.appointments.forEach(a=>{ if(a.treeType==='office') stats.office++; else if(a.treeType==='noble') stats.noble++; else if(a.treeType==='fangzhen') stats.fangzhen++; else if(a.treeType==='roster') stats.roster++; });
+        p.appointments.forEach(a=>{ if(a.source==='sourceIndex')stats.source++;if(a.treeType==='office'||a.sourceCategory==='office') stats.office++; else if(a.treeType==='noble'||a.sourceCategory==='noble') stats.noble++; else if(a.treeType==='fangzhen') stats.fangzhen++; else if(a.treeType==='roster') stats.roster++; });
       });
       return stats;
     });
+    const peopleCoverageSummary=computed(()=>window.SGZ_PERSON_SOURCE_INDEX?.summary||{volumes:0,people:0,appointments:0,peiAnnotations:0});
     const periodRosterPhases = computed(()=>Array.from(new Set((window.SGZ_PERSON_ERA_ROSTERS?.officeSnapshots||[]).map(item=>item.phase).filter(Boolean))));
     const filteredPeriodOfficeSnapshots = computed(()=>{
       const rows=projectForReading(window.SGZ_PERSON_ERA_ROSTERS?.officeSnapshots||[]);
@@ -6611,27 +6849,28 @@ const app = createApp({
       if(p.includes('匈奴')||p.includes('鲜卑')||p.includes('羌')||p.includes('氐')||p.includes('乌桓')||p.includes('西域')||p.includes('夫余')||p.includes('高句丽')||p.includes('南中')) return 'tribal';
       return '';
     }
-    function openPeopleDetail(name){
-      const entry=personRegistry.value.find(p=>p.key===personKeyOf(name));
-      if(!entry){ ElementPlus.ElMessage.warning('未检索到人物「'+name+'」'); return; }
-      activePeopleDetail.value={...entry,appointments:collectPersonAppointments(name)};
+    function openPeopleDetail(personRef){
+      const entry=personRegistry.value.find(p=>p.personId===personRef)||personRegistry.value.find(p=>p.name===personKeyOf(personRef));
+      if(!entry){ ElementPlus.ElMessage.warning('未检索到人物档案'); return; }
+      activePeopleDetail.value={...entry,appointments:collectPersonAppointments(entry.personId)};
       showPeopleDetail.value=true;
     }
-    function openPersonMetaEditor(name){
-      const key=personKeyOf(name);
-      if(!key) return;
-      const registryEntry=personRegistry.value.find(item=>item.key===key);
-      const current=personMeta.map[key]||registryEntry||{name:key,zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',portrait:''};
-      personMetaDialog.name=key;
+    function openPersonMetaEditor(personRef){
+      const registryEntry=personRegistry.value.find(item=>item.personId===personRef)||personRegistry.value.find(item=>item.name===personKeyOf(personRef));
+      if(!registryEntry) return;
+      const key=registryEntry.personId;
+      const current=personMeta.map[key]||personMeta.map[registryEntry.name]||registryEntry;
+      personMetaDialog.personId=key;
+      personMetaDialog.name=registryEntry.name;
       personMetaDialog.form=Object.assign({},current,{birthYear:current.birthYear??'',deathYear:current.deathYear??''});
       personMetaDialog.visible=true;
     }
     function savePersonMeta(){
       if(!personMetaDialog.name){ ElementPlus.ElMessage.warning('人物名不能为空'); return; }
       const form=personMetaDialog.form;
-      const key=personMetaDialog.name;
+      const key=personMetaDialog.personId||personIdOf(personMetaDialog.name);
       personMeta.map[key]={
-        name:key, zi:String(form.zi||'').trim(), birthplace:String(form.birthplace||'').trim(),
+        personId:key,name:personMetaDialog.name, zi:String(form.zi||'').trim(), birthplace:String(form.birthplace||'').trim(),
         birthYear:normalizeYear(form.birthYear), deathYear:normalizeYear(form.deathYear),
         bio:String(form.bio||'').trim(), portrait:String(form.portrait||''), updatedAt:new Date().toISOString()
       };
@@ -7492,8 +7731,8 @@ const app = createApp({
       toggleCatalogRow, selectCatalogNode, selectCatalogCard, catalogNodeIcon, catalogNodeMeta, catalogNodeSummary, catalogYearLabel,
       courtHierarchy, courtActiveState, courtStateKey, selectCourtState, selectCourtSlot,
       courtPrimaryFigure, courtFigureCount, courtSeatCount, courtFigureSlots, courtColumnCount, courtSeatMeta, courtRulerLabel,
-      courtBranchOf, showCourtResidence, courtResidence, courtResidenceAvailable, courtResidenceRoleMeta,
-      openCourtResidence, closeCourtResidence, editCourtResidenceOwner, courtSlotClick, courtResidenceStyle, courtResidenceClass, courtResidenceType,
+      courtBranchOf, courtSeatStats, showCourtResidence, courtResidence, courtResidenceAvailable, courtResidenceRoleMeta,
+      openCourtResidence, closeCourtResidence, editCourtResidenceOwner, courtSlotClick, courtResidenceStyle, courtResidenceClass, courtResidenceType, courtResidenceName, courtKaifuLabel,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
@@ -7507,7 +7746,7 @@ const app = createApp({
       selectedKeys, selectedCount, branchClipboard, timelineEnabled, timelineYear, autosaveStatus,
       canvasFilters, searchFilters, batchCategory,
       activeToolHint, toolHintTop, showToolHint, runTool, toggleValidation,
-      CATEGORY_OPTIONS, RANK9_OPTIONS, HAN_RANK_OPTIONS, JIE_OPTIONS, JIAGUAN_OPTIONS, NOBLE_RANK_OPTIONS, INHERIT_OPTIONS, ICONS,
+      CATEGORY_OPTIONS, SERVICE_DOMAIN_OPTIONS, INSTITUTION_TYPE_OPTIONS, RANK9_OPTIONS, HAN_RANK_OPTIONS, JIE_OPTIONS, JIAGUAN_OPTIONS, NOBLE_RANK_OPTIONS, INHERIT_OPTIONS, ICONS,
       RELATION_OPTIONS, REGION_OPTIONS, EVOLUTION_TYPES, BATCH_TEMPLATES, TONGDIAN_TABLE, CATEGORY_RANK9_MAP, calibrateRank9,
       HAN_RANK_FAMILIES, OFFICE_TEMPLATE_LIBRARY, OFFICE_GROUP_DEFS,
       switchFaction, switchTreeType, switchViewMode,
@@ -7886,8 +8125,13 @@ const app = createApp({
           <div class="court-canvas office-residence-canvas" :class="courtResidenceClass" :style="courtResidenceStyle">
             <header class="court-heading">
               <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}}</div>
-              <h2>{{courtResidence.owner?courtResidence.owner.name:'府属'}}</h2>
-              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:'任职人物未详'}}</strong> · 仅列当前树中已录的具体府属官职；序号为府属阅览次序，不等同跨时期统一品秩</p>
+              <h2>{{courtResidence.owner?courtResidence.owner.name:'府属'}} · {{courtResidenceName}}</h2>
+              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:(courtResidence.definition&&courtResidence.definition.ownerPersonName||'任职人物未详')}}</strong> · 开府依据：<strong>{{courtKaifuLabel(courtResidence.owner)}}</strong> · 府署类型：{{courtResidenceType}}</p>
+              <div class="residence-policy-strip">
+                <span class="residence-policy-tag" :class="{verified:courtResidence.kaifuPolicy&&courtResidence.kaifuPolicy.researchStatus==='确定'}">{{courtResidence.kaifuPolicy&&courtResidence.kaifuPolicy.evidence&&courtResidence.kaifuPolicy.evidence.sourceLocator||'开府依据待考'}}</span>
+                <span class="residence-policy-tag" :class="{verified:courtResidence.definition&&courtResidence.definition.researchStatus==='确定'}">{{courtResidence.definition&&courtResidence.definition.evidence&&courtResidence.definition.evidence.sourceLocator||'府属来源待考'}}</span>
+                <span class="residence-policy-tag">制度员额与展示席位分列；实任人数按当前时期去重</span>
+              </div>
               <div class="court-heading-actions">
                 <el-button size="small" type="primary" plain @click="closeCourtResidence">← 返回朝堂</el-button>
                 <el-button size="small" text @click="editCourtResidenceOwner">编辑府主</el-button>
@@ -7921,10 +8165,15 @@ const app = createApp({
                     </template>
                     <div v-else class="court-person-empty">暂无任官记录</div>
                   </div>
-                  <div class="residence-role-meta">{{courtResidenceRoleMeta(node)}} · {{(node.figures||[]).length}} 条人物记录</div>
+                  <div class="residence-role-meta">{{courtResidenceRoleMeta(node)}}</div>
+                  <div class="residence-counts">
+                    <span :class="{uncertain:courtSeatStats(courtResidence.owner,node).authorized===null}"><b>{{courtSeatStats(courtResidence.owner,node).authorized===null?'待考':courtSeatStats(courtResidence.owner,node).authorized}}</b>制度员额</span>
+                    <span><b>{{courtSeatStats(courtResidence.owner,node).display}}</b>展示席位</span>
+                    <span><b>{{courtSeatStats(courtResidence.owner,node).actual}}</b>实任人数</span>
+                  </div>
                 </article>
               </div>
-              <div v-else class="residence-empty">当前府属尚未录入具体属官。<br/>可返回朝堂，在府主节点下添加“幕府属官”并补充人物任职记录。</div>
+              <div v-else class="residence-empty">当前府属尚未录入具体属官。<br/>可返回朝堂，按三公府、将军府、都督府、州府、郡府或东宫的实际归属补充任官记录。</div>
             </section>
           </div>
         </div>
@@ -8057,6 +8306,18 @@ const app = createApp({
                   <el-option v-for="c in CATEGORY_OPTIONS" :key="c" :label="c" :value="c" />
                 </el-select>
               </el-form-item>
+              <div class="year-row">
+                <el-form-item label="职务性质">
+                  <el-select v-model="selectedNode.serviceDomain" style="width:100%">
+                    <el-option v-for="value in SERVICE_DOMAIN_OPTIONS" :key="value" :label="value" :value="value" />
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="所属官署">
+                  <el-select v-model="selectedNode.institutionType" style="width:100%">
+                    <el-option v-for="value in INSTITUTION_TYPE_OPTIONS" :key="value" :label="value" :value="value" />
+                  </el-select>
+                </el-form-item>
+              </div>
 
               <div class="field-group-title">{{ rank9Enabled ? '官品与秩俸' : '秩俸制度' }}</div>
               <div v-if="!rank9Enabled" class="rank-notice">
@@ -8698,6 +8959,7 @@ const app = createApp({
             <h3>{{activePeopleDetail.name}}<span v-if="activePeopleDetail.zi" style="margin-left:8px;font-size:14px;color:#8A918A;">字{{activePeopleDetail.zi}}</span></h3>
             <p v-if="activePeopleDetail.birthplace">籍贯：{{activePeopleDetail.birthplace}}</p>
             <p v-if="activePeopleDetail.birthYear||activePeopleDetail.deathYear">生卒：{{activePeopleDetail.birthYear||'?'}}—{{activePeopleDetail.deathYear||'?'}}</p>
+            <p v-if="activePeopleDetail.homonymStatus" class="homonym-note">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
             <p v-if="activePeopleDetail.bio" class="people-bio">{{activePeopleDetail.bio}}</p>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
             <div style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.name)">编辑人物档案</el-button></div>

@@ -1,15 +1,19 @@
 (function(global){
   'use strict';
 
-  const SCHEMA_VERSION = 8;
+  const SCHEMA_VERSION = 9;
   const ENTITY_TYPES = Object.freeze({
     polity:'政权', office:'官职', title:'爵位', person:'人物', appointment:'任官',
     jurisdiction:'辖区', source:'史料', period:'时期', periodSnapshot:'时期快照',
     controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料',
-    seatPolicy:'员额规则', residence:'府署'
+    seatPolicy:'员额规则', residence:'府署', kaifuPolicy:'开府资格', hydronym:'古水名',
+    volumeCoverage:'逐卷覆盖'
   });
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
   const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','待核']);
+  const SERVICE_DOMAINS = Object.freeze(['文官','武官','文武兼','待考']);
+  const INSTITUTION_TYPES = Object.freeze(['朝廷机关','丞相府','三公府','将军府','都督府','州府','郡府','县署','东宫','王府','属国机构','部族机构','待考']);
+  const KAIFU_QUALIFICATIONS = Object.freeze(['法定开府','加号开府','特诏开府','事实见府属','待考']);
   const HISTORY_SNAPSHOT_STATUS = Object.freeze(['通过','通过（示意）','待核','存在冲突']);
   const READING_META_FIELDS = Object.freeze([
     'evidence','sourceIds','sourceTitle','sourceDocument','sourceUrl','sourceLevel','sourceLocator','sourceExcerpt',
@@ -53,6 +57,39 @@
     return text(value).toLowerCase().replace(/蜀汉|季汉/g,'汉').replace(/[\s·／/（）()—–-]+/g,'_').replace(/[^\w\u3400-\u9fff_]/g,'').replace(/^_+|_+$/g,'') || 'unknown';
   }
   function stableId(type, parts){ return [type].concat((parts||[]).map(slug)).join(':'); }
+  function hashId(value){
+    let hash=2166136261;
+    const input=String(value||'');
+    for(let index=0;index<input.length;index+=1){
+      hash^=input.charCodeAt(index);
+      hash=Math.imul(hash,16777619);
+    }
+    return (hash>>>0).toString(36).padStart(7,'0');
+  }
+  function polityCode(value){
+    const input=text(value).toLowerCase();
+    if(input==='shu') return 'han';
+    if(['han','wei','wu','jin'].includes(input)) return input;
+    const raw=normalizePolity(value);
+    if(raw==='汉'||raw==='汉廷') return 'han';
+    if(raw==='魏') return 'wei';
+    if(raw==='吴') return 'wu';
+    if(raw==='晋') return 'jin';
+    return slug(raw||'unresolved');
+  }
+  function personIdFor(name,context){
+    const displayName=text(name);
+    const scope=context||{};
+    if(text(scope.personId)) return text(scope.personId);
+    const resolver=global.SGZ_PERSON_IDENTITIES&&global.SGZ_PERSON_IDENTITIES.resolve;
+    if(typeof resolver==='function'){
+      const resolved=resolver(displayName,scope);
+      if(resolved&&text(resolved.personId||resolved.id)) return text(resolved.personId||resolved.id);
+    }
+    const polity=polityCode(scope.polity||scope.factionKey);
+    const discriminator=text(scope.homonymDiscriminator||scope.sourcePersonKey||'default');
+    return `person:${polity}:${hashId([displayName,discriminator].join('|'))}`;
+  }
   function normalizePolity(value){
     const raw=text(value);
     if(raw==='东汉'||raw==='蜀汉'||raw==='季汉') return '汉';
@@ -132,7 +169,7 @@
     row.id=text(row.id)||stableId('appointment',[normalizePolity(row.polity),row.commander,row.title,row.startYear||row.tenureText,index]);
     row.entityType='appointment';
     row.polity=normalizePolity(row.polity);
-    row.personId=text(row.personId)||stableId('person',[row.commander]);
+    row.personId=personIdFor(row.commander,{personId:row.personId,polity:row.polity,homonymDiscriminator:row.homonymDiscriminator});
     row.officeId=text(row.officeId)||stableId('office',[row.polity,row.title]);
     row.jurisdictionId=text(row.jurisdictionId)||stableId('jurisdiction',[row.polity,row.jurisdiction]);
     row.evidence=normalizeEvidence(row);
@@ -150,17 +187,86 @@
     row.authorizedCount=Number.isFinite(Number(row.authorizedCount))?Number(row.authorizedCount):null;
     row.displayCapacity=Number.isFinite(Number(row.displayCapacity))?Number(row.displayCapacity):row.authorizedCount;
     row.rule=text(row.rule); row.note=text(row.note); row.sourceId=text(row.sourceId);
+    row.ownerOfficeName=text(row.ownerOfficeName); row.officeName=text(row.officeName);
+    row.sourceText=text(row.sourceText); row.countStatus=text(row.countStatus)||'待考';
+    row.evidence=row.evidence&&typeof row.evidence==='object'?normalizeEvidence(row.evidence):normalizeEvidence(row);
     return row;
   }
   function normalizeResidence(record,index){
     const row=clone(record||{});
     row.entityType='residence';
     row.id=text(row.id)||stableId('residence',[row.ownerOfficeId,row.name,index]);
-    row.ownerOfficeId=text(row.ownerOfficeId); row.name=text(row.name)||'未命名府署';
+    row.ownerOfficeId=text(row.ownerOfficeId); row.ownerOfficeName=text(row.ownerOfficeName); row.polity=normalizePolity(row.polity);
+    row.ownerPersonId=text(row.ownerPersonId); row.ownerPersonName=text(row.ownerPersonName); row.ownerAppointmentId=text(row.ownerAppointmentId);
+    row.kaifuPolicyId=text(row.kaifuPolicyId); row.name=text(row.name)||'未命名府署';
     row.residenceType=text(row.residenceType)||'未详'; row.backgroundStyle=text(row.backgroundStyle)||'plain';
     row.validFrom=Number.isFinite(Number(row.validFrom))?Number(row.validFrom):null;
     row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
+    row.roles=Array.isArray(row.roles)?row.roles.map((role,roleIndex)=>normalizeResidenceRole(role,roleIndex,row)):[];
+    row.evidence=row.evidence&&typeof row.evidence==='object'?normalizeEvidence(row.evidence):normalizeEvidence(row);
+    row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence);
     row.note=text(row.note); return row;
+  }
+  function normalizeResidenceRole(record,index,residence){
+    const row=clone(record||{});
+    row.id=text(row.id)||stableId('residenceRole',[residence&&residence.id,row.officeName||row.name,index]);
+    row.officeId=text(row.officeId); row.officeName=text(row.officeName||row.name)||'未详属官';
+    row.serviceDomain=SERVICE_DOMAINS.includes(text(row.serviceDomain))?text(row.serviceDomain):inferServiceDomain(row);
+    row.institutionType=INSTITUTION_TYPES.includes(text(row.institutionType))?text(row.institutionType):text(residence&&residence.residenceType)||'待考';
+    row.authorizedCount=Number.isFinite(Number(row.authorizedCount))?Number(row.authorizedCount):null;
+    row.displayCapacity=Number.isFinite(Number(row.displayCapacity))?Number(row.displayCapacity):row.authorizedCount;
+    row.sourceText=text(row.sourceText); row.countStatus=text(row.countStatus)||'待考'; row.note=text(row.note);
+    return row;
+  }
+  function normalizeKaifuPolicy(record,index){
+    const row=clone(record||{});
+    row.entityType='kaifuPolicy';
+    row.id=text(row.id)||stableId('kaifuPolicy',[row.polity,row.officeName,row.validFrom,row.personId,index]);
+    row.polity=normalizePolity(row.polity); row.officeId=text(row.officeId); row.officeName=text(row.officeName);
+    row.personId=text(row.personId); row.personName=text(row.personName); row.appointmentId=text(row.appointmentId);
+    row.qualificationType=KAIFU_QUALIFICATIONS.includes(text(row.qualificationType))?text(row.qualificationType):'待考';
+    row.additionalTitle=text(row.additionalTitle); row.validFrom=Number.isFinite(Number(row.validFrom))?Number(row.validFrom):null;
+    row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
+    row.sourceTenureText=text(row.sourceTenureText); row.evidence=normalizeEvidence(row.evidence||row);
+    row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    row.note=text(row.note); return row;
+  }
+  function normalizeHydronym(record,index){
+    const row=clone(record||{});
+    row.entityType='hydronym'; row.ancientName=text(row.ancientName||row.name)||'未命名水体';
+    row.id=text(row.id)||stableId('hydronym',[row.ancientName,index]);
+    row.aliases=Array.isArray(row.aliases)?row.aliases.map(text).filter(Boolean):[];
+    row.geometryRefs=Array.isArray(row.geometryRefs)?row.geometryRefs.map(text).filter(Boolean):[];
+    row.sourceIds=Array.isArray(row.sourceIds)?row.sourceIds.map(text).filter(Boolean):[];
+    row.sourceLocators=Array.isArray(row.sourceLocators)?row.sourceLocators.map(text).filter(Boolean):[];
+    row.labelAnchor=Array.isArray(row.labelAnchor)&&row.labelAnchor.length===2?row.labelAnchor.map(Number):null;
+    row.priority=Number.isFinite(Number(row.priority))?Number(row.priority):0;
+    row.minZoom=Number.isFinite(Number(row.minZoom))?Number(row.minZoom):7;
+    row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    row.geometrySource=clone(row.geometrySource||{}); row.evidence=clone(row.evidence||{}); row.note=text(row.note);
+    return row;
+  }
+  function normalizePerson(record,index){
+    const row=clone(record||{}); row.entityType='person'; row.name=text(row.name)||'未详人物';
+    row.personId=personIdFor(row.name,{...row,personId:row.personId}); row.id=row.personId;
+    row.aliases=Array.isArray(row.aliases)?Array.from(new Set(row.aliases.map(text).filter(Boolean))):[];
+    row.sourceIds=Array.isArray(row.sourceIds)?row.sourceIds.map(text).filter(Boolean):[];
+    row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    row.homonymStatus=text(row.homonymStatus)||'已按稳定 ID 区分';
+    row.sourceIndex=Number.isFinite(Number(row.sourceIndex))?Number(row.sourceIndex):index;
+    return row;
+  }
+  function normalizeAppointment(record,index){
+    const row=clone(record||{}); row.entityType='appointment';
+    row.polity=normalizePolity(row.polity); row.personId=personIdFor(row.person||row.name,{...row,personId:row.personId});
+    row.officeId=text(row.officeId)||stableId('office',[row.polity,row.officeName||row.title]);
+    row.id=text(row.id)||stableId('appointment',[row.personId,row.officeId,row.jurisdictionId,row.startYear,row.sourceLocator,index]);
+    row.officeName=text(row.officeName||row.title); row.jurisdictionId=text(row.jurisdictionId); row.jurisdiction=text(row.jurisdiction);
+    row.startYear=Number.isFinite(Number(row.startYear))?Number(row.startYear):null;
+    row.endYear=Number.isFinite(Number(row.endYear))?Number(row.endYear):null;
+    row.sourceTenureText=text(row.sourceTenureText); row.evidence=normalizeEvidence(row.evidence||row);
+    row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    return row;
   }
   function normalizeEpigraphicRecord(record,index){
     const row=clone(record||{});
@@ -182,6 +288,42 @@
     row.disputeNote=text(row.disputeNote);
     return row;
   }
+  function inferServiceDomain(row){
+    const category=text(row&&row.category),name=text(row&&row.name||row&&row.officeName);
+    if(['大将军／大司马','将军武职','都督军事','属国护官'].includes(category)) return '武官';
+    if(category==='幕府属官'){
+      if(/长史|主簿|记室|舍人|掾|曹|祭酒|从事/.test(name)) return '文官';
+      if(/司马|参军|军师|督/.test(name)) return '文武兼';
+      return '待考';
+    }
+    if(category==='州郡属官'&&/督军|兵曹/.test(name)) return '文武兼';
+    if(category==='部族首领') return '文武兼';
+    if(category) return '文官';
+    return '待考';
+  }
+  function inferInstitutionType(row,parent){
+    const category=text(row&&row.category),name=text(row&&row.name),parentCategory=text(parent&&parent.category),parentName=text(parent&&parent.name);
+    if(category==='太子官属'||/太子/.test(parentName)) return '东宫';
+    if(['诸王官属','王国官属'].includes(category)||/王府|王国/.test(parentName)) return '王府';
+    if(category==='州郡属官'){
+      if(parentCategory==='郡国守相'||/^郡|郡丞|督邮|五官掾/.test(name)) return '郡府';
+      return '州府';
+    }
+    if(category==='州牧刺史') return '州府';
+    if(category==='郡国守相') return '郡府';
+    if(category==='县邑令长') return '县署';
+    if(category==='部族首领') return '部族机构';
+    if(category==='属国护官') return '属国机构';
+    if(category==='幕府属官'){
+      if(parentCategory==='丞相／相国'||/丞相|相国/.test(parentName)) return '丞相府';
+      if(parentCategory==='三公'||/太傅|太保|太尉|司徒|司空|太宰/.test(parentName)) return '三公府';
+      if(parentCategory==='都督军事'||/都督/.test(parentName)) return '都督府';
+      if(parentCategory==='州牧刺史') return '州府';
+      if(parentCategory==='郡国守相') return '郡府';
+      return '将军府';
+    }
+    return '朝廷机关';
+  }
   function normalizeNode(node,factionKey,type){
     const row=clone(node||{});
     const entityType=type==='noble'?'title':(row.kind==='root'?'institution':'office');
@@ -192,7 +334,26 @@
     });
     row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence);
     row.aliasList=Array.isArray(row.aliasList)?row.aliasList.map(text).filter(Boolean):text(row.aliases).split(/[、,，/]/).map(text).filter(Boolean);
+    row.serviceDomain=SERVICE_DOMAINS.includes(text(row.serviceDomain))?text(row.serviceDomain):inferServiceDomain(row);
+    row.institutionType=INSTITUTION_TYPES.includes(text(row.institutionType))?text(row.institutionType):'';
+    row.figures=Array.isArray(row.figures)?row.figures.map((figure,index)=>{
+      const person=typeof figure==='string'?{name:figure}:clone(figure||{});
+      person.name=text(person.name)||'未详人物';
+      person.personId=personIdFor(person.name,{personId:person.personId,polity:factionKey,factionKey,homonymDiscriminator:person.homonymDiscriminator});
+      person.appointmentId=text(person.appointmentId)||stableId('appointment',[person.personId,row.entityId,person.startYear,person.endYear,index]);
+      return person;
+    }):[];
     return row;
+  }
+  function normalizeOfficeClassifications(nodes){
+    const rows=nodes||[],byKey=new Map(rows.map(row=>[row.key,row]));
+    rows.forEach(row=>{
+      if(row.kind!=='office') return;
+      const parent=byKey.get(row.parent);
+      if(!INSTITUTION_TYPES.includes(text(row.institutionType))) row.institutionType=inferInstitutionType(row,parent);
+      if(!SERVICE_DOMAINS.includes(text(row.serviceDomain))) row.serviceDomain=inferServiceDomain(row);
+    });
+    return rows;
   }
   function migrate(payload,defaults){
     const source=clone(payload||{});
@@ -204,24 +365,30 @@
     out.trees=out.trees||fallback.trees||{};
     Object.keys(out.trees).forEach(factionKey=>{
       ['office','noble'].forEach(type=>{
-        out.trees[factionKey][type]=(out.trees[factionKey][type]||[]).map(node=>normalizeNode(node,factionKey,type));
+        out.trees[factionKey][type]=normalizeOfficeClassifications((out.trees[factionKey][type]||[]).map(node=>normalizeNode(node,factionKey,type)));
       });
     });
     out.fangzhenRecords=(out.fangzhenRecords||fallback.fangzhenRecords||[]).map(normalizeFangzhen);
     out.epigraphicRecords=(out.epigraphicRecords||fallback.epigraphicRecords||[]).map(normalizeEpigraphicRecord);
     out.seatPolicies=(out.seatPolicies||fallback.seatPolicies||[]).map(normalizeSeatPolicy);
     out.residences=(out.residences||fallback.residences||[]).map(normalizeResidence);
-    out.researchMeta=Object.assign({modelId:'sgz-research-model-v8',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate'},out.researchMeta||{});
+    out.kaifuPolicies=(out.kaifuPolicies||fallback.kaifuPolicies||[]).map(normalizeKaifuPolicy);
+    out.hydronyms=(out.hydronyms||fallback.hydronyms||[]).map(normalizeHydronym);
+    out.personRecords=(out.personRecords||fallback.personRecords||[]).map(normalizePerson);
+    out.appointments=(out.appointments||fallback.appointments||[]).map(normalizeAppointment);
+    out.volumeCoverage=clone(out.volumeCoverage||fallback.volumeCoverage||[]);
+    out.researchMeta=Object.assign({modelId:'sgz-research-model-v9',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate',compatibleFrom:[7,8]},out.researchMeta||{});
     out.researchMeta.schemaVersion=SCHEMA_VERSION;
     return out;
   }
   function buildIndexes(payload){
     const byEntityId=new Map(), people=new Map(), offices=new Map(), jurisdictions=new Map(), sources=new Map();
+    (payload.personRecords||[]).map(normalizePerson).forEach(person=>people.set(person.personId,{...person,id:person.personId,appointments:[]}));
     Object.entries(payload.trees||{}).forEach(([factionKey,group])=>['office','noble'].forEach(type=>(group[type]||[]).forEach(raw=>{
       const node=normalizeNode(raw,factionKey,type); byEntityId.set(node.entityId,{...node,factionKey,treeType:type});
       if(node.kind!=='root') offices.set(node.entityId,{...node,factionKey,treeType:type});
       (node.figures||[]).forEach(person=>{
-        const id=text(person.personId)||stableId('person',[person.name]);
+        const id=personIdFor(person.name,{personId:person.personId,polity:factionKey,factionKey});
         if(!people.has(id)) people.set(id,{id,name:text(person.name),aliases:[],appointments:[]});
         people.get(id).appointments.push({source:'officeTree',factionKey,treeType:type,nodeKey:node.key,nodeName:node.name,...person});
       });
@@ -231,6 +398,11 @@
       people.get(record.personId).appointments.push({source:'fangzhen',...record});
       if(!jurisdictions.has(record.jurisdictionId)) jurisdictions.set(record.jurisdictionId,{id:record.jurisdictionId,name:text(record.jurisdiction),polity:record.polity,appointments:[]});
       jurisdictions.get(record.jurisdictionId).appointments.push(record);
+      if(record.evidence.title||record.evidence.url) sources.set(record.evidence.id,record.evidence);
+    });
+    (payload.appointments||[]).map(normalizeAppointment).forEach(record=>{
+      if(!people.has(record.personId)) people.set(record.personId,{id:record.personId,personId:record.personId,name:text(record.person||record.name)||'未详人物',aliases:[],appointments:[]});
+      people.get(record.personId).appointments.push({source:'appointment',...record});
       if(record.evidence.title||record.evidence.url) sources.set(record.evidence.id,record.evidence);
     });
     return {byEntityId,people,offices,jurisdictions,sources};
@@ -262,9 +434,13 @@
 
   global.SGZResearchModel=Object.freeze({
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
+    serviceDomains:SERVICE_DOMAINS,institutionTypes:INSTITUTION_TYPES,kaifuQualifications:KAIFU_QUALIFICATIONS,
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
+    personIdFor,hashId,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
     readingMetaFields:READING_META_FIELDS,readingText,projectForReading,
-    normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
+    normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeResidenceRole,normalizeKaifuPolicy,normalizeHydronym,
+    normalizePerson,normalizeAppointment,normalizeEpigraphicRecord,normalizeNode,normalizeOfficeClassifications,
+    inferServiceDomain,inferInstitutionType,migrate,buildIndexes,recordsAtYear
   });
 })(window);

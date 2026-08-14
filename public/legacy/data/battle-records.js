@@ -128,18 +128,18 @@ const battleData = {
     { id:'miewu', name:'晋灭吴之战', year:280, a:'司马炎（晋）', b:'孙皓（吴）', result:'王濬楼船下益州，孙皓降，吴亡', desc:'晋六路伐吴。王濬率巴蜀楼船顺江东下，直指建业；杜预、王浑等分道并进。孙皓出降，三国归晋。', lat:32.06, lng:118.8, sourceTitle:'《晋书》卷三·武帝纪', confidence:'确定' }
   ],
   battlefields: [
-    { id:'guandu-field', name:'官渡战场', lat:34.74, lng:113.96, from:200, to:208, note:'曹袁决战区域。' },
-    { id:'chibi-field', name:'赤壁—乌林战场', lat:29.72, lng:113.90, from:208, to:220, note:'赤壁之战长江两岸战场。' },
-    { id:'xiangfan-field', name:'襄樊战场', lat:32.04, lng:112.15, from:208, to:280, note:'汉水中游南北争夺枢纽。' },
-    { id:'hefei-field', name:'合肥—逍遥津战场', lat:31.82, lng:117.23, from:208, to:280, note:'魏吴江淮争夺核心。' },
-    { id:'ruxu-field', name:'濡须口战场', lat:31.15, lng:117.72, from:208, to:280, note:'魏吴长江北岸攻防前沿。' },
-    { id:'yiling-field', name:'夷陵—猇亭战场', lat:30.69, lng:111.29, from:220, to:228, note:'章武二年吴汉大战区域。' },
-    { id:'jieting-field', name:'街亭战场', lat:34.85, lng:105.95, from:228, to:263, note:'诸葛亮第一次北伐关键战场。' },
-    { id:'qishan-field', name:'祁山战场', lat:34.05, lng:105.05, from:228, to:263, note:'魏汉陇右攻防前线。' },
-    { id:'wuzhang-field', name:'五丈原战场', lat:34.25, lng:107.63, from:228, to:263, note:'诸葛亮第五次北伐驻军区域。' },
-    { id:'tongguan-field', name:'潼关—关中战场', lat:34.62, lng:110.22, from:211, to:228, note:'曹操定关中后的关西攻防前沿。' },
-    { id:'shouchun-field', name:'寿春—淮南战场', lat:32.56, lng:116.78, from:249, to:280, note:'司马氏平淮南三叛与魏吴江淮拉锯核心。' },
-    { id:'dongxing-field', name:'东兴—巢湖战场', lat:31.15, lng:117.72, from:213, to:280, note:'吴筑东兴堤后的江淮水战枢纽。' }
+    { id:'guandu-field', name:'官渡战场', placeLabel:'官渡', lat:34.74, lng:113.96, from:200, to:208, note:'曹袁决战区域。' },
+    { id:'chibi-field', name:'赤壁—乌林战场', placeLabel:'赤壁—乌林', lat:29.72, lng:113.90, from:208, to:220, note:'赤壁之战长江两岸战场。' },
+    { id:'xiangfan-field', name:'襄樊战场', placeLabel:'襄樊', lat:32.04, lng:112.15, from:208, to:280, note:'汉水中游南北争夺枢纽。' },
+    { id:'hefei-field', name:'合肥—逍遥津战场', placeLabel:'合肥—逍遥津', lat:31.82, lng:117.23, from:208, to:280, note:'魏吴江淮争夺核心。' },
+    { id:'ruxu-field', name:'濡须口战场', placeLabel:'濡须口', lat:31.15, lng:117.72, from:208, to:280, note:'魏吴长江北岸攻防前沿。' },
+    { id:'yiling-field', name:'夷陵—猇亭战场', placeLabel:'夷陵—猇亭', lat:30.69, lng:111.29, from:220, to:228, note:'章武二年吴汉大战区域。' },
+    { id:'jieting-field', name:'街亭战场', placeLabel:'街亭', lat:34.85, lng:105.95, from:228, to:263, note:'诸葛亮第一次北伐关键战场。' },
+    { id:'qishan-field', name:'祁山战场', placeLabel:'祁山', lat:34.05, lng:105.05, from:228, to:263, note:'魏汉陇右攻防前线。' },
+    { id:'wuzhang-field', name:'五丈原战场', placeLabel:'五丈原', lat:34.25, lng:107.63, from:228, to:263, note:'诸葛亮第五次北伐驻军区域。' },
+    { id:'tongguan-field', name:'潼关—关中战场', placeLabel:'潼关—关中', lat:34.62, lng:110.22, from:211, to:228, note:'曹操定关中后的关西攻防前沿。' },
+    { id:'shouchun-field', name:'寿春—淮南战场', placeLabel:'寿春—淮南', lat:32.56, lng:116.78, from:249, to:280, note:'司马氏平淮南三叛与魏吴江淮拉锯核心。' },
+    { id:'dongxing-field', name:'东兴—巢湖战场', placeLabel:'东兴—巢湖', lat:31.15, lng:117.72, from:213, to:280, note:'吴筑东兴堤后的江淮水战枢纽。' }
   ]
 };
 

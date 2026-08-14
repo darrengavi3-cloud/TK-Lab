@@ -158,12 +158,79 @@ const Panel = (function () {
     box.innerHTML = list.map((f) => `<div class="lg-item capital-legend-row"><span class="lg-capital-icon" style="--capital-color:${f.color}"></span><span><b>${f.name}</b><small>${f.capital}</small></span></div>`).join('');
   }
 
+  function hydronymList() {
+    return (window.HYDRONYM_AUDIT && window.HYDRONYM_AUDIT.hydronyms || [])
+      .slice()
+      .sort((a, b) => String(a.ancientName).localeCompare(String(b.ancientName), 'zh-CN'));
+  }
+
+  function hydronymRows(rows, query) {
+    const q = String(query || '').trim().toLowerCase();
+    const filtered = rows.filter((item) => !q || (item.ancientName + ' ' + (item.aliases || []).join(' ')).toLowerCase().includes(q));
+    if (!filtered.length) return '<span class="pv-empty">未检索到匹配水名</span>';
+    return filtered.map((item) => {
+      const hit = item.evidence && item.evidence.status === '原文命中';
+      const volumes = Array.isArray(item.sourceLocators) && item.sourceLocators.length
+        ? item.sourceLocators.map((s) => s.replace('《水经注》卷', '')).join('/')
+        : '未详';
+      return `<button type="button" class="hydronym-row ${hit ? 'is-evidenced' : 'is-pending'}" onclick="Panel.hydronymById('${item.id}')"><b>${item.ancientName}</b><small>${hit ? '原文命中' : '待考'} · 卷${volumes}</small></button>`;
+    }).join('');
+  }
+
+  function hydronymView(item) {
+    if (!item) return;
+    const aliases = Array.isArray(item.aliases) && item.aliases.length ? '（' + item.aliases.join('、') + '）' : '';
+    const locators = Array.isArray(item.sourceLocators) && item.sourceLocators.length ? item.sourceLocators.join('、') : '未见《水经注》原文直接命中';
+    const hit = item.evidence && item.evidence.status === '原文命中';
+    const geometry = item.geometrySource || {};
+    render(`
+      <div class="pv-head">
+        <div class="pv-kind">古水名 · ${hit ? '原文命中' : '待考'}</div>
+        <h2 class="pv-title">${item.ancientName}${aliases}</h2>
+        <div class="pv-tag">缩放 ${item.minZoom} 级起显示 · 优先级 ${item.priority}</div>
+      </div>
+      <p class="pv-summary">《水经注》出处：${locators}。${item.evidence && item.evidence.note || ''}</p>
+      <div class="pv-section"><div class="pv-label">几何来源</div><p class="pv-summary">${geometry.title || '未登记'}；坐标状态：${geometry.status || '推定'}。${geometry.note || ''}</p></div>
+      <div class="pv-section"><div class="pv-label">关联水系几何段</div><span class="pv-empty">${item.geometryFeatureCount != null ? item.geometryFeatureCount + ' 段' : '未登记'}</span></div>
+      <button class="pv-back" onclick="Panel.hydronymIndex()">‹ 水名索引</button>
+      <button class="pv-back" onclick="Panel.back()">‹ 返回本期概览</button>
+    `);
+  }
+
+  function hydronymById(id) {
+    const item = hydronymList().find((row) => row.id === id);
+    hydronymView(item);
+  }
+
+  function hydronymIndex() {
+    const rows = hydronymList();
+    render(`
+      <div class="pv-head">
+        <div class="pv-kind">古水名索引</div>
+        <h2 class="pv-title">《水经注》水名</h2>
+        <div class="pv-tag">共 ${rows.length} 条 · 含大河、支流、渠与湖泊</div>
+      </div>
+      <div class="pv-section">
+        <div class="pv-label">检索</div>
+        <input id="hydronym-search" class="pv-search" type="search" placeholder="输入古水名或异名" oninput="Panel.filterHydronyms(this.value)">
+        <div id="hydronym-list" class="hydronym-list">${hydronymRows(rows, '')}</div>
+      </div>
+      <button class="pv-back" onclick="Panel.back()">‹ 返回本期概览</button>
+    `);
+  }
+
+  function filterHydronyms(value) {
+    const list = document.getElementById('hydronym-list');
+    if (list) list.innerHTML = hydronymRows(hydronymList(), value);
+  }
+
   let _onBack = function () {};
   function setBackHandler(fn) { _onBack = fn; }
   function back() { _onBack(); }
 
   const api = {
     periodView, cityView, battleView, factionView, commanderyView, countyView,
+    hydronymView, hydronymIndex, hydronymById, filterHydronyms,
     renderLegend, renderCapitalLegend, setBackHandler, back, close,
   };
   window.Panel = api;

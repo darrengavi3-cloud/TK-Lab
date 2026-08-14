@@ -14,17 +14,29 @@ const events=context.window.ADMINISTRATIVE_EVENT_MODEL;
 const evidence=context.window.SGZ_HISTORY_EVIDENCE;
 const assert=(value,message)=>{if(!value)throw new Error(message);};
 
-const legacy={schemaVersion:3,trees:{wei:{office:[{key:'root',kind:'root',name:'曹魏官制'},{key:'a',parent:'root',kind:'office',name:'司徒',figures:[{name:'华歆'}]}],noble:[]}},fangzhenRecords:[{polity:'曹魏',commander:'华歆',title:'司徒',jurisdiction:'司州',startYear:220,sourceTitle:'《三国志》'}]};
+const legacy={schemaVersion:3,trees:{wei:{office:[{key:'root',kind:'root',name:'曹魏官制'},{key:'a',parent:'root',kind:'office',name:'司徒',category:'三公',figures:[{name:'华歆'}]}],noble:[]}},fangzhenRecords:[{polity:'曹魏',commander:'华歆',title:'司徒',jurisdiction:'司州',startYear:220,sourceTitle:'《三国志》'}]};
 legacy.epigraphicRecords=[{id:'ep_1',name:'待核碑刻',type:'碑刻',yearText:'年代待考',researchStatus:'待补'}];
 const migrated=model.migrate(legacy);
-assert(migrated.schemaVersion===8&&migrated.migratedFrom===3,'旧存档未迁移到 v8');
+assert(migrated.schemaVersion===9&&migrated.migratedFrom===3,'旧存档未迁移到 v9');
 assert(Array.isArray(migrated.seatPolicies)&&Array.isArray(migrated.residences),'V42员额规则或府署数组未保持兼容');
+assert(Array.isArray(migrated.kaifuPolicies)&&Array.isArray(migrated.hydronyms)&&Array.isArray(migrated.personRecords)&&Array.isArray(migrated.appointments),'V43开府、水系、人物或任官数组未保持兼容');
 assert(migrated.fangzhenRecords[0].polity==='魏','曹魏国名未规范为魏');
 assert(migrated.fangzhenRecords[0].personId.startsWith('person:'),'任官记录缺少稳定人物 ID');
 assert(migrated.trees.wei.office[1].entityId.startsWith('office:'),'官职节点缺少稳定实体 ID');
+assert(migrated.trees.wei.office[1].serviceDomain==='文官','官职节点缺少文官分类');
+assert(migrated.trees.wei.office[1].institutionType==='朝廷机关','三公本人未归入朝廷机关');
 assert(migrated.epigraphicRecords[0].entityType==='epigraphicRecord'&&migrated.epigraphicRecords[0].researchStatus==='待补','金石材料未迁移为可审计实体');
 const indexes=model.buildIndexes(migrated);
 assert(indexes.people.size===1&&Array.from(indexes.people.values())[0].appointments.length===2,'人物履历未汇合官职与州镇任官');
+assert(model.kaifuQualifications.includes('法定开府')&&model.kaifuQualifications.includes('加号开府')&&model.kaifuQualifications.includes('特诏开府')&&model.kaifuQualifications.includes('事实见府属')&&model.kaifuQualifications.includes('待考'),'开府资格词汇表不完整');
+assert(model.serviceDomains.includes('文官')&&model.serviceDomains.includes('武官')&&model.serviceDomains.includes('文武兼')&&model.serviceDomains.includes('待考'),'文武分类词汇表不完整');
+assert(model.institutionTypes.includes('丞相府')&&model.institutionTypes.includes('三公府')&&model.institutionTypes.includes('将军府')&&model.institutionTypes.includes('都督府')&&model.institutionTypes.includes('州府')&&model.institutionTypes.includes('郡府')&&model.institutionTypes.includes('东宫')&&model.institutionTypes.includes('王府'),'府署类型词汇表不完整');
+assert(model.inferInstitutionType({category:'州郡属官',name:'州从事'},{category:'州牧刺史',name:'冀州牧'})==='州府','州从事未归入州府');
+assert(model.inferInstitutionType({category:'州郡属官',name:'郡丞'},{category:'郡国守相',name:'某某太守'})==='郡府','郡丞未归入郡府');
+assert(model.inferInstitutionType({category:'太子官属',name:'太子洗马'})==='东宫','太子官属未归入东宫');
+assert(model.inferInstitutionType({category:'幕府属官',name:'司马'},{category:'大将军／大司马',name:'大将军'})==='将军府','将军府属官归属错误');
+assert(model.inferServiceDomain({category:'州郡属官',name:'别驾从事'})==='文官','州从事分类错误');
+assert(model.inferServiceDomain({category:'幕府属官',name:'参军'})==='文武兼','参军文武分类错误');
 assert(events.events.length===51,'行政沿革事件数量错误');
 assert(Object.keys(events.mergesAtYear(184)).length===51&&Object.keys(events.mergesAtYear(200)).length===46,'184/200 年郡级事件状态推导错误');
 assert(!events.mergesAtYear(220).Baxi&&events.mergesAtYear(220).Guangwei==='Tianshui','220 年郡级事件状态推导错误');
@@ -38,4 +50,4 @@ assert(evidence.findJurisdiction({name:'雍州',sourceName:'Yongzhou'},'guandu')
 assert(evidence.findJurisdiction({name:'夷洲',sourceName:'YizhouIsland'},'guijin').sourceIds.includes('sanguozhi_wu_2'),'V7未登记夷洲史料来源');
 
 console.log('统一研究数据模型验证通过');
-console.log(`研究模型 v${model.schemaVersion}；行政沿革事件 ${events.events.length} 条；V7时期快照 ${evidence.periods.length} 期、来源 ${evidence.sources.length} 条`);
+console.log(`研究模型 v${model.schemaVersion}；开府资格 ${model.kaifuQualifications.length} 类；行政沿革事件 ${events.events.length} 条；V7时期快照 ${evidence.periods.length} 期、来源 ${evidence.sources.length} 条`);

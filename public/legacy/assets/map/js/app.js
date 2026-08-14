@@ -14,7 +14,7 @@
   const view = {
     terr:true, city:true, battle:true, route:true, water:true, tint:true, wuCmd:true,
     provinceTint:true, frontierRoute:true, battlefield:true,
-    cmdLabel:true, county:true, minorities:true,
+    cmdLabel:true, county:true, minorities:true, hydronym:true,
     displayMode:'research',
   };
   const mapFilters = window.__MAP_FILTERS || (window.__MAP_FILTERS = {faction:'all',state:'all'});
@@ -201,6 +201,7 @@
       StrategicLayers.setRoutesVisible(map, view.frontierRoute && view.displayMode === 'research', p.year);
       StrategicLayers.setBattlefieldsVisible(map, view.battlefield, p.year);
       StrategicLayers.setMinoritiesVisible(map, view.minorities && view.displayMode === 'research', p.year);
+      Hydronyms.setVisible(map, view.hydronym);
 
       // 郡级边界：
       //   · 220 年前（东汉）显示全部郡界，统一为汉色；
@@ -285,7 +286,7 @@
       'lyr-route': 'route', 'lyr-water': 'water', 'lyr-tint': 'tint',
       'lyr-wu-cmd': 'wuCmd', 'lyr-province-tint':'provinceTint',
       'lyr-frontier-route':'frontierRoute', 'lyr-battlefield':'battlefield',
-      'lyr-cmd-label':'cmdLabel', 'lyr-county':'county', 'lyr-minorities':'minorities',
+      'lyr-cmd-label':'cmdLabel', 'lyr-county':'county', 'lyr-minorities':'minorities', 'lyr-hydronym':'hydronym',
     };
     Object.keys(mapDef).forEach((id) => {
       const box = document.getElementById(id);
@@ -306,6 +307,10 @@
         if (mapDef[id] === 'minorities') {
           const period = DATA.periods[Timeline.getCurrent()];
           StrategicLayers.setMinoritiesVisible(map, view.minorities && view.displayMode === 'research', period && period.year);
+          return;
+        }
+        if (mapDef[id] === 'hydronym') {
+          Hydronyms.setVisible(map, view.hydronym);
           return;
         }
         if (['terr','battle','route','wuCmd','provinceTint','frontierRoute','battlefield'].includes(mapDef[id])) {

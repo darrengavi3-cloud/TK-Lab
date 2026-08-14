@@ -204,7 +204,7 @@ assert(html.includes('cmd-label-compact') && html.includes('--cmd-shift-y'), 'V1
 assert(!mapBaseLayer.includes('今黄河') && !mapBaseLayer.includes('今长江'), '河水、江水仍附有现代名称');
 assert(historyEvidence.includes('sinica_western_jin_map') && historyEvidence.includes('taikang-sinica-crosscheck'), '280 年中研院西晋地图交叉校验未接入证据索引');
 assert(historyEvidence.includes('jinshu_juan15') && historyEvidence.includes('yongjia-yangzhou-recalibration'), '扬州郡界重校缺少《晋书·地理志下》证据');
-assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes('derivePersonBiography'), '人物记史传提要或履历归纳未接入');
+assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes("e.bioKind='史传提要'") && html.includes('暂无本传摘要'), '人物记史传提要或履历归纳未接入');
 assert(!biographySource.includes('乐綝') && biographySource.includes('乐𬘭'), '乐𬘭姓名规范化未完成');
 assert(biographySource.includes('后与诸葛诞争执，甘露三年被诸葛诞杀死') && !biographySource.includes('最终为吴将文鸯所杀') && !biographySource.includes('受贾充指使刺杀曹髦'), '人物记史实修正未接入');
 assert(biographySource.includes('成济') && biographySource.includes('《三国志》卷四《三少帝纪》及裴松之注'), '成济传记来源未校正');

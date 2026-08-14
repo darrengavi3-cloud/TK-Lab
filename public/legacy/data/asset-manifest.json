@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-14T02:35:55.094Z",
+  "generatedAt": "2026-08-14T17:00:06.468Z",
   "offlineRuntime": true,
-  "fileCount": 107,
-  "totalBytes": 39264002,
+  "fileCount": 127,
+  "totalBytes": 46174476,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 29636,
-      "sha256": "da110f0e95290bcfb0d3747ba67e4a52ece4f02c733e02b373946bb6faeeb960"
+      "bytes": 31124,
+      "sha256": "abb87746c4ea09d2873cd1f799484ffc2dd2c393f772bf8b3b2d2de5a6ee60ca"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -51,14 +51,19 @@
       "sha256": "b33cf2f49ee7487791ab6e5250f7b4814960cc3008e23c9dd817755574f03930"
     },
     {
+      "path": "assets/map/data/hydronym-audit.js",
+      "bytes": 176141,
+      "sha256": "f6e021130aa458a756b342ca5cac862b0c10029876832c1c2d115bcad1984af2"
+    },
+    {
       "path": "assets/map/data/political-snapshots.js",
       "bytes": 10100,
       "sha256": "0b83cf793cfad1f643a8babef18df1de52019e56842bc76600c75f100772b609"
     },
     {
       "path": "assets/map/data/strategic-geography.js",
-      "bytes": 5442,
-      "sha256": "b7d4d979a8d6570f85e13150159219dbf5cf3ff99aa3de700b3daf6444cdb6d1"
+      "bytes": 5658,
+      "sha256": "198873689e722e79867cde7dabab1393c57b148987c748ad34ac2a43632c50e6"
     },
     {
       "path": "assets/map/data/three-kingdoms.js",
@@ -67,8 +72,8 @@
     },
     {
       "path": "assets/map/js/app.js",
-      "bytes": 19115,
-      "sha256": "18794f99c97c8ee83d2bba3e3ecbefa096b996961cb69259840ff5592cdd9d44"
+      "bytes": 19326,
+      "sha256": "5347273a8beab4add6eb2f2b61231aafbc391f567488cea62dea9c164a53875e"
     },
     {
       "path": "assets/map/js/base-layer.js",
@@ -96,14 +101,19 @@
       "sha256": "5353af5243ac2dd96b7698df9202a7f52e3ed7eb949efa4b5206c9bb92199262"
     },
     {
+      "path": "assets/map/js/hydronyms.js",
+      "bytes": 3495,
+      "sha256": "1a33de3e3e3ba30bd21748cc9423b02fc679993f3ae32822b703a6c1b122f3d3"
+    },
+    {
       "path": "assets/map/js/markers.js",
       "bytes": 2065,
       "sha256": "246466a4d2aae268e28c3f4daa845ae5aca8f468b60aeb0c603137c01dbdea16"
     },
     {
       "path": "assets/map/js/panel.js",
-      "bytes": 6931,
-      "sha256": "802441adbd1244dfeb67b20fe0ea981c3bef93899edc379752f375f591f831d2"
+      "bytes": 10608,
+      "sha256": "8aa331aa093c70a72cef70c742bdecfe2cd002c77e9891b5e889ed9d33f05367"
     },
     {
       "path": "assets/map/js/routes.js",
@@ -112,8 +122,8 @@
     },
     {
       "path": "assets/map/js/strategic-layers.js",
-      "bytes": 3839,
-      "sha256": "a46218dd881e2dbab771e69f103ed180bc930099fd8c03fd034c81f66b468b48"
+      "bytes": 4000,
+      "sha256": "3a31d00b6178676d109f785d6d65fbdb65fe48d003420450f525c43d3246688d"
     },
     {
       "path": "assets/map/js/territories.js",
@@ -341,6 +351,51 @@
       "sha256": "143490554dbb5bc0964f27a5d23b9b5fb77ccc640b34050c50edf72cba5d59e7"
     },
     {
+      "path": "assets/portraits/v42/董允.png",
+      "bytes": 352362,
+      "sha256": "b0076e9cc4cde74bcb965181a88c2dd4e858192e1bed308acc8aba87d6e91d7b"
+    },
+    {
+      "path": "assets/portraits/v42/廖化.png",
+      "bytes": 365664,
+      "sha256": "d073a126a3604c4aebcc1602f1cba572d001ea717324973e51ffd819f8926a5a"
+    },
+    {
+      "path": "assets/portraits/v42/马谡.png",
+      "bytes": 353813,
+      "sha256": "c97a07b4a1838244609759edee7aadc270477716cdebfb646cc79b7eef1f2e69"
+    },
+    {
+      "path": "assets/portraits/v42/魏延.png",
+      "bytes": 362526,
+      "sha256": "9ca79c7fc43fffa28a88ed95406b25e341bf32393620b0a55cae77a3442cf657"
+    },
+    {
+      "path": "assets/portraits/v42/许靖.png",
+      "bytes": 349454,
+      "sha256": "c80888f1ad99d46279b32e381a176025ef0eacc3a9ab9e6d43b93dc01ccf915f"
+    },
+    {
+      "path": "assets/portraits/v42/杨仪.png",
+      "bytes": 353580,
+      "sha256": "e631a94ae1e130541a3136bf0fb1fcff653c1e568aa168d445e97078efaa4217"
+    },
+    {
+      "path": "assets/portraits/v42/张翼.png",
+      "bytes": 354748,
+      "sha256": "59d0e61563d9a8c13d8bd0504893ff64d29154b28cb3d317580d9596bca94f5f"
+    },
+    {
+      "path": "assets/portraits/v42/诸葛瞻.png",
+      "bytes": 358519,
+      "sha256": "0dd039923d5a99bceb237d8214652df9c6a376a7d5df9eb255a09d314cb5bfc4"
+    },
+    {
+      "path": "assets/portraits/v42/shu-v42-contact-sheet.png",
+      "bytes": 2867443,
+      "sha256": "09a2aa2809924406a1b8c4668eca62b41740d7780e6cbcb3d517c192b0cdd133"
+    },
+    {
       "path": "assets/portraits/wei/cheng-ji.png",
       "bytes": 18059,
       "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
@@ -417,8 +472,8 @@
     },
     {
       "path": "data/battle-records.js",
-      "bytes": 29193,
-      "sha256": "43354b7456e576b7e68b428019cda6a784d43b6fda851a22b0e0fd99250d24bf"
+      "bytes": 29508,
+      "sha256": "2c2fb0cf346152d01978084b7ef77bbc3c9344dedddf17a43f465c8cd849a84d"
     },
     {
       "path": "data/epigraphic-records.js",
@@ -456,6 +511,16 @@
       "sha256": "906053abb4d7db4d2e33968812d4522121df0f7c81bc27b0e0e14ee0c64993d0"
     },
     {
+      "path": "data/hydronym-audit.json",
+      "bytes": 251052,
+      "sha256": "b4b0c2b8531a6759c6c52f7718e5197d36666acc6caadcb08311da6fc782f51b"
+    },
+    {
+      "path": "data/kaifu-policies.js",
+      "bytes": 5920,
+      "sha256": "d50a17c233a63e4e8f286e0c7206ab4a3985ff798c07d67547ceaa057f9d2114"
+    },
+    {
       "path": "data/map-period-registry.js",
       "bytes": 27185,
       "sha256": "ee64c158e2606e3bd20cbea81797ff9e417022cee03ef7fa0d55b597139dcc75"
@@ -476,6 +541,16 @@
       "sha256": "47c6e9c72191420374226b079bf77c09ed63c79f0672a0250fef0d480c388252"
     },
     {
+      "path": "data/office-residences.js",
+      "bytes": 9943,
+      "sha256": "ce26d48641f0e78d5dd57cade4e31595a0ba3ccba2b16e8cdc19941198ba134c"
+    },
+    {
+      "path": "data/office-seat-policies.js",
+      "bytes": 7857,
+      "sha256": "9589f9425934aeb9a4553c79e02ce599eb161ae13910089fac8d05bc77c3232f"
+    },
+    {
       "path": "data/person-biographies.js",
       "bytes": 23998,
       "sha256": "8bd2158297d79661f032a8a06a808ff20f3bea70ef360ab09f034f8b0855046e"
@@ -486,9 +561,24 @@
       "sha256": "bab5a938ca83f957515d2509a887ada321eb4d5f93d85fcb6014a51d2a8c091d"
     },
     {
+      "path": "data/person-identities.js",
+      "bytes": 3164,
+      "sha256": "d1e51a131555f0e655be813ef18dbe1ed643e88eeece78a9789431a05b651dd8"
+    },
+    {
       "path": "data/person-portraits.js",
-      "bytes": 8525,
-      "sha256": "b5d723f5fff561a30544f9afde00f9b23dd8b424094b1bbf72380003b276481e"
+      "bytes": 8548,
+      "sha256": "438fc86f5948f899ff8e880f0d69ed879cb4a89a56afdebd6b6b9deb5996947b"
+    },
+    {
+      "path": "data/person-source-index.js",
+      "bytes": 550468,
+      "sha256": "6356c9106ed02bb340470c21c7ca52349445515418674dc695df8fe1642ca0f1"
+    },
+    {
+      "path": "data/person-volume-coverage.json",
+      "bytes": 159818,
+      "sha256": "7611c7da5fceb084a949c1483150b447e6aa5b37a41db1492bea0d8db1e3370c"
     },
     {
       "path": "data/public-vector-audit.json",
@@ -502,13 +592,13 @@
     },
     {
       "path": "data/research-model.js",
-      "bytes": 14087,
-      "sha256": "6f67e0af98c07c6666542fd0cbcef22d9a79143d773b4826e0560d1a3c6c29d7"
+      "bytes": 27991,
+      "sha256": "644c060d035cf6e3b001fb80c050628db54ea5e27fdbf6a85de7941cec6b2bbe"
     },
     {
       "path": "data/research-schema.json",
-      "bytes": 2166,
-      "sha256": "6ff6ae6e683a8940e9c2dcc0290532362a805278958d666dc19b82425ba86cbb"
+      "bytes": 3787,
+      "sha256": "ba79a7d29f19943f5ea3e9771cb25c95fea70374b30ab5e76037f80b0dc0aaac"
     },
     {
       "path": "data/shu-fangzhen-records.js",
@@ -524,6 +614,16 @@
       "path": "data/v41-release-manifest.json",
       "bytes": 2405,
       "sha256": "9534d45d4a86199109697f110d7d745e7145a386ace41ac7e0855f18504014b5"
+    },
+    {
+      "path": "data/v42-release-manifest.json",
+      "bytes": 1262,
+      "sha256": "5b4c6f5c20d6c468ee8acd6f345756957117282d93edca16c827f97440978659"
+    },
+    {
+      "path": "data/v43-release-manifest.json",
+      "bytes": 1629,
+      "sha256": "3a92e0777091b2edff1fc8dc35253bae91cb4d78e177503a04689fa703d23dc1"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
