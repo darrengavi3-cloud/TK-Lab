@@ -1,11 +1,12 @@
 (function(global){
   'use strict';
 
-  const SCHEMA_VERSION = 7;
+  const SCHEMA_VERSION = 8;
   const ENTITY_TYPES = Object.freeze({
     polity:'政权', office:'官职', title:'爵位', person:'人物', appointment:'任官',
     jurisdiction:'辖区', source:'史料', period:'时期', periodSnapshot:'时期快照',
-    controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料'
+    controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料',
+    seatPolicy:'员额规则', residence:'府署'
   });
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
   const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','待核']);
@@ -139,6 +140,28 @@
     row.aliases=Array.isArray(row.aliases)?row.aliases.map(text).filter(Boolean):[];
     return row;
   }
+  function normalizeSeatPolicy(record,index){
+    const row=clone(record||{});
+    row.entityType='seatPolicy';
+    row.id=text(row.id)||stableId('seatPolicy',[row.officeId,row.validFrom,row.validTo,index]);
+    row.officeId=text(row.officeId);
+    row.validFrom=Number.isFinite(Number(row.validFrom))?Number(row.validFrom):null;
+    row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
+    row.authorizedCount=Number.isFinite(Number(row.authorizedCount))?Number(row.authorizedCount):null;
+    row.displayCapacity=Number.isFinite(Number(row.displayCapacity))?Number(row.displayCapacity):row.authorizedCount;
+    row.rule=text(row.rule); row.note=text(row.note); row.sourceId=text(row.sourceId);
+    return row;
+  }
+  function normalizeResidence(record,index){
+    const row=clone(record||{});
+    row.entityType='residence';
+    row.id=text(row.id)||stableId('residence',[row.ownerOfficeId,row.name,index]);
+    row.ownerOfficeId=text(row.ownerOfficeId); row.name=text(row.name)||'未命名府署';
+    row.residenceType=text(row.residenceType)||'未详'; row.backgroundStyle=text(row.backgroundStyle)||'plain';
+    row.validFrom=Number.isFinite(Number(row.validFrom))?Number(row.validFrom):null;
+    row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
+    row.note=text(row.note); return row;
+  }
   function normalizeEpigraphicRecord(record,index){
     const row=clone(record||{});
     row.entityType='epigraphicRecord';
@@ -186,7 +209,9 @@
     });
     out.fangzhenRecords=(out.fangzhenRecords||fallback.fangzhenRecords||[]).map(normalizeFangzhen);
     out.epigraphicRecords=(out.epigraphicRecords||fallback.epigraphicRecords||[]).map(normalizeEpigraphicRecord);
-    out.researchMeta=Object.assign({modelId:'sgz-research-model-v7',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate'},out.researchMeta||{});
+    out.seatPolicies=(out.seatPolicies||fallback.seatPolicies||[]).map(normalizeSeatPolicy);
+    out.residences=(out.residences||fallback.residences||[]).map(normalizeResidence);
+    out.researchMeta=Object.assign({modelId:'sgz-research-model-v8',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate'},out.researchMeta||{});
     out.researchMeta.schemaVersion=SCHEMA_VERSION;
     return out;
   }
@@ -240,6 +265,6 @@
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
     readingMetaFields:READING_META_FIELDS,readingText,projectForReading,
-    normalizeFangzhen,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
+    normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
   });
 })(window);

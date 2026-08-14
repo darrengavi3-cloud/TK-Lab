@@ -16,6 +16,8 @@
 <script src="./data/shu-fangzhen-records.js"></script>
 <script src="./data/fangzhen-term-supplement.js"></script>
 <script src="./data/research-model.js"></script>
+<script src="./data/office-seat-policies.js"></script>
+<script src="./data/office-residences.js"></script>
 <script src="./data/history-evidence.js"></script>
 <script src="./data/battle-records.js"></script>
 <script src="./data/person-biographies.js"></script>
@@ -484,6 +486,13 @@ body{background:#F4F3EF;}
 .court-residence-badge{position:absolute;right:5px;top:35px;width:19px;height:19px;border:1px solid color-mix(in srgb,var(--court-accent) 72%,#6D6254);border-radius:50%;background:#F7F0E2;color:var(--court-accent);font:700 10px/17px 'Noto Serif SC','Songti SC',serif;text-align:center;box-shadow:0 1px 3px rgba(45,39,32,.16);}
 .court-slot-count.has-residence{top:59px;}
 .office-residence-canvas{min-height:100%;}
+.office-residence-canvas.residence-style-grand-minister{background:linear-gradient(rgba(239,234,222,.78),rgba(239,234,222,.92)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
+.office-residence-canvas.residence-style-general{background:linear-gradient(rgba(235,225,214,.82),rgba(235,225,214,.94)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
+.office-residence-canvas.residence-style-du-du{background:linear-gradient(rgba(225,231,239,.80),rgba(225,231,239,.95)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
+.office-residence-canvas.residence-style-province{background:linear-gradient(rgba(225,234,227,.80),rgba(225,234,227,.95)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
+.office-residence-canvas.residence-style-commandery{background:linear-gradient(rgba(231,235,226,.82),rgba(231,235,226,.96)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
+.office-residence-canvas.residence-style-prince{background:linear-gradient(rgba(235,226,241,.80),rgba(235,226,241,.95)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
+.office-residence-canvas.residence-style-plain{background:linear-gradient(rgba(239,236,230,.86),rgba(239,236,230,.96)),url('./assets/ui/court-ink-palace.png') center top/cover no-repeat;}
 .residence-owner-note{color:#6E665C;}
 .residence-owner-note strong{color:#302D28;}
 .residence-role-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:14px;max-width:1240px;margin:0 auto;padding:2px 4px 14px;}
@@ -615,6 +624,8 @@ body{background:#F4F3EF;}
 .jinshi-table-card .el-table{--el-table-border-color:#E0E3DF;--el-table-header-bg-color:#EEF0ED;--el-table-row-hover-bg-color:#F4F6F3;background:transparent;}
 .jinshi-table-card .el-table th.el-table__cell{color:#5B625B;font-size:11px;}
 .jinshi-table-card .el-table td.el-table__cell{font-size:11.5px;color:#4D554D;}
+.epigraphic-inscription{padding:12px 16px;color:#4D554D;background:#F6F7F4;line-height:1.8;white-space:pre-wrap;}
+.epigraphic-inscription strong{display:block;color:#6E5A3B;margin-bottom:4px;}
 .jinshi-status-note{padding:10px 12px;border-top:1px dashed #D5D9D3;color:#7E857E;font-size:11px;line-height:1.6;}
 /* ---------- 人物志 ---------- */
 .people-workbench{--people-accent:#8D3D32;--people-pale:#F7F0EA;--people-deep:#5F2E26;background:linear-gradient(180deg,var(--people-pale) 0,#F4F3EF 320px);}
@@ -2823,13 +2834,13 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'wei',parent:'',name:'屯田中郎将',category:'将军武职',note:'曹魏特设，主屯田。'},
   {faction:'wei',parent:'',name:'典农校尉',category:'郡国守相',note:'屯田官，隶屯田中郎将。'},
   {faction:'wei',parent:'',name:'典农都尉',category:'郡国守相',note:'屯田官，隶屯田中郎将。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'别驾从事',category:'幕府属官',note:'魏州属官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'治中从事',category:'幕府属官',note:'魏州属官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'功曹从事',category:'幕府属官',note:'魏州属官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'簿曹从事',category:'幕府属官',note:'魏州属官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'兵曹从事',category:'幕府属官',note:'魏州属官。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'别驾从事',category:'州郡属官',note:'魏州属官，归文官。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'治中从事',category:'州郡属官',note:'魏州属官，归文官。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'功曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'簿曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'兵曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
   {faction:'wei',parent:'州刺史与司隶校尉',name:'督邮',category:'幕府属官',note:'魏州属官，掌督察。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'州主簿',category:'幕府属官',note:'魏州属官。'},
+  {faction:'wei',parent:'州刺史与司隶校尉',name:'州主簿',category:'州郡属官',note:'魏州属官，归文官。'},
   {faction:'wei',parent:'州刺史与司隶校尉',name:'大中正',category:'幕府属官',note:'魏州置大中正，掌品评人物。'},
 
   {faction:'wu',parent:'',name:'左丞相',category:'丞相／相国',note:'孙吴宝鼎元年（266年）分置左右丞相。'},
@@ -3198,6 +3209,7 @@ const BAIGUANZHI_STAFF = {
   commandery: ['郡丞','长史（边郡置）','都尉（边郡置）','五官掾','功曹','主簿','督邮','决曹掾','贼曹掾','门下掾'],
   county: ['县丞','县尉','主簿','诸曹掾史','乡啬夫','游徼','亭长']
 };
+window.SGZ_BAIGUANZHI_STAFF = BAIGUANZHI_STAFF;
 
 function buildLocalRegionTree(prefix, parentKey, preset, attach){
   const nodes=[];
@@ -4384,7 +4396,11 @@ const app = createApp({
     const epigraphicPolity = ref('all');
     const filteredEpigraphicRecords = computed(()=>{
       const q=epigraphicQuery.value.trim().toLowerCase();
-      return projectForReading(epigraphicRecords.value).filter(item=>{
+      return projectForReading(epigraphicRecords.value).map((item,index)=>{
+        const raw=epigraphicRecords.value[index]||{};
+        const disputed=raw.researchStatus==='争议'||raw.archiveKind==='争议'||Boolean(raw.disputeNote);
+        return Object.assign({},item,{isDisputed:disputed,displayName:(disputed?'* ':'')+item.name});
+      }).filter(item=>{
         if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
         if(epigraphicPolity.value!=='all' && item.polity!==epigraphicPolity.value) return false;
         if(q && !['name','type','year','yearText','polity','place','region','scriptStyle','form','inscription','people','offices','note'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
@@ -4948,7 +4964,10 @@ const app = createApp({
     function courtFigureCount(node){ return courtFigures(node).length; }
     function courtSeatCount(node){
       const declared=Number(node?.seatCount);
-      return Number.isFinite(declared)&&declared>0 ? declared : Math.max(1,courtFigures(node).length);
+      if(Number.isFinite(declared)&&declared>0) return declared;
+      const policy=(window.SGZ_SEAT_POLICIES||[]).find(item=>item.officeId===node?.entityId || item.officeId===node?.key);
+      if(policy && Number(policy.displayCapacity)>0) return Number(policy.displayCapacity);
+      return Math.max(1,courtFigures(node).length);
     }
     function courtFigureSlots(node){
       const figures=courtFigures(node);
@@ -5041,10 +5060,13 @@ const app = createApp({
     ];
     function courtResidenceRolesFor(owner){
       if(!owner) return [];
-      return currentArr.value.filter(node=>node.parent===owner.key&&node.kind==='office'&&node.category==='幕府属官'&&courtNodeVisible(node));
+      const roles=currentArr.value.filter(node=>node.parent===owner.key&&node.kind==='office'&&(['幕府属官','州郡属官'].includes(node.category))&&courtNodeVisible(node));
+      if(roles.length || !['州牧刺史','郡国守相'].includes(owner.category)) return roles;
+      const names=owner.category==='州牧刺史'?(window.SGZ_BAIGUANZHI_STAFF?.province||['别驾从事','治中从事','功曹','簿曹','主簿']):(window.SGZ_BAIGUANZHI_STAFF?.commandery||['郡丞','功曹','主簿','督邮']);
+      return names.map((name,index)=>({key:owner.key+'::staff::'+index,kind:'office',name,category:'州郡属官',hanRank:'未详',figures:[],virtualResidenceRole:true,residenceOrder:(index+1)*10,note:'按州郡属官制度展示；具体到任人物与员额须另行录入。'}));
     }
     function courtResidenceAvailable(node){
-      return Boolean(node&&node.kind==='office'&&(node.kaifu||courtResidenceRolesFor(node).length));
+      return Boolean(node&&node.kind==='office'&&(node.kaifu||courtResidenceRolesFor(node).length||['州牧刺史','郡国守相'].includes(node.category)));
     }
     function courtResidenceRoleOrder(node){
       const name=String(node?.name||'');
@@ -5061,6 +5083,23 @@ const app = createApp({
       const roles=courtResidenceRolesFor(owner).slice().sort((a,b)=>courtResidenceRoleOrder(a)-courtResidenceRoleOrder(b)||String(a.name).localeCompare(String(b.name),'zh-CN'));
       return {owner,roles};
     });
+    function residenceStyleFor(owner){
+      if(!owner) return 'plain';
+      const category=String(owner.category||'');
+      const name=String(owner.name||'');
+      if(category==='州牧刺史') return 'province';
+      if(category==='郡国守相') return 'commandery';
+      if(category==='太子官属'||category==='诸王官属'||/太子|王国|诸王/.test(name)) return 'prince';
+      if(category==='都督军事'||/都督/.test(name)) return 'du-du';
+      if(['三公','丞相／相国'].includes(category)||/太傅|太尉|司徒|司空|丞相|相国|太宰|太保/.test(name)) return 'grand-minister';
+      if(owner.kaifu) return 'general';
+      return 'plain';
+    }
+    const courtResidenceStyle = computed(()=>({'--residence-style':residenceStyleFor(courtResidence.value.owner),'--court-accent':currentFactionDef.value.color}));
+    const courtResidenceClass = computed(()=>`residence-style-${courtResidenceStyle.value['--residence-style']}`);
+    const courtResidenceType = computed(()=>({
+      'grand-minister':'丞相三公府','general':'将军府','du-du':'都督府','province':'州府','commandery':'郡府','prince':'太子王府','plain':'府署'
+    }[courtResidenceStyle.value['--residence-style']]||'府署'));
     function openCourtResidence(node){
       if(!courtResidenceAvailable(node)) return selectCourtSlot(node);
       selectedKey.value=node.key;
@@ -7008,7 +7047,7 @@ const app = createApp({
 
     /* ---------- 文件功能 ---------- */
     function exportJSON(){
-      const payload = window.SGZResearchModel.migrate({ schemaVersion:7, exportedAt:new Date().toISOString(), periods:PERIODS, mapPeriods:cloneJSON(historyMapPeriods), factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), epigraphicRecords:cloneJSON(epigraphicRecords.value), battleRecords:cloneJSON(battleRecords), shihuoRecords:cloneJSON(shihuoRecords.value), shihuoEvents:cloneJSON(shihuoEventRecords.value), shihuoHousehold:cloneJSON(shihuoHousehold.value) });
+      const payload = window.SGZResearchModel.migrate({ schemaVersion:8, exportedAt:new Date().toISOString(), periods:PERIODS, mapPeriods:cloneJSON(historyMapPeriods), factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), epigraphicRecords:cloneJSON(epigraphicRecords.value), battleRecords:cloneJSON(battleRecords), shihuoRecords:cloneJSON(shihuoRecords.value), shihuoEvents:cloneJSON(shihuoEventRecords.value), shihuoHousehold:cloneJSON(shihuoHousehold.value), seatPolicies:cloneJSON(window.SGZ_SEAT_POLICIES||[]), residences:cloneJSON(window.SGZ_OFFICE_RESIDENCES||[]) });
       downloadBlob(JSON.stringify(payload, null, 2), 'application/json', '三国职官谱_' + currentFaction.value + '.json');
       pushHistory('导出 JSON');
     }
@@ -7454,7 +7493,7 @@ const app = createApp({
       courtHierarchy, courtActiveState, courtStateKey, selectCourtState, selectCourtSlot,
       courtPrimaryFigure, courtFigureCount, courtSeatCount, courtFigureSlots, courtColumnCount, courtSeatMeta, courtRulerLabel,
       courtBranchOf, showCourtResidence, courtResidence, courtResidenceAvailable, courtResidenceRoleMeta,
-      openCourtResidence, closeCourtResidence, editCourtResidenceOwner, courtSlotClick,
+      openCourtResidence, closeCourtResidence, editCourtResidenceOwner, courtSlotClick, courtResidenceStyle, courtResidenceClass, courtResidenceType,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
@@ -7707,7 +7746,7 @@ const app = createApp({
         <div v-if="officePresentation==='catalog'&&treeType==='office'&&!showCourtResidence" class="court-scroll">
           <div v-if="courtHierarchy.root" class="court-canvas" :style="{'--court-accent':currentFactionDef.color}">
             <header class="court-heading">
-              <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}}</div>
+              <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}} · {{courtResidenceType}}</div>
               <h2>{{currentFactionDef.short||currentFactionDef.name}}中央官署谱系</h2>
               <p>储君居中；公位与中央官职按文官、武官分列。同一官位只占一个位置，定额多席在位内展开；点击开府官位进入府属。</p>
               <div class="court-heading-actions">
@@ -7827,14 +7866,14 @@ const app = createApp({
               </div>
               <div v-if="courtActiveState" class="court-local-chain">
                 <div class="court-state-holder">
-                  <article class="court-state-card" @click="selectCourtSlot(courtActiveState.node)">
+                  <article class="court-state-card" @click="courtSlotClick(courtActiveState.node)">
                     <strong>{{courtActiveState.node.name}}</strong><span>{{courtActiveState.node.region}} · 州牧／刺史</span>
                   </article>
                 </div>
                 <div class="court-local-trunk"></div>
                 <div class="court-commandery-grid">
                   <article v-for="node in courtActiveState.commanderies" :key="node.key" class="court-commandery"
-                           :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="selectCourtSlot(node)">
+                           :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="courtSlotClick(node)">
                     <strong>{{node.name}}</strong><span>{{/国$/.test(node.name)?'国相':'太守'}} · {{node.region}}</span>
                   </article>
                 </div>
@@ -7844,7 +7883,7 @@ const app = createApp({
           <div v-else class="court-empty">当前体系尚无可显示的中央官署节点。</div>
         </div>
         <div v-if="officePresentation==='catalog'&&treeType==='office'&&showCourtResidence" class="court-scroll">
-          <div class="court-canvas office-residence-canvas" :style="{'--court-accent':currentFactionDef.color}">
+          <div class="court-canvas office-residence-canvas" :class="courtResidenceClass" :style="courtResidenceStyle">
             <header class="court-heading">
               <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}}</div>
               <h2>{{courtResidence.owner?courtResidence.owner.name:'府属'}}</h2>
@@ -8482,13 +8521,15 @@ const app = createApp({
         </section>
         <section v-else class="jinshi-table-card">
           <el-table :data="filteredEpigraphicRecords" size="small" empty-text="暂无符合条件的金石材料">
-            <el-table-column prop="name" label="名称" min-width="180" />
+            <el-table-column type="expand" width="42"><template #default="scope"><div class="epigraphic-inscription"><strong>释文</strong><div>{{scope.row.inscription||'暂无完整释文'}}</div><p v-if="scope.row.note">{{scope.row.note}}</p></div></template></el-table-column>
+            <el-table-column prop="displayName" label="名称" min-width="180" />
             <el-table-column prop="type" label="类型" width="100" />
             <el-table-column prop="polity" label="国别" width="70" />
             <el-table-column label="年代" width="120"><template #default="scope">{{scope.row.yearText||scope.row.year||'年代未详'}}</template></el-table-column>
             <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.place||scope.row.region||'出土地未详'}}</template></el-table-column>
             <el-table-column label="关联人物／官职" min-width="180"><template #default="scope">{{[scope.row.people,scope.row.offices].filter(Boolean).join(' · ')||'—'}}</template></el-table-column>
             <el-table-column label="形制／书体" min-width="160"><template #default="scope">{{[scope.row.form,scope.row.scriptStyle].filter(Boolean).join(' · ')||'未详'}}</template></el-table-column>
+            <el-table-column label="释文" min-width="220" show-overflow-tooltip><template #default="scope">{{scope.row.inscription||'—'}}</template></el-table-column>
             <el-table-column prop="note" label="释读说明" min-width="240" show-overflow-tooltip />
           </el-table>
         </section>
