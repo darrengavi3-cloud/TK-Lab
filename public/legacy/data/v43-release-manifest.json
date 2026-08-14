@@ -29,7 +29,7 @@
     "documentation": "docs/V43府署古水系与人物记优化.md",
     "verification": "scripts/verify-v43.mjs",
     "portableExport": "exports/三国职官谱-单文件版.html",
-    "deployment": "private-sites-version-13"
+    "deployment": "pending-private-sites"
   },
   "validation": {
     "verifyV43": "passed",
@@ -38,6 +38,7 @@
     "verifyProject": "passed",
     "verifyMapData": "passed",
     "verifyHistoricalModel": "passed",
-    "visualQa": "not-run-in-browser"
+    "visualQa": "not-run-in-browser",
+    "deployment": "pending"
   }
 }
