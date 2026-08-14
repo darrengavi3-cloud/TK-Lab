@@ -33,7 +33,7 @@
       people:'许慈、孟光、费诗、刘琰、李严、阴化', offices:'侍中、司徒、安汉将军、五官中郎将、太中大夫、博士、议郎、镇东将军、太守、武阳令',
       bibliography:'《隶释》；《华阳国志》；《三国志》',
       disputeNote:'残碑所见建安年号与刘备政权承继、建安二十五/二十六年换算存在争议；官员名录应视为碑文释读材料，不等同于同日完整官表。',
-      note:'保留文档长释文及官员名录的索引价值，待逐字拓本复核。'
+      note:'长释文及官员名录具有索引价值，释读尚需结合拓本。'
     }),
     record('shu-zhangwu-mirror','章武元年铜镜铭','器物铭',221,'章武元年','汉',{
       sourceDocument:sourceDoc.shu, researchStatus:'确定', confidence:'确定', place:'出土地未详',
@@ -160,7 +160,7 @@
     }),
     record('wu-wuqiu-slip','哇丘州吏吴军简牍','简牍',null,'年代未详·吴地材料','吴',{
       sourceDocument:sourceDoc.wu, researchStatus:'存疑', confidence:'存疑', form:'简牍、田租材料', bibliography:'《孙吴金石录》',
-      disputeNote:'材料性质偏行政与经济简牍，非严格意义上的石刻；保留在金石录扩展类型，待确认是否转入食货志。'
+      disputeNote:'材料性质偏行政与经济简牍，非严格意义上的石刻；其材料类型介于金石与经济简牍之间。'
     }),
     record('wu-yuchan-tomb','喻襜墓','墓志',332,'咸和七年','晋',{
       sourceDocument:sourceDoc.wu, researchStatus:'存疑', confidence:'存疑', place:'吴地', people:'喻襜', form:'东晋墓葬材料', archiveKind:'扩展',

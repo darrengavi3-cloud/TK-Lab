@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>职官谱 · 三国官职爵位管理系统</title>
+<link rel="icon" href="data:," />
 
 <link rel="stylesheet" href="./assets/vendor/element-plus/index.css" />
 <script src="./assets/vendor/vue/vue.global.min.js"></script>
@@ -503,7 +504,18 @@ body{background:#F4F3EF;}
   .court-commandery-grid{grid-template-columns:repeat(4,minmax(138px,1fr));}
 }
 @media(max-width:760px){
-  .court-columns{grid-template-columns:1fr;}
+  .court-canvas{min-width:0;width:100%;padding:22px 12px 36px;background-size:auto 340px;}
+  .court-heading{margin-bottom:15px;}
+  .court-heading h2{font-size:20px;}
+  .court-heading p{font-size:10.5px;line-height:1.6;}
+  .court-heading-actions{flex-wrap:wrap;}
+  .court-apex-columns,.court-columns{grid-template-columns:1fr;gap:14px;}
+  .court-apex-branch{padding-inline:8px;}
+  .court-column{padding-inline:7px;}
+  .court-column .court-office-track{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-columns:minmax(0,1fr);gap:8px;}
+  .court-column .court-slot{width:100%;}
+  .court-commandery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 8px;}
+  .residence-role-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
 }
 .module-page{flex:1;min-width:0;min-height:0;overflow:auto;padding:24px 28px 34px;background:#F4F3EF;}
 .module-page-inner{max-width:1380px;margin:0 auto;}
@@ -803,8 +815,32 @@ body{background:#F4F3EF;}
   .battle-time-title{min-width:190px}.battle-era-track,.battle-period-track{min-width:1500px}.battle-period{padding:7px 6px}.battle-period b{font-size:11px}
   .fangzhen-archive-tabs{grid-template-columns:repeat(3,1fr)}
 }
+@media(max-width:1540px) and (min-width:761px){
+  .topbar{gap:8px;padding-inline:12px}
+  .brand{min-width:118px;margin-right:0}
+  .brand .t2{display:none}
+  .module-nav{gap:2px;padding:3px}
+  .module-tab{min-width:70px;padding:3px 7px}
+  .module-tab strong{font-size:12px}
+  .module-tab small{font-size:8.5px}
+  .faction-tabs{flex-basis:142px;min-width:132px;max-width:150px}
+  .topbar-actions{gap:3px}
+  .topbar-actions .el-button{padding-left:8px;padding-right:8px}
+  .topbar-actions .el-button.is-circle{padding:5px}
+}
 @media(max-width:760px){
-  .topbar{min-width:0;overflow-x:auto;overflow-y:hidden;}
+  .topbar{height:104px;min-width:0;padding:6px 8px;gap:5px 8px;flex-wrap:wrap;align-content:center;overflow:hidden;}
+  .brand{min-width:0;margin:0;}
+  .brand .t1{font-size:15px;letter-spacing:1px;}
+  .brand .t2,.module-context{display:none;}
+  .faction-tabs{margin-left:auto;flex:0 1 126px;min-width:106px;max-width:126px;overflow:hidden;}
+  .topbar-actions{display:flex;gap:0;flex:0 0 auto;}
+  .topbar-actions>*{display:none!important;}
+  .topbar-actions>.mobile-export-menu{display:inline-flex!important;}
+  .mobile-export-menu .el-button{padding-inline:8px;}
+  .module-nav{order:10;flex:0 0 100%;max-width:100%;justify-content:flex-start;overflow-x:auto;scrollbar-width:thin;}
+  .module-tab{min-width:76px;padding-inline:8px;}
+  .statusbar{display:none;}
   .catalog-workbench{display:block;overflow:auto}.catalog-hierarchy{max-height:240px;border-right:0;border-bottom:1px solid var(--rule)}.catalog-content{overflow:visible;padding:14px}.catalog-card-grid{grid-template-columns:1fr}
   .people-metrics{grid-template-columns:repeat(2,1fr)}
   .person-card-grid{grid-template-columns:1fr}
@@ -1375,7 +1411,9 @@ function validateHistoryMapRegistry(registry){
 const HISTORY_MAP_REGISTRY = validateHistoryMapRegistry(window.HISTORY_MAP_REGISTRY);
 const HISTORY_MAP_PERIODS = HISTORY_MAP_REGISTRY.periods;
 const HISTORY_MAP_ERAS = HISTORY_MAP_REGISTRY.eras;
-const HISTORY_MAP_BASE = './assets/map/';
+const HISTORY_MAP_BASE = window.location?.href
+  ? window.location.href.replace(/[?#].*$/,'').replace(/[^/]*$/,'')+'assets/map/'
+  : './assets/map/';
 const HISTORY_MAP_SRCDOC = `<!DOCTYPE html>
 <html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -1516,7 +1554,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 <script src="data/county-registry.js"><\/script>
 <script src="data/history-evidence.js"><\/script>
 <script src="data/strategic-geography.js"><\/script>
-<script src="data/battle-records.js"><\/script>
+<script src="../../data/battle-records.js"><\/script>
 <script src="data/all-provinces-local.js"><\/script>
 <script src="js/bridge.js"><\/script>
 <script>
@@ -2905,7 +2943,7 @@ const SHIHUO_RECORDS = [
   { id:'sh_236_daquan', year:236, polity:'吴', category:'货币', title:'大泉五百', detail:'嘉禾五年春吴铸大钱一当五百，文曰“大泉五百”，径一寸三分、重十二铢。', sourceTitle:'《吴志·孙权传》《通典·食货志》', confidence:'确定' },
   { id:'sh_238_daquan', year:238, polity:'吴', category:'货币', title:'大泉当千', detail:'赤乌元年春吴复铸当千大钱“大泉当千”，径一寸四分、重十六铢，另有当两千、当五千钱。', sourceTitle:'《吴志·孙权传》《通典·食货志》', confidence:'确定' },
   { id:'sh_246_ba_daqian', year:246, polity:'吴', category:'货币', title:'罢大钱', detail:'赤乌九年吴以民多不以大钱为便，下诏罢大钱；然孙氏旧钱至东晋元帝时尚被通用。', sourceTitle:'《吴志·孙权传》注引《江表传》《晋书·食货志》', confidence:'确定' },
-  { id:'sh_190_dongzhuo_qian', year:190, polity:'汉', category:'货币', title:'董卓小钱', detail:'初平元年董卓坏五铢更铸小钱（径约二寸三分、重约八铢？原注径2.3厘米重1.8克），钱品恶劣，谷一斛至数十万，钱货不行。', sourceTitle:'《后汉书·孝献帝纪》《魏志·董卓传》', confidence:'确定' },
+  { id:'sh_190_dongzhuo_qian', year:190, polity:'汉', category:'货币', title:'董卓小钱', detail:'初平元年董卓毁五铢并铸小钱，钱制粗恶，谷一斛涨至数十万，钱货不行。', sourceTitle:'《后汉书·孝献帝纪》《魏志·董卓传》', confidence:'确定' },
   { id:'sh_208_caocao_qian', year:208, polity:'魏', category:'货币', title:'建安罢小钱', detail:'建安十三年曹操为相，罢小钱还用五铢，惟少所增铸，仍不足济用，谷贱无已，疑后更废。', sourceTitle:'《晋书·食货志》', confidence:'确定' },
   { id:'sh_272_wu_juan', year:272, polity:'吴', category:'物价', title:'吴物价', detail:'凤皇元年一犬至值数千匹绢，御犬率具缨值钱一万；谷帛绢布为日常交换媒介。', sourceTitle:'《吴志·孙皓传》注引《江表传》', confidence:'确定' },
   { id:'sh_194_jia', year:194, polity:'汉', category:'物价', title:'兴平谷价', detail:'兴平元年谷一斛五十万钱，豆麦一斛二十万钱；幽州谷一石十万钱。', sourceTitle:'《后汉书·献帝纪》《魏志·武帝纪》', confidence:'确定' },
@@ -7510,7 +7548,7 @@ const app = createApp({
         <el-upload :show-file-list="false" accept=".xlsx,.xls" :before-upload="importExcel">
           <el-button size="small">导入 Excel</el-button>
         </el-upload>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" class="mobile-export-menu">
           <el-button size="small" type="primary" plain>导出 ▾</el-button>
           <template #dropdown>
             <el-dropdown-menu>
@@ -7700,7 +7738,7 @@ const app = createApp({
                       <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
                       <button class="court-person-name court-person-link" @click.stop="courtResidenceAvailable(node)?openCourtResidence(node):openPersonProfile(courtPrimaryFigure(node).name)">{{courtPrimaryFigure(node).name}}</button>
                     </template>
-                    <div v-else class="court-person-empty">{{node.virtualSlot?'未立或待录':'任官人物待录'}}</div>
+                    <div v-else class="court-person-empty">{{node.virtualSlot?'未立／人物未详':'暂无任官记录'}}</div>
                   </div>
                   <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
                   <span v-if="courtResidenceAvailable(node)" class="court-residence-badge" title="进入府属">府</span>
@@ -7724,7 +7762,7 @@ const app = createApp({
                           <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
                           <button class="court-person-name court-person-link" @click.stop="courtResidenceAvailable(node)?openCourtResidence(node):openPersonProfile(courtPrimaryFigure(node).name)">{{courtPrimaryFigure(node).name}}</button>
                         </template>
-                        <div v-else class="court-person-empty">任官人物待录</div>
+                        <div v-else class="court-person-empty">暂无任官记录</div>
                       </div>
                       <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
                       <span v-if="courtResidenceAvailable(node)" class="court-residence-badge" title="进入府属">府</span>
@@ -7744,7 +7782,7 @@ const app = createApp({
                           <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
                           <button class="court-person-name court-person-link" @click.stop="courtResidenceAvailable(node)?openCourtResidence(node):openPersonProfile(courtPrimaryFigure(node).name)">{{courtPrimaryFigure(node).name}}</button>
                         </template>
-                        <div v-else class="court-person-empty">任官人物待录</div>
+                        <div v-else class="court-person-empty">暂无任官记录</div>
                       </div>
                       <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
                       <span v-if="courtResidenceAvailable(node)" class="court-residence-badge" title="进入府属">府</span>
@@ -7810,7 +7848,7 @@ const app = createApp({
             <header class="court-heading">
               <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}}</div>
               <h2>{{courtResidence.owner?courtResidence.owner.name:'府属'}}</h2>
-              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:'任职人物待录'}}</strong> · 仅列当前树中已录的具体府属官职；序号为府属阅览次序，不等同跨时期统一品秩</p>
+              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:'任职人物未详'}}</strong> · 仅列当前树中已录的具体府属官职；序号为府属阅览次序，不等同跨时期统一品秩</p>
               <div class="court-heading-actions">
                 <el-button size="small" type="primary" plain @click="closeCourtResidence">← 返回朝堂</el-button>
                 <el-button size="small" text @click="editCourtResidenceOwner">编辑府主</el-button>
@@ -7824,7 +7862,7 @@ const app = createApp({
                     <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(courtResidence.owner))"><img v-if="personPortraitFor(courtPrimaryFigure(courtResidence.owner).name,[courtPrimaryFigure(courtResidence.owner)])" :src="personPortraitFor(courtPrimaryFigure(courtResidence.owner).name,[courtPrimaryFigure(courtResidence.owner)])" :alt="courtPrimaryFigure(courtResidence.owner).name+'立绘'"/><span v-else>{{courtPrimaryFigure(courtResidence.owner).name.slice(0,1)}}</span></div>
                     <button class="court-person-name court-person-link" @click.stop="openPersonProfile(courtPrimaryFigure(courtResidence.owner).name)">{{courtPrimaryFigure(courtResidence.owner).name}}</button>
                   </template>
-                  <div v-else class="court-person-empty">府主人物待录</div>
+                  <div v-else class="court-person-empty">府主人物未详</div>
                 </div>
                 <div class="court-slot-meta">{{courtResidence.owner.name}}</div>
               </article>
@@ -7842,7 +7880,7 @@ const app = createApp({
                       <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
                       <button class="court-person-name court-person-link" @click.stop="openPersonProfile(courtPrimaryFigure(node).name)">{{courtPrimaryFigure(node).name}}</button>
                     </template>
-                    <div v-else class="court-person-empty">任官人物待录</div>
+                    <div v-else class="court-person-empty">暂无任官记录</div>
                   </div>
                   <div class="residence-role-meta">{{courtResidenceRoleMeta(node)}} · {{(node.figures||[]).length}} 条人物记录</div>
                 </article>

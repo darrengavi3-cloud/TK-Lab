@@ -12,6 +12,7 @@ const assert = (condition, message) => {
 
 const registry = JSON.parse(read('data/map-period-registry.json'));
 const audit = JSON.parse(read('data/historical-audit.json'));
+const releaseManifest = JSON.parse(read('data/v41-release-manifest.json'));
 const html = read('index.html');
 const portable = read('exports/三国职官谱-单文件版.html');
 const researchModelSource = read('data/research-model.js');
@@ -26,7 +27,7 @@ const portableTemplate = templateOf(portable);
 const forbiddenReadingLabels = [
   '史料校验','史实可信度','来源层级','置信度','研究状态','研究结论','史料状态','查看史料',
   '边界可信度','史料证据卡','文档考据','核心材料','资料来源','史料摘录','录入边界','史料出处',
-  '数据审计','史料卡','待补','待核','已执行'
+  '数据审计','史料卡','待补','待核','待录','已执行','据整理记录录入'
 ];
 const visibleReadingLeak = template => forbiddenReadingLabels.filter(label => template.includes(label));
 assert(visibleReadingLeak(htmlTemplate).length===0, `规范阅读界面仍含禁用研究文案：${visibleReadingLeak(htmlTemplate).join('、')}`);
@@ -105,7 +106,9 @@ assert(
   !html.includes("typeof HISTORY_MAP_REGISTRY === 'undefined'"),
   '检测到会导致页面空白的注册表暂时性死区写法'
 );
-assert(html.includes("const HISTORY_MAP_BASE = './assets/map/';"), '地图资源尚未切换为本地路径');
+assert(html.includes("window.location.href.replace(/[?#].*$/,'').replace(/[^/]*$/,'')+'assets/map/'"), '地图资源未按当前页面解析本地路径');
+assert(releaseManifest.release==='V41' && releaseManifest.phases.length===5, 'V41 发布清单缺失或阶段数错误');
+assert(releaseManifest.artifacts.deployment==='not-triggered', 'V41 发布清单不得标记自动部署');
 assert(html.includes('data/all-provinces-local.js'), '本地州郡几何脚本未接入');
 assert(html.includes('中央官署谱系') && html.includes('court-canvas') && html.includes('court-commandery-grid'), '中央朝堂谱系或州郡连接视图未接入');
 assert(html.includes("name:'储君'") && html.includes("courtSlotKey(node)==='储君'"), '储君单席位规则未接入');
@@ -279,6 +282,7 @@ const requiredFiles = [
   'docs/V39金石录朝堂战事与地图优化.md',
   'docs/V41史书校正与前台精简.md',
   'data/v41-correction-audit.json',
+  'data/v41-release-manifest.json',
   'assets/ui/court-ink-palace.png',
   'assets/vendor/element-plus/index.css',
   'assets/vendor/vue/vue.global.min.js',

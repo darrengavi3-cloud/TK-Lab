@@ -16,6 +16,7 @@ const idsUnique=(rows,label)=>{
 const registry=JSON.parse(read('data/map-period-registry.json'));
 const historyEvidence=JSON.parse(read('data/history-evidence.json'));
 const correctionAudit=JSON.parse(read('data/v41-correction-audit.json'));
+const releaseManifest=JSON.parse(read('data/v41-release-manifest.json'));
 assert(registry.periods.length===16,'地图时期应为 16 期');
 assert(registry.periods.every(period=>String(period.snapshotMoment||'').trim()),'地图时期缺少 snapshotMoment');
 assert(historyEvidence.periods.length===16,'历史证据未覆盖 16 期');
@@ -24,6 +25,10 @@ idsUnique(registry.periods,'地图时期');
 assert(correctionAudit.release==='V41' && correctionAudit.modules.length===7,'V41 纠错审计应覆盖七版块');
 assert(new Set(correctionAudit.modules.map(module=>module.id)).size===7,'V41 纠错审计版块 ID 重复');
 assert(correctionAudit.primaryTextChecks.length>=4,'V41 原典定位记录不足');
+assert(releaseManifest.release==='V41' && releaseManifest.phases.length===5 && releaseManifest.phases.every(phase=>phase.status==='complete'),'V41 五阶段发布清单不完整');
+assert(releaseManifest.artifacts.deployment==='not-triggered','V41 不得自动触发网站部署');
+assert(releaseManifest.validation.automated.status==='passed' && releaseManifest.validation.automated.siteRenderedTests==='2/2','V41 自动化验收结果不完整');
+assert(['desktop','mobile'].every(key=>releaseManifest.validation.visualQa[key].modulesChecked===7 && releaseManifest.validation.visualQa[key].bodyOverflow===false && releaseManifest.validation.visualQa[key].brokenImages===0),'V41 桌面或移动端七版块验收不完整');
 
 const dataContext={window:{}};
 dataContext.window.window=dataContext.window;
@@ -53,7 +58,7 @@ const readingTemplate=html.slice(templateStart,templateEnd);
 const forbiddenReadingLabels=[
   '史料校验','史实可信度','来源层级','置信度','研究状态','研究结论','史料状态','查看史料',
   '边界可信度','史料证据卡','文档考据','核心材料','资料来源','史料摘录','录入边界','史料出处',
-  '数据审计','史料卡','待补','待核','已执行'
+  '数据审计','史料卡','待补','待核','待录','已执行','据整理记录录入'
 ];
 assert(forbiddenReadingLabels.every(label=>!readingTemplate.includes(label)),`阅读界面仍含禁用研究文案：${forbiddenReadingLabels.filter(label=>readingTemplate.includes(label)).join('、')}`);
 assert(html.includes('battleRecords:cloneJSON(battleRecords)') && html.includes('shihuoEvents:cloneJSON(shihuoEventRecords.value)') && html.includes('mapPeriods:cloneJSON(historyMapPeriods)'),'完整 JSON 或本地缓存未保存 V41 补充数据');
@@ -106,7 +111,7 @@ const projectedCorpus=model.projectForReading({
   household:canonical.household,epigraphic,biographies,battles,mapPeriods:registry.periods
 });
 const projectedText=JSON.stringify(projectedCorpus);
-const forbiddenProjectedTerms=[...forbiddenReadingLabels,'本项目','履历归纳'];
+const forbiddenProjectedTerms=[...forbiddenReadingLabels,'本项目','履历归纳','据研究文档录入','不重复导入'];
 assert(forbiddenProjectedTerms.every(term=>!projectedText.includes(term)),`动态阅读数据仍含禁用文案：${forbiddenProjectedTerms.filter(term=>projectedText.includes(term)).join('、')}`);
 assert(!/"(?:evidence|sourceTitle|sourceDocument|sourceUrl|sourceLevel|sourceLocator|sourceExcerpt|confidence|researchStatus|auditStatus|sourceTenureText)"\s*:/.test(projectedText),'动态阅读数据仍含研究元数据键');
 assert(JSON.stringify(canonical).includes('"sourceTitle"') && JSON.stringify(canonical).includes('"confidence"'),'规范数据未保留来源与判断字段');

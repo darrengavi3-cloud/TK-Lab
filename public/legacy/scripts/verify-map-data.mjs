@@ -258,9 +258,9 @@ console.log(`263 郡级政权：${[...new Set(data.three263.map(feature => featu
 console.log(`264 郡级政权：${[...new Set(data.wei264.map(feature => feature.kingdom))].join('、')}`);
 console.log(`266 郡级政权：${[...new Set(data.jin266.map(feature => feature.kingdom))].join('、')}`);
 console.log(`郡级快照：200 年 ${data.commanderyByPeriod.guandu.length} 郡；208 年 ${data.commanderyByPeriod.chibi.length} 郡；220 年 ${data.commanderyByPeriod.sanguo.length} 郡`);
-console.log('V10 郡名锚点：十四期全部郡块均已生成');
+console.log('V41 郡名锚点：十六期全部郡块均已生成');
 console.log(`280 十九州：${names(data.provinces.jin).join('、')}`);
-console.log('十四期势力完整性、189 年官员注记、190 年分郡势力、194 兴平节点与 263/264 年状态已通过审计');
+console.log('十六期势力完整性、189 年官员注记、190 年分郡势力、194 兴平节点与 263/264 年状态已通过审计');
 if (process.env.MAP_AUDIT_VERBOSE === '1') {
   Object.entries(data.commanderyByPeriod).forEach(([periodId, features]) => {
     const counts = features.reduce((out, feature) => {

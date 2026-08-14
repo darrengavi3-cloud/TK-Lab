@@ -17,10 +17,10 @@ const historyEvidence = JSON.parse(fs.readFileSync(historyEvidencePath, 'utf8'))
 const ids = registry.periods.map(period => period.id);
 const expected = registry.requiredPeriodIds;
 if (ids.length !== expected.length || ids.some((id, index) => id !== expected[index])) {
-  throw new Error(`十四期注册表顺序错误：${ids.join(', ')}`);
+  throw new Error(`十六期注册表顺序错误：${ids.join(', ')}`);
 }
 if (new Set(ids).size !== ids.length) {
-  throw new Error('十四期注册表存在重复 id');
+  throw new Error('十六期注册表存在重复 id');
 }
 
 fs.writeFileSync(
@@ -94,6 +94,6 @@ const historyEvidenceRuntime = `(function(global){
 fs.writeFileSync(path.join(root, 'data', 'history-evidence.js'), historyEvidenceRuntime, 'utf8');
 fs.writeFileSync(path.join(root, 'assets', 'map', 'data', 'history-evidence.js'), historyEvidenceRuntime, 'utf8');
 
-console.log(`已生成十四期注册表脚本：${ids.join(' → ')}`);
+console.log(`已生成十六期注册表脚本：${ids.join(' → ')}`);
 console.log(`已生成本地州郡几何脚本：${geoPath}`);
 console.log(`已生成 V7 历史证据脚本：${historyEvidence.periods.length} 期、${historyEvidence.sources.length} 条来源`);

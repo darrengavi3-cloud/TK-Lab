@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-14T01:37:46.544Z",
+  "generatedAt": "2026-08-14T02:35:55.094Z",
   "offlineRuntime": true,
-  "fileCount": 106,
-  "totalBytes": 39261173,
+  "fileCount": 107,
+  "totalBytes": 39264002,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -422,8 +422,8 @@
     },
     {
       "path": "data/epigraphic-records.js",
-      "bytes": 23033,
-      "sha256": "accf1c51aab7ab4e50a9e68eeb1da029799619195444fb3ebf87c1550d356ed6"
+      "bytes": 23012,
+      "sha256": "85a3ab057205b1d0640f7d0b938bb163cf4e09afa41f0234544be2b579a3e3bc"
     },
     {
       "path": "data/fangzhen-seat-supplement.js",
@@ -502,8 +502,8 @@
     },
     {
       "path": "data/research-model.js",
-      "bytes": 13642,
-      "sha256": "5d2bafe7bfad12a3e3e851083e628cb83e7bf9d9811a7da93110fe7a271afde5"
+      "bytes": 14087,
+      "sha256": "6f67e0af98c07c6666542fd0cbcef22d9a79143d773b4826e0560d1a3c6c29d7"
     },
     {
       "path": "data/research-schema.json",
@@ -519,6 +519,11 @@
       "path": "data/v41-correction-audit.json",
       "bytes": 5578,
       "sha256": "805011ba07845818cc1cd8b7f2218b7b596c35794dd4ff7b07c124fad04efd7a"
+    },
+    {
+      "path": "data/v41-release-manifest.json",
+      "bytes": 2405,
+      "sha256": "9534d45d4a86199109697f110d7d745e7145a386ace41ac7e0855f18504014b5"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

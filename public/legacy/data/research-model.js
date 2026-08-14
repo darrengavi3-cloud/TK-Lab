@@ -21,6 +21,11 @@
   function text(value){ return String(value == null ? '' : value).trim(); }
   function readingText(value){
     return text(value)
+      .replace(/据(?:研究文档|整理记录)录入[；。]?/g,'')
+      .replace(/存疑、未详与未上任等措辞均保留，不据此推定常设官署[；。]?/g,'')
+      .replace(/研究文档同条已合并，不重复导入[；。]?/g,'')
+      .replace(/待逐字拓本复核/g,'释读尚需结合拓本')
+      .replace(/待确认是否转入食货志/g,'材料类型介于金石与经济简牍之间')
       .replace(/本项目/g,'')
       .replace(/履历归纳/g,'履历提要')
       .replace(/研究示意/g,'大致范围')
@@ -225,7 +230,7 @@
     const dispute=readingText(value.disputeNote);
     if(dispute){
       const note=text(out.note);
-      out.note=note ? note+'；异说：'+dispute : '异说：'+dispute;
+      out.note=note ? note.replace(/[；。]+$/,'')+'；异说：'+dispute : '异说：'+dispute;
     }
     return out;
   }
