@@ -178,7 +178,7 @@ html, body {
 .faction-annotation small { font-size:9.5px; color:#5F584E; font-weight:600; }
 
 /* 周边族群与古国：研究示意矢量层，不等同于汉魏吴晋正式行政边界。 */
-.minority-region { stroke: rgba(247,243,233,.92) !important; stroke-width: 1.05 !important; stroke-linejoin: round; mix-blend-mode: multiply; pointer-events: none; }
+.minority-region { stroke: rgba(112,103,89,.76) !important; stroke-width: 1.05 !important; stroke-dasharray: 5 5 !important; stroke-linejoin: round; mix-blend-mode: multiply; pointer-events: none; }
 .minority-label { font-family:"KaiTi","STKaiti",serif; display:flex!important; justify-content:center; align-items:center; pointer-events:none; }
 .minority-label span { display:inline-block; transform:translate(-50%,-50%); color:var(--minority-color,#625b52); font-size:13px; font-weight:700; letter-spacing:2px; white-space:nowrap; text-shadow:0 0 3px rgba(247,243,233,.96),0 0 1px rgba(247,243,233,.96); }
 
@@ -690,6 +690,12 @@ html, body {
   box-shadow: 0 0 0 2px rgba(141, 61, 50, .20);
 }
 
+.capital-legend-row { gap: 7px; align-items: flex-start; }
+.capital-legend-row span:last-child { display: flex; flex-direction: column; min-width: 0; line-height: 1.35; }
+.capital-legend-row small { display: block; color: #8A918A; font-size: 9px; white-space: normal; }
+.lg-capital-icon { width: 14px; height: 14px; flex: 0 0 auto; border: 2px solid var(--capital-color,#8D3D32); border-radius: 50%; background: #FFFDF8; box-shadow: inset 0 0 0 3px rgba(255,255,255,.65); margin-top: 1px; }
+.lg-minority-swatch { width: 18px; height: 12px; border: 1px dashed #8A8170; background: rgba(168,151,120,.12); }
+
 .lg-swatch {
   width: 13px;
   height: 13px;
@@ -1041,10 +1047,6 @@ html, body {
 .roster-meta { color: var(--ink-faint); font-size: 9.5px; white-space: nowrap; }
 .roster-item strong { color: var(--ink); font-weight: 600; }
 .roster-item small { color: var(--ink-faint); font-size: 10.5px; }
-.roster-status { display: inline-block; margin-left: 2px; padding: 1px 4px; border-radius: 3px; font-style: normal; font-size: 9px; font-weight: 700; color: #6b5530; background: #f7f1e4; }
-.roster-status.s-tuiding { color: #356044; background: #edf4ee; }
-.roster-status.s-cunyi { color: #8b4338; background: #f7ece9; }
-.roster-status.s-daikao { color: #5f584e; background: #efebe1; }
 
 .pv-result {
   margin-top: 14px;

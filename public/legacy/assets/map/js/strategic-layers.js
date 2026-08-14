@@ -49,9 +49,10 @@ const StrategicLayers = (function () {
           className: 'minority-region',
           color: item.borderColor || '#f7f3e9',
           weight: item.borderWeight || 1,
-          opacity: item.borderOpacity ?? .88,
+          opacity: item.borderOpacity ?? .72,
           fillColor: item.color || '#8b765f',
-          fillOpacity: item.fillOpacity ?? .38,
+          fillOpacity: item.fillOpacity ?? .12,
+          dashArray: item.dashArray || '5 5',
           lineJoin: 'round',
           interactive: false,
         });
@@ -66,6 +67,7 @@ const StrategicLayers = (function () {
         }),
         interactive:false,
       });
+      label.bindTooltip(`<strong>${item.name}</strong><br>${item.note || '活动范围未详'}`, {sticky:true,className:'tt-minority'});
       minorityLayer.addLayer(label);
     });
     minorityLayer.addTo(map);

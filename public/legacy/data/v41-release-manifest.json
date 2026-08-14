@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "release": "V41",
+  "releaseDate": "2026-08-14",
+  "canonicalSource": "三国职官谱项目",
+  "branch": "codex/v41-historical-correction",
+  "phases": [
+    { "id": "baseline", "name": "基线恢复", "status": "complete" },
+    { "id": "historical-model", "name": "史书校正与数据模型", "status": "complete" },
+    { "id": "reading-ui", "name": "界面与阅读导出精简", "status": "complete" },
+    { "id": "modules", "name": "七版块优化", "status": "complete" },
+    { "id": "release-validation", "name": "发布验收", "status": "complete" }
+  ],
+  "counts": {
+    "officeNodes": 1406,
+    "appointments": 504,
+    "biographies": 79,
+    "portraits": 44,
+    "battleChronicles": 43,
+    "battles": 22,
+    "battlefields": 12,
+    "epigraphicRecords": 60,
+    "economyRecords": 71,
+    "economyEvents": 19,
+    "householdSeries": 8,
+    "mapPeriods": 16,
+    "administrativeClaims": 33
+  },
+  "artifacts": {
+    "canonical": "validated",
+    "portableHtml": "generated",
+    "privateSiteLegacy": "synced",
+    "githubPullRequest": "create-after-release-commit",
+    "deployment": "not-triggered"
+  },
+  "validation": {
+    "commands": [
+      "node scripts/build-local-data.mjs",
+      "node scripts/build-portable-export.mjs",
+      "node scripts/build-asset-manifest.mjs",
+      "node scripts/verify-research-model.mjs",
+      "node scripts/verify-historical-model.mjs",
+      "node scripts/verify-map-data.mjs",
+      "node scripts/verify-v41.mjs",
+      "node scripts/verify-project.mjs",
+      "npm test"
+    ],
+    "automated": {
+      "status": "passed",
+      "siteRenderedTests": "2/2",
+      "jsonEvidenceRoundTrip": true,
+      "duplicateIds": 0,
+      "readingMetadataLeaks": 0
+    },
+    "visualQa": {
+      "desktop": {
+        "viewport": "1440x900",
+        "modulesChecked": 7,
+        "bodyOverflow": false,
+        "brokenImages": 0,
+        "forbiddenLabels": 0,
+        "mapPeriods": 16,
+        "interactions": ["人物详情", "战事详情", "州镇筛选", "金石筛选", "食货筛选", "地图时期切换", "导出菜单"]
+      },
+      "mobile": {
+        "viewport": "390x844",
+        "modulesChecked": 7,
+        "bodyOverflow": false,
+        "brokenImages": 0,
+        "forbiddenLabels": 0,
+        "mapPeriods": 16,
+        "interactions": ["七版块切换", "地图时期切换", "导出菜单"]
+      }
+    }
+  }
+}

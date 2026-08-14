@@ -29,11 +29,11 @@ window.STRATEGIC_BATTLEFIELDS = [
 window.MINORITY_REGIONS = [
   {id:'xiyu',name:'西域诸国',from:184,to:316,label:[40.65,94.5],color:'#c8b58c',labelColor:'#7a3e3e',status:'推定',vectorKind:'activity-zone',note:'西域诸国活动区；不等同于东汉常设州郡。',pts:[[38.4,88.5],[42.6,90.5],[43.4,95.5],[41.1,100.8],[37.0,99.0],[35.0,94.0]]},
   {id:'xiongnu',name:'匈奴',from:184,to:316,label:[41.55,105.5],color:'#c7839b',labelColor:'#7a1824',status:'推定',vectorKind:'activity-zone',note:'匈奴活动区；南北部众与附属关系随时期变化。',pts:[[39.2,97.2],[44.6,98.2],[45.4,108.8],[44.0,115.2],[40.5,114.6],[38.0,107.5]]},
-  {id:'qiang',name:'羌',from:184,to:316,label:[35.35,101.3],color:'#bbaa8f',labelColor:'#4b372d',status:'推定',vectorKind:'activity-zone',note:'羌部活动区；边界为研究示意。',pts:[[35.4,96.0],[38.2,100.3],[37.5,105.0],[34.6,107.4],[32.5,103.0],[33.0,99.2]]},
+  {id:'qiang',name:'羌',from:184,to:316,label:[35.35,101.3],color:'#bbaa8f',labelColor:'#4b372d',status:'推定',vectorKind:'activity-zone',note:'羌部活动区；边界仅表示大致范围。',pts:[[35.4,96.0],[38.2,100.3],[37.5,105.0],[34.6,107.4],[32.5,103.0],[33.0,99.2]]},
   {id:'di',name:'氐',from:184,to:316,label:[33.05,106.9],color:'#b7ba79',labelColor:'#514b20',status:'推定',vectorKind:'activity-zone',note:'氐部活动区；不替代汉地郡县归属。',pts:[[33.4,102.6],[35.4,106.2],[34.8,109.3],[32.4,110.0],[30.4,106.7],[30.8,103.8]]},
   {id:'xianbei',name:'鲜卑',from:184,to:316,label:[43.9,122.7],color:'#c4d0e7',labelColor:'#283950',status:'推定',vectorKind:'activity-zone',note:'鲜卑诸部活动区；部落联盟范围随时期变化。',pts:[[41.0,114.5],[45.8,115.4],[46.2,130.5],[43.0,132.0],[40.3,126.4],[39.6,120.0]]},
   {id:'wuhuan',name:'乌桓',from:184,to:207,label:[41.0,120.5],color:'#d1b79f',labelColor:'#75422f',status:'推定',vectorKind:'activity-zone',note:'乌桓活动区；207年后不再作为独立强势范围绘制。',pts:[[39.2,115.6],[42.6,117.0],[43.3,122.2],[40.8,124.2],[38.8,121.1]]},
-  {id:'fuyu',name:'夫余',from:184,to:316,label:[43.0,128.4],color:'#bfd4cd',labelColor:'#31554b',status:'推定',vectorKind:'activity-zone',note:'夫余活动区；为域外政权研究示意。',pts:[[42.0,124.0],[45.2,126.5],[44.5,131.4],[41.2,130.6],[40.0,126.2]]},
+  {id:'fuyu',name:'夫余',from:184,to:316,label:[43.0,128.4],color:'#bfd4cd',labelColor:'#31554b',status:'推定',vectorKind:'activity-zone',note:'夫余活动区；不表示同时期精确国界。',pts:[[42.0,124.0],[45.2,126.5],[44.5,131.4],[41.2,130.6],[40.0,126.2]]},
   {id:'gaogouli',name:'高句丽',from:184,to:316,label:[39.1,128.4],color:'#b9c9e6',labelColor:'#263b60',status:'推定',vectorKind:'activity-zone',note:'高句丽活动区；不绘制其与汉郡的精确国界。',pts:[[37.2,125.2],[42.0,126.2],[42.3,130.6],[38.4,130.8],[36.7,127.7]]},
   {id:'nanman',name:'南中诸部',from:184,to:316,label:[25.2,105.2],color:'#bda6cf',labelColor:'#583d62',status:'推定',vectorKind:'activity-zone',note:'南中诸部活动区；汉、蜀汉、晋的羁縻与郡县关系另行表达。',pts:[[21.7,99.4],[29.2,100.0],[29.4,107.6],[25.4,112.0],[21.0,108.3]]}
 ];

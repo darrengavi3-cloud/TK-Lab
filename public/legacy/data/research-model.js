@@ -1,27 +1,64 @@
 (function(global){
   'use strict';
 
-  const SCHEMA_VERSION = 7;
+  const SCHEMA_VERSION = 8;
   const ENTITY_TYPES = Object.freeze({
     polity:'政权', office:'官职', title:'爵位', person:'人物', appointment:'任官',
     jurisdiction:'辖区', source:'史料', period:'时期', periodSnapshot:'时期快照',
-    controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料'
+    controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料',
+    seatPolicy:'员额规则', residence:'府署'
   });
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
   const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','待核']);
   const HISTORY_SNAPSHOT_STATUS = Object.freeze(['通过','通过（示意）','待核','存在冲突']);
+  const READING_META_FIELDS = Object.freeze([
+    'evidence','sourceIds','sourceTitle','sourceDocument','sourceUrl','sourceLevel','sourceLocator','sourceExcerpt',
+    'source','sources','bioSource','portraitSource','bibliography','confidence','status','researchStatus','auditStatus',
+    'archiveKind','archiveScope','importBatch','sourceTenureText','verificationState','evidenceNote','footnotes'
+  ]);
+  const READING_META_FIELD_SET = new Set(READING_META_FIELDS);
 
   function clone(value){ return JSON.parse(JSON.stringify(value)); }
   function text(value){ return String(value == null ? '' : value).trim(); }
+  function readingText(value){
+    return text(value)
+      .replace(/据(?:研究文档|整理记录)录入[；。]?/g,'')
+      .replace(/存疑、未详与未上任等措辞均保留，不据此推定常设官署[；。]?/g,'')
+      .replace(/研究文档同条已合并，不重复导入[；。]?/g,'')
+      .replace(/待逐字拓本复核/g,'释读尚需结合拓本')
+      .replace(/待确认是否转入食货志/g,'材料类型介于金石与经济简牍之间')
+      .replace(/本项目/g,'')
+      .replace(/履历归纳/g,'履历提要')
+      .replace(/研究示意/g,'大致范围')
+      .replace(/研究文档|文档考据/g,'整理记录')
+      .replace(/来源文章/g,'相关整理')
+      .replace(/来源型/g,'汇列')
+      .replace(/研究结论/g,'说明')
+      .replace(/研究状态/g,'状态')
+      .replace(/录入边界/g,'范围')
+      .replace(/已执行/g,'已完成')
+      .replace(/史料校验|史实可信度|来源层级|史料状态|查看史料|边界可信度|史料证据卡|核心材料|资料来源|史料摘录|史料出处|数据审计|史料卡/g,'')
+      .replace(/沿革年代待考/g,'沿革年代未详')
+      .replace(/任期待考/g,'任期未详')
+      .replace(/年代待考/g,'年代未详')
+      .replace(/待补考/g,'未详')
+      .replace(/待核|待补|待考/g,'未详')
+      .replace(/资料置信度|置信度/g,'判断')
+      .replace(/[；，、]{2,}/g,'；')
+      .replace(/\s{2,}/g,' ')
+      .replace(/^\s*[；，、]|[；，、]\s*$/g,'')
+      .trim();
+  }
   function slug(value){
     return text(value).toLowerCase().replace(/蜀汉|季汉/g,'汉').replace(/[\s·／/（）()—–-]+/g,'_').replace(/[^\w\u3400-\u9fff_]/g,'').replace(/^_+|_+$/g,'') || 'unknown';
   }
   function stableId(type, parts){ return [type].concat((parts||[]).map(slug)).join(':'); }
   function normalizePolity(value){
     const raw=text(value);
-    if(raw==='蜀汉'||raw==='季汉') return '汉';
+    if(raw==='东汉'||raw==='蜀汉'||raw==='季汉') return '汉';
     if(raw==='曹魏') return '魏';
     if(raw==='孙吴') return '吴';
+    if(raw==='西晋'||raw==='东晋'||raw==='晋朝') return '晋';
     return raw;
   }
   function normalizeConfidence(value){
@@ -103,6 +140,28 @@
     row.aliases=Array.isArray(row.aliases)?row.aliases.map(text).filter(Boolean):[];
     return row;
   }
+  function normalizeSeatPolicy(record,index){
+    const row=clone(record||{});
+    row.entityType='seatPolicy';
+    row.id=text(row.id)||stableId('seatPolicy',[row.officeId,row.validFrom,row.validTo,index]);
+    row.officeId=text(row.officeId);
+    row.validFrom=Number.isFinite(Number(row.validFrom))?Number(row.validFrom):null;
+    row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
+    row.authorizedCount=Number.isFinite(Number(row.authorizedCount))?Number(row.authorizedCount):null;
+    row.displayCapacity=Number.isFinite(Number(row.displayCapacity))?Number(row.displayCapacity):row.authorizedCount;
+    row.rule=text(row.rule); row.note=text(row.note); row.sourceId=text(row.sourceId);
+    return row;
+  }
+  function normalizeResidence(record,index){
+    const row=clone(record||{});
+    row.entityType='residence';
+    row.id=text(row.id)||stableId('residence',[row.ownerOfficeId,row.name,index]);
+    row.ownerOfficeId=text(row.ownerOfficeId); row.name=text(row.name)||'未命名府署';
+    row.residenceType=text(row.residenceType)||'未详'; row.backgroundStyle=text(row.backgroundStyle)||'plain';
+    row.validFrom=Number.isFinite(Number(row.validFrom))?Number(row.validFrom):null;
+    row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
+    row.note=text(row.note); return row;
+  }
   function normalizeEpigraphicRecord(record,index){
     const row=clone(record||{});
     row.entityType='epigraphicRecord';
@@ -111,12 +170,15 @@
     row.type=text(row.type)||'其他';
     row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
     row.yearText=text(row.yearText);
+    row.polity=normalizePolity(row.polity);
     row.researchStatus=['待补','确定','推定','存疑','争议'].includes(text(row.researchStatus))?text(row.researchStatus):'待补';
     row.confidence=normalizeConfidence(row.confidence||row.researchStatus);
     row.sourceLevel=text(row.sourceLevel)||'待核';
     row.sourceTitle=text(row.sourceTitle);
+    row.sourceDocument=text(row.sourceDocument||row.sourceTitle);
     row.sourceUrl=text(row.sourceUrl);
     row.sourceLocator=text(row.sourceLocator);
+    row.archiveKind=['核心','扩展','争议'].includes(text(row.archiveKind))?text(row.archiveKind):'核心';
     row.disputeNote=text(row.disputeNote);
     return row;
   }
@@ -147,7 +209,9 @@
     });
     out.fangzhenRecords=(out.fangzhenRecords||fallback.fangzhenRecords||[]).map(normalizeFangzhen);
     out.epigraphicRecords=(out.epigraphicRecords||fallback.epigraphicRecords||[]).map(normalizeEpigraphicRecord);
-    out.researchMeta=Object.assign({modelId:'sgz-research-model-v7',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate'},out.researchMeta||{});
+    out.seatPolicies=(out.seatPolicies||fallback.seatPolicies||[]).map(normalizeSeatPolicy);
+    out.residences=(out.residences||fallback.residences||[]).map(normalizeResidence);
+    out.researchMeta=Object.assign({modelId:'sgz-research-model-v8',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate'},out.researchMeta||{});
     out.researchMeta.schemaVersion=SCHEMA_VERSION;
     return out;
   }
@@ -179,10 +243,28 @@
     });
   }
 
+  function projectForReading(value){
+    if(Array.isArray(value)) return value.map(projectForReading);
+    if(typeof value==='string') return readingText(value);
+    if(!value || typeof value!=='object') return value;
+    const out={};
+    Object.entries(value).forEach(([key,item])=>{
+      if(READING_META_FIELD_SET.has(key)||key==='disputeNote'||key.startsWith('_')||/^source[A-Z_]/.test(key)) return;
+      out[key]=projectForReading(item);
+    });
+    const dispute=readingText(value.disputeNote);
+    if(dispute){
+      const note=text(out.note);
+      out.note=note ? note.replace(/[；。]+$/,'')+'；异说：'+dispute : '异说：'+dispute;
+    }
+    return out;
+  }
+
   global.SGZResearchModel=Object.freeze({
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
-    normalizeFangzhen,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
+    readingMetaFields:READING_META_FIELDS,readingText,projectForReading,
+    normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeEpigraphicRecord,normalizeNode,migrate,buildIndexes,recordsAtYear
   });
 })(window);

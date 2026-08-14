@@ -19,10 +19,10 @@ window.SGZ_FANGZHEN_SEAT_SUPPLEMENT = Object.freeze({
   '汉|南中诸郡': {seat:'平夷／味县', confidence:'中'},
   '汉|巴东郡': {seat:'永安', confidence:'中'},
   '汉|汉中郡': {seat:'汉中／南郑', confidence:'中'},
-  '西晋|司隶': {seat:'洛阳', confidence:'高'},
-  '西晋|荆州': {seat:'襄阳', confidence:'高'},
-  '西晋|扬州': {seat:'建业', confidence:'高'},
-  '西晋|益州': {seat:'成都', confidence:'高'},
-  '西晋|梁州': {seat:'汉中', confidence:'中'},
-  '西晋|交州': {seat:'龙编', confidence:'中'}
+  '晋|司隶': {seat:'洛阳', confidence:'高'},
+  '晋|荆州': {seat:'襄阳', confidence:'高'},
+  '晋|扬州': {seat:'建业', confidence:'高'},
+  '晋|益州': {seat:'成都', confidence:'高'},
+  '晋|梁州': {seat:'汉中', confidence:'中'},
+  '晋|交州': {seat:'龙编', confidence:'中'}
 });

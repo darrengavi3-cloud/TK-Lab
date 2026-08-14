@@ -121,7 +121,7 @@ const replacements = [
     `url('${courtBackgroundData}')`
   ],
   [
-    "const HISTORY_MAP_BASE = './assets/map/';",
+    "const HISTORY_MAP_BASE = window.location?.href\n  ? window.location.href.replace(/[?#].*$/,'').replace(/[^/]*$/,'')+'assets/map/'\n  : './assets/map/';",
     "const HISTORY_MAP_BASE = 'https://workbuddy-space-static.codebuddy.work/page/q71T7ZIe9O6xmZrTj3ldoy/1/';"
   ],
   [
@@ -184,7 +184,7 @@ function escapeForOuterTemplate(source) {
 });
 
 // 战事纪档案同时供主页面与地图 iframe 使用；便携版统一内嵌进 srcdoc。
-const battleSrcdocMarker = `<script src="data/battle-records.js"><\\/script>`;
+const battleSrcdocMarker = `<script src="../../data/battle-records.js"><\\/script>`;
 if (!html.includes(battleSrcdocMarker)) throw new Error('便携导出构建失败，未找到地图内 battle-records 脚本标记');
 html = html.replace(battleSrcdocMarker, `<script>\n${escapeForOuterTemplate(battleRecordsScript)}\n<\\/script>`);
 

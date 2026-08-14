@@ -3,14 +3,49 @@
  * 标识与坐标，避免同一战役在地图与战事纪出现两套数据。
  * 本文件同时供主页面战事纪模块与地图 iframe 使用。
  */
-window.SGZ_BATTLE_RECORDS = {
+const BATTLE_PROVINCE_BY_ID = Object.freeze({
+  ev_lingdi_168:['司隶'], ev_huangjin_184:['冀州','豫州','荆州'], ev_liuyan_188:['中央'],
+  ev_hejin_189:['司隶'], ev_taodong_190:['司隶','豫州'], ev_wangyun_192:['司隶'],
+  ev_dadou_195:['司隶'], ev_xuchang_196:['豫州'], ev_guandu_200:['豫州'],
+  ev_ye_204:['冀州'], ev_guandu_yuan_202:['冀州'], ev_jianbing_199:['冀州','幽州','扬州','徐州'],
+  ev_xiangfan_219:['益州','荆州','扬州'], ev_chibi_208:['荆州'], ev_jiangling_209:['荆州'],
+  ev_yizhou_211:['益州'], ev_caopi_220:['司隶'], ev_liubei_221:['益州'],
+  ev_yiling_222:['荆州','益州'], ev_sunquan_229:['荆州'], ev_jieting_228:['雍州'],
+  ev_shiting_228:['扬州'], ev_wuzhang_234:['雍州'], ev_gaoping_249:['司隶'],
+  ev_shouchun_251:['扬州'], ev_caomao_260:['司隶'], ev_weifa_263:['益州','雍州'],
+  ev_jinchuan_266:['司隶'], ev_miewu_280:['益州','荆州','扬州'], ev_jieqiao_191:['冀州'],
+  ev_taozhou_193:['徐州','兖州'], ev_puyang_194:['兖州','徐州'], ev_yuanshu_197:['扬州'],
+  ev_wuhuan_207:['幽州'], ev_tongguan_211:['司隶','雍州'], ev_ruxu_213:['扬州'],
+  ev_hantian_215:['益州'], ev_baidi_223:['益州'], ev_nanzheng_225:['益州'],
+  ev_yizhou_expedition_230:['扬州'], ev_liaodong_238:['幽州'], ev_dongxing_252:['扬州'],
+  ev_shouchun_257:['扬州'],
+  huangjin:['冀州'], hulaoguan:['司隶'], xiapi:['徐州'], puyang:['兖州'], guandu:['豫州'],
+  chibi:['荆州'], jiangling:['荆州'], dingjunshan:['益州'], xiangfan:['荆州'], hefei:['扬州'],
+  yiling:['荆州'], jieting:['雍州'], shiting:['扬州'], wuzhangyuan:['雍州'], jieqiao:['冀州'],
+  tongguan:['司隶'], ruxu:['扬州'], hanzhong_zhan:['益州'], dongxing:['扬州'], shouchun_257:['扬州'],
+  jianwei:['益州'], miewu:['益州','荆州','扬州'],
+  'guandu-field':['豫州'], 'chibi-field':['荆州'], 'xiangfan-field':['荆州'], 'hefei-field':['扬州'],
+  'ruxu-field':['扬州'], 'yiling-field':['荆州'], 'jieting-field':['雍州'], 'qishan-field':['雍州'],
+  'wuzhang-field':['雍州'], 'tongguan-field':['司隶'], 'shouchun-field':['扬州'], 'dongxing-field':['扬州']
+});
+
+const EVENT_BATTLE_LINKS = Object.freeze({
+  ev_huangjin_184:'huangjin', ev_taodong_190:'hulaoguan', ev_jieqiao_191:'jieqiao',
+  ev_puyang_194:'puyang', ev_guandu_200:'guandu', ev_chibi_208:'chibi', ev_jiangling_209:'jiangling',
+  ev_tongguan_211:'tongguan', ev_ruxu_213:'ruxu', ev_hantian_215:'hanzhong_zhan',
+  ev_xiangfan_219:'xiangfan', ev_yiling_222:'yiling', ev_jieting_228:'jieting', ev_shiting_228:'shiting',
+  ev_wuzhang_234:'wuzhangyuan', ev_dongxing_252:'dongxing', ev_shouchun_257:'shouchun_257',
+  ev_weifa_263:'jianwei', ev_miewu_280:'miewu'
+});
+
+const battleData = {
   schemaVersion: 1,
   scope: '汉末至西晋（168—316）战事与军政沿革',
   note: '编年要事用于串联形势图时间轴；战役与战场字段沿用地图图层。史料出处优先原典，维基条目仅作检索索引。',
   events: [
     { id:'ev_lingdi_168', year:168, era:'建宁元年', emperor:'汉灵帝', text:'窦武、陈蕃谋诛宦官，事泄被杀，宦官势力进一步坐大。', sideA:'外戚士人集团', sideB:'宦官集团', result:'宦官获胜', front:'洛阳', sourceTitle:'《后汉书》卷六十六·陈蕃传', confidence:'确定' },
     { id:'ev_huangjin_184', year:184, era:'中平元年', emperor:'汉灵帝', text:'张角发动黄巾起义，三十六方同日并起，天下震动；皇甫嵩、朱儁等镇压。', sideA:'黄巾军', sideB:'东汉朝廷', result:'朝廷镇压，州郡兵起', front:'冀州、颍川、南阳等地', sourceTitle:'《后汉书》卷七十一·皇甫嵩传', confidence:'确定' },
-    { id:'ev_liuzhang_188', year:188, era:'中平五年', emperor:'汉灵帝', text:'刘焉建言改刺史为州牧，地方兵权进一步坐大。', sideA:'东汉朝廷', sideB:'—', result:'州牧制度确立', front:'—', sourceTitle:'《后汉书》卷七十五·刘焉传', confidence:'确定' },
+    { id:'ev_liuyan_188', year:188, era:'中平五年', emperor:'汉灵帝', text:'刘焉建言选清名重臣出任州牧，以加强对地方的监察与控制；此后州牧逐渐成为地方军政长官。', sideA:'东汉朝廷', sideB:'—', result:'部分州改置州牧', front:'洛阳及诸州', sourceTitle:'《后汉书》卷七十五·刘焉传', confidence:'确定' },
     { id:'ev_hejin_189', year:189, era:'中平六年／光熹元年', emperor:'汉少帝／汉献帝', text:'灵帝崩，少帝即位；何进谋诛宦官反为所杀，董卓入京，废少帝立献帝。', sideA:'外戚宦官', sideB:'董卓', result:'董卓控制朝政', front:'洛阳', sourceTitle:'《后汉书》卷七十二·董卓列传', confidence:'确定' },
     { id:'ev_taodong_190', year:190, era:'初平元年', emperor:'汉献帝', text:'关东州郡推袁绍为盟主讨伐董卓；董卓焚洛阳，迁献帝于长安。', sideA:'关东联军', sideB:'董卓', result:'联军瓦解，董卓西迁', front:'洛阳、虎牢关一带', sourceTitle:'《后汉书》卷七十二·董卓列传', confidence:'确定' },
     { id:'ev_wangyun_192', year:192, era:'初平三年', emperor:'汉献帝', text:'王允、吕布诛董卓；李傕、郭汜旋攻入长安，王允死，东汉中枢进一步失控。', sideA:'王允吕布', sideB:'李傕郭汜', result:'李傕郭汜据长安', front:'长安', sourceTitle:'《后汉书》卷七十二·董卓列传', confidence:'确定' },
@@ -53,7 +88,7 @@ window.SGZ_BATTLE_RECORDS = {
     { id:'ev_shouchun_257', year:257, era:'甘露二年', emperor:'魏高贵乡公', text:'诸葛诞据寿春反司马昭，吴军来援；司马昭围城经年，城破诛诞。', sideA:'司马昭', sideB:'诸葛诞／吴', result:'司马昭平淮南', front:'寿春', sourceTitle:'《三国志》卷二十八·诸葛诞传', confidence:'确定' }
   ].map(function(ev){
     const titles={
-      ev_lingdi_168:'党锢再起', ev_huangjin_184:'黄巾起义', ev_liuzhang_188:'州牧之议', ev_hejin_189:'董卓入京',
+      ev_lingdi_168:'党锢再起', ev_huangjin_184:'黄巾起义', ev_liuyan_188:'州牧之议', ev_hejin_189:'董卓入京',
       ev_taodong_190:'关东讨董', ev_wangyun_192:'长安之乱', ev_dadou_195:'献帝东归', ev_xuchang_196:'迎帝都许',
       ev_jianbing_199:'群雄兼并', ev_guandu_200:'官渡之战', ev_guandu_yuan_202:'袁氏内讧', ev_ye_204:'曹操取邺',
       ev_chibi_208:'赤壁之战', ev_jiangling_209:'南郡之争', ev_yizhou_211:'刘备入益州', ev_xiangfan_219:'襄樊之战',
@@ -66,7 +101,7 @@ window.SGZ_BATTLE_RECORDS = {
       ev_baidi_223:'白帝托孤', ev_nanzheng_225:'南征平叛', ev_yizhou_expedition_230:'夷洲远征', ev_liaodong_238:'辽东之灭',
       ev_dongxing_252:'东兴之战', ev_shouchun_257:'寿春之围'
     };
-    return Object.assign({title:titles[ev.id]||String(ev.text||'').split(/[，。；]/)[0].slice(0,10)},ev);
+    return Object.assign({title:titles[ev.id]||String(ev.text||'').split(/[，。；]/)[0].slice(0,10),battleId:EVENT_BATTLE_LINKS[ev.id]||null},ev);
   }),
   battles: [
     { id:'huangjin', name:'黄巾起义', year:184, a:'黄巾军', b:'东汉朝廷', result:'朝廷镇压，乱虽平而州郡兵起', desc:'张角以“苍天已死，黄天当立”号召，三十六方并起，席卷八州。乱平之后，地方割据之势已成。', lat:37.05, lng:115.4, sourceTitle:'《后汉书》卷七十一·皇甫嵩传', confidence:'确定' },
@@ -107,3 +142,11 @@ window.SGZ_BATTLE_RECORDS = {
     { id:'dongxing-field', name:'东兴—巢湖战场', lat:31.15, lng:117.72, from:213, to:280, note:'吴筑东兴堤后的江淮水战枢纽。' }
   ]
 };
+
+['events','battles','battlefields'].forEach(function(kind){
+  battleData[kind]=battleData[kind].map(function(item){
+    return Object.assign({},item,{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||['跨区域']))});
+  });
+});
+battleData.provinceIndex=Object.freeze(['中央','司隶','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','跨区域']);
+window.SGZ_BATTLE_RECORDS = battleData;

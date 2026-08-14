@@ -165,7 +165,7 @@ const FACTIONS = {
     desc: '曹丕代汉称帝，国号魏。据中原、关中、河北，以及荆州之南阳襄阳、扬州之淮南，三分天下有其二。',
   },
   shu: {
-    id: 'shu', name: '漢', color: '#4a7c59', labelOffset: [0, 0],
+    id: 'shu', name: '汉', color: '#4a7c59', labelOffset: [0, 0],
     ruler: '刘备 / 刘禅', capital: '成都',
     desc: '刘备于成都称帝续汉祚，国号汉，史称蜀汉、季汉。诸葛亮治蜀，六出祁山，鞠躬尽瘁。',
   },

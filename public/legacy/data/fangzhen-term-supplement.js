@@ -16,50 +16,50 @@
       startYear: 264, endYear: 280,
       tenureText: '约264—280年（吴后主时期）',
       confidence: '待考',
-      appointmentStatus: '待考',
-      note: '《晋书》称“吴荆州刺史”，原文标注“吴后主？”；《晋书·武帝纪》泰始四年（268）顾容尚为吴将，出任荆州刺史的准确年份未详，暂按孙皓在位期（264—280）框定，待考。'
+      appointmentStatus: '任职未详',
+      note: '《晋书》称“吴荆州刺史”，原文标注“吴后主？”；《晋书·武帝纪》泰始四年（268）顾容尚为吴将，出任荆州刺史的准确年份未详，暂按孙皓在位期（264—280）框定，未详。'
     },
     {
       id: 'fz_wu_doc_014',
       startYear: 272, endYear: 272,
       tenureText: '约272年（凤凰元年）在任',
       confidence: '待考',
-      note: '见出土东吴魂瓶“凤凰元年立长沙太守友作浃使宜子孙”；姓名仅存“友”，此为该年所见在任记录，任期起讫仍待考。'
+      note: '见出土东吴魂瓶“凤凰元年立长沙太守友作浃使宜子孙”；姓名仅存“友”，此为该年所见在任记录，任期起讫仍未详。'
     },
     {
       id: 'fz_wu_doc_059',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '原档仅见“修允”而无年代依据；其为合浦太守、交州刺史均在孙皓末年，始兴郡太守任期待考。'
+      note: '原档仅见“修允”而无年代依据；其为合浦太守、交州刺史均在孙皓末年，始兴郡太守任期未详。'
     },
     {
       id: 'fz_wu_doc_079',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《晋书·孔坦传》仅载“祖冲，丹杨太守”，无任职年代，待考。'
+      note: '《晋书·孔坦传》仅载“祖冲，丹杨太守”，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_088',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《水经注》载太守张景与黄门郎杨裒明事，无系年，待考。'
+      note: '《水经注》载太守张景与黄门郎杨裒明事，无系年，未详。'
     },
     {
       id: 'fz_wu_doc_091',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《晋故散骑常侍陆君诔》载其“爰守会稽”，无任职年代，待考。'
+      note: '《晋故散骑常侍陆君诔》载其“爰守会稽”，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_148',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《临海县志》所载屈惠任临海太守，原档标“存疑”，无年代依据，待考。'
+      note: '《临海县志》所载屈惠任临海太守，原档标“存疑”，无年代依据，未详。'
     },
     {
       id: 'fz_wu_doc_164',
@@ -85,9 +85,9 @@
     {
       id: 'fz_wu_doc_171',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《晋书·任旭传》仅载“父访，吴南海太守”，无任职年代，待考。'
+      note: '《晋书·任旭传》仅载“父访，吴南海太守”，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_172',
@@ -106,37 +106,37 @@
     {
       id: 'fz_wu_doc_176',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《浙江通志》仅载吴九真太守何英墓，无任职年代，待考。'
+      note: '《浙江通志》仅载吴九真太守何英墓，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_177',
       startYear: null, endYear: 272,
       tenureText: '约272年前后在任（《谷朗碑》）',
       confidence: '待考',
-      note: '《谷朗碑》立于吴末，称九真太守；可证其在孙皓凤凰年间在任，具体到任年份待考。'
+      note: '《谷朗碑》立于吴末，称九真太守；可证其在孙皓凤凰年间在任，具体到任年份未详。'
     },
     {
       id: 'fz_wu_doc_178',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《交州记》载九真太守陶璜立郡筑城，无任职年代，待考。'
+      note: '《交州记》载九真太守陶璜立郡筑城，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_180',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '陶璜任苍梧太守无直接系年，约在吴交州任职期间，待考。'
+      note: '陶璜任苍梧太守无直接系年，约在吴交州任职期间，未详。'
     },
     {
       id: 'fz_wu_doc_181',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《景定建康志》载史嵩仕吴为平越中郎将、苍梧鬰林二郡太守，无任职年代，待考。'
+      note: '《景定建康志》载史嵩仕吴为平越中郎将、苍梧鬰林二郡太守，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_182',
@@ -177,16 +177,16 @@
     {
       id: 'fz_wu_doc_188',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '《景定建康志》载史嵩仕吴为平越中郎将、苍梧鬰林二郡太守，无任职年代，待考。'
+      note: '《景定建康志》载史嵩仕吴为平越中郎将、苍梧鬰林二郡太守，无任职年代，未详。'
     },
     {
       id: 'fz_wu_doc_190',
       startYear: null, endYear: null,
-      tenureText: '任期未详（待考）',
+      tenureText: '任期未详',
       confidence: '待考',
-      note: '原档仅见“姚陶/旧”，无年代与出处依据，待考。'
+      note: '原档仅见“姚陶/旧”，无年代与出处依据，未详。'
     },
     {
       id: 'fz_wu_doc_191',
@@ -221,7 +221,7 @@
       startYear: null, endYear: 280,
       tenureText: '？—280年（原档）',
       confidence: '待考',
-      note: '原档作（？—280）；与修允代任交州刺史的记录并存，任期衔接仍待考。'
+      note: '原档作（？—280）；与修允代任交州刺史的记录并存，任期衔接仍未详。'
     },
     {
       id: 'fz_wu_doc_206',

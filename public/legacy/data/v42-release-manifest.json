@@ -1,0 +1,32 @@
+{
+  "release": "V42",
+  "title": "统一导入、员额席位与府署界面迭代",
+  "schemaVersion": 8,
+  "scope": ["职官谱", "人物记", "战事纪", "州镇表", "金石录", "食货志", "形势图"],
+  "metrics": {
+    "officeNodes": 1406,
+    "biographies": 79,
+    "portraitFiles": 52,
+    "newPortraitFiles": 8,
+    "epigraphicRecords": 60,
+    "importTemplateSheets": 18
+  },
+  "changes": [
+    "多员额官职使用独立席位规则，侍中可展示六席并与史料员额分离",
+    "州主簿及州郡属官归入文官，州牧刺史与太守国相可打开对应府署页面",
+    "府署按丞相三公府、将军府、都督府、州府、郡府、太子王府区分背景类型",
+    "金石录展开显示完整释文，争议材料名称使用星号标识",
+    "人物立绘统一顶部对齐，补入八名季汉人物立绘"
+  ],
+  "artifacts": {
+    "importTemplate": "templates/三国职官谱_V42_统一导入模板.xlsx",
+    "documentation": "docs/V42统一导入与官署府属迭代.md",
+    "figma": "https://www.figma.com/design/gvWRC5GHHSgd8QX9b2VJgo",
+    "deployment": "not-triggered"
+  },
+  "validation": {
+    "verifyV42": "passed",
+    "siteBuild": "passed",
+    "visualQa": "not-run-in-browser"
+  }
+}
