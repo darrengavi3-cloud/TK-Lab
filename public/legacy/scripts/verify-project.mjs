@@ -14,6 +14,15 @@ const registry = JSON.parse(read('data/map-period-registry.json'));
 const audit = JSON.parse(read('data/historical-audit.json'));
 const html = read('index.html');
 const portable = read('exports/三国职官谱-单文件版.html');
+const researchModelSource = read('data/research-model.js');
+const templateOf = source => {
+  const start = source.indexOf('template: `');
+  const end = source.indexOf('\n  `\n});', start);
+  assert(start >= 0 && end > start, '无法提取 Vue 阅读界面模板');
+  return source.slice(start, end);
+};
+const htmlTemplate = templateOf(html);
+const portableTemplate = templateOf(portable);
 const expectedIds = [
   'huangjin', 'shaodi', 'dongzhuo', 'xingping', 'jianbing', 'guandu', 'chibi', 'xiangfan', 'sanguo',
   'beifa', 'guijin', 'hanwang', 'jinchu', 'taikang', 'hui_di', 'yongjia'
@@ -41,7 +50,7 @@ assert(registry.periods.find(period => period.year === 220)?.name === '曹魏代
 assert(registry.periods.find(period => period.year === 220)?.polities.join('、') === '魏、刘备、孙权', '220 年不得把刘备、孙权提前标作已建国的汉、吴');
 assert(audit.periodReview.length === expectedIds.length, '逐期史实审校必须覆盖十六期');
 assert(html.includes('>职官谱</strong>') && html.includes('>州镇表</strong>') && html.includes('>形势图</strong>'), '职官谱、州镇表或形势图命名缺失');
-assert(html.includes('>金石录</strong>') && html.includes("activeModule==='jinshi'") && html.includes('文档考据') && html.includes('epigraphicPolity') && html.includes('epigraphicArchiveKind'), '金石录内容、来源或筛选未接入');
+assert(html.includes('>金石录</strong>') && html.includes("activeModule==='jinshi'") && html.includes('epigraphicPolity') && html.includes('projectForReading(epigraphicRecords.value)'), '金石录内容、国别筛选或阅读投影未接入');
 const hanOfficeSource = read('data/han-bai-guan-zhi.js');
 assert(html.includes('data/han-bai-guan-zhi.js') && hanOfficeSource.includes('尚书令') && hanOfficeSource.includes('御史中丞') && hanOfficeSource.includes('将军府'), '东汉百官志中央官署补录未接入');
 assert(hanOfficeSource.includes('sortOrder:100') && hanOfficeSource.includes('sortOrder:210') && hanOfficeSource.includes('sortOrder:310'), '东汉具体官职位阶排序未接入');
@@ -94,7 +103,7 @@ assert(html.includes('中央官署谱系') && html.includes('court-canvas') && h
 assert(html.includes("name:'储君'") && html.includes("courtSlotKey(node)==='储君'"), '储君单席位规则未接入');
 assert(html.includes("['晋陵郡','毗陵'") && html.includes("['义兴郡','阳羡'") && html.includes("['历阳郡','历阳'"), '西晋扬州郡级沿革未接入职官谱');
 assert(html.includes('data/wu-fangzhen-records.js'), '孙吴州郡长官文档数据未接入');
-assert(html.includes('fangzhenStateOptions') && html.includes('fangzhenState') && html.includes('吴州镇档案按规范只填写时间年份'), '州镇表州筛选或吴档案任期规范未接入');
+assert(html.includes('fangzhenStateOptions') && html.includes('fangzhenState') && html.includes('吴的职任可保留原有年号与不确定措辞'), '州镇表州筛选或吴档案任期规范未接入');
 assert(html.includes('data/shu-fangzhen-records.js') && html.includes('SHU_COMMANDERY_FANGZHEN_PRESETS'), '蜀汉郡守考据档案未接入');
 assert(html.includes('data/fangzhen-term-supplement.js') && html.includes('FANGZHEN_TERM_SUPPLEMENTS'), 'V28 州镇表任期待补数据未接入');
 assert(html.includes('沿革年代已标注待考') && html.includes('任期待考'), 'V28 审计待补清单未接入');
@@ -103,8 +112,8 @@ assert(html.includes('泰始六曹／太康六曹') && html.includes('中书侍�
 assert(html.includes("['wei','shu','wu','jin']") && html.includes('魏 · 汉 · 吴 · 晋官制对比'), 'V29 官制对比未纳入西晋');
 assert(html.includes('卷三十七晋泰始官品'), 'V29 泰始官品未标注');
 assert(html.includes('data/research-model.js') && html.includes('schemaVersion:7'), '统一研究数据模型或 v7 迁移层未接入');
-assert(html.includes('data/history-evidence.js') && html.includes('SGZ_HISTORY_EVIDENCE'), 'V7历史证据索引或证据面板未接入');
-assert(html.includes('showHistoryAudit') && html.includes('openMapSelectionAudit'), 'V7时期审计面板或地图辖区证据联动未接入');
+assert(html.includes('data/history-evidence.js') && html.includes('SGZ_HISTORY_EVIDENCE'), 'V7历史证据索引未接入');
+assert(html.includes('projectForReading') && researchModelSource.includes('readingMetaFields:READING_META_FIELDS'), 'V41 阅读投影未接入');
 assert(html.includes('mapLinkSelection') && html.includes('jumpFangzhenToMap'), '地图、州镇与人物核心联动未接入');
 assert(html.includes('data/political-snapshots.js') && html.includes('POLITICAL_SNAPSHOT_AUDIT'), '十六期政治势力审校未接入');
 assert(html.includes(".zoom-lte-5 .faction-label,.zoom-lte-4 .faction-label,.zoom-lte-3 .faction-label{font-size:27px"), '势力标签仍会随缩放改变字号');
@@ -206,7 +215,7 @@ assert(portable.includes('SGZ_HISTORY_EVIDENCE'), '联网便携版未内嵌 V7 �
 assert(portable.includes('SGZ_BATTLE_RECORDS') && portable.includes('战事纪'), '联网便携版未同步战事纪档案');
 assert(portable.includes('SGZ_PERSON_BIOGRAPHIES') && portable.includes('court-ink-palace')===false, '联网便携版未内嵌人物生平或朝堂背景');
 assert(portable.includes('SGZ_PERSON_PORTRAITS') && portable.includes('data:image/png;base64,'), '联网便携版未内嵌人物立绘资源');
-assert(portable.includes('SGZ_EPIGRAPHIC_RECORDS') && portable.includes('核心材料') && portable.includes('sourceDocument'), '联网便携版未同步金石录文档考据数据');
+assert(portable.includes('SGZ_EPIGRAPHIC_RECORDS') && portable.includes('projectForReading(epigraphicRecords.value)') && portable.includes('释读说明'), '联网便携版未同步金石录阅读投影');
 assert(portable.includes('官制对照') && portable.includes('沿革事件（结构化）') && portable.includes('bulk-edit-grid'), '联网便携版未同步职官谱第一阶段增强');
 assert(portable.includes('官品秩俸三轨对照') && portable.includes('官署模板库') && portable.includes('OFFICE_TEMPLATE_LIBRARY'), '联网便携版未同步职官谱第二阶段增强');
 assert(portable.includes('季汉官制') && portable.includes('WIKI_OFFICE_SUPPLEMENTS'), '联网便携版未同步季汉官制或维基补充');

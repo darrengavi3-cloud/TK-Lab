@@ -2587,27 +2587,21 @@ THREE_KINGDOMS.cities.forEach(function(city){
     }).join('');
     var rosterGroups={};
     (p.officialRoster||[]).forEach(function(item){(rosterGroups[item.group]||(rosterGroups[item.group]=[])).push(item);});
-    var statusClass={推定:'s-tuiding',存疑:'s-cunyi',待考:'s-daikao'};
+    var statusSuffix={存疑:'（一说）',待考:'（任职未详）'};
     var roster=Object.keys(rosterGroups).map(function(group){
       return '<div class="roster-group"><b>'+group+'</b><div>'+rosterGroups[group].map(function(item){
         var status=item.status||'推定';
-        return '<span class="roster-item"><span class="roster-meta">'+(item.period||'')+(item.section?' · '+item.section:'')+'</span><strong>'+item.name+'</strong><small>'+item.office+'</small><em class="roster-status '+(statusClass[status]||'s-tuiding')+'">'+status+'</em></span>';
+        return '<span class="roster-item"><span class="roster-meta">'+(item.period||'')+(item.section?' · '+item.section:'')+'</span><strong>'+item.name+(statusSuffix[status]||'')+'</strong><small>'+item.office+'</small></span>';
       }).join('')+'</div></div>';
     }).join('');
-    var rosterHtml=roster?'<div class="pv-section"><div class="pv-label">中央与州郡长吏</div><div class="pv-roster">'+roster+'</div><div class="pv-source-note">名录据不可户说《汉少帝、献帝之际中央百官、州郡长吏名录》（知乎）整理；存疑与待考条目保留原表状态，不视为确定实授。</div></div>':'';
+    var rosterHtml=roster?'<div class="pv-section"><div class="pv-label">中央与州郡长吏</div><div class="pv-roster">'+roster+'</div></div>':'';
     var terr=factionsFor(p.id).map(function(f){
       return '<span class="chip" style="--c:'+f.color+'">'+f.name+'</span>';
     }).join('');
-    var confidenceLabels={high:'高',medium:'中',low:'低'};
-    var confidence=p.confidence||{};
-    var confidenceLevel=confidence.overall||'medium';
-    var confidenceHtml='<div class="pv-confidence"><span>史实可信度</span><span class="pv-confidence-badge '+confidenceLevel+'">'+
-      (confidenceLabels[confidenceLevel]||'待审')+'</span><span>政权 '+(confidenceLabels[confidence.polity]||'—')+
-      ' · 州制 '+(confidenceLabels[confidence.provinceRoster]||'—')+' · 边界 '+(confidenceLabels[confidence.geometry]||'—')+'</span></div>';
     var panel=document.getElementById('info-panel');
     panel.querySelector('.panel-body').innerHTML=
       '<div class="pv-head"><div class="pv-year">'+periodLabel+'</div><h2 class="pv-title">'+p.name+
-      '</h2><div class="pv-tag">'+p.tagline+'</div></div>'+confidenceHtml+'<p class="pv-summary">'+p.summary+
+      '</h2><div class="pv-tag">'+p.tagline+(p.snapshotMoment?' · '+p.snapshotMoment:'')+'</div></div><p class="pv-summary">'+p.summary+
       '</p><div class="pv-section"><div class="pv-label">国家与政权</div><div class="pv-chips">'+terr+
       '</div></div><div class="pv-section"><div class="pv-label">年号与皇帝</div><div class="pv-reigns">'+reigns+
       '</div></div>'+rosterHtml+'<div class="pv-section"><div class="pv-label">编年要事</div><ul class="ev-list">'+events+
@@ -4234,9 +4228,9 @@ const app = createApp({
     const activeModule = ref('offices'); // offices | people | battle | fangzhen | jinshi | shihuo | map
     const moduleContextLabel = computed(()=>({
       fangzhen:'州镇职任 · 刺史、州牧、都督与辖区档案',
-      jinshi:'金石录 · 碑刻、墓志与摩崖材料（文档考据）',
+      jinshi:'金石录 · 碑刻、墓志与摩崖材料',
       people:'人物记 · 任官、受爵与州镇履历汇总',
-      battle:'战事纪 · 编年、战役与战场考据',
+      battle:'战事纪 · 编年、战役与战场',
       shihuo:'食货志 · 屯田、赋役、货币、盐铁与漕运',
       map:'历史舆图 · 汉末至三国归晋的疆域、州郡与战役'
     }[activeModule.value] || '职官制度 · 官署、爵位与人物档案'));
@@ -4305,6 +4299,7 @@ const app = createApp({
     let toolHintTimer = null;
 
     const initialResearchModel = window.SGZResearchModel.migrate({schemaVersion:7,trees:buildPresets(),fangzhenRecords:FANGZHEN_PRESETS});
+    const projectForReading = value=>window.SGZResearchModel.projectForReading(value);
     const data = reactive({ trees: normalizeAndValidateTrees(initialResearchModel.trees) });
     const fangzhenRecords = ref(normalizeFangzhenRecords(initialResearchModel.fangzhenRecords));
     const fangzhenArchiveKey = ref('wei');
@@ -4314,7 +4309,7 @@ const app = createApp({
     const fangzhenQuery = ref('');
     const fangzhenPolity = ref('魏');
     const fangzhenDialog = reactive({visible:false,mode:'add',form:{}});
-    const historyMapPeriods = HISTORY_MAP_PERIODS;
+    const historyMapPeriods = reactive(cloneJSON(HISTORY_MAP_PERIODS));
     const historyMapEras = HISTORY_MAP_ERAS;
     const historyMapSrcdoc = ref('');
     const historyMapBooted = ref(false);
@@ -4322,29 +4317,23 @@ const app = createApp({
     const historyMapReady = ref(false);
     const historyMapPlaying = ref(false);
     const mapLinkSelection = ref(null);
-    const battleRecords = window.SGZ_BATTLE_RECORDS || { events:[], battles:[], battlefields:[] };
+    const battleRecords = reactive(cloneJSON(window.SGZ_BATTLE_RECORDS || { events:[], battles:[], battlefields:[] }));
     const shihuoQuery = ref('');
     const shihuoPolity = ref('all');
     const shihuoCategory = ref('all');
     const shihuoRecords = ref(cloneJSON(SHIHUO_RECORDS));
     const epigraphicRecords = ref(cloneJSON(window.SGZ_EPIGRAPHIC_RECORDS?.records||[]));
     const epigraphicTypes = window.SGZ_EPIGRAPHIC_RECORDS?.types||['碑刻','墓志','摩崖','砖瓦题记','印章','其他'];
-    const epigraphicStatuses = window.SGZ_EPIGRAPHIC_RECORDS?.researchStatuses||['待补','确定','推定','存疑','争议'];
     const epigraphicPolities = ['汉','魏','吴','晋'];
-    const epigraphicArchiveKinds = window.SGZ_EPIGRAPHIC_RECORDS?.archiveKinds||['核心','扩展','争议'];
     const epigraphicQuery = ref('');
     const epigraphicType = ref('all');
-    const epigraphicStatus = ref('all');
     const epigraphicPolity = ref('all');
-    const epigraphicArchiveKind = ref('all');
     const filteredEpigraphicRecords = computed(()=>{
       const q=epigraphicQuery.value.trim().toLowerCase();
-      return epigraphicRecords.value.filter(item=>{
+      return projectForReading(epigraphicRecords.value).filter(item=>{
         if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
-        if(epigraphicStatus.value!=='all' && (item.researchStatus||'待补')!==epigraphicStatus.value) return false;
         if(epigraphicPolity.value!=='all' && item.polity!==epigraphicPolity.value) return false;
-        if(epigraphicArchiveKind.value!=='all' && (item.archiveKind||'核心')!==epigraphicArchiveKind.value) return false;
-        if(q && !['name','type','year','yearText','polity','place','region','scriptStyle','inscription','bibliography','people','offices','sourceTitle','sourceDocument','sourceLocator','note','disputeNote'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
+        if(q && !['name','type','year','yearText','polity','place','region','scriptStyle','form','inscription','people','offices','note'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
         return true;
       }).sort((a,b)=>{
         const ay=Number.isFinite(Number(a.year))?Number(a.year):Infinity;
@@ -4352,19 +4341,21 @@ const app = createApp({
         return ay-by||String(a.yearText||'').localeCompare(String(b.yearText||''),'zh-CN')||String(a.name||'').localeCompare(String(b.name||''),'zh-CN');
       });
     });
-    const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.type).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.yearText).filter(Boolean)).size,core:epigraphicRecords.value.filter(item=>(item.archiveKind||'核心')==='核心').length}));
-    const shihuoEvents = SHIHUO_EVENTS.slice().sort((a,b)=>Number(a.year)-Number(b.year));
+    const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.type).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.yearText).filter(Boolean)).size,polities:new Set(epigraphicRecords.value.map(item=>item.polity).filter(Boolean)).size}));
+    const shihuoEventRecords = ref(cloneJSON(SHIHUO_EVENTS));
+    const shihuoEvents = computed(()=>projectForReading(shihuoEventRecords.value).slice().sort((a,b)=>(Number(a.year)||Infinity)-(Number(b.year)||Infinity)));
     const shihuoHousehold = ref(cloneJSON(SHIHUO_HOUSEHOLD));
     const filteredShihuoHousehold = computed(()=>{
-      if(shihuoPolity.value==='all') return shihuoHousehold.value;
-      return shihuoHousehold.value.filter(r=>r.polity===shihuoPolity.value);
+      const rows=projectForReading(shihuoHousehold.value);
+      if(shihuoPolity.value==='all') return rows;
+      return rows.filter(r=>r.polity===shihuoPolity.value);
     });
     const filteredShihuoRecords = computed(()=>{
       const q=shihuoQuery.value.trim().toLowerCase();
-      return shihuoRecords.value.filter(r=>{
+      return projectForReading(shihuoRecords.value).filter(r=>{
         if(shihuoPolity.value!=='all' && r.polity!==shihuoPolity.value) return false;
         if(shihuoCategory.value!=='all' && r.category!==shihuoCategory.value) return false;
-        if(q && ![r.title,r.detail,r.sourceTitle,r.polity].some(v=>String(v||'').toLowerCase().includes(q))) return false;
+        if(q && ![r.title,r.detail,r.polity,r.category,r.yearText].some(v=>String(v||'').toLowerCase().includes(q))) return false;
         return true;
       }).slice().sort((a,b)=>{
         const ay=a.year==null?Infinity:Number(a.year),by=b.year==null?Infinity:Number(b.year);
@@ -4373,7 +4364,7 @@ const app = createApp({
     });
     const shihuoMetrics = computed(()=>({
       total:shihuoRecords.value.length,
-      events:shihuoEvents.length,
+      events:shihuoEvents.value.length,
       polities:new Set(shihuoRecords.value.map(r=>r.polity)).size,
       categories:new Set(shihuoRecords.value.map(r=>r.category)).size
     }));
@@ -4618,9 +4609,9 @@ const app = createApp({
     const battleEntryList = computed(()=>{
       const records=[];
       const linkedBattleIds=new Set(battleRecords.events.map(event=>event.battleId).filter(Boolean));
-      battleRecords.events.forEach(e=>records.push({...e,kind:'event',branch:battleBranchFor(e),provinceKeys:e.provinceKeys||['跨区域']}));
-      battleRecords.battles.filter(b=>!linkedBattleIds.has(b.id)).forEach(b=>records.push({...b,kind:'battle',branch:battleBranchFor(b),provinceKeys:b.provinceKeys||['跨区域']}));
-      battleRecords.battlefields.forEach(f=>records.push({...f,kind:'battlefield',branch:battleBranchFor(f),provinceKeys:f.provinceKeys||['跨区域']}));
+      projectForReading(battleRecords.events).forEach(e=>records.push({...e,kind:'event',branch:battleBranchFor(e),provinceKeys:e.provinceKeys||['跨区域']}));
+      projectForReading(battleRecords.battles).filter(b=>!linkedBattleIds.has(b.id)).forEach(b=>records.push({...b,kind:'battle',branch:battleBranchFor(b),provinceKeys:b.provinceKeys||['跨区域']}));
+      projectForReading(battleRecords.battlefields).forEach(f=>records.push({...f,kind:'battlefield',branch:battleBranchFor(f),provinceKeys:f.provinceKeys||['跨区域']}));
       return records.sort((a,b)=>(Number(a.year)||Number(a.from)||0)-(Number(b.year)||Number(b.from)||0) || String(a.name||a.text||'').localeCompare(String(b.name||b.text||''),'zh-CN'));
     });
     const battleBranchOptions = computed(()=>Array.from(new Set(battleEntryList.value.map(item=>item.branch))).sort((a,b)=>a.localeCompare(b,'zh-CN')));
@@ -4652,7 +4643,7 @@ const app = createApp({
         if(battleBranch.value!=='all' && item.branch!==battleBranch.value) return false;
         if(battleProvince.value!=='all' && !(item.provinceKeys||[]).includes(battleProvince.value)) return false;
         if(!q) return true;
-        const text=[item.name,item.text,item.a,item.b,item.result,item.desc,item.note,item.era,item.emperor,item.front,item.sourceTitle].filter(Boolean).join('\n').toLowerCase();
+        const text=[item.name,item.text,item.a,item.b,item.result,item.desc,item.note,item.era,item.emperor,item.front].filter(Boolean).join('\n').toLowerCase();
         return text.includes(q);
       });
     });
@@ -5052,7 +5043,7 @@ const app = createApp({
     const fangzhenArchiveOptions = computed(()=>FANGZHEN_ARCHIVE_DEFS.map(def=>({
       ...def, count:fangzhenRecords.value.filter(record=>fangzhenMatchesArchive(record,def)).length
     })));
-    const fangzhenArchiveRows = computed(()=>fangzhenRecords.value.filter(record=>fangzhenMatchesArchive(record)));
+    const fangzhenArchiveRows = computed(()=>projectForReading(fangzhenRecords.value.filter(record=>fangzhenMatchesArchive(record))));
     const STATE_NAMES = ['司隶','司州','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','宁州','平州','秦州','梁州'];
     function extractState(value){
       const text=String(value||'');
@@ -5071,7 +5062,7 @@ const app = createApp({
       return fangzhenArchiveRows.value
         .filter(r=>fangzhenRecordType.value==='all'||(r.recordType||'other')===fangzhenRecordType.value)
         .filter(r=>fangzhenState.value==='all'||extractState(r.jurisdiction)===fangzhenState.value)
-        .filter(r=>!q||[r.commander,r.birthplace,r.title,r.jurisdiction,r.seat,r.tenureText,r.note,r.sourceTitle].some(v=>String(v||'').toLowerCase().includes(q)))
+        .filter(r=>!q||[r.commander,r.birthplace,r.title,r.jurisdiction,r.seat,r.tenureText,r.note].some(v=>String(v||'').toLowerCase().includes(q)))
         .slice().sort((a,b)=>(Number(a.startYear)||0)-(Number(b.startYear)||0)||String(a.polity).localeCompare(String(b.polity),'zh-CN'));
     });
     const fangzhenMetrics = computed(()=>{
@@ -5116,8 +5107,9 @@ const app = createApp({
       };
     }
     function openFangzhenEditor(record=null){
+      const canonical=record ? (fangzhenRecords.value.find(item=>item.id===record.id)||record) : null;
       fangzhenDialog.mode=record?'edit':'add';
-      fangzhenDialog.form=record?cloneJSON(record):blankFangzhen();
+      fangzhenDialog.form=canonical?cloneJSON(canonical):blankFangzhen();
       fangzhenDialog.visible=true;
     }
     function saveFangzhenRecord(){
@@ -5175,13 +5167,11 @@ const app = createApp({
     }
     function fangzhenRowClassName({row}){ return 'fz-row-'+fangzhenArchiveKeyFor(row); }
     function exportFangzhen(){
-      const rows=fangzhenRecords.value.map(r=>({
-        档案范围:r.archiveScope,时期:r.eraGroup==='three'?'三国':(r.eraGroup==='jin'?'西晋':'东晋扩展'),
+      const rows=projectForReading(fangzhenRecords.value).map(r=>({
+        时期:r.eraGroup==='three'?'三国':(r.eraGroup==='jin'?'西晋':'东晋'),
         国家:r.polity,类别:fangzhenTypeLabel(r.recordType),人物:r.commander,籍贯:r.birthplace,官职职任:r.title,委任称号:r.commission,
         任命关系:r.relation,授任状态:r.appointmentStatus,辖区:r.jurisdiction,治所:r.seat,
-        任期显示:r.tenureText,原始任期:r.sourceTenureText,起始年:r.startYear,结束年:r.endYear,
-        置信度:r.confidence,来源层级:r.sourceLevel,备注:r.note,资料来源:r.sourceTitle,
-        来源定位:r.sourceLocator,史料摘录:r.sourceExcerpt,链接:r.sourceUrl
+        任期显示:r.tenureText||'任期未详',起始年:r.startYear,结束年:r.endYear,备注:r.note
       }));
       const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(rows),'州镇表'); XLSX.writeFile(wb,'汉魏晋_州镇表.xlsx');
     }
@@ -5363,11 +5353,10 @@ const app = createApp({
       return (OFFICE_GROUP_DEFS.find(g=>g.key===group)||OFFICE_GROUP_DEFS[0]).color;
     }
     function nodeSearchText(node){
-      return [node.name,node.category,node.rank9,node.hanRank,node.duty,node.region,node.note,node.sources,node.aliases,node.evolution,node.directRules,
+      const reading=projectForReading(node);
+      return [reading.name,reading.category,reading.rank9,reading.hanRank,reading.duty,reading.region,reading.note,reading.aliases,reading.evolution,reading.directRules,
         ...(node.customTags||[]),...(node.figures||[]).flatMap(f=>[f.name,f.note]),
-        ...(node.evolutionEvents||[]).flatMap(e=>[e.year,e.type,e.text,e.source]),
-        ...(node.footnotes||[]).map(f=>f.text),
-        node.evidence?.title,node.evidence?.locator,node.evidence?.excerpt].filter(Boolean).join(' ').toLowerCase();
+        ...(node.evolutionEvents||[]).flatMap(e=>[e.year,e.type,e.text])].filter(Boolean).join(' ').toLowerCase();
     }
     function visibleNodesForCanvas(){
       const arr = currentArr.value;
@@ -6261,7 +6250,7 @@ const app = createApp({
     function exportStatsText(){
       const lines=['# 三国职官谱统计','生成时间：'+new Date().toLocaleString('zh-CN'),''];
       allFactionStats.value.forEach(stat=>{
-        lines.push('## '+stat.name,'官职总量：'+stat.total,'虚职：'+stat.virtual,'遥领：'+stat.remote,'可开府：'+stat.kaifu,'临时／待考：'+stat.temporary,'');
+        lines.push('## '+stat.name,'官职总量：'+stat.total,'虚职：'+stat.virtual,'遥领：'+stat.remote,'可开府：'+stat.kaifu,'临时职任：'+stat.temporary,'');
       });
       lines.push('## '+currentFactionDef.value.name+'分类明细',...statList.value.map(item=>'- '+item.label+'：'+item.num));
       downloadBlob(lines.join('\n'),'text/plain;charset=utf-8','三国职官谱_统计.txt');
@@ -6308,7 +6297,8 @@ const app = createApp({
       return groups;
     });
     function resultExcerpt(node){
-      const text=[node.duty,node.note,node.sources,node.region,(node.evolutionEvents||[]).map(e=>e.year+'年 '+e.type+' '+e.text).join('；'),(node.footnotes||[]).map(f=>f.text).join('；'),(node.figures||[]).map(f=>f.name).join('、')].filter(Boolean).join('；')||'暂无补充说明';
+      const reading=projectForReading(node);
+      const text=[reading.duty,reading.note,reading.region,(reading.evolutionEvents||[]).map(e=>e.year+'年 '+e.type+' '+e.text).join('；'),(reading.figures||[]).map(f=>f.name).join('、')].filter(Boolean).join('；')||'暂无补充说明';
       return String(text).length>90?String(text).slice(0,90)+'…':String(text);
     }
     function resetCanvasFilters(){
@@ -6408,12 +6398,11 @@ const app = createApp({
       const roles=Array.from(new Set(appointments.map(item=>item.nodeName||item.title).filter(Boolean))).slice(0,6);
       const years=appointments.flatMap(item=>[normalizeYear(item.startYear),normalizeYear(item.endYear)]).filter(year=>year!==null);
       const span=years.length?Math.min(...years)+'—'+Math.max(...years)+'年':'任期未详';
-      const polity=entry.politics.length?entry.politics.join('、')+'相关档案':'现有资料';
       const roleText=roles.length?'已录履历涉及'+roles.join('、')+(appointments.length>roles.length?'等职任':'')+'。':'尚未形成可连续核对的任官序列。';
       return {
-        bio:entry.name+'，见于本项目'+polity+'。'+roleText+'现有记录覆盖'+span+'；此段仅据已录官职、爵位与州镇任期归纳，完整生卒、籍贯及事功仍应回查本传。',
-        bioSource:'本项目职官谱、爵位体系与州镇表履历归纳',
-        bioKind:'履历归纳'
+        bio:entry.name+'。'+roleText+'可见任职年代为'+span+'；生卒、籍贯或事功未见明确记载者，书作未详。',
+        bioSource:'',
+        bioKind:'履历提要'
       };
     }
     const activePersonAppointments = computed(()=>collectPersonAppointments(activePersonName.value));
@@ -6425,8 +6414,8 @@ const app = createApp({
         switchModule('fangzhen');selectFangzhenArchive(fangzhenArchiveKeyFor(item));fangzhenQuery.value=item.commander;return;
       }
       if(item.source==='eraRoster'||item.treeType==='roster'){
-        selectedEvidence.value={title:item.sourceTitle||'时期官员录',level:item.sourceLevel||'文档考据',locator:item.phase||'时期官员录',excerpt:item.sourceExcerpt||'',url:item.sourceUrl||'',confidence:item.confidence||'推定',note:item.note||''};
-        showEvidence.value=true;
+        switchModule('people');
+        periodRosterPhase.value=item.phase||'all';
         return;
       }
       jumpToSearchResult({factionKey:item.factionKey,treeType:item.treeType,node:{key:item.nodeKey}});
@@ -6499,7 +6488,7 @@ const app = createApp({
         if(peopleKind.value==='fangzhen' && !p.appointments.some(a=>a.treeType==='fangzhen')) return false;
         if(peopleKind.value==='roster' && !p.appointments.some(a=>a.treeType==='roster')) return false;
         if(!q) return true;
-        const hay=[p.name,p.zi,p.birthplace,p.bio].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.sourceTitle,a.polity].join(' '))).join('\n').toLowerCase();
+        const hay=[p.name,p.zi,p.birthplace,p.bio].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity].join(' '))).join('\n').toLowerCase();
         return hay.includes(q);
       });
     });
@@ -6893,8 +6882,7 @@ const app = createApp({
           rows.push({
             key:faction.key+'_'+node.key, name,
             factionKey:faction.key, factionName:faction.name, factionColor:faction.color, nodeKey:node.key,
-            hanRank:node.hanRank||'', hanFamily:family?family.family:'', rank9:isHan||isShu?'':(node.rank9||''),
-            note:node.sources||''
+            hanRank:node.hanRank||'', hanFamily:family?family.family:'', rank9:isHan||isShu?'':(node.rank9||'')
           });
         });
       });
@@ -6965,7 +6953,7 @@ const app = createApp({
 
     /* ---------- 文件功能 ---------- */
     function exportJSON(){
-      const payload = window.SGZResearchModel.migrate({ schemaVersion:7, exportedAt:new Date().toISOString(), periods:PERIODS, factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), epigraphicRecords:cloneJSON(epigraphicRecords.value) });
+      const payload = window.SGZResearchModel.migrate({ schemaVersion:7, exportedAt:new Date().toISOString(), periods:PERIODS, mapPeriods:cloneJSON(historyMapPeriods), factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), epigraphicRecords:cloneJSON(epigraphicRecords.value), battleRecords:cloneJSON(battleRecords), shihuoRecords:cloneJSON(shihuoRecords.value), shihuoEvents:cloneJSON(shihuoEventRecords.value), shihuoHousehold:cloneJSON(shihuoHousehold.value) });
       downloadBlob(JSON.stringify(payload, null, 2), 'application/json', '三国职官谱_' + currentFaction.value + '.json');
       pushHistory('导出 JSON');
     }
@@ -6975,27 +6963,24 @@ const app = createApp({
       downloadBlob(JSON.stringify(payload,null,2),'application/json','三国职官谱_'+currentFaction.value+'_'+treeType.value+'_拆分.json');
     }
     function exportTable(){
-      const arr = currentArr.value.filter(n=>n.kind!=='root');
+      const arr = projectForReading(currentArr.value.filter(n=>n.kind!=='root'));
       const parentNameMap = {}; currentArr.value.forEach(n=>parentNameMap[n.key]=n.name);
       const figureNames = node=>Array.from(new Set((node.figures||[]).map(f=>f.name).filter(Boolean))).join('、');
       const figureJSON = node=>JSON.stringify((node.figures||[]).map(f=>({
         id:f.id, name:f.name, rulerKey:f.rulerKey, startYear:f.startYear, endYear:f.endYear, note:f.note
       })));
-      const fnNums = node=>(footnoteIndex.value.map[node.key]||[]).map(f=>'['+f.num+']').join('');
       const rows = arr.map(n=> n.kind==='office' ? {
         名称:n.name, 上级:parentNameMap[n.parent]||'', 分类:n.category, 九品:n.rank9, 秩俸:n.hanRank,
         职权:n.duty, 人物:figureNames(n), 任职记录JSON:figureJSON(n), 辖区:n.region, 符节:n.jie,
         开府: n.kaifu?'是':'否', 遥领:n.yaoling?'是':'否', 录尚书事:n.lushangshushi?'是':'否', 加官:n.jiaguan&&n.jiaguan!=='无'?n.jiaguan:'',
         设立年:n.officeStartYear??'', 裁撤年:n.officeEndYear??'', 沿革:n.evolution, 沿革事件JSON:JSON.stringify(n.evolutionEvents||[]), 别称:n.aliases,
-        史料出处:n.sources, 直属关系:n.relationType, 直属限制:n.directRules, 自定义标签:(n.customTags||[]).join('、'),
-        虚职:n.virtual?'是':'否', 临时待考:n.temporary?'是':'否',
-        已归档:n.archived?'是':'否', 已隐藏:n.hidden?'是':'否', 世袭领兵:n.worldTangBing?'是':'否', 备注:n.note,
-        脚注编号:fnNums(n)
+        直属关系:n.relationType, 直属限制:n.directRules, 自定义标签:(n.customTags||[]).join('、'),
+        虚职:n.virtual?'是':'否', 临时职任:n.temporary?'是':'否',
+        已归档:n.archived?'是':'否', 已隐藏:n.hidden?'是':'否', 世袭领兵:n.worldTangBing?'是':'否', 备注:n.note
       } : {
         名称:n.name, 上级:parentNameMap[n.parent]||'', 爵等:n.nobleRank, 食邑:n.fief, 承袭:n.inherit,
         实封:n.actualFief?'是':'否', 设立年:n.officeStartYear??'', 裁撤年:n.officeEndYear??'',
-        史料出处:n.sources, 自定义标签:(n.customTags||[]).join('、'), 人物:figureNames(n), 任职记录JSON:figureJSON(n), 备注:n.note,
-        脚注编号:fnNums(n)
+        自定义标签:(n.customTags||[]).join('、'), 人物:figureNames(n), 任职记录JSON:figureJSON(n), 备注:n.note
       });
       const ws = XLSX.utils.json_to_sheet(rows);
       const wb = XLSX.utils.book_new();
@@ -7007,57 +6992,14 @@ const app = createApp({
         备注:f.note||''
       })));
       if(figureRows.length) XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(figureRows), '人物任职汇总');
-      // 脚注／参考文献：统一排布于文档末尾（独立工作表），按引用编号排序，符合学术引文规范
-      if(footnoteIndex.value.flat.length){
-        const fnRows = footnoteIndex.value.flat.map(f=>({ 编号:'['+f.num+']', 节点:f.nodeName, 挂载字段:f.field, 引文内容:f.text }));
-        XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(fnRows), '脚注·参考文献');
-      }
       XLSX.writeFile(wb, '三国职官谱_'+currentFaction.value+'_'+(treeType.value==='office'?'官职':'爵位')+'.xlsx');
       pushHistory('导出 Excel 表格');
     }
     function exportImage(){
       const baseImg = diagram.makeImageData({ background:'#EDE6D6', scale:2 });
-      const notes = footnoteIndex.value.flat;
-      if(!notes.length){
-        const a = document.createElement('a');
-        a.href = baseImg; a.download = '三国职官谱_'+currentFaction.value+'.png'; a.click();
-        pushHistory('导出画布图片');
-        return;
-      }
-      // 附带脚注：在画布图片下方拼接一段脚注／参考文献区块，编号与画布中标注一致
-      const img = new Image();
-      img.onload = ()=>{
-        const padding = 28, lineH = 20, fontSize = 14;
-        const maxWidth = img.width - padding*2;
-        const ctx0 = document.createElement('canvas').getContext('2d');
-        ctx0.font = fontSize+'px sans-serif';
-        function wrapLines(text){
-          const words = text.split('');
-          let line='', lines=[];
-          words.forEach(ch=>{
-            if(ctx0.measureText(line+ch).width > maxWidth){ lines.push(line); line=ch; } else { line+=ch; }
-          });
-          if(line) lines.push(line);
-          return lines;
-        }
-        const allLines = [];
-        notes.forEach(f=>{ wrapLines('['+f.num+'] '+f.nodeName+'·'+f.field+'：'+f.text).forEach(l=>allLines.push(l)); });
-        const footH = padding*2 + 26 + allLines.length*lineH;
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width; canvas.height = img.height + footH;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#EDE6D6'; ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.drawImage(img,0,0);
-        ctx.strokeStyle = '#C9BFA5'; ctx.beginPath(); ctx.moveTo(padding,img.height+padding*0.6); ctx.lineTo(canvas.width-padding,img.height+padding*0.6); ctx.stroke();
-        ctx.fillStyle = '#2B2622'; ctx.font = 'bold 16px sans-serif';
-        ctx.fillText('脚注 · 参考文献', padding, img.height+padding+18);
-        ctx.font = fontSize+'px sans-serif'; ctx.fillStyle = '#3A342D';
-        allLines.forEach((line,i)=>{ ctx.fillText(line, padding, img.height+padding+52+i*lineH); });
-        const a = document.createElement('a');
-        a.href = canvas.toDataURL('image/png'); a.download = '三国职官谱_'+currentFaction.value+'.png'; a.click();
-        pushHistory('导出画布图片（含脚注）');
-      };
-      img.src = baseImg;
+      const a = document.createElement('a');
+      a.href = baseImg; a.download = '三国职官谱_'+currentFaction.value+'.png'; a.click();
+      pushHistory('导出画布图片');
     }
     function exportSVG(){
       try{
@@ -7069,7 +7011,7 @@ const app = createApp({
       }catch(err){ ElementPlus.ElMessage.error('SVG 导出失败：'+err.message); }
     }
     function markdownForCurrentTree(){
-      const arr=currentArr.value, byParent=new Map();
+      const arr=projectForReading(currentArr.value), byParent=new Map();
       arr.forEach(n=>{ const p=n.parent===undefined?'__root__':n.parent; if(!byParent.has(p)) byParent.set(p,[]); byParent.get(p).push(n); });
       const lines=['# '+currentFactionDef.value.name+' · '+(treeType.value==='office'?'官职体系':'爵位体系'),''];
       function walk(node,depth){
@@ -7085,17 +7027,12 @@ const app = createApp({
           lines.push(prefix+'**'+node.name+'**'+(attrs.length?'（'+attrs.join(' · ')+'）':''));
           if(node.duty) lines.push('  '.repeat(depth)+'- 职权：'+node.duty);
           if(node.officeStartYear!==null || node.officeEndYear!==null) lines.push('  '.repeat(depth)+'- 沿革：'+(node.officeStartYear??'待考')+'—'+(node.officeEndYear??'存续')+'年'+(node.evolution?'；'+node.evolution:''));
-          if(node.sources) lines.push('  '.repeat(depth)+'- 出处：'+node.sources);
           if((node.figures||[]).length) lines.push('  '.repeat(depth)+'- 人物：'+node.figures.map(f=>f.name).filter(Boolean).join('、'));
           if(node.note) lines.push('  '.repeat(depth)+'- 备注：'+node.note);
         }
         (byParent.get(node.key)||[]).forEach(child=>walk(child,depth+1));
       }
       (byParent.get('__root__')||[]).forEach(root=>walk(root,0));
-      if(footnoteIndex.value.flat.length){
-        lines.push('','---','### 脚注 · 参考文献','');
-        footnoteIndex.value.flat.forEach(f=>{ lines.push('['+f.num+'] '+f.nodeName+'·'+f.field+'：'+f.text); });
-      }
       return lines.join('\n');
     }
     function exportMarkdown(){
@@ -7122,6 +7059,7 @@ const app = createApp({
             data.trees = normalizeAndValidateTrees(migrated.trees);
             if(Array.isArray(migrated.fangzhenRecords)) fangzhenRecords.value=normalizeFangzhenRecords(migrated.fangzhenRecords);
             if(Array.isArray(migrated.epigraphicRecords)) epigraphicRecords.value=cloneJSON(migrated.epigraphicRecords);
+            restoreSupplementalPayload(migrated);
             if(Array.isArray(migrated.factionPalette)) migrated.factionPalette.forEach(saved=>{ const f=factions.find(x=>x.key===saved.key); if(f&&saved.color) f.color=saved.color; });
           } else if(Array.isArray(parsed.nodes)){
             data.trees[currentFaction.value][treeType.value] = normalizeAndValidateNodes(cloneJSON(parsed.nodes), '拆分存档数据', currentFaction.value);
@@ -7240,9 +7178,21 @@ const app = createApp({
       reader.readAsArrayBuffer(file);
       return false;
     }
+    function restoreSupplementalPayload(payload){
+      if(Array.isArray(payload?.mapPeriods)) historyMapPeriods.splice(0,historyMapPeriods.length,...cloneJSON(payload.mapPeriods));
+      if(payload?.battleRecords && typeof payload.battleRecords==='object'){
+        Object.keys(battleRecords).forEach(key=>delete battleRecords[key]);
+        Object.assign(battleRecords,cloneJSON(payload.battleRecords));
+      }
+      if(Array.isArray(payload?.shihuoRecords)) shihuoRecords.value=cloneJSON(payload.shihuoRecords);
+      if(Array.isArray(payload?.shihuoEvents)) shihuoEventRecords.value=cloneJSON(payload.shihuoEvents);
+      if(Array.isArray(payload?.shihuoHousehold)) shihuoHousehold.value=cloneJSON(payload.shihuoHousehold);
+    }
     function projectPayload(){
       return window.SGZResearchModel.migrate({schemaVersion:7,trees:data.trees,fangzhenRecords:cloneJSON(fangzhenRecords.value),versions:versions.list,periodSelections:cloneJSON(periodSelections),
-        factionPalette:cloneJSON(factions),personMeta:cloneJSON(personMeta.map),epigraphicRecords:cloneJSON(epigraphicRecords.value),savedAt:Date.now()});
+        factionPalette:cloneJSON(factions),personMeta:cloneJSON(personMeta.map),epigraphicRecords:cloneJSON(epigraphicRecords.value),
+        mapPeriods:cloneJSON(historyMapPeriods),battleRecords:cloneJSON(battleRecords),shihuoRecords:cloneJSON(shihuoRecords.value),
+        shihuoEvents:cloneJSON(shihuoEventRecords.value),shihuoHousehold:cloneJSON(shihuoHousehold.value),savedAt:Date.now()});
     }
     const AUTOSAVE_KEY='sgz_zhiguanpu_project';
     const SNAPSHOT_KEY='sgz_zhiguanpu_snapshot';
@@ -7287,6 +7237,7 @@ const app = createApp({
         data.trees = normalizeAndValidateTrees(mergePresetSupplement(parsed.trees));
         if(Array.isArray(parsed.fangzhenRecords)) fangzhenRecords.value=normalizeFangzhenRecords(parsed.fangzhenRecords);
         if(Array.isArray(parsed.epigraphicRecords)) epigraphicRecords.value=cloneJSON(parsed.epigraphicRecords);
+        restoreSupplementalPayload(parsed);
         versions.list = Array.isArray(parsed.versions) ? parsed.versions : [];
         personMeta.map = normalizePersonMeta(parsed.personMeta);
         if(Array.isArray(parsed.factionPalette)) parsed.factionPalette.forEach(saved=>{
@@ -7342,6 +7293,7 @@ const app = createApp({
         data.trees=normalizeAndValidateTrees(mergePresetSupplement(migrated.trees));
         if(Array.isArray(migrated.fangzhenRecords)) fangzhenRecords.value=normalizeFangzhenRecords(migrated.fangzhenRecords);
         if(Array.isArray(migrated.epigraphicRecords)) epigraphicRecords.value=cloneJSON(migrated.epigraphicRecords);
+        restoreSupplementalPayload(migrated);
         versions.list=Array.isArray(migrated.versions)?migrated.versions:[];
         personMeta.map=normalizePersonMeta(migrated.personMeta);
         if(migrated.periodSelections) Object.assign(periodSelections,migrated.periodSelections);
@@ -7504,7 +7456,7 @@ const app = createApp({
       showBattleDetail, activeBattleDetail, openBattleDetail, battleDetailYear, battlePeriodForItem, battleRelatedPeople, jumpToBattlePeriod,
       SHIHUO_POLITIES, SHIHUO_CATEGORIES, shihuoQuery, shihuoPolity, shihuoCategory,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
-      epigraphicRecords, epigraphicTypes, epigraphicStatuses, epigraphicPolities, epigraphicArchiveKinds, epigraphicQuery, epigraphicType, epigraphicStatus, epigraphicPolity, epigraphicArchiveKind, filteredEpigraphicRecords, epigraphicMetrics,
+      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, filteredEpigraphicRecords, epigraphicMetrics,
       mountOptions, jumpToMount,
       footnoteDialog, openFootnoteDialog, confirmFootnote, removeFootnote, footnotesFor, footnoteIndex,
     };
@@ -7522,7 +7474,7 @@ const app = createApp({
         <button class="module-tab" :class="{active:activeModule==='people'}" title="人物 · 履历 · 立绘 · 字号籍贯" @click="switchModule('people')"><strong>人物记</strong><small>人物 · 履历</small></button>
         <button class="module-tab" :class="{active:activeModule==='battle'}" title="编年要事 · 重大战役 · 重要战场" @click="switchModule('battle')"><strong>战事纪</strong><small>战役 · 战场</small></button>
         <button class="module-tab" :class="{active:activeModule==='fangzhen'}" title="刺史 · 州牧 · 都督 · 职任" @click="switchModule('fangzhen')"><strong>州镇表</strong><small>人物 · 职任</small></button>
-        <button class="module-tab" :class="{active:activeModule==='jinshi'}" title="碑刻 · 墓志 · 金石材料 · 文档考据" @click="switchModule('jinshi')"><strong>金石录</strong><small>碑刻 · 墓志</small></button>
+        <button class="module-tab" :class="{active:activeModule==='jinshi'}" title="碑刻 · 墓志 · 金石材料" @click="switchModule('jinshi')"><strong>金石录</strong><small>碑刻 · 墓志</small></button>
         <button class="module-tab" :class="{active:activeModule==='shihuo'}" title="屯田 · 赋役 · 货币 · 盐铁 · 漕运" @click="switchModule('shihuo')"><strong>食货志</strong><small>经济 · 财政</small></button>
         <button class="module-tab" :class="{active:activeModule==='map'}" title="疆域 · 州郡 · 城池 · 战役" @click="switchModule('map')"><strong>形势图</strong><small>疆域 · 州郡</small></button>
       </nav>
@@ -7574,7 +7526,6 @@ const app = createApp({
         <el-button size="small" circle @click="showPalette=true" title="势力配色">🎨</el-button>
         <el-button size="small" circle @click="showStats=true" title="统计面板">📊</el-button>
         <el-button size="small" circle @click="showLog=true" title="操作日志">🕘</el-button>
-        <el-button size="small" circle @click="showAuditCenter=true" title="数据审计中心">🛡</el-button>
       </div>
     </div>
 
@@ -8000,13 +7951,7 @@ const app = createApp({
             </div>
 
             <template v-if="selectedNode.kind==='office'">
-              <div class="field-group-title">基本信息 <el-button size="small" text @click="openFootnoteDialog('基本信息')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('基本信息').length">
-                <span v-for="f in footnotesFor('基本信息')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">基本信息</div>
               <el-form-item label="官职名称"><el-input v-model="selectedNode.name" /></el-form-item>
               <el-form-item label="别称／异名"><el-input v-model="selectedNode.aliases" placeholder="如：中护军／护军将军" /></el-form-item>
               <el-form-item label="国家／部落">
@@ -8027,7 +7972,7 @@ const app = createApp({
                 <el-select v-model="selectedNode.rank9" clearable style="width:100%">
                   <el-option v-for="r in RANK9_OPTIONS" :key="r" :label="r" :value="r" />
                 </el-select>
-                <div class="gis-stub">官品与九品中正选官是相关但不同的概念；系统不再按类别自动推定，请记录具体出处。</div>
+                <div class="gis-stub">官品与九品中正选官是相关但不同的概念；请按具体制度和任职记录填写。</div>
               </el-form-item>
               <el-form-item label="汉代秩俸（石）">
                 <el-select v-model="selectedNode.hanRank" clearable style="width:100%">
@@ -8035,29 +7980,17 @@ const app = createApp({
                 </el-select>
               </el-form-item>
 
-              <div class="field-group-title">职权 <el-button size="small" text @click="openFootnoteDialog('职权')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('职权').length">
-                <span v-for="f in footnotesFor('职权')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">职权</div>
               <el-form-item label="职权文本"><el-input v-model="selectedNode.duty" type="textarea" :rows="2" /></el-form-item>
 
-              <div class="field-group-title">沿革与史料 <el-button size="small" text @click="openFootnoteDialog('沿革与史料')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('沿革与史料').length">
-                <span v-for="f in footnotesFor('沿革与史料')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">沿革</div>
               <div class="year-row">
                 <el-form-item label="设立年份"><el-input-number v-model="selectedNode.officeStartYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
                 <el-form-item label="裁撤年份"><el-input-number v-model="selectedNode.officeEndYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
               </div>
               <el-form-item label="更名／裁撤沿革"><el-input v-model="selectedNode.evolution" type="textarea" :rows="2" placeholder="记录设立、改名、复置、裁撤等变更" /></el-form-item>
               <div class="field-group-title" style="margin-top:8px;">沿革事件（结构化） <el-button size="small" text type="primary" @click="addEvolutionEvent">＋ 添加</el-button></div>
-              <div v-if="!selectedNode.evolutionEvents || !selectedNode.evolutionEvents.length" class="gis-stub">暂无结构化沿革事件；可逐条记录设立、更名、复置、裁撤的年份与出处。</div>
+              <div v-if="!selectedNode.evolutionEvents || !selectedNode.evolutionEvents.length" class="gis-stub">暂无结构化沿革事件；可逐条记录设立、更名、复置、裁撤的年份与说明。</div>
               <div v-for="(ev,evi) in selectedNode.evolutionEvents" :key="ev.id" class="evolution-event-row">
                 <div style="display:flex;gap:6px;align-items:center;">
                   <el-input-number v-model="ev.year" :min="-300" :max="500" controls-position="right" size="small" style="width:92px" />
@@ -8067,24 +8000,9 @@ const app = createApp({
                   <el-button size="small" text type="danger" @click="removeEvolutionEvent(evi)">✕</el-button>
                 </div>
                 <el-input v-model="ev.text" size="small" placeholder="事件说明（如：更名河南尹）" style="margin-top:5px;" />
-                <el-input v-model="ev.source" size="small" placeholder="史料出处（可空）" style="margin-top:4px;" />
               </div>
-              <el-form-item label="史料出处与引文"><el-input v-model="selectedNode.sources" type="textarea" :rows="3" placeholder="如：《三国志》卷三十五……；可附原文与脚注" /><el-button v-if="selectedNode.sources||selectedNode.evidence?.title" size="small" text type="primary" @click="openEvidence(selectedNode)">查看证据卡</el-button></el-form-item>
-              <div class="year-row">
-                <el-form-item label="来源层级"><el-select v-model="selectedNode.evidence.level" style="width:100%"><el-option v-for="level in ['一手史料','文档考据','二手索引','待核']" :key="level" :label="level" :value="level" /></el-select></el-form-item>
-                <el-form-item label="研究结论"><el-select v-model="selectedNode.researchStatus" style="width:100%"><el-option v-for="status in ['确定','推定','存疑','争议']" :key="status" :label="status" :value="status" /></el-select></el-form-item>
-              </div>
-              <el-form-item label="规范出处名称"><el-input v-model="selectedNode.evidence.title" placeholder="书名、篇卷或研究资料名称" /></el-form-item>
-              <el-form-item label="卷次／定位"><el-input v-model="selectedNode.evidence.locator" placeholder="如：卷三十五·诸葛亮传" /></el-form-item>
-              <el-form-item label="史料原文摘录"><el-input v-model="selectedNode.evidence.excerpt" type="textarea" :rows="3" placeholder="录入短段原文，正式引用时回查原典" /></el-form-item>
 
-              <div class="field-group-title">辖区与权限 <el-button size="small" text @click="openFootnoteDialog('辖区与权限')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('辖区与权限').length">
-                <span v-for="f in footnotesFor('辖区与权限')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">辖区与权限</div>
               <el-form-item label="规范行政区划（州—郡）">
                 <el-cascader v-model="selectedNode.regionPath" :options="REGION_OPTIONS" clearable filterable style="width:100%" @change="syncRegionFromPath" />
               </el-form-item>
@@ -8104,13 +8022,7 @@ const app = createApp({
                 </el-select>
               </el-form-item>
 
-              <div class="field-group-title">标记 <el-button size="small" text @click="openFootnoteDialog('标记')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('标记').length">
-                <span v-for="f in footnotesFor('标记')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">标记</div>
               <el-form-item label="是否允许开府">
                 <el-switch v-model="selectedNode.kaifu" />
                 <el-button v-if="selectedNode.kaifu" size="small" text type="primary" style="margin-left:8px" @click="generateKaifuTemplate">生成标准幕府僚属</el-button>
@@ -8126,9 +8038,9 @@ const app = createApp({
                 </el-select>
               </el-form-item>
               <div v-if="selectedNode.yaoling" class="warning-inline">遥领官职请补充辖区，并在备注中说明属于实授、虚领或名义兼领。</div>
-              <el-form-item label="考据状态">
+              <el-form-item label="显示状态">
                 <el-checkbox v-model="selectedNode.virtual">虚职</el-checkbox>
-                <el-checkbox v-model="selectedNode.temporary">临时／待考</el-checkbox>
+                <el-checkbox v-model="selectedNode.temporary">临时职任</el-checkbox>
                 <el-checkbox v-model="selectedNode.archived">归档</el-checkbox>
                 <el-checkbox v-model="selectedNode.hidden">隐藏</el-checkbox>
               </el-form-item>
@@ -8146,24 +8058,12 @@ const app = createApp({
                 </div>
               </el-form-item>
 
-              <div class="field-group-title">备注 <el-button size="small" text @click="openFootnoteDialog('备注')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('备注').length">
-                <span v-for="f in footnotesFor('备注')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">备注</div>
               <el-form-item><el-input v-model="selectedNode.note" type="textarea" :rows="2" placeholder="备注" /></el-form-item>
             </template>
 
             <template v-else-if="selectedNode.kind==='noble'">
-              <div class="field-group-title">基本信息 <el-button size="small" text @click="openFootnoteDialog('基本信息')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('基本信息').length">
-                <span v-for="f in footnotesFor('基本信息')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">基本信息</div>
               <el-form-item label="爵位名称"><el-input v-model="selectedNode.name" /></el-form-item>
               <el-form-item label="国家／部落">
                 <el-input :model-value="selectedPolityLabel" :disabled="currentFaction!=='tribal'" placeholder="如：匈奴、鲜卑、乌桓" @input="selectedNode.polity=$event" />
@@ -8186,7 +8086,6 @@ const app = createApp({
                 <el-form-item label="始封／设立年"><el-input-number v-model="selectedNode.officeStartYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
                 <el-form-item label="废止年"><el-input-number v-model="selectedNode.officeEndYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
               </div>
-              <el-form-item label="史料出处与引文"><el-input v-model="selectedNode.sources" type="textarea" :rows="3" /></el-form-item>
               <el-form-item label="自定义标签"><el-select v-model="selectedNode.customTags" multiple filterable allow-create default-first-option style="width:100%" /></el-form-item>
               <el-form-item label="资料状态"><el-checkbox v-model="selectedNode.archived">归档</el-checkbox><el-checkbox v-model="selectedNode.hidden">隐藏</el-checkbox></el-form-item>
 
@@ -8200,13 +8099,7 @@ const app = createApp({
                 </div>
               </el-form-item>
 
-              <div class="field-group-title">备注 <el-button size="small" text @click="openFootnoteDialog('备注')">📝 加脚注</el-button></div>
-              <div class="footnote-badges" v-if="footnotesFor('备注').length">
-                <span v-for="f in footnotesFor('备注')" :key="f.id" class="footnote-badge">
-                  <sup>{{f.num}}</sup> {{f.text}}
-                  <a class="fn-del" @click="removeFootnote(selectedNode,f.id)">✕</a>
-                </span>
-              </div>
+              <div class="field-group-title">备注</div>
               <el-form-item><el-input v-model="selectedNode.note" type="textarea" :rows="2" /></el-form-item>
             </template>
 
@@ -8281,14 +8174,11 @@ const app = createApp({
           <div>
             <div class="page-kicker">人物记 · 人物 · 履历 · 立绘</div>
             <h1>人物记</h1>
-            <p>汇总职官谱、州镇表与爵位体系中的同一人物全部职任，形成可追溯的履历链；字号、籍贯、生卒与立绘随工程自动保存。</p>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <el-button size="small" plain @click="showAuditCenter=true">🛡 数据审计</el-button>
+            <p>汇总职官谱、州镇表与爵位体系中的同一人物全部职任，形成连续履历；字号、籍贯、生卒与立绘随工程自动保存。</p>
           </div>
         </div>
         <div class="people-toolbar">
-          <el-input v-model="peopleQuery" clearable placeholder="检索人物、字号、籍贯、官职、辖区、史料…" prefix-icon="Search" />
+          <el-input v-model="peopleQuery" clearable placeholder="检索人物、字号、籍贯、官职或辖区…" prefix-icon="Search" />
           <el-select v-model="peoplePolity" size="small" style="width:132px;" aria-label="势力筛选">
             <el-option label="全部势力" value="all" />
             <el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.short||f.label||f.name" />
@@ -8315,7 +8205,7 @@ const app = createApp({
         </div>
         <section class="people-period-panel" aria-label="213与220年时期官署快照">
           <div class="people-period-head">
-            <div class="people-period-title">213／220 年时期官署快照<small>具名官员与人名未详官职分列，点击史料可回查来源</small></div>
+            <div class="people-period-title">213／220 年时期官署快照<small>具名官员与人名未详官职分列</small></div>
             <el-select v-model="periodRosterPhase" size="small" style="width:250px;" aria-label="时期官署快照筛选">
               <el-option label="213／220 年全部快照" value="all" />
               <el-option v-for="phase in periodRosterPhases" :key="phase" :label="phase" :value="phase" />
@@ -8325,9 +8215,8 @@ const app = createApp({
             <div v-for="item in filteredPeriodOfficeSnapshots" :key="item.id" class="people-period-item">
               <div class="people-period-item-head"><b>{{item.office}}</b><span class="person-pill" :class="polityPillClass(item.polity)">{{item.polity}}</span></div>
               <div class="holder">{{item.holder}}</div>
-              <div class="meta">{{item.phase}} · {{item.status}} · {{item.confidence}}</div>
+              <div class="meta">{{item.phase}}</div>
               <div v-if="item.note" class="note">{{item.note}}</div>
-              <el-button size="small" text type="primary" @click="openEvidence(item)">史料卡 ›</el-button>
             </div>
           </div>
         </section>
@@ -8340,7 +8229,7 @@ const app = createApp({
               <div class="person-card-badges">
                 <span v-for="pol in p.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span>
               </div>
-              <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>年份待核</span><br/>籍贯：{{p.birthplace||'待补'}}</div>
+              <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>任期未详</span><br/>籍贯：{{p.birthplace||'未详'}}</div>
               <div class="person-card-bio">{{p.bio}}</div>
               <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 时期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
             </div>
@@ -8355,14 +8244,11 @@ const app = createApp({
           <div>
             <div class="page-kicker">战事纪 · 编年要事 · 重大战役 · 重要战场</div>
             <h1>战事纪</h1>
-            <p>以汉末至西晋的战事与军政沿革为线索，串联形势图时间轴；点击条目可查看双方、战果、战场与史料出处。</p>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <el-button size="small" plain @click="showAuditCenter=true">🛡 数据审计</el-button>
+            <p>以汉末至西晋的战事与军政沿革为线索，串联形势图时间轴；点击条目可查看双方、战果与战场。</p>
           </div>
         </div>
         <div class="battle-toolbar">
-          <el-input v-model="battleQuery" clearable placeholder="检索战役、事件、人物、战场、史料…" prefix-icon="Search" />
+          <el-input v-model="battleQuery" clearable placeholder="检索战役、事件、人物或战场…" prefix-icon="Search" />
           <el-select v-model="battleKind" size="small" style="width:132px;" aria-label="记录类别">
             <el-option label="全部类别" value="all" />
             <el-option label="编年要事" value="event" />
@@ -8396,11 +8282,6 @@ const app = createApp({
           <strong>时间支线</strong>
           <button class="battle-branch-button" :class="{active:battleBranch==='all'}" @click="battleBranch='all'">全线</button>
           <button v-for="branch in battleBranchOptions" :key="branch" class="battle-branch-button" :class="{active:battleBranch===branch}" @click="battleBranch=branch">{{branch}}</button>
-        </div>
-        <div class="battle-branch-toolbar" aria-label="战事州别筛选">
-          <strong>州别编年</strong>
-          <button class="battle-branch-button" :class="{active:battleProvince==='all'}" @click="battleProvince='all'">全部州</button>
-          <button v-for="province in battleProvinceOptions" :key="province" class="battle-branch-button" :class="{active:battleProvince===province}" @click="battleProvince=province">{{province}}</button>
         </div>
         <div v-if="!filteredBattles.length" class="summary-empty">没有匹配的战事记录。可减少筛选条件，或切换时期查看该年编年要事与战役。</div>
         <div v-else class="battle-vertical-scroll">
@@ -8451,7 +8332,7 @@ const app = createApp({
         </div>
         <div class="fangzhen-context">
           <strong>{{fangzhenArchiveDef.label}}</strong>
-          <span>{{fangzhenArchiveDef.key==='wei'?'曹魏刺史、都督列表作为检索索引；跨 266 年任期已拆分为魏与西晋两段。':(fangzhenArchiveDef.key==='shu'?'《蜀汉郡守考》截图表已按郡别录入；疑问号、未知任期与未能确定郡名的条目保留待考状态。':(fangzhenArchiveDef.key==='wu'?'《孙吴州郡长官考》有效条目已入录；修订删除号内容不录入，并保留导入审计。':'统一记录国家、人物、职任、委任性质、辖区、任期、来源层级与置信度。'))}}</span>
+          <span>{{fangzhenArchiveDef.key==='wei'?'魏的刺史与都督职任按年代分段；跨 266 年的记录分属魏、晋。':(fangzhenArchiveDef.key==='shu'?'汉的州牧、都督与郡守职任按辖区和年代排列。':(fangzhenArchiveDef.key==='wu'?'吴的州牧、刺史、太守、都尉与都督职任按州郡排列。':'按国家、官次、辖区和年代排列。'))}}</span>
         </div>
         <div class="fangzhen-toolbar">
           <el-input v-model="fangzhenQuery" clearable placeholder="检索人物、官职、辖区、任期或备注…" style="max-width:360px" />
@@ -8494,25 +8375,19 @@ const app = createApp({
             <el-table-column label="辖区" min-width="145"><template #default="scope"><span class="person-link" @click="jumpFangzhenToMap(scope.row)">{{scope.row.jurisdiction||'—'}}</span></template></el-table-column>
             <el-table-column label="治所／驻地" min-width="150">
               <template #default="scope">
-                <div>{{scope.row.seat||'待补'}}</div>
-                <div v-if="scope.row.seatConfidence" class="fz-title">{{scope.row.seatConfidence}}<span v-if="scope.row.seatNote"> · {{scope.row.seatNote}}</span></div>
+                <div>{{scope.row.seat||'治所未详'}}</div>
               </template>
             </el-table-column>
             <el-table-column label="任期" min-width="220">
               <template #default="scope">
-                <div>{{scope.row.tenureText||((scope.row.startYear||'？')+'—'+(scope.row.endYear||'？'))}}</div>
-                <div v-if="scope.row.polity==='吴'&&scope.row.sourceTenureText&&scope.row.sourceTenureText!==scope.row.tenureText" class="fz-title">原文：{{scope.row.sourceTenureText}}</div>
+                <div>{{scope.row.tenureText||'任期未详'}}</div>
               </template>
             </el-table-column>
             <el-table-column prop="note" label="沿革说明" min-width="260" show-overflow-tooltip />
-            <el-table-column label="史料状态" min-width="165">
-              <template #default="scope"><a v-if="scope.row.sourceUrl" class="source-link" :href="scope.row.sourceUrl" target="_blank" rel="noopener">{{scope.row.sourceTitle||'打开来源'}}</a><span v-else>{{scope.row.sourceTitle||'—'}}</span><div class="fz-title">{{scope.row.sourceLevel||'待核'}} · 置信度 {{scope.row.confidence||'中'}}<span v-if="scope.row.sourceLocator"> · {{scope.row.sourceLocator}}</span></div></template>
-            </el-table-column>
-            <el-table-column label="操作" width="150" fixed="right">
-              <template #default="scope"><el-button size="small" text @click="openEvidence(scope.row)">史料</el-button><el-button size="small" text type="primary" @click="openFangzhenEditor(scope.row)">编辑</el-button><el-button size="small" text type="danger" @click="deleteFangzhenRecord(scope.row)">删除</el-button></template>
+            <el-table-column label="操作" width="116" fixed="right">
+              <template #default="scope"><el-button size="small" text type="primary" @click="openFangzhenEditor(scope.row)">编辑</el-button><el-button size="small" text type="danger" @click="deleteFangzhenRecord(scope.row)">删除</el-button></template>
             </el-table-column>
           </el-table>
-          <div class="research-note">资料说明：曹魏列表仅作为检索索引，并保留“约、未详、未上任、代理”等原表措辞；吴国档案据《孙吴州郡长官考》导入 212 条有效记录，7 条带修订删除号的任命或建置名称仅留审计、不进入档案。页面区分一手史料、文档考据、二手索引与待核；正式引用仍应回查《三国志》《晋书》《通典》等原典。“州镇”是本项目的工作性总称，不等同于唐以后“方镇”制度。</div>
         </div>
       </div>
     </main>
@@ -8523,15 +8398,14 @@ const app = createApp({
           <div>
             <div class="page-kicker">金石录 · 碑刻 · 墓志 · 摩崖 · 器物铭</div>
             <h1>金石录</h1>
-            <p>汉末至西晋金石材料目录；核心、扩展与争议材料分层显示，原始年号和文档出处均予保留。</p>
+            <p>汉末至西晋金石材料目录，按时间排列器物、碑刻、墓志与摩崖，并列出出土地、形制和简要释读。</p>
           </div>
-          <span class="research-status">文档考据</span>
         </div>
         <div class="people-metrics" style="grid-template-columns:repeat(4,minmax(0,1fr));">
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.total}}</strong><span>已录材料</span></div>
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.types}}</strong><span>材料类型</span></div>
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.periods}}</strong><span>年代锚点</span></div>
-          <div class="jinshi-metric"><strong>{{epigraphicMetrics.core}}</strong><span>核心材料</span></div>
+          <div class="jinshi-metric"><strong>{{epigraphicMetrics.polities}}</strong><span>国别</span></div>
         </div>
         <div class="jinshi-toolbar">
           <el-input v-model="epigraphicQuery" clearable placeholder="检索名称、出土地、人物、著录或释文…" prefix-icon="Search" />
@@ -8539,17 +8413,9 @@ const app = createApp({
             <el-option label="全部类型" value="all" />
             <el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type" />
           </el-select>
-          <el-select v-model="epigraphicStatus" clearable style="width:140px" placeholder="研究状态">
-            <el-option label="全部状态" value="all" />
-            <el-option v-for="status in epigraphicStatuses" :key="status" :label="status" :value="status" />
-          </el-select>
           <el-select v-model="epigraphicPolity" clearable style="width:110px" placeholder="国别">
             <el-option label="全部国别" value="all" />
             <el-option v-for="polity in epigraphicPolities" :key="polity" :label="polity" :value="polity" />
-          </el-select>
-          <el-select v-model="epigraphicArchiveKind" clearable style="width:120px" placeholder="材料层级">
-            <el-option label="全部层级" value="all" />
-            <el-option v-for="kind in epigraphicArchiveKinds" :key="kind" :label="kind" :value="kind" />
           </el-select>
           <span style="flex:1"></span>
           <span style="font-size:11px;color:#7E857E;">显示 {{filteredEpigraphicRecords.length}} / {{epigraphicRecords.length}} 条</span>
@@ -8557,22 +8423,20 @@ const app = createApp({
         <section v-if="!filteredEpigraphicRecords.length" class="jinshi-empty-panel">
           <div class="seal">金</div>
           <h2>暂无符合条件的金石材料</h2>
-          <p>可清除筛选条件，或调整国别、材料层级和研究状态。异族材料不纳入核心金石录，后世承袭与归属争议材料保留在扩展档案。</p>
+          <p>可清除筛选条件，或调整国别和材料类型。</p>
         </section>
         <section v-else class="jinshi-table-card">
           <el-table :data="filteredEpigraphicRecords" size="small" empty-text="暂无符合条件的金石材料">
             <el-table-column prop="name" label="名称" min-width="180" />
             <el-table-column prop="type" label="类型" width="100" />
             <el-table-column prop="polity" label="国别" width="70" />
-            <el-table-column label="年代" width="110"><template #default="scope">{{scope.row.yearText||scope.row.year||'待考'}}</template></el-table-column>
-            <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.place||scope.row.region||'待补'}}</template></el-table-column>
+            <el-table-column label="年代" width="120"><template #default="scope">{{scope.row.yearText||scope.row.year||'年代未详'}}</template></el-table-column>
+            <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.place||scope.row.region||'出土地未详'}}</template></el-table-column>
             <el-table-column label="关联人物／官职" min-width="180"><template #default="scope">{{[scope.row.people,scope.row.offices].filter(Boolean).join(' · ')||'—'}}</template></el-table-column>
-            <el-table-column label="研究状态" width="100"><template #default="scope">{{scope.row.researchStatus||'待补'}}</template></el-table-column>
-            <el-table-column label="层级" width="80"><template #default="scope">{{scope.row.archiveKind||'核心'}}</template></el-table-column>
-            <el-table-column label="来源" min-width="180"><template #default="scope">{{scope.row.sourceTitle||'待补'}}</template></el-table-column>
+            <el-table-column label="形制／书体" min-width="160"><template #default="scope">{{[scope.row.form,scope.row.scriptStyle].filter(Boolean).join(' · ')||'未详'}}</template></el-table-column>
+            <el-table-column prop="note" label="释读说明" min-width="240" show-overflow-tooltip />
           </el-table>
         </section>
-        <div class="jinshi-status-note">录入边界：汉末至西晋；国别统一显示汉、魏、吴、晋。所有新增记录必须保留来源、年代状态、著录和争议说明；后世材料和未核材料不得直接标记为核心确定材料。</div>
       </div>
     </main>
 
@@ -8582,14 +8446,11 @@ const app = createApp({
           <div>
             <div class="page-kicker">食货志 · 屯田 · 赋役 · 货币 · 盐铁 · 漕运</div>
             <h1>食货志</h1>
-            <p>以《晋书·食货志》及纪传材料整理汉末至西晋的经济制度与财政大事；出处优先原典，二手索引仅作检索。</p>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <el-button size="small" plain @click="showAuditCenter=true">🛡 数据审计</el-button>
+            <p>整理汉末至西晋的屯田、赋役、货币、盐铁和漕运制度，并按年代展示经济大事与户口数字。</p>
           </div>
         </div>
         <div class="fangzhen-toolbar">
-          <el-input v-model="shihuoQuery" clearable placeholder="检索制度、事件、人物或史料…" style="max-width:360px" />
+          <el-input v-model="shihuoQuery" clearable placeholder="检索制度、事件或人物…" style="max-width:360px" />
           <el-select v-model="shihuoPolity" style="width:130px" aria-label="政权筛选">
             <el-option label="全部政权" value="all" />
             <el-option v-for="p in SHIHUO_POLITIES" :key="p" :label="p" :value="p" />
@@ -8612,7 +8473,7 @@ const app = createApp({
             <button v-for="ev in shihuoEvents" :key="ev.id" class="shihuo-year-chip"
                     :class="{'active':shihuoPolity==='all'||shihuoPolity===ev.polity}"
                     @click="shihuoPolity=shihuoPolity===ev.polity?'all':ev.polity">
-              <b>{{ev.year}}</b><span>{{ev.title}}</span><small>{{ev.polity}}</small>
+              <b>{{ev.yearText||ev.year||'年代未详'}}</b><span>{{ev.title}}</span><small>{{ev.polity}}</small>
             </button>
           </div>
         </div>
@@ -8621,7 +8482,7 @@ const app = createApp({
             <el-table-column label="政权" width="78">
               <template #default="scope"><span class="fz-polity-badge" :class="shihuoPolityClass(scope.row.polity)">{{scope.row.polity}}</span></template>
             </el-table-column>
-            <el-table-column prop="year" label="年份" width="72" />
+            <el-table-column label="年代" width="110"><template #default="scope">{{scope.row.yearText||scope.row.year||'年代未详'}}</template></el-table-column>
             <el-table-column prop="category" label="类别" width="120">
               <template #default="scope"><span class="fz-type-pill">{{scope.row.category}}</span></template>
             </el-table-column>
@@ -8629,17 +8490,10 @@ const app = createApp({
               <template #default="scope"><div style="font-weight:650;color:#2E352F;">{{scope.row.title}}</div></template>
             </el-table-column>
             <el-table-column prop="detail" label="内容与沿革" min-width="320" show-overflow-tooltip />
-            <el-table-column label="史料状态" min-width="190">
-              <template #default="scope">
-                <div>{{scope.row.sourceTitle}}</div>
-                <div class="fz-title">置信度 {{scope.row.confidence}}</div>
-              </template>
-            </el-table-column>
           </el-table>
-          <div class="research-note">资料说明：本板块制度条目与户口数据据绿绮绵缘《〈三国食货志〉札记及补表N种》及《晋书》卷二十六《食货志》《通典·食货典》等整理；原文标注的“据《魏志》”等出处均已保留。户数多为年代性推算，不代表精确户籍；正式引用仍应回查原典。</div>
         </div>
         <div class="fangzhen-table-card" style="margin-top:14px;">
-          <div class="fangzhen-context"><strong>户口与人口</strong><span>汉末至西晋可考户口对照；数字来源与推算性质见备注。</span></div>
+          <div class="fangzhen-context"><strong>户口与人口</strong><span>各时期可见户口与回顾数字；年代未详者不纳入精确编年。</span></div>
           <el-table :data="filteredShihuoHousehold" size="small" empty-text="当前政权暂无户口数据">
             <el-table-column label="政权" width="76">
               <template #default="scope"><span class="fz-polity-badge" :class="shihuoPolityClass(scope.row.polity)">{{scope.row.polity}}</span></template>
@@ -8647,7 +8501,7 @@ const app = createApp({
             <el-table-column prop="label" label="年代" min-width="150" />
             <el-table-column prop="households" label="户数" min-width="120" />
             <el-table-column prop="population" label="口数" min-width="120" />
-            <el-table-column prop="note" label="出处与推算" min-width="320" show-overflow-tooltip />
+            <el-table-column prop="note" label="说明" min-width="320" show-overflow-tooltip />
           </el-table>
         </div>
       </div>
@@ -8661,9 +8515,8 @@ const app = createApp({
             <strong>{{currentHistoryPeriod.axisLabel}}</strong>
             <span>{{currentHistoryPeriod.name}} · 公元 {{currentHistoryPeriod.year}} 年</span>
           </div>
-          <div class="battle-time-summary">{{currentHistoryPeriod.tagline}} · {{currentHistoryPeriod.summary}}</div>
+          <div class="battle-time-summary">{{currentHistoryPeriod.snapshotMoment}} · {{currentHistoryPeriod.tagline}} · {{currentHistoryPeriod.summary}}</div>
           <div class="map-play-controls">
-            <button class="map-audit-btn" title="查看本期行政快照、史料来源与争议说明" @click="openHistoryAudit()">史料校验</button>
             <button class="map-play-btn" title="上一时期" @click="stepHistoryPeriod(-1)">‹</button>
             <button class="map-play-btn" :class="{playing:historyMapPlaying}" :title="historyMapPlaying?'暂停':'自动播放'" @click="toggleHistoryMapPlay">{{historyMapPlaying?'Ⅱ':'▶'}}</button>
             <button class="map-play-btn" title="下一时期" @click="stepHistoryPeriod(1)">›</button>
@@ -8696,8 +8549,8 @@ const app = createApp({
           <div v-if="mapLinkedFangzhenRecords.length" class="map-link-records">
             <button v-for="record in mapLinkedFangzhenRecords" :key="record.id" class="map-link-person" @click="openPersonProfile(record.commander)"><b>{{record.commander}}</b><span>{{record.title}}</span></button>
           </div>
-          <div v-else class="map-link-empty">当前年份未检索到明确匹配的州镇职任；可进入州镇表查看相邻任期或待考记录。</div>
-          <div class="map-link-actions"><el-button size="small" type="primary" plain @click="openMapSelectionFangzhen">在州镇表中检索</el-button><el-button v-if="mapSelectionEvidence" size="small" text @click="openMapSelectionAudit">查看史料</el-button><span v-if="mapSelectionEvidence" class="research-status" :class="historyStatusClass(mapSelectionEvidence.status)">证据 {{mapSelectionEvidence.status}}</span><span class="research-status" :class="currentHistoryPeriod.confidence?.overall==='high'?'certain':'doubt'">边界可信度 {{currentHistoryPeriod.confidence?.geometry==='high'?'高':(currentHistoryPeriod.confidence?.geometry==='medium'?'中':'低')}}</span></div>
+          <div v-else class="map-link-empty">当前年份未检索到明确匹配的州镇职任；可进入州镇表查看相邻任期或任期未详的记录。</div>
+          <div class="map-link-actions"><el-button size="small" type="primary" plain @click="openMapSelectionFangzhen">在州镇表中检索</el-button></div>
         </div>
       </section>
     </main>
@@ -8729,8 +8582,6 @@ const app = createApp({
         <div v-if="activeBattleDetail.result" class="battle-detail-result">{{activeBattleDetail.result}}</div>
         <p style="font-size:12.5px;color:#6F766F;line-height:1.75;margin:0 0 10px;">{{activeBattleDetail.desc||activeBattleDetail.note}}</p>
         <div class="battle-detail-meta">
-          <div class="row" v-if="activeBattleDetail.sourceTitle"><span>史料出处</span>{{activeBattleDetail.sourceTitle}}</div>
-          <div class="row" v-if="activeBattleDetail.confidence"><span>置信度</span>{{activeBattleDetail.confidence}}</div>
           <div class="row" v-if="activeBattleDetail.front"><span>战场方位</span>{{activeBattleDetail.front}}</div>
         </div>
         <div v-if="battleRelatedPeople(activeBattleDetail).length" class="battle-related">
@@ -8752,7 +8603,6 @@ const app = createApp({
             <p v-if="activePeopleDetail.birthplace">籍贯：{{activePeopleDetail.birthplace}}</p>
             <p v-if="activePeopleDetail.birthYear||activePeopleDetail.deathYear">生卒：{{activePeopleDetail.birthYear||'?'}}—{{activePeopleDetail.deathYear||'?'}}</p>
             <p v-if="activePeopleDetail.bio" class="people-bio">{{activePeopleDetail.bio}}</p>
-            <p v-if="activePeopleDetail.bioSource" class="people-bio-source">{{activePeopleDetail.bioKind}} · {{activePeopleDetail.bioSource}}</p>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
             <div style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.name)">编辑人物档案</el-button></div>
           </div>
@@ -8775,7 +8625,7 @@ const app = createApp({
         <el-form-item label="籍贯"><el-input v-model="personMetaDialog.form.birthplace" placeholder="如：琅邪阳都" /></el-form-item>
         <el-form-item label="生年"><el-input v-model="personMetaDialog.form.birthYear" placeholder="公元年，如 181" /></el-form-item>
         <el-form-item label="卒年"><el-input v-model="personMetaDialog.form.deathYear" placeholder="公元年，如 234" /></el-form-item>
-        <el-form-item label="简介"><el-input v-model="personMetaDialog.form.bio" type="textarea" :rows="3" placeholder="人物生平、重要事功或考据说明" /></el-form-item>
+        <el-form-item label="简介"><el-input v-model="personMetaDialog.form.bio" type="textarea" :rows="3" placeholder="人物生平、重要事功或履历补充" /></el-form-item>
         <el-form-item label="立绘">
           <div style="display:flex;gap:10px;align-items:center;">
             <div class="profile-portrait"><img v-if="personMetaDialog.form.portrait" :src="personMetaDialog.form.portrait" alt="人物立绘预览"/><span v-else>预览</span></div>
@@ -8788,50 +8638,6 @@ const app = createApp({
       </el-form>
       <template #footer><el-button @click="personMetaDialog.visible=false">取消</el-button><el-button type="primary" @click="savePersonMeta">保存档案</el-button></template>
     </el-dialog>
-
-    <el-drawer v-model="showAuditCenter" title="数据审计中心" size="720px">
-      <div class="audit-center">
-        <div class="audit-center-head">
-          <span v-if="auditLastRun">上次审计：{{auditLastRun}}</span><span v-else>审计覆盖职官谱、州镇表与人物记的常见数据问题</span>
-          <div style="display:flex;gap:8px;">
-            <el-button size="small" type="primary" plain @click="runDataAudit">重新审计</el-button>
-            <el-button size="small" plain :disabled="!auditIssues.length" @click="exportAuditReport">导出审计报告</el-button>
-          </div>
-        </div>
-        <div class="audit-metrics">
-          <div class="audit-metric total"><div class="value">{{auditMetrics.total}}</div><div class="label">问题总数</div></div>
-          <div class="audit-metric error"><div class="value">{{auditMetrics.error}}</div><div class="label">史实／逻辑错误</div></div>
-          <div class="audit-metric warn"><div class="value">{{auditMetrics.warn}}</div><div class="label">资料待核</div></div>
-          <div class="audit-metric info"><div class="value">{{auditMetrics.info}}</div><div class="label">可选补充</div></div>
-        </div>
-        <div class="audit-filters">
-          <el-select v-model="auditFilters.severity" size="small" style="width:110px;">
-            <el-option label="全部级别" value="all" /><el-option label="错误" value="error" /><el-option label="待核" value="warn" /><el-option label="可选" value="info" />
-          </el-select>
-          <el-select v-model="auditFilters.module" size="small" style="width:120px;">
-            <el-option label="全部模块" value="all" /><el-option label="职官谱" value="职官谱" /><el-option label="州镇表" value="州镇表" /><el-option label="人物记" value="人物记" /><el-option label="战事纪" value="战事纪" />
-          </el-select>
-          <span style="font-size:11px;color:#8A918A;">显示 {{auditFiltered.length}} / {{auditIssues.length}} 项</span>
-          <div class="spacer"></div>
-          <el-button v-if="!auditIssues.length" size="small" text @click="runDataAudit">运行首次审计</el-button>
-        </div>
-        <div v-if="!auditIssues.length" class="audit-empty">尚未运行审计。点击「运行首次审计」，检查同名官职、任期重叠、上下级时期冲突、势力存续越界、缺沿革与立绘等信息。</div>
-        <div v-else-if="!auditFiltered.length" class="audit-empty">当前筛选下没有问题。</div>
-        <div v-else class="audit-issue-list">
-          <div v-for="issue in auditFiltered" :key="issue.id" class="audit-issue">
-            <div class="audit-issue-head">
-              <span class="audit-sev" :class="issue.severity">{{auditSeverityMeta[issue.severity]}}</span>
-              <span class="audit-module">{{issue.module}}</span>
-              <strong>{{issue.title}}</strong>
-            </div>
-            <p>{{issue.detail}}</p>
-            <div class="audit-issue-foot">
-              <el-button size="small" text type="primary" @click="auditJump(issue)">定位到对应数据 ›</el-button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </el-drawer>
 
     <el-drawer v-model="showOfficials" :title="'官员汇总 · '+currentFactionLabel" size="520px">
       <div class="summary-head">
@@ -8996,7 +8802,6 @@ const app = createApp({
               <div class="office-compare-line" :class="{diff:group.diff.duty}"><span>职权</span>{{entry.node.duty||'—'}}</div>
               <div class="office-compare-line"><span>沿革</span>{{entry.node.officeStartYear||'？'}}—{{entry.node.officeEndYear||'？'}}{{entry.node.evolution?' · '+entry.node.evolution:''}}</div>
               <div class="office-compare-line"><span>人物</span>{{(entry.node.figures||[]).map(f=>f.name).filter(Boolean).join('、')||'—'}}</div>
-              <div class="office-compare-line"><span>出处</span>{{entry.node.sources||'—'}}</div>
             </div>
           </div>
         </div>
@@ -9020,8 +8825,7 @@ const app = createApp({
         <el-table-column label="势力" width="100"><template #default="scope"><span class="fz-polity-badge" :style="{background:scope.row.factionColor+'1A',color:scope.row.factionColor}">{{scope.row.factionName}}</span></template></el-table-column>
         <el-table-column label="汉代秩俸" width="130"><template #default="scope">{{scope.row.hanRank||'—'}}</template></el-table-column>
         <el-table-column label="秩俸档次" width="130"><template #default="scope">{{scope.row.hanFamily||'—'}}</template></el-table-column>
-        <el-table-column label="魏／吴／晋官品" width="130"><template #default="scope">{{scope.row.rank9||'（不适用／待核）'}}</template></el-table-column>
-        <el-table-column prop="note" label="史料出处" min-width="200" show-overflow-tooltip />
+        <el-table-column label="魏／吴／晋官品" width="150"><template #default="scope">{{scope.row.rank9||'（不适用／未详）'}}</template></el-table-column>
       </el-table>
     </el-drawer>
 
@@ -9068,58 +8872,6 @@ const app = createApp({
       </div>
     </el-dialog>
 
-    <el-drawer v-model="showHistoryAudit" title="历史数据审计 · V7时期快照" size="520px">
-      <div class="audit-drawer" v-if="currentHistoryEvidence">
-        <div class="audit-focus" v-if="historyAuditSelection">
-          <div class="audit-focus-title"><span>{{historyAuditSelection.name}}</span><span class="research-status" :class="historyStatusClass(historyAuditSelection.status)">{{historyAuditSelection.status}}</span></div>
-          <div>{{historyAuditSelection.level}} · {{historyAuditSelection.statement}}</div>
-          <div v-if="historyAuditSelection.note" class="audit-note">{{historyAuditSelection.note}}</div>
-          <div class="audit-source-list" style="margin-top:9px;">
-            <div v-for="source in historyAuditSelectionSources" :key="source.id" class="audit-source-row"><a v-if="source.url" class="source-link" :href="source.url" target="_blank" rel="noopener"><b>{{source.title}}</b></a><b v-else>{{source.title}}</b><small>{{source.level}} · {{source.role||source.locator||'来源目录'}}</small></div>
-          </div>
-        </div>
-        <div class="pv-head">
-          <div class="pv-year">{{currentHistoryPeriod.axisLabel}} · {{currentHistoryPeriod.year}} 年</div>
-          <h2 class="pv-title">{{currentHistoryPeriod.name}}</h2>
-          <div class="pv-tag">{{currentHistoryEvidence.controlMode}} · <span class="research-status" :class="historyStatusClass(currentHistoryEvidence.auditStatus)">{{currentHistoryEvidence.auditStatus}}</span></div>
-        </div>
-        <div class="audit-metrics">
-          <div class="audit-metric"><div class="value">{{currentHistoryEvidence.administration.provinceCount ?? '—'}}</div><div class="label">州数基准</div></div>
-          <div class="audit-metric"><div class="value">{{currentHistoryEvidence.administration.mappedCommanderyCount ?? '—'}}</div><div class="label">地图郡级块数</div></div>
-          <div class="audit-metric"><div class="value">{{currentHistoryEvidence.administration.geometryCoverage==='full'?'完整':'待补'}}</div><div class="label">几何覆盖</div></div>
-        </div>
-        <div class="field-group-title">本期政权与行政说明</div>
-        <div class="badge-row"><span v-for="polity in currentHistoryEvidence.polities" :key="polity" class="mini-badge">{{polity}}</span></div>
-        <div class="audit-note">{{currentHistoryEvidence.administration.geometryBasis}}。地图郡块数只表示当前几何快照，不直接等同于史实郡国总数。</div>
-        <div v-if="currentHistoryEvidence.administration.referenceBenchmarks?.length" class="field-group-title">外部基准</div>
-        <div v-for="benchmark in (currentHistoryEvidence.administration.referenceBenchmarks||[])" :key="benchmark.label" class="audit-claim"><div><strong>{{benchmark.label}}</strong> · {{benchmark.count}}</div><div>{{benchmark.scope}}</div></div>
-        <div class="field-group-title">本期历史断言</div>
-        <div v-for="claim in historyAuditClaims" :key="claim.id" class="audit-claim">
-          <div class="audit-claim-head"><strong>{{claim.subject}}</strong><span class="research-status" :class="historyStatusClass(claim.status)">{{claim.status}}</span></div>
-          <p>{{claim.statement}}</p>
-          <small style="color:#8A918A;">依据：{{claim.sourceTitles.join('；')}}</small>
-        </div>
-        <div v-if="currentHistoryEvidence.caveats?.length" class="field-group-title">仍需注意</div>
-        <div v-for="caveat in currentHistoryEvidence.caveats" :key="caveat" class="audit-note">{{caveat}}</div>
-        <div class="field-group-title">本期来源目录</div>
-        <div class="audit-source-list">
-          <div v-for="source in historyAuditSources" :key="source.id" class="audit-source-row"><a v-if="source.url" class="source-link" :href="source.url" target="_blank" rel="noopener"><b>{{source.title}}</b></a><b v-else>{{source.title}}</b><small>{{source.level}} · {{source.role||source.locator||'来源目录'}}<span v-if="source.note"> · {{source.note}}</span></small></div>
-        </div>
-      </div>
-      <div v-else class="summary-empty">当前时期尚未建立 V7 证据快照。</div>
-    </el-drawer>
-
-    <el-drawer v-model="showEvidence" title="史料证据卡" size="480px">
-      <div v-if="selectedEvidence" class="evidence-card">
-        <div class="evidence-title">{{selectedEvidence.title||'出处待补'}}</div>
-        <div class="evidence-meta"><span>{{selectedEvidence.level||'待核'}}</span><span>{{selectedEvidence.locator||'卷次／段落待补'}}</span><span class="research-status" :class="selectedEvidence.confidence==='确定'?'certain':(selectedEvidence.confidence==='存疑'||selectedEvidence.confidence==='争议'?'doubt':'')">{{selectedEvidence.confidence||'推定'}}</span></div>
-        <div v-if="selectedEvidence.excerpt" class="evidence-excerpt">{{selectedEvidence.excerpt}}</div>
-        <div v-else class="summary-empty">尚未录入原文摘录。当前出处可作为检索线索，正式引用前仍需回查原典。</div>
-        <div v-if="selectedEvidence.note" class="evidence-note">{{selectedEvidence.note}}</div>
-        <a v-if="selectedEvidence.url" class="source-link" :href="selectedEvidence.url" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">打开来源</a>
-      </div>
-    </el-drawer>
-
     <el-drawer v-model="showLog" title="操作日志 · 步骤回滚" size="360px">
       <div v-for="(h,idx) in history.stack" :key="idx" class="log-item" :class="{current: idx===history.index}">
         <div>
@@ -9149,7 +8901,7 @@ const app = createApp({
           <el-form-item label="档案类别"><el-select v-model="fangzhenDialog.form.recordType" style="width:100%"><el-option label="刺史／州牧" value="cishi"/><el-option label="太守／国相" value="taishou"/><el-option label="都督职任" value="dudu"/><el-option label="都尉职任" value="duwei"/><el-option label="其他军政职任" value="other"/></el-select></el-form-item>
           <el-form-item label="国家／政权">
             <el-select v-model="fangzhenDialog.form.polity" filterable allow-create default-first-option style="width:100%" placeholder="选择或输入政权">
-              <el-option label="魏" value="魏"/><el-option label="汉" value="汉"/><el-option label="吴" value="吴"/><el-option label="西晋" value="西晋"/><el-option label="东晋" value="东晋"/>
+              <el-option label="魏" value="魏"/><el-option label="汉" value="汉"/><el-option label="吴" value="吴"/><el-option label="晋" value="晋"/>
             </el-select>
           </el-form-item>
           <el-form-item label="人物"><el-input v-model="fangzhenDialog.form.commander" placeholder="任职人物姓名"/></el-form-item>
@@ -9163,28 +8915,13 @@ const app = createApp({
           <el-form-item label="起始年"><el-input-number v-model="fangzhenDialog.form.startYear" :min="180" :max="420" style="width:100%"/></el-form-item>
           <el-form-item label="结束年"><el-input-number v-model="fangzhenDialog.form.endYear" :min="180" :max="420" style="width:100%"/></el-form-item>
           <el-form-item label="任期原文" style="grid-column:1/-1">
-            <el-input v-model="fangzhenDialog.form.tenureText" :placeholder="fangzhenDialog.form.polity==='吴'?'仅填写年份区间，如 222—228；年号原文保存在“原始任期”':'如：黄初元年（220年）—太和二年（228年）；可保留“约”“未详”等措辞'"/>
-            <div v-if="fangzhenDialog.form.polity==='吴'" style="font-size:11px;color:#7B827B;line-height:1.5;margin-top:4px;">吴州镇档案按规范只填写时间年份；原始年号与考据措辞如需保留，请写入“史料摘录”或“沿革与考据备注”。</div>
+            <el-input v-model="fangzhenDialog.form.tenureText" placeholder="如：黄初元年（220年）—太和二年（228年）；可保留“约”“未详”“未到任”等措辞"/>
+            <div v-if="fangzhenDialog.form.polity==='吴'" style="font-size:11px;color:#7B827B;line-height:1.5;margin-top:4px;">吴的职任可保留原有年号与不确定措辞。</div>
           </el-form-item>
-          <el-form-item label="来源层级"><el-select v-model="fangzhenDialog.form.sourceLevel" style="width:100%"><el-option label="一手史料" value="一手史料"/><el-option label="文档考据" value="文档考据"/><el-option label="二手索引" value="二手索引"/><el-option label="待核" value="待核"/></el-select></el-form-item>
-          <el-form-item label="置信度"><el-select v-model="fangzhenDialog.form.confidence" style="width:100%"><el-option label="高" value="高"/><el-option label="较高" value="较高"/><el-option label="中" value="中"/><el-option label="低" value="低"/><el-option label="待考" value="待考"/></el-select></el-form-item>
-          <el-form-item label="来源名称"><el-input v-model="fangzhenDialog.form.sourceTitle" placeholder="如：维基百科：羊祜"/></el-form-item>
-          <el-form-item label="来源链接"><el-input v-model="fangzhenDialog.form.sourceUrl" placeholder="https://…"/></el-form-item>
-          <el-form-item label="来源定位" style="grid-column:1/-1"><el-input v-model="fangzhenDialog.form.sourceLocator" placeholder="如：章节、段落或卷次"/></el-form-item>
         </div>
-        <el-form-item label="史料摘录"><el-input v-model="fangzhenDialog.form.sourceExcerpt" type="textarea" :rows="4" placeholder="保留文档原文与史料引文，便于回查"/></el-form-item>
-        <el-form-item label="沿革与考据备注"><el-input v-model="fangzhenDialog.form.note" type="textarea" :rows="3" placeholder="记录迁官、改辖、资料分歧或待考内容"/></el-form-item>
+        <el-form-item label="沿革说明"><el-input v-model="fangzhenDialog.form.note" type="textarea" :rows="3" placeholder="记录迁官、改辖、异说或年代未详等情况"/></el-form-item>
       </el-form>
       <template #footer><el-button @click="fangzhenDialog.visible=false">取消</el-button><el-button type="primary" @click="saveFangzhenRecord">保存记录</el-button></template>
-    </el-dialog>
-
-    <el-dialog v-model="footnoteDialog.visible" title="添加脚注（录入史料原文出处）" width="480px">
-      <div style="font-size:12px;color:var(--ink-soft);margin-bottom:8px;">挂载字段：{{footnoteDialog.fieldLabel}}</div>
-      <el-input v-model="footnoteDialog.text" type="textarea" :rows="4" placeholder="如：《三国志·蜀书·诸葛亮传》：「亮以丞相录尚书事，假节。」" />
-      <template #footer>
-        <el-button @click="footnoteDialog.visible=false">取消</el-button>
-        <el-button type="primary" @click="confirmFootnote">保存脚注</el-button>
-      </template>
     </el-dialog>
 
     <el-dialog v-model="showTongdian" title="官品体系（据《通典》卷三十六魏官品·卷三十七晋泰始官品整理）" width="760px">

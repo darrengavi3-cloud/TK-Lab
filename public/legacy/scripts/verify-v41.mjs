@@ -42,6 +42,18 @@ const battleIds=new Set(battles.battles.map(row=>row.id));
 assert(battles.events.filter(row=>row.battleId).every(row=>battleIds.has(row.battleId)),'编年 battleId 指向不存在的战役');
 
 const html=read('index.html');
+const templateStart=html.indexOf('template: `');
+const templateEnd=html.indexOf('\n  `\n});',templateStart);
+assert(templateStart>=0 && templateEnd>templateStart,'无法提取 V41 阅读界面模板');
+const readingTemplate=html.slice(templateStart,templateEnd);
+const forbiddenReadingLabels=[
+  '史料校验','史实可信度','来源层级','置信度','研究状态','研究结论','史料状态','查看史料',
+  '边界可信度','史料证据卡','文档考据','核心材料','资料来源','史料摘录','录入边界','史料出处',
+  '数据审计','史料卡','待补','待核','已执行'
+];
+assert(forbiddenReadingLabels.every(label=>!readingTemplate.includes(label)),`阅读界面仍含禁用研究文案：${forbiddenReadingLabels.filter(label=>readingTemplate.includes(label)).join('、')}`);
+assert(html.includes('battleRecords:cloneJSON(battleRecords)') && html.includes('shihuoEvents:cloneJSON(shihuoEventRecords.value)') && html.includes('mapPeriods:cloneJSON(historyMapPeriods)'),'完整 JSON 或本地缓存未保存 V41 补充数据');
+assert(html.includes('restoreSupplementalPayload(migrated)') && html.includes('restoreSupplementalPayload(parsed)'),'完整 JSON 或缓存回导未恢复 V41 补充数据');
 const dataStart=html.indexOf('const FACTIONS = [');
 const dataEnd=html.indexOf('/* =========================================================================\n   Vue App',dataStart);
 assert(dataStart>=0 && dataEnd>dataStart,'无法提取规范历史数据');
