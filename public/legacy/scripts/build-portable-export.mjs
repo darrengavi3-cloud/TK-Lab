@@ -20,6 +20,7 @@ const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
 const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
+const hydronymAuditPath = path.join(root, 'assets', 'map', 'data', 'hydronym-audit.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
@@ -43,6 +44,7 @@ const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
 const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
+const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
 for (const polityDir of fs.readdirSync(portraitDir)) {
   const fullDir = path.join(portraitDir, polityDir);
   if (!fs.statSync(fullDir).isDirectory()) continue;
@@ -139,6 +141,10 @@ const replacements = [
   [
     '<script src="./data/person-source-index.js"></script>',
     `<script>\n${personSourceIndexScript}\n</script>`
+  ],
+  [
+    '<script src="./assets/map/data/hydronym-audit.js"></script>',
+    `<script>\n${hydronymAuditScript}\n</script>`
   ],
   [
     /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,

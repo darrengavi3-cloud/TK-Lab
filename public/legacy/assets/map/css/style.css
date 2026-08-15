@@ -1139,6 +1139,16 @@ html, body {
 .hydronym-row b { font-size: 12px; font-weight: 600; }
 .hydronym-row small { color: var(--ink-faint); font-size: 10px; white-space: nowrap; }
 .hydronym-row:hover { background: rgba(233,229,216,.75); }
+.elev-readout {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border: 1px solid rgba(53,96,107,.3);
+  border-radius: 4px;
+  background: rgba(244,240,228,.75);
+  color: #35606b;
+  font-size: 10.5px;
+  letter-spacing: .5px;
+}
 
 /* ── 响应式 ───────────────────────────────────────── */
 @media (max-width: 1100px) {

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-14T17:00:06.468Z",
+  "generatedAt": "2026-08-15T01:09:11.836Z",
   "offlineRuntime": true,
-  "fileCount": 127,
-  "totalBytes": 46174476,
+  "fileCount": 128,
+  "totalBytes": 46181315,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 31124,
-      "sha256": "abb87746c4ea09d2873cd1f799484ffc2dd2c393f772bf8b3b2d2de5a6ee60ca"
+      "bytes": 31343,
+      "sha256": "2063fc44b3e0503cdafd8b78c34c26cc57c7e6fead9f93e5e9372605ba8a826e"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -72,13 +72,13 @@
     },
     {
       "path": "assets/map/js/app.js",
-      "bytes": 19326,
-      "sha256": "5347273a8beab4add6eb2f2b61231aafbc391f567488cea62dea9c164a53875e"
+      "bytes": 19579,
+      "sha256": "3f9e11bdb2512898aecdc52ea6a3fe4e0a259af390da8c6cc981710bdb1d71c3"
     },
     {
       "path": "assets/map/js/base-layer.js",
-      "bytes": 6045,
-      "sha256": "badd198ef32ab995431393c9a76ae207b756c1830b2ab131604b5c2498ed7490"
+      "bytes": 8741,
+      "sha256": "5e924debb700ed3c759a6bdd4910baeceef64986dd4f111881ddc93531ed095c"
     },
     {
       "path": "assets/map/js/bridge.js",
@@ -92,8 +92,8 @@
     },
     {
       "path": "assets/map/js/config.js",
-      "bytes": 21871,
-      "sha256": "f4fdca7f72de4d83b6eb7d35e436bffe87c7453919b4f860d51ac1a6d5ba44fc"
+      "bytes": 22303,
+      "sha256": "fd6596ad59e6584aed1baab869f0340e3cbf54adfabd6f9f9ea96c0c149dde5b"
     },
     {
       "path": "assets/map/js/counties.js",
@@ -582,8 +582,8 @@
     },
     {
       "path": "data/public-vector-audit.json",
-      "bytes": 3148,
-      "sha256": "b06ed5c813762b9530219ffcb26fc825e86c72ca9832296eec19d38079931db0"
+      "bytes": 4612,
+      "sha256": "ad80100426a432dba1ed3627f40958940f857f4aa14f1d35391f1fb59f281433"
     },
     {
       "path": "data/research-candidates.js",
@@ -622,8 +622,13 @@
     },
     {
       "path": "data/v43-release-manifest.json",
-      "bytes": 1629,
-      "sha256": "3a92e0777091b2edff1fc8dc35253bae91cb4d78e177503a04689fa703d23dc1"
+      "bytes": 1655,
+      "sha256": "abccaf6985b9ad326401e1a9a783d01c046f404db2137e99c65cc41725df0552"
+    },
+    {
+      "path": "data/v44-release-manifest.json",
+      "bytes": 1749,
+      "sha256": "fd369f85311c8cd7bff8733fb2de6cdeed18307899b00f759a782390f8cea570"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

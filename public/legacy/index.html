@@ -24,6 +24,7 @@
 <script src="./data/battle-records.js"></script>
 <script src="./data/person-biographies.js"></script>
 <script src="./data/person-source-index.js"></script>
+<script src="./assets/map/data/hydronym-audit.js"></script>
 <script src="./data/person-era-rosters.js"></script>
 <script src="./data/person-portraits.js"></script>
 <script src="./data/epigraphic-records.js"></script>
@@ -246,6 +247,24 @@ body{
 .search-result .title{font:700 14px 'Noto Serif SC','Songti SC',serif;display:flex;align-items:center;gap:7px;}
 .search-result .meta{font-size:11px;color:var(--ink-soft);margin-top:4px;}
 .search-result .excerpt{font-size:12px;line-height:1.5;margin-top:5px;overflow-wrap:anywhere;}
+.command-palette{padding:2px 2px 14px}
+.command-palette .el-input__wrapper{box-shadow:none!important;border-bottom:1px solid rgba(160,152,138,.4);border-radius:0}
+.palette-scope-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0 6px}
+.palette-scope-chip{padding:4px 10px;border:1px solid rgba(160,152,138,.42);border-radius:14px;background:transparent;color:#6F756F;font:inherit;font-size:11.5px;cursor:pointer}
+.palette-scope-chip.active,.palette-scope-chip:hover{background:#3E4A45;border-color:#3E4A45;color:#FFFDF8}
+.palette-summary{font-size:11px;color:#8A918A;line-height:1.6;padding:4px 0 8px}
+.palette-advanced{margin:2px 0 8px}
+.palette-advanced-filters{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0 2px}
+.palette-groups{display:flex;flex-direction:column;gap:14px;max-height:58vh;overflow:auto;padding-right:4px}
+.palette-group-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12px;color:#4A534A;letter-spacing:1px;padding:3px 0}
+.palette-group-head small{margin-left:auto;color:#8A918A;font-weight:500}
+.palette-group-icon{width:22px;height:22px;border-radius:5px;background:#EDE7DB;color:#6F5B3E;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
+.palette-item{display:block;width:100%;text-align:left;background:rgba(255,252,244,.66);border:1px solid rgba(160,152,138,.25);border-left:3px solid #C0B39B;border-radius:5px;padding:7px 10px;margin:5px 0;cursor:pointer;font-family:inherit}
+.palette-item.active{border-color:#8D3D32;border-left-color:#8D3D32;background:#F8F1E8;box-shadow:0 2px 8px rgba(61,47,33,.08)}
+.palette-item-title{display:block;font:700 13.5px 'Noto Serif SC','Songti SC',serif;color:#202420}
+.palette-item-meta{display:block;font-size:11px;color:#7E857E;margin-top:3px;line-height:1.5}
+.palette-item mark{background:#F3D9A4;color:#6F3B2C;padding:0 2px;border-radius:2px}
+.command-palette-drawer .el-drawer__header{margin-bottom:4px}
 .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px;}
 .metric-card{border:1px solid var(--rule);border-radius:5px;padding:9px;background:rgba(255,255,255,.48);}
 .metric-card .value{font:700 20px 'Noto Serif SC','Songti SC',serif;color:var(--seal);}
@@ -551,6 +570,18 @@ body{background:#F4F3EF;}
 .fz-metric strong{display:block;font:700 22px 'Noto Serif SC','Songti SC',serif;color:#394239;}
 .fz-metric span{font-size:11px;color:var(--ink-soft);}
 .fangzhen-table-card{background:#fff;border:1px solid var(--rule);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(30,37,30,.035);}
+.fangzhen-snapshot-panel{display:flex;flex-direction:column;gap:8px;margin:10px 0;padding:10px 12px;border:1px dashed rgba(160,152,138,.5);border-radius:8px;background:rgba(255,252,244,.5)}
+.fangzhen-snapshot-row,.fangzhen-compare-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:11.5px;color:#4A534A}
+.fz-snapshot-chip{display:inline-flex;gap:5px;padding:3px 8px;border:1px solid rgba(122,106,79,.32);border-radius:12px;background:#FFFDF8;color:#6F5B3E;font-size:10.5px}
+.fz-snapshot-chip small{color:#A29B8E}
+.fz-snapshot-more{color:#8A918A;font-size:10.5px}
+.fz-diff{font-size:10.5px;padding:2px 7px;border-radius:10px}
+.fz-diff.added{background:#E4EFE3;color:#41664A}
+.fz-diff.removed{background:#F6E4DF;color:#8D3D32}
+.fz-timeline-track{position:relative;height:20px;margin-top:6px}
+.fz-timeline-scale{position:absolute;inset:0;display:flex;justify-content:space-between;color:#B7AC98;font-size:8px;top:13px}
+.fz-timeline-bar{position:absolute;top:1px;height:8px;border-radius:4px;background:#7A6B4F;min-width:4px}
+.fz-timeline-bar.dashed{background:repeating-linear-gradient(90deg,#B7AC98 0 4px,transparent 4px 7px)}
 .fz-person{font-weight:650;color:#303630;}
 .fz-title{font-size:12px;color:#687068;margin-top:3px;}
 .source-link{color:#5E735E;text-decoration:none;border-bottom:1px dotted #8E9C8E;}
@@ -630,6 +661,17 @@ body{background:#F4F3EF;}
 .jinshi-empty-panel p{max-width:620px;margin:9px auto 0;font-size:12px;line-height:1.75;}
 .jinshi-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;margin-top:14px;border:1px solid #D5D9D3;border-radius:10px;background:rgba(249,250,248,.86);}
 .jinshi-toolbar .el-input{max-width:300px;}
+.jinshi-chip-row{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 12px}
+.jinshi-archive{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10.5px}
+.jinshi-archive.core{background:#E4EFE3;color:#41664A}
+.jinshi-archive.extended{background:#F6EBD7;color:#8A6A3F}
+.jinshi-archive.disputed{background:#F6E4DF;color:#8D3D32}
+.jinshi-person{display:inline-block;margin:2px 3px 2px 0;padding:2px 7px;border:1px solid rgba(122,106,79,.35);border-radius:10px;color:#6F5B3E;font-size:10.5px;cursor:pointer;background:#FFFDF8}
+.jinshi-person:hover{background:#8D3D32;color:#FFFDF8;border-color:#8D3D32}
+.epigraphic-inscription mark{background:#F3D9A4;color:#6F3B2C;padding:0 2px;border-radius:2px}
+.epigraphic-inscription strong{display:block;color:#6F5B3E;font-size:11px;letter-spacing:1px;margin-bottom:5px}
+.epigraphic-dispute{margin-top:8px;padding:7px 9px;border-left:3px solid #8D3D32;background:#FBF3EF;color:#7C5548;font-size:11px;line-height:1.6}
+.epigraphic-dispute b{display:block;color:#8D3D32;font-size:10.5px}
 .jinshi-table-card{margin-top:10px;border:1px solid #D5D9D3;border-radius:10px;background:rgba(249,250,248,.86);overflow:hidden;}
 .jinshi-table-card .el-table{--el-table-border-color:#E0E3DF;--el-table-header-bg-color:#EEF0ED;--el-table-row-hover-bg-color:#F4F6F3;background:transparent;}
 .jinshi-table-card .el-table th.el-table__cell{color:#5B625B;font-size:11px;}
@@ -643,6 +685,7 @@ body{background:#F4F3EF;}
 .people-workbench .page-kicker{color:var(--people-accent);}
 .people-toolbar{display:flex;align-items:center;gap:9px;margin-bottom:14px;padding:12px;background:#fff;border:1px solid var(--rule);border-radius:12px;flex-wrap:wrap;}
 .people-toolbar .el-input{max-width:360px;}
+.people-advanced-filters{display:flex;flex-wrap:wrap;gap:8px;padding:2px 0 12px;align-items:center;border-bottom:1px dashed rgba(160,152,138,.35);margin-bottom:10px}
   .people-metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px;}
   .people-period-panel{margin:0 0 14px;padding:13px 14px;border:1px solid var(--rule);border-radius:12px;background:rgba(255,255,255,.82);}
   .people-period-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
@@ -731,6 +774,14 @@ body{background:#F4F3EF;}
 .shihuo-workbench .page-heading h1{color:var(--sh-deep);}
 .shihuo-workbench .page-kicker{color:var(--sh-accent);}
 .shihuo-workbench .fangzhen-toolbar,.shihuo-workbench .fangzhen-table-card{border-color:color-mix(in srgb,var(--sh-accent) 24%,var(--rule));}
+.shihuo-polity-chips{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0 10px}
+.shihuo-evidence{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10.5px}
+.shihuo-evidence.confirmed{background:#E4EFE3;color:#41664A}
+.shihuo-evidence.high{background:#EDF2E2;color:#6F7A43}
+.shihuo-evidence.inferred{background:#F6EBD7;color:#8A6A3F}
+.shihuo-evidence.pending{background:#F6E4DF;color:#8D3D32}
+.hh-mini-chart{display:inline-block;vertical-align:middle}
+.hh-empty{color:#B7AC98;font-size:10px}
 .shihuo-year-track{display:flex;gap:8px;overflow-x:auto;padding:3px 2px 6px;min-width:max-content;}
 .shihuo-year-chip{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:108px;padding:7px 10px;border:1px solid var(--rule);border-radius:9px;background:#fff;cursor:pointer;color:#626862;text-align:left;transition:.15s;}
 .shihuo-year-chip:hover{border-color:#C2B18B;background:#FBF7EE;}
@@ -785,6 +836,14 @@ body{background:#F4F3EF;}
 .battle-kind-pill.event{background:#F7F0DD;color:#9A7A2F;}
 .battle-kind-pill.battle{background:#F7E9E5;color:#A3412F;}
 .battle-kind-pill.battlefield{background:#EBF1EC;color:#51705A;}
+.battle-map-link{margin-left:auto;padding:3px 8px;border:1px solid rgba(141,61,50,.38);border-radius:4px;background:transparent;color:#8D3D32;font:inherit;font-size:10.5px;cursor:pointer}
+.battle-map-link:hover{background:#8D3D32;color:#FFFDF8}
+.battle-chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;padding:10px 12px;border:1px dashed rgba(160,152,138,.5);border-radius:6px;background:rgba(255,252,244,.55)}
+.battle-chain-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#6F766F}
+.battle-chain-link b{color:#8D3D32;font-weight:700;font-size:10.5px}
+.battle-chain-link span{line-height:1.4}
+.battle-chain-link small{display:block;color:#A29B8E}
+.battle-chain-link i{color:#C0B39B;font-style:normal}
 .battle-detail-head{border-bottom:1px solid var(--rule);padding-bottom:15px;margin-bottom:14px;}
 .battle-detail-head .battle-kind-pill{margin-bottom:9px;}
 .battle-detail-head h3{font:700 24px 'Noto Serif SC','Songti SC',serif;margin:0 0 7px;color:#2D342E;}
@@ -1459,6 +1518,14 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 .major-river-label{font-family:"KaiTi","STKaiti",serif;color:#3f6878;font-size:13px;font-weight:700;letter-spacing:1px;text-shadow:0 0 4px #f7f3e9,0 0 2px #f7f3e9;white-space:nowrap}
 .frontier-route{filter:drop-shadow(0 1px 1px rgba(247,243,233,.95))}
 .battlefield-label span{display:inline-block;padding:2px 5px;border:1px solid rgba(141,61,50,.42);border-radius:3px;background:rgba(247,243,233,.88);color:#7c342c;font:11px "KaiTi",serif;white-space:nowrap;box-shadow:0 1px 4px rgba(43,38,34,.08)}
+.hydronym-label span{display:inline-block;padding:2px 6px;border:1px solid rgba(53,96,107,.38);border-radius:3px;background:rgba(244,240,228,.9);color:#35606b;font:11px "KaiTi",serif;white-space:nowrap;box-shadow:0 1px 4px rgba(38,44,46,.12);cursor:pointer}
+.hydronym-label.is-pending span{color:#7a6a4f;border-color:rgba(122,106,79,.4);background:rgba(247,243,233,.82)}
+.elev-readout{margin-top:6px;padding:6px 8px;border:1px solid rgba(53,96,107,.3);border-radius:4px;background:rgba(244,240,228,.75);color:#35606b;font-size:10.5px;letter-spacing:.5px}
+.pv-search{width:100%;box-sizing:border-box;margin-bottom:8px;padding:6px 9px;border:1px solid rgba(84,78,66,.3);border-radius:4px;background:rgba(255,252,244,.7);color:#202420;font-family:inherit;font-size:12px}
+.hydronym-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow:auto}
+.hydronym-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;width:100%;text-align:left;cursor:pointer;background:rgba(255,252,244,.5);border:1px solid rgba(160,152,138,.25);border-left:2px solid rgba(53,96,107,.45);border-radius:3px;padding:5px 8px;font-family:inherit;color:#202420}
+.hydronym-row.is-pending{border-left-color:rgba(122,106,79,.5)}
+.hydronym-row b{font-size:12px}.hydronym-row small{color:#a29b8e;font-size:10px;white-space:nowrap}
 .yizhou-island-outline{stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(43,38,34,.16))}
 .real-coastline{pointer-events:none;stroke-linejoin:round;stroke-linecap:round}
 .faction-label{font-size:27px!important;letter-spacing:6px!important;opacity:.88!important;z-index:660!important}
@@ -1541,6 +1608,7 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
     <div class="sb-section"><div class="sb-title">底 图</div>
       <label><input id="bm-terrain" name="basemap" value="terrain" type="radio" checked> 素色地形</label>
       <label><input id="bm-topo" name="basemap" value="topo" type="radio"> 地形图</label>
+      <label><input id="bm-elevation" name="basemap" value="elevation" type="radio"> 高程山影</label>
       <label><input id="bm-osm" name="basemap" value="osm" type="radio"> 现代地图</label>
     </div>
     <div class="sb-section"><div class="sb-title">图 层</div>
@@ -1557,8 +1625,10 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
       <label><input id="lyr-city" type="checkbox" checked> 重要城池</label>
       <label><input id="lyr-water" type="checkbox" checked> 河湖水系</label>
       <label><input id="lyr-hydronym" type="checkbox" checked> 古水名标注</label>
+      <label><input id="lyr-elev" type="checkbox"> 高程读数</label>
       <label><input id="lyr-tint" type="checkbox" checked> 古韵纸色</label>
     </div>
+    <div class="sb-section"><div class="sb-title">高程读数</div><div id="elev-readout" class="elev-readout">高程读数已关闭</div></div>
   </div>
   <aside id="info-panel">
     <button class="panel-collapse" id="info-collapse" title="收起详情" aria-label="收起详情">›</button>
@@ -4364,6 +4434,7 @@ const app = createApp({
     const peopleOnlyPortrait = ref(false);
     const peoplePage = ref(1);
     const peoplePageSize = 96;
+    const peopleAdvanced = ref(false);
     const periodRosterPhase = ref('all');
     const showPeopleDetail = ref(false);
     const activePeopleDetail = ref(null);
@@ -4386,6 +4457,12 @@ const app = createApp({
     const periodSelections = reactive({ han:'all', wei:'all', shu:'all', wu:'all', jin:'all', tribal:'all' });
     const canvasFilters = reactive({ query:'', category:'', rank:'', special:'', showArchived:false, showHidden:false, hideNonCore:false });
     const searchFilters = reactive({ query:'', faction:'all', treeType:'all', category:'', rank:'', special:'', year:'' });
+    const searchState = reactive({ scope:'all', activeIndex:0, lastQuery:'', advanced:false });
+    const searchScopeOptions = [
+      { key:'all', label:'全部' }, { key:'office', label:'职官谱' }, { key:'people', label:'人物记' },
+      { key:'fangzhen', label:'州镇表' }, { key:'battle', label:'战事纪' }, { key:'shihuo', label:'食货志' },
+      { key:'jinshi', label:'金石录' }, { key:'hydronym', label:'古水名' }, { key:'period', label:'地图时期' }
+    ];
     const batchCategory = ref('');
     const activeToolHint = ref('');
     const toolHintTop = ref(70);
@@ -4402,6 +4479,8 @@ const app = createApp({
     const fangzhenPeriod = ref('three');
     const fangzhenQuery = ref('');
     const fangzhenPolity = ref('魏');
+    const fangzhenSnapshotYear = ref(null);
+    const fangzhenCompareYear = ref(null);
     const fangzhenDialog = reactive({visible:false,mode:'add',form:{}});
     const historyMapPeriods = reactive(cloneJSON(HISTORY_MAP_PERIODS));
     const historyMapEras = HISTORY_MAP_ERAS;
@@ -4422,6 +4501,7 @@ const app = createApp({
     const epigraphicQuery = ref('');
     const epigraphicType = ref('all');
     const epigraphicPolity = ref('all');
+    const epigraphicArchive = ref('all');
     const filteredEpigraphicRecords = computed(()=>{
       const q=epigraphicQuery.value.trim().toLowerCase();
       return projectForReading(epigraphicRecords.value).map((item,index)=>{
@@ -4431,6 +4511,7 @@ const app = createApp({
       }).filter(item=>{
         if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
         if(epigraphicPolity.value!=='all' && item.polity!==epigraphicPolity.value) return false;
+        if(epigraphicArchive.value!=='all' && item.archiveKind!==epigraphicArchive.value) return false;
         if(q && !['name','type','year','yearText','polity','place','region','scriptStyle','form','inscription','people','offices','note'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
         return true;
       }).sort((a,b)=>{
@@ -4440,6 +4521,29 @@ const app = createApp({
       });
     });
     const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.type).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.yearText).filter(Boolean)).size,polities:new Set(epigraphicRecords.value.map(item=>item.polity).filter(Boolean)).size}));
+    function epigraphicHighlight(text){
+      const q=epigraphicQuery.value.trim().toLowerCase();
+      const value=String(text||'');
+      if(!q) return value;
+      const safe=value.replace(/[&<>]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]));
+      const lower=safe.toLowerCase();
+      let out='',cursor=0;
+      while(cursor<safe.length){
+        const at=lower.indexOf(q,cursor);
+        if(at<0){ out+=safe.slice(cursor); break; }
+        out+=safe.slice(cursor,at)+'<mark>'+safe.slice(at,at+q.length)+'</mark>';
+        cursor=at+q.length;
+      }
+      return out;
+    }
+    function epigraphicArchiveClass(kind){
+      return kind==='核心'?'core':kind==='扩展'?'extended':'disputed';
+    }
+    function openEpigraphicPerson(name){
+      const target=String(name||'').trim().replace(/^[，、·\s]+|[，、·\s]+$/g,'');
+      if(!target) return;
+      openPeopleDetail(target);
+    }
     const shihuoEventRecords = ref(cloneJSON(SHIHUO_EVENTS));
     const shihuoEvents = computed(()=>projectForReading(shihuoEventRecords.value).slice().sort((a,b)=>(Number(a.year)||Infinity)-(Number(b.year)||Infinity)));
     const shihuoHousehold = ref(cloneJSON(SHIHUO_HOUSEHOLD));
@@ -4467,6 +4571,20 @@ const app = createApp({
       categories:new Set(shihuoRecords.value.map(r=>r.category)).size
     }));
     const shihuoPolityClass = (polity)=>polity==='魏'?'fz-polity-wei':polity==='汉'?'fz-polity-shu':polity==='吴'?'fz-polity-wu':'fz-polity-jin';
+    function shihuoEvidenceClass(confidence){
+      const v=String(confidence||'');
+      if(v==='确定') return 'confirmed';
+      if(v==='较高') return 'high';
+      if(v==='推定') return 'inferred';
+      return 'pending';
+    }
+    function householdMiniChart(row,field){
+      const numeric=Number(String(row[field]||'').replace(/[^\d.]/g,''))||0;
+      if(!numeric) return '<span class="hh-empty">无数字</span>';
+      const max=2459804;
+      const pct=Math.max(4,Math.round(numeric/max*100));
+      return `<svg viewBox="0 0 140 26" width="140" height="26" role="img" aria-label="${row.label} ${row[field]}"><rect x="0" y="4" width="140" height="12" rx="5" fill="#EFE9DC"/><rect x="0" y="4" width="${pct}" height="12" rx="5" fill="#7A6B4F"/><text x="6" y="23" font-size="9" fill="#8A918A">${row[field]}</text></svg>`;
+    }
     const battleQuery = ref('');
     const battleKind = ref('all');
     const battlePeriodId = ref('all');
@@ -4640,6 +4758,24 @@ const app = createApp({
         polity:record.polity,year:historyMapPeriods[index].year,recordId:record.id};
       switchModule('map'); selectHistoryPeriod(index,false);
       nextTick(()=>postMapFocus(record.jurisdiction,mapLinkSelection.value.level));
+    }
+    function jumpBattleToMap(item){
+      const periodId=battlePeriodForItem(item);
+      const index=historyMapPeriods.findIndex(p=>p.id===periodId);
+      const name=item.placeLabel||item.name||item.title||String(item.text||'').slice(0,12);
+      mapLinkSelection.value={level:'battle',name,state:'',polity:item.a||item.polity||'',year:historyMapPeriods[index]?.year,recordId:item.id};
+      switchModule('map'); selectHistoryPeriod(index,false);
+      nextTick(()=>postMapFocus(name,'battle'));
+    }
+    function battleRelationChain(item){
+      if(!item) return [];
+      const sorted=battleRecords.events.slice().sort((a,b)=>(Number(a.year)||9999)-(Number(b.year)||9999));
+      const index=sorted.findIndex(e=>e.id===item.id||(item.battleId&&e.id===item.battleId));
+      const links=[];
+      if(index>0) links.push({role:'前因',name:sorted[index-1].title,year:sorted[index-1].year});
+      links.push({role:'本项',name:item.title||item.name||String(item.text||'').slice(0,12),year:item.year!=null?item.year:(item.from!=null?item.from+'—'+item.to:'年代未详')});
+      if(index>=0&&index<sorted.length-1) links.push({role:'后续',name:sorted[index+1].title,year:sorted[index+1].year});
+      return links;
     }
     function openMapSelectionFangzhen(){
       const selected=mapLinkSelection.value;if(!selected)return;
@@ -5305,6 +5441,29 @@ const app = createApp({
         commanders:new Set(rows.map(r=>r.commander)).size,
         span:years.length?Math.max(...years)-Math.min(...years)+1:0,
       };
+    });
+    function fangzhenTimelineStyle(record){
+      const min=168,max=316;
+      const start=normalizeYear(record.startYear),end=normalizeYear(record.endYear);
+      const left=start!=null?Math.max(0,Math.min(100,(start-min)/(max-min)*100)):0;
+      const width=start!=null&&end!=null?Math.max(2,Math.min(100-left,(end-start)/(max-min)*100)):(start!=null?Math.max(8,100-left):100);
+      return {left:left+'%',width:width+'%',dashed:!(start!=null&&end!=null)};
+    }
+    function fangzhenValidAtYear(record,year){
+      if(!Number.isFinite(Number(year))) return true;
+      const start=normalizeYear(record.startYear),end=normalizeYear(record.endYear);
+      return (start===null||start<=Number(year))&&(end===null||end>=Number(year));
+    }
+    const fangzhenSnapshotRecords=computed(()=>filteredFangzhenRecords.value.filter(r=>fangzhenValidAtYear(r,Number(fangzhenSnapshotYear.value))));
+    const fangzhenCompareRecords=computed(()=>{
+      const a=Number(fangzhenSnapshotYear.value),b=Number(fangzhenCompareYear.value);
+      if(!Number.isFinite(a)||!Number.isFinite(b)||a===b) return [];
+      const atA=filteredFangzhenRecords.value.filter(r=>fangzhenValidAtYear(r,a));
+      const atB=filteredFangzhenRecords.value.filter(r=>fangzhenValidAtYear(r,b));
+      return [
+        {year:a,rows:atA,added:atA.filter(r=>!atB.some(o=>o.id===r.id)),removed:atB.filter(r=>!atA.some(o=>o.id===r.id))},
+        {year:b,rows:atB,added:atB.filter(r=>!atA.some(o=>o.id===r.id)),removed:atA.filter(r=>!atB.some(o=>o.id===r.id))}
+      ];
     });
     function selectFangzhenArchive(key){
       const def=FANGZHEN_ARCHIVE_DEFS.find(item=>item.key===key)||FANGZHEN_ARCHIVE_DEFS[0];
@@ -6532,6 +6691,96 @@ const app = createApp({
       const text=[reading.duty,reading.note,reading.region,(reading.evolutionEvents||[]).map(e=>e.year+'年 '+e.type+' '+e.text).join('；'),(reading.figures||[]).map(f=>f.name).join('、')].filter(Boolean).join('；')||'暂无补充说明';
       return String(text).length>90?String(text).slice(0,90)+'…':String(text);
     }
+    function paletteQuery(){
+      const raw=String(searchFilters.query||'').trim();
+      const clean=raw.replace(/^[@#]/, '').replace(/\d{3,4}$/, '').trim().toLowerCase();
+      return { raw, clean, onlyPeople:/^@/.test(raw), onlyBattle:/^#/.test(raw), year:(raw.match(/(\d{3,4})$/)?.[1]||'') };
+    }
+    function paletteTextHit(value,query){
+      const q=String(query||'').toLowerCase();
+      return !q || String(value||'').toLowerCase().includes(q);
+    }
+    const commandPaletteGroups = computed(()=>{
+      const { clean, onlyPeople, onlyBattle, year } = paletteQuery();
+      const scope=searchState.scope;
+      const groups=[];
+      function push(key,label,icon,items){
+        if(!items.length) return;
+        groups.push({ key, label, icon, items, offset:groups.reduce((n,g)=>n+g.items.length,0) });
+      }
+      if(scope==='all'||scope==='office'){
+        push('office','职官谱','官',searchResults.value.filter(r=>!year||(normalizeYear(r.node.officeStartYear)??-9999)<=Number(year)&&(normalizeYear(r.node.officeEndYear)??9999)>=Number(year)).slice(0,60).map(r=>({
+          title:r.node.name, meta:r.factionName+' · '+(r.treeType==='office'?'官职':'爵位')+' · '+(r.node.category||r.node.nobleRank||'未分类'), action:()=>jumpToSearchResult(r)
+        })));
+      }
+      if(scope==='all'||scope==='people'){
+        const rows=personRegistry.value.filter(p=>!onlyBattle&&paletteTextHit([p.name,(p.aliases||[]).join(' '),p.zi,p.birthplace,p.personId].join(' '),clean)&&(!year||personRelevantAt(p,Number(year)))).slice(0,60);
+        push('people','人物记','人',rows.map(p=>({ title:p.name, meta:(p.politics||[]).join('、')+' · '+(p.startYear?p.startYear+'—'+p.endYear+'年':'任期未详')+' · '+p.appointmentCount+' 条履历', action:()=>{ showSearch.value=false; switchModule('people'); openPeopleDetail(p.personId); } })));
+      }
+      if(scope==='all'||scope==='fangzhen'){
+        const rows=fangzhenRecords.value.filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.commander,r.title,r.jurisdiction,r.tenureText,r.note].join(' '),clean)&&(!year||(normalizeYear(r.startYear)??-9999)<=Number(year)&&(normalizeYear(r.endYear)??9999)>=Number(year))).slice(0,60);
+        push('fangzhen','州镇表','州',rows.map(r=>({ title:r.commander+' · '+r.title, meta:(r.polity||'')+' · '+(r.jurisdiction||'辖区未详')+' · '+(r.tenureText||'任期未详'), action:()=>{ showSearch.value=false; switchModule('fangzhen'); selectFangzhenArchive(fangzhenArchiveKeyFor(r)); fangzhenQuery.value=r.commander; } })));
+      }
+      if(scope==='all'||scope==='battle'){
+        const rows=[...battleRecords.events.map(e=>({kind:'event',...e})),...battleRecords.battles.map(b=>({kind:'battle',...b})),...battleRecords.battlefields.map(f=>({kind:'battlefield',...f}))]
+          .filter(r=>!onlyPeople&&paletteTextHit([r.title||r.name||r.text||'',r.front,r.a,r.b,r.result,r.note].join(' '),clean)&&(!year||(r.year===Number(year)||(r.from!=null&&r.to!=null&&Number(year)>=Number(r.from)&&Number(year)<=Number(r.to))))).slice(0,60);
+        push('battle','战事纪','战',rows.map(r=>({ title:r.title||r.name||String(r.text||'').slice(0,18), meta:((r.year!=null)?r.year+'年':((r.from!=null)?r.from+'—'+r.to+'年':'年代未详'))+' · '+(r.front||r.a||'')+' · '+(r.result||''), action:()=>{ showSearch.value=false; switchModule('battle'); openBattleDetail(r); } })));
+      }
+      if(scope==='all'||scope==='shihuo'){
+        const rows=filteredShihuoRecords.value.filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.title,r.detail,r.polity,r.category].join(' '),clean)&&(!year||r.year===Number(year))).slice(0,50);
+        push('shihuo','食货志','食',rows.map(r=>({ title:r.title, meta:(r.polity||'')+' · '+(r.category||'')+' · '+(r.year||r.yearText||'年代未详')+' · '+r.confidence, action:()=>{ showSearch.value=false; switchModule('shihuo'); shihuoQuery.value=r.title; } })));
+      }
+      if(scope==='all'||scope==='jinshi'){
+        const rows=filteredEpigraphicRecords.value.filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.name,r.place,r.people,r.offices,r.inscription,r.note].join(' '),clean)&&(!year||r.year===Number(year))).slice(0,50);
+        push('jinshi','金石录','石',rows.map(r=>({ title:r.name, meta:(r.polity||'')+' · '+(r.type||'')+' · '+(r.year||r.yearText||'年代未详')+' · '+r.archiveKind, action:()=>{ showSearch.value=false; switchModule('jinshi'); epigraphicQuery.value=r.name; } })));
+      }
+      if(scope==='all'||scope==='hydronym'){
+        const rows=(window.HYDRONYM_AUDIT?.hydronyms||[]).filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.ancientName,(r.aliases||[]).join(' ')].join(' '),clean)).slice(0,50);
+        push('hydronym','古水名','水',rows.map(r=>({ title:r.ancientName, meta:((r.evidence&&r.evidence.status==='原文命中')?'原文命中':'待考')+' · 卷'+(r.sourceLocators||[]).map(s=>s.replace('《水经注》卷','')).join('/')||'未详', action:()=>{ showSearch.value=false; switchModule('map'); mapLinkSelection.value={level:'hydronym',name:r.ancientName,state:'',polity:'',year:currentHistoryPeriod?.year,recordId:r.id}; nextTick(()=>postMapFocus(r.ancientName,'hydronym')); } })));
+      }
+      if(scope==='all'||scope==='period'){
+        const rows=historyMapPeriods.filter(p=>!onlyPeople&&!onlyBattle&&paletteTextHit([p.name,p.summary,p.eraLabel].join(' '),clean)&&(!year||String(p.year).includes(year))).slice(0,30);
+        push('period','地图时期','图',rows.map(p=>({ title:p.name, meta:p.year+'年 · '+(p.eraLabel||'')+' · '+(p.polities||[]).join('、'), action:()=>{ showSearch.value=false; jumpToBattlePeriod(p.id); } })));
+      }
+      return groups;
+    });
+    const commandPaletteCount=computed(()=>commandPaletteGroups.value.reduce((n,g)=>n+g.items.length,0));
+    function paletteMove(delta){
+      const total=commandPaletteCount.value;
+      if(!total) return;
+      searchState.activeIndex=(searchState.activeIndex+delta+total)%total;
+      nextTick(()=>{ const active=document.querySelector('.palette-item.active'); active?.scrollIntoView({block:'nearest'}); });
+    }
+    function paletteSelect(){
+      let cursor=-1;
+      for(const group of commandPaletteGroups.value){
+        for(const item of group.items){
+          cursor+=1;
+          if(cursor===searchState.activeIndex){ paletteGo(item); return; }
+        }
+      }
+    }
+    function paletteGo(item){
+      if(item&&typeof item.action==='function') item.action();
+    }
+    function openCommandPalette(scope){
+      searchState.scope=scope||searchState.scope||'all';
+      searchState.activeIndex=0;
+      showSearch.value=true;
+      nextTick(()=>document.querySelector('.global-search-input input')?.focus());
+    }
+    function highlightMatch(value,query){
+      const q=String(query||'').trim().replace(/^[@#]/,'').toLowerCase();
+      const text=String(value||'');
+      if(!q) return text;
+      const lower=text.toLowerCase();
+      const at=lower.indexOf(q);
+      if(at<0) return text;
+      const safe=text.replace(/[&<>]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]));
+      const safeLower=safe.toLowerCase();
+      const hit=safeLower.indexOf(q);
+      return hit<0?safe:safe.slice(0,hit)+'<mark>'+safe.slice(hit,hit+q.length)+'</mark>'+safe.slice(hit+q.length);
+    }
     function resetCanvasFilters(){
       Object.assign(canvasFilters,{query:'',category:'',rank:'',special:'',showArchived:false,showHidden:false,hideNonCore:false});
       officeGroup.value='all'; officeSub.value='all'; officeSub2.value='all';
@@ -7689,7 +7938,11 @@ const app = createApp({
       const editing=['input','textarea','select'].includes(tag) || event.target?.isContentEditable;
       const mod=event.ctrlKey||event.metaKey;
       if(mod && event.key.toLowerCase()==='s'){ event.preventDefault(); saveLocal(false); return; }
-      if(mod && event.key.toLowerCase()==='f'){ event.preventDefault(); showSearch.value=true; nextTick(()=>document.querySelector('.global-search-input input')?.focus()); return; }
+      if(mod && ['f','k'].includes(event.key.toLowerCase())){
+        event.preventDefault();
+        if(event.key.toLowerCase()==='f'){ openCommandPalette('all'); return; }
+        openCommandPalette('all'); return;
+      }
       if(editing) return;
       if(mod && event.key.toLowerCase()==='c'){ event.preventDefault(); copyBranches(); }
       else if(mod && event.key.toLowerCase()==='x'){ event.preventDefault(); cutBranches(); }
@@ -7736,6 +7989,7 @@ const app = createApp({
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
+      fangzhenSnapshotYear, fangzhenCompareYear, fangzhenSnapshotRecords, fangzhenCompareRecords, fangzhenTimelineStyle, fangzhenValidAtYear,
       fangzhenDialog, openFangzhenEditor, saveFangzhenRecord, deleteFangzhenRecord, exportFangzhen,
       historyMapPeriods, historyMapEras, historyMapSrcdoc, historyMapBooted, historyMapIndex, historyMapReady, historyMapPlaying, currentHistoryPeriod,
       selectHistoryPeriod, stepHistoryPeriod, toggleHistoryMapPlay, onHistoryMapLoaded,
@@ -7744,7 +7998,7 @@ const app = createApp({
       periodOptions, currentPeriodKey, currentPeriodDef, currentPeriodLabel,
       selectedPolityLabel, currentEraLabel, timelineMinYear, timelineMaxYear,
       selectedKeys, selectedCount, branchClipboard, timelineEnabled, timelineYear, autosaveStatus,
-      canvasFilters, searchFilters, batchCategory,
+      canvasFilters, searchFilters, searchState, searchScopeOptions, batchCategory,
       activeToolHint, toolHintTop, showToolHint, runTool, toggleValidation,
       CATEGORY_OPTIONS, SERVICE_DOMAIN_OPTIONS, INSTITUTION_TYPE_OPTIONS, RANK9_OPTIONS, HAN_RANK_OPTIONS, JIE_OPTIONS, JIAGUAN_OPTIONS, NOBLE_RANK_OPTIONS, INHERIT_OPTIONS, ICONS,
       RELATION_OPTIONS, REGION_OPTIONS, EVOLUTION_TYPES, BATCH_TEMPLATES, TONGDIAN_TABLE, CATEGORY_RANK9_MAP, calibrateRank9,
@@ -7762,6 +8016,7 @@ const app = createApp({
       importJSON, importExcel, saveLocal, loadLocal, restoreSnapshot, connectBackend,
       statList, totalNodeCount, currentStatsMetrics, allFactionStats,
       searchResults, searchGroupedResults, resultExcerpt, jumpToSearchResult, resetCanvasFilters,
+      commandPaletteGroups, commandPaletteCount, paletteMove, paletteSelect, paletteGo, openCommandPalette, highlightMatch,
       comparisonTrees,
       showOfficeCompare, officeCompareQuery, officeCompareGroups, openOfficeCompareForSelected, jumpOfficeCompareItem,
       showRankCompare, rankCompareQuery, rankCompareRows, openRankCompareForSelected, jumpRankCompareRow,
@@ -7777,7 +8032,7 @@ const app = createApp({
       officialSummaryRecords, officialSummaryGroups, unassignedOfficialCount,
       addFigureRecord, removeFigureRecord, onFigureRulerChanged, uploadPortrait, clearPortrait,
       recordPeriodLabel, recordYearLabel, openPersonProfile, jumpToPersonAppointment,
-      peopleQuery, peoplePolity, peopleKind, peopleOnlyPortrait, filteredPeople, peopleMetrics,
+      peopleQuery, peoplePolity, peopleKind, peopleOnlyPortrait, peopleAdvanced, filteredPeople, peopleMetrics,
       periodRosterPhase, periodRosterPhases, filteredPeriodOfficeSnapshots,
       showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass,
       personPortraitFor, portraitStyleFor,
@@ -7787,9 +8042,12 @@ const app = createApp({
       battleRecords, battleQuery, battleKind, battlePeriodId, battleOnlyBattle, battleBranch, battleProvince,
       battleEntryList, battlePeriodOptions, battleMetrics, filteredBattles, battleBranchOptions, battleProvinceOptions, battleBranchGroups, battleProvinceGroups, battleProvinceCount, battleKindLabel, battleKindClass,
       showBattleDetail, activeBattleDetail, openBattleDetail, battleDetailYear, battlePeriodForItem, battleRelatedPeople, jumpToBattlePeriod,
+      jumpBattleToMap, battleRelationChain,
       SHIHUO_POLITIES, SHIHUO_CATEGORIES, shihuoQuery, shihuoPolity, shihuoCategory,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
-      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, filteredEpigraphicRecords, epigraphicMetrics,
+      shihuoEvidenceClass, householdMiniChart,
+      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, epigraphicArchive, filteredEpigraphicRecords, epigraphicMetrics,
+      epigraphicHighlight, epigraphicArchiveClass, openEpigraphicPerson,
       mountOptions, jumpToMount,
       footnoteDialog, openFootnoteDialog, confirmFootnote, removeFootnote, footnotesFor, footnoteIndex,
     };
@@ -7854,7 +8112,7 @@ const app = createApp({
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        <el-button size="small" circle @click="showSearch=true" title="全局检索（Ctrl/Cmd+F）">🔎</el-button>
+        <el-button size="small" circle @click="openCommandPalette('all')" title="全局检索（Ctrl/Cmd+K）">🔎</el-button>
         <el-button size="small" circle @click="showCompare=true" title="魏汉吴三栏对比">▥</el-button>
         <el-button size="small" circle @click="showPalette=true" title="势力配色">🎨</el-button>
         <el-button size="small" circle @click="showStats=true" title="统计面板">📊</el-button>
@@ -8546,8 +8804,38 @@ const app = createApp({
             <el-option label="时期官员录" value="roster" />
           </el-select>
           <el-checkbox v-model="peopleOnlyPortrait" size="small">仅有立绘</el-checkbox>
+          <el-button size="small" text @click="peopleAdvanced=!peopleAdvanced">{{peopleAdvanced?'收起更多筛选':'更多筛选'}}</el-button>
           <div class="spacer"></div>
           <span style="font-size:11px;color:#8A918A;">共 {{ filteredPeople.length }} 人</span>
+        </div>
+        <div v-show="peopleAdvanced" class="people-advanced-filters">
+          <el-select v-model="peopleEra" size="small" style="width:132px;" aria-label="时代筛选">
+            <el-option label="全部时代" value="all" />
+            <el-option label="汉末（168—219）" value="latehan" />
+            <el-option label="三国（220—265）" value="three" />
+            <el-option label="西晋（266—316）" value="jin" />
+          </el-select>
+          <el-input-number v-model="peopleYear" size="small" :min="168" :max="316" controls-position="right" style="width:120px" aria-label="相关年份" />
+          <el-select v-model="peopleSource" size="small" style="width:132px;" aria-label="史料来源">
+            <el-option label="全部来源" value="all" />
+            <el-option label="《三国志》正文" value="sgz" />
+            <el-option label="裴松之注" value="pei" />
+            <el-option label="《晋书》" value="jinshu" />
+            <el-option label="工程内任官档案" value="curated" />
+          </el-select>
+          <el-select v-model="peopleEvidence" size="small" style="width:132px;" aria-label="证据状态">
+            <el-option label="全部证据状态" value="all" />
+            <el-option label="确定／推定" value="confirmed" />
+            <el-option label="存疑／待复核" value="pending" />
+          </el-select>
+          <el-select v-model="peopleServiceDomain" size="small" style="width:132px;" aria-label="文武类别">
+            <el-option label="文武全部" value="all" />
+            <el-option v-for="d in SERVICE_DOMAIN_OPTIONS" :key="d" :label="d" :value="d" />
+          </el-select>
+          <el-select v-model="peopleInstitutionType" size="small" style="width:150px;" aria-label="官署类型">
+            <el-option label="官署全部" value="all" />
+            <el-option v-for="t in INSTITUTION_TYPE_OPTIONS" :key="t" :label="t" :value="t" />
+          </el-select>
         </div>
         <div class="people-metrics">
           <div class="people-metric"><strong>{{peopleMetrics.people}}</strong><span>人物总数</span></div>
@@ -8655,6 +8943,7 @@ const app = createApp({
                       <div style="display:flex;align-items:center;gap:6px;margin-top:7px;">
                         <span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span>
                         <span v-if="item.a" style="font-size:10.5px;font-weight:650;color:#4A534A;">{{item.a}} <span style="color:#A78345;">vs</span> {{item.b}}</span>
+                        <button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button>
                       </div>
                     </article>
                   </div>
@@ -8704,8 +8993,23 @@ const app = createApp({
             <el-option v-for="state in fangzhenStateOptions" :key="state" :label="state" :value="state" />
           </el-select>
           <span style="flex:1"></span>
+          <el-input-number v-model="fangzhenSnapshotYear" :min="168" :max="316" size="small" controls-position="right" placeholder="年份快照" style="width:130px" />
+          <el-input-number v-model="fangzhenCompareYear" :min="168" :max="316" size="small" controls-position="right" placeholder="对比年份" style="width:130px" />
           <el-button @click="exportFangzhen">导出 Excel</el-button>
           <el-button @click="saveLocal()">保存工程</el-button>
+        </div>
+        <div v-if="fangzhenSnapshotRecords.length || fangzhenCompareRecords.length" class="fangzhen-snapshot-panel">
+          <div v-if="fangzhenSnapshotYear" class="fangzhen-snapshot-row">
+            <strong>{{fangzhenSnapshotYear}} 年任职快照</strong>
+            <span>{{fangzhenSnapshotRecords.length}} 条记录</span>
+            <span v-for="r in fangzhenSnapshotRecords.slice(0,12)" :key="r.id" class="fz-snapshot-chip">{{r.commander}} · {{r.title}}<small v-if="r.jurisdiction">{{r.jurisdiction}}</small></span>
+            <span v-if="fangzhenSnapshotRecords.length>12" class="fz-snapshot-more">另有 {{fangzhenSnapshotRecords.length-12}} 条</span>
+          </div>
+          <div v-for="cmp in fangzhenCompareRecords" :key="cmp.year" class="fangzhen-compare-row">
+            <strong>{{cmp.year}} 年</strong>
+            <span v-if="cmp.added.length" class="fz-diff added">新出现 {{cmp.added.length}} 条</span>
+            <span v-if="cmp.removed.length" class="fz-diff removed">不再任职 {{cmp.removed.length}} 条</span>
+          </div>
         </div>
         <div class="fangzhen-metrics">
           <div class="fz-metric"><strong>{{fangzhenMetrics.total}}</strong><span>本期收录条目</span></div>
@@ -8736,6 +9040,7 @@ const app = createApp({
             <el-table-column label="任期" min-width="220">
               <template #default="scope">
                 <div>{{scope.row.tenureText||'任期未详'}}</div>
+                <div class="fz-timeline-track"><span class="fz-timeline-scale"><i>168</i><i>220</i><i>280</i><i>316</i></span><span class="fz-timeline-bar" :class="{dashed:fangzhenTimelineStyle(scope.row).dashed}" :style="fangzhenTimelineStyle(scope.row)"></span></div>
               </template>
             </el-table-column>
             <el-table-column prop="note" label="沿革说明" min-width="260" show-overflow-tooltip />
@@ -8775,6 +9080,10 @@ const app = createApp({
           <span style="flex:1"></span>
           <span style="font-size:11px;color:#7E857E;">显示 {{filteredEpigraphicRecords.length}} / {{epigraphicRecords.length}} 条</span>
         </div>
+        <div class="jinshi-chip-row">
+          <button class="palette-scope-chip" :class="{active:epigraphicArchive==='all'}" @click="epigraphicArchive='all'">全部档案层级</button>
+          <button v-for="kind in ['核心','扩展','争议']" :key="kind" class="palette-scope-chip" :class="{active:epigraphicArchive===kind}" @click="epigraphicArchive=epigraphicArchive===kind?'all':kind">{{kind}}</button>
+        </div>
         <section v-if="!filteredEpigraphicRecords.length" class="jinshi-empty-panel">
           <div class="seal">金</div>
           <h2>暂无符合条件的金石材料</h2>
@@ -8782,13 +9091,14 @@ const app = createApp({
         </section>
         <section v-else class="jinshi-table-card">
           <el-table :data="filteredEpigraphicRecords" size="small" empty-text="暂无符合条件的金石材料">
-            <el-table-column type="expand" width="42"><template #default="scope"><div class="epigraphic-inscription"><strong>释文</strong><div>{{scope.row.inscription||'暂无完整释文'}}</div><p v-if="scope.row.note">{{scope.row.note}}</p></div></template></el-table-column>
+            <el-table-column type="expand" width="42"><template #default="scope"><div class="epigraphic-inscription"><strong>释文</strong><div v-html="epigraphicHighlight(scope.row.inscription||'暂无完整释文')"></div><p v-if="scope.row.note" v-html="epigraphicHighlight(scope.row.note)"></p><div v-if="scope.row.disputeNote" class="epigraphic-dispute"><b>释读争议</b><span>{{scope.row.disputeNote}}</span></div></div></template></el-table-column>
             <el-table-column prop="displayName" label="名称" min-width="180" />
             <el-table-column prop="type" label="类型" width="100" />
             <el-table-column prop="polity" label="国别" width="70" />
+            <el-table-column label="层级" width="90"><template #default="scope"><span class="jinshi-archive" :class="epigraphicArchiveClass(scope.row.archiveKind)">{{scope.row.archiveKind}}</span></template></el-table-column>
             <el-table-column label="年代" width="120"><template #default="scope">{{scope.row.yearText||scope.row.year||'年代未详'}}</template></el-table-column>
             <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.place||scope.row.region||'出土地未详'}}</template></el-table-column>
-            <el-table-column label="关联人物／官职" min-width="180"><template #default="scope">{{[scope.row.people,scope.row.offices].filter(Boolean).join(' · ')||'—'}}</template></el-table-column>
+            <el-table-column label="关联人物／官职" min-width="220"><template #default="scope"><span v-for="nm in (scope.row.people||'').split(/[、，,]/)" :key="nm" class="jinshi-person" @click="openEpigraphicPerson(nm)">{{nm}}</span><small v-if="scope.row.offices" style="display:block;color:#A29B8E;font-size:10px;">{{scope.row.offices}}</small></template></el-table-column>
             <el-table-column label="形制／书体" min-width="160"><template #default="scope">{{[scope.row.form,scope.row.scriptStyle].filter(Boolean).join(' · ')||'未详'}}</template></el-table-column>
             <el-table-column label="释文" min-width="220" show-overflow-tooltip><template #default="scope">{{scope.row.inscription||'—'}}</template></el-table-column>
             <el-table-column prop="note" label="释读说明" min-width="240" show-overflow-tooltip />
@@ -8808,16 +9118,16 @@ const app = createApp({
         </div>
         <div class="fangzhen-toolbar">
           <el-input v-model="shihuoQuery" clearable placeholder="检索制度、事件或人物…" style="max-width:360px" />
-          <el-select v-model="shihuoPolity" style="width:130px" aria-label="政权筛选">
-            <el-option label="全部政权" value="all" />
-            <el-option v-for="p in SHIHUO_POLITIES" :key="p" :label="p" :value="p" />
-          </el-select>
           <el-select v-model="shihuoCategory" style="width:160px" aria-label="类别筛选">
             <el-option label="全部类别" value="all" />
             <el-option v-for="c in SHIHUO_CATEGORIES" :key="c" :label="c" :value="c" />
           </el-select>
           <span style="flex:1"></span>
           <span style="font-size:11px;color:#8A918A;">共 {{ filteredShihuoRecords.length }} 条</span>
+        </div>
+        <div class="shihuo-polity-chips">
+          <button class="palette-scope-chip" :class="{active:shihuoPolity==='all'}" @click="shihuoPolity='all'">全部政权</button>
+          <button v-for="p in SHIHUO_POLITIES" :key="p" class="palette-scope-chip" :class="{active:shihuoPolity===p}" @click="shihuoPolity=shihuoPolity===p?'all':p">{{p}}</button>
         </div>
         <div class="battle-metrics">
           <div class="battle-metric"><strong>{{shihuoMetrics.total}}</strong><span>制度条目</span></div>
@@ -8847,6 +9157,9 @@ const app = createApp({
               <template #default="scope"><div style="font-weight:650;color:#2E352F;">{{scope.row.title}}</div></template>
             </el-table-column>
             <el-table-column prop="detail" label="内容与沿革" min-width="320" show-overflow-tooltip />
+            <el-table-column label="证据" width="108">
+              <template #default="scope"><span class="shihuo-evidence" :class="shihuoEvidenceClass(scope.row.confidence)">{{scope.row.confidence}}</span></template>
+            </el-table-column>
           </el-table>
         </div>
         <div class="fangzhen-table-card" style="margin-top:14px;">
@@ -8858,6 +9171,9 @@ const app = createApp({
             <el-table-column prop="label" label="年代" min-width="150" />
             <el-table-column prop="households" label="户数" min-width="120" />
             <el-table-column prop="population" label="口数" min-width="120" />
+            <el-table-column label="相对规模" width="150">
+              <template #default="scope"><span v-html="householdMiniChart(scope.row,'households')" class="hh-mini-chart"></span></template>
+            </el-table-column>
             <el-table-column prop="note" label="说明" min-width="320" show-overflow-tooltip />
           </el-table>
         </div>
@@ -8941,12 +9257,17 @@ const app = createApp({
         <div class="battle-detail-meta">
           <div class="row" v-if="activeBattleDetail.front"><span>战场方位</span>{{activeBattleDetail.front}}</div>
         </div>
+        <div v-if="battleRelationChain(activeBattleDetail).length>1" class="battle-chain">
+          <span v-for="(link,index) in battleRelationChain(activeBattleDetail)" :key="index" class="battle-chain-link">
+            <b>{{link.role}}</b><span>{{link.name}}<small>{{link.year}}</small></span><i v-if="index<battleRelationChain(activeBattleDetail).length-1">→</i>
+          </span>
+        </div>
         <div v-if="battleRelatedPeople(activeBattleDetail).length" class="battle-related">
           <span v-for="nm in battleRelatedPeople(activeBattleDetail)" :key="nm" class="person-pill" @click="openPeopleDetail(nm)">👤 {{nm}}</span>
         </div>
         <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
           <el-button v-if="activeBattleDetail.year || activeBattleDetail.from" size="small" type="primary" plain @click="jumpToBattlePeriod(battlePeriodForItem(activeBattleDetail))">在形势图中查看对应时期 ›</el-button>
-          <el-button v-if="activeBattleDetail.kind!=='event' && activeBattleDetail.lat" size="small" plain @click="jumpToBattlePeriod(battlePeriodForItem(activeBattleDetail))">定位地图战场</el-button>
+          <el-button size="small" plain @click="jumpBattleToMap(activeBattleDetail)">定位地图战场</el-button>
         </div>
       </template>
     </el-drawer>
@@ -9048,24 +9369,39 @@ const app = createApp({
       <el-button size="small" type="primary" plain @click="exportStatsText">导出统计文本</el-button>
     </el-drawer>
 
-    <el-drawer v-model="showSearch" title="全局高级检索" size="620px">
-      <el-input v-model="searchFilters.query" class="global-search-input" size="large" clearable placeholder="模糊匹配官职、职权、人物、备注与别称" />
-      <div class="filter-bar" style="padding:10px 0;border:0;background:transparent;">
-        <el-select v-model="searchFilters.faction" class="compact-select" size="small"><el-option label="全部势力" value="all"/><el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.key"/></el-select>
-        <el-select v-model="searchFilters.treeType" class="compact-select" size="small"><el-option label="官职与爵位" value="all"/><el-option label="仅官职" value="office"/><el-option label="仅爵位" value="noble"/></el-select>
-        <el-select v-model="searchFilters.category" class="compact-select" size="small" clearable placeholder="官职类别"><el-option v-for="c in CATEGORY_OPTIONS" :key="c" :label="c" :value="c"/></el-select>
-        <el-select v-model="searchFilters.rank" class="compact-select" size="small" clearable filterable placeholder="品级／秩俸"><el-option v-for="r in [...RANK9_OPTIONS,...HAN_RANK_OPTIONS]" :key="r" :label="r" :value="r"/></el-select>
-        <el-select v-model="searchFilters.special" class="compact-select" size="small" clearable placeholder="特殊属性"><el-option label="遥领" value="yaoling"/><el-option label="虚职" value="virtual"/><el-option label="可开府" value="kaifu"/><el-option label="临时职任" value="temporary"/></el-select>
-        <el-input-number v-model="searchFilters.year" class="compact-select" size="small" :min="150" :max="320" controls-position="right" placeholder="限定存在年份" style="width:120px" />
-      </div>
-      <div class="search-summary">找到 {{searchResults.length}} 条结果；可按势力分组查看。填写限定年份后仅显示该年存在（或沿革未注明年份）的官职／爵位。点击结果会切换势力、展开祖先分支并定位节点。</div>
-      <div v-if="!searchResults.length" class="summary-empty">没有匹配结果，请减少筛选条件或尝试官职别称。</div>
-      <div v-for="group in searchGroupedResults" :key="group.factionKey" style="margin-bottom:12px;">
-        <div class="compare-head" :style="{background:group.factionColor}">{{group.factionName}} · {{group.results.length}} 项</div>
-        <div v-for="result in group.results" :key="result.factionKey+'_'+result.treeType+'_'+result.node.key" class="search-result" @click="jumpToSearchResult(result)">
-          <div class="title"><span :style="{color:result.factionColor}">●</span>{{result.node.name}}</div>
-          <div class="meta">{{result.factionName}} · {{result.treeType==='office'?'官职':'爵位'}} · {{result.node.category||result.node.nobleRank||'未分类'}}<span v-if="result.node.rank9"> · {{result.node.rank9}}</span><span v-if="result.node.hanRank"> · {{result.node.hanRank}}</span></div>
-          <div class="excerpt">{{resultExcerpt(result.node)}}</div>
+    <el-drawer v-model="showSearch" title="全局检索" size="min(680px,94vw)" class="command-palette-drawer">
+      <div class="command-palette">
+        <el-input v-model="searchFilters.query" class="global-search-input" size="large" clearable
+          placeholder="搜索官职、人物、州镇、战事、食货、金石、古水名或时期；支持 @人物 #战事 年份"
+          @keydown.up.prevent="paletteMove(-1)" @keydown.down.prevent="paletteMove(1)"
+          @keydown.enter.prevent="paletteSelect()" @keydown.esc="showSearch=false" />
+        <div class="palette-scope-chips">
+          <button v-for="option in searchScopeOptions" :key="option.key" class="palette-scope-chip"
+                  :class="{active:searchState.scope===option.key}" @click="searchState.scope=option.key; searchState.activeIndex=0">{{option.label}}</button>
+        </div>
+        <div class="palette-summary">共 {{commandPaletteCount}} 条结果 · 方向键选择 · Enter 打开 · Esc 关闭。输入“@”限定人物、“#”限定战事、末尾加 3–4 位数字限定年份。</div>
+        <div class="palette-advanced" v-if="searchState.scope==='all'||searchState.scope==='office'">
+          <el-button size="small" text @click="searchState.advanced=!searchState.advanced">{{searchState.advanced?'收起高级筛选':'更多筛选（势力／类别／品秩／属性）'}}</el-button>
+          <div v-show="searchState.advanced" class="palette-advanced-filters">
+            <el-select v-model="searchFilters.faction" class="compact-select" size="small"><el-option label="全部势力" value="all"/><el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.key"/></el-select>
+            <el-select v-model="searchFilters.treeType" class="compact-select" size="small"><el-option label="官职与爵位" value="all"/><el-option label="仅官职" value="office"/><el-option label="仅爵位" value="noble"/></el-select>
+            <el-select v-model="searchFilters.category" class="compact-select" size="small" clearable placeholder="官职类别"><el-option v-for="c in CATEGORY_OPTIONS" :key="c" :label="c" :value="c"/></el-select>
+            <el-select v-model="searchFilters.rank" class="compact-select" size="small" clearable filterable placeholder="品级／秩俸"><el-option v-for="r in [...RANK9_OPTIONS,...HAN_RANK_OPTIONS]" :key="r" :label="r" :value="r"/></el-select>
+            <el-select v-model="searchFilters.special" class="compact-select" size="small" clearable placeholder="特殊属性"><el-option label="遥领" value="yaoling"/><el-option label="虚职" value="virtual"/><el-option label="可开府" value="kaifu"/><el-option label="临时职任" value="temporary"/></el-select>
+            <el-input-number v-model="searchFilters.year" class="compact-select" size="small" :min="150" :max="320" controls-position="right" placeholder="限定年份" style="width:130px" />
+          </div>
+        </div>
+        <div v-if="!commandPaletteCount" class="summary-empty">没有匹配结果。可减少筛选条件或尝试别称。</div>
+        <div v-else class="palette-groups">
+          <section v-for="group in commandPaletteGroups" :key="group.key" class="palette-group">
+            <header class="palette-group-head"><span class="palette-group-icon">{{group.icon}}</span>{{group.label}}<small>{{group.items.length}} 条</small></header>
+            <button v-for="(item,ii) in group.items" :key="group.key+'_'+ii" class="palette-item"
+                    :class="{active:group.offset+ii===searchState.activeIndex}" @click="paletteGo(item)"
+                    @mouseenter="searchState.activeIndex=group.offset+ii">
+              <span class="palette-item-title" v-html="highlightMatch(item.title,searchFilters.query)"></span>
+              <span class="palette-item-meta">{{item.meta}}</span>
+            </button>
+          </section>
         </div>
       </div>
     </el-drawer>

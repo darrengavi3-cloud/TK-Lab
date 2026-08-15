@@ -24,6 +24,7 @@
 - `data/person-source-index.js`：《三国志》《晋书》逐卷人物与任官/爵位候选索引（正文与裴注分层）。
 - `data/person-volume-coverage.json`：195 卷逐卷处理状态与排除依据。
 - `data/hydronym-audit.json`：285 段水系几何、257 个唯一古水名与《水经注》40 卷卷次出处审计。
+- `data/v44-release-manifest.json`：V44 检索命令面板、高程底图与四大版块优化的发布清单。
 - `data/migration-v6.json`：本轮迁移前后数量、备份位置与验收规则。
 - `data/migration-v7.json`：V7时期快照、证据断言与来源索引的迁移说明。
 - `data/history-evidence.json`：V41 十六期历史快照、来源目录、关键辖区断言和审计规则的 canonical 数据。
@@ -59,6 +60,7 @@
 - `docs/V31缓存恢复与周边族群矢量层.md`：异常退出恢复提示、周边族群研究矢量层、乌桓时期边界与史实核验说明。
 - `docs/V32缓存启动策略与族群边界样式.md`：恢复弹窗根因修复与族群边界样式同步。
 - `docs/V43府署古水系与人物记优化.md`：V43 开府府署、战场地名、古水名层、人物逐卷覆盖与发布记录。
+- `docs/V44检索高程与版块优化.md`：V44 全局命令面板、高程地形与战事纪/州镇表/食货志/金石录分批优化说明。
 - `assets/map/`：地图程序、Leaflet、州郡几何与水系。
 - `assets/vendor/`：页面运行依赖。
 - `scripts/`：资源下载、注册表构建与完整性验证脚本。

@@ -14,7 +14,7 @@
   const view = {
     terr:true, city:true, battle:true, route:true, water:true, tint:true, wuCmd:true,
     provinceTint:true, frontierRoute:true, battlefield:true,
-    cmdLabel:true, county:true, minorities:true, hydronym:true,
+    cmdLabel:true, county:true, minorities:true, hydronym:true, elevReadout:false,
     displayMode:'research',
   };
   const mapFilters = window.__MAP_FILTERS || (window.__MAP_FILTERS = {faction:'all',state:'all'});
@@ -39,6 +39,7 @@
       zoomSnap: 0.25,
     });
     L.control.zoom({ position: 'topleft' }).addTo(map);
+    map.on('click', (event) => BaseLayer.handleMapClick(map, event.latlng));
     window.__HISTORY_MAP_INSTANCE = map;
     if (window.HistoryMapBridge) window.HistoryMapBridge.setMap(map);
   }
@@ -286,7 +287,7 @@
       'lyr-route': 'route', 'lyr-water': 'water', 'lyr-tint': 'tint',
       'lyr-wu-cmd': 'wuCmd', 'lyr-province-tint':'provinceTint',
       'lyr-frontier-route':'frontierRoute', 'lyr-battlefield':'battlefield',
-      'lyr-cmd-label':'cmdLabel', 'lyr-county':'county', 'lyr-minorities':'minorities', 'lyr-hydronym':'hydronym',
+      'lyr-cmd-label':'cmdLabel', 'lyr-county':'county', 'lyr-minorities':'minorities', 'lyr-hydronym':'hydronym', 'lyr-elev':'elevReadout',
     };
     Object.keys(mapDef).forEach((id) => {
       const box = document.getElementById(id);
@@ -311,6 +312,10 @@
         }
         if (mapDef[id] === 'hydronym') {
           Hydronyms.setVisible(map, view.hydronym);
+          return;
+        }
+        if (mapDef[id] === 'elevReadout') {
+          BaseLayer.setElevationReadout(view.elevReadout);
           return;
         }
         if (['terr','battle','route','wuCmd','provinceTint','frontierRoute','battlefield'].includes(mapDef[id])) {
