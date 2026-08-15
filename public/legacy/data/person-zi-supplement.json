@@ -4,28 +4,521 @@
   "method": "对《三国志》65卷及裴注、《晋书》130卷语料扫描“名＋字某”句式；仅在语料或可核出处命中时补字，其余标字未详，不臆造。",
   "supplements": [
     {
+      "name": "卞壼",
+      "zi": "望之",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋70",
+      "confidence": "确定"
+    },
+    {
+      "name": "蔡謨",
+      "zi": "道明",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋77",
+      "confidence": "确定"
+    },
+    {
+      "name": "曹仁",
+      "zi": "子孝",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三9",
+      "confidence": "确定"
+    },
+    {
+      "name": "曹休",
+      "zi": "文烈",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三9",
+      "confidence": "确定"
+    },
+    {
+      "name": "曹真",
+      "zi": "子丹",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三9",
+      "confidence": "确定"
+    },
+    {
+      "name": "褚裒",
+      "zi": "季野",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋93",
+      "confidence": "确定"
+    },
+    {
+      "name": "崔林",
+      "zi": "德儒",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三24",
+      "confidence": "确定"
+    },
+    {
+      "name": "董允",
+      "zi": "休昭",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三39",
+      "confidence": "确定"
+    },
+    {
+      "name": "董昭",
+      "zi": "公仁",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三14",
+      "confidence": "确定"
+    },
+    {
+      "name": "杜預",
+      "zi": "元凱",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋34",
+      "confidence": "确定"
+    },
+    {
+      "name": "法正",
+      "zi": "孝直",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三37",
+      "confidence": "确定"
+    },
+    {
+      "name": "范汪",
+      "zi": "玄平",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋75",
+      "confidence": "确定"
+    },
+    {
+      "name": "傅嘏",
+      "zi": "蘭石",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三21",
+      "confidence": "确定"
+    },
+    {
+      "name": "高光",
+      "zi": "宣茂",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋41",
+      "confidence": "确定"
+    },
+    {
+      "name": "高柔",
+      "zi": "文惠",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三24",
+      "confidence": "确定"
+    },
+    {
+      "name": "何曾",
+      "zi": "穎考",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋33",
+      "confidence": "确定"
+    },
+    {
+      "name": "何充",
+      "zi": "次道",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋77",
+      "confidence": "确定"
+    },
+    {
+      "name": "何夔",
+      "zi": "叔龍",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三12",
+      "confidence": "确定"
+    },
+    {
+      "name": "和嶠",
+      "zi": "長輿",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三23",
+      "confidence": "确定"
+    },
+    {
+      "name": "和洽",
+      "zi": "陽士",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三23",
+      "confidence": "确定"
+    },
+    {
+      "name": "賀循",
+      "zi": "彥先",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋68",
+      "confidence": "确定"
+    },
+    {
+      "name": "桓玄",
+      "zi": "敬道",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋99",
+      "confidence": "确定"
+    },
+    {
+      "name": "皇甫真",
+      "zi": "楚季",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋111",
+      "confidence": "确定"
+    },
+    {
+      "name": "紀瞻",
+      "zi": "思遠",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋68",
+      "confidence": "确定"
+    },
+    {
+      "name": "姜維",
+      "zi": "伯約",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三44",
+      "confidence": "确定"
+    },
+    {
+      "name": "李矩",
+      "zi": "世回",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋63",
+      "confidence": "确定"
+    },
+    {
+      "name": "李憙",
+      "zi": "季和",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋41",
+      "confidence": "确定"
+    },
+    {
+      "name": "李胤",
+      "zi": "宣伯",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋44",
+      "confidence": "确定"
+    },
+    {
       "name": "柳隐",
       "zi": "休然",
       "sourceTitle": "《华阳国志》卷十一（三国志相关传记裴注互见）",
       "sourceLocator": "柳隐字休然",
       "confidence": "确定"
+    },
+    {
+      "name": "呂岱",
+      "zi": "定公",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三60",
+      "confidence": "确定"
+    },
+    {
+      "name": "慕容垂",
+      "zi": "道明",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋123",
+      "confidence": "确定"
+    },
+    {
+      "name": "慕容德",
+      "zi": "玄明",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋127",
+      "confidence": "确定"
+    },
+    {
+      "name": "慕容皝",
+      "zi": "元真",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋109",
+      "confidence": "确定"
+    },
+    {
+      "name": "慕容恪",
+      "zi": "玄恭",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋111",
+      "confidence": "确定"
+    },
+    {
+      "name": "慕容廆",
+      "zi": "弈洛瑰",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋108",
+      "confidence": "确定"
+    },
+    {
+      "name": "慕容鐘",
+      "zi": "道明",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋128",
+      "confidence": "确定"
+    },
+    {
+      "name": "裴秀",
+      "zi": "季彥",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋35",
+      "confidence": "确定"
+    },
+    {
+      "name": "秦宓",
+      "zi": "子敕",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三38",
+      "confidence": "确定"
+    },
+    {
+      "name": "全琮",
+      "zi": "子璜",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三60",
+      "confidence": "确定"
+    },
+    {
+      "name": "石苞",
+      "zi": "仲容",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋33",
+      "confidence": "确定"
+    },
+    {
+      "name": "陶侃",
+      "zi": "士行",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋66",
+      "confidence": "确定"
+    },
+    {
+      "name": "滕胤",
+      "zi": "承嗣",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三64",
+      "confidence": "确定"
+    },
+    {
+      "name": "王敦",
+      "zi": "處仲",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋98",
+      "confidence": "确定"
+    },
+    {
+      "name": "王機",
+      "zi": "令明",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋100",
+      "confidence": "确定"
+    },
+    {
+      "name": "王亮",
+      "zi": "子翼",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋59",
+      "confidence": "确定"
+    },
+    {
+      "name": "王猛",
+      "zi": "景略",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋114",
+      "confidence": "确定"
+    },
+    {
+      "name": "王戎",
+      "zi": "濬沖",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋43",
+      "confidence": "确定"
+    },
+    {
+      "name": "王舒",
+      "zi": "處明",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋76",
+      "confidence": "确定"
+    },
+    {
+      "name": "王騰",
+      "zi": "元邁",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋37",
+      "confidence": "确定"
+    },
+    {
+      "name": "王育",
+      "zi": "伯春",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋89",
+      "confidence": "确定"
+    },
+    {
+      "name": "卫臻",
+      "zi": "公振",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三22",
+      "confidence": "确定"
+    },
+    {
+      "name": "魏舒",
+      "zi": "陽元",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋41",
+      "confidence": "确定"
+    },
+    {
+      "name": "夏侯惇",
+      "zi": "元讓",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三9",
+      "confidence": "确定"
+    },
+    {
+      "name": "徐邈",
+      "zi": "景山",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三27",
+      "confidence": "确定"
+    },
+    {
+      "name": "荀崧",
+      "zi": "景猷",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋75",
+      "confidence": "确定"
+    },
+    {
+      "name": "荀顗",
+      "zi": "景倩",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋39",
+      "confidence": "确定"
+    },
+    {
+      "name": "荀攸",
+      "zi": "公達",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三10",
+      "confidence": "确定"
+    },
+    {
+      "name": "荀彧",
+      "zi": "文若",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三10",
+      "confidence": "确定"
+    },
+    {
+      "name": "羊祜",
+      "zi": "叔子",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋34",
+      "confidence": "确定"
+    },
+    {
+      "name": "尹緯",
+      "zi": "景亮",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋118",
+      "confidence": "确定"
+    },
+    {
+      "name": "虞潭",
+      "zi": "思奧",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋76",
+      "confidence": "确定"
+    },
+    {
+      "name": "庾亮",
+      "zi": "元規",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋73",
+      "confidence": "确定"
+    },
+    {
+      "name": "周浚",
+      "zi": "開林",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋61",
+      "confidence": "确定"
+    },
+    {
+      "name": "周顗",
+      "zi": "伯仁",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷晋69",
+      "confidence": "确定"
+    },
+    {
+      "name": "卓弟旻",
+      "zi": "叔穎",
+      "sourceTitle": "《三国志》《晋书》语料扫描",
+      "sourceLocator": "卷三6",
+      "confidence": "确定"
     }
   ],
   "unresolved": [
-    {"name":"刘宏","reason":"汉灵帝为帝王，不称表字"},
-    {"name":"刘辩","reason":"少帝为帝王，不称表字"},
-    {"name":"刘瞻","reason":"语料未检出表字"},
-    {"name":"王邑","reason":"语料未检出表字，待人工复核"},
-    {"name":"刘艾","reason":"语料未检出表字，待人工复核"},
-    {"name":"韦端","reason":"语料未检出表字，待人工复核"},
-    {"name":"刘瑁","reason":"语料未检出表字，待人工复核"},
-    {"name":"张音","reason":"语料未检出表字，待人工复核"},
-    {"name":"乐𬘭","reason":"语料未检出表字，待人工复核"},
-    {"name":"成济","reason":"语料未检出表字，待人工复核"},
-    {"name":"何植","reason":"语料未检出表字，待人工复核"},
-    {"name":"胡冲","reason":"语料未检出表字，待人工复核"},
-    {"name":"张峻","reason":"语料未检出表字，待人工复核"},
-    {"name":"傅佥","reason":"语料未检出表字，待人工复核"}
+    {
+      "name": "刘宏",
+      "reason": "汉灵帝为帝王，不称表字"
+    },
+    {
+      "name": "刘辩",
+      "reason": "少帝为帝王，不称表字"
+    },
+    {
+      "name": "刘瞻",
+      "reason": "语料未检出表字"
+    },
+    {
+      "name": "王邑",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "刘艾",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "韦端",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "刘瑁",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "张音",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "乐𬘭",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "成济",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "何植",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "胡冲",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "张峻",
+      "reason": "语料未检出表字，待人工复核"
+    },
+    {
+      "name": "傅佥",
+      "reason": "语料未检出表字，待人工复核"
+    }
   ],
-  "summary": {"supplemented": 1, "unresolved": 14}
+  "summary": {
+    "supplemented": 65,
+    "unresolved": 14
+  }
 }

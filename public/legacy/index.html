@@ -16,6 +16,7 @@
 <script src="./data/shu-fangzhen-records.js"></script>
 <script src="./data/fangzhen-term-supplement.js"></script>
 <script src="./data/person-identities.js"></script>
+<script src="./data/person-zi-supplement.js"></script>
 <script src="./data/research-model.js"></script>
 <script src="./data/office-seat-policies.js"></script>
 <script src="./data/kaifu-policies.js"></script>
@@ -3805,7 +3806,7 @@ function buildPresets(){
     const chengxiang = O('jin_o', root.key, '丞相／相国（非常置）', '丞相／相国', '一品', '万石', {
       officeStartYear:291, officeEndYear:316,
       note:'《晋书·职官志》：晋受魏禅并不置，自惠帝之后省置无常；为之者皆非寻常人臣之职。',
-      figures:['赵王伦','梁王肜','成都王颖','南阳王保'],
+figures:['司马伦','司马肜','司马颖','司马保'],
       sources:'《晋书》卷二十四·职官志'
     });
     const yushi = O('jin_o', root.key, '御史中丞', '御史台', '四品', '千石', {
@@ -3870,7 +3871,7 @@ function buildPresets(){
     });
     const shangshupy = O('jin_o', shangshuling.key, '尚书仆射', '尚书台省', '三品', '六百石', {
       officeStartYear:266, officeEndYear:316,
-      figures:['羊祜（268—269，左）','东莞王伷（268—?，右）','王业（271—?，左）','高阳王珪（271—?，右）','卢钦（?—278，左）','山涛（278—?，左）','魏舒（280—?，右）'],
+figures:['羊祜（268—269，左）','司马伷（268—?，右）','王业（271—?，左）','司马珪（271—?，右）','卢钦（?—278，左）','山涛（278—?，左）','魏舒（280—?，右）'],
       note:'服秩印绶与令同；置二则为左右仆射，或不两置。',
       sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
     });
@@ -3983,7 +3984,7 @@ function buildPresets(){
     const sizheng = O('jin_o', root.key, '四征·四镇·四安·四平将军', '将军武职', '二品', '中二千石', {
       hidden:true, relationType:'官号族',
       officeStartYear:266, officeEndYear:316,
-      figures:['羊祜（征南大将军 276—278）','汝阴王骏（镇西／征西大将军 270—276）','卫瓘（镇北大将军 266—278）','王濬（龙骧将军 279—280）'],
+figures:['羊祜（征南大将军 276—278）','司马骏（镇西／征西大将军 270—276）','卫瓘（镇北大将军 266—278）','王濬（龙骧将军 279—280）'],
       note:'四征兴于汉代，四安起于魏初，四镇通于柔远；加大将军不开府、持节都督者品秩第二。',
       sources:'《晋书》卷二十四·职官志；卷三·武帝纪'
     });
@@ -6858,6 +6859,14 @@ const app = createApp({
     function openPersonProfile(name){ activePersonName.value=name; showPersonProfile.value=true; }
     /* ---------- 人物志：统一人物档案 ---------- */
     function personKeyOf(name){ return String(name||'').trim(); }
+    function personZiFor(name){
+      const key=personKeyOf(name);
+      const direct=(window.SGZ_PERSON_ZI_SUPPLEMENT||[]).find(item=>item.name===key);
+      if(direct) return direct.zi;
+      const identity=window.SGZ_PERSON_IDENTITIES?.resolve(name);
+      const identityName=identity&&identity.name;
+      return identityName?(window.SGZ_PERSON_ZI_SUPPLEMENT||[]).find(item=>item.name===identityName)?.zi||'':'' ;
+    }
     function personIdOf(name,context={}){
       if(context?.personId) return String(context.personId);
       return window.SGZResearchModel.personIdFor(personKeyOf(name),context||{});
@@ -6914,7 +6923,15 @@ const app = createApp({
       const records=[];
       const targetId=String(personRef||'').startsWith('person:')?String(personRef):'';
       const targetName=targetId?'':personKeyOf(personRef);
-      const matches=(record,name,context={})=>targetId?personRecordId(record,name,context)===targetId:personKeyOf(name)===targetName;
+      const targetIdentity=targetId?window.SGZ_PERSON_IDENTITIES?.resolve(personRef):null;
+      const matches=(record,name,context={})=>{
+        if(!targetId) return personKeyOf(name)===targetName;
+        const candidateId=personRecordId(record,name,context);
+        if(candidateId===targetId) return true;
+        if(targetIdentity&&candidateId===targetIdentity.personId) return true;
+        const candidateIdentity=window.SGZ_PERSON_IDENTITIES?.resolve(name,context);
+        return Boolean(candidateIdentity&&candidateIdentity.personId===targetId);
+      };
       factions.forEach(faction=>['office','noble'].forEach(type=>{
         data.trees[faction.key][type].filter(n=>n.kind!=='root').forEach(node=>{
           (node.figures||[]).forEach(f=>{
@@ -6936,10 +6953,26 @@ const app = createApp({
         records.push({...record,source:'sourceIndex',name:record.name,nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
       });
       const seen=new Set();
-      return projectForReading(records).filter(record=>{
-        const id=record.id||record.appointmentId||[record.personId,record.nodeKey,record.nodeName,record.startYear,record.endYear,record.sourceLocator].join('|');
-        if(seen.has(id)) return false; seen.add(id); return true;
-      }).sort((a,b)=>(normalizeYear(a.startYear)??9999)-(normalizeYear(b.startYear)??9999)||String(a.sourceLocator||a.nodeName||'').localeCompare(String(b.sourceLocator||b.nodeName||''),'zh-CN'));
+      const mergedByOffice=new Map();
+      projectForReading(records).forEach(record=>{
+        const office=String(record.nodeName||record.title||record.officeName||'').trim();
+        const start=normalizeYear(record.startYear),end=normalizeYear(record.endYear);
+        const key=[record.personId,office,start??'?',end??'?',record.jurisdiction||''].join('|');
+        if(!mergedByOffice.has(key)) mergedByOffice.set(key,{...record,sourceLocators:[record.sourceLocator].filter(Boolean),volumes:[record.sourceVolume].filter(Boolean)});
+        else{
+          const target=mergedByOffice.get(key);
+          if(record.sourceLocator&&!target.sourceLocators.includes(record.sourceLocator)) target.sourceLocators.push(record.sourceLocator);
+          if(record.sourceVolume&&!target.volumes.includes(record.sourceVolume)) target.volumes.push(record.sourceVolume);
+          target.note=target.note||record.note||record.sourceExcerpt;
+        }
+      });
+      return [...mergedByOffice.values()].sort((a,b)=>{
+        const ay=normalizeYear(a.startYear)??9999,by=normalizeYear(b.startYear)??9999;
+        if(ay!==by) return ay-by;
+        const av=Number(String(a.sourceVolume||'').replace(/[^\d]/g,''))||9999,bv=Number(String(b.sourceVolume||'').replace(/[^\d]/g,''))||9999;
+        if(av!==bv) return av-bv;
+        return String(a.nodeName||a.title||'').localeCompare(String(b.nodeName||b.title||''),'zh-CN');
+      });
     }
     const activePersonAppointments = computed(()=>collectPersonAppointments(activePersonName.value));
     const activePersonPortrait = computed(()=>personPortraitFor(activePersonName.value,activePersonAppointments.value));
@@ -7009,6 +7042,7 @@ const app = createApp({
       (window.SGZ_PERSON_SOURCE_INDEX?.people||[]).forEach(person=>{
         const e=entry(person.name,{personId:person.personId}); if(!e) return;
         e.aliases.push(...(person.aliases||[]));
+        if(!e.zi){ const zi=personZiFor(person.name); if(zi) e.zi=zi; }
         const identity=window.SGZ_PERSON_IDENTITIES?.resolve(person.name);
         if(identity?.canonicalName)e.canonicalName=identity.canonicalName;
         e.searchKeys.push(...(identity?.searchKeys||[]));
@@ -7022,6 +7056,7 @@ const app = createApp({
       (window.SGZ_PERSON_SOURCE_INDEX?.appointments||[]).forEach(record=>{
         const e=entry(record.name,{personId:record.personId}); if(!e) return;
         e.aliases.push(...(record.aliases||[]));
+        if(!e.zi){ const zi=personZiFor(record.name); if(zi) e.zi=zi; }
         const identity=window.SGZ_PERSON_IDENTITIES?.resolve(record.name);
         if(identity?.canonicalName)e.canonicalName=identity.canonicalName;
         e.searchKeys.push(...(identity?.searchKeys||[]));
@@ -7079,6 +7114,7 @@ const app = createApp({
             merged.scopeStatuses.push(...(e.scopeStatuses||[]));
             merged.aliases.push(...(e.aliases||[]));
             merged.searchKeys.push(...(e.searchKeys||[]));
+            if(!merged.zi){ const zi=personZiFor(e.name); if(zi) merged.zi=zi; }
             if(!merged.portrait&&e.portrait){merged.portrait=e.portrait;merged.portraitPolity=e.portraitPolity;merged.portraitAccent=e.portraitAccent;merged.portraitSource=e.portraitSource;}
             if(!merged.bio&&e.bio){merged.bio=e.bio;merged.bioSource=e.bioSource;merged.bioKind=e.bioKind;}
             if(!merged.zi&&e.zi)merged.zi=e.zi;
@@ -9463,7 +9499,8 @@ const app = createApp({
         <div v-else class="people-career-list">
           <div v-for="(item,index) in activePeopleDetail.appointments" :key="index" class="people-career-item" @click="jumpToPersonAppointment(item)">
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><b>{{item.nodeName}}</b><span class="person-pill" :class="item.treeType==='fangzhen'?'fangzhen':(item.treeType==='office'?'office':(item.treeType==='roster'?'roster':'noble'))">{{item.treeType==='fangzhen'?'州镇职任':(item.treeType==='office'?'任官':(item.treeType==='roster'?'时期官员录':'受爵'))}}</span></div>
-            <div class="meta">{{item.factionName}} · {{recordPeriodLabel(item)}} · {{recordYearLabel(item)}}</div>
+            <div class="meta">{{item.factionName}} · {{recordPeriodLabel(item)}} · {{recordYearLabel(item)}}<span v-if="item.sourceLocators&&item.sourceLocators.length>1"> · {{item.sourceLocators.length}} 处出处</span></div>
+            <div v-if="item.sourceLocators&&item.sourceLocators.length" class="excerpt">出处：{{item.sourceLocators.join('、')}}</div>
             <div v-if="item.jurisdiction" class="excerpt">辖区：{{item.jurisdiction}}</div>
             <div v-if="item.note" class="excerpt">{{item.note}}</div>
           </div>

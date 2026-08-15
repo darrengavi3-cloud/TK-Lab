@@ -20,9 +20,18 @@
     "ziSupplemented": 1,
     "ziUnresolved": 14,
     "falsePositiveRemovedAfterRescan": 19,
-    "feiyiMerged": true
+    "feiyiMerged": true,
+    "ziScanned": 65,
+    "jiangwanMerged": true,
+    "wangTitlesCorrected": 7,
+    "careerDeduped": true
   },
   "changes": [
+    "追加：蒋琬/姜维/司马懿显式身份，蒋琬跨卷历官合并为单一 personId",
+    "追加：人物详情多段历官按时间官职排序并合并同职多出处",
+    "追加：抽取器新增進X位為句式、修复司马官名误当复姓、府主属官误抓",
+    "追加：65 人表字扫描补充并接入人物档案",
+    "追加：西晋王爵人物名更正为司马＋名",
     "追加：人物记拆为人物档案/时期快照双按钮，快照条目可跳转人物详情",
     "追加：柳隐补字休然，其余缺字人物标字未详并说明理由",
     "追加：清理康立/贲九江/东部/别部/别驾/曹爽请/曹爽引等误识别人物",

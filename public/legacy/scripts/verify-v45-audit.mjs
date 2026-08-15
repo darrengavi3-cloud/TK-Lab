@@ -93,6 +93,18 @@ assert(html.includes('openPeopleDetailFromSnapshot'), '快照条目跳转人物�
 assert(read('data/person-biographies.js').includes("'柳隐':{zi:'休然'"), '柳隐表字未写入人物传记数据');
 assert(portable.includes('people-view-nav') && portable.includes('peopleView==='), '便携版未同步人物记双按钮');
 
+// 8. 人物记第二轮专项回归
+assert(sourceIndex.appointments.filter(a=>a.name==='蒋琬').length>=3 && new Set(sourceIndex.appointments.filter(a=>a.name==='蒋琬').map(a=>a.personId)).size===1, '蒋琬跨卷历官未合并为单一 personId');
+assert(new Set(sourceIndex.appointments.filter(a=>a.name==='费祎').map(a=>a.personId)).size===1, '费祎历官未合并');
+assert(!sourceIndex.appointments.some(a=>a.name==='曹爽'&&a.officeName==='掾'), '曹爽仍被误列为属官');
+assert(!sourceIndex.appointments.some(a=>/^司马(桓温|曹真|刁暢)$/.test(a.name)), '大司马/司马官职前缀仍被误当复姓');
+assert(ziSupplement.supplements.some(item=>item.name==='姜維'||item.name==='姜维'), '姜维表字未补充');
+assert(html.includes('personZiFor') && html.includes('SGZ_PERSON_ZI_SUPPLEMENT'), '表字补充未接入人物档案');
+assert(html.includes('mergedByOffice') && html.includes('sourceLocators.length>1'), '人物详情多段历官未去重或未标注多处出处');
+assert(!html.includes('赵王伦') && !html.includes('梁王肜') && !html.includes('成都王颖') && !html.includes('南阳王保') && !html.includes('东莞王伷') && !html.includes('高阳王珪') && !html.includes('汝阴王骏'), '西晋王爵人物名未更正为司马＋名');
+assert(html.includes('司马伦') && html.includes('司马颖') && html.includes('司马骏'), '西晋宗室未使用司马＋名');
+assert(portable.includes('personZiFor') && portable.includes('SGZ_PERSON_ZI_SUPPLEMENT'), '便携版未同步表字补充');
+
 console.log('V45 审计验证通过');
 console.log(`人物候选 ${sourceIndex.summary.appointments} 条 / 默认范围 ${sourceIndex.summary.defaultAppointments} 条；同名误识别已清除`);
 console.log(`附件候选 xlsx ${attachment.summary.xlsxCandidates} + docx ${attachment.summary.docxCandidates}；州镇待复核 ${fangzhenReview.summary.total} 条`);

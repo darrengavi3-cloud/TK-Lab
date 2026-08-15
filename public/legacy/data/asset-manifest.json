@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T13:59:33.686Z",
+  "generatedAt": "2026-08-15T14:21:03.131Z",
   "offlineRuntime": true,
-  "fileCount": 133,
-  "totalBytes": 47183123,
+  "fileCount": 135,
+  "totalBytes": 47209253,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -562,8 +562,8 @@
     },
     {
       "path": "data/person-identities.js",
-      "bytes": 6170,
-      "sha256": "1cb9203b3ce4e06b1c532045149411cd89ce82e2b1def7ac0f5cd33f69b8542a"
+      "bytes": 6598,
+      "sha256": "46d684e61f7d4c6971bebec7d279d8ce53bed38b8cd4c0af95f7b149b19d48e7"
     },
     {
       "path": "data/person-portraits.js",
@@ -572,18 +572,28 @@
     },
     {
       "path": "data/person-source-index.js",
-      "bytes": 1383616,
-      "sha256": "f4ba15d1a1cb3d35e9b67ae4014a8d30d25530b66efac35670e024e6772dda14"
+      "bytes": 1377756,
+      "sha256": "214f69c2e25c4a2aacca384a1e4620aadb96acf5cf2f0799d2616b58b4fa30ca"
     },
     {
       "path": "data/person-volume-coverage.json",
-      "bytes": 166046,
-      "sha256": "ec0cc22b012714d3abcff15e4922e0c7687b2d3ef7c5dcd64b3b6bdd30422e40"
+      "bytes": 166047,
+      "sha256": "105bf2e6202cf48771ecc7caac3fd94ff826bcc8618b158c71509bb86a12330d"
+    },
+    {
+      "path": "data/person-zi-scan.json",
+      "bytes": 9666,
+      "sha256": "94175f0a390275b3e7872873b1a327981a23c7e6ae76747642f3d13bed977571"
+    },
+    {
+      "path": "data/person-zi-supplement.js",
+      "bytes": 9073,
+      "sha256": "d6532d3ef6fda2e595577d8c7d5587377387e809e6a69a12f1dbdd843f4ba0bd"
     },
     {
       "path": "data/person-zi-supplement.json",
-      "bytes": 1579,
-      "sha256": "207312c324e582ba38b7ac062754cb5e2aa0393205cc6bfba0f1dd120f681265"
+      "bytes": 13889,
+      "sha256": "b3becd0beeb074b8cae729bc554075492e30066a5eadfd71be823c107558350f"
     },
     {
       "path": "data/public-vector-audit.json",
@@ -647,8 +657,8 @@
     },
     {
       "path": "data/v45-release-manifest.json",
-      "bytes": 2942,
-      "sha256": "e059b929b25ab542dcd4664f4ba8dbe517693c860f2f6fb46870a0df8e98d6d8"
+      "bytes": 3454,
+      "sha256": "f33bea2596f0371e3ea5b6873b6ee412b75d71de72b0fafe2cf1c29b0aaa0817"
     },
     {
       "path": "data/v45-shihuo-gap.json",

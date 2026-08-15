@@ -20,6 +20,7 @@ const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
 const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
+const personZiSupplementPath = path.join(root, 'data', 'person-zi-supplement.js');
 const hydronymAuditPath = path.join(root, 'assets', 'map', 'data', 'hydronym-audit.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
@@ -44,6 +45,7 @@ const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
 const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
+const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
 const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
 for (const polityDir of fs.readdirSync(portraitDir)) {
   const fullDir = path.join(portraitDir, polityDir);
@@ -141,6 +143,10 @@ const replacements = [
   [
     '<script src="./data/person-source-index.js"></script>',
     `<script>\n${personSourceIndexScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-zi-supplement.js"></script>',
+    `<script>\n${personZiSupplementScript}\n</script>`
   ],
   [
     '<script src="./assets/map/data/hydronym-audit.js"></script>',

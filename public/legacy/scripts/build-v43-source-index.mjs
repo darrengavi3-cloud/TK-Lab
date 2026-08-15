@@ -57,6 +57,8 @@ function simplify(value){ return Array.from(String(value||'')).map(char=>traditi
 const singleSurnames=Array.from(new Set(Array.from('趙钱孫孙李周吳吴鄭郑王馮冯陳陈褚衛卫蔣蒋沈韓韩楊杨朱秦尤許许何呂吕施張张孔曹嚴严華华金魏陶姜戚謝谢鄒邹喻柏水竇窦章雲云蘇苏潘葛奚范彭郎魯鲁韋韦昌馬马苗鳳凤花方俞任袁柳酆鮑鲍史唐費费廉岑薛雷賀贺倪湯汤滕殷羅罗畢毕郝鄔邬安常樂乐于時时傅皮卞齊齐康伍余元卜顧顾孟平黃黄和穆蕭萧尹姚邵湛汪祁毛禹狄米貝贝明臧計计伏成戴談谈宋茅龐庞熊紀纪舒屈項项祝董梁杜阮藍蓝閔闵席季麻強强賈贾路婁娄危江童顏颜郭梅盛林刁鍾钟徐邱駱骆高夏蔡田樊胡凌霍虞萬万支柯昝管盧卢莫經经房裘繆缪干解應应宗丁宣賁贲鄧邓郁單单杭洪包諸诸左石崔吉鈕钮龔龚程嵇邢滑裴陸陆榮荣翁荀羊甄曲家封芮羿儲储靳汲邴糜松井段富巫烏乌焦巴弓牧隗山谷車车侯宓蓬全郗班仰秋仲伊宮宫甯仇欒栾暴甘鈄钭厲厉戎祖武符劉刘景詹束龍龙葉叶幸司郜黎薊蓟薄印宿白懷怀蒲邰鄂索咸籍賴赖卓藺蔺屠蒙池喬乔陰阴胥能蒼苍雙双聞闻莘黨党翟譚谭貢贡勞劳逄姬申扶堵冉宰酈郦雍卻却璩桑桂濮牛壽寿通邊边扈燕冀郟郏浦尚農农溫温別别莊庄晏柴瞿閻阎充慕連连茹習习宦艾魚鱼容向古易慎戈廖庾終终暨居衡步都耿滿满弘匡國国文寇廣广祿禄闕阙東东歐欧殳沃利蔚越夔隆師师鞏巩厙厍聶聂晁勾敖融冷訾辛闞阚那簡简饒饶空曾毋沙乜養养鞠須须豐丰巢關关蒯相查後后荊荆紅红游竺權权逯蓋盖益桓公仉督岳帥帅緱缑亢況况郈有琴歸归海晉晋楚法汝鄢塗涂欽钦商牟佘佴伯賞赏墨哈譙谯篁年愛爱陽阳佟')));
 const compoundSurnames=['司马','诸葛','夏侯','公孙','慕容','皇甫','上官','东方','令狐','毌丘','丘穆陵','长孙','宇文','尉迟','拓跋','呼延','贺兰','轩辕','钟离','淳于','太史','申屠','羊舌','第五','濮阳','公羊','公冶','公良','夹谷'];
 const rejectedPeople=new Set(['太祖','高祖','世祖','烈祖','武帝','文帝','明帝','先主','後主','后主','天子','皇帝','陛下','主上','太子','世子','其子','長子','长子','少子','其弟','其兄','使者','有司','群臣','百官','將軍','将军','刺史','太守','司馬','司马','長史','长史','主簿','參軍','参军','尚書','尚书','詔書','诏书','璽書','玺书','又加','復以','复以','仍以','即以','遂以','乃使','其所','天子又使','白衣','蒙逊']);
+const knownOfficeHolders=new Set(['曹操','曹丕','曹叡','曹爽','司马懿','司马昭','司马炎','诸葛亮','蒋琬','费祎','姜维','董卓','袁绍','孙权','刘备','钟会','邓艾']);
+const pureStaffOffices=/^(?:掾|屬|属|參軍|参军|主簿|長史|长史|司馬|司马|從事|从事|祭酒|舍人|記室|记室|令史|郎中|博士)$/;
 function extractPersonName(token,officeToken){
   const compact=simplify(String(token||'').replace(/[^\u3400-\u9fff]/g,''));
   if(!compact||/[为以拜除授迁转领兼署辟征召封进改使]/.test(compact)) return '';
@@ -71,7 +73,7 @@ function extractPersonName(token,officeToken){
   if(/.+王.$/.test(compact)) return '';
   if(compact.length<=5&&/(?:太祖|高祖|世祖|烈祖|武帝|文帝|明帝|元帝|成帝|宣帝|景帝|天子|皇帝|先主|后主|宣王|[秦汉魏蜀吴燕赵韩齐楚梁陈晋宋鲁]王)/.test(compact)) return '';
   const falseTails=new Set(['祖兖','祖建德','后太祖','王宇','宣王','王子叡','陈宜速','凌就','于是','文雍','和子皓']);
-  const actionTail=/^(?:引|請|请|遣|命|使|令|召|辟|徵|征|拜|除|遷|迁|转|轉|领|領|兼|署|为|為|以|所|其|之|者|时|後|后|前|中|左|右|上|下|内|外)$/;
+  const actionTail=/^(?:引|請|请|遣|命|使|令|召|辟|徵|征|拜|除|遷|迁|转|轉|领|領|兼|署|为|為|以|所|其|之|者|时|後|后|前|中|左|右|上|下|内|外|位)$/;
   const officeTail=/^(?:驾|駕|部|隶|隷|令|郎|掾|属|屬|尉|督|帅|帥|尹|卿|监|監|丞|曹|台|臺|府|寺|牧|守|相|将|將|军|軍)$/;
   const placeNames=new Set(['武陵','张掖','吴郡','东郡','魏郡','巴郡','晋陵','汝南','颍川','河内','河东','南阳','涿郡','辽东','襄阳','江夏','庐江','丹阳','会稽','建安','广汉','犍为','蜀郡','汉中','天水','陇西','金城','武威','酒泉','敦煌','司隶','司隷','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','梁州','凉州','雍州','幽州','并州','交州','广州','宁州','平州','秦州','江州','池阳','黽池','渑池','长沙','建康','鄴','邺']);
   const valid=candidate=>candidate&&!candidate.startsWith('后')&&!candidate.startsWith('祖父')&&!falseTails.has(candidate)&&!rejectedPeople.has(candidate)&&!placeNames.has(candidate)&&!actionTail.test(candidate.slice(-1))&&!officeTail.test(candidate.slice(-1))&&!/(?:太祖|皇帝|天子|先主|后主|宣王|武帝|文帝|明帝|元帝|成帝|门郎)$/.test(candidate);
@@ -79,7 +81,13 @@ function extractPersonName(token,officeToken){
     const at=compact.lastIndexOf(surname);
     if(at<0) continue;
     const candidate=compact.slice(at);
-    if(candidate.length>=surname.length+1&&candidate.length<=surname.length+2&&valid(candidate)) return candidate;
+    if(candidate.length>=surname.length+1&&candidate.length<=surname.length+2&&valid(candidate)){
+      if(surname==='司马'&&candidate.length>surname.length+1){
+        const tail=candidate.slice(surname.length);
+        if(valid(tail)&&singleSurnames.includes(Array.from(tail)[0])) return tail;
+      }
+      return candidate;
+    }
   }
   const tail2=compact.slice(-2);
   const tail3=compact.slice(-3);
@@ -105,7 +113,8 @@ const appointmentPatterns=[
   new RegExp('(?:乃?以)([\\u3400-\\u9fff]{2,9})(?:為|爲)('+officePattern+')','g'),
   new RegExp('([\\u3400-\\u9fff]{2,9})(?:拜|除|授|遷|轉|領|兼|署|辟|徵|召)(?:為|爲)?('+officePattern+')','g'),
   new RegExp('([\\u3400-\\u9fff]{2,9})(?:為|爲)('+officePattern+')','g'),
-  new RegExp('(?:拜|除|授|遷|轉|領|兼|署|辟|徵|召)([\\u3400-\\u9fff]{2,9})(?:為|爲)?('+officePattern+')','g')
+  new RegExp('(?:拜|除|授|遷|轉|領|兼|署|辟|徵|召)([\\u3400-\\u9fff]{2,9})(?:為|爲)?('+officePattern+')','g'),
+  new RegExp('進([\\u3400-\\u9fff]{2,4})位(?:為|爲)('+officePattern+')','g')
 ];
 const titlePattern=new RegExp('(?:封|進封|改封)([\\u3400-\\u9fff]{2,9})(?:為|爲)([\\u3400-\\u9fff]{1,6}(?:王|公|侯))','g');
 function serviceDomainFor(office){
@@ -142,6 +151,7 @@ function extractCandidates(text,metadata){
     const simplifiedName=simplify(traditionalName);
     const name=simplifiedName==='刘障'?'刘璋':simplifiedName;
     const officeName=simplify(officeToken);
+    if(pureStaffOffices.test(officeName)&&knownOfficeHolders.has(name)){ rejected+=1; return; }
     const dedupe=[metadata.work,metadata.volume,metadata.evidenceLayer,name,officeName,context].join('|');
     if(seen.has(dedupe)) return;
     seen.add(dedupe);
