@@ -733,6 +733,7 @@ body{background:#F4F3EF;}
 .people-detail-main p{margin:4px 0;font-size:12px;color:#6F766F;line-height:1.65;}
 .people-bio{padding:9px 11px;border-left:3px solid #C9B39F;border-radius:5px;background:#F8F4EC;color:#6A6358;white-space:pre-wrap;}
 .homonym-note{margin-top:8px;padding:5px 9px;border:1px dashed #B7AC98;border-radius:5px;background:#FBF8F1;color:#8A7357;font-size:11px;line-height:1.5;}
+.people-source-note{margin-top:7px;padding:5px 9px;border-left:3px solid #A7B4A9;border-radius:4px;background:#F6F7F3;color:#66705F;font-size:11px;line-height:1.6;}
 .people-bio-source{font-size:10.5px!important;color:#8B8277!important;}
 .person-card-bio{margin-top:7px;color:#6D746D;font-size:10.5px;line-height:1.55;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
 .people-career-list{display:flex;flex-direction:column;gap:7px;}
@@ -5266,12 +5267,24 @@ const app = createApp({
     function residenceDefinitionFor(owner){
       if(!owner) return null;
       const ownerName=canonicalOfficeName(owner.name),figures=courtFigures(owner),kaifu=courtKaifuPolicyFor(owner);
+      function categoryRoleMatches(item){
+        const category=String(owner.category||'');
+        const name=canonicalOfficeName(owner.name);
+        if(!(item.ownerCategories||[]).includes(category)) return false;
+        if(category==='州牧刺史') return /州牧|刺史/.test(name);
+        if(category==='郡国守相') return /太守|国相|相$/.test(name);
+        if(category==='太子官属') return /储君|皇太子|太子$/.test(name);
+        if(category==='诸王官属') return /王$|王国|王府/.test(name);
+        if(category==='大将军／大司马') return /大将军|大司马/.test(name);
+        if(category==='将军武职') return /将军/.test(name);
+        return false;
+      }
       return (window.SGZ_OFFICE_RESIDENCES||[]).filter(item=>!item.isFallback&&policyPolityMatches(item)&&recordValidAtCourtYear(item)).map(item=>{
         let score=0;
         const names=(item.ownerOfficeNames||[]).map(canonicalOfficeName);
         if(names.includes(ownerName)) score+=60;
         else if(canonicalOfficeName(item.ownerOfficeName)===ownerName) score+=50;
-        if((item.ownerCategories||[]).includes(owner.category)) score+=25;
+        if(categoryRoleMatches(item)) score+=25;
         if(item.ownerPersonName){
           if(figures.some(person=>String(person.name||'')===item.ownerPersonName)) score+=100;
           else if(figures.length) return {item,score:-1};
@@ -5316,9 +5329,9 @@ const app = createApp({
     }
     function courtResidenceRolesFor(owner){
       if(!owner) return [];
-      const roles=currentArr.value.filter(node=>node.parent===owner.key&&node.kind==='office'&&(['幕府属官','州郡属官','太子官属','诸王官属'].includes(node.category))&&courtNodeVisible(node));
       const definition=residenceDefinitionFor(owner);
       if(definition?.roles?.length){
+        const roles=currentArr.value.filter(node=>node.parent===owner.key&&node.kind==='office'&&(['幕府属官','州郡属官','太子官属','诸王官属'].includes(node.category))&&courtNodeVisible(node));
         const consumed=new Set();
         const merged=definition.roles.map((template,index)=>{
           const match=roles.find(node=>!consumed.has(node.key)&&canonicalOfficeName(node.name)===canonicalOfficeName(template.officeName));
@@ -5331,12 +5344,27 @@ const app = createApp({
         });
         return merged.concat(roles.filter(node=>!consumed.has(node.key)));
       }
-      if(roles.length || !['州牧刺史','郡国守相'].includes(owner.category)) return roles;
+      if(!['州牧刺史','郡国守相','太子官属','诸王官属'].includes(owner.category)) return [];
       const names=owner.category==='州牧刺史'?(window.SGZ_BAIGUANZHI_STAFF?.province||['别驾从事','治中从事','功曹','簿曹','主簿']):(window.SGZ_BAIGUANZHI_STAFF?.commandery||['郡丞','功曹','主簿','督邮']);
+      if(owner.category==='太子官属'||owner.category==='诸王官属') return [];
       return names.map((name,index)=>({key:owner.key+'::staff::'+index,kind:'office',name,category:'州郡属官',institutionType:owner.category==='州牧刺史'?'州府':'郡府',serviceDomain:/兵曹|督军/.test(name)?'文武兼':'文官',hanRank:'未详',figures:[],virtualResidenceRole:true,residenceOrder:(index+1)*10,note:'按州郡属官制度展示；具体到任人物与员额须另行录入。'}));
     }
+    function courtResidenceReason(owner){
+      if(!owner) return '';
+      const definition=residenceDefinitionFor(owner);
+      if(definition) return '府署定义：'+definition.name;
+      const kaifu=courtKaifuPolicyFor(owner);
+      if(kaifu&&kaifu.qualificationType!=='待考') return '开府依据：'+kaifu.qualificationType;
+      if(owner.category==='州牧刺史') return '州府（州牧／刺史）';
+      if(owner.category==='郡国守相') return '郡府（太守／国相）';
+      const name=canonicalOfficeName(owner.name);
+      if(owner.category==='太子官属'&&/储君|皇太子|太子$/.test(name)) return '东宫（太子官属）';
+      if(owner.category==='诸王官属'&&/王$|王国|王府/.test(name)) return '王府（诸王官属）';
+      return '';
+    }
     function courtResidenceAvailable(node){
-      return Boolean(node&&node.kind==='office'&&(residenceDefinitionFor(node)||courtKaifuPolicyFor(node)||courtResidenceRolesFor(node).length||['州牧刺史','郡国守相'].includes(node.category)));
+      if(!node||node.kind!=='office') return false;
+      return Boolean(courtResidenceReason(node));
     }
     function courtResidenceRoleOrder(node){
       const name=String(node?.name||'');
@@ -5359,6 +5387,7 @@ const app = createApp({
       if(definition?.backgroundStyle) return definition.backgroundStyle;
       const category=String(owner.category||'');
       const name=String(owner.name||'');
+      if(!courtResidenceAvailable(owner)) return 'plain';
       if(category==='州牧刺史') return 'province';
       if(category==='郡国守相') return 'commandery';
       if(category==='太子官属'||category==='诸王官属'||/太子|王国|诸王/.test(name)) return 'prince';
@@ -6914,7 +6943,7 @@ const app = createApp({
         const displayName=personKeyOf(name);
         if(!displayName) return null;
         const personId=personIdOf(displayName,context);
-        if(!map.has(personId)) map.set(personId,{key:personId,personId,name:displayName,aliases:[],zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],homonymStatus:'',homonymGroupId:'',appointments:[]});
+        if(!map.has(personId)) map.set(personId,{key:personId,personId,name:displayName,canonicalName:'',searchKeys:[],aliases:[],zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],homonymStatus:'',homonymGroupId:'',appointments:[]});
         return map.get(personId);
       }
       function addAppointment(target,record){
@@ -6960,6 +6989,9 @@ const app = createApp({
       (window.SGZ_PERSON_SOURCE_INDEX?.people||[]).forEach(person=>{
         const e=entry(person.name,{personId:person.personId}); if(!e) return;
         e.aliases.push(...(person.aliases||[]));
+        const identity=window.SGZ_PERSON_IDENTITIES?.resolve(person.name);
+        if(identity?.canonicalName)e.canonicalName=identity.canonicalName;
+        e.searchKeys.push(...(identity?.searchKeys||[]));
         if(person.homonymStatus)e.homonymStatus=person.homonymStatus;
         if(person.homonymGroupId)e.homonymGroupId=person.homonymGroupId;
         e.sourceWorks.push(person.sourceWork||'');
@@ -6970,6 +7002,9 @@ const app = createApp({
       (window.SGZ_PERSON_SOURCE_INDEX?.appointments||[]).forEach(record=>{
         const e=entry(record.name,{personId:record.personId}); if(!e) return;
         e.aliases.push(...(record.aliases||[]));
+        const identity=window.SGZ_PERSON_IDENTITIES?.resolve(record.name);
+        if(identity?.canonicalName)e.canonicalName=identity.canonicalName;
+        e.searchKeys.push(...(identity?.searchKeys||[]));
         if(record.homonymStatus)e.homonymStatus=record.homonymStatus;
         if(record.homonymGroupId&&!e.homonymGroupId)e.homonymGroupId=record.homonymGroupId;
         addAppointment(e,{...record,source:'sourceIndex',nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
@@ -7065,7 +7100,7 @@ const app = createApp({
         if(peopleServiceDomain.value!=='all'&&!p.serviceDomains.includes(peopleServiceDomain.value)) return false;
         if(peopleInstitutionType.value!=='all'&&!p.institutionTypes.includes(peopleInstitutionType.value)) return false;
         if(!q) return true;
-        const hay=[p.name,p.aliases.join(' '),p.zi,p.birthplace,p.bio,p.personId,p.sourceVolumes.join(' ')].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity,a.sourceLocator,a.sourceExcerpt].join(' '))).join('\n').toLowerCase();
+        const hay=[p.name,p.canonicalName,p.aliases.join(' '),p.searchKeys.join(' '),p.zi,p.birthplace,p.bio,p.personId,p.sourceVolumes.join(' ')].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity,a.sourceLocator,a.sourceExcerpt].join(' '))).join('\n').toLowerCase();
         return hay.includes(q);
       }).sort((a,b)=>personRelevanceScore(a)-personRelevanceScore(b)||String(a.name).localeCompare(String(b.name),'zh-CN')||String(a.personId).localeCompare(String(b.personId)));
     });
@@ -7297,6 +7332,24 @@ const app = createApp({
           }
         }
       });
+      Object.entries(fzIndex).forEach(([key,list])=>{
+        if(list.length<2) return;
+        const [polity,commander,title,jurisdiction]=key.split('|');
+        add('info','州镇表','同人同职同辖区多段记录','「'+commander+'」任「'+title+'」辖「'+jurisdiction+'」共 '+list.length+' 段记录（'+list.map(r=>recordYearLabel(r)).join('、')+'）。请确认为连任拆分、兼领还是重复导入。',{type:'fangzhen',record:list[0]});
+      });
+      // 人物记：同名待消歧（合并展示但未人工确认）
+      personRegistry.value.filter(p=>/同名待消歧/.test(p.homonymStatus||'')&&!/异人/.test(p.homonymStatus||'')).forEach(p=>{
+        add('warn','人物记','同名待消歧','「'+p.name+'」当前按姓名合并展示，含 '+p.sourceVolumes.length+' 卷来源；若实为异人请拆分。',{type:'person',name:p.name,personId:p.personId});
+      });
+      // 朝堂：府署入口无显式定义
+      const residenceOnlyByPolicy=currentArr.value.filter(node=>node.kind==='office'&&courtResidenceAvailable(node)&&!residenceDefinitionFor(node));
+      residenceOnlyByPolicy.forEach(node=>{
+        add('info','职官谱','府署入口无显式定义','「'+node.name+'」可进入府署（'+courtResidenceReason(node)+'），但无独立府署定义记录，请复核是否应仅选中而非进入府署。',{type:'node',factionKey:currentFaction.value,treeType:'office',nodeKey:node.key});
+      });
+      // 正史逐卷覆盖：待复核卷
+      (window.SGZ_PERSON_SOURCE_INDEX?.coverage||[]).filter(item=>item.processedStatus==='待复核').forEach(item=>{
+        add('warn','人物记','正史卷待复核',(item.work||'')+'卷'+item.volume+' 自动扫描未提取到候选，句式覆盖可能不足，需人工复核。',{type:'volume',work:item.work,volume:item.volume});
+      });
       // 跨模块一致性：州镇职任标题在对应官制树中是否有同名节点
       fangzhenRecords.value.forEach(record=>{
         const key=record.polity==='魏'?'wei':record.polity==='汉'?'shu':record.polity==='吴'?'wu':record.polity==='晋'?'jin':'';
@@ -7368,7 +7421,12 @@ const app = createApp({
       }else if(t.type==='person'){
         switchModule('people');
         peopleQuery.value=t.name;
-        nextTick(()=>openPeopleDetail(t.name));
+        nextTick(()=>openPeopleDetail(t.personId||t.name));
+      }else if(t.type==='volume'){
+        switchModule('people');
+        peopleQuery.value='';
+        peopleSource.value=t.work==='《三国志》'?'sgz':'jinshu';
+        peopleQuery.value='卷'+t.volume;
       }else if(t.type==='battle'){
         switchModule('battle');
         const raw=t.battle||{};
@@ -7382,6 +7440,18 @@ const app = createApp({
       auditIssues.value.forEach(issue=>lines.push('['+auditSeverityMeta[issue.severity]+']（'+issue.module+'）'+issue.title+'：'+issue.detail));
       downloadBlob(lines.join('\n'),'text/plain;charset=utf-8','三国职官谱_数据审计.txt');
       pushHistory('导出数据审计报告');
+    }
+    function exportAuditWorkbook(){
+      const workbook={
+        generatedAt:new Date().toISOString(),
+        auditIssues:auditIssues.value,
+        pendingVolumes:(window.SGZ_PERSON_SOURCE_INDEX?.coverage||[]).filter(item=>item.processedStatus==='待复核').map(item=>({work:item.work,volume:item.volume,reason:item.exclusionReasons?.join('；')})),
+        homonymPending:personRegistry.value.filter(p=>/同名待消歧/.test(p.homonymStatus||'')).map(p=>({name:p.name,personId:p.personId,volumes:p.sourceVolumes,status:p.homonymStatus})),
+        doubtfulFangzhen:fangzhenRecords.value.filter(r=>['存疑','待考','未上任','遥领'].includes(r.appointmentStatus)).map(r=>({commander:r.commander,title:r.title,jurisdiction:r.jurisdiction,polity:r.polity,tenureText:r.tenureText||'',status:r.appointmentStatus,sourceTitle:r.sourceTitle||''})),
+        uncertainResidences:currentArr.value.filter(node=>node.kind==='office'&&courtResidenceAvailable(node)&&!residenceDefinitionFor(node)).map(node=>({name:node.name,category:node.category,reason:courtResidenceReason(node)}))
+      };
+      downloadBlob(JSON.stringify(workbook,null,2),'application/json;charset=utf-8','三国职官谱_V45_复核工作簿.json');
+      pushHistory('导出 V45 复核工作簿');
     }
 
     function flattenComparison(factionKey){
@@ -7986,6 +8056,7 @@ const app = createApp({
       courtPrimaryFigure, courtFigureCount, courtSeatCount, courtFigureSlots, courtColumnCount, courtSeatMeta, courtRulerLabel,
       courtBranchOf, courtSeatStats, showCourtResidence, courtResidence, courtResidenceAvailable, courtResidenceRoleMeta,
       openCourtResidence, closeCourtResidence, editCourtResidenceOwner, courtSlotClick, courtResidenceStyle, courtResidenceClass, courtResidenceType, courtResidenceName, courtKaifuLabel,
+      courtResidenceReason,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
@@ -8038,7 +8109,7 @@ const app = createApp({
       personPortraitFor, portraitStyleFor,
       personMetaDialog, openPersonMetaEditor, savePersonMeta, uploadPersonPortrait,
       showAuditCenter, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
-      runDataAudit, auditJump, exportAuditReport,
+      runDataAudit, auditJump, exportAuditReport, exportAuditWorkbook,
       battleRecords, battleQuery, battleKind, battlePeriodId, battleOnlyBattle, battleBranch, battleProvince,
       battleEntryList, battlePeriodOptions, battleMetrics, filteredBattles, battleBranchOptions, battleProvinceOptions, battleBranchGroups, battleProvinceGroups, battleProvinceCount, battleKindLabel, battleKindClass,
       showBattleDetail, activeBattleDetail, openBattleDetail, battleDetailYear, battlePeriodForItem, battleRelatedPeople, jumpToBattlePeriod,
@@ -8108,6 +8179,7 @@ const app = createApp({
               <el-dropdown-item @click="showArchives=true">多存档管理</el-dropdown-item>
               <el-dropdown-item @click="saveVersion">保存命名版本</el-dropdown-item>
               <el-dropdown-item @click="showVersions=true">版本回滚列表</el-dropdown-item>
+              <el-dropdown-item @click="showAuditCenter=true; runDataAudit()">审校中心（V45）</el-dropdown-item>
               <el-dropdown-item @click="connectBackend">连接后端数据库…</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -8868,11 +8940,11 @@ const app = createApp({
           <div v-for="p in filteredPeople" :key="p.key" class="person-card" @click="openPeopleDetail(p.name)">
             <div class="person-avatar" :style="portraitStyleFor(p)"><img v-if="p.portrait" :src="p.portrait" :alt="p.name+'立绘'"/><span v-else>{{p.name.slice(0,1)}}</span></div>
             <div class="person-card-body">
-              <div class="person-card-name"><strong>{{p.name}}</strong><span v-if="p.zi">字{{p.zi}}</span></div>
+              <div class="person-card-name"><strong>{{p.canonicalName||p.name}}</strong><span v-if="p.zi">字{{p.zi}}</span></div>
               <div class="person-card-badges">
                 <span v-for="pol in p.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span>
               </div>
-              <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>任期未详</span><br/>籍贯：{{p.birthplace||'未详'}}</div>
+              <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · 含 <b>{{p.sourceVolumes.length}}</b> 卷来源 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>任期未详</span><br/>籍贯：{{p.birthplace||'未详'}}</div>
               <div class="person-card-bio">{{p.bio}}</div>
               <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 时期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
             </div>
@@ -9254,6 +9326,12 @@ const app = createApp({
         </div>
         <div v-if="activeBattleDetail.result" class="battle-detail-result">{{activeBattleDetail.result}}</div>
         <p style="font-size:12.5px;color:#6F766F;line-height:1.75;margin:0 0 10px;">{{activeBattleDetail.desc||activeBattleDetail.note}}</p>
+        <div v-if="activeBattleDetail.participants&&activeBattleDetail.participants.length" class="battle-detail-meta">
+          <div class="row"><span>参战方</span>{{activeBattleDetail.participants.join(' · ')}}</div>
+        </div>
+        <div v-if="activeBattleDetail.strengthNote" class="battle-detail-meta">
+          <div class="row"><span>兵力说明</span>{{activeBattleDetail.strengthNote}}</div>
+        </div>
         <div class="battle-detail-meta">
           <div class="row" v-if="activeBattleDetail.front"><span>战场方位</span>{{activeBattleDetail.front}}</div>
         </div>
@@ -9277,10 +9355,11 @@ const app = createApp({
         <div class="people-detail-head">
           <div class="people-detail-portrait" :style="portraitStyleFor(activePeopleDetail)"><img v-if="activePeopleDetail.portrait" :src="activePeopleDetail.portrait" :alt="activePeopleDetail.name+'立绘'"/><span v-else>{{activePeopleDetail.name.slice(0,1)}}</span></div>
           <div class="people-detail-main">
-            <h3>{{activePeopleDetail.name}}<span v-if="activePeopleDetail.zi" style="margin-left:8px;font-size:14px;color:#8A918A;">字{{activePeopleDetail.zi}}</span></h3>
+            <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}<span v-if="activePeopleDetail.zi" style="margin-left:8px;font-size:14px;color:#8A918A;">字{{activePeopleDetail.zi}}</span></h3>
             <p v-if="activePeopleDetail.birthplace">籍贯：{{activePeopleDetail.birthplace}}</p>
             <p v-if="activePeopleDetail.birthYear||activePeopleDetail.deathYear">生卒：{{activePeopleDetail.birthYear||'?'}}—{{activePeopleDetail.deathYear||'?'}}</p>
             <p v-if="activePeopleDetail.homonymStatus" class="homonym-note">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
+            <p v-if="activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
             <p v-if="activePeopleDetail.bio" class="people-bio">{{activePeopleDetail.bio}}</p>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
             <div style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.name)">编辑人物档案</el-button></div>
@@ -9573,6 +9652,45 @@ const app = createApp({
           <div class="t">{{ h.time }}</div>
         </div>
         <el-button size="small" text @click="jumpToHistory(idx)" :disabled="idx===history.index">回退到此步</el-button>
+      </div>
+    </el-drawer>
+
+    <el-drawer v-model="showAuditCenter" title="审校中心" size="680px" class="audit-center">
+      <div class="audit-center-head">
+        <span>上次运行：{{auditLastRun||'尚未运行'}} · 仅保留前 500 项</span>
+        <div style="display:flex;gap:8px;">
+          <el-button size="small" type="primary" plain @click="runDataAudit()">重新审计</el-button>
+          <el-button size="small" plain @click="exportAuditReport()">导出报告</el-button>
+          <el-button size="small" plain @click="exportAuditWorkbook()">导出复核工作簿</el-button>
+        </div>
+      </div>
+      <div class="audit-metrics">
+        <div class="audit-metric total"><div class="value">{{auditMetrics.total}}</div><div class="label">问题总数</div></div>
+        <div class="audit-metric error"><div class="value">{{auditMetrics.error}}</div><div class="label">错误</div></div>
+        <div class="audit-metric warn"><div class="value">{{auditMetrics.warn}}</div><div class="label">待定</div></div>
+        <div class="audit-metric info"><div class="value">{{auditMetrics.info}}</div><div class="label">可选</div></div>
+      </div>
+      <div class="audit-filters">
+        <el-select v-model="auditFilters.severity" size="small" style="width:120px;" aria-label="严重度筛选">
+          <el-option label="全部严重度" value="all" /><el-option label="错误" value="error" /><el-option label="待定" value="warn" /><el-option label="可选" value="info" />
+        </el-select>
+        <el-select v-model="auditFilters.module" size="small" style="width:140px;" aria-label="模块筛选">
+          <el-option label="全部模块" value="all" />
+          <el-option v-for="m in ['职官谱','人物记','州镇表','战事纪','食货志','金石录','形势图']" :key="m" :label="m" :value="m" />
+        </el-select>
+        <span style="font-size:11px;color:#8A918A;">当前显示 {{auditFiltered.length}} 项</span>
+      </div>
+      <div v-if="!auditFiltered.length" class="audit-empty">没有符合条件的问题。可点击“重新审计”，或在其他模块录入数据后再次运行。</div>
+      <div v-else class="audit-issue-list">
+        <article v-for="issue in auditFiltered" :key="issue.id" class="audit-issue" @click="auditJump(issue)">
+          <div class="audit-issue-head">
+            <span class="audit-sev" :class="issue.severity">{{auditSeverityMeta[issue.severity]}}</span>
+            <span class="audit-module">{{issue.module}}</span>
+            <strong>{{issue.title}}</strong>
+          </div>
+          <p>{{issue.detail}}</p>
+          <div class="audit-issue-foot"><span>#{{issue.id.replace('audit_','')}}</span><span style="flex:1"></span><span>点击定位 ›</span></div>
+        </article>
       </div>
     </el-drawer>
 

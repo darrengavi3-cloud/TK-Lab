@@ -1,0 +1,51 @@
+{
+  "release": "V45",
+  "title": "史实审核错误修复与数据补充",
+  "schemaVersion": 9,
+  "scope": ["职官谱", "人物记", "州镇表", "战事纪", "食货志", "金石录", "形势图"],
+  "metrics": {
+    "residenceEntryFix": true,
+    "identityVersion": 2,
+    "sameNameGroupsMerged": 22,
+    "falsePositiveRemoved": 2,
+    "appointmentCandidates": 1071,
+    "defaultAppointments": 316,
+    "peiAnnotations": 69,
+    "pendingVolumes": 6,
+    "attachmentXlsxCandidates": 135,
+    "attachmentDocxCandidates": 134,
+    "fangzhenDoubtful": 66,
+    "battleSupplemented": 12
+  },
+  "changes": [
+    "修复任意点击官位进入丞相府署：府署入口改为显式府署/开府/州郡东宫王府府主限定",
+    "兼容府署不再作为任意点击兜底；东宫/王府/将军府按府主角色匹配",
+    "人物身份表升级 v2，跨卷同人合并为稳定 personId，同名异人按显式消歧拆分",
+    "清除白衣/蒙逊等误识别，修正辖区/官称误识别与繁体异体官名映射",
+    "48 卷重扫，抽取器覆盖更多句式；无法提取卷标待复核",
+    "两份附件全量结构化为存疑/待考候选",
+    "食货志与晋书卷二十六对照无新增臆造条目",
+    "战事纪补 participants/strengthNote，缺载标待考",
+    "审校中心补齐入口并支持导出复核工作簿"
+  ],
+  "artifacts": {
+    "documentation": "docs/V45史实审核与数据补充.md",
+    "verification": "scripts/verify-v45-audit.mjs",
+    "attachmentCandidates": "data/v45-attachment-candidates.json",
+    "fangzhenReview": "data/v45-fangzhen-review.json",
+    "shihuoGap": "data/v45-shihuo-gap.json",
+    "portableExport": "exports/三国职官谱-单文件版.html",
+    "deployment": "pending-private-sites"
+  },
+  "validation": {
+    "verifyV45Audit": "passed",
+    "verifyV43": "passed",
+    "verifyV44": "passed",
+    "verifyResearchModel": "passed",
+    "verifyProject": "passed",
+    "verifyMapData": "passed",
+    "verifyHistoricalModel": "passed",
+    "visualQa": "not-run-in-browser",
+    "deployment": "pending"
+  }
+}

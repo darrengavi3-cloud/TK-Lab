@@ -1709,12 +1709,18 @@
       ],
       "priority": 50,
       "minZoom": 7,
-      "sourceIds": [],
-      "sourceLocators": [],
+      "sourceIds": [
+        "source:shuijingzhu:14"
+      ],
+      "sourceLocators": [
+        "《水经注》卷14"
+      ],
       "evidence": {
-        "status": "待考",
+        "status": "原文命中",
         "sourceWork": "《水经注》",
-        "matchedVolumes": [],
+        "matchedVolumes": [
+          14
+        ],
         "note": "只证明古水名及叙述关系，不作为现代精确几何来源。"
       },
       "geometrySource": {
@@ -1723,7 +1729,7 @@
         "status": "推定",
         "note": "水名证据与几何来源分离记录；坐标不因原文命中而升级为实测。"
       },
-      "researchStatus": "存疑"
+      "researchStatus": "推定"
     },
     {
       "id": "hydronym:dbea0e95e4b2",
@@ -3409,12 +3415,18 @@
       ],
       "priority": 50,
       "minZoom": 7,
-      "sourceIds": [],
-      "sourceLocators": [],
+      "sourceIds": [
+        "source:shuijingzhu:36"
+      ],
+      "sourceLocators": [
+        "《水经注》卷36"
+      ],
       "evidence": {
-        "status": "待考",
+        "status": "原文命中",
         "sourceWork": "《水经注》",
-        "matchedVolumes": [],
+        "matchedVolumes": [
+          36
+        ],
         "note": "只证明古水名及叙述关系，不作为现代精确几何来源。"
       },
       "geometrySource": {
@@ -3423,7 +3435,7 @@
         "status": "推定",
         "note": "水名证据与几何来源分离记录；坐标不因原文命中而升级为实测。"
       },
-      "researchStatus": "存疑"
+      "researchStatus": "推定"
     },
     {
       "id": "hydronym:ab96f39adf1e",
@@ -3617,12 +3629,18 @@
       ],
       "priority": 50,
       "minZoom": 7,
-      "sourceIds": [],
-      "sourceLocators": [],
+      "sourceIds": [
+        "source:shuijingzhu:14"
+      ],
+      "sourceLocators": [
+        "《水经注》卷14"
+      ],
       "evidence": {
-        "status": "待考",
+        "status": "原文命中",
         "sourceWork": "《水经注》",
-        "matchedVolumes": [],
+        "matchedVolumes": [
+          14
+        ],
         "note": "只证明古水名及叙述关系，不作为现代精确几何来源。"
       },
       "geometrySource": {
@@ -3631,7 +3649,7 @@
         "status": "推定",
         "note": "水名证据与几何来源分离记录；坐标不因原文命中而升级为实测。"
       },
-      "researchStatus": "存疑"
+      "researchStatus": "推定"
     },
     {
       "id": "hydronym:758abc23777b",

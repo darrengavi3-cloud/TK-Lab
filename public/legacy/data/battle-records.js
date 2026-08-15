@@ -38,6 +38,21 @@ const EVENT_BATTLE_LINKS = Object.freeze({
   ev_weifa_263:'jianwei', ev_miewu_280:'miewu'
 });
 
+const BATTLE_SUPPLEMENT = Object.freeze({
+  guandu:{participants:['曹操','袁绍'],strengthNote:'袁绍众号十余万，曹操兵少，史料无一致实数（待考）。'},
+  chibi:{participants:['孙刘联军','曹操'],strengthNote:'曹军号称八十万，实际南下兵力有争议（待考）；孙刘联军约五万。'},
+  xiangfan:{participants:['关羽（汉）','曹仁、于禁（魏）','吕蒙（吴）'],strengthNote:'于禁所领七军见《三国志》本传，总兵力无一致实数（待考）。'},
+  hefei:{participants:['张辽（魏）','孙权（吴）'],strengthNote:'孙权攻合肥众号十万，张辽以八百死士突阵（《三国志·张辽传》）。'},
+  yiling:{participants:['陆逊（吴）','刘备（汉）'],strengthNote:'刘备连营数百里，吴军约五万，双方实数见注家分歧（待考）。'},
+  jieting:{participants:['马谡（汉）','张郃（魏）'],strengthNote:'马谡违亮节度、舍水上山，张郃绝其汲道；双方兵力无一致实数（待考）。'},
+  wuzhangyuan:{participants:['诸葛亮（汉）','司马懿（魏）'],strengthNote:'汉军分兵屯田示久驻，魏军坚壁不出；双方兵力无一致实数（待考）。'},
+  tongguan:{participants:['曹操','韩遂、马超'],strengthNote:'关西诸将联军与曹军对阵，兵力无一致实数（待考）。'},
+  ruxu:{participants:['孙权','曹操'],strengthNote:'曹操攻濡须，孙权率水军拒守；双方兵力无一致实数（待考）。'},
+  dongxing:{participants:['丁奉（吴）','诸葛诞（魏）'],strengthNote:'丁奉雪中率三千人先至，魏军三路来攻（《三国志·丁奉传》）。'},
+  shouchun_257:{participants:['司马昭（魏）','诸葛诞（魏）、吴'],strengthNote:'司马昭围寿春，吴军来援；城中粮尽而降（《三国志·诸葛诞传》）。'},
+  miewu:{participants:['司马炎（晋）','孙皓（吴）'],strengthNote:'晋六路伐吴，王濬楼船顺江而下；双方总兵力无一致实数（待考）。'}
+});
+
 const battleData = {
   schemaVersion: 1,
   scope: '汉末至西晋（168—316）战事与军政沿革',
@@ -145,7 +160,7 @@ const battleData = {
 
 ['events','battles','battlefields'].forEach(function(kind){
   battleData[kind]=battleData[kind].map(function(item){
-    return Object.assign({},item,{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||['跨区域']))});
+    return Object.assign({},item,kind==='battles'?(BATTLE_SUPPLEMENT[item.id]||{}):{},{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||['跨区域']))});
   });
 });
 battleData.provinceIndex=Object.freeze(['中央','司隶','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','跨区域']);
