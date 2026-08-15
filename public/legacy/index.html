@@ -686,6 +686,16 @@ body{background:#F4F3EF;}
 .people-toolbar{display:flex;align-items:center;gap:9px;margin-bottom:14px;padding:12px;background:#fff;border:1px solid var(--rule);border-radius:12px;flex-wrap:wrap;}
 .people-toolbar .el-input{max-width:360px;}
 .people-advanced-filters{display:flex;flex-wrap:wrap;gap:8px;padding:2px 0 12px;align-items:center;border-bottom:1px dashed rgba(160,152,138,.35);margin-bottom:10px}
+.people-view-layout{display:flex;gap:14px;align-items:flex-start}
+.people-view-nav{display:flex;flex-direction:column;gap:8px;width:84px;flex:0 0 auto;padding:10px 8px;border:1px solid var(--rule);border-radius:12px;background:rgba(255,255,255,.9);position:sticky;top:76px}
+.people-view-button{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;border:1px solid transparent;border-radius:10px;background:transparent;color:#687068;font:inherit;font-size:11px;cursor:pointer;transition:all .18s ease}
+.people-view-button .pv-glyph{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:#EDE7DB;color:#6F5B3E;font:700 14px 'Noto Serif SC','Songti SC',serif}
+.people-view-button.active{border-color:rgba(141,61,50,.4);background:#FBF5EF;color:#8D3D32}
+.people-view-button.active .pv-glyph{background:#8D3D32;color:#FFFDF8}
+.people-view-content{flex:1;min-width:0}
+.people-period-item{cursor:pointer}
+.people-period-item:hover{background:#FBF5EF}
+@media(max-width:860px){.people-view-layout{flex-direction:column}.people-view-nav{flex-direction:row;width:100%;position:static}.people-view-button{flex:1}}
   .people-metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px;}
   .people-period-panel{margin:0 0 14px;padding:13px 14px;border:1px solid var(--rule);border-radius:12px;background:rgba(255,255,255,.82);}
   .people-period-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
@@ -4421,6 +4431,7 @@ const app = createApp({
     const peoplePage = ref(1);
     const peoplePageSize = 96;
     const peopleAdvanced = ref(false);
+    const peopleView = ref('people');
     const periodRosterPhase = ref('all');
     const showPeopleDetail = ref(false);
     const activePeopleDetail = ref(null);
@@ -7189,6 +7200,13 @@ const app = createApp({
       activePeopleDetail.value={...entry,appointments:collectPersonAppointments(entry.personId)};
       showPeopleDetail.value=true;
     }
+    function openPeopleDetailFromSnapshot(item){
+      const name=String(item.holder||'').trim().replace(/^[（(]|[）)]$/g,'').split(/[、，,；;]/)[0];
+      if(!name||/未详|无/.test(name)) return;
+      peopleView.value='people';
+      peopleQuery.value='';
+      nextTick(()=>openPeopleDetail(name));
+    }
     function openPersonMetaEditor(personRef){
       const registryEntry=personRegistry.value.find(item=>item.personId===personRef)||personRegistry.value.find(item=>item.name===personKeyOf(personRef));
       if(!registryEntry) return;
@@ -8162,7 +8180,8 @@ const app = createApp({
       officialSummaryRecords, officialSummaryGroups, unassignedOfficialCount,
       addFigureRecord, removeFigureRecord, onFigureRulerChanged, uploadPortrait, clearPortrait,
       recordPeriodLabel, recordYearLabel, openPersonProfile, jumpToPersonAppointment,
-      peopleQuery, peoplePolity, peopleKind, peopleOnlyPortrait, peopleAdvanced, filteredPeople, peopleMetrics,
+      peopleQuery, peoplePolity, peopleKind, peopleOnlyPortrait, peopleAdvanced, peopleView, filteredPeople, peopleMetrics,
+      openPeopleDetailFromSnapshot,
       periodRosterPhase, periodRosterPhases, filteredPeriodOfficeSnapshots,
       showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass,
       personPortraitFor, portraitStyleFor,
@@ -8914,6 +8933,16 @@ const app = createApp({
 
     <main v-if="activeModule==='people'" class="module-page people-workbench">
       <div class="module-page-inner">
+        <div class="people-view-layout">
+          <nav class="people-view-nav" aria-label="人物记视图切换">
+            <button class="people-view-button" :class="{active:peopleView==='people'}" @click="peopleView='people'">
+              <span class="pv-glyph">人</span><span>人物档案</span>
+            </button>
+            <button class="people-view-button" :class="{active:peopleView==='snapshot'}" @click="peopleView='snapshot'">
+              <span class="pv-glyph">快</span><span>时期快照</span>
+            </button>
+          </nav>
+          <div class="people-view-content">
         <div class="page-heading">
           <div>
             <div class="page-kicker">人物记 · 人物 · 履历 · 立绘</div>
@@ -8977,23 +9006,7 @@ const app = createApp({
           <div class="people-metric"><strong>{{peopleMetrics.curated}}</strong><span>史传提要</span></div>
           <div class="people-metric"><strong>{{peopleMetrics.portrait}}</strong><span>已有立绘</span></div>
         </div>
-        <section class="people-period-panel" aria-label="213与220年时期官署快照">
-          <div class="people-period-head">
-            <div class="people-period-title">213／220 年时期官署快照<small>具名官员与人名未详官职分列</small></div>
-            <el-select v-model="periodRosterPhase" size="small" style="width:250px;" aria-label="时期官署快照筛选">
-              <el-option label="213／220 年全部快照" value="all" />
-              <el-option v-for="phase in periodRosterPhases" :key="phase" :label="phase" :value="phase" />
-            </el-select>
-          </div>
-          <div class="people-period-grid">
-            <div v-for="item in filteredPeriodOfficeSnapshots" :key="item.id" class="people-period-item">
-              <div class="people-period-item-head"><b>{{item.office}}</b><span class="person-pill" :class="polityPillClass(item.polity)">{{item.polity}}</span></div>
-              <div class="holder">{{item.holder}}</div>
-              <div class="meta">{{item.phase}}</div>
-              <div v-if="item.note" class="note">{{item.note}}</div>
-            </div>
-          </div>
-        </section>
+        <template v-if="peopleView==='people'">
         <div v-if="!filteredPeople.length" class="summary-empty">没有匹配的人物。可减少筛选条件，或在职官谱、州镇表中录入人物后回到本页查看汇总。</div>
         <div v-else class="person-card-grid">
           <div v-for="p in filteredPeople" :key="p.key" class="person-card" @click="openPeopleDetail(p.name)">
@@ -9007,6 +9020,28 @@ const app = createApp({
               <div class="person-card-bio">{{p.bio}}</div>
               <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 时期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
             </div>
+          </div>
+        </div>
+        </template>
+        <template v-else>
+          <section class="people-period-panel" aria-label="213与220年时期官署快照">
+            <div class="people-period-head">
+              <div class="people-period-title">213／220 年时期官署快照<small>具名官员与人名未详官职分列</small></div>
+              <el-select v-model="periodRosterPhase" size="small" style="width:250px;" aria-label="时期官署快照筛选">
+                <el-option label="213／220 年全部快照" value="all" />
+                <el-option v-for="phase in periodRosterPhases" :key="phase" :label="phase" :value="phase" />
+              </el-select>
+            </div>
+            <div class="people-period-grid">
+              <div v-for="item in filteredPeriodOfficeSnapshots" :key="item.id" class="people-period-item" @click="openPeopleDetailFromSnapshot(item)">
+                <div class="people-period-item-head"><b>{{item.office}}</b><span class="person-pill" :class="polityPillClass(item.polity)">{{item.polity}}</span></div>
+                <div class="holder">{{item.holder}}</div>
+                <div class="meta">{{item.phase}}</div>
+                <div v-if="item.note" class="note">{{item.note}}</div>
+              </div>
+            </div>
+          </section>
+        </template>
           </div>
         </div>
       </div>

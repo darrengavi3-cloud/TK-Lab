@@ -23,6 +23,7 @@ const attachment = JSON.parse(read('data/v45-attachment-candidates.json'));
 const shihuoGap = JSON.parse(read('data/v45-shihuo-gap.json'));
 const fangzhenReview = JSON.parse(read('data/v45-fangzhen-review.json'));
 const coverage = JSON.parse(read('data/person-volume-coverage.json'));
+const ziSupplement = JSON.parse(read('data/person-zi-supplement.json'));
 
 // 1. 朝堂/府署误入
 assert(html.includes('courtResidenceReason') && html.includes('府署定义：'), '府署入口依据函数未接入');
@@ -78,6 +79,19 @@ assert(html.includes('同名重复人物'), '同名重复人物审计项未接�
 assert(!html.includes('蜀汉与西南') && html.includes('BATTLE_CAMPS') && html.includes('政权沿革与内政'), '战事纪地域分组未改为国家间');
 assert(html.includes('<strong>国家间</strong>'), '战事纪“时间支线”未改名为“国家间”');
 assert(portable.includes('mergePersonEntries') && portable.includes('BATTLE_CAMPS'), '便携版未同步本轮四项修复');
+
+// 7. 人物记本轮专项回归
+const badNames = ['康立','贲九江','东部','别部','别驾','曹爽请','曹爽引','郎中令','武陵','吴郡','张掖','司隶','池令','费祎命','王导引','越引','罗引','白衣','蒙逊'];
+assert(!sourceIndex.appointments.some(item => badNames.includes(item.name)), '误识别人物未清除');
+const feiYi = sourceIndex.appointments.filter(item => /费祎|費禕/.test(item.name));
+assert(feiYi.length > 0 && new Set(feiYi.map(item => item.personId)).size === 1, '费祎跨卷/跨证据层未合并为单一 personId');
+assert(feiYi.every(item => item.personId === 'person:shu:fei-yi'), '费祎未归入显式身份 person:shu:fei-yi');
+assert(ziSupplement.supplements.some(item => item.name === '柳隐' && item.zi === '休然'), '柳隐表字补充缺失');
+assert(ziSupplement.unresolved.every(item => item.reason.includes('未检出') || item.reason.includes('帝王')), '未补表字必须说明理由，不得臆造');
+assert(html.includes('peopleView') && html.includes('people-view-nav') && html.includes('时期快照'), '人物记快照/人物双按钮未接入');
+assert(html.includes('openPeopleDetailFromSnapshot'), '快照条目跳转人物档案未接入');
+assert(read('data/person-biographies.js').includes("'柳隐':{zi:'休然'"), '柳隐表字未写入人物传记数据');
+assert(portable.includes('people-view-nav') && portable.includes('peopleView==='), '便携版未同步人物记双按钮');
 
 console.log('V45 审计验证通过');
 console.log(`人物候选 ${sourceIndex.summary.appointments} 条 / 默认范围 ${sourceIndex.summary.defaultAppointments} 条；同名误识别已清除`);

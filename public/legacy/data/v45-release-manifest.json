@@ -15,9 +15,18 @@
     "attachmentXlsxCandidates": 135,
     "attachmentDocxCandidates": 134,
     "fangzhenDoubtful": 66,
-    "battleSupplemented": 12
+    "battleSupplemented": 12,
+    "peopleViewTabs": 2,
+    "ziSupplemented": 1,
+    "ziUnresolved": 14,
+    "falsePositiveRemovedAfterRescan": 19,
+    "feiyiMerged": true
   },
   "changes": [
+    "追加：人物记拆为人物档案/时期快照双按钮，快照条目可跳转人物详情",
+    "追加：柳隐补字休然，其余缺字人物标字未详并说明理由",
+    "追加：清理康立/贲九江/东部/别部/别驾/曹爽请/曹爽引等误识别人物",
+    "追加：费祎跨卷与裴注合并为 person:shu:fei-yi",
     "追加：修复东汉太尉等无人物官位误入诸葛亮府署（指定府主必须匹配人物）",
     "追加：删除大将军/丞相/录尚书事括号描述及魏吴晋都督职任占位节点",
     "追加：人物记同名条目合并去重，跨朝代人物显示所历朝代",

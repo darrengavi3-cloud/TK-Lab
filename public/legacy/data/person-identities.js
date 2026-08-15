@@ -29,6 +29,7 @@
     {personId:'person:han:liu-biao',name:'刘表',aliases:['劉表'],polities:['汉'],searchKeys:['liubiao']},
     {personId:'person:wei:cao-shuang',name:'曹爽',aliases:['昭伯'],searchKeys:['caoshuang']},
     {personId:'person:shu:zhuge-liang',name:'诸葛亮',aliases:['諸葛亮','孔明'],polities:['汉','蜀汉','季汉'],searchKeys:['zhugeliang']},
+    {personId:'person:shu:fei-yi',name:'费祎',aliases:['費禕','費祎','费禕','文伟','文偉'],polities:['汉','蜀汉','季汉'],searchKeys:['feiyi']},
     {personId:'person:han:liu-zhang',name:'刘璋',aliases:['劉璋','季玉'],polities:['汉'],searchKeys:['liuzhang']},
     {personId:'person:wu:sun-hao',name:'孙皓',aliases:['孫皓','元宗'],polities:['吴'],searchKeys:['sunhao']},
     {personId:'person:jin:jia-chong',name:'贾充',aliases:['賈充','公闾'],polities:['魏','晋'],searchKeys:['jiachong']},

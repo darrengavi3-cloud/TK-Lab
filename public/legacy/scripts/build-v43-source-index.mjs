@@ -71,7 +71,10 @@ function extractPersonName(token,officeToken){
   if(/.+王.$/.test(compact)) return '';
   if(compact.length<=5&&/(?:太祖|高祖|世祖|烈祖|武帝|文帝|明帝|元帝|成帝|宣帝|景帝|天子|皇帝|先主|后主|宣王|[秦汉魏蜀吴燕赵韩齐楚梁陈晋宋鲁]王)/.test(compact)) return '';
   const falseTails=new Set(['祖兖','祖建德','后太祖','王宇','宣王','王子叡','陈宜速','凌就','于是','文雍','和子皓']);
-  const valid=candidate=>candidate&&!candidate.startsWith('后')&&!candidate.startsWith('祖父')&&!falseTails.has(candidate)&&!rejectedPeople.has(candidate)&&!/(?:太祖|皇帝|天子|先主|后主|宣王|武帝|文帝|明帝|元帝|成帝|门郎)$/.test(candidate);
+  const actionTail=/^(?:引|請|请|遣|命|使|令|召|辟|徵|征|拜|除|遷|迁|转|轉|领|領|兼|署|为|為|以|所|其|之|者|时|後|后|前|中|左|右|上|下|内|外)$/;
+  const officeTail=/^(?:驾|駕|部|隶|隷|令|郎|掾|属|屬|尉|督|帅|帥|尹|卿|监|監|丞|曹|台|臺|府|寺|牧|守|相|将|將|军|軍)$/;
+  const placeNames=new Set(['武陵','张掖','吴郡','东郡','魏郡','巴郡','晋陵','汝南','颍川','河内','河东','南阳','涿郡','辽东','襄阳','江夏','庐江','丹阳','会稽','建安','广汉','犍为','蜀郡','汉中','天水','陇西','金城','武威','酒泉','敦煌','司隶','司隷','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','梁州','凉州','雍州','幽州','并州','交州','广州','宁州','平州','秦州','江州','池阳','黽池','渑池','长沙','建康','鄴','邺']);
+  const valid=candidate=>candidate&&!candidate.startsWith('后')&&!candidate.startsWith('祖父')&&!falseTails.has(candidate)&&!rejectedPeople.has(candidate)&&!placeNames.has(candidate)&&!actionTail.test(candidate.slice(-1))&&!officeTail.test(candidate.slice(-1))&&!/(?:太祖|皇帝|天子|先主|后主|宣王|武帝|文帝|明帝|元帝|成帝|门郎)$/.test(candidate);
   for(const surname of compoundSurnames){
     const at=compact.lastIndexOf(surname);
     if(at<0) continue;

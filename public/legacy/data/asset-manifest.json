@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T13:39:08.198Z",
+  "generatedAt": "2026-08-15T13:59:33.686Z",
   "offlineRuntime": true,
-  "fileCount": 132,
-  "totalBytes": 47387029,
+  "fileCount": 133,
+  "totalBytes": 47183123,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -552,8 +552,8 @@
     },
     {
       "path": "data/person-biographies.js",
-      "bytes": 23998,
-      "sha256": "8bd2158297d79661f032a8a06a808ff20f3bea70ef360ab09f034f8b0855046e"
+      "bytes": 24040,
+      "sha256": "33794490513290c4ee5ac389356fa20962dae369b5db3859cac212e1b191b1f8"
     },
     {
       "path": "data/person-era-rosters.js",
@@ -562,8 +562,8 @@
     },
     {
       "path": "data/person-identities.js",
-      "bytes": 6009,
-      "sha256": "d3d10b641d880b5a4a07111162b65330308204a6891b0597f5b9df7791cf612d"
+      "bytes": 6170,
+      "sha256": "1cb9203b3ce4e06b1c532045149411cd89ce82e2b1def7ac0f5cd33f69b8542a"
     },
     {
       "path": "data/person-portraits.js",
@@ -572,13 +572,18 @@
     },
     {
       "path": "data/person-source-index.js",
-      "bytes": 1589780,
-      "sha256": "78d73acdbcf62fc678fd10e59c153af5a28da926988bb180a851965903833a16"
+      "bytes": 1383616,
+      "sha256": "f4ba15d1a1cb3d35e9b67ae4014a8d30d25530b66efac35670e024e6772dda14"
     },
     {
       "path": "data/person-volume-coverage.json",
-      "bytes": 166060,
-      "sha256": "3fcb92b80f9de435da9392e2579b1724af331c8c3ac72654455eb6014c56e560"
+      "bytes": 166046,
+      "sha256": "ec0cc22b012714d3abcff15e4922e0c7687b2d3ef7c5dcd64b3b6bdd30422e40"
+    },
+    {
+      "path": "data/person-zi-supplement.json",
+      "bytes": 1579,
+      "sha256": "207312c324e582ba38b7ac062754cb5e2aa0393205cc6bfba0f1dd120f681265"
     },
     {
       "path": "data/public-vector-audit.json",
@@ -642,8 +647,8 @@
     },
     {
       "path": "data/v45-release-manifest.json",
-      "bytes": 2452,
-      "sha256": "720b8674360a1a298135da07b7054d5244014478297299cd3fef408381c4c8c6"
+      "bytes": 2942,
+      "sha256": "e059b929b25ab542dcd4664f4ba8dbe517693c860f2f6fb46870a0df8e98d6d8"
     },
     {
       "path": "data/v45-shihuo-gap.json",
