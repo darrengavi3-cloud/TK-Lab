@@ -2865,17 +2865,17 @@ const OFFICE_TEMPLATE_LIBRARY = [
 /* 维基百科《三国官制》条目补充（二手索引，正式引用须回查原典）。
  * 只补充原树缺失且可考的核心官署/职官；节点按 parent 名挂靠，找不到时挂势力根节点。 */
 const WIKI_OFFICE_SUPPLEMENTS = [
-  {faction:'shu',parent:'丞相（录尚书事）',name:'军师祭酒',category:'幕府属官',note:'蜀汉丞相府属官；诸葛亮开府置，参与谋议。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'前军师',category:'幕府属官',note:'丞相府前后军师之一。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'后军师',category:'幕府属官',note:'丞相府前后军师之一。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'从事中郎',category:'幕府属官',note:'丞相府属官。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'参军',category:'幕府属官',note:'丞相府参军。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'行参军',category:'幕府属官',note:'丞相府行参军。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'东曹掾',category:'幕府属官',note:'丞相府东曹掾。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'西曹掾',category:'幕府属官',note:'丞相府西曹掾。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'仓曹掾',category:'幕府属官',note:'丞相府仓曹掾。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'记室',category:'幕府属官',note:'丞相府记室，掌文书。'},
-  {faction:'shu',parent:'丞相（录尚书事）',name:'门下督',category:'幕府属官',note:'丞相府门下督。'},
+  {faction:'shu',parent:'丞相',name:'军师祭酒',category:'幕府属官',note:'蜀汉丞相府属官；诸葛亮开府置，参与谋议。'},
+  {faction:'shu',parent:'丞相',name:'前军师',category:'幕府属官',note:'丞相府前后军师之一。'},
+  {faction:'shu',parent:'丞相',name:'后军师',category:'幕府属官',note:'丞相府前后军师之一。'},
+  {faction:'shu',parent:'丞相',name:'从事中郎',category:'幕府属官',note:'丞相府属官。'},
+  {faction:'shu',parent:'丞相',name:'参军',category:'幕府属官',note:'丞相府参军。'},
+  {faction:'shu',parent:'丞相',name:'行参军',category:'幕府属官',note:'丞相府行参军。'},
+  {faction:'shu',parent:'丞相',name:'东曹掾',category:'幕府属官',note:'丞相府东曹掾。'},
+  {faction:'shu',parent:'丞相',name:'西曹掾',category:'幕府属官',note:'丞相府西曹掾。'},
+  {faction:'shu',parent:'丞相',name:'仓曹掾',category:'幕府属官',note:'丞相府仓曹掾。'},
+  {faction:'shu',parent:'丞相',name:'记室',category:'幕府属官',note:'丞相府记室，掌文书。'},
+  {faction:'shu',parent:'丞相',name:'门下督',category:'幕府属官',note:'丞相府门下督。'},
   {faction:'shu',parent:'尚书令',name:'吏部郎',category:'尚书台省',note:'季汉尚书郎，与选曹、左右选、度支并列。'},
   {faction:'shu',parent:'尚书令',name:'选曹郎',category:'尚书台省',note:'季汉尚书郎，主选任。'},
   {faction:'shu',parent:'尚书令',name:'左选郎',category:'尚书台省',note:'季汉尚书郎。'},
@@ -3439,7 +3439,7 @@ function buildPresets(){
     const taifu = O('han_o', root.key, '太傅', '三公', '', '万石', {kaifu:true, lushangshushi:true, duty:'录尚书事，位在三公上', relationType:'制度并列'});
     const sangong = ['太尉','司徒','司空']
       .map(nm=>O('han_o', root.key, nm, '三公', '', '万石', {kaifu:true, relationType:'制度并列'}));
-    const dajiangjun = O('han_o', root.key, '大将军（或录尚书事）', '大将军／大司马', '', '万石', {kaifu:true, jie:'使持节', lushangshushi:true, relationType:'制度并列', note:'录尚书事须据具体任命，不是大将军的固定附带权限。'});
+    const dajiangjun = O('han_o', root.key, '大将军', '大将军／大司马', '', '万石', {kaifu:true, jie:'使持节', lushangshushi:true, relationType:'制度并列', note:'大将军位在公上；是否录尚书事依具体任命，不是固定附带权限。'});
     const shangshutai = O('han_o', root.key, '尚书令', '尚书台省', '', '千石', {duty:'总领纲纪，机要之司', relationType:'制度并列'});
     const shizhong = O('han_o', root.key, '侍中', '散骑集书', '', '比二千石', {
       relationType:'制度并列', seatCount:6, seatCountSource:'汉末朝堂展示席位；员额随时期变化，非全期固定员额',
@@ -3512,15 +3512,9 @@ function buildPresets(){
         note:'具体人物、辖区与任期见“州镇表”；此节点只表达制度中的州级官名。'
       };
     };
-    const duduzhu = O('wei_o', root.key, '都督职任（见州镇表）', '都督军事', '', '', {
-      jie:'依任命', duty:'都督诸州军事是随人、随时、随辖区变化的军事职任，具体任期移入“州镇表”',
-      officeStartYear:220, officeEndYear:265, sources:WEI_DUDU_SOURCE,
-      relationType:'职任关联', note:'不再把十九种都督辖区固定画成常设官署树。原名单、任期与“未详、约、代理、未上任”等信息完整保存在州镇表。'
-    });
-
     const officeNodes = [root, cxq, damasi, dajiangjun, taiwei, situ, sikong, yushi, ...jiuqing,
       shangshuling, shangshupy, ...liucao, zhongshu, shizhong, huangmen, sanji,
-      duduzhu, ...buildLocalRegionTree('wei_o', root.key, LOCAL_REGION_PRESETS.wei)];
+      ...buildLocalRegionTree('wei_o', root.key, LOCAL_REGION_PRESETS.wei)];
 
     const nroot = N('wei_n', null, '曹魏爵制（魏初承汉，咸熙元年复五等爵）', '', {kind:'root', note:'曹魏前期沿用东汉列侯体系；咸熙元年（264）在王爵之下恢复公、侯、伯、子、男五等爵。', sources:'《三国志》相关本纪；维基百科《五等爵》《列侯》'});
     const wang = N('wei_n', nroot.key, '诸侯王（宗室）', '诸侯王', {inherit:'降等承袭'});
@@ -3545,7 +3539,7 @@ function buildPresets(){
       kind:'root', officeStartYear:221, officeEndYear:263,
       note:'本树覆盖昭烈帝章武至后主炎兴（221—263）；汉不实行曹魏九品中正官品体系，仅保留汉代秩俸。'
     });
-    const chengxiang = O('shu_o', root.key, '丞相（录尚书事）', '丞相／相国', '', '万石', {
+    const chengxiang = O('shu_o', root.key, '丞相', '丞相／相国', '', '万石', {
       kaifu:true, jie:'假节钺', lushangshushi:true, figures:['诸葛亮（221—234）'], duty:'开府治事，统摄军政',
       officeStartYear:221, officeEndYear:234, evolution:'章武元年（221）置；建兴十二年（234）诸葛亮卒后不复置。',
       sources:'《三国志》卷三十五·诸葛亮传'
@@ -3605,7 +3599,7 @@ function buildPresets(){
       officeStartYear:239, officeEndYear:246, evolution:'延熙二年（239）蒋琬自大将军加大司马；延熙九年（246）琬卒。',
       sources:'《三国志》卷四十四·蒋琬传'
     });
-    const dajiangjun = O('shu_o', root.key, '大将军（录尚书事）', '大将军／大司马', '', '万石', {
+    const dajiangjun = O('shu_o', root.key, '大将军', '大将军／大司马', '', '万石', {
       kaifu:true, jie:'使持节', lushangshushi:true, figures:['蒋琬（234—239）','费祎（244—253）','姜维（256—263）'],
       officeStartYear:234, officeEndYear:263,
       evolution:'建兴十二年（234）蒋琬拜大将军录尚书事；延熙七年（244）费祎迁大将军；延熙十九年（256）姜维拜大将军。',
@@ -3728,16 +3722,12 @@ function buildPresets(){
     const chengxiang = O('wu_o', root.key, '丞相', '丞相／相国', '一品', '万石', {kaifu:true});
     const damasi = O('wu_o', root.key, '大司马', '大将军／大司马', '一品', '万石', {kaifu:true, jie:'假节钺'});
     const shangdajiangjun = O('wu_o', root.key, '上大将军', '大将军／大司马', '一品', '万石', {kaifu:true, jie:'假节钺', figures:['陆逊']});
-    const duduRef = O('wu_o', root.key, '都督与都护职任（见州镇表）', '都督军事', '', '', {
-      relationType:'职任关联', duty:'大都督、左右都护等须按具体任命、人物和时段记录',
-      note:'不把“大都督—左都护—右都护”画成固定上下级。相关人物与辖区应录入州镇表。'
-    });
     const jiuqing = ['太常','光禄勋','卫尉','太仆','廷尉','大鸿胪','宗正','大司农','少府']
       .map(nm=>O('wu_o', root.key, nm, '九卿', '三品', '中二千石', {
         relationType:'制度并列', sources:'《晋书》卷二十四称孙吴多依汉制；具体官名仍须结合《三国志》人物传逐项核定'
       }));
 
-    const officeNodes = [root, chengxiang, damasi, shangdajiangjun, duduRef, ...jiuqing,
+    const officeNodes = [root, chengxiang, damasi, shangdajiangjun, ...jiuqing,
       ...buildLocalRegionTree('wu_o', root.key, LOCAL_REGION_PRESETS.wu)];
     // 孙吴官品材料零散，预设不以曹魏《通典》表横向套用；仅在具体史料明确时由使用者录入。
     officeNodes.forEach(node=>{ node.rank9=''; });
@@ -3747,7 +3737,7 @@ function buildPresets(){
     const liehou = N('wu_n', nroot.key, '列侯（县、都乡、乡、都亭、亭）', '列侯', {inherit:'降等承袭', sources:'维基百科《列侯》'});
     const xianhou = N('wu_n', liehou.key, '县侯', '侯（县侯）', {inherit:'降等承袭'});
     const xianghou = N('wu_n', liehou.key, '乡侯', '侯（乡侯）', {inherit:'降等承袭'});
-    const tinghou = N('wu_n', liehou.key, '亭侯', '侯（亭侯）', {inherit:'降等承袭', mountId: duduRef.key});
+    const tinghou = N('wu_n', liehou.key, '亭侯', '侯（亭侯）', {inherit:'降等承袭', mountId: root.key});
     const guanneihou = N('wu_n', nroot.key, '关内侯', '关内侯', {inherit:'终身不世'});
     const nobleNodes = [nroot, wuwang, liehou, xianhou, xianghou, tinghou, guanneihou];
 
@@ -4018,11 +4008,6 @@ function buildPresets(){
       note:'并后汉置，历魏及晋，江左弥重。',
       sources:'《晋书》卷二十四·职官志'
     });
-    const duduzhongwai = O('jin_o', root.key, '都督职任（见州镇表）', '都督军事', '', '', {
-      jie:'依任命', duty:'都督中外或都督诸州军事均属附加军政职任，辖区随人随时变化',
-      relationType:'职任关联', note:'《晋书·职官志》明言持节、都督无定员；具体任期移入州镇表。',
-      officeStartYear:266, officeEndYear:316
-    });
     const huguan = [
       ['护匈奴中郎将','护匈奴、羌、戎、蛮、夷、越中郎将之一；武帝置四中郎将，或领刺史，或持节为之。'],
       ['护羌校尉','沿汉魏旧制；元康中护羌校尉为凉州刺史。'],
@@ -4030,7 +4015,7 @@ function buildPresets(){
       ['西戎校尉','武帝置西戎校尉于长安；元康中西戎校尉为雍州刺史。'],
       ['南夷校尉','武帝置南夷校尉于宁州。'],
       ['平越中郎将','武帝置，居广州，主护南越。']
-    ].map(([nm,note])=>O('jin_o', duduzhongwai.key, nm, '属国护官', '四品', '比二千石', {
+    ].map(([nm,note])=>O('jin_o', root.key, nm, '属国护官', '四品', '比二千石', {
       jie:'持节', duty:'沿汉魏旧制，监护、征调边疆诸族', note, sources:'《晋书》卷二十四·职官志'
     }));
     const taiziFu = O('jin_o', root.key, '太子太傅·少傅', '太子太傅', '', '中二千石／二千石', {
@@ -4084,7 +4069,7 @@ function buildPresets(){
       yushi, zhishu, shiyushi, dianzhong, fujie,
       shizhong, huangmen, sanji, tongzhiSanji, yuanwaiSanji, sanjishilang, jishizhong, fengchaoqing,
       piaoqi, cheqi, weijiangjun, sizheng, lingjun, hujun, zuoyouwei, liujun, sijun, wuxiao, sizhonglang,
-      chengxiang, duduzhongwai, ...huguan, taiziFu, zhanshi, ...taiziOfficers, wangguo, ...wangguoOfficers,
+      chengxiang, ...huguan, taiziFu, zhanshi, ...taiziOfficers, wangguo, ...wangguoOfficers,
       ...jinLocalTree];
 
     const nroot = N('jin_n', null, '西晋爵制（承魏咸熙元年复五等封）', '', {
@@ -4831,15 +4816,40 @@ const app = createApp({
       if(kind==='battlefield') return 'battlefield';
       return 'battle';
     }
+    const BATTLE_CAMPS=[
+      {key:'汉',names:['刘备','刘禅','关羽','张飞','赵云','诸葛亮','马谡','黄忠','姜维','季汉','蜀汉','孙刘','刘璋','刘表','先主','后主','刘备（汉）']},
+      {key:'魏',names:['曹操','曹丕','曹仁','曹休','曹爽','张辽','张郃','司马懿','司马昭','钟会','邓艾','夏侯渊','于禁','诸葛诞','许褚','曹真']},
+      {key:'吴',names:['孙权','孙皓','周瑜','鲁肃','吕蒙','陆逊','朱桓','丁奉','孙策','吴大帝']},
+      {key:'晋',names:['司马炎','王濬','杜预','西晋','晋武帝','司马氏']},
+      {key:'黄巾',names:['黄巾','张角','张宝','张梁']},
+      {key:'东汉',names:['东汉','朝廷','汉廷','官军','皇甫嵩']},
+      {key:'袁绍',names:['袁绍','袁氏','袁谭','袁尚']},
+      {key:'公孙瓒',names:['公孙瓒']},
+      {key:'董卓',names:['董卓']},
+      {key:'吕布',names:['吕布','陈宫']},
+      {key:'关东联军',names:['关东','联军']},
+      {key:'乌桓',names:['乌桓','蹋顿']},
+      {key:'公孙氏',names:['公孙渊','公孙度']},
+      {key:'汉赵',names:['刘聪','刘曜','汉赵','刘渊']},
+      {key:'后赵',names:['石勒','后赵']}
+    ];
+    function battleCampsFor(text){
+      const found=[];
+      BATTLE_CAMPS.forEach(camp=>{ if(camp.names.some(name=>String(text||'').includes(name))) found.push(camp.key); });
+      return found;
+    }
     function battleBranchFor(item){
       if(item?.branch) return item.branch;
+      const aCamps=battleCampsFor(item?.a), bCamps=battleCampsFor(item?.b);
+      const sideA=aCamps[0]||'', sideB=bCamps[0]||'';
+      if(sideA||sideB){
+        if(sideA&&sideB) return sideA+'—'+sideB;
+        return sideA||sideB||'政权沿革与内政';
+      }
       const text=[item?.front,item?.name,item?.title,item?.a,item?.b].filter(Boolean).join('');
-      if(/益州|蜀|汉中|阴平|剑阁|成都|南中/.test(text)) return '蜀汉与西南';
-      if(/赤壁|江陵|荆州|襄樊|夷陵|猇亭|江汉/.test(text)) return '荆襄与江汉';
-      if(/吴|江东|濡须|合肥|东兴|扬州|寿春|建业|武昌/.test(text)) return '江东与淮南';
-      if(/辽东|乌桓|白狼山|柳城|襄平|幽州|北疆/.test(text)) return '辽东与北疆';
-      if(/关中|陇右|长安|潼关|五丈原|凉州|雍州/.test(text)) return '关中与陇右';
-      return '中枢与北方';
+      const camps=battleCampsFor(text);
+      if(camps.length>=2) return camps.slice(0,2).join('—');
+      return '政权沿革与内政';
     }
     const battleEntryList = computed(()=>{
       const records=[];
@@ -5257,7 +5267,7 @@ const app = createApp({
       const rows=(window.SGZ_KAIFU_POLICIES||[]).filter(policy=>policy.id!=='kaifu:generic:unverified'&&policyPolityMatches(policy)&&recordValidAtCourtYear(policy)).filter(policy=>{
         const office=canonicalOfficeName(policy.officeName);
         if(office && office!=='未匹配开府官职' && !(ownerName===office||ownerName.includes(office)||office.includes(ownerName))) return false;
-        if(policy.personName && figures.length && !figures.some(person=>String(person.name||'')===policy.personName)) return false;
+        if(policy.personName && !figures.some(person=>String(person.name||'')===policy.personName)) return false;
         return true;
       }).sort((a,b)=>Number(Boolean(b.personName))*20+Number(Boolean(b.validFrom))*5-Number(Boolean(a.personName))*20-Number(Boolean(a.validFrom))*5);
       if(rows[0]) return rows[0];
@@ -5287,8 +5297,7 @@ const app = createApp({
         if(categoryRoleMatches(item)) score+=25;
         if(item.ownerPersonName){
           if(figures.some(person=>String(person.name||'')===item.ownerPersonName)) score+=100;
-          else if(figures.length) return {item,score:-1};
-          else score+=10;
+          else return {item,score:-1};
         }
         if(item.kaifuPolicyId && kaifu?.id===item.kaifuPolicyId) score+=35;
         if(item.id==='residence:jin:military-kaifu'&&!kaifu) return {item,score:-1};
@@ -7030,7 +7039,48 @@ const app = createApp({
         if(meta.bio){e.bio=meta.bio;e.bioSource='用户维护的人物档案';e.bioKind='档案补充';}
         if(meta.portrait)e.portrait=meta.portrait;
       });
-      return [...map.values()].map(e=>{
+      function mergePersonEntries(entries){
+        const buckets=new Map();
+        entries.forEach(e=>{
+          const identity=window.SGZ_PERSON_IDENTITIES?.resolve(e.name);
+          const ambiguous=!identity&&(window.SGZ_PERSON_IDENTITIES?.candidateCount(e.name)||0)>1;
+          const key=identity?identity.personId:(ambiguous?e.personId:e.name);
+          if(!buckets.has(key)) buckets.set(key,[]);
+          buckets.get(key).push(e);
+        });
+        return [...buckets.values()].map(group=>{
+          if(group.length===1) return group[0];
+          const primary=group.find(e=>e.bioKind==='史传提要'||e.portrait)||group[0];
+          const merged={...primary,appointments:[],politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],aliases:[],searchKeys:[]};
+          const seen=new Set();
+          group.forEach(e=>{
+            (e.appointments||[]).forEach(a=>{
+              const id=a.id||a.appointmentId||[a.personId,a.source,a.nodeKey,a.nodeName,a.startYear,a.endYear,a.sourceLocator].join('|');
+              if(seen.has(id))return;seen.add(id);merged.appointments.push(a);
+            });
+            merged.politics.push(...(e.politics||[]));
+            merged.serviceDomains.push(...(e.serviceDomains||[]));
+            merged.institutionTypes.push(...(e.institutionTypes||[]));
+            merged.sourceWorks.push(...(e.sourceWorks||[]));
+            merged.sourceVolumes.push(...(e.sourceVolumes||[]));
+            merged.evidenceLayers.push(...(e.evidenceLayers||[]));
+            merged.researchStatuses.push(...(e.researchStatuses||[]));
+            merged.scopeStatuses.push(...(e.scopeStatuses||[]));
+            merged.aliases.push(...(e.aliases||[]));
+            merged.searchKeys.push(...(e.searchKeys||[]));
+            if(!merged.portrait&&e.portrait){merged.portrait=e.portrait;merged.portraitPolity=e.portraitPolity;merged.portraitAccent=e.portraitAccent;merged.portraitSource=e.portraitSource;}
+            if(!merged.bio&&e.bio){merged.bio=e.bio;merged.bioSource=e.bioSource;merged.bioKind=e.bioKind;}
+            if(!merged.zi&&e.zi)merged.zi=e.zi;
+            if(!merged.birthplace&&e.birthplace)merged.birthplace=e.birthplace;
+            if(merged.birthYear==null&&e.birthYear!=null)merged.birthYear=e.birthYear;
+            if(merged.deathYear==null&&e.deathYear!=null)merged.deathYear=e.deathYear;
+            merged.homonymStatus=merged.homonymStatus||e.homonymStatus;
+            merged.homonymGroupId=merged.homonymGroupId||e.homonymGroupId;
+          });
+          return merged;
+        });
+      }
+      return mergePersonEntries([...map.values()]).map(e=>{
         e.politics=[...new Set(e.politics.filter(Boolean))];
         e.aliases=[...new Set(e.aliases.filter(value=>value&&value!==e.name))];
         e.serviceDomains=[...new Set(e.serviceDomains.filter(Boolean))];
@@ -7340,6 +7390,15 @@ const app = createApp({
       // 人物记：同名待消歧（合并展示但未人工确认）
       personRegistry.value.filter(p=>/同名待消歧/.test(p.homonymStatus||'')&&!/异人/.test(p.homonymStatus||'')).forEach(p=>{
         add('warn','人物记','同名待消歧','「'+p.name+'」当前按姓名合并展示，含 '+p.sourceVolumes.length+' 卷来源；若实为异人请拆分。',{type:'person',name:p.name,personId:p.personId});
+      });
+      // 人物记：同名重复人物（同一姓名仍存在多个独立 personId，需显式消歧）
+      const personByName={};
+      personRegistry.value.forEach(p=>{
+        if(!personByName[p.name]) personByName[p.name]=[];
+        personByName[p.name].push(p);
+      });
+      Object.values(personByName).filter(list=>list.length>1).forEach(list=>{
+        add('warn','人物记','同名重复人物','「'+list[0].name+'」存在 '+list.length+' 条独立记录（'+list.map(p=>p.personId).join('、')+'），需在人物身份表中显式消歧或合并。',{type:'person',name:list[0].name,personId:list[0].personId});
       });
       // 朝堂：府署入口无显式定义
       const residenceOnlyByPolicy=currentArr.value.filter(node=>node.kind==='office'&&courtResidenceAvailable(node)&&!residenceDefinitionFor(node));
@@ -8944,7 +9003,7 @@ const app = createApp({
               <div class="person-card-badges">
                 <span v-for="pol in p.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span>
               </div>
-              <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · 含 <b>{{p.sourceVolumes.length}}</b> 卷来源 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>任期未详</span><br/>籍贯：{{p.birthplace||'未详'}}</div>
+              <div class="person-card-meta"><b>{{p.appointmentCount}}</b> 条履历 · 含 <b>{{p.sourceVolumes.length}}</b> 卷来源 · <span v-if="p.startYear">{{p.startYear}}—{{p.endYear}}年</span><span v-else>任期未详</span><br/>所历朝代：{{p.politics.join(' · ')||'未详'}} · 籍贯：{{p.birthplace||'未详'}}</div>
               <div class="person-card-bio">{{p.bio}}</div>
               <div class="person-card-count"><span>任官 {{p.appointments.filter(a=>a.treeType==='office').length}} · 受爵 {{p.appointments.filter(a=>a.treeType==='noble').length}} · 州镇 {{p.appointments.filter(a=>a.treeType==='fangzhen').length}} · 时期录 {{p.appointments.filter(a=>a.treeType==='roster').length}}</span><span>履历 ›</span></div>
             </div>
@@ -8994,7 +9053,7 @@ const app = createApp({
           <button class="battle-branch-button" :class="{active:battleProvince==='all'}" @click="battleProvince='all'">全州</button>
           <button v-for="province in battleProvinceOptions" :key="province" class="battle-branch-button" :class="{active:battleProvince===province}" @click="battleProvince=province">{{province}}</button>
           <span style="width:10px"></span>
-          <strong>时间支线</strong>
+          <strong>国家间</strong>
           <button class="battle-branch-button" :class="{active:battleBranch==='all'}" @click="battleBranch='all'">全线</button>
           <button v-for="branch in battleBranchOptions" :key="branch" class="battle-branch-button" :class="{active:battleBranch===branch}" @click="battleBranch=branch">{{branch}}</button>
         </div>

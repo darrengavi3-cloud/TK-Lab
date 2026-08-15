@@ -30,6 +30,8 @@ assert(html.includes('!item.isFallback&&policyPolityMatches'), '兼容府署不�
 assert(html.includes("if(!courtResidenceAvailable(owner)) return 'plain';"), '无显式府署的官位不得套用丞相三公府样式');
 assert(html.includes("categoryRoleMatches") && html.includes('储君|皇太子|太子$'), '东宫/王府/将军府类别匹配未限定府主角色');
 assert(html.includes('courtResidenceReason(node)'), '府署误入审计项未接入审校中心');
+assert(!html.includes('else score+=10;') && html.includes('else return {item,score:-1};'), '指定府主姓名的府署不得在无匹配人物时加分');
+assert(html.includes('policy.personName && !figures.some(person=>String(person.name||\'\')===policy.personName)'), '指定人物的开府政策必须匹配目标人物');
 
 // 2. 人物跨卷合并与同名消歧
 assert(identities.version >= 2, '人物身份表未升级');
@@ -67,6 +69,15 @@ assert(html.includes("courtResidenceAvailable(node)&&!residenceDefinitionFor(nod
 assert(portable.includes('courtResidenceReason') && portable.includes('exportAuditWorkbook'), '便携版未同步 V45 审校交互');
 assert(fs.existsSync(path.join(root, 'docs/V45史实审核与数据补充.md')), '缺少 V45 版本文档');
 assert(fs.existsSync(path.join(root, 'data/v45-release-manifest.json')), '缺少 V45 发布清单');
+
+// 6. 本轮四项修复回归
+assert(!html.includes('（见州镇表）') && !html.includes('（录尚书事）') && !html.includes('（或录尚书事）'), '官位名称仍含“见州镇表/录尚书事”括号描述');
+assert(!html.includes('都督职任（见州镇表）') && !html.includes('都督与都护职任（见州镇表）'), '职任关联占位节点未删除');
+assert(html.includes('mergePersonEntries') && html.includes('所历朝代：'), '人物记去重或跨朝代标签未接入');
+assert(html.includes('同名重复人物'), '同名重复人物审计项未接入');
+assert(!html.includes('蜀汉与西南') && html.includes('BATTLE_CAMPS') && html.includes('政权沿革与内政'), '战事纪地域分组未改为国家间');
+assert(html.includes('<strong>国家间</strong>'), '战事纪“时间支线”未改名为“国家间”');
+assert(portable.includes('mergePersonEntries') && portable.includes('BATTLE_CAMPS'), '便携版未同步本轮四项修复');
 
 console.log('V45 审计验证通过');
 console.log(`人物候选 ${sourceIndex.summary.appointments} 条 / 默认范围 ${sourceIndex.summary.defaultAppointments} 条；同名误识别已清除`);
