@@ -2877,6 +2877,13 @@ const OFFICE_TEMPLATE_LIBRARY = [
 /* 维基百科《三国官制》条目补充（二手索引，正式引用须回查原典）。
  * 只补充原树缺失且可考的核心官署/职官；节点按 parent 名挂靠，找不到时挂势力根节点。 */
 const WIKI_OFFICE_SUPPLEMENTS = [
+  {faction:'han',parent:'',name:'司隶校尉（东汉）',category:'朝廷机关',serviceDomain:'文官',note:'东汉司隶校尉掌察百官及畿内七郡，领都官从事、功曹从事等属官，非州牧刺史。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'都官从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌察百官犯法者。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'功曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，主选举、考课。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'簿曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌钱谷簿书。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'兵曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文武兼',note:'司隶校尉属官，掌兵事。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'部郡从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉分部督察所属郡国。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'主簿',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉府主簿。'},
   {faction:'shu',parent:'丞相',name:'军师祭酒',category:'幕府属官',note:'蜀汉丞相府属官；诸葛亮开府置，参与谋议。'},
   {faction:'shu',parent:'丞相',name:'前军师',category:'幕府属官',note:'丞相府前后军师之一。'},
   {faction:'shu',parent:'丞相',name:'后军师',category:'幕府属官',note:'丞相府前后军师之一。'},
@@ -2900,7 +2907,15 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'shu',parent:'',name:'中监军',category:'将军武职',note:'季汉军政官。'},
   {faction:'shu',parent:'',name:'征西将军',category:'将军武职',note:'季汉诸号将军之一；与东吴联合抗曹，故无征东将军名号。'},
   {faction:'shu',parent:'',name:'安汉将军',category:'将军武职',note:'刘备特为麋竺设，无实权，位在诸葛亮上。'},
-  {faction:'shu',parent:'',name:'司隶校尉（季汉）',category:'州牧刺史',note:'季汉置司隶校尉掌京城及监察，与东汉制度不同。'},
+  {faction:'shu',parent:'',name:'司隶校尉（季汉）',category:'朝廷机关',serviceDomain:'文官',note:'季汉置司隶校尉掌京城及监察，领都官从事等属官，与州牧刺史不同。'},
+  {faction:'shu',parent:'',name:'征虏将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'辅汉将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'讨逆将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'荡寇将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'翊军将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'牙门将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'偏将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
+  {faction:'shu',parent:'',name:'裨将军',category:'将军武职',serviceDomain:'武官',note:'季汉杂号将军。'},
   {faction:'shu',parent:'益州牧',name:'别驾从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'益州府属官。'},
   {faction:'shu',parent:'益州牧',name:'治中从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'益州府属官。'},
   {faction:'shu',parent:'益州牧',name:'劝学从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'益州府属官，掌劝学。'},
@@ -2934,6 +2949,16 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'wei',parent:'',name:'征西将军',category:'将军武职',note:'四征之一，品秩相当六卿。'},
   {faction:'wei',parent:'',name:'征南将军',category:'将军武职',note:'四征之一，品秩相当六卿。'},
   {faction:'wei',parent:'',name:'征北将军',category:'将军武职',note:'四征之一，品秩相当六卿。'},
+  {faction:'wei',parent:'',name:'征虏将军',category:'将军武职',serviceDomain:'武官',note:'曹魏三品杂号将军。'},
+  {faction:'wei',parent:'',name:'冠军将军',category:'将军武职',serviceDomain:'武官',note:'曹魏三品杂号将军。'},
+  {faction:'wei',parent:'',name:'折冲将军',category:'将军武职',serviceDomain:'武官',note:'曹魏四品杂号将军。'},
+  {faction:'wei',parent:'',name:'虎威将军',category:'将军武职',serviceDomain:'武官',note:'曹魏五品杂号将军。'},
+  {faction:'wei',parent:'',name:'讨逆将军',category:'将军武职',serviceDomain:'武官',note:'曹魏五品杂号将军。'},
+  {faction:'wei',parent:'',name:'荡寇将军',category:'将军武职',serviceDomain:'武官',note:'曹魏五品杂号将军。'},
+  {faction:'wei',parent:'',name:'伏波将军',category:'将军武职',serviceDomain:'武官',note:'曹魏五品杂号将军。'},
+  {faction:'wei',parent:'',name:'牙门将军',category:'将军武职',serviceDomain:'武官',note:'曹魏杂号将军。'},
+  {faction:'wei',parent:'',name:'偏将军',category:'将军武职',serviceDomain:'武官',note:'曹魏杂号将军。'},
+  {faction:'wei',parent:'',name:'裨将军',category:'将军武职',serviceDomain:'武官',note:'曹魏杂号将军。'},
   {faction:'wei',parent:'',name:'屯田中郎将',category:'将军武职',note:'曹魏特设，主屯田。'},
   {faction:'wei',parent:'',name:'典农校尉',category:'郡国守相',note:'屯田官，隶屯田中郎将。'},
   {faction:'wei',parent:'',name:'典农都尉',category:'郡国守相',note:'屯田官，隶屯田中郎将。'},
@@ -2979,6 +3004,19 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'wu',parent:'',name:'抚军将军',category:'将军武职',note:'吴诸号将军之一。'},
   {faction:'wu',parent:'',name:'征南将军',category:'将军武职',note:'吴有征南、征西、征北，无征东。'},
   {faction:'wu',parent:'',name:'平南将军',category:'将军武职',note:'吴有平南、平西、平北，无平东。'},
+  {faction:'wu',parent:'',name:'讨虏将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'破虏将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'荡寇将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'伏波将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'虎威将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'冠军将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'建威将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'横江将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'绥南将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'安国将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'牙门将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'偏将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
+  {faction:'wu',parent:'',name:'裨将军',category:'将军武职',serviceDomain:'武官',note:'吴诸号将军之一。'},
   {faction:'wu',parent:'',name:'太子太傅',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'吴太子官属。'},
   {faction:'wu',parent:'',name:'太子少傅',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'吴太子官属。'},
   {faction:'wu',parent:'',name:'左辅都尉',category:'太子官属',institutionType:'东宫',serviceDomain:'文官',note:'黄龙元年置，太子四友之一。'},
@@ -2992,6 +3030,16 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'jin',parent:'中书监／中书令',name:'中书侍郎',category:'中书门下',note:'晋中书省属官，承曹魏制。'},
   {faction:'jin',parent:'',name:'秘书监',category:'散骑集书',note:'晋秘书监，掌图籍。'},
   {faction:'jin',parent:'',name:'领军将军',category:'将军武职',note:'晋领军将军，掌禁军。'},
+  {faction:'jin',parent:'',name:'司隶校尉（晋）',category:'朝廷机关',serviceDomain:'文官',note:'西晋司隶校尉掌京都及司隶诸郡监察，领都官从事等属官。'},
+  {faction:'jin',parent:'',name:'征虏将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'冠军将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'折冲将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'虎威将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'讨逆将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'荡寇将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'牙门将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'偏将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
+  {faction:'jin',parent:'',name:'裨将军',category:'将军武职',serviceDomain:'武官',note:'西晋杂号将军。'},
   {faction:'jin',parent:'',name:'护军将军',category:'将军武职',note:'晋护军将军。'},
   {faction:'jin',parent:'州刺史（制度分组）',name:'别驾从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'晋州府属官。'},
   {faction:'jin',parent:'州刺史（制度分组）',name:'治中从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'晋州府属官。'}
@@ -3521,7 +3569,7 @@ function buildPresets(){
       sources:'《三国志》相关传记；《晋书》卷二十四·职官志', note:'具体黄门侍郎官职节点，人物任职按时期档案补入。'
     });
     const sanji = O('wei_o', root.key, '散骑常侍', '散骑集书', '三品', '比二千石', {relationType:'制度并列'});
-    const siliXiaowei = O('wei_o', root.key, '司隶校尉（魏）', '州牧刺史', '三品', '比二千石', {relationType:'制度并列', duty:'掌京都及司隶诸郡监察，领司隶部都官从事等属官', officeStartYear:220, officeEndYear:265});
+    const siliXiaowei = O('wei_o', root.key, '司隶校尉（魏）', '朝廷机关', '三品', '比二千石', {relationType:'制度并列', serviceDomain:'文官', duty:'掌京都及司隶诸郡监察，领都官从事等属官', officeStartYear:220, officeEndYear:265});
     const zhouCishi = O('wei_o', root.key, '州刺史（制度分组）', '州牧刺史', '五品', '六百石', {relationType:'视图分组（非直属）', duty:'魏州刺史掌一州监察与民政，属官别驾、治中、功曹等'});
     const weiZhongLang = ['五官中郎将','左右中郎将','虎贲中郎将','羽林中郎将','屯田中郎将','建节中郎将','武贲中郎将']
       .map(nm=>O('wei_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
@@ -3642,7 +3690,7 @@ function buildPresets(){
     });
     const shuZhongLang = ['虎贲中郎将','羽林中郎将','五官中郎将','左右中郎将','北军中候']
       .map(nm=>O('shu_o', root.key, nm, '将军武职', '', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
-    const shuXiaowei = ['屯骑校尉','步兵校尉','越骑校尉','长水校尉','射声校尉','典农校尉','司隶校尉（季汉）']
+    const shuXiaowei = ['屯骑校尉','步兵校尉','越骑校尉','长水校尉','射声校尉','典农校尉']
       .map(nm=>O('shu_o', root.key, nm, '将军武职', '', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
     const shangshupy = O('shu_o', shangshuling.key, '尚书仆射', '尚书台省', '', '六百石', {
       figures:['李福（年代未详）'],
@@ -5398,6 +5446,13 @@ const app = createApp({
         });
         return merged.concat(roles.filter(node=>!consumed.has(node.key)));
       }
+      if(owner.kaifu || courtKaifuPolicyFor(owner)){
+        return ['长史','司马','主簿','参军','从事中郎','记室','舍人'].map((name,index)=>({
+          key:owner.key+'::kaifu::'+index,kind:'office',name,category:'幕府属官',institutionType:'待考',
+          serviceDomain:/司马|参军/.test(name)?'文武兼':'文官',hanRank:'未详',figures:[],virtualResidenceRole:true,
+          residenceOrder:(index+1)*10,note:'通用开府属官位；具体到任人物与员额须按开府政策与正史逐条核定。'
+        }));
+      }
       if(!['州牧刺史','郡国守相','太子官属','诸王官属'].includes(owner.category)) return [];
       const names=owner.category==='州牧刺史'?(window.SGZ_BAIGUANZHI_STAFF?.province||['别驾从事','治中从事','功曹','簿曹','主簿']):(window.SGZ_BAIGUANZHI_STAFF?.commandery||['郡丞','功曹','主簿','督邮']);
       if(owner.category==='太子官属'||owner.category==='诸王官属') return [];
@@ -5409,6 +5464,7 @@ const app = createApp({
       if(definition) return '府署定义：'+definition.name;
       const kaifu=courtKaifuPolicyFor(owner);
       if(kaifu&&kaifu.qualificationType!=='待考') return '开府依据：'+kaifu.qualificationType;
+      if(owner.kaifu) return '开府（通用府署）';
       if(owner.category==='州牧刺史') return '州府（州牧／刺史）';
       if(owner.category==='郡国守相') return '郡府（太守／国相）';
       const name=canonicalOfficeName(owner.name);

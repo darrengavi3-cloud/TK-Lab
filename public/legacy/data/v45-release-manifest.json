@@ -29,9 +29,15 @@
     "generalTitleSets": 3,
     "militaryCourtNodes": true,
     "siliOfficersCorrected": true,
-    "battleAdded": 4
+    "battleAdded": 4,
+    "kaifuBadgeRoles": true,
+    "portraitCandidates": 26
   },
   "changes": [
+    "追加：司隶校尉独立府署（东汉/季汉/魏/晋），属官改为都官从事等",
+    "追加：魏汉吴晋杂号将军进入朝堂武官列",
+    "追加：具备开府的节点显示府字徽标并自动生成通用属官",
+    "追加：人物立绘候选清单（26人，生成工具待启用）",
     "追加：personKeyOf 剥离年限括号，费祎/董允/蒋琬/来敏合并为单一人档案",
     "追加：三国将军名号附件结构化并接入页面，朝堂武官列补中郎将/校尉/都尉",
     "追加：司隶校尉与州刺史分组拆开，司隶属官改为都官从事等",

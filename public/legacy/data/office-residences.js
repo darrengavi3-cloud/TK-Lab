@@ -90,6 +90,21 @@
       ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'太子太傅、少傅以下官属条',confidence:'推定',evidenceNote:'太子太傅、詹事、中庶子、洗马等官属见两志；具体员额按时期核。'},researchStatus:'推定',note:'太子官属归东宫，不再并入幕府属官。',
       roles:[role('太子太傅','文官','东宫'),role('太子少傅','文官','东宫'),role('太子詹事','文官','东宫'),role('太子中庶子','文官','东宫'),role('太子洗马','文官','东宫'),role('太子舍人','文官','东宫'),role('太子率更令','文官','东宫'),role('太子家令','文官','东宫'),role('太子仆','文官','东宫')]
     },
+    {
+      id:'residence:sili:wei',ownerOfficeName:'司隶校尉（魏）',name:'司隶校尉府（魏）',residenceType:'朝廷机关',backgroundStyle:'plain',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'司隶校尉属官条',confidence:'推定',evidenceNote:'司隶校尉领都官从事、功曹从事等，掌察百官与畿内郡国；具体员额按时期核。'},researchStatus:'推定',
+      roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关'),role('郡都官从事','文官','朝廷机关')]
+    },
+    {
+      id:'residence:sili:han',ownerOfficeName:'司隶校尉（季汉）',name:'司隶校尉府（汉）',residenceType:'朝廷机关',backgroundStyle:'plain',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《三国志》相关纪传',sourceLevel:'一手史料',sourceLocator:'司隶校尉领都官从事等属官',confidence:'推定',evidenceNote:'季汉司隶校尉掌京城及监察，属官大体沿东汉旧制；具体员额待考。'},researchStatus:'推定',
+      roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关')]
+    },
+    {
+      id:'residence:sili:jin',ownerOfficeName:'司隶校尉（晋）',name:'司隶校尉府（晋）',residenceType:'朝廷机关',backgroundStyle:'plain',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',sourceLocator:'司隶校尉条',confidence:'推定',evidenceNote:'西晋司隶校尉领都官从事、功曹从事等；具体员额按时期核。'},researchStatus:'推定',
+      roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关')]
+    },
 
     {id:'residence:compat:grand-minister',ownerOfficeId:'office:shared:grand-minister',name:'丞相三公府（兼容）',residenceType:'三公府',backgroundStyle:'grand-minister',isFallback:true,researchStatus:'存疑'},
     {id:'residence:compat:general',ownerOfficeId:'office:shared:general',name:'将军府（兼容）',residenceType:'将军府',backgroundStyle:'general',isFallback:true,researchStatus:'存疑'},

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T14:39:18.021Z",
+  "generatedAt": "2026-08-16T14:53:15.049Z",
   "offlineRuntime": true,
-  "fileCount": 136,
-  "totalBytes": 47218251,
+  "fileCount": 137,
+  "totalBytes": 47223999,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -547,8 +547,8 @@
     },
     {
       "path": "data/office-residences.js",
-      "bytes": 9943,
-      "sha256": "ce26d48641f0e78d5dd57cade4e31595a0ba3ccba2b16e8cdc19941198ba134c"
+      "bytes": 12370,
+      "sha256": "b84f736f264b5203611f73abd79b9b9f29a952e3984280a0a3c3f97f447dfa1b"
     },
     {
       "path": "data/office-seat-policies.js",
@@ -599,6 +599,11 @@
       "path": "data/person-zi-supplement.json",
       "bytes": 13889,
       "sha256": "b3becd0beeb074b8cae729bc554075492e30066a5eadfd71be823c107558350f"
+    },
+    {
+      "path": "data/portrait-candidates.json",
+      "bytes": 2943,
+      "sha256": "228d03d8d30a48d5ebdab143a8f95535ab5c4445888df2359efdedfe5ec29131"
     },
     {
       "path": "data/public-vector-audit.json",
@@ -662,8 +667,8 @@
     },
     {
       "path": "data/v45-release-manifest.json",
-      "bytes": 4044,
-      "sha256": "e243c3b45de73be8e0e5233cff21aacb968daa77c1562a23ba87b340bb9b7491"
+      "bytes": 4422,
+      "sha256": "ee289c89f564cf3c2145430e282621e07eb1ee3b062b45072884c1c20fa1a440"
     },
     {
       "path": "data/v45-shihuo-gap.json",
