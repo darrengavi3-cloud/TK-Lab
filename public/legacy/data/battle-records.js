@@ -38,6 +38,16 @@ const EVENT_BATTLE_LINKS = Object.freeze({
   ev_weifa_263:'jianwei', ev_miewu_280:'miewu'
 });
 
+const ADDITIONAL_BATTLE_SUPPLEMENT = Object.freeze({
+  xingshi: { participants:['王平（汉）','曹爽（魏）'], strengthNote:'兴势之战：曹爽率魏军攻汉中，王平、刘敏据兴势拒守，费祎督军赴援，魏军粮尽退（《三国志》卷四十三·王平传）。' },
+  longcao: { participants:['袁绍','公孙瓒'], strengthNote:'龙凑之战：袁绍与公孙瓒争冀州，互有胜负（《后汉书》卷七十三·公孙瓒列传）。' },
+  jumashui: { participants:['公孙瓒','袁绍'], strengthNote:'巨马水之战：公孙瓒与袁绍相持于巨马水一带（《后汉书》卷七十三·公孙瓒列传）。' }
+});
+
+const ADDITIONAL_BATTLE_PROVINCE = Object.freeze({
+  ev_xingshi_244:['益州'], xingshi:['益州'], longcao:['冀州'], jumashui:['冀州']
+});
+
 const BATTLE_SUPPLEMENT = Object.freeze({
   guandu:{participants:['曹操','袁绍'],strengthNote:'袁绍众号十余万，曹操兵少，史料无一致实数（待考）。'},
   chibi:{participants:['孙刘联军','曹操'],strengthNote:'曹军号称八十万，实际南下兵力有争议（待考）；孙刘联军约五万。'},
@@ -58,6 +68,10 @@ const battleData = {
   scope: '汉末至西晋（168—316）战事与军政沿革',
   note: '编年要事用于串联形势图时间轴；战役与战场字段沿用地图图层。史料出处优先原典，维基条目仅作检索索引。',
   events: [
+    { id:'ev_sunce_jiangdong_195', year:195, era:'兴平二年', emperor:'汉献帝', text:'孙策渡江平定江东，逐刘繇、破严白虎等，奠定孙吴基业。', sideA:'孙策', sideB:'刘繇、严白虎等', result:'孙策定江东', front:'江东', sourceTitle:'《三国志》卷四十六·孙讨逆传', confidence:'确定' },
+    { id:'ev_xingshi_244', year:244, era:'延熙七年／正始五年', emperor:'后主／魏齐王芳', text:'兴势之战：曹爽率魏军攻汉中，王平据兴势拒守，费祎督军往救，魏军粮尽退还。', sideA:'汉（王平、费祎）', sideB:'魏（曹爽）', result:'魏军退', front:'兴势', sourceTitle:'《三国志》卷四十三·王平传；卷四十四·费祎传', confidence:'确定', battleId:'xingshi' },
+    { id:'ev_longcao_191', year:191, era:'初平二年', emperor:'汉献帝', text:'龙凑之战：袁绍与公孙瓒在龙凑一带交战，公孙瓒退兵。', sideA:'袁绍', sideB:'公孙瓒', result:'袁绍守成', front:'龙凑', sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定', battleId:'longcao' },
+    { id:'ev_jumashui_192', year:192, era:'初平三年', emperor:'汉献帝', text:'巨马水之战：公孙瓒复攻袁绍，战于巨马水，互有胜负。', sideA:'公孙瓒', sideB:'袁绍', result:'互有胜负', front:'巨马水', sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定', battleId:'jumashui' },
     { id:'ev_lingdi_168', year:168, era:'建宁元年', emperor:'汉灵帝', text:'窦武、陈蕃谋诛宦官，事泄被杀，宦官势力进一步坐大。', sideA:'外戚士人集团', sideB:'宦官集团', result:'宦官获胜', front:'洛阳', sourceTitle:'《后汉书》卷六十六·陈蕃传', confidence:'确定' },
     { id:'ev_huangjin_184', year:184, era:'中平元年', emperor:'汉灵帝', text:'张角发动黄巾起义，三十六方同日并起，天下震动；皇甫嵩、朱儁等镇压。', sideA:'黄巾军', sideB:'东汉朝廷', result:'朝廷镇压，州郡兵起', front:'冀州、颍川、南阳等地', sourceTitle:'《后汉书》卷七十一·皇甫嵩传', confidence:'确定' },
     { id:'ev_liuyan_188', year:188, era:'中平五年', emperor:'汉灵帝', text:'刘焉建言选清名重臣出任州牧，以加强对地方的监察与控制；此后州牧逐渐成为地方军政长官。', sideA:'东汉朝廷', sideB:'—', result:'部分州改置州牧', front:'洛阳及诸州', sourceTitle:'《后汉书》卷七十五·刘焉传', confidence:'确定' },
@@ -119,6 +133,9 @@ const battleData = {
     return Object.assign({title:titles[ev.id]||String(ev.text||'').split(/[，。；]/)[0].slice(0,10),battleId:EVENT_BATTLE_LINKS[ev.id]||null},ev);
   }),
   battles: [
+    { id:'xingshi', name:'兴势之战', year:244, a:'王平、费祎（汉）', b:'曹爽（魏）', result:'魏军粮尽退', desc:'曹爽率军攻汉中，王平据兴势拒守，刘敏等坚壁不战；费祎督军至，魏军粮尽退还。', lat:33.07, lng:107.02, sourceTitle:'《三国志》卷四十三·王平传；卷四十四·费祎传', confidence:'确定' },
+    { id:'longcao', name:'龙凑之战', year:191, a:'袁绍', b:'公孙瓒', result:'公孙瓒退兵', desc:'袁绍与公孙瓒争冀州，战于龙凑，公孙瓒败退。', lat:37.6, lng:115.2, sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定' },
+    { id:'jumashui', name:'巨马水之战', year:192, a:'公孙瓒', b:'袁绍', result:'互有胜负', desc:'公孙瓒与袁绍在巨马水一带相持，互有胜负。', lat:39.2, lng:115.8, sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定' },
     { id:'huangjin', name:'黄巾起义', year:184, a:'黄巾军', b:'东汉朝廷', result:'朝廷镇压，乱虽平而州郡兵起', desc:'张角以“苍天已死，黄天当立”号召，三十六方并起，席卷八州。乱平之后，地方割据之势已成。', lat:37.05, lng:115.4, sourceTitle:'《后汉书》卷七十一·皇甫嵩传', confidence:'确定' },
     { id:'hulaoguan', name:'诸侯讨董', year:190, a:'关东联军', b:'董卓', result:'联军瓦解，董卓挟帝西迁长安', desc:'关东州郡推袁绍为盟主讨董卓。曹操汴水战败，联盟各怀异志，不久散去。', lat:34.95, lng:113.05, sourceTitle:'《后汉书》卷七十二·董卓列传', confidence:'确定' },
     { id:'xiapi', name:'下邳之战', year:198, a:'曹操', b:'吕布', result:'曹操擒杀吕布，据徐州', desc:'曹操围下邳，决水灌城，吕布部将侯成等执布降，缢杀于白门楼。', lat:34.07, lng:117.94, sourceTitle:'《三国志》卷一·武帝纪', confidence:'确定' },
@@ -160,7 +177,7 @@ const battleData = {
 
 ['events','battles','battlefields'].forEach(function(kind){
   battleData[kind]=battleData[kind].map(function(item){
-    return Object.assign({},item,kind==='battles'?(BATTLE_SUPPLEMENT[item.id]||{}):{},{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||['跨区域']))});
+    return Object.assign({},item,kind==='battles'?(BATTLE_SUPPLEMENT[item.id]||ADDITIONAL_BATTLE_SUPPLEMENT[item.id]||{}):{},{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||ADDITIONAL_BATTLE_PROVINCE[item.id]||['跨区域']))});
   });
 });
 battleData.provinceIndex=Object.freeze(['中央','司隶','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','跨区域']);

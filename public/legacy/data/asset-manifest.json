@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T14:21:03.131Z",
+  "generatedAt": "2026-08-16T14:39:18.021Z",
   "offlineRuntime": true,
-  "fileCount": 135,
-  "totalBytes": 47209253,
+  "fileCount": 136,
+  "totalBytes": 47218251,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -472,8 +472,8 @@
     },
     {
       "path": "data/battle-records.js",
-      "bytes": 31603,
-      "sha256": "445e50197851b51d6ff5678466f63fdae505760043e767eae2231353c4005c6b"
+      "bytes": 34882,
+      "sha256": "8a958d15dd1a95348567cbd48cc88e5a8b7a913700ef764a0238d7499b5a2d9a"
     },
     {
       "path": "data/epigraphic-records.js",
@@ -489,6 +489,11 @@
       "path": "data/fangzhen-term-supplement.js",
       "bytes": 9888,
       "sha256": "2dc25ae2d5fc13742f5f96664ab8d4901e90925d0245fe17c386d1062f177eb7"
+    },
+    {
+      "path": "data/general-titles.js",
+      "bytes": 4846,
+      "sha256": "37a5a0f6867b39dfe6d81f513b4a435f198b65b6deb026aef1c813eb96876c07"
     },
     {
       "path": "data/han-bai-guan-zhi.js",
@@ -562,8 +567,8 @@
     },
     {
       "path": "data/person-identities.js",
-      "bytes": 6598,
-      "sha256": "46d684e61f7d4c6971bebec7d279d8ce53bed38b8cd4c0af95f7b149b19d48e7"
+      "bytes": 6881,
+      "sha256": "58becfe166533efb1dd56b001b1e9052085d5e60a1765f72a3bcfdecbd3697c5"
     },
     {
       "path": "data/person-portraits.js",
@@ -657,8 +662,8 @@
     },
     {
       "path": "data/v45-release-manifest.json",
-      "bytes": 3454,
-      "sha256": "f33bea2596f0371e3ea5b6873b6ee412b75d71de72b0fafe2cf1c29b0aaa0817"
+      "bytes": 4044,
+      "sha256": "e243c3b45de73be8e0e5233cff21aacb968daa77c1562a23ba87b340bb9b7491"
     },
     {
       "path": "data/v45-shihuo-gap.json",

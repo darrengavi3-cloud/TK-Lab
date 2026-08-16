@@ -31,6 +31,7 @@
 <script src="./data/epigraphic-records.js"></script>
 <script src="./data/research-candidates.js"></script>
 <script src="./data/han-bai-guan-zhi.js"></script>
+<script src="./data/general-titles.js"></script>
 <script src="./data/fangzhen-seat-supplement.js"></script>
 
 <style>
@@ -1422,14 +1423,14 @@ function splitWeiJinBoundaryRecord(record){
     Object.assign({},base,{
       id:'fz_'+record.id+'_wei', eraGroup:'three', archiveScope:'核心：汉末—西晋',
       polity:'魏', startYear:record.startYear, endYear:265,
-      tenureText:(record.tenure||'')+'｜曹魏段截至咸熙二年（265年）',
-      note:[record.note,'跨朝任职已按 266 年晋代魏拆分；原表任期保存在“原始任期”字段。'].filter(Boolean).join('；')
+      tenureText:record.tenure||'',
+      note:record.note||''
     }),
     Object.assign({},base,{
       id:'fz_'+record.id+'_jin', eraGroup:'jin', archiveScope:'核心：汉末—西晋',
       polity:'晋', startYear:266, endYear:Number(record.endYear)>=266?record.endYear:null,
-      tenureText:'泰始元年（266年）以后｜原表：'+record.tenure,
-      note:[record.note,'由同一职任的曹魏段续接，单独归入西晋档案。'].filter(Boolean).join('；')
+      tenureText:record.tenure||'',
+      note:record.note||''
     })
   ];
 }
@@ -2936,14 +2937,22 @@ const WIKI_OFFICE_SUPPLEMENTS = [
   {faction:'wei',parent:'',name:'屯田中郎将',category:'将军武职',note:'曹魏特设，主屯田。'},
   {faction:'wei',parent:'',name:'典农校尉',category:'郡国守相',note:'屯田官，隶屯田中郎将。'},
   {faction:'wei',parent:'',name:'典农都尉',category:'郡国守相',note:'屯田官，隶屯田中郎将。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'别驾从事',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'治中从事',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'功曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'簿曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'兵曹从事',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'督邮',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州府属官，掌督察。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'州主簿',category:'州郡属官',note:'魏州属官，归文官。'},
-  {faction:'wei',parent:'州刺史与司隶校尉',name:'大中正',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州置大中正，掌品评人物。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'都官从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌察百官犯法者，非州别驾。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'功曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，主选举、考课。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'簿曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌钱谷簿书。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'兵曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文武兼',note:'司隶校尉属官，掌兵事。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'部郡从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉分部督察所属郡国。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'主簿',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉府主簿。'},
+  {faction:'wei',parent:'司隶校尉（魏）',name:'郡都官从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉下属郡国督察官。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'别驾从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州刺史属官，仅次于刺史。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'治中从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州刺史属官，主州府文书众事。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'功曹从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州刺史属官，主选举、考课。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'簿曹从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州刺史属官，主钱谷簿书。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'兵曹从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文武兼',note:'魏州刺史属官，主兵事。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'部郡从事',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州刺史分部督察郡国属官。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'督邮',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州府属官，掌督察。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'州主簿',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州府主簿。'},
+  {faction:'wei',parent:'州刺史（制度分组）',name:'大中正',category:'州郡属官',institutionType:'州府',serviceDomain:'文官',note:'魏州置大中正，掌品评人物。'},
 
   {faction:'wu',parent:'',name:'左丞相',category:'丞相／相国',note:'孙吴宝鼎元年（266年）分置左右丞相。'},
   {faction:'wu',parent:'',name:'右丞相',category:'丞相／相国',note:'孙吴宝鼎元年（266年）分置左右丞相。'},
@@ -3512,6 +3521,14 @@ function buildPresets(){
       sources:'《三国志》相关传记；《晋书》卷二十四·职官志', note:'具体黄门侍郎官职节点，人物任职按时期档案补入。'
     });
     const sanji = O('wei_o', root.key, '散骑常侍', '散骑集书', '三品', '比二千石', {relationType:'制度并列'});
+    const siliXiaowei = O('wei_o', root.key, '司隶校尉（魏）', '州牧刺史', '三品', '比二千石', {relationType:'制度并列', duty:'掌京都及司隶诸郡监察，领司隶部都官从事等属官', officeStartYear:220, officeEndYear:265});
+    const zhouCishi = O('wei_o', root.key, '州刺史（制度分组）', '州牧刺史', '五品', '六百石', {relationType:'视图分组（非直属）', duty:'魏州刺史掌一州监察与民政，属官别驾、治中、功曹等'});
+    const weiZhongLang = ['五官中郎将','左右中郎将','虎贲中郎将','羽林中郎将','屯田中郎将','建节中郎将','武贲中郎将']
+      .map(nm=>O('wei_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
+    const weiXiaowei = ['中领军校尉','中护军校尉','屯骑校尉','步兵校尉','越骑校尉','长水校尉','射声校尉','城门校尉','典农校尉','护乌桓校尉']
+      .map(nm=>O('wei_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
+    const weiDuwei = ['奉车都尉','驸马都尉','骑都尉','典农都尉','武卫都尉']
+      .map(nm=>O('wei_o', root.key, nm, '将军武职', '六品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
     const groupExtra = (records, region)=> {
       const years=records.flatMap(r=>[r.startYear,r.endYear]).filter(v=>Number.isFinite(v));
       return {
@@ -3524,7 +3541,8 @@ function buildPresets(){
       };
     };
     const officeNodes = [root, cxq, damasi, dajiangjun, taiwei, situ, sikong, yushi, ...jiuqing,
-      shangshuling, shangshupy, ...liucao, zhongshu, shizhong, huangmen, sanji,
+      shangshuling, shangshupy, ...liucao, zhongshu, shizhong, huangmen, sanji, siliXiaowei, zhouCishi,
+      ...weiZhongLang, ...weiXiaowei, ...weiDuwei,
       ...buildLocalRegionTree('wei_o', root.key, LOCAL_REGION_PRESETS.wei)];
 
     const nroot = N('wei_n', null, '曹魏爵制（魏初承汉，咸熙元年复五等爵）', '', {kind:'root', note:'曹魏前期沿用东汉列侯体系；咸熙元年（264）在王爵之下恢复公、侯、伯、子、男五等爵。', sources:'《三国志》相关本纪；维基百科《五等爵》《列侯》'});
@@ -3622,6 +3640,10 @@ function buildPresets(){
       evolution:'建安二十四年（219）法正为尚书令；其后刘巴、蒋琬、费祎、董允、陈祗、董厥相继任职。',
       sources:'《三国志》卷三十七·法正传；卷三十九·刘巴传、董允传；卷四十四；卷四十五'
     });
+    const shuZhongLang = ['虎贲中郎将','羽林中郎将','五官中郎将','左右中郎将','北军中候']
+      .map(nm=>O('shu_o', root.key, nm, '将军武职', '', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
+    const shuXiaowei = ['屯骑校尉','步兵校尉','越骑校尉','长水校尉','射声校尉','典农校尉','司隶校尉（季汉）']
+      .map(nm=>O('shu_o', root.key, nm, '将军武职', '', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
     const shangshupy = O('shu_o', shangshuling.key, '尚书仆射', '尚书台省', '', '六百石', {
       figures:['李福（年代未详）'],
       note:'汉尚书仆射的具名记载较少，具体历任与年代未详。'
@@ -3706,7 +3728,7 @@ function buildPresets(){
     ];
 
     const officeNodes = [root, chengxiang, liubeiFu, ...chengxiangFuRoles, damasi, dajiangjun, shangshuling, shangshupy, ...jiuqing,
-      ...dafu, shizhong, huangmen, ...weijiangjun, ...zhongs, yizhoumu, ...yaoling, nanzhong, ...shuguo, ...taizi,
+      ...dafu, shizhong, huangmen, ...weijiangjun, ...zhongs, ...shuZhongLang, ...shuXiaowei, yizhoumu, ...yaoling, nanzhong, ...shuguo, ...taizi,
       ...buildLocalRegionTree('shu_o', root.key, LOCAL_REGION_PRESETS.shu)];
     // 汉未实行曹魏的九品中正官品体系，本工具仅保留汉代秩俸字段。
     officeNodes.forEach(node=>{ node.rank9 = ''; });
@@ -3738,7 +3760,11 @@ function buildPresets(){
         relationType:'制度并列', sources:'《晋书》卷二十四称孙吴多依汉制；具体官名仍须结合《三国志》人物传逐项核定'
       }));
 
-    const officeNodes = [root, chengxiang, damasi, shangdajiangjun, ...jiuqing,
+    const wuZhongLang = ['五官中郎将','左右中郎将','虎贲中郎将','羽林中郎将','武卫中郎将']
+      .map(nm=>O('wu_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
+    const wuXiaowei = ['中领军校尉','中护军校尉','屯骑校尉','步兵校尉','越骑校尉','长水校尉','射声校尉','典农校尉','左辅都尉','右弼都尉','辅正都尉','翼正都尉']
+      .map(nm=>O('wu_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
+    const officeNodes = [root, chengxiang, damasi, shangdajiangjun, ...jiuqing, ...wuZhongLang, ...wuXiaowei,
       ...buildLocalRegionTree('wu_o', root.key, LOCAL_REGION_PRESETS.wu)];
     // 孙吴官品材料零散，预设不以曹魏《通典》表横向套用；仅在具体史料明确时由使用者录入。
     officeNodes.forEach(node=>{ node.rank9=''; });
@@ -4019,6 +4045,12 @@ figures:['羊祜（征南大将军 276—278）','司马骏（镇西／征西大
       note:'并后汉置，历魏及晋，江左弥重。',
       sources:'《晋书》卷二十四·职官志'
     });
+    const jinZhongLang = ['五官中郎将','左右中郎将','虎贲中郎将','羽林中郎将']
+      .map(nm=>O('jin_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列', sources:'《晋书》卷二十四·职官志'}));
+    const jinXiaowei = ['屯骑校尉','步兵校尉','越骑校尉','长水校尉','射声校尉','城门校尉','护匈奴中郎将','护羌校尉','南蛮校尉','西戎校尉','南夷校尉','平越中郎将']
+      .map(nm=>O('jin_o', root.key, nm, '将军武职', '四品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列', sources:'《晋书》卷二十四·职官志'}));
+    const jinDuwei = ['奉车都尉','驸马都尉','骑都尉','典农都尉']
+      .map(nm=>O('jin_o', root.key, nm, '将军武职', '六品', '比二千石', {serviceDomain:'武官', institutionType:'朝廷机关', relationType:'制度并列'}));
     const huguan = [
       ['护匈奴中郎将','护匈奴、羌、戎、蛮、夷、越中郎将之一；武帝置四中郎将，或领刺史，或持节为之。'],
       ['护羌校尉','沿汉魏旧制；元康中护羌校尉为凉州刺史。'],
@@ -4080,6 +4112,7 @@ figures:['羊祜（征南大将军 276—278）','司马骏（镇西／征西大
       yushi, zhishu, shiyushi, dianzhong, fujie,
       shizhong, huangmen, sanji, tongzhiSanji, yuanwaiSanji, sanjishilang, jishizhong, fengchaoqing,
       piaoqi, cheqi, weijiangjun, sizheng, lingjun, hujun, zuoyouwei, liujun, sijun, wuxiao, sizhonglang,
+      ...jinZhongLang, ...jinXiaowei, ...jinDuwei,
       chengxiang, ...huguan, taiziFu, zhanshi, ...taiziOfficers, wangguo, ...wangguoOfficers,
       ...jinLocalTree];
 
@@ -6858,7 +6891,7 @@ const app = createApp({
 
     function openPersonProfile(name){ activePersonName.value=name; showPersonProfile.value=true; }
     /* ---------- 人物志：统一人物档案 ---------- */
-    function personKeyOf(name){ return String(name||'').trim(); }
+    function personKeyOf(name){ return String(name||'').replace(/（[^）]*）/g,'').replace(/\([^)]*\)/g,'').trim(); }
     function personZiFor(name){
       const key=personKeyOf(name);
       const direct=(window.SGZ_PERSON_ZI_SUPPLEMENT||[]).find(item=>item.name===key);
@@ -7088,9 +7121,10 @@ const app = createApp({
       function mergePersonEntries(entries){
         const buckets=new Map();
         entries.forEach(e=>{
-          const identity=window.SGZ_PERSON_IDENTITIES?.resolve(e.name);
-          const ambiguous=!identity&&(window.SGZ_PERSON_IDENTITIES?.candidateCount(e.name)||0)>1;
-          const key=identity?identity.personId:(ambiguous?e.personId:e.name);
+          const cleanName=personKeyOf(e.name);
+          const identity=window.SGZ_PERSON_IDENTITIES?.resolve(cleanName)||window.SGZ_PERSON_IDENTITIES?.resolve(e.name);
+          const ambiguous=!identity&&(window.SGZ_PERSON_IDENTITIES?.candidateCount(cleanName)||0)>1;
+          const key=identity?identity.personId:(ambiguous?e.personId:cleanName);
           if(!buckets.has(key)) buckets.set(key,[]);
           buckets.get(key).push(e);
         });
@@ -9178,7 +9212,7 @@ const app = createApp({
         </div>
         <div class="fangzhen-context">
           <strong>{{fangzhenArchiveDef.label}}</strong>
-          <span>{{fangzhenArchiveDef.key==='wei'?'魏的刺史与都督职任按年代分段；跨 266 年的记录分属魏、晋。':(fangzhenArchiveDef.key==='shu'?'汉的州牧、都督与郡守职任按辖区和年代排列。':(fangzhenArchiveDef.key==='wu'?'吴的州牧、刺史、太守、都尉与都督职任按州郡排列。':'按国家、官次、辖区和年代排列。'))}}</span>
+          <span>{{fangzhenArchiveDef.key==='wei'?'魏的刺史、司隶校尉与都督职任按年代排列；跨 266 年者按魏、晋分段。':(fangzhenArchiveDef.key==='shu'?'汉的州牧、都督与郡守职任按辖区和年代排列。':(fangzhenArchiveDef.key==='wu'?'吴的州牧、刺史、太守、都尉与都督职任按州郡排列。':'按国家、官次、辖区和年代排列。'))}}</span>
         </div>
         <div class="fangzhen-toolbar">
           <el-input v-model="fangzhenQuery" clearable placeholder="检索人物、官职、辖区、任期或备注…" style="max-width:360px" />

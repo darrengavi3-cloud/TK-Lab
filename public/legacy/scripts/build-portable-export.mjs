@@ -16,6 +16,7 @@ const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
 const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
 const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
+const generalTitlesPath = path.join(root, 'data', 'general-titles.js');
 const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
 const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
@@ -41,6 +42,7 @@ const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').t
 let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
 const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
+const generalTitlesScript = fs.readFileSync(generalTitlesPath, 'utf8').trim();
 const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
 const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
@@ -127,6 +129,10 @@ const replacements = [
   [
     '<script src="./data/han-bai-guan-zhi.js"></script>',
     `<script>\n${hanBaiGuanZhiScript}\n</script>`
+  ],
+  [
+    '<script src="./data/general-titles.js"></script>',
+    `<script>\n${generalTitlesScript}\n</script>`
   ],
   [
     '<script src="./data/kaifu-policies.js"></script>',

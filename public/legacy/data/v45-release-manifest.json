@@ -24,9 +24,19 @@
     "ziScanned": 65,
     "jiangwanMerged": true,
     "wangTitlesCorrected": 7,
-    "careerDeduped": true
+    "careerDeduped": true,
+    "personDeduped": true,
+    "generalTitleSets": 3,
+    "militaryCourtNodes": true,
+    "siliOfficersCorrected": true,
+    "battleAdded": 4
   },
   "changes": [
+    "追加：personKeyOf 剥离年限括号，费祎/董允/蒋琬/来敏合并为单一人档案",
+    "追加：三国将军名号附件结构化并接入页面，朝堂武官列补中郎将/校尉/都尉",
+    "追加：司隶校尉与州刺史分组拆开，司隶属官改为都官从事等",
+    "追加：删除跨朝整理话术，保留原任期与分段年份",
+    "追加：战事纪补兴势、龙凑、巨马水、孙策平江东",
     "追加：蒋琬/姜维/司马懿显式身份，蒋琬跨卷历官合并为单一 personId",
     "追加：人物详情多段历官按时间官职排序并合并同职多出处",
     "追加：抽取器新增進X位為句式、修复司马官名误当复姓、府主属官误抓",

@@ -20,6 +20,7 @@ const sourceIndex = context.window.SGZ_PERSON_SOURCE_INDEX;
 const battles = context.window.SGZ_BATTLE_RECORDS;
 
 const attachment = JSON.parse(read('data/v45-attachment-candidates.json'));
+const generalTitlesSource = read('data/general-titles.js');
 const shihuoGap = JSON.parse(read('data/v45-shihuo-gap.json'));
 const fangzhenReview = JSON.parse(read('data/v45-fangzhen-review.json'));
 const coverage = JSON.parse(read('data/person-volume-coverage.json'));
@@ -104,6 +105,21 @@ assert(html.includes('mergedByOffice') && html.includes('sourceLocators.length>1
 assert(!html.includes('赵王伦') && !html.includes('梁王肜') && !html.includes('成都王颖') && !html.includes('南阳王保') && !html.includes('东莞王伷') && !html.includes('高阳王珪') && !html.includes('汝阴王骏'), '西晋王爵人物名未更正为司马＋名');
 assert(html.includes('司马伦') && html.includes('司马颖') && html.includes('司马骏'), '西晋宗室未使用司马＋名');
 assert(portable.includes('personZiFor') && portable.includes('SGZ_PERSON_ZI_SUPPLEMENT'), '便携版未同步表字补充');
+
+// 9. 人物重复/司隶校尉/跨朝注释/将军名号/战事纪 专项回归
+assert(!html.includes('州刺史与司隶校尉'), '司隶校尉与州刺史仍混为同一分组');
+assert(html.includes("parent:'司隶校尉（魏）'") && html.includes('都官从事'), '司隶校尉都官从事未接入');
+assert(html.includes("parent:'州刺史（制度分组）'") && html.includes('别驾从事'), '州刺史别驾从事未接入');
+assert(!html.includes('由同一职任的曹魏段续接') && !html.includes('曹魏段截至咸熙二年'), '跨朝整理话术未删除');
+assert(html.includes('司隶校尉（魏）') && html.includes('州刺史（制度分组）'), '魏司隶校尉/州刺史分组节点未接入');
+assert(generalTitlesSource.includes('wei:Object.freeze') && generalTitlesSource.includes('han:Object.freeze') && generalTitlesSource.includes('wu:Object.freeze'), '将军名号数据未完整生成');
+assert(generalTitlesSource.includes("['大将军','一品'") && generalTitlesSource.includes("['上大将军','—'"), '将军名号附件数据缺失');
+assert(html.includes('general-titles.js') && generalTitlesSource.includes('SGZ_GENERAL_TITLES'), '将军名号未接入页面');
+assert(html.includes('屯田中郎将') && html.includes('典农校尉') && html.includes('典农都尉'), '魏武官列中郎将/校尉/都尉未接入');
+assert(html.includes('虎贲中郎将') && html.includes('射声校尉') && html.includes('驸马都尉'), '朝堂武官列中郎将/校尉/都尉缺失');
+assert(read('data/battle-records.js').includes('xingshi') && read('data/battle-records.js').includes('longcao') && read('data/battle-records.js').includes('jumashui'), '战事纪兴势/龙凑/巨马水补充缺失');
+assert(portable.includes('SGZ_GENERAL_TITLES'), '便携版未同步将军名号');
+assert(portable.includes('都官从事') && portable.includes('xingshi'), '便携版未同步司隶校尉修正或战事补充');
 
 console.log('V45 审计验证通过');
 console.log(`人物候选 ${sourceIndex.summary.appointments} 条 / 默认范围 ${sourceIndex.summary.defaultAppointments} 条；同名误识别已清除`);
