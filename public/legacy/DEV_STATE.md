@@ -71,7 +71,7 @@ V46（人物全量立绘索引、州镇行政检索、形势图层级、两晋�
 
 发布状态：
 
-- Sites 第 13 版已保存并完成私密生产部署；部署提交为 Sites 内部源仓库同步提交 `107ad977b490f75a249e4689c11bd4125abcc55a`，GitHub 功能／`main` 提交为 `2bd50ca2a0e58e240d8b2c90043bf442af23d453`。
+- Sites 第 14 版已保存并完成私密生产部署；发布记录提交为 Sites 内部源仓库同步提交 `cd2f2a5cfa497352254189c01c8fdb1587b20af9`，GitHub `main` 提交为 `a8d903a157efc7f14d2b58d0fc9bab1f388fb8cf`。
 - 私密访问地址：`https://zhiguanpu-private.darrengavi3.chatgpt.site`；站点访问策略仍为仅所有者可访问。
 - 桌面／移动端浏览器视觉验收仍待执行（当前会话未提供可用浏览器控制连接器）；V45 版本保留作回滚点。
 
