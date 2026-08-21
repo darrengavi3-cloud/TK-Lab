@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T14:53:15.049Z",
+  "generatedAt": "2026-08-21T13:33:54.382Z",
   "offlineRuntime": true,
-  "fileCount": 137,
-  "totalBytes": 47223999,
+  "fileCount": 144,
+  "totalBytes": 52687461,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -72,8 +72,8 @@
     },
     {
       "path": "assets/map/js/app.js",
-      "bytes": 19579,
-      "sha256": "3f9e11bdb2512898aecdc52ea6a3fe4e0a259af390da8c6cc981710bdb1d71c3"
+      "bytes": 20778,
+      "sha256": "0bdf60c4e39a83b8b4511d6f6bd5187cfe5873f6cb277b8f926fe4bf63011ec8"
     },
     {
       "path": "assets/map/js/base-layer.js",
@@ -87,8 +87,8 @@
     },
     {
       "path": "assets/map/js/commanderies.js",
-      "bytes": 6114,
-      "sha256": "321d222470adef9cee5e07fdc8b1f82098b7ba3e042ac4b6ac960a2d0248a2e8"
+      "bytes": 6288,
+      "sha256": "40f7a24fee0c85dd89ba789b791df461fc0951bb4cb3b721df043dc2f479516d"
     },
     {
       "path": "assets/map/js/config.js",
@@ -97,8 +97,8 @@
     },
     {
       "path": "assets/map/js/counties.js",
-      "bytes": 3221,
-      "sha256": "5353af5243ac2dd96b7698df9202a7f52e3ed7eb949efa4b5206c9bb92199262"
+      "bytes": 3576,
+      "sha256": "4f7cfde4008ad8909b1a0268846a701d912780321bd118b34a2f3e7b5d87f702"
     },
     {
       "path": "assets/map/js/hydronyms.js",
@@ -127,8 +127,8 @@
     },
     {
       "path": "assets/map/js/territories.js",
-      "bytes": 14278,
-      "sha256": "40fdc8f01dfffc65fe00ec3b2e9e3f3fda9703037b01355577a4901bb86e4c4c"
+      "bytes": 14651,
+      "sha256": "75859b9dafaf9131fd6030ae2baa3ffec4e5908693dc0fe8ba1d5493658ac7cb"
     },
     {
       "path": "assets/map/js/timeline.js",
@@ -137,8 +137,8 @@
     },
     {
       "path": "assets/map/js/wu-commanderies.js",
-      "bytes": 5720,
-      "sha256": "806c01fc41fe1c3647e70c2961860ccf1c1edfab8dd8901c51960ef766a1ad7c"
+      "bytes": 5894,
+      "sha256": "ecffd218aa3a7ae7b08210ae3efd0f8e89e08de6ad2cc24fca25243ddd520bae"
     },
     {
       "path": "assets/map/vendor/leaflet/images/layers-2x.png",
@@ -189,6 +189,11 @@
       "path": "assets/portraits/generated/kuai-yue.png",
       "bytes": 16056,
       "sha256": "5b5c354c67520ae177c301c113a0bd0b44c487a7fda30ce06420d515737044c9"
+    },
+    {
+      "path": "assets/portraits/generated/person-placeholder-v46.png",
+      "bytes": 2408198,
+      "sha256": "02722686e1e7aacfe664dd7e5f3d0c43180c7bb4cefcfc4cacb8143165e1fb6b"
     },
     {
       "path": "assets/portraits/generated/wei-ji.png",
@@ -401,6 +406,11 @@
       "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
     },
     {
+      "path": "assets/portraits/wei/deng-ai-v2.png",
+      "bytes": 2462338,
+      "sha256": "4073b2e250ee524b8fcc1273dfc4238273e213c80c3c218e2eae80661c367588"
+    },
+    {
       "path": "assets/portraits/wei/deng-ai.png",
       "bytes": 18454,
       "sha256": "b1c0bb05a05c77648b5c5751c621810668c78887f62582547df85852d52043ed"
@@ -471,6 +481,11 @@
       "sha256": "c9506197caf809a075b6dee1da0d36fb19da7158ffe8a88e7b0c96c5d8623c99"
     },
     {
+      "path": "data/administrative-index.js",
+      "bytes": 5133,
+      "sha256": "e00bd7bade9343b0e17918b1b0c6581b12ff68e72a57d60af49b8b5056b8686c"
+    },
+    {
       "path": "data/battle-records.js",
       "bytes": 34882,
       "sha256": "8a958d15dd1a95348567cbd48cc88e5a8b7a913700ef764a0238d7499b5a2d9a"
@@ -479,6 +494,11 @@
       "path": "data/epigraphic-records.js",
       "bytes": 23012,
       "sha256": "85a3ab057205b1d0640f7d0b938bb163cf4e09afa41f0234544be2b579a3e3bc"
+    },
+    {
+      "path": "data/epigraphic-v46-jin.js",
+      "bytes": 187957,
+      "sha256": "d91132dc3c22397649955856228dd056a4ba52a93788f85266c7f0f8095b9e4f"
     },
     {
       "path": "data/fangzhen-seat-supplement.js",
@@ -606,6 +626,16 @@
       "sha256": "228d03d8d30a48d5ebdab143a8f95535ab5c4445888df2359efdedfe5ec29131"
     },
     {
+      "path": "data/portrait-manifest.js",
+      "bytes": 167530,
+      "sha256": "9473fd104c7aae7e7c15d41ef1a1d9bdfa6e9170b7b533d01c4d5c6319f7c7fd"
+    },
+    {
+      "path": "data/portrait-manifest.json",
+      "bytes": 224493,
+      "sha256": "a041eff7df3a80006fa7bbaf0e0afd25b58d20369625ff1b21b94f463034d8c5"
+    },
+    {
       "path": "data/public-vector-audit.json",
       "bytes": 4612,
       "sha256": "ad80100426a432dba1ed3627f40958940f857f4aa14f1d35391f1fb59f281433"
@@ -674,6 +704,11 @@
       "path": "data/v45-shihuo-gap.json",
       "bytes": 1571,
       "sha256": "7ea631962cfad7483203ed5108458b1056222893cf9a4573cb705938e68f22d0"
+    },
+    {
+      "path": "data/v46-jinshi-audit.json",
+      "bytes": 5538,
+      "sha256": "619c3a4ba85d97e9184d29751ef29c35c94567866bb69ce21afe9de5c2436b72"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

@@ -14,7 +14,10 @@ const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
 const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
 const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
 const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
+const portraitManifestPath = path.join(root, 'data', 'portrait-manifest.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
+const epigraphicV46JinPath = path.join(root, 'data', 'epigraphic-v46-jin.js');
+const administrativeIndexPath = path.join(root, 'data', 'administrative-index.js');
 const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
 const generalTitlesPath = path.join(root, 'data', 'general-titles.js');
 const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
@@ -40,7 +43,10 @@ const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim(
 const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
 const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').trim();
 let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
+let portraitManifestScript = fs.readFileSync(portraitManifestPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
+const epigraphicV46JinScript = fs.readFileSync(epigraphicV46JinPath, 'utf8').trim();
+const administrativeIndexScript = fs.readFileSync(administrativeIndexPath, 'utf8').trim();
 const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
 const generalTitlesScript = fs.readFileSync(generalTitlesPath, 'utf8').trim();
 const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
@@ -49,16 +55,32 @@ const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').tri
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
 const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
 const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
-for (const polityDir of fs.readdirSync(portraitDir)) {
+const portablePortraitAssets = {};
+function inlinePortraitAssets(script) {
+  let output = script;
+  for (const polityDir of fs.readdirSync(portraitDir)) {
   const fullDir = path.join(portraitDir, polityDir);
   if (!fs.statSync(fullDir).isDirectory()) continue;
   for (const file of fs.readdirSync(fullDir).filter(name => /\.(png|jpe?g|webp)$/i.test(name))) {
     const relative = `./assets/portraits/${polityDir}/${file}`;
     const mime = file.toLowerCase().endsWith('.png') ? 'image/png' : (file.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
     const data = `data:${mime};base64,${fs.readFileSync(path.join(fullDir, file)).toString('base64')}`;
-    personPortraitsScript = personPortraitsScript.split(relative).join(data);
+    portablePortraitAssets[relative] = data;
+    output = output.split(relative).join(data);
   }
 }
+  return output;
+}
+personPortraitsScript = inlinePortraitAssets(personPortraitsScript);
+const portablePortraitManifestScript = `${portraitManifestScript}
+(function(){
+  var assets=${JSON.stringify(portablePortraitAssets)};
+  var manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
+  Object.values(manifest.byPersonId||{}).concat(Object.values(manifest.byName||{})).forEach(function(item){
+    if(item&&item.src&&assets[item.src]) item.src=assets[item.src];
+  });
+  if(manifest.fallbackSrc&&assets[manifest.fallbackSrc]) manifest.fallbackSrc=assets[manifest.fallbackSrc];
+})();`;
 const courtBackgroundData = `data:image/png;base64,${fs.readFileSync(courtBackgroundPath).toString('base64')}`;
 
 const replacements = [
@@ -123,8 +145,20 @@ const replacements = [
     `<script>\n${personPortraitsScript}\n</script>`
   ],
   [
+    '<script src="./data/portrait-manifest.js"></script>',
+    `<script>\n${portablePortraitManifestScript}\n</script>`
+  ],
+  [
     '<script src="./data/epigraphic-records.js"></script>',
     `<script>\n${epigraphicRecordsScript}\n</script>`
+  ],
+  [
+    '<script src="./data/epigraphic-v46-jin.js"></script>',
+    `<script>\n${epigraphicV46JinScript}\n</script>`
+  ],
+  [
+    '<script src="./data/administrative-index.js"></script>',
+    `<script>\n${administrativeIndexScript}\n</script>`
   ],
   [
     '<script src="./data/han-bai-guan-zhi.js"></script>',

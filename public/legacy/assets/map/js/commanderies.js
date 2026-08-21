@@ -10,6 +10,7 @@ const Commanderies = (function () {
   let layer = null;
   let entries = [];
   let labelsVisible = true;
+  let hierarchyLevel = 'faction';
 
   function factionColor(kingdom) {
     const f = FACTIONS[kingdom];
@@ -81,13 +82,14 @@ const Commanderies = (function () {
   }
   function setMarkerVisible(marker,visible){const element=marker&&marker.getElement&&marker.getElement();if(element)element.style.display=visible?'':'none';}
   function applyFilters(){
+    const level=window.__MAP_HIERARCHY_LEVEL||hierarchyLevel;
     entries.forEach((entry)=>{
       const visible=matches(entry);
       if(entry.polygon&&entry.polygon.setStyle){
-        if(visible){if(entry.hidden){entry.polygon.setStyle(entry.hiddenStyle||entry.baseStyle);entry.hidden=false;}}
-        else {if(!entry.hidden){entry.hiddenStyle={color:entry.polygon.options.color,weight:entry.polygon.options.weight,opacity:entry.polygon.options.opacity,fillColor:entry.polygon.options.fillColor,fillOpacity:entry.polygon.options.fillOpacity};entry.hidden=true;}entry.polygon.setStyle({opacity:0,fillOpacity:0});}
+        if(visible&&level==='commandery'){entry.hidden=false;entry.polygon.setStyle(entry.baseStyle);}
+        else {entry.hidden=true;entry.polygon.setStyle({opacity:0,fillOpacity:0});}
       }
-      setMarkerVisible(entry.label,visible && labelsVisible);
+      setMarkerVisible(entry.label,visible && labelsVisible && level==='commandery');
     });
     if(entries.some(entry=>entry.label&&entry.label.getElement&&!entry.label.getElement()))requestAnimationFrame(applyFilters);
   }
@@ -158,8 +160,15 @@ const Commanderies = (function () {
 
   function setLabelsVisible(value) {
     labelsVisible = value !== false;
-    entries.forEach((entry) => setMarkerVisible(entry.label, labelsVisible && matches(entry)));
+    const level=window.__MAP_HIERARCHY_LEVEL||hierarchyLevel;
+    entries.forEach((entry) => setMarkerVisible(entry.label, labelsVisible && level==='commandery' && matches(entry)));
   }
 
-  return { init, render, hide, setFilters:applyFilters, setLabelsVisible };
+  function setHierarchyLevel(level){
+    hierarchyLevel=['faction','province','commandery'].includes(level)?level:'faction';
+    window.__MAP_HIERARCHY_LEVEL=hierarchyLevel;
+    applyFilters();
+  }
+
+  return { init, render, hide, setFilters:applyFilters, setLabelsVisible, setHierarchyLevel };
 })();

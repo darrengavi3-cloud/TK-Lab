@@ -28,7 +28,10 @@
 <script src="./assets/map/data/hydronym-audit.js"></script>
 <script src="./data/person-era-rosters.js"></script>
 <script src="./data/person-portraits.js"></script>
+<script src="./data/portrait-manifest.js"></script>
 <script src="./data/epigraphic-records.js"></script>
+<script src="./data/epigraphic-v46-jin.js"></script>
+<script src="./data/administrative-index.js"></script>
 <script src="./data/research-candidates.js"></script>
 <script src="./data/han-bai-guan-zhi.js"></script>
 <script src="./data/general-titles.js"></script>
@@ -1607,12 +1610,13 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
         <div class="lg-item lg-layer-row"><span class="lg-minority-swatch"></span>域外活动范围（推定）</div>
         <div class="lg-item lg-layer-row"><span class="lg-hydronym-swatch"></span>古水名（《水经注》卷次标注）</div>
       </div>
-      <span class="lg-hint">点击势力名称可聚焦；放大至 7 级以上显示县政区点。</span>
+      <span class="lg-hint">点击势力名称可聚焦；低缩放显示国／势力，中缩放显示州，高缩放显示郡；8 级以上显示县政区点。</span>
     </div>
     <div class="sb-section"><div class="sb-title">显示模式</div>
       <label><input name="map-display-mode" value="research" type="radio" checked> 综合态势</label>
       <label><input name="map-display-mode" value="administrative" type="radio"> 行政层</label>
       <div id="map-filter-status" class="map-filter-status">综合态势 · 全部势力 · 全部州</div>
+      <div id="map-hierarchy-status" class="map-filter-status">当前层级：国／势力层（低缩放）</div>
     </div>
     <div class="sb-section"><div class="sb-title">聚焦范围</div>
       <select id="map-state-filter" aria-label="按州聚焦"><option value="all">全部州</option></select>
@@ -1625,10 +1629,10 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
       <label><input id="bm-osm" name="basemap" value="osm" type="radio"> 现代地图</label>
     </div>
     <div class="sb-section"><div class="sb-title">图 层</div>
-      <label><input id="lyr-terr" type="checkbox" checked> 国家与州界色块</label>
-      <label><input id="lyr-province-tint" type="checkbox" checked> 州郡分色</label>
-      <label><input id="lyr-wu-cmd" type="checkbox" checked> 郡界淡色块</label>
-      <label><input id="lyr-cmd-label" type="checkbox" checked> 郡名标签</label>
+      <label><input id="lyr-terr" type="checkbox" checked> 层级底图（随缩放互斥）</label>
+      <label><input id="lyr-province-tint" type="checkbox" checked> 州色／郡浅色</label>
+      <label><input id="lyr-wu-cmd" type="checkbox" checked> 郡界淡色块（高缩放）</label>
+      <label><input id="lyr-cmd-label" type="checkbox" checked> 郡名标签（高缩放）</label>
       <label><input id="lyr-county" type="checkbox" checked> 县政区（郡县点）</label>
       <label><input id="lyr-route" type="checkbox" checked> 进军路线</label>
       <label><input id="lyr-frontier-route" type="checkbox" checked> 边界通道</label>
@@ -2580,17 +2584,32 @@ THREE_KINGDOMS.cities.forEach(function(city){
   }
   function historicalColor(feature,factionId,level){
     var faction=FACTIONS[factionId]||FACTIONS[feature.kingdom]||{color:'#746c60'};
-    if(window.__provinceTintEnabled===false) return faction.color;
+    if(level==='faction'||window.__provinceTintEnabled===false) return faction.color;
     var rawKey=String(feature.key||'').replace(/_(wei|wu)$/,'');
     var stateKeys={'司隶':'sili','司州':'sili','并州':'bingzhou','冀州':'jizhou','兖州':'yanzhou','豫州':'yuzhou','青州':'qingzhou','徐州':'xuzhou','扬州':'yangzhou','荆州':'jingzhou','益州':'yizhou','梁州':'liang_state','凉州':'liangzhou','雍州':'yongzhou','秦州':'qinzhou','幽州':'youzhou','平州':'pingzhou','交州':'jiaozhou','广州':'guangzhou','宁州':'ningzhou'};
-    var stateKey=level==='commandery'?(stateKeys[feature.state]||rawKey):(rawKey==='jing'?'jingzhou':rawKey==='yang'?'yangzhou':rawKey);
-    var stateTone=(window.PROVINCE_COLOR_PALETTE||{})[stateKey]||TONES[hash(feature.state||feature.key)%TONES.length];
-    var color=level==='province'?mix(stateTone,faction.color,.58):mix(stateTone,faction.color,.68);
-    if(level==='commandery'){
-      color=mix(color,TONES[hash(feature.key)%TONES.length],.04);
-    }
-    return color;
+    var stateKey=stateKeys[feature.state]||stateKeys[feature.sourceProvince]||(rawKey==='jing'?'jingzhou':rawKey==='yang'?'yangzhou':rawKey);
+    var stateTone=(window.PROVINCE_COLOR_PALETTE||{})[stateKey]||TONES[hash(stateKey||feature.state||feature.key)%TONES.length];
+    return level==='commandery'?mix(stateTone,'#fffdf8',.58):stateTone;
   }
+  var lastTerritoryFeatures=[];
+  var lastTerritoryMapping={};
+  function applyTerritoryHierarchyDom(){
+    var level=window.__MAP_HIERARCHY_LEVEL||'province';
+    var all=Array.from(document.querySelectorAll('.territory'));
+    var current=all.slice(-lastTerritoryFeatures.length);
+    current.forEach(function(path,index){
+      var feature=lastTerritoryFeatures[index]||{};
+      var factionId=(lastTerritoryMapping&&lastTerritoryMapping[feature.key])||feature.kingdom;
+      path.style.setProperty('fill',historicalColor(feature,factionId,level),'important');
+      path.style.setProperty('fill-opacity',level==='commandery'?'0':'0.30','important');
+      path.style.setProperty('stroke-opacity',level==='province'?'0.9':'0','important');
+      path.style.setProperty('stroke-width',level==='province'?'1.5':'0','important');
+    });
+    document.querySelectorAll('.faction-label').forEach(function(label){label.style.visibility=level==='faction'?'visible':'hidden';});
+    document.querySelectorAll('.province-label').forEach(function(label){label.style.visibility=level==='province'?'visible':'hidden';});
+    if(window.__scheduleLabelLayout) window.__scheduleLabelLayout();
+  }
+  window.addEventListener('sgz-map-hierarchy',applyTerritoryHierarchyDom);
   var labelLayoutTimer=0;
   function overlaps(a,b,padding){
     return !(a.right+padding<b.left||a.left-padding>b.right||a.bottom+padding<b.top||a.top-padding>b.bottom);
@@ -2599,18 +2618,22 @@ THREE_KINGDOMS.cities.forEach(function(city){
     var countries=Array.from(document.querySelectorAll('.faction-label'));
     var provinces=Array.from(document.querySelectorAll('.province-label'));
     var commanderies=Array.from(document.querySelectorAll('.cmd-label'));
+    var hierarchy=window.__MAP_HIERARCHY_LEVEL||'province';
     var app=document.getElementById('app');
     var compact=!!(app&&app.classList.contains('zoom-lte-5'));
     var tiny=!!(app&&app.classList.contains('zoom-lte-4'));
     var all=countries.concat(provinces,commanderies);
-    all.forEach(function(label){label.style.visibility='visible';});
+    all.forEach(function(label){
+      var visible=label.classList.contains('faction-label')?hierarchy==='faction':label.classList.contains('province-label')?hierarchy==='province':hierarchy==='commandery';
+      label.style.visibility=visible?'visible':'hidden';
+    });
     var accepted=[];
     // 先固定州名，再让势力大字与郡名避开，避免国号压住行政信息。
-    provinces.forEach(function(label){
+    provinces.filter(function(label){return hierarchy==='province'&&label.style.visibility!=='hidden';}).forEach(function(label){
       var rect=label.getBoundingClientRect();
       if(rect.width&&rect.height) accepted.push(rect);
     });
-    countries.forEach(function(label){
+    countries.filter(function(label){return hierarchy==='faction'&&label.style.visibility!=='hidden';}).forEach(function(label){
       var span=label.querySelector('span');
       if(!span) return;
       span.style.setProperty('--cmd-shift-y','0px');
@@ -2630,6 +2653,7 @@ THREE_KINGDOMS.cities.forEach(function(city){
     // 缩略视图只对文字做有限的上下错位，保留每一个郡块的名称，同时避免
     // 河内—魏郡、巴—巴西等相邻小郡的文字完全叠成一团。
     var visibleCommanderies=commanderies.filter(function(label){
+      if(hierarchy!=='commandery') return false;
       var rect=label.getBoundingClientRect();
       return rect.width&&rect.height;
     }).sort(function(a,b){
@@ -2668,15 +2692,11 @@ THREE_KINGDOMS.cities.forEach(function(city){
   }
   var renderTerritories=Territories.render;
   Territories.render=function(map,features,mapping,opts){
+    lastTerritoryFeatures=features||[];
+    lastTerritoryMapping=mapping||{};
     var result=renderTerritories.apply(Territories,arguments);
     requestAnimationFrame(function(){
-      var all=Array.from(document.querySelectorAll('.territory'));
-      var current=all.slice(-features.length);
-      current.forEach(function(path,index){
-        var feature=features[index];
-        var factionId=(mapping&&mapping[feature.key])||feature.kingdom;
-        path.style.setProperty('fill',historicalColor(feature,factionId,'province'),'important');
-      });
+      applyTerritoryHierarchyDom();
       scheduleLabelLayout();
     });
     return result;
@@ -3209,6 +3229,7 @@ function makeFigureRecord(source){
   return {
     id: raw.id || figureKey(),
     name: String(raw.name || raw.person || '').trim(),
+    personId: String(raw.personId || ''),
     portrait: typeof (raw.portrait || raw.image) === 'string' ? (raw.portrait || raw.image) : '',
     rulerKey: String(raw.rulerKey || raw.periodKey || ''),
     startYear: normalizeYear(raw.startYear),
@@ -3243,7 +3264,34 @@ function normalizeFigures(rawFigures, factionKey){
           .replace(/^[，,；;\s]+|[，,；;\s]+$/g,'');
         records.push(makeFigureRecord({name,startYear,endYear,note:[yearRange&&(yearRange[1]||yearRange[3])?'约':'',note].filter(Boolean).join('；')}));
       } else records.push(makeFigureRecord({name:raw}));
-    } else if(raw && typeof raw === 'object') records.push(makeFigureRecord(raw));
+    } else if(raw && typeof raw === 'object'){
+      // 研究模型会先将旧字符串人物包装为对象；此处仍需清理“姓名（任期／注记）”，
+      // 否则对象分支会绕过上面的旧字符串解析，污染人物主键和人物记显示。
+      const normalized=Object.assign({},raw);
+      const rawName=String(normalized.name || normalized.person || '').trim();
+      const match=rawName.match(/^([^（(]+)[（(]([^）)]+)[）)]$/);
+      if(match){
+        const detail=match[2].trim();
+        const yearRange=detail.match(/(约)?(\d{3}|[?？])\s*[—–-]\s*(约)?(\d{3}|[?？])/);
+        const singleYear=!yearRange&&detail.match(/^(约)?(\d{3})(?:年)?$/);
+        if(yearRange||singleYear||detail){
+          normalized.name=match[1].trim();
+          if(yearRange){
+            if(normalized.startYear==null && /^\d{3}$/.test(yearRange[2])) normalized.startYear=Number(yearRange[2]);
+            if(normalized.endYear==null && /^\d{3}$/.test(yearRange[4])) normalized.endYear=Number(yearRange[4]);
+          }else if(singleYear && normalized.startYear==null){
+            normalized.startYear=Number(singleYear[2]);
+            if(normalized.endYear==null) normalized.endYear=Number(singleYear[2]);
+          }
+          const note=detail
+            .replace(/(约)?(\d{3}|[?？])\s*[—–-]\s*(约)?(\d{3}|[?？])(?:年)?/,'')
+            .replace(/^(约)?\d{3}(?:年)?/,'')
+            .replace(/^[，,；;\s]+|[，,；;\s]+$/g,'');
+          if(note && !String(normalized.note||'').trim()) normalized.note=note;
+        }
+      }
+      records.push(makeFigureRecord(normalized));
+    }
   });
   const ids = new Set();
   records.forEach(record=>{
@@ -4574,7 +4622,10 @@ const app = createApp({
     const shihuoPolity = ref('all');
     const shihuoCategory = ref('all');
     const shihuoRecords = ref(cloneJSON(SHIHUO_RECORDS));
-    const epigraphicRecords = ref(cloneJSON(window.SGZ_EPIGRAPHIC_RECORDS?.records||[]));
+    const epigraphicRecords = ref(cloneJSON([
+      ...(window.SGZ_EPIGRAPHIC_RECORDS?.records||[]),
+      ...(window.SGZ_EPIGRAPHIC_V46_JIN?.records||[]),
+    ]));
     const epigraphicTypes = window.SGZ_EPIGRAPHIC_RECORDS?.types||['碑刻','墓志','摩崖','砖瓦题记','印章','其他'];
     const epigraphicPolities = ['汉','魏','吴','晋'];
     const epigraphicQuery = ref('');
@@ -5551,9 +5602,21 @@ const app = createApp({
     })));
     const fangzhenArchiveRows = computed(()=>projectForReading(fangzhenRecords.value.filter(record=>fangzhenMatchesArchive(record))));
     const STATE_NAMES = ['司隶','司州','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','宁州','平州','秦州','梁州'];
+    const administrativeIndex=window.SGZ_ADMINISTRATIVE_INDEX||{};
     function extractState(value){
       const text=String(value||'');
       return STATE_NAMES.find(name=>text.includes(name))||'';
+    }
+    function administrativeSearchText(record){
+      const value=record||{};
+      const text=[value.commander,value.title,value.jurisdiction,value.seat,value.tenureText,value.eraGroup,value.archiveScope,value.polity].map(item=>String(item||'')).join(' ');
+      const state=extractState(value.jurisdiction);
+      const stateEntry=(administrativeIndex.states||[]).find(item=>item.name===state);
+      const stateAliases=stateEntry?.aliases||[];
+      const commanderyMatches=(administrativeIndex.commanderies||[]).filter(item=>[item.name,...(item.aliases||[]),...(item.seats||[])].some(term=>text.includes(term)));
+      const commanderyTerms=commanderyMatches.flatMap(item=>[item.name,...(item.aliases||[]),...(item.seats||[]),...(item.states||[])]);
+      const seatTerms=[value.seat].flatMap(seat=>String(seat||'').split(/[／/、，,；;]/)).flatMap(seat=>[seat,...(administrativeIndex.seatAliases?.[seat]||[])]);
+      return [text,state,...stateAliases,...commanderyTerms,...seatTerms].join(' ').toLowerCase();
     }
     const fangzhenStateOptions = computed(()=>{
       const states=new Set();
@@ -5568,7 +5631,7 @@ const app = createApp({
       return fangzhenArchiveRows.value
         .filter(r=>fangzhenRecordType.value==='all'||(r.recordType||'other')===fangzhenRecordType.value)
         .filter(r=>fangzhenState.value==='all'||extractState(r.jurisdiction)===fangzhenState.value)
-        .filter(r=>!q||[r.commander,r.birthplace,r.title,r.jurisdiction,r.seat,r.tenureText,r.note].some(v=>String(v||'').toLowerCase().includes(q)))
+        .filter(r=>!q||administrativeSearchText(r).includes(q))
         .slice().sort((a,b)=>(Number(a.startYear)||0)-(Number(b.startYear)||0)||String(a.polity).localeCompare(String(b.polity),'zh-CN'));
     });
     const fangzhenMetrics = computed(()=>{
@@ -6964,8 +7027,11 @@ const app = createApp({
       return personIdOf(name,{...context,...record,personId:record?.personId});
     }
     const PORTRAIT_POLITY_COLORS = {汉:'#8D3D32',季汉:'#A54136',蜀汉:'#A54136',魏:'#376B9E',吴:'#3F7652',晋:'#665483',西晋:'#665483',东晋:'#756194',匈奴:'#7A5230',鲜卑:'#7A5230',乌桓:'#7A5230',羌:'#7A5230'};
-    function portraitMetaFor(name){
+    function portraitMetaFor(name, personId){
       const key=personKeyOf(name);
+      const manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
+      const indexed=(personId&&manifest.byPersonId?.[personId])||manifest.byName?.[key];
+      if(indexed) return indexed;
       const item=(window.SGZ_PERSON_PORTRAITS||{})[key];
       return typeof item==='string' ? {src:item,polity:'',color:''} : (item||{});
     }
@@ -6975,7 +7041,8 @@ const app = createApp({
       if(record?.portrait) return record.portrait;
       const resolvedId=personId||list.find(item=>item?.personId)?.personId||'';
       const custom=(resolvedId&&personMeta.map[resolvedId]?.portrait)||personMeta.map[personKeyOf(name)]?.portrait;
-      return custom || portraitMetaFor(name).src || '';
+      const indexed=portraitMetaFor(name,resolvedId);
+      return custom || indexed.src || (window.SGZ_PERSON_PORTRAIT_MANIFEST?.fallbackSrc||'');
     }
     function polityColorFor(value){
       const text=String(value||'');
@@ -6985,7 +7052,7 @@ const app = createApp({
     function portraitStyleFor(person){
       const value=person||{};
       const polity=value.portraitPolity||value.polity||(Array.isArray(value.politics)?value.politics[0]:'');
-      const meta=portraitMetaFor(value.name);
+      const meta=portraitMetaFor(value.name,value.personId);
       return {'--portrait-accent':value.portraitAccent||meta.color||polityColorFor(polity)};
     }
     function normalizePersonMeta(raw){
@@ -7038,6 +7105,7 @@ const app = createApp({
         records.push({...record,personId:personRecordId(record,record.person,{polity:record.polity}),name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity,serviceDomain:record.serviceDomain||'',institutionType:record.institutionType||''});
       });
       (window.SGZ_PERSON_SOURCE_INDEX?.appointments||[]).forEach(record=>{
+        if(record.includeInDefault!==true) return;
         if(targetId?record.personId!==targetId:personKeyOf(record.name)!==targetName) return;
         records.push({...record,source:'sourceIndex',name:record.name,nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
       });
@@ -7081,6 +7149,8 @@ const app = createApp({
     }
     const personRegistry = computed(()=>{
       const map = new Map();
+      const sourceIndex = window.SGZ_PERSON_SOURCE_INDEX||{};
+      const defaultSourcePeople = new Set((sourceIndex.people||[]).filter(person=>person.includeInDefault===true).map(person=>person.personId));
       function entry(name,context={}){
         const displayName=personKeyOf(name);
         if(!displayName) return null;
@@ -7128,7 +7198,8 @@ const app = createApp({
         const e=entry(record.person,{...record,polity:record.polity}); if(!e) return;
         addAppointment(e,{...record,name:record.person,source:'eraRoster',factionKey:rosterFactionKey(record),factionName:rosterFactionName(record),nodeName:record.role,title:record.role,treeType:'roster',nodeKey:record.id,polity:record.polity,serviceDomain:record.serviceDomain||'',institutionType:record.institutionType||''});
       });
-      (window.SGZ_PERSON_SOURCE_INDEX?.people||[]).forEach(person=>{
+      (sourceIndex.people||[]).forEach(person=>{
+        if(person.includeInDefault!==true || !defaultSourcePeople.has(person.personId)) return;
         const e=entry(person.name,{personId:person.personId}); if(!e) return;
         e.aliases.push(...(person.aliases||[]));
         if(!e.zi){ const zi=personZiFor(person.name); if(zi) e.zi=zi; }
@@ -7142,7 +7213,8 @@ const app = createApp({
         if(person.evidenceLayer)e.evidenceLayers.push(person.evidenceLayer);
         if(person.researchStatus)e.researchStatuses.push(person.researchStatus);
       });
-      (window.SGZ_PERSON_SOURCE_INDEX?.appointments||[]).forEach(record=>{
+      (sourceIndex.appointments||[]).forEach(record=>{
+        if(record.includeInDefault!==true || !defaultSourcePeople.has(record.personId)) return;
         const e=entry(record.name,{personId:record.personId}); if(!e) return;
         e.aliases.push(...(record.aliases||[]));
         if(!e.zi){ const zi=personZiFor(record.name); if(zi) e.zi=zi; }
@@ -7154,13 +7226,13 @@ const app = createApp({
         addAppointment(e,{...record,source:'sourceIndex',nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
       });
       Object.entries(window.SGZ_PERSON_BIOGRAPHIES||{}).forEach(([key,bio])=>{
-        const e=preferredByName(key)||entry(key,{sourcePersonKey:`biography:${key}`}); if(!e) return;
+        const e=preferredByName(key); if(!e) return;
         e.zi=bio.zi||e.zi;e.birthplace=bio.birthplace||e.birthplace;
         e.birthYear=bio.birthYear??e.birthYear;e.deathYear=bio.deathYear??e.deathYear;
         e.bio=readingText(bio.bio||e.bio);e.bioSource=bio.bioSource||'';e.bioKind='史传提要';
       });
       Object.entries(window.SGZ_PERSON_PORTRAITS||{}).forEach(([key,portrait])=>{
-        const e=preferredByName(key)||entry(key,{sourcePersonKey:`portrait:${key}`}); if(!e) return;
+        const e=preferredByName(key); if(!e) return;
         const item=typeof portrait==='string'?{src:portrait}:portrait;
         if(item.src)e.portrait=item.src;
         e.portraitPolity=item.polity||e.portraitPolity;
@@ -7175,12 +7247,21 @@ const app = createApp({
         if(meta.portrait)e.portrait=meta.portrait;
       });
       function mergePersonEntries(entries){
+        const sourceIdsByName=new Map();
+        (sourceIndex.people||[]).filter(person=>person.includeInDefault===true).forEach(person=>{
+          [person.name,...(person.aliases||[])].map(personKeyOf).filter(Boolean).forEach(name=>{
+            if(!sourceIdsByName.has(name)) sourceIdsByName.set(name,new Set());
+            sourceIdsByName.get(name).add(person.personId);
+          });
+        });
         const buckets=new Map();
         entries.forEach(e=>{
           const cleanName=personKeyOf(e.name);
           const identity=window.SGZ_PERSON_IDENTITIES?.resolve(cleanName)||window.SGZ_PERSON_IDENTITIES?.resolve(e.name);
           const ambiguous=!identity&&(window.SGZ_PERSON_IDENTITIES?.candidateCount(cleanName)||0)>1;
-          const key=identity?identity.personId:(ambiguous?e.personId:cleanName);
+          const sourceIds=sourceIdsByName.get(cleanName)||new Set();
+          const sourceId=sourceIds.size===1?[...sourceIds][0]:'';
+          const key=identity?.personId||sourceId||(ambiguous?e.personId:cleanName);
           if(!buckets.has(key)) buckets.set(key,[]);
           buckets.get(key).push(e);
         });
@@ -7218,6 +7299,13 @@ const app = createApp({
         });
       }
       return mergePersonEntries([...map.values()]).map(e=>{
+        const manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
+        const portrait=manifest.byPersonId?.[e.personId]||manifest.byName?.[personKeyOf(e.name)];
+        const customPortrait=personMeta.map[e.personId]?.portrait||personMeta.map[personKeyOf(e.name)]?.portrait;
+        if(!customPortrait && portrait?.src) e.portrait=portrait.src;
+        if(portrait?.polity) e.portraitPolity=e.portraitPolity||portrait.polity;
+        if(portrait?.color) e.portraitAccent=e.portraitAccent||portrait.color;
+        if(portrait?.sourceTitle) e.portraitSource=e.portraitSource||portrait.sourceTitle;
         e.politics=[...new Set(e.politics.filter(Boolean))];
         e.aliases=[...new Set(e.aliases.filter(value=>value&&value!==e.name))];
         e.serviceDomains=[...new Set(e.serviceDomains.filter(Boolean))];
@@ -9271,7 +9359,7 @@ const app = createApp({
           <span>{{fangzhenArchiveDef.key==='wei'?'魏的刺史、司隶校尉与都督职任按年代排列；跨 266 年者按魏、晋分段。':(fangzhenArchiveDef.key==='shu'?'汉的州牧、都督与郡守职任按辖区和年代排列。':(fangzhenArchiveDef.key==='wu'?'吴的州牧、刺史、太守、都尉与都督职任按州郡排列。':'按国家、官次、辖区和年代排列。'))}}</span>
         </div>
         <div class="fangzhen-toolbar">
-          <el-input v-model="fangzhenQuery" clearable placeholder="检索人物、官职、辖区、任期或备注…" style="max-width:360px" />
+          <el-input v-model="fangzhenQuery" clearable placeholder="检索人物、官职、州郡、治所、别名或任期…" style="max-width:360px" />
           <el-select v-model="fangzhenRecordType" style="width:160px" aria-label="档案类别">
             <el-option label="全部类别" value="all" />
             <el-option label="刺史／州牧" value="cishi" />
@@ -9318,10 +9406,7 @@ const app = createApp({
               <template #default="scope"><span class="fz-type-pill">{{fangzhenTypeLabel(scope.row.recordType)}}</span></template>
             </el-table-column>
             <el-table-column label="人物与职任" min-width="230">
-              <template #default="scope"><div class="fz-person person-link" @click="openPersonProfile(scope.row.commander)">{{scope.row.commander}}</div><div class="fz-title">{{scope.row.birthplace?'籍贯：'+scope.row.birthplace+' · ':''}}{{scope.row.title}}</div></template>
-            </el-table-column>
-            <el-table-column label="任命性质" width="112">
-              <template #default="scope"><div>{{scope.row.appointmentStatus||'—'}}</div><div class="fz-title">{{scope.row.relation||''}}</div></template>
+              <template #default="scope"><div class="fz-person person-link" @click="openPersonProfile(scope.row.commander)">{{scope.row.commander}}</div><div class="fz-title">{{scope.row.title}}</div></template>
             </el-table-column>
             <el-table-column label="辖区" min-width="145"><template #default="scope"><span class="person-link" @click="jumpFangzhenToMap(scope.row)">{{scope.row.jurisdiction||'—'}}</span></template></el-table-column>
             <el-table-column label="治所／驻地" min-width="150">
@@ -9335,7 +9420,6 @@ const app = createApp({
                 <div class="fz-timeline-track"><span class="fz-timeline-scale"><i>168</i><i>220</i><i>280</i><i>316</i></span><span class="fz-timeline-bar" :class="{dashed:fangzhenTimelineStyle(scope.row).dashed}" :style="fangzhenTimelineStyle(scope.row)"></span></div>
               </template>
             </el-table-column>
-            <el-table-column prop="note" label="沿革说明" min-width="260" show-overflow-tooltip />
             <el-table-column label="操作" width="116" fixed="right">
               <template #default="scope"><el-button size="small" text type="primary" @click="openFangzhenEditor(scope.row)">编辑</el-button><el-button size="small" text type="danger" @click="deleteFangzhenRecord(scope.row)">删除</el-button></template>
             </el-table-column>

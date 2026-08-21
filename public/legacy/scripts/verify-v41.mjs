@@ -45,7 +45,7 @@ assert(Object.keys(biographies).length===79,'人物记应保留 79 人');
 assert(Object.keys(portraits).length===44,'人物立绘应保留 44 张索引');
 assert(new Set(epigraphic.map(row=>row.polity)).size===4 && epigraphic.every(row=>['汉','魏','吴','晋'].includes(row.polity)),'金石录国名未统一');
 idsUnique(epigraphic,'金石录');
-assert(battles.events.length===43 && battles.battles.length===22 && battles.battlefields.length===12,'战事纪应为 43 条编年、22 场战役、12 个战场');
+assert(battles.events.length>=43 && battles.battles.length>=22 && battles.battlefields.length===12,'战事纪应保留 V41 的 43/22/12 最低基线，并允许后续史实补充');
 ['events','battles','battlefields'].forEach(key=>idsUnique(battles[key],`战事纪 ${key}`));
 const battleIds=new Set(battles.battles.map(row=>row.id));
 assert(battles.events.filter(row=>row.battleId).every(row=>battleIds.has(row.battleId)),'编年 battleId 指向不存在的战役');
@@ -74,14 +74,15 @@ new vm.Script(`${html.slice(dataStart,dataEnd)}
 globalThis.__v41={trees:normalizeAndValidateTrees(buildPresets()),fangzhen:normalizeFangzhenRecords(FANGZHEN_PRESETS),food:SHIHUO_RECORDS,foodEvents:SHIHUO_EVENTS,household:SHIHUO_HOUSEHOLD};`,{filename:'v41-inline-data.js'}).runInContext(appContext);
 const canonical=appContext.__v41;
 const officeCount=Object.values(canonical.trees).reduce((count,group)=>count+group.office.length,0);
-assert(officeCount===1406,`官职节点应为 1,406 个，当前 ${officeCount}`);
+assert(officeCount>=1406,`官职节点应至少保留 V41 的 1,406 个，当前 ${officeCount}`);
 assert(canonical.fangzhen.length===504,'州镇职任应为 504 条');
 assert(canonical.fangzhen.filter(row=>!String(row.seat||'').trim()).length===389,'缺治所职任应为 389 条');
 assert(canonical.fangzhen.filter(row=>/未详|待考|未知|[?？]|约/.test(String(row.tenureText||row.sourceTenureText||''))).length===197,'含不确定任期限定的职任应为 197 条');
 assert(canonical.fangzhen.every(row=>['汉','魏','吴','晋'].includes(row.polity)),'州镇表国名未统一');
 idsUnique(canonical.fangzhen,'州镇表');
 const officeFigures=Object.values(canonical.trees).flatMap(group=>group.office).flatMap(node=>node.figures||[]);
-assert(officeFigures.every(figure=>!/[（(]|\d{3}/.test(String(figure.name||''))),'任期或注记仍被拼入人物姓名');
+const figureNameContamination=officeFigures.filter(figure=>/[（(]|\d{3}/.test(String(figure.name||'')));
+assert(figureNameContamination.length===0,`任期或注记仍被拼入人物姓名：${figureNameContamination.slice(0,8).map(figure=>figure.name).join('、')}`);
 
 assert(canonical.food.length===71,'食货志校正后应为 71 条制度记录');
 assert(canonical.foodEvents.length===19,'食货编年校正后应为 19 条');

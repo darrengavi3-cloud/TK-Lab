@@ -9,6 +9,7 @@ const Counties = (function () {
   let layer = null;
   let entries = [];
   let labelsVisible = true;
+  let hierarchyLevel = 'faction';
 
   const registry = window.COUNTY_REGISTRY || { commanderies: {}, cityFallbacks: [] };
 
@@ -75,10 +76,17 @@ const Counties = (function () {
 
   function setLabelsVisible(value) {
     labelsVisible = value !== false;
+    const level=window.__MAP_HIERARCHY_LEVEL||hierarchyLevel;
     entries.forEach((entry) => {
       const el = entry.marker && entry.marker.getElement && entry.marker.getElement();
-      if (el) el.style.display = labelsVisible ? '' : 'none';
+      if (el) el.style.display = labelsVisible && level==='commandery' ? '' : 'none';
     });
+  }
+
+  function setHierarchyLevel(level){
+    hierarchyLevel=['faction','province','commandery'].includes(level)?level:'faction';
+    window.__MAP_HIERARCHY_LEVEL=hierarchyLevel;
+    setLabelsVisible(labelsVisible);
   }
 
   function hide() {
@@ -88,6 +96,6 @@ const Counties = (function () {
 
   function init(map) { mapRef = map; }
 
-  return { init, render, hide, setLabelsVisible, wikiSearchUrl };
+  return { init, render, hide, setLabelsVisible, setHierarchyLevel, wikiSearchUrl };
 })();
 window.Counties = Counties;
