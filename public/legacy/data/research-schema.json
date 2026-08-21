@@ -1,14 +1,15 @@
 {
-  "schemaVersion": 7,
-  "modelId": "sgz-research-model-v7",
+  "schemaVersion": 9,
+  "modelId": "sgz-research-model-v9",
   "historicalScope": "168—316",
   "migrationPolicy": "preserve-and-annotate",
+  "compatibleFrom": [7, 8],
   "entities": {
     "polity": ["id", "name", "aliases", "startYear", "endYear"],
-    "office": ["entityId", "name", "factionKey", "parent", "category", "officeStartYear", "officeEndYear", "evidence", "researchStatus"],
+    "office": ["entityId", "name", "factionKey", "parent", "category", "serviceDomain", "institutionType", "officeStartYear", "officeEndYear", "evidence", "researchStatus"],
     "title": ["entityId", "name", "factionKey", "parent", "nobleRank", "fief", "evidence", "researchStatus"],
-    "person": ["personId", "name", "aliases", "portrait"],
-    "appointment": ["id", "personId", "officeId", "jurisdictionId", "polity", "startYear", "endYear", "appointmentStatus", "evidence", "researchStatus"],
+    "person": ["personId", "name", "aliases", "birthYear", "deathYear", "birthplace", "portrait", "sourceIds", "homonymStatus", "researchStatus"],
+    "appointment": ["id", "personId", "officeId", "officeName", "jurisdictionId", "jurisdiction", "polity", "startYear", "endYear", "sourceTenureText", "appointmentStatus", "evidence", "researchStatus"],
     "jurisdiction": ["jurisdictionId", "name", "polity", "parentId", "startYear", "endYear"],
     "source": ["id", "title", "level", "role", "locator", "excerpt", "url", "confidence", "note"],
     "event": ["id", "operation", "subject", "year", "parentBefore", "label", "confidence", "sourceLevel"],
@@ -16,11 +17,19 @@
     "period": ["id", "year", "eraId", "snapshotMoment", "polities", "confidence", "sourceIds"],
     "periodSnapshot": ["id", "periodId", "year", "eraId", "auditStatus", "controlMode", "polities", "administration", "claims", "sourceIds", "caveats"],
     "controlClaim": ["id", "periodId", "subjectType", "subject", "status", "statement", "sourceIds"],
-    "mapBoundary": ["id", "jurisdictionId", "validFrom", "validTo", "geometry", "confidence", "sourceIds"]
+    "mapBoundary": ["id", "jurisdictionId", "validFrom", "validTo", "geometry", "confidence", "sourceIds"],
+    "seatPolicy": ["id", "officeId", "ownerOfficeName", "officeName", "validFrom", "validTo", "authorizedCount", "displayCapacity", "sourceText", "countStatus", "evidence", "note"],
+    "kaifuPolicy": ["id", "polity", "officeId", "officeName", "personId", "personName", "appointmentId", "qualificationType", "additionalTitle", "validFrom", "validTo", "sourceTenureText", "evidence", "researchStatus", "note"],
+    "residence": ["id", "ownerOfficeId", "ownerOfficeName", "polity", "ownerPersonId", "ownerPersonName", "ownerAppointmentId", "kaifuPolicyId", "name", "residenceType", "backgroundStyle", "validFrom", "validTo", "roles", "evidence", "researchStatus", "note"],
+    "hydronym": ["id", "ancientName", "aliases", "geometryRefs", "sourceIds", "sourceLocators", "labelAnchor", "priority", "minZoom", "evidence", "geometrySource", "researchStatus", "note"],
+    "volumeCoverage": ["id", "work", "volume", "sourceUrl", "sourceRevision", "sourceHash", "processedStatus", "candidateCount", "includedCount", "excludedCount", "exclusionReasons", "homonymReview"]
   },
   "controlledVocabularies": {
     "researchStatus": ["确定", "推定", "存疑", "争议"],
     "sourceLevel": ["一手史料", "文档考据", "二手索引", "地图几何", "待核"],
+    "serviceDomain": ["文官", "武官", "文武兼", "待考"],
+    "institutionType": ["朝廷机关", "丞相府", "三公府", "将军府", "都督府", "州府", "郡府", "县署", "东宫", "王府", "属国机构", "部族机构", "待考"],
+    "kaifuQualification": ["法定开府", "加号开府", "特诏开府", "事实见府属", "待考"],
     "geometryCoverage": ["full", "partial", "unknown"],
     "auditStatus": ["通过", "通过（示意）", "待核", "存在冲突"],
     "epigraphicArchiveKind": ["核心", "扩展", "争议"]

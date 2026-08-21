@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-14T02:35:55.094Z",
+  "generatedAt": "2026-08-21T13:33:54.382Z",
   "offlineRuntime": true,
-  "fileCount": 107,
-  "totalBytes": 39264002,
+  "fileCount": 144,
+  "totalBytes": 52687461,
   "files": [
     {
       "path": "assets/map/css/style.css",
-      "bytes": 29636,
-      "sha256": "da110f0e95290bcfb0d3747ba67e4a52ece4f02c733e02b373946bb6faeeb960"
+      "bytes": 31343,
+      "sha256": "2063fc44b3e0503cdafd8b78c34c26cc57c7e6fead9f93e5e9372605ba8a826e"
     },
     {
       "path": "assets/map/data/administrative-events.js",
@@ -51,14 +51,19 @@
       "sha256": "b33cf2f49ee7487791ab6e5250f7b4814960cc3008e23c9dd817755574f03930"
     },
     {
+      "path": "assets/map/data/hydronym-audit.js",
+      "bytes": 176300,
+      "sha256": "85dc651048e32e6f3102bafa74ed81b72b69fe3d4ffbac7e026ccb4174adc311"
+    },
+    {
       "path": "assets/map/data/political-snapshots.js",
       "bytes": 10100,
       "sha256": "0b83cf793cfad1f643a8babef18df1de52019e56842bc76600c75f100772b609"
     },
     {
       "path": "assets/map/data/strategic-geography.js",
-      "bytes": 5442,
-      "sha256": "b7d4d979a8d6570f85e13150159219dbf5cf3ff99aa3de700b3daf6444cdb6d1"
+      "bytes": 5658,
+      "sha256": "198873689e722e79867cde7dabab1393c57b148987c748ad34ac2a43632c50e6"
     },
     {
       "path": "assets/map/data/three-kingdoms.js",
@@ -67,13 +72,13 @@
     },
     {
       "path": "assets/map/js/app.js",
-      "bytes": 19115,
-      "sha256": "18794f99c97c8ee83d2bba3e3ecbefa096b996961cb69259840ff5592cdd9d44"
+      "bytes": 20778,
+      "sha256": "0bdf60c4e39a83b8b4511d6f6bd5187cfe5873f6cb277b8f926fe4bf63011ec8"
     },
     {
       "path": "assets/map/js/base-layer.js",
-      "bytes": 6045,
-      "sha256": "badd198ef32ab995431393c9a76ae207b756c1830b2ab131604b5c2498ed7490"
+      "bytes": 8741,
+      "sha256": "5e924debb700ed3c759a6bdd4910baeceef64986dd4f111881ddc93531ed095c"
     },
     {
       "path": "assets/map/js/bridge.js",
@@ -82,18 +87,23 @@
     },
     {
       "path": "assets/map/js/commanderies.js",
-      "bytes": 6114,
-      "sha256": "321d222470adef9cee5e07fdc8b1f82098b7ba3e042ac4b6ac960a2d0248a2e8"
+      "bytes": 6288,
+      "sha256": "40f7a24fee0c85dd89ba789b791df461fc0951bb4cb3b721df043dc2f479516d"
     },
     {
       "path": "assets/map/js/config.js",
-      "bytes": 21871,
-      "sha256": "f4fdca7f72de4d83b6eb7d35e436bffe87c7453919b4f860d51ac1a6d5ba44fc"
+      "bytes": 22303,
+      "sha256": "fd6596ad59e6584aed1baab869f0340e3cbf54adfabd6f9f9ea96c0c149dde5b"
     },
     {
       "path": "assets/map/js/counties.js",
-      "bytes": 3221,
-      "sha256": "5353af5243ac2dd96b7698df9202a7f52e3ed7eb949efa4b5206c9bb92199262"
+      "bytes": 3576,
+      "sha256": "4f7cfde4008ad8909b1a0268846a701d912780321bd118b34a2f3e7b5d87f702"
+    },
+    {
+      "path": "assets/map/js/hydronyms.js",
+      "bytes": 3495,
+      "sha256": "1a33de3e3e3ba30bd21748cc9423b02fc679993f3ae32822b703a6c1b122f3d3"
     },
     {
       "path": "assets/map/js/markers.js",
@@ -102,8 +112,8 @@
     },
     {
       "path": "assets/map/js/panel.js",
-      "bytes": 6931,
-      "sha256": "802441adbd1244dfeb67b20fe0ea981c3bef93899edc379752f375f591f831d2"
+      "bytes": 10608,
+      "sha256": "8aa331aa093c70a72cef70c742bdecfe2cd002c77e9891b5e889ed9d33f05367"
     },
     {
       "path": "assets/map/js/routes.js",
@@ -112,13 +122,13 @@
     },
     {
       "path": "assets/map/js/strategic-layers.js",
-      "bytes": 3839,
-      "sha256": "a46218dd881e2dbab771e69f103ed180bc930099fd8c03fd034c81f66b468b48"
+      "bytes": 4000,
+      "sha256": "3a31d00b6178676d109f785d6d65fbdb65fe48d003420450f525c43d3246688d"
     },
     {
       "path": "assets/map/js/territories.js",
-      "bytes": 14278,
-      "sha256": "40fdc8f01dfffc65fe00ec3b2e9e3f3fda9703037b01355577a4901bb86e4c4c"
+      "bytes": 14651,
+      "sha256": "75859b9dafaf9131fd6030ae2baa3ffec4e5908693dc0fe8ba1d5493658ac7cb"
     },
     {
       "path": "assets/map/js/timeline.js",
@@ -127,8 +137,8 @@
     },
     {
       "path": "assets/map/js/wu-commanderies.js",
-      "bytes": 5720,
-      "sha256": "806c01fc41fe1c3647e70c2961860ccf1c1edfab8dd8901c51960ef766a1ad7c"
+      "bytes": 5894,
+      "sha256": "ecffd218aa3a7ae7b08210ae3efd0f8e89e08de6ad2cc24fca25243ddd520bae"
     },
     {
       "path": "assets/map/vendor/leaflet/images/layers-2x.png",
@@ -179,6 +189,11 @@
       "path": "assets/portraits/generated/kuai-yue.png",
       "bytes": 16056,
       "sha256": "5b5c354c67520ae177c301c113a0bd0b44c487a7fda30ce06420d515737044c9"
+    },
+    {
+      "path": "assets/portraits/generated/person-placeholder-v46.png",
+      "bytes": 2408198,
+      "sha256": "02722686e1e7aacfe664dd7e5f3d0c43180c7bb4cefcfc4cacb8143165e1fb6b"
     },
     {
       "path": "assets/portraits/generated/wei-ji.png",
@@ -341,9 +356,59 @@
       "sha256": "143490554dbb5bc0964f27a5d23b9b5fb77ccc640b34050c50edf72cba5d59e7"
     },
     {
+      "path": "assets/portraits/v42/董允.png",
+      "bytes": 352362,
+      "sha256": "b0076e9cc4cde74bcb965181a88c2dd4e858192e1bed308acc8aba87d6e91d7b"
+    },
+    {
+      "path": "assets/portraits/v42/廖化.png",
+      "bytes": 365664,
+      "sha256": "d073a126a3604c4aebcc1602f1cba572d001ea717324973e51ffd819f8926a5a"
+    },
+    {
+      "path": "assets/portraits/v42/马谡.png",
+      "bytes": 353813,
+      "sha256": "c97a07b4a1838244609759edee7aadc270477716cdebfb646cc79b7eef1f2e69"
+    },
+    {
+      "path": "assets/portraits/v42/魏延.png",
+      "bytes": 362526,
+      "sha256": "9ca79c7fc43fffa28a88ed95406b25e341bf32393620b0a55cae77a3442cf657"
+    },
+    {
+      "path": "assets/portraits/v42/许靖.png",
+      "bytes": 349454,
+      "sha256": "c80888f1ad99d46279b32e381a176025ef0eacc3a9ab9e6d43b93dc01ccf915f"
+    },
+    {
+      "path": "assets/portraits/v42/杨仪.png",
+      "bytes": 353580,
+      "sha256": "e631a94ae1e130541a3136bf0fb1fcff653c1e568aa168d445e97078efaa4217"
+    },
+    {
+      "path": "assets/portraits/v42/张翼.png",
+      "bytes": 354748,
+      "sha256": "59d0e61563d9a8c13d8bd0504893ff64d29154b28cb3d317580d9596bca94f5f"
+    },
+    {
+      "path": "assets/portraits/v42/诸葛瞻.png",
+      "bytes": 358519,
+      "sha256": "0dd039923d5a99bceb237d8214652df9c6a376a7d5df9eb255a09d314cb5bfc4"
+    },
+    {
+      "path": "assets/portraits/v42/shu-v42-contact-sheet.png",
+      "bytes": 2867443,
+      "sha256": "09a2aa2809924406a1b8c4668eca62b41740d7780e6cbcb3d517c192b0cdd133"
+    },
+    {
       "path": "assets/portraits/wei/cheng-ji.png",
       "bytes": 18059,
       "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
+    },
+    {
+      "path": "assets/portraits/wei/deng-ai-v2.png",
+      "bytes": 2462338,
+      "sha256": "4073b2e250ee524b8fcc1273dfc4238273e213c80c3c218e2eae80661c367588"
     },
     {
       "path": "assets/portraits/wei/deng-ai.png",
@@ -416,14 +481,24 @@
       "sha256": "c9506197caf809a075b6dee1da0d36fb19da7158ffe8a88e7b0c96c5d8623c99"
     },
     {
+      "path": "data/administrative-index.js",
+      "bytes": 5133,
+      "sha256": "e00bd7bade9343b0e17918b1b0c6581b12ff68e72a57d60af49b8b5056b8686c"
+    },
+    {
       "path": "data/battle-records.js",
-      "bytes": 29193,
-      "sha256": "43354b7456e576b7e68b428019cda6a784d43b6fda851a22b0e0fd99250d24bf"
+      "bytes": 34882,
+      "sha256": "8a958d15dd1a95348567cbd48cc88e5a8b7a913700ef764a0238d7499b5a2d9a"
     },
     {
       "path": "data/epigraphic-records.js",
       "bytes": 23012,
       "sha256": "85a3ab057205b1d0640f7d0b938bb163cf4e09afa41f0234544be2b579a3e3bc"
+    },
+    {
+      "path": "data/epigraphic-v46-jin.js",
+      "bytes": 187957,
+      "sha256": "d91132dc3c22397649955856228dd056a4ba52a93788f85266c7f0f8095b9e4f"
     },
     {
       "path": "data/fangzhen-seat-supplement.js",
@@ -434,6 +509,11 @@
       "path": "data/fangzhen-term-supplement.js",
       "bytes": 9888,
       "sha256": "2dc25ae2d5fc13742f5f96664ab8d4901e90925d0245fe17c386d1062f177eb7"
+    },
+    {
+      "path": "data/general-titles.js",
+      "bytes": 4846,
+      "sha256": "37a5a0f6867b39dfe6d81f513b4a435f198b65b6deb026aef1c813eb96876c07"
     },
     {
       "path": "data/han-bai-guan-zhi.js",
@@ -456,6 +536,16 @@
       "sha256": "906053abb4d7db4d2e33968812d4522121df0f7c81bc27b0e0e14ee0c64993d0"
     },
     {
+      "path": "data/hydronym-audit.json",
+      "bytes": 251367,
+      "sha256": "a81a2a84585e9bfdfd11ab020c27cc03f5cbe5d68379bfee7da9031b07023104"
+    },
+    {
+      "path": "data/kaifu-policies.js",
+      "bytes": 5920,
+      "sha256": "d50a17c233a63e4e8f286e0c7206ab4a3985ff798c07d67547ceaa057f9d2114"
+    },
+    {
       "path": "data/map-period-registry.js",
       "bytes": 27185,
       "sha256": "ee64c158e2606e3bd20cbea81797ff9e417022cee03ef7fa0d55b597139dcc75"
@@ -476,9 +566,19 @@
       "sha256": "47c6e9c72191420374226b079bf77c09ed63c79f0672a0250fef0d480c388252"
     },
     {
+      "path": "data/office-residences.js",
+      "bytes": 12370,
+      "sha256": "b84f736f264b5203611f73abd79b9b9f29a952e3984280a0a3c3f97f447dfa1b"
+    },
+    {
+      "path": "data/office-seat-policies.js",
+      "bytes": 7857,
+      "sha256": "9589f9425934aeb9a4553c79e02ce599eb161ae13910089fac8d05bc77c3232f"
+    },
+    {
       "path": "data/person-biographies.js",
-      "bytes": 23998,
-      "sha256": "8bd2158297d79661f032a8a06a808ff20f3bea70ef360ab09f034f8b0855046e"
+      "bytes": 24040,
+      "sha256": "33794490513290c4ee5ac389356fa20962dae369b5db3859cac212e1b191b1f8"
     },
     {
       "path": "data/person-era-rosters.js",
@@ -486,14 +586,59 @@
       "sha256": "bab5a938ca83f957515d2509a887ada321eb4d5f93d85fcb6014a51d2a8c091d"
     },
     {
+      "path": "data/person-identities.js",
+      "bytes": 6881,
+      "sha256": "58becfe166533efb1dd56b001b1e9052085d5e60a1765f72a3bcfdecbd3697c5"
+    },
+    {
       "path": "data/person-portraits.js",
-      "bytes": 8525,
-      "sha256": "b5d723f5fff561a30544f9afde00f9b23dd8b424094b1bbf72380003b276481e"
+      "bytes": 8548,
+      "sha256": "438fc86f5948f899ff8e880f0d69ed879cb4a89a56afdebd6b6b9deb5996947b"
+    },
+    {
+      "path": "data/person-source-index.js",
+      "bytes": 1377756,
+      "sha256": "214f69c2e25c4a2aacca384a1e4620aadb96acf5cf2f0799d2616b58b4fa30ca"
+    },
+    {
+      "path": "data/person-volume-coverage.json",
+      "bytes": 166047,
+      "sha256": "105bf2e6202cf48771ecc7caac3fd94ff826bcc8618b158c71509bb86a12330d"
+    },
+    {
+      "path": "data/person-zi-scan.json",
+      "bytes": 9666,
+      "sha256": "94175f0a390275b3e7872873b1a327981a23c7e6ae76747642f3d13bed977571"
+    },
+    {
+      "path": "data/person-zi-supplement.js",
+      "bytes": 9073,
+      "sha256": "d6532d3ef6fda2e595577d8c7d5587377387e809e6a69a12f1dbdd843f4ba0bd"
+    },
+    {
+      "path": "data/person-zi-supplement.json",
+      "bytes": 13889,
+      "sha256": "b3becd0beeb074b8cae729bc554075492e30066a5eadfd71be823c107558350f"
+    },
+    {
+      "path": "data/portrait-candidates.json",
+      "bytes": 2943,
+      "sha256": "228d03d8d30a48d5ebdab143a8f95535ab5c4445888df2359efdedfe5ec29131"
+    },
+    {
+      "path": "data/portrait-manifest.js",
+      "bytes": 167530,
+      "sha256": "9473fd104c7aae7e7c15d41ef1a1d9bdfa6e9170b7b533d01c4d5c6319f7c7fd"
+    },
+    {
+      "path": "data/portrait-manifest.json",
+      "bytes": 224493,
+      "sha256": "a041eff7df3a80006fa7bbaf0e0afd25b58d20369625ff1b21b94f463034d8c5"
     },
     {
       "path": "data/public-vector-audit.json",
-      "bytes": 3148,
-      "sha256": "b06ed5c813762b9530219ffcb26fc825e86c72ca9832296eec19d38079931db0"
+      "bytes": 4612,
+      "sha256": "ad80100426a432dba1ed3627f40958940f857f4aa14f1d35391f1fb59f281433"
     },
     {
       "path": "data/research-candidates.js",
@@ -502,13 +647,13 @@
     },
     {
       "path": "data/research-model.js",
-      "bytes": 14087,
-      "sha256": "6f67e0af98c07c6666542fd0cbcef22d9a79143d773b4826e0560d1a3c6c29d7"
+      "bytes": 27991,
+      "sha256": "644c060d035cf6e3b001fb80c050628db54ea5e27fdbf6a85de7941cec6b2bbe"
     },
     {
       "path": "data/research-schema.json",
-      "bytes": 2166,
-      "sha256": "6ff6ae6e683a8940e9c2dcc0290532362a805278958d666dc19b82425ba86cbb"
+      "bytes": 3787,
+      "sha256": "ba79a7d29f19943f5ea3e9771cb25c95fea70374b30ab5e76037f80b0dc0aaac"
     },
     {
       "path": "data/shu-fangzhen-records.js",
@@ -524,6 +669,46 @@
       "path": "data/v41-release-manifest.json",
       "bytes": 2405,
       "sha256": "9534d45d4a86199109697f110d7d745e7145a386ace41ac7e0855f18504014b5"
+    },
+    {
+      "path": "data/v42-release-manifest.json",
+      "bytes": 1262,
+      "sha256": "5b4c6f5c20d6c468ee8acd6f345756957117282d93edca16c827f97440978659"
+    },
+    {
+      "path": "data/v43-release-manifest.json",
+      "bytes": 1655,
+      "sha256": "abccaf6985b9ad326401e1a9a783d01c046f404db2137e99c65cc41725df0552"
+    },
+    {
+      "path": "data/v44-release-manifest.json",
+      "bytes": 1749,
+      "sha256": "fd369f85311c8cd7bff8733fb2de6cdeed18307899b00f759a782390f8cea570"
+    },
+    {
+      "path": "data/v45-attachment-candidates.json",
+      "bytes": 120761,
+      "sha256": "6af76d722928ddd70f97f23b13e6fe790622de3435fc5559a3378548c0c8dc12"
+    },
+    {
+      "path": "data/v45-fangzhen-review.json",
+      "bytes": 29962,
+      "sha256": "849bbb38240f4d1819b8200be3a4f67baef29a12a42b11dfa98d5f0918e69b8b"
+    },
+    {
+      "path": "data/v45-release-manifest.json",
+      "bytes": 4422,
+      "sha256": "ee289c89f564cf3c2145430e282621e07eb1ee3b062b45072884c1c20fa1a440"
+    },
+    {
+      "path": "data/v45-shihuo-gap.json",
+      "bytes": 1571,
+      "sha256": "7ea631962cfad7483203ed5108458b1056222893cf9a4573cb705938e68f22d0"
+    },
+    {
+      "path": "data/v46-jinshi-audit.json",
+      "bytes": 5538,
+      "sha256": "619c3a4ba85d97e9184d29751ef29c35c94567866bb69ce21afe9de5c2436b72"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "auditDate": "2026-08-11",
-  "scope": "266—311年西晋州级政区与公开矢量候选",
-  "conclusion": "现有266、280、290、311年快照已覆盖当前注册表需要的州级状态；266年不提前绘入269、271、276年才出现的秦、宁、平州。缺少的是这些中间年份的独立时间节点，而不是280年十九州清单中的州名。",
+  "auditDate": "2026-08-15",
+  "scope": "266—311年西晋州级政区与公开矢量候选；V44 补充高程/历史GIS来源核查",
+  "conclusion": "现有266、280、290、311年快照已覆盖当前注册表需要的州级状态；266年不提前绘入269、271、276年才出现的秦、宁、平州。未发现可整图替换且自带高精度高程的现成仓库；高程采用公开瓦片服务叠加，GitHub 候选仅作参考审计。",
   "periodFindings": [
     {"year":264,"status":"已补","items":["梁州","广州"],"note":"汉亡后魏、吴并立；东广汉郡省并入广汉。"},
     {"year":266,"status":"已补","items":["梁州"],"omittedUntil":["秦州（269）","宁州（271）","平州（276）"],"note":"建晋当年不把后置州提前绘入。"},
@@ -32,7 +32,29 @@
       "fit":"可作城池和区域名称的检索参考",
       "decision":"不导入行政边界",
       "reason":"README明确称为个人爱好绘制，不能反映三国时期真实行政区划，且未见可直接采用的许可声明。"
+    },
+    {
+      "name":"cga-harvard/chgis.github.io（CHGIS 门户）",
+      "url":"https://github.com/cga-harvard/chgis.github.io",
+      "branch":"main",
+      "license":"仓库为门户跳转页，未提供数据包许可声明",
+      "observedFiles":["README.md","index.html（跳转至 gis.harvard.edu/china-historical-gis）"],
+      "role":"权威中国历史行政区划参考来源（行政边界与地名），不含高程",
+      "fit":"可作行政边界与地名校对的权威参考，不能用于高程底图",
+      "decision":"不导入边界",
+      "reason":"官方数据需按其发布渠道单独授权与下载；本项目仅记录为参考来源，不整图替换现有几何。"
+    },
+    {
+      "name":"tilezen/joerd",
+      "url":"https://github.com/tilezen/joerd",
+      "branch":"master",
+      "license":"MIT",
+      "observedFiles":["高程瓦片生成管线（Mapzen/AWS Terrain Tiles 上游）"],
+      "role":"生成 Terrarium 高程瓦片与山影的公开工具链",
+      "fit":"说明公开 Terrarium 瓦片服务的数据来源与许可背景",
+      "decision":"不导入仓库数据，直接叠加公开瓦片服务",
+      "reason":"项目直接使用 AWS Terrain Tiles 公开 S3 瓦片并保留署名；joerd 为生成工具，无需引入仓库本体。"
     }
   ],
-  "nextSafeStep":"若需要表现264—280年之间的州制变化，应新增269、271、276三个只读行政节点，并沿用现有几何归并与证据模型；在获得明确许可和逐州核验前，不替换本地几何。"
+  "nextSafeStep":"若需要表现264—280年之间的州制变化，应新增269、271、276三个只读行政节点，并沿用现有几何归并与证据模型；在获得明确许可和逐州核验前，不替换本地几何。高程叠加只改变底图观感，不改行政、水系与战场矢量层。"
 }

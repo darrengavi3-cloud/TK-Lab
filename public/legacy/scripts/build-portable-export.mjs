@@ -14,8 +14,18 @@ const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
 const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
 const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
 const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
+const portraitManifestPath = path.join(root, 'data', 'portrait-manifest.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
+const epigraphicV46JinPath = path.join(root, 'data', 'epigraphic-v46-jin.js');
+const administrativeIndexPath = path.join(root, 'data', 'administrative-index.js');
 const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
+const generalTitlesPath = path.join(root, 'data', 'general-titles.js');
+const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
+const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
+const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
+const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
+const personZiSupplementPath = path.join(root, 'data', 'person-zi-supplement.js');
+const hydronymAuditPath = path.join(root, 'assets', 'map', 'data', 'hydronym-audit.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
@@ -33,18 +43,44 @@ const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim(
 const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
 const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').trim();
 let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
+let portraitManifestScript = fs.readFileSync(portraitManifestPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
+const epigraphicV46JinScript = fs.readFileSync(epigraphicV46JinPath, 'utf8').trim();
+const administrativeIndexScript = fs.readFileSync(administrativeIndexPath, 'utf8').trim();
 const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
-for (const polityDir of fs.readdirSync(portraitDir)) {
+const generalTitlesScript = fs.readFileSync(generalTitlesPath, 'utf8').trim();
+const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
+const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
+const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
+const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
+const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
+const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
+const portablePortraitAssets = {};
+function inlinePortraitAssets(script) {
+  let output = script;
+  for (const polityDir of fs.readdirSync(portraitDir)) {
   const fullDir = path.join(portraitDir, polityDir);
   if (!fs.statSync(fullDir).isDirectory()) continue;
   for (const file of fs.readdirSync(fullDir).filter(name => /\.(png|jpe?g|webp)$/i.test(name))) {
     const relative = `./assets/portraits/${polityDir}/${file}`;
     const mime = file.toLowerCase().endsWith('.png') ? 'image/png' : (file.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
     const data = `data:${mime};base64,${fs.readFileSync(path.join(fullDir, file)).toString('base64')}`;
-    personPortraitsScript = personPortraitsScript.split(relative).join(data);
+    portablePortraitAssets[relative] = data;
+    output = output.split(relative).join(data);
   }
 }
+  return output;
+}
+personPortraitsScript = inlinePortraitAssets(personPortraitsScript);
+const portablePortraitManifestScript = `${portraitManifestScript}
+(function(){
+  var assets=${JSON.stringify(portablePortraitAssets)};
+  var manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
+  Object.values(manifest.byPersonId||{}).concat(Object.values(manifest.byName||{})).forEach(function(item){
+    if(item&&item.src&&assets[item.src]) item.src=assets[item.src];
+  });
+  if(manifest.fallbackSrc&&assets[manifest.fallbackSrc]) manifest.fallbackSrc=assets[manifest.fallbackSrc];
+})();`;
 const courtBackgroundData = `data:image/png;base64,${fs.readFileSync(courtBackgroundPath).toString('base64')}`;
 
 const replacements = [
@@ -109,15 +145,55 @@ const replacements = [
     `<script>\n${personPortraitsScript}\n</script>`
   ],
   [
+    '<script src="./data/portrait-manifest.js"></script>',
+    `<script>\n${portablePortraitManifestScript}\n</script>`
+  ],
+  [
     '<script src="./data/epigraphic-records.js"></script>',
     `<script>\n${epigraphicRecordsScript}\n</script>`
+  ],
+  [
+    '<script src="./data/epigraphic-v46-jin.js"></script>',
+    `<script>\n${epigraphicV46JinScript}\n</script>`
+  ],
+  [
+    '<script src="./data/administrative-index.js"></script>',
+    `<script>\n${administrativeIndexScript}\n</script>`
   ],
   [
     '<script src="./data/han-bai-guan-zhi.js"></script>',
     `<script>\n${hanBaiGuanZhiScript}\n</script>`
   ],
   [
-    "url('./assets/ui/court-ink-palace.png')",
+    '<script src="./data/general-titles.js"></script>',
+    `<script>\n${generalTitlesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/kaifu-policies.js"></script>',
+    `<script>\n${kaifuPoliciesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/office-seat-policies.js"></script>',
+    `<script>\n${seatPoliciesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/office-residences.js"></script>',
+    `<script>\n${officeResidencesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-source-index.js"></script>',
+    `<script>\n${personSourceIndexScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-zi-supplement.js"></script>',
+    `<script>\n${personZiSupplementScript}\n</script>`
+  ],
+  [
+    '<script src="./assets/map/data/hydronym-audit.js"></script>',
+    `<script>\n${hydronymAuditScript}\n</script>`
+  ],
+  [
+    /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,
     `url('${courtBackgroundData}')`
   ],
   [
@@ -139,8 +215,9 @@ const replacements = [
 ];
 
 replacements.forEach(([from, to]) => {
-  if (!html.includes(from)) throw new Error(`便携导出构建失败，未找到替换标记：${from.slice(0, 80)}`);
-  html = html.replace(from, to);
+  const pattern = from instanceof RegExp ? from : new RegExp(from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+  if (!pattern.test(html)) throw new Error(`便携导出构建失败，未找到替换标记：${String(from).slice(0, 80)}`);
+  html = html.replace(pattern, to);
 });
 
 // 新增地图图层与行政快照尚未部署到历史远端包；便携版把这些小型运行脚本
@@ -161,6 +238,7 @@ function escapeForOuterTemplate(source) {
   'data/county-registry.js',
   'data/history-evidence.js',
   'data/strategic-geography.js',
+  'data/hydronym-audit.js',
   'data/geo-coastline.js',
   'data/all-provinces-local.js',
   'js/config.js',
@@ -172,6 +250,7 @@ function escapeForOuterTemplate(source) {
   'js/commanderies.js',
   'js/counties.js',
   'js/strategic-layers.js',
+  'js/hydronyms.js',
   'js/app.js',
 ].forEach(relative => {
   const marker = `<script src="${relative}"><\\/script>`;

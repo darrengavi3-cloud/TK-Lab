@@ -10,15 +10,15 @@ window.FRONTIER_ROUTES = [
 ];
 
 window.STRATEGIC_BATTLEFIELDS = [
-  {id:'guandu-field',name:'官渡战场',lat:34.74,lng:113.96,from:200,to:208,note:'曹袁决战区域。'},
-  {id:'chibi-field',name:'赤壁—乌林战场',lat:29.72,lng:113.90,from:208,to:220,note:'赤壁之战长江两岸战场。'},
-  {id:'xiangfan-field',name:'襄樊战场',lat:32.04,lng:112.15,from:208,to:280,note:'汉水中游南北争夺枢纽。'},
-  {id:'hefei-field',name:'合肥—逍遥津战场',lat:31.82,lng:117.23,from:208,to:280,note:'魏吴江淮争夺核心。'},
-  {id:'ruxu-field',name:'濡须口战场',lat:31.15,lng:117.72,from:208,to:280,note:'魏吴长江北岸攻防前沿。'},
-  {id:'yiling-field',name:'夷陵—猇亭战场',lat:30.69,lng:111.29,from:220,to:228,note:'章武二年吴汉大战区域。'},
-  {id:'jieting-field',name:'街亭战场',lat:34.85,lng:105.95,from:228,to:263,note:'诸葛亮第一次北伐关键战场。'},
-  {id:'qishan-field',name:'祁山战场',lat:34.05,lng:105.05,from:228,to:263,note:'魏汉陇右攻防前线。'},
-  {id:'wuzhang-field',name:'五丈原战场',lat:34.25,lng:107.63,from:228,to:263,note:'诸葛亮第五次北伐驻军区域。'}
+  {id:'guandu-field',name:'官渡战场',placeLabel:'官渡',lat:34.74,lng:113.96,from:200,to:208,note:'曹袁决战区域。'},
+  {id:'chibi-field',name:'赤壁—乌林战场',placeLabel:'赤壁—乌林',lat:29.72,lng:113.90,from:208,to:220,note:'赤壁之战长江两岸战场。'},
+  {id:'xiangfan-field',name:'襄樊战场',placeLabel:'襄樊',lat:32.04,lng:112.15,from:208,to:280,note:'汉水中游南北争夺枢纽。'},
+  {id:'hefei-field',name:'合肥—逍遥津战场',placeLabel:'合肥—逍遥津',lat:31.82,lng:117.23,from:208,to:280,note:'魏吴江淮争夺核心。'},
+  {id:'ruxu-field',name:'濡须口战场',placeLabel:'濡须口',lat:31.15,lng:117.72,from:208,to:280,note:'魏吴长江北岸攻防前沿。'},
+  {id:'yiling-field',name:'夷陵—猇亭战场',placeLabel:'夷陵—猇亭',lat:30.69,lng:111.29,from:220,to:228,note:'章武二年吴汉大战区域。'},
+  {id:'jieting-field',name:'街亭战场',placeLabel:'街亭',lat:34.85,lng:105.95,from:228,to:263,note:'诸葛亮第一次北伐关键战场。'},
+  {id:'qishan-field',name:'祁山战场',placeLabel:'祁山',lat:34.05,lng:105.05,from:228,to:263,note:'魏汉陇右攻防前线。'},
+  {id:'wuzhang-field',name:'五丈原战场',placeLabel:'五丈原',lat:34.25,lng:107.63,from:228,to:263,note:'诸葛亮第五次北伐驻军区域。'}
 ];
 
 /*

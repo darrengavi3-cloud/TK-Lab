@@ -14,7 +14,7 @@
   const view = {
     terr:true, city:true, battle:true, route:true, water:true, tint:true, wuCmd:true,
     provinceTint:true, frontierRoute:true, battlefield:true,
-    cmdLabel:true, county:true, minorities:true,
+    cmdLabel:true, county:true, minorities:true, hydronym:true, elevReadout:false,
     displayMode:'research',
   };
   const mapFilters = window.__MAP_FILTERS || (window.__MAP_FILTERS = {faction:'all',state:'all'});
@@ -39,6 +39,7 @@
       zoomSnap: 0.25,
     });
     L.control.zoom({ position: 'topleft' }).addTo(map);
+    map.on('click', (event) => BaseLayer.handleMapClick(map, event.latlng));
     window.__HISTORY_MAP_INSTANCE = map;
     if (window.HistoryMapBridge) window.HistoryMapBridge.setMap(map);
   }
@@ -141,6 +142,30 @@
     if(status) status.textContent=filterStatusText();
   }
 
+  function hierarchyLevelForZoom(zoom){
+    const value=Number(zoom);
+    if(value>=7) return 'commandery';
+    if(value>=6) return 'province';
+    return 'faction';
+  }
+
+  function hierarchyLabel(level){
+    return level==='commandery'?'郡层（高缩放）':level==='province'?'州层（中缩放）':'国／势力层（低缩放）';
+  }
+
+  function syncHierarchyLevel(){
+    if(!map) return;
+    const level=hierarchyLevelForZoom(map.getZoom());
+    window.__MAP_HIERARCHY_LEVEL=level;
+    if(Territories.setHierarchyLevel) Territories.setHierarchyLevel(level);
+    if(Commanderies.setHierarchyLevel) Commanderies.setHierarchyLevel(level);
+    if(WuCommanderies.setHierarchyLevel) WuCommanderies.setHierarchyLevel(level);
+    if(Counties&&Counties.setHierarchyLevel) Counties.setHierarchyLevel(level);
+    const status=document.getElementById('map-hierarchy-status');
+    if(status) status.textContent='当前层级：'+hierarchyLabel(level)+' · 低→国／势力，中→州，高→郡';
+    window.dispatchEvent(new CustomEvent('sgz-map-hierarchy',{detail:{level,zoom:map.getZoom()}}));
+  }
+
   function applyMapFilters(){
     if(Territories.setFilters) Territories.setFilters(mapFilters);
     if(Commanderies.setFilters) Commanderies.setFilters(mapFilters);
@@ -201,6 +226,7 @@
       StrategicLayers.setRoutesVisible(map, view.frontierRoute && view.displayMode === 'research', p.year);
       StrategicLayers.setBattlefieldsVisible(map, view.battlefield, p.year);
       StrategicLayers.setMinoritiesVisible(map, view.minorities && view.displayMode === 'research', p.year);
+      Hydronyms.setVisible(map, view.hydronym);
 
       // 郡级边界：
       //   · 220 年前（东汉）显示全部郡界，统一为汉色；
@@ -258,6 +284,7 @@
 
       if (opts.animate) map.flyTo(p.focus, p.zoom, { duration: 1.1 });
       else map.setView(p.focus, p.zoom, { animate: false });
+      syncHierarchyLevel();
     }).catch((err) => {
       console.error('加载州界数据失败:', err);
     });
@@ -285,7 +312,7 @@
       'lyr-route': 'route', 'lyr-water': 'water', 'lyr-tint': 'tint',
       'lyr-wu-cmd': 'wuCmd', 'lyr-province-tint':'provinceTint',
       'lyr-frontier-route':'frontierRoute', 'lyr-battlefield':'battlefield',
-      'lyr-cmd-label':'cmdLabel', 'lyr-county':'county', 'lyr-minorities':'minorities',
+      'lyr-cmd-label':'cmdLabel', 'lyr-county':'county', 'lyr-minorities':'minorities', 'lyr-hydronym':'hydronym', 'lyr-elev':'elevReadout',
     };
     Object.keys(mapDef).forEach((id) => {
       const box = document.getElementById(id);
@@ -306,6 +333,14 @@
         if (mapDef[id] === 'minorities') {
           const period = DATA.periods[Timeline.getCurrent()];
           StrategicLayers.setMinoritiesVisible(map, view.minorities && view.displayMode === 'research', period && period.year);
+          return;
+        }
+        if (mapDef[id] === 'hydronym') {
+          Hydronyms.setVisible(map, view.hydronym);
+          return;
+        }
+        if (mapDef[id] === 'elevReadout') {
+          BaseLayer.setElevationReadout(view.elevReadout);
           return;
         }
         if (['terr','battle','route','wuCmd','provinceTint','frontierRoute','battlefield'].includes(mapDef[id])) {
@@ -431,6 +466,8 @@
     }
     map.on('zoomend', updateZoomClasses);
     updateZoomClasses();
+    map.on('zoomend', syncHierarchyLevel);
+    syncHierarchyLevel();
 
     // 初始载入第一个时期
     goToPeriod(0, { animate: false });

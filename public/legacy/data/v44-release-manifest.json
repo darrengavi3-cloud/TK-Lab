@@ -1,0 +1,44 @@
+{
+  "release": "V44",
+  "title": "检索命令面板、高程地形与四大版块分批优化",
+  "schemaVersion": 9,
+  "scope": ["职官谱", "人物记", "战事纪", "州镇表", "食货志", "金石录", "形势图"],
+  "metrics": {
+    "commandScopes": 9,
+    "keyboardActions": 4,
+    "elevationBasemaps": 2,
+    "elevationReadout": true,
+    "battleMapJumps": true,
+    "fangzhenTimelineBars": true,
+    "shihuoEvidenceBadges": 4,
+    "householdMiniCharts": true,
+    "epigraphicArchiveChips": 3
+  },
+  "changes": [
+    "新增 Cmd/Ctrl+K 全局命令面板，跨 9 个范围检索并支持键盘导航与匹配高亮",
+    "模块搜索条精简为常用筛选芯片，高级筛选折叠（人物记“更多筛选”、职官谱高级筛选）",
+    "地图新增高程山影底图（Terrarium）与低缩放山影兜底，支持点击海拔读数",
+    "战事纪新增关联链与地图互跳按钮",
+    "州镇表新增任期时间条与年份快照/两年对比",
+    "食货志新增政权芯片、证据徽标与户口迷你图表",
+    "金石录新增档案层级芯片、释文检索高亮与关联人物跳转",
+    "公共地图审计补充 CHGIS 与 tilezen/joerd 结论"
+  ],
+  "artifacts": {
+    "documentation": "docs/V44检索高程与版块优化.md",
+    "verification": "scripts/verify-v44.mjs",
+    "portableExport": "exports/三国职官谱-单文件版.html",
+    "deployment": "pending-private-sites"
+  },
+  "validation": {
+    "verifyV44": "passed",
+    "verifyResearchModel": "passed",
+    "verifyV42": "passed",
+    "verifyProject": "passed",
+    "verifyMapData": "passed",
+    "verifyHistoricalModel": "passed",
+    "verifyV43": "passed",
+    "visualQa": "not-run-in-browser",
+    "deployment": "pending"
+  }
+}

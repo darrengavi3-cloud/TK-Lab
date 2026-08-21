@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-15T00:00:00+08:00",
+  "scope": "《晋书》卷二十六·食货志与现有食货志数据逐条对照",
+  "method": "对 wikisource 晋书卷026 原文清洗后检索制度关键词（占田、课田、常平仓、五铢、田租、户调、平籴、漕运等）并与 data 内 71 条制度记录比对。",
+  "findings": [
+    {"term":"占田","found":true,"coveredBy":"sh_280_zhantian"},
+    {"term":"课田","found":true,"coveredBy":"sh_280_zhantian"},
+    {"term":"常平仓","found":false,"coveredBy":"sh_268_changping","note":"泰始四年立常平仓出自《晋书》武帝纪与卷二十六互见，已入库。"},
+    {"term":"五铢","found":false,"coveredBy":"sh_mingdi_wubi","note":"魏明帝复五铢出自《晋书》食货志，已按年代未详保留。"},
+    {"term":"田租","found":true,"coveredBy":"sh_204_hu_diao"},
+    {"term":"户调","found":false,"coveredBy":"sh_280_hu"},
+    {"term":"平籴","found":false,"coveredBy":null,"note":"卷二十六未见可定位的平籴条目，不补臆造数字。"},
+    {"term":"漕运","found":false,"coveredBy":null,"note":"卷二十六未见可直接定位的漕运细目，现有漕运仓储条目已覆盖常平仓等。"}
+  ],
+  "conclusion": "现有食货志条目已覆盖《晋书》卷二十六中活动年代在 168—316 年且有明确原文定位的制度内容；未发现新的可补条目，不臆造数字。后续可扩展对照《通典》《太平御览》等互见材料。",
+  "status": "审计通过（无新增待补条目）"
+}

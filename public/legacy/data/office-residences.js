@@ -1,11 +1,116 @@
 (function(global){
   'use strict';
-  global.SGZ_OFFICE_RESIDENCES = [
-    {id:'residence:central:grand-minister',ownerOfficeId:'office:shared:grand-minister',name:'丞相三公府',residenceType:'丞相三公府',backgroundStyle:'grand-minister'},
-    {id:'residence:military:general',ownerOfficeId:'office:shared:general',name:'将军府',residenceType:'将军府',backgroundStyle:'general'},
-    {id:'residence:military:du-du',ownerOfficeId:'office:shared:du督',name:'都督府',residenceType:'都督府',backgroundStyle:'du-du'},
-    {id:'residence:local:province',ownerOfficeId:'office:shared:province',name:'州府',residenceType:'州府',backgroundStyle:'province'},
-    {id:'residence:local:commandery',ownerOfficeId:'office:shared:commandery',name:'郡府',residenceType:'郡府',backgroundStyle:'commandery'},
-    {id:'residence:royal:prince',ownerOfficeId:'office:shared:prince',name:'太子王府',residenceType:'太子王府',backgroundStyle:'prince'}
+
+  const jinEvidence={
+    sourceTitle:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',
+    sourceLocator:'诸公及开府位从公、加兵公、持节都督府属条',
+    sourceUrl:'https://zh.wikisource.org/wiki/晉書/卷024',confidence:'确定'
+  };
+  const zhugeEvidence={
+    sourceTitle:'《三国志》卷三十五、卷四十四',sourceLevel:'一手史料',
+    sourceLocator:'建兴元年开府治事；《蒋琬传》开府辟东曹掾、参军、留府事',
+    sourceUrl:'https://zh.wikisource.org/wiki/三國志/卷44',confidence:'确定'
+  };
+  const indexEvidence={
+    sourceTitle:'《三国职官表（点校整理本）》',sourceLevel:'文档考据',
+    sourceLocator:'府属官三表',confidence:'存疑',
+    evidenceNote:'仅作府属官候选索引；员额与人物关系须以正史逐条复核。'
+  };
+  const role=(officeName,serviceDomain,institutionType,extra={})=>Object.assign({officeName,serviceDomain,institutionType},extra);
+
+  const records=[
+    {
+      id:'residence:shu:zhugeliang:223',ownerOfficeName:'丞相',polity:'汉',ownerPersonName:'诸葛亮',
+      kaifuPolicyId:'kaifu:shu:zhugeliang:223',name:'诸葛亮丞相府',residenceType:'丞相府',backgroundStyle:'grand-minister',
+      validFrom:223,validTo:234,ownerResolution:'explicit-person-and-selected-year',evidence:zhugeEvidence,researchStatus:'确定',
+      note:'具体府主、开府年份和若干府属由本传互证；未见定额者不据展示席位反推制度员额。',
+      roles:[
+        role('军师祭酒','文官','丞相府'),role('前军师','文武兼','丞相府'),role('后军师','文武兼','丞相府'),
+        role('长史','文官','丞相府'),role('司马','文武兼','丞相府'),role('从事中郎','文官','丞相府'),
+        role('主簿','文官','丞相府'),role('参军','文武兼','丞相府'),role('东曹掾','文官','丞相府'),
+        role('仓曹掾','文官','丞相府'),role('记室','文官','丞相府'),role('门下督','文武兼','丞相府')
+      ]
+    },
+    {
+      id:'residence:wei:sima-zhao:xiangguo',ownerOfficeName:'相国',polity:'魏',ownerPersonName:'司马昭',
+      kaifuPolicyId:'kaifu:wei:xiangguo:sima-zhao',name:'司马昭相国府',residenceType:'丞相府',backgroundStyle:'grand-minister',
+      validFrom:264,validTo:265,ownerResolution:'explicit-person-and-selected-year',evidence:indexEvidence,researchStatus:'存疑',
+      note:'咸熙扩府候选依附件定位；正史未逐项确认的曹、掾、属与员额一律保留待考。',
+      roles:[
+        role('中卫将军','武官','丞相府'),role('骁骑将军','武官','丞相府'),role('军师祭酒','文官','丞相府'),
+        role('中军师','文武兼','丞相府'),role('前军师','文武兼','丞相府'),role('后军师','文武兼','丞相府'),
+        role('左长史','文官','丞相府'),role('右长史','文官','丞相府'),role('左司马','文武兼','丞相府'),
+        role('右司马','文武兼','丞相府'),role('从事中郎','文官','丞相府'),role('主簿','文官','丞相府'),
+        role('参军','文武兼','丞相府',{sourceText:'二十二员（无定额）',countStatus:'存疑'}),role('参战','文武兼','丞相府'),
+        role('记室','文官','丞相府'),role('门下督','文武兼','丞相府'),role('舍人','文官','丞相府'),
+        ...['西曹','东曹','户曹','金曹','贼曹','兵曹','骑兵曹','车曹','铠曹','水曹','集曹','法曹','奏曹','仓曹','戎曹','马曹','媒曹','散属']
+          .map(name=>role(name,/兵|骑|铠|戎|马/.test(name)?'文武兼':'文官','丞相府',{countStatus:'待考'}))
+      ]
+    },
+    {
+      id:'residence:jin:public-office',ownerOfficeName:'晋诸公及开府位从公',polity:'晋',
+      ownerOfficeNames:['太宰','太傅','太保','太尉','司徒','司空'],name:'晋诸公府',residenceType:'三公府',backgroundStyle:'grand-minister',
+      validFrom:266,validTo:316,ownerResolution:'selected-year-primary-appointment',evidence:jinEvidence,researchStatus:'确定',
+      roles:[
+        role('长史','文官','三公府'),role('西阁祭酒','文官','三公府'),role('东阁祭酒','文官','三公府'),
+        role('西曹掾','文官','三公府'),role('东曹掾','文官','三公府'),role('户曹令史属','文官','三公府'),
+        role('仓曹令史属','文官','三公府'),role('贼曹令史属','文官','三公府'),role('记室令史','文官','三公府')
+      ]
+    },
+    {
+      id:'residence:jin:military-kaifu',ownerOfficeName:'晋开府加兵公',polity:'晋',
+      ownerCategories:['大将军／大司马','将军武职'],name:'晋开府将军府',residenceType:'将军府',backgroundStyle:'general',
+      validFrom:266,validTo:316,ownerResolution:'selected-year-primary-appointment',evidence:jinEvidence,researchStatus:'确定',
+      note:'只有节点同时匹配开府资格时启用；普通将军号不自动等同开府。',
+      roles:[
+        role('长史','文官','将军府'),role('司马','文武兼','将军府'),role('从事中郎','文官','将军府'),
+        role('主簿','文官','将军府'),role('记室督','文官','将军府'),role('舍人','文官','将军府'),
+        role('兵曹','文武兼','将军府'),role('铠曹','文武兼','将军府'),role('士曹','文官','将军府'),
+        role('营军都督','武官','将军府'),role('刺奸都督','武官','将军府'),role('帐下都督','武官','将军府'),role('外都督','武官','将军府')
+      ]
+    },
+    {
+      id:'residence:three:dajiangjun',ownerOfficeName:'大将军',ownerOfficeNames:['大将军','上大将军'],
+      name:'大将军府',residenceType:'将军府',backgroundStyle:'general',validFrom:220,validTo:280,
+      ownerResolution:'selected-year-primary-appointment',evidence:indexEvidence,researchStatus:'存疑',
+      roles:[role('军师','文武兼','将军府'),role('长史','文官','将军府'),role('司马','文武兼','将军府'),role('从事中郎','文官','将军府'),role('主簿','文官','将军府'),role('参军','文武兼','将军府'),role('记室','文官','将军府'),role('舍人','文官','将军府')]
+    },
+    {
+      id:'residence:local:province',ownerOfficeName:'州牧／刺史',ownerCategories:['州牧刺史'],name:'州府',residenceType:'州府',backgroundStyle:'province',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'州郡僚属诸从事条',confidence:'推定',evidenceNote:'州从事分曹设属见两志百官志；具体员额与到任人物仍按时期核。'},researchStatus:'推定',note:'州府与州牧、刺史所兼军府分开；州从事不再归入笼统幕府。',
+      roles:[role('别驾从事','文官','州府'),role('治中从事','文官','州府'),role('功曹从事','文官','州府'),role('簿曹从事','文官','州府'),role('兵曹从事','文武兼','州府'),role('部郡从事','文官','州府'),role('劝学从事','文官','州府'),role('督军从事','文武兼','州府'),role('州主簿','文官','州府')]
+    },
+    {
+      id:'residence:local:commandery',ownerOfficeName:'郡国守相',ownerCategories:['郡国守相'],name:'郡府',residenceType:'郡府',backgroundStyle:'commandery',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'郡国守相属吏条',confidence:'推定',evidenceNote:'丞、长史、五官掾、督邮等属吏见两志；具体员额与到任人物仍按时期核。'},researchStatus:'推定',note:'郡国僚属独立于军府和州府。',
+      roles:[role('郡丞','文官','郡府'),role('长史','文官','郡府'),role('五官掾','文官','郡府'),role('功曹史','文官','郡府'),role('主簿','文官','郡府'),role('督邮','文官','郡府'),role('决曹史','文官','郡府'),role('贼曹史','文官','郡府')]
+    },
+    {
+      id:'residence:royal:east-palace',ownerOfficeName:'储君／太子',ownerCategories:['太子官属'],name:'东宫',residenceType:'东宫',backgroundStyle:'prince',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'太子太傅、少傅以下官属条',confidence:'推定',evidenceNote:'太子太傅、詹事、中庶子、洗马等官属见两志；具体员额按时期核。'},researchStatus:'推定',note:'太子官属归东宫，不再并入幕府属官。',
+      roles:[role('太子太傅','文官','东宫'),role('太子少傅','文官','东宫'),role('太子詹事','文官','东宫'),role('太子中庶子','文官','东宫'),role('太子洗马','文官','东宫'),role('太子舍人','文官','东宫'),role('太子率更令','文官','东宫'),role('太子家令','文官','东宫'),role('太子仆','文官','东宫')]
+    },
+    {
+      id:'residence:sili:wei',ownerOfficeName:'司隶校尉（魏）',name:'司隶校尉府（魏）',residenceType:'朝廷机关',backgroundStyle:'plain',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'司隶校尉属官条',confidence:'推定',evidenceNote:'司隶校尉领都官从事、功曹从事等，掌察百官与畿内郡国；具体员额按时期核。'},researchStatus:'推定',
+      roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关'),role('郡都官从事','文官','朝廷机关')]
+    },
+    {
+      id:'residence:sili:han',ownerOfficeName:'司隶校尉（季汉）',name:'司隶校尉府（汉）',residenceType:'朝廷机关',backgroundStyle:'plain',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《三国志》相关纪传',sourceLevel:'一手史料',sourceLocator:'司隶校尉领都官从事等属官',confidence:'推定',evidenceNote:'季汉司隶校尉掌京城及监察，属官大体沿东汉旧制；具体员额待考。'},researchStatus:'推定',
+      roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关')]
+    },
+    {
+      id:'residence:sili:jin',ownerOfficeName:'司隶校尉（晋）',name:'司隶校尉府（晋）',residenceType:'朝廷机关',backgroundStyle:'plain',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',sourceLocator:'司隶校尉条',confidence:'推定',evidenceNote:'西晋司隶校尉领都官从事、功曹从事等；具体员额按时期核。'},researchStatus:'推定',
+      roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关')]
+    },
+
+    {id:'residence:compat:grand-minister',ownerOfficeId:'office:shared:grand-minister',name:'丞相三公府（兼容）',residenceType:'三公府',backgroundStyle:'grand-minister',isFallback:true,researchStatus:'存疑'},
+    {id:'residence:compat:general',ownerOfficeId:'office:shared:general',name:'将军府（兼容）',residenceType:'将军府',backgroundStyle:'general',isFallback:true,researchStatus:'存疑'},
+    {id:'residence:compat:du-du',ownerOfficeId:'office:shared:du督',name:'都督府（兼容）',residenceType:'都督府',backgroundStyle:'du-du',isFallback:true,researchStatus:'存疑'},
+    {id:'residence:compat:prince',ownerOfficeId:'office:shared:prince',name:'王府（兼容）',residenceType:'王府',backgroundStyle:'prince',isFallback:true,researchStatus:'存疑'}
   ];
+
+  global.SGZ_OFFICE_RESIDENCES=Object.freeze(records);
 })(window);

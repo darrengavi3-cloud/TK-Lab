@@ -38,11 +38,40 @@ const EVENT_BATTLE_LINKS = Object.freeze({
   ev_weifa_263:'jianwei', ev_miewu_280:'miewu'
 });
 
+const ADDITIONAL_BATTLE_SUPPLEMENT = Object.freeze({
+  xingshi: { participants:['王平（汉）','曹爽（魏）'], strengthNote:'兴势之战：曹爽率魏军攻汉中，王平、刘敏据兴势拒守，费祎督军赴援，魏军粮尽退（《三国志》卷四十三·王平传）。' },
+  longcao: { participants:['袁绍','公孙瓒'], strengthNote:'龙凑之战：袁绍与公孙瓒争冀州，互有胜负（《后汉书》卷七十三·公孙瓒列传）。' },
+  jumashui: { participants:['公孙瓒','袁绍'], strengthNote:'巨马水之战：公孙瓒与袁绍相持于巨马水一带（《后汉书》卷七十三·公孙瓒列传）。' }
+});
+
+const ADDITIONAL_BATTLE_PROVINCE = Object.freeze({
+  ev_xingshi_244:['益州'], xingshi:['益州'], longcao:['冀州'], jumashui:['冀州']
+});
+
+const BATTLE_SUPPLEMENT = Object.freeze({
+  guandu:{participants:['曹操','袁绍'],strengthNote:'袁绍众号十余万，曹操兵少，史料无一致实数（待考）。'},
+  chibi:{participants:['孙刘联军','曹操'],strengthNote:'曹军号称八十万，实际南下兵力有争议（待考）；孙刘联军约五万。'},
+  xiangfan:{participants:['关羽（汉）','曹仁、于禁（魏）','吕蒙（吴）'],strengthNote:'于禁所领七军见《三国志》本传，总兵力无一致实数（待考）。'},
+  hefei:{participants:['张辽（魏）','孙权（吴）'],strengthNote:'孙权攻合肥众号十万，张辽以八百死士突阵（《三国志·张辽传》）。'},
+  yiling:{participants:['陆逊（吴）','刘备（汉）'],strengthNote:'刘备连营数百里，吴军约五万，双方实数见注家分歧（待考）。'},
+  jieting:{participants:['马谡（汉）','张郃（魏）'],strengthNote:'马谡违亮节度、舍水上山，张郃绝其汲道；双方兵力无一致实数（待考）。'},
+  wuzhangyuan:{participants:['诸葛亮（汉）','司马懿（魏）'],strengthNote:'汉军分兵屯田示久驻，魏军坚壁不出；双方兵力无一致实数（待考）。'},
+  tongguan:{participants:['曹操','韩遂、马超'],strengthNote:'关西诸将联军与曹军对阵，兵力无一致实数（待考）。'},
+  ruxu:{participants:['孙权','曹操'],strengthNote:'曹操攻濡须，孙权率水军拒守；双方兵力无一致实数（待考）。'},
+  dongxing:{participants:['丁奉（吴）','诸葛诞（魏）'],strengthNote:'丁奉雪中率三千人先至，魏军三路来攻（《三国志·丁奉传》）。'},
+  shouchun_257:{participants:['司马昭（魏）','诸葛诞（魏）、吴'],strengthNote:'司马昭围寿春，吴军来援；城中粮尽而降（《三国志·诸葛诞传》）。'},
+  miewu:{participants:['司马炎（晋）','孙皓（吴）'],strengthNote:'晋六路伐吴，王濬楼船顺江而下；双方总兵力无一致实数（待考）。'}
+});
+
 const battleData = {
   schemaVersion: 1,
   scope: '汉末至西晋（168—316）战事与军政沿革',
   note: '编年要事用于串联形势图时间轴；战役与战场字段沿用地图图层。史料出处优先原典，维基条目仅作检索索引。',
   events: [
+    { id:'ev_sunce_jiangdong_195', year:195, era:'兴平二年', emperor:'汉献帝', text:'孙策渡江平定江东，逐刘繇、破严白虎等，奠定孙吴基业。', sideA:'孙策', sideB:'刘繇、严白虎等', result:'孙策定江东', front:'江东', sourceTitle:'《三国志》卷四十六·孙讨逆传', confidence:'确定' },
+    { id:'ev_xingshi_244', year:244, era:'延熙七年／正始五年', emperor:'后主／魏齐王芳', text:'兴势之战：曹爽率魏军攻汉中，王平据兴势拒守，费祎督军往救，魏军粮尽退还。', sideA:'汉（王平、费祎）', sideB:'魏（曹爽）', result:'魏军退', front:'兴势', sourceTitle:'《三国志》卷四十三·王平传；卷四十四·费祎传', confidence:'确定', battleId:'xingshi' },
+    { id:'ev_longcao_191', year:191, era:'初平二年', emperor:'汉献帝', text:'龙凑之战：袁绍与公孙瓒在龙凑一带交战，公孙瓒退兵。', sideA:'袁绍', sideB:'公孙瓒', result:'袁绍守成', front:'龙凑', sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定', battleId:'longcao' },
+    { id:'ev_jumashui_192', year:192, era:'初平三年', emperor:'汉献帝', text:'巨马水之战：公孙瓒复攻袁绍，战于巨马水，互有胜负。', sideA:'公孙瓒', sideB:'袁绍', result:'互有胜负', front:'巨马水', sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定', battleId:'jumashui' },
     { id:'ev_lingdi_168', year:168, era:'建宁元年', emperor:'汉灵帝', text:'窦武、陈蕃谋诛宦官，事泄被杀，宦官势力进一步坐大。', sideA:'外戚士人集团', sideB:'宦官集团', result:'宦官获胜', front:'洛阳', sourceTitle:'《后汉书》卷六十六·陈蕃传', confidence:'确定' },
     { id:'ev_huangjin_184', year:184, era:'中平元年', emperor:'汉灵帝', text:'张角发动黄巾起义，三十六方同日并起，天下震动；皇甫嵩、朱儁等镇压。', sideA:'黄巾军', sideB:'东汉朝廷', result:'朝廷镇压，州郡兵起', front:'冀州、颍川、南阳等地', sourceTitle:'《后汉书》卷七十一·皇甫嵩传', confidence:'确定' },
     { id:'ev_liuyan_188', year:188, era:'中平五年', emperor:'汉灵帝', text:'刘焉建言选清名重臣出任州牧，以加强对地方的监察与控制；此后州牧逐渐成为地方军政长官。', sideA:'东汉朝廷', sideB:'—', result:'部分州改置州牧', front:'洛阳及诸州', sourceTitle:'《后汉书》卷七十五·刘焉传', confidence:'确定' },
@@ -104,6 +133,9 @@ const battleData = {
     return Object.assign({title:titles[ev.id]||String(ev.text||'').split(/[，。；]/)[0].slice(0,10),battleId:EVENT_BATTLE_LINKS[ev.id]||null},ev);
   }),
   battles: [
+    { id:'xingshi', name:'兴势之战', year:244, a:'王平、费祎（汉）', b:'曹爽（魏）', result:'魏军粮尽退', desc:'曹爽率军攻汉中，王平据兴势拒守，刘敏等坚壁不战；费祎督军至，魏军粮尽退还。', lat:33.07, lng:107.02, sourceTitle:'《三国志》卷四十三·王平传；卷四十四·费祎传', confidence:'确定' },
+    { id:'longcao', name:'龙凑之战', year:191, a:'袁绍', b:'公孙瓒', result:'公孙瓒退兵', desc:'袁绍与公孙瓒争冀州，战于龙凑，公孙瓒败退。', lat:37.6, lng:115.2, sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定' },
+    { id:'jumashui', name:'巨马水之战', year:192, a:'公孙瓒', b:'袁绍', result:'互有胜负', desc:'公孙瓒与袁绍在巨马水一带相持，互有胜负。', lat:39.2, lng:115.8, sourceTitle:'《后汉书》卷七十三·公孙瓒列传', confidence:'推定' },
     { id:'huangjin', name:'黄巾起义', year:184, a:'黄巾军', b:'东汉朝廷', result:'朝廷镇压，乱虽平而州郡兵起', desc:'张角以“苍天已死，黄天当立”号召，三十六方并起，席卷八州。乱平之后，地方割据之势已成。', lat:37.05, lng:115.4, sourceTitle:'《后汉书》卷七十一·皇甫嵩传', confidence:'确定' },
     { id:'hulaoguan', name:'诸侯讨董', year:190, a:'关东联军', b:'董卓', result:'联军瓦解，董卓挟帝西迁长安', desc:'关东州郡推袁绍为盟主讨董卓。曹操汴水战败，联盟各怀异志，不久散去。', lat:34.95, lng:113.05, sourceTitle:'《后汉书》卷七十二·董卓列传', confidence:'确定' },
     { id:'xiapi', name:'下邳之战', year:198, a:'曹操', b:'吕布', result:'曹操擒杀吕布，据徐州', desc:'曹操围下邳，决水灌城，吕布部将侯成等执布降，缢杀于白门楼。', lat:34.07, lng:117.94, sourceTitle:'《三国志》卷一·武帝纪', confidence:'确定' },
@@ -128,24 +160,24 @@ const battleData = {
     { id:'miewu', name:'晋灭吴之战', year:280, a:'司马炎（晋）', b:'孙皓（吴）', result:'王濬楼船下益州，孙皓降，吴亡', desc:'晋六路伐吴。王濬率巴蜀楼船顺江东下，直指建业；杜预、王浑等分道并进。孙皓出降，三国归晋。', lat:32.06, lng:118.8, sourceTitle:'《晋书》卷三·武帝纪', confidence:'确定' }
   ],
   battlefields: [
-    { id:'guandu-field', name:'官渡战场', lat:34.74, lng:113.96, from:200, to:208, note:'曹袁决战区域。' },
-    { id:'chibi-field', name:'赤壁—乌林战场', lat:29.72, lng:113.90, from:208, to:220, note:'赤壁之战长江两岸战场。' },
-    { id:'xiangfan-field', name:'襄樊战场', lat:32.04, lng:112.15, from:208, to:280, note:'汉水中游南北争夺枢纽。' },
-    { id:'hefei-field', name:'合肥—逍遥津战场', lat:31.82, lng:117.23, from:208, to:280, note:'魏吴江淮争夺核心。' },
-    { id:'ruxu-field', name:'濡须口战场', lat:31.15, lng:117.72, from:208, to:280, note:'魏吴长江北岸攻防前沿。' },
-    { id:'yiling-field', name:'夷陵—猇亭战场', lat:30.69, lng:111.29, from:220, to:228, note:'章武二年吴汉大战区域。' },
-    { id:'jieting-field', name:'街亭战场', lat:34.85, lng:105.95, from:228, to:263, note:'诸葛亮第一次北伐关键战场。' },
-    { id:'qishan-field', name:'祁山战场', lat:34.05, lng:105.05, from:228, to:263, note:'魏汉陇右攻防前线。' },
-    { id:'wuzhang-field', name:'五丈原战场', lat:34.25, lng:107.63, from:228, to:263, note:'诸葛亮第五次北伐驻军区域。' },
-    { id:'tongguan-field', name:'潼关—关中战场', lat:34.62, lng:110.22, from:211, to:228, note:'曹操定关中后的关西攻防前沿。' },
-    { id:'shouchun-field', name:'寿春—淮南战场', lat:32.56, lng:116.78, from:249, to:280, note:'司马氏平淮南三叛与魏吴江淮拉锯核心。' },
-    { id:'dongxing-field', name:'东兴—巢湖战场', lat:31.15, lng:117.72, from:213, to:280, note:'吴筑东兴堤后的江淮水战枢纽。' }
+    { id:'guandu-field', name:'官渡战场', placeLabel:'官渡', lat:34.74, lng:113.96, from:200, to:208, note:'曹袁决战区域。' },
+    { id:'chibi-field', name:'赤壁—乌林战场', placeLabel:'赤壁—乌林', lat:29.72, lng:113.90, from:208, to:220, note:'赤壁之战长江两岸战场。' },
+    { id:'xiangfan-field', name:'襄樊战场', placeLabel:'襄樊', lat:32.04, lng:112.15, from:208, to:280, note:'汉水中游南北争夺枢纽。' },
+    { id:'hefei-field', name:'合肥—逍遥津战场', placeLabel:'合肥—逍遥津', lat:31.82, lng:117.23, from:208, to:280, note:'魏吴江淮争夺核心。' },
+    { id:'ruxu-field', name:'濡须口战场', placeLabel:'濡须口', lat:31.15, lng:117.72, from:208, to:280, note:'魏吴长江北岸攻防前沿。' },
+    { id:'yiling-field', name:'夷陵—猇亭战场', placeLabel:'夷陵—猇亭', lat:30.69, lng:111.29, from:220, to:228, note:'章武二年吴汉大战区域。' },
+    { id:'jieting-field', name:'街亭战场', placeLabel:'街亭', lat:34.85, lng:105.95, from:228, to:263, note:'诸葛亮第一次北伐关键战场。' },
+    { id:'qishan-field', name:'祁山战场', placeLabel:'祁山', lat:34.05, lng:105.05, from:228, to:263, note:'魏汉陇右攻防前线。' },
+    { id:'wuzhang-field', name:'五丈原战场', placeLabel:'五丈原', lat:34.25, lng:107.63, from:228, to:263, note:'诸葛亮第五次北伐驻军区域。' },
+    { id:'tongguan-field', name:'潼关—关中战场', placeLabel:'潼关—关中', lat:34.62, lng:110.22, from:211, to:228, note:'曹操定关中后的关西攻防前沿。' },
+    { id:'shouchun-field', name:'寿春—淮南战场', placeLabel:'寿春—淮南', lat:32.56, lng:116.78, from:249, to:280, note:'司马氏平淮南三叛与魏吴江淮拉锯核心。' },
+    { id:'dongxing-field', name:'东兴—巢湖战场', placeLabel:'东兴—巢湖', lat:31.15, lng:117.72, from:213, to:280, note:'吴筑东兴堤后的江淮水战枢纽。' }
   ]
 };
 
 ['events','battles','battlefields'].forEach(function(kind){
   battleData[kind]=battleData[kind].map(function(item){
-    return Object.assign({},item,{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||['跨区域']))});
+    return Object.assign({},item,kind==='battles'?(BATTLE_SUPPLEMENT[item.id]||ADDITIONAL_BATTLE_SUPPLEMENT[item.id]||{}):{},{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||ADDITIONAL_BATTLE_PROVINCE[item.id]||['跨区域']))});
   });
 });
 battleData.provinceIndex=Object.freeze(['中央','司隶','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','跨区域']);

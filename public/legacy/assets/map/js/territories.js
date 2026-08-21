@@ -15,6 +15,7 @@ const Territories = (function () {
   let currentEntries = [];
   let currentFactionLabels = [];
   let currentAnnotationEntries = [];
+  let hierarchyLevel = 'faction';
 
   // 缓存当前使用的州界数据集，避免切换时重复解析
   let currentFeatures = [];
@@ -56,6 +57,8 @@ const Territories = (function () {
       color: f.color, weight: 1.5, opacity: 0.9,
       fillColor: f.color, fillOpacity: 0.30, className: 'territory',
     });
+    poly.__factionId = factionId;
+    poly.__provinceFeature = feature;
     poly.bindTooltip(`${feature.name} · ${f.name}`, { sticky: true, className: 'tt-faction' });
     poly.on('click', () => Panel.factionView(f));
     if (window.HistoryMapBridge) window.HistoryMapBridge.register('province', feature, poly, factionId);
@@ -261,21 +264,20 @@ const Territories = (function () {
 
   function applyFilters(){
     const filters=window.__MAP_FILTERS||{};
+    const level=window.__MAP_HIERARCHY_LEVEL||hierarchyLevel;
     currentEntries.forEach((entry)=>{
       const visible=filterState(entry);
       if(entry.polygon&&entry.polygon.setStyle){
-        if(visible){
-          if(entry.hidden){entry.polygon.setStyle(entry.hiddenStyle||entry.baseStyle);entry.hidden=false;}
-        }else{
-          if(!entry.hidden){entry.hiddenStyle={color:entry.polygon.options.color,weight:entry.polygon.options.weight,opacity:entry.polygon.options.opacity,fillColor:entry.polygon.options.fillColor,fillOpacity:entry.polygon.options.fillOpacity};entry.hidden=true;}
-          entry.polygon.setStyle({opacity:0,fillOpacity:0});
-        }
+        if(!visible){entry.hidden=true;entry.polygon.setStyle({opacity:0,fillOpacity:0});}
+        else if(level==='faction'){entry.hidden=false;entry.polygon.setStyle({weight:0,opacity:0,fillOpacity:0.30});}
+        else if(level==='province'){entry.hidden=false;entry.polygon.setStyle({weight:1.5,opacity:0.9,fillOpacity:0.30});}
+        else {entry.hidden=false;entry.polygon.setStyle({weight:0,opacity:0,fillOpacity:0});}
       }
-      setMarkerVisible(entry.label,visible);
+      setMarkerVisible(entry.label,visible&&level==='province');
     });
     currentFactionLabels.forEach((entry)=>{
       const visible=currentEntries.some(item=>item.factionId===entry.factionId&&filterState(item));
-      setMarkerVisible(entry.marker,visible);
+      setMarkerVisible(entry.marker,visible&&level==='faction');
     });
     currentAnnotationEntries.forEach((entry)=>{
       const visible=(filters.faction||'all')==='all'||entry.factionId===filters.faction;
@@ -346,5 +348,11 @@ const Territories = (function () {
 
   function init(map) { mapRef = map; }
 
-  return { init, render, hide, setFilters:applyFilters, setDisplayMode:function(mode){window.__MAP_DISPLAY_MODE=mode||'research';applyFilters();} };
+  function setHierarchyLevel(level){
+    hierarchyLevel=['faction','province','commandery'].includes(level)?level:'faction';
+    window.__MAP_HIERARCHY_LEVEL=hierarchyLevel;
+    applyFilters();
+  }
+
+  return { init, render, hide, setFilters:applyFilters, setHierarchyLevel, setDisplayMode:function(mode){window.__MAP_DISPLAY_MODE=mode||'research';applyFilters();} };
 })();

@@ -32,6 +32,18 @@ const BASE_MAPS = {
     attribution: 'Tiles © Esri',
     maxZoom: 18,
   },
+  elevation: {
+    name: '高程山影',
+    url: 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+    attribution: 'Elevation tiles © Mapzen / AWS Terrain Tiles',
+    maxZoom: 15,
+  },
+  hillshade: {
+    name: '山影辅助',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}',
+    attribution: 'Hillshade © Esri',
+    maxZoom: 18,
+  },
   osm: {
     name: '现代地图',
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',

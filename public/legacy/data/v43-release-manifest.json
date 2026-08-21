@@ -1,0 +1,44 @@
+{
+  "release": "V43",
+  "title": "府署、古水系与人物记全量优化",
+  "schemaVersion": 9,
+  "scope": ["职官谱", "人物记", "战事纪", "州镇表", "金石录", "食货志", "形势图"],
+  "metrics": {
+    "schemaVersion": 9,
+    "kaifuPolicies": 32,
+    "residenceDefinitions": 8,
+    "seatPolicies": 51,
+    "personVolumes": 195,
+    "personRecords": 266,
+    "appointmentCandidates": 298,
+    "peiAnnotations": 6,
+    "hydronymFeatures": 285,
+    "hydronymNames": 257,
+    "shuijingzhuVolumes": 40,
+    "battlefieldPlaceLabels": 12
+  },
+  "changes": [
+    "研究模型升级 v9，开府资格、府署、水系、逐卷覆盖实体接入并兼容 V7/V8 迁移",
+    "州从事、郡国僚属、太子官属从笼统幕府属官拆分为州府、郡府、东宫",
+    "府署页按制度员额、展示席位、实任人数三列展示",
+    "战场地图标签改为图例＋地名，去除“战场”后缀",
+    "新增按缩放分级与自动避让的古水名标注层及水名检索面板",
+    "人物记接入《三国志》《晋书》逐卷来源候选、筛选分页与同名消歧说明"
+  ],
+  "artifacts": {
+    "documentation": "docs/V43府署古水系与人物记优化.md",
+    "verification": "scripts/verify-v43.mjs",
+    "portableExport": "exports/三国职官谱-单文件版.html",
+    "deployment": "pending-private-sites"
+  },
+  "validation": {
+    "verifyV43": "passed",
+    "verifyResearchModel": "passed",
+    "verifyV42": "passed",
+    "verifyProject": "passed",
+    "verifyMapData": "passed",
+    "verifyHistoricalModel": "passed",
+    "visualQa": "not-run-in-browser",
+    "deployment": "pending"
+  }
+}
