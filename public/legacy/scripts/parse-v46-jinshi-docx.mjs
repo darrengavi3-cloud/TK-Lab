@@ -119,6 +119,7 @@ function splitHeadingText(text) {
 function isHeading(text) {
   const value = String(text || '').trim();
   if (!value || value.length > 180 || sectionPattern.test(value) || markerPattern.test(value) || notePattern.test(value)) return false;
+  if (/^(?:[（(【\[])?(?:碑额|碑阳|碑阴|志盖|志阳|志阴|释文|铭文|碑文|正文|棺柩铭文)/.test(value)) return false;
   if (/^\d+[.、)]/.test(value)) return true;
   if (value.length > 80 || /[。；;，,:：]/.test(value) || /(?:所记|录文|跋尾|重录|墓地|出土|案王|案《)/.test(value)) return false;
   if (!materialPattern.test(value)) return false;
@@ -154,7 +155,7 @@ function cleanTitle(value) {
 function extractInscription(startIndex, endIndex) {
   const result = [];
   let active = false;
-  for (let i = startIndex + 1; i < Math.min(endIndex, startIndex + 18); i += 1) {
+  for (let i = startIndex + 1; i < endIndex; i += 1) {
     const value = lines[i]?.text || '';
     if (!value || lines[i].strike || sectionPattern.test(value)) continue;
     if (isHeading(value)) break;
@@ -203,6 +204,7 @@ for (let i = 0; i < headings.length; i += 1) {
     title,
     name: title,
     type: materialType(title),
+    materialType: materialType(title),
     sourceTitle: `《${sourceName.replace(/\.docx$/i, '')}》`,
     sourceDocument: sourceName,
     polity: '晋',
@@ -210,6 +212,8 @@ for (let i = 0; i < headings.length; i += 1) {
     archiveKind: actualYear !== null ? (actualYear >= 317 ? '扩展' : '核心') : (heading.section === '东晋' ? '扩展' : '核心'),
     year: actualYear,
     yearText: info.yearText || title,
+    dateText: info.yearText || title,
+    findspot: '',
     evidenceStatus: info.status === '待考' ? '待考' : '已整理',
     researchStatus: info.status === '待考' ? '存疑' : '确定',
     confidence: info.status === '待考' ? '低' : '中',

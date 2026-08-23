@@ -31,6 +31,7 @@
     {id:'seat:han:shi-zhong:end-han',officeId:'office:han:shi-zhong',validFrom:184,validTo:220,rule:'末汉朝廷侍中席位',authorizedCount:6,displayCapacity:6,sourceId:'source:后汉书百官志',countStatus:'推定',note:'展示六席，不倒推为东汉全期固定员额。'},
     {id:'seat:shu:shi-zhong:period',officeId:'office:shu:shi-zhong',validFrom:221,validTo:263,rule:'季汉朝堂侍中展示席位',authorizedCount:null,displayCapacity:6,sourceId:'source:三国志蜀书',countStatus:'待考',note:'具体时期员额未统一见于单一条文，展示容量与史实员额分开。'},
     {id:'seat:jin:shi-zhong:taishi',officeId:'office:jin:shi-zhong',validFrom:266,validTo:316,rule:'西晋侍中定员',authorizedCount:4,displayCapacity:4,sourceId:'source:晋书职官志',countStatus:'确定',note:'晋制侍中四人。'},
+    {id:'seat:han:shangshu-pushe:bang',officeId:'han_bgz_shangshu_pushe',validFrom:null,validTo:220,rule:'东汉尚书台·尚书仆射员额',authorizedCount:1,displayCapacity:1,sourceId:'source:后汉书百官志',sourceText:'尚书仆射一人，六百石',countStatus:'确定',note:'据《后汉书》卷116·百官三。员额一人，秩六百石；不据六曹名称或展示席位倒推全期固定编制。'},
 
     policy('晋诸公及开府位从公','长史',1,1,'置长史一人，秩一千石',{polity:'晋',validFrom:266,validTo:316,evidence:primary,countStatus:'确定'}),
     policy('晋诸公及开府位从公','西阁祭酒',1,1,'西东阁祭酒各一人',{polity:'晋',validFrom:266,validTo:316,evidence:primary,countStatus:'确定'}),

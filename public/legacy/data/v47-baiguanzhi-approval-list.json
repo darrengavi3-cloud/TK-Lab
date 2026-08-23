@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "modelId": "sgz-baiguanzhi-approval-list-v1",
+  "version": "V47-C",
+  "createdAt": "2026-08-22",
+  "scope": "将 V47-B 已核对 sourceClaim 与现有官职／府署／员额节点逐条匹配后形成的可审批清单；未批准项一律不写入默认运行数据",
+  "sourceIndex": "data/baiguanzhi-source-index.json",
+  "sourceClaims": "data/v47-baiguanzhi-source-claims.json",
+  "baseline": {
+    "researchSchemaVersion": 9,
+    "hanBaiGuanZhiRecords": 52,
+    "hanBaiGuanZhiHiddenRecords": 3,
+    "hanBaiGuanZhiVisibleRecords": 49,
+    "defaultPeriod": "168—316",
+    "extendedPeriod": "317 年后仅作扩展档案／比较材料",
+    "runtimeImportPolicy": "逐条审批通过后由后续 V47-D 定向补录；本阶段只输出审批结论，不写入页面数据"
+  },
+  "items": [
+    {
+      "id": "claim:han:sili:officers",
+      "claimType": "subordinate-structure",
+      "decision": "已覆盖，仅补来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "司隶校尉（东汉）",
+        "parentNode": "东汉官制",
+        "nodeKey": "han_o*",
+        "sourceLocator": "《后汉书》卷117·百官四",
+        "existingNode": true,
+        "existingRoles": ["都官从事", "功曹从事", "簿曹从事", "兵曹从事", "部郡从事", "主簿"],
+        "category": "州郡属官",
+        "institutionType": "朝廷机关",
+        "serviceDomain": "文官"
+      },
+      "gap": "东汉司隶校尉府署属官全部存在，但现有节点未把『别驾从事』在司隶段落中的矛盾记录作为存疑项单独展示。",
+      "action": "仅为现有都官从事、功曹从事、部郡从事节点补充来源地『《后汉书》卷117』；不新增重复节点。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:han:sili:bijia-review"
+    },
+    {
+      "id": "claim:han:sili:bijia-review",
+      "claimType": "classification-conflict",
+      "decision": "保留存疑，不强制改类",
+      "status": "存疑待审批",
+      "match": {
+        "entityName": "司隶校尉（东汉）",
+        "parentNode": "东汉官制",
+        "nodeKey": "han_o*",
+        "sourceLocator": "《后汉书》卷117·百官四",
+        "existingNode": true,
+        "conflict": "原文在司隶校尉属官段落同时记载『别驾从事』；与州刺史府属官中的别驾不可视为同一父节点。"
+      },
+      "gap": "现有界面把司隶校尉与州刺史拆成两个层级，是正确做法；但『司隶绝无别驾从事』作为无条件断言不正确。",
+      "action": "保留司隶／州刺史拆分；在司隶校尉府署记录中标注『原文另载别驾从事，待结合注家与具体任官确定是否显示』。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:han:sili:officers"
+    },
+    {
+      "id": "claim:han:shangshu:seat",
+      "claimType": "seat-policy",
+      "decision": "已有员额来源，不做批量补录",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "尚书仆射",
+        "parentNode": "尚书台",
+        "nodeKey": "han_bgz_shangshu_pushe",
+        "sourceLocator": "《后汉书》卷116·百官三",
+        "existingNode": true,
+        "existingSeatPolicy": "seat:han:shi-zhong:end-han（侍中），尚书仆射未见独立 seatPolicy",
+        "category": "尚书台省",
+        "institutionType": "朝廷机关",
+        "serviceDomain": "文官"
+      },
+      "gap": "东汉尚书仆射员额『一人』已有正文依据，但现有 seat 政策库没有针对『尚书仆射』的制度员额记录。",
+      "action": "为尚书仆射补一条制度员额来源记录（员额 1，来源《后汉书》卷116），不改变现有展示席位。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:han:shangshu:seat"
+    },
+    {
+      "id": "claim:han:zhou:cishi",
+      "claimType": "office-definition",
+      "decision": "已在地方政区层覆盖，补员额来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "州刺史（地方政区总览）",
+        "parentNode": "地方政区总览（州—郡国—县邑）",
+        "nodeKey": "han_o*",
+        "sourceLocator": "《后汉书》卷118·百官五",
+        "existingNode": true,
+        "existingRoles": ["别驾从事", "治中从事", "功曹从事", "簿曹从事", "兵曹从事", "部郡国从事史", "主簿"],
+        "category": "州牧刺史",
+        "institutionType": "州府",
+        "serviceDomain": "文官"
+      },
+      "gap": "东汉『外十二州，每州刺史一人，六百石』的员额有正文依据，但现有地方政区总览只保留制度层级示意。",
+      "action": "为州牧刺史节点补『刺史一人、六百石』制度员额来源；不据此覆盖各时期实际任官人数。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:han:commandery:county"
+    },
+    {
+      "id": "claim:han:commandery:county",
+      "claimType": "institution-hierarchy",
+      "decision": "已在郡县层级覆盖，补治所/长官来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "河南尹 / 郡太守",
+        "parentNode": "地方政区总览（州—郡国—县邑）",
+        "nodeKey": "han_o*",
+        "sourceLocator": "《后汉书》卷118·百官五",
+        "existingNode": true,
+        "existingRoles": ["河南尹", "郡太守", "县令／长"],
+        "category": "郡国守相",
+        "institutionType": "郡府",
+        "serviceDomain": "文官"
+      },
+      "gap": "『郡皆置太守，河南郡京师所在则曰尹』已有正文依据；现有地方政区总览有郡／县节点但缺统一长官员额来源标注。",
+      "action": "为郡国守相、县邑令长节点补充来源地『《后汉书》卷118』；不新增行政区划。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:han:zhou:cishi"
+    },
+    {
+      "id": "claim:jin:kaifu:public",
+      "claimType": "kaifu-policy",
+      "decision": "已有政策节点，仅补来源分层",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "晋诸公及开府位从公",
+        "parentNode": "西晋官制",
+        "nodeKey": "kaifu:jin:civil:*",
+        "sourceLocator": "《晋书》卷24·职官志",
+        "existingNode": true,
+        "existingPolicy": "kaifu:jin:civil:1..5（太宰、太傅、太保、司徒、司空）",
+        "institutionType": "三公府",
+        "serviceDomain": "文武兼"
+      },
+      "gap": "『开府者皆为位从公』已映射到文官公开府政策；但『官名适用』与『某人实际开府』需分层，现有政策已用 qualificationType 区分。",
+      "action": "为现有 hank 公开府政策补『《晋书》卷24』正文来源地，不新增政策节点；确认『法定开府』不等于『每个姓名者实际开府』。",
+      "runtimeImport": false,
+      "requiresApproval": false,
+      "classSourceClaim": "claim:jin:kaifu:public-staff"
+    },
+    {
+      "id": "claim:jin:kaifu:public-staff",
+      "claimType": "subordinate-structure",
+      "decision": "已有府署属官，仅补来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "晋诸公及开府位从公（府署）",
+        "nodeKey": "residence:jin:public-office",
+        "sourceLocator": "《晋书》卷24·职官志",
+        "existingNode": true,
+        "existingRoles": ["长史", "西阁祭酒", "东阁祭酒", "西曹掾", "东曹掾", "户曹令史属", "仓曹令史属", "贼曹令史属", "记室令史"],
+        "institutionType": "三公府",
+        "serviceDomain": "文官"
+      },
+      "gap": "已有府署记录将长史、祭酒、掾属等置于『晋诸公及开府位从公』下；但该府署含数条令史属，未见正史卷二十四精确对应。",
+      "action": "保留现有府署，为长史、西东阁祭酒、西东曹掾属补『《晋书》卷24』来源；令史属类记录标『制度府属，加兵公另增置』。",
+      "runtimeImport": false,
+      "requiresApproval": false,
+      "classSourceClaim": "claim:jin:kaifu:public"
+    },
+    {
+      "id": "claim:jin:kaifu:military-staff",
+      "claimType": "subordinate-structure",
+      "decision": "已有军府属官，仅补加兵分层",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "晋开府加兵公（府署）",
+        "nodeKey": "residence:jin:military-kaifu",
+        "sourceLocator": "《晋书》卷24·职官志",
+        "existingNode": true,
+        "existingRoles": ["长史", "司马", "从事中郎", "主簿", "记室督", "舍人", "兵曹", "铠曹", "士曹", "营军都督", "刺奸都督", "帐下都督", "外都督"],
+        "institutionType": "将军府",
+        "serviceDomain": "武官"
+      },
+      "gap": "加兵公府署的司马、从事中郎、参军等军府属官已存在；但尚未明确区分『文官性质＋军府所属』与纯武官。",
+      "action": "为司马、从事中郎、参军等标『文武兼／军府所属』；保持军府文职属官与中央文官分列。",
+      "runtimeImport": false,
+      "requiresApproval": false,
+      "classSourceClaim": "claim:jin:kaifu:public-staff"
+    },
+    {
+      "id": "claim:jin:sili:officers",
+      "claimType": "subordinate-structure",
+      "decision": "已有晋司隶府署，仅补来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "司隶校尉（晋）",
+        "parentNode": "西晋官制",
+        "nodeKey": "residence:sili:jin",
+        "sourceLocator": "《晋书》卷24·职官志",
+        "existingNode": true,
+        "existingRoles": ["都官从事", "功曹从事", "簿曹从事", "兵曹从事", "部郡从事", "主簿"],
+        "category": "州郡属官",
+        "institutionType": "朝廷机关",
+        "serviceDomain": "文官"
+      },
+      "gap": "晋司隶校尉府署已存在且属官齐备；但页面缺少『渡江乃罢』属于东晋沿革的边界标注。",
+      "action": "为晋司隶校尉府署补『《晋书》卷24』来源，并在其说明中标『266—316 保留，渡江乃罢属东晋扩展时段』。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:jin:sili:officers"
+    },
+    {
+      "id": "claim:jin:eastern-palace",
+      "claimType": "institution-hierarchy",
+      "decision": "已有东宫模板与府署，仅补建置来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "西晋东宫",
+        "parentNode": "西晋官制",
+        "nodeKey": "tpl_jin_donggong",
+        "sourceLocator": "《晋书》卷24·职官志",
+        "existingNode": true,
+        "existingRoles": ["太子太傅", "太子少傅", "太子詹事", "太子率更令", "太子家令", "太子仆", "太子中庶子", "太子洗马"],
+        "institutionType": "东宫",
+        "serviceDomain": "文官"
+      },
+      "gap": "东宫模板与府署已存在；但未标注西晋东宫『泰始三年武帝始建官』和随后的詹事沿革。",
+      "action": "为东宫模板补『泰始三年（267）始建官，咸宁元年（275）置詹事』的建置来源；不改变东宫官属清单。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:jin:eastern-palace"
+    },
+    {
+      "id": "claim:jin:local:state-commandery-county",
+      "claimType": "institution-hierarchy",
+      "decision": "已在地方政区层覆盖，仅补来源",
+      "status": "已核对待入库",
+      "match": {
+        "entityName": "西晋州郡县属官",
+        "parentNode": "地方政区总览（州—郡国—县邑）",
+        "nodeKey": "jin_o*",
+        "sourceLocator": "《晋书》卷24·职官志",
+        "existingNode": true,
+        "existingRoles": ["别驾从事", "治中从事", "功曹从事", "簿曹从事", "兵曹从事", "部郡从事", "州主簿", "郡太守", "县令／长"],
+        "category": "州郡属官",
+        "institutionType": "州府／郡府",
+        "serviceDomain": "文官"
+      },
+      "gap": "西晋地方政区总览已覆盖州／郡／县三级；但页面未把『州府属官与郡府属官、县署属官分开』作为明确来源说明。",
+      "action": "为州府、郡府、县署属官节点补充来源地『《晋书》卷24』；不新增行政区划、不生成人物任官。",
+      "runtimeImport": false,
+      "requiresApproval": false,
+      "classSourceClaim": "claim:jin:local:state-commandery-county"
+    },
+    {
+      "id": "claim:song:western-jin-comparison",
+      "claimType": "comparative-evolution",
+      "decision": "不进入默认数据，仅比较层",
+      "status": "排除",
+      "match": {
+        "entityName": "比较层（刘宋追述晋初三公）",
+        "nodeKey": "none",
+        "sourceLocator": "《宋书》卷39·百官上",
+        "existingNode": false
+      },
+      "gap": "无默认树节点，宋书仅作比较材料。",
+      "action": "保留在比较层，不新增默认官职；仅当与《晋书》互证时作为沿革说明候选。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:song:western-jin-central-office"
+    },
+    {
+      "id": "claim:song:western-jin-central-office",
+      "claimType": "comparative-evolution",
+      "decision": "不进入默认数据，仅比较层",
+      "status": "排除",
+      "match": {
+        "entityName": "比较层（魏晋中书门下）",
+        "nodeKey": "none",
+        "sourceLocator": "《宋书》卷40·百官下",
+        "existingNode": false
+      },
+      "gap": "中书监／中书令、中书侍郎在默认树中存在，但宋书比较断言不改写西晋员额。",
+      "action": "保留比较层；西晋中书侍郎员额仍需回查《晋书》卷24，以《晋书》为准。",
+      "runtimeImport": false,
+      "requiresApproval": true,
+      "classSourceClaim": "claim:song:western-jin-comparison"
+    }
+  ],
+  "summary": {
+    "items": 13,
+    "approvedForSourceOnly": 9,
+    "requiresApproval": 7,
+    "excludedComparative": 2,
+    "directRuntimeImports": 0,
+    "nextBatch": "V47-D：将审批通过项定向写入对应节点来源地，不新增重复节点；写入后由 verify 脚本校验来源闭合与分类一致"
+  }
+}

@@ -51,6 +51,7 @@
       id:'residence:jin:public-office',ownerOfficeName:'晋诸公及开府位从公',polity:'晋',
       ownerOfficeNames:['太宰','太傅','太保','太尉','司徒','司空'],name:'晋诸公府',residenceType:'三公府',backgroundStyle:'grand-minister',
       validFrom:266,validTo:316,ownerResolution:'selected-year-primary-appointment',evidence:jinEvidence,researchStatus:'确定',
+      note:'诸公及开府位从公府属含长史、东西阁祭酒、东西曹掾及户曹、仓曹、贼曹令史属、记室令史；加兵公另增置司马、从事中郎、参军等军府官，不列于此。',
       roles:[
         role('长史','文官','三公府'),role('西阁祭酒','文官','三公府'),role('东阁祭酒','文官','三公府'),
         role('西曹掾','文官','三公府'),role('东曹掾','文官','三公府'),role('户曹令史属','文官','三公府'),
@@ -87,7 +88,7 @@
     },
     {
       id:'residence:royal:east-palace',ownerOfficeName:'储君／太子',ownerCategories:['太子官属'],name:'东宫',residenceType:'东宫',backgroundStyle:'prince',
-      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'太子太傅、少傅以下官属条',confidence:'推定',evidenceNote:'太子太傅、詹事、中庶子、洗马等官属见两志；具体员额按时期核。'},researchStatus:'推定',note:'太子官属归东宫，不再并入幕府属官。',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'太子太傅、少傅以下官属条',confidence:'推定',evidenceNote:'太子太傅、詹事、中庶子、洗马等官属见两志；具体员额按时期核。'},researchStatus:'推定',note:'太子官属归东宫，不再并入幕府属官。西晋东宫于泰始三年（267）始建官，咸宁元年（275）置詹事；东宫官属清单不因建置沿革扩增。',
       roles:[role('太子太傅','文官','东宫'),role('太子少傅','文官','东宫'),role('太子詹事','文官','东宫'),role('太子中庶子','文官','东宫'),role('太子洗马','文官','东宫'),role('太子舍人','文官','东宫'),role('太子率更令','文官','东宫'),role('太子家令','文官','东宫'),role('太子仆','文官','东宫')]
     },
     {
@@ -102,7 +103,7 @@
     },
     {
       id:'residence:sili:jin',ownerOfficeName:'司隶校尉（晋）',name:'司隶校尉府（晋）',residenceType:'朝廷机关',backgroundStyle:'plain',
-      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',sourceLocator:'司隶校尉条',confidence:'推定',evidenceNote:'西晋司隶校尉领都官从事、功曹从事等；具体员额按时期核。'},researchStatus:'推定',
+      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',sourceLocator:'司隶校尉条',confidence:'推定',evidenceNote:'西晋司隶校尉领都官从事、功曹从事等；具体员额按时期核。'},researchStatus:'推定',note:'266—316 西晋司隶校尉及其府署保留；“渡江乃罢”属东晋沿革，归入扩展时段，不混同于西晋官制。',
       roles:[role('都官从事','文官','朝廷机关'),role('功曹从事','文官','朝廷机关'),role('簿曹从事','文官','朝廷机关'),role('兵曹从事','文武兼','朝廷机关'),role('部郡从事','文官','朝廷机关'),role('主簿','文官','朝廷机关')]
     },
 

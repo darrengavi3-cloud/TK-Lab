@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "modelId": "sgz-baiguanzhi-source-index-v1",
+  "createdAt": "2026-08-21",
+  "scope": {
+    "default": "汉末至西晋（168—316）",
+    "extended": "东晋及南朝比较材料，仅进入来源与沿革审校层",
+    "rule": "整理对话不是一手史料；所有运行时补录必须回到正史原文并保留卷次定位"
+  },
+  "sourcePackages": [
+    {
+      "id": "chat-jinshu-zhiguan",
+      "conversationId": "6a8321b5-af24-83e8-9c29-ae6054772cdd",
+      "title": "晋书职官整理",
+      "sourceRef": "chatgpt-conversation://6a8321b5-af24-83e8-9c29-ae6054772cdd",
+      "sourceLevel": "文档考据",
+      "work": "《晋书·职官志》及相关制度整理",
+      "periodScope": ["266—316", "东晋沿革比较"],
+      "usableFor": ["建立《晋书·职官志》条文的候选索引", "核对现有西晋中央、军府、东宫、王国、州郡与边镇节点", "发现府署与普通官位的关系缺口"],
+      "notUsableFor": ["不以对话摘要替代《晋书》原文", "不凭整理中的概括确定设立、裁撤或员额年份", "不把东晋制度变化直接写入西晋运行档案"],
+      "primaryTextRequired": true,
+      "status": "已读，待逐条回填卷次与原文"
+    },
+    {
+      "id": "chat-houhanshu-baiguanzhi",
+      "conversationId": "6a831a7f-6ff0-83e8-8ead-3aa703cef670",
+      "title": "后汉书百官志整理",
+      "sourceRef": "chatgpt-conversation://6a831a7f-6ff0-83e8-8ead-3aa703cef670",
+      "sourceLevel": "文档考据",
+      "work": "《后汉书·百官志》东汉中央与地方官制整理",
+      "periodScope": ["东汉", "168—220"],
+      "usableFor": ["审计现有东汉中央官署补录", "核对尚书台、御史台、将军、司隶与州郡属官的分类", "发现曹名、员额和置废的待考项"],
+      "notUsableFor": ["不重复导入已有 data/han-bai-guan-zhi.js", "不把晚汉曹名前移为全东汉固定制度", "不把官职整理自动转换为具名人物或任官记录"],
+      "primaryTextRequired": true,
+      "status": "已读，现有 52 条记录待做差异对照"
+    },
+    {
+      "id": "chat-songshu-baiguanzhi",
+      "conversationId": "6a832528-6b0c-83e8-a7f1-9457b5cc9af0",
+      "title": "宋书百官志整理",
+      "sourceRef": "chatgpt-conversation://6a832528-6b0c-83e8-a7f1-9457b5cc9af0",
+      "sourceLevel": "文档考据",
+      "work": "《宋书·百官志上》《百官志下》制度沿革整理",
+      "periodScope": ["420—479", "魏晋制度追述"],
+      "usableFor": ["建立魏晋—刘宋制度沿革比较索引", "对照官名、品秩和机构演变的异文", "为未来南朝官制扩展保留来源入口"],
+      "notUsableFor": ["不把刘宋现行官制写入 168—316 默认数据", "不以刘宋九品表覆盖汉、魏、吴、晋官品/秩俸", "不以宋书当前置省、复置、权置记录反推西晋设官年份"],
+      "primaryTextRequired": true,
+      "status": "已读，仅进入比较层"
+    }
+  ],
+  "candidateFamilies": [
+    {
+      "id": "han-central-reconciliation",
+      "sourcePackageId": "chat-houhanshu-baiguanzhi",
+      "subject": "东汉中央官署",
+      "periodScope": "东汉",
+      "targetEntities": ["office", "seatPolicy", "residence"],
+      "existingCanonical": ["data/han-bai-guan-zhi.js", "data/office-seat-policies.js", "data/office-residences.js"],
+      "integrationMode": "差异审计后定向修正",
+      "runtimeDefault": false,
+      "requiredReview": "逐条核对卷 114—118、官名时期、隐藏分组与可见席位"
+    },
+    {
+      "id": "jin-central-institutions",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "subject": "西晋三公、尚书台、门下、中书、秘书、御史台与九卿",
+      "periodScope": "266—316",
+      "targetEntities": ["office", "seatPolicy", "source"],
+      "existingCanonical": ["index.html", "data/research-model.js", "data/research-schema.json"],
+      "integrationMode": "建立 sourceClaim 后逐节点审校",
+      "runtimeDefault": false,
+      "requiredReview": "区分制度机关、具体官位、临时加号和任职人物；员额不得由展示席位推导"
+    },
+    {
+      "id": "jin-kaifu-and-residence",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "subject": "诸公及开府位从公者的府署与属官",
+      "periodScope": "266—316；东晋变例另列",
+      "targetEntities": ["kaifuPolicy", "residence", "seatPolicy", "office"],
+      "existingCanonical": ["data/kaifu-policies.js", "data/office-residences.js", "data/office-seat-policies.js"],
+      "integrationMode": "府署资格、属官性质和实际任官三层分开审计",
+      "runtimeDefault": false,
+      "requiredReview": "长史、祭酒、掾属、司马、参军按府署类型与实际府主分流；不因官名相同自动挂丞相府"
+    },
+    {
+      "id": "jin-military-and-frontier",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "subject": "领军、护军、二卫、五校、边镇与四夷校尉",
+      "periodScope": "266—316；东晋沿革作为比较",
+      "targetEntities": ["office", "appointment", "residence", "source"],
+      "existingCanonical": ["index.html", "data/person-source-index.js", "data/office-residences.js"],
+      "integrationMode": "武官分类与府署归属审计",
+      "runtimeDefault": false,
+      "requiredReview": "武官不得混入文官；都督、校尉、护军的任职记录与官署制度分开"
+    },
+    {
+      "id": "jin-eastern-palace-and-kingdom",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "subject": "东宫官属与王国官属",
+      "periodScope": "266—316",
+      "targetEntities": ["office", "residence", "appointment"],
+      "existingCanonical": ["index.html", "data/office-residences.js", "data/person-source-index.js"],
+      "integrationMode": "独立机构类型对照，禁止归中央朝廷普通官位",
+      "runtimeDefault": false,
+      "requiredReview": "东宫、王府府主和属官角色必须显式匹配；不得套用三公府背景"
+    },
+    {
+      "id": "jin-local-officials",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "subject": "州、郡国、县与属官",
+      "periodScope": "266—316；与东汉州郡制度对照",
+      "targetEntities": ["office", "jurisdiction", "appointment", "source"],
+      "existingCanonical": ["data/administrative-index.js", "data/fangzhen-term-supplement.js", "index.html"],
+      "integrationMode": "州府、郡府、县署分层补录；任期另由人物/州镇证据确认",
+      "runtimeDefault": false,
+      "requiredReview": "治所、属官、任期与制度沿革分别记录；不以职官志概述自动生成人物任官"
+    },
+    {
+      "id": "song-comparative-layer",
+      "sourcePackageId": "chat-songshu-baiguanzhi",
+      "subject": "刘宋现行官制与魏晋制度追述",
+      "periodScope": "420—479；比较层",
+      "targetEntities": ["source", "event"],
+      "existingCanonical": ["data/history-evidence.json", "data/research-schema.json"],
+      "integrationMode": "只建沿革比较层记录，不进入默认官职树",
+      "runtimeDefault": false,
+      "requiredReview": "每条比较记录必须标明是刘宋现制还是追述魏晋旧制"
+    }
+  ],
+  "integrationRules": [
+    "整理对话只产生候选 sourceClaim，不直接产生 office、appointment 或 person 实体。",
+    "每条接受的制度断言必须同时有书名、卷次/篇名、原文摘录、时期和 evidence 状态。",
+    "同名的长史、司马、参军、掾属必须以府署类型、府主、时期和来源定位消歧。",
+    "《宋书·百官志》刘宋现制不得进入汉末至西晋默认官职树。",
+    "官职制度记录不自动生成历史人物；只有正史明确具名且能建立任官关系时才进入人物记候选。",
+    "任何候选若无法确认是朝廷机关、三公府、将军府、州府、郡府、东宫或王府，保留待考，不使用通用背景推断。"
+  ],
+  "acceptedCandidateStates": ["待逐条核对", "已核对待入库", "已入库", "排除"],
+  "defaultRuntimeImportPolicy": "本阶段为来源索引与差异审计阶段；sourcePackages、candidateFamilies 和 sourceClaims 不自动加载到普通阅读界面"
+  ,"nextStageClaims": "data/v47-baiguanzhi-source-claims.json"
+}

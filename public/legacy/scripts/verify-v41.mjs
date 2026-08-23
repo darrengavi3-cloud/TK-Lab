@@ -42,7 +42,7 @@ const battles=dataContext.window.SGZ_BATTLE_RECORDS;
 
 assert(epigraphic.length===60,'金石录应保留 60 条');
 assert(Object.keys(biographies).length===79,'人物记应保留 79 人');
-assert(Object.keys(portraits).length===44,'人物立绘应保留 44 张索引');
+assert(Object.keys(portraits).length>=44,'人物立绘应至少保留 V41 的 44 张索引');
 assert(new Set(epigraphic.map(row=>row.polity)).size===4 && epigraphic.every(row=>['汉','魏','吴','晋'].includes(row.polity)),'金石录国名未统一');
 idsUnique(epigraphic,'金石录');
 assert(battles.events.length>=43 && battles.battles.length>=22 && battles.battlefields.length===12,'战事纪应保留 V41 的 43/22/12 最低基线，并允许后续史实补充');
