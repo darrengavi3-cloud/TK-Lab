@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { execFileSync } from 'node:child_process';
 
 const projectRoot = process.cwd();
 const legacyRoot = path.join(projectRoot, 'dist', 'client', 'legacy');
@@ -92,6 +93,24 @@ if (missingAfterPrune.length) {
   throw new Error(`Runtime portraits missing after prune: ${missingAfterPrune.join(', ')}`);
 }
 
+let optimizedPortraits = 0;
+let optimizedBytes = 0;
+const sipsPath = '/usr/bin/sips';
+if (process.platform === 'darwin' && fs.existsSync(sipsPath)) {
+  for (const relativePath of runtimePortraits) {
+    const filePath = path.join(legacyRoot, relativePath);
+    const before = fs.statSync(filePath).size;
+    execFileSync(sipsPath, ['--resampleHeightWidthMax', '384', filePath], {
+      stdio: 'ignore',
+    });
+    const after = fs.statSync(filePath).size;
+    if (after < before) {
+      optimizedPortraits += 1;
+      optimizedBytes += before - after;
+    }
+  }
+}
+
 console.log(
-  `Sites build pruned: kept ${runtimePortraits.size} runtime portraits, removed ${removedFiles} files (${removedBytes} bytes).`,
+  `Sites build pruned: kept ${runtimePortraits.size} runtime portraits; removed ${removedFiles} files (${removedBytes} bytes); optimized ${optimizedPortraits} portraits (${optimizedBytes} bytes).`,
 );
