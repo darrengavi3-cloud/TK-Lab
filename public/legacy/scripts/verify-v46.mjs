@@ -14,17 +14,18 @@ function loadGlobal(file, name) {
 }
 
 const manifest = json('data/portrait-manifest.json');
+const sourceIndex = loadGlobal('data/person-source-index.js', 'SGZ_PERSON_SOURCE_INDEX');
 const defaultIds = manifest.defaultPersonIds || [];
-assert(defaultIds.length === 192, `默认人物应为 192 人，实际 ${defaultIds.length}`);
+const expectedDefaultPeople = manifest.schemaVersion >= 2 ? sourceIndex.people.filter(person => person.includeInDefault === true).length : 192;
+assert(defaultIds.length === expectedDefaultPeople, `默认人物数量应与当前规范源一致，期望 ${expectedDefaultPeople} 人，实际 ${defaultIds.length}`);
 assert(new Set(defaultIds).size === defaultIds.length, '默认人物 personId 重复');
 assert(defaultIds.every(id => manifest.byPersonId?.[id]), '存在没有立绘索引的默认 personId');
 assert(manifest.fallbackSrc.includes('person-placeholder-v46'), '缺少 V46 界面识别占位图');
 assert(manifest.byName?.['邓艾']?.src.endsWith('deng-ai-v2.png'), '邓艾未接入 deng-ai-v2');
 assert(Object.values(manifest.byPersonId).every(item => item.personId && item.src && item.interfaceOnly === true), '立绘索引缺稳定 ID 或界面识别声明');
 
-const sourceIndex = loadGlobal('data/person-source-index.js', 'SGZ_PERSON_SOURCE_INDEX');
 const defaultSourceIds = sourceIndex.people.filter(person => person.includeInDefault === true).map(person => person.personId);
-assert(defaultSourceIds.length === 192, `来源索引默认人物应为 192 人，实际 ${defaultSourceIds.length}`);
+assert(defaultSourceIds.length === expectedDefaultPeople, `来源索引默认人物应为 ${expectedDefaultPeople} 人，实际 ${defaultSourceIds.length}`);
 assert(sourceIndex.appointments.filter(record => record.includeInDefault === true).every(record => defaultSourceIds.includes(record.personId)), '默认任官记录指向非默认人物');
 
 const audit = json('data/v46-jinshi-audit.json');

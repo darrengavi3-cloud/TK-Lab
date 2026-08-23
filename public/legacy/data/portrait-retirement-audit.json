@@ -1,0 +1,498 @@
+{
+  "schemaVersion": "V52",
+  "policy": "误识别资源不再绑定人物；已确认有效人物的重新分配项与待分配项均保留审计。",
+  "retired": [
+    {
+      "rawName": "曹曼",
+      "src": "./assets/portraits/v51/person-source-176c2761f312.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "曹曼",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "司马孚",
+      "src": "./assets/portraits/v51/person-source-812d000d43b1.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "司马孚",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "董旻",
+      "src": "./assets/portraits/v51/person-source-97a50d999831.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "董旻",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "张鲁",
+      "src": "./assets/portraits/v51/person-source-2fde2b673888.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "张鲁",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "李丰",
+      "src": "./assets/portraits/v51/person-source-cca8ae158ffd.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "李丰",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "蒋济",
+      "src": "./assets/portraits/v51/person-source-968cfb7fe1b8.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "蒋济",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "胡业",
+      "src": "./assets/portraits/v51/person-source-c733bdf60002.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "胡业",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "韦康",
+      "src": "./assets/portraits/v51/person-source-26adb3304332.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "韦康",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "孙权",
+      "src": "./assets/portraits/v51/person-source-944fbeb67bcc.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "孙权",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "黄琬",
+      "src": "./assets/portraits/v51/person-source-e273223cc622.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "黄琬",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "士匡",
+      "src": "./assets/portraits/v51/person-source-1bcaa4035aed.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "士匡",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "孙贲",
+      "src": "./assets/portraits/v51/person-source-143edb2d791d.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "孙贲",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "朱寓",
+      "src": "./assets/portraits/v51/person-source-10a2fc810200.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "assigned",
+      "assignedTo": "朱寓",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-085b94771a1d",
+      "src": "./assets/portraits/v51/person-source-085b94771a1d.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-0f106d4721c8",
+      "src": "./assets/portraits/v51/person-source-0f106d4721c8.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-0fd5c3bcca5f",
+      "src": "./assets/portraits/v51/person-source-0fd5c3bcca5f.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-120bb1d1aed2",
+      "src": "./assets/portraits/v51/person-source-120bb1d1aed2.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-2762009be28c",
+      "src": "./assets/portraits/v51/person-source-2762009be28c.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-30a0034925f8",
+      "src": "./assets/portraits/v51/person-source-30a0034925f8.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-36b37e34c021",
+      "src": "./assets/portraits/v51/person-source-36b37e34c021.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-3860af35dccb",
+      "src": "./assets/portraits/v51/person-source-3860af35dccb.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-418fa50adbee",
+      "src": "./assets/portraits/v51/person-source-418fa50adbee.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-458e5685f88a",
+      "src": "./assets/portraits/v51/person-source-458e5685f88a.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-4e121ec2c327",
+      "src": "./assets/portraits/v51/person-source-4e121ec2c327.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-52e7db56df33",
+      "src": "./assets/portraits/v51/person-source-52e7db56df33.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-541aa70629a7",
+      "src": "./assets/portraits/v51/person-source-541aa70629a7.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-54d0db359b50",
+      "src": "./assets/portraits/v51/person-source-54d0db359b50.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-6580dadbb1c9",
+      "src": "./assets/portraits/v51/person-source-6580dadbb1c9.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-69bb131b7e74",
+      "src": "./assets/portraits/v51/person-source-69bb131b7e74.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-6b322af8b023",
+      "src": "./assets/portraits/v51/person-source-6b322af8b023.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-6b793e2bf16f",
+      "src": "./assets/portraits/v51/person-source-6b793e2bf16f.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-700927136df7",
+      "src": "./assets/portraits/v51/person-source-700927136df7.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-73ba4a010168",
+      "src": "./assets/portraits/v51/person-source-73ba4a010168.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-768f105891a5",
+      "src": "./assets/portraits/v51/person-source-768f105891a5.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-7787d0785c59",
+      "src": "./assets/portraits/v51/person-source-7787d0785c59.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-824b8eb3d90e",
+      "src": "./assets/portraits/v51/person-source-824b8eb3d90e.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-8e144ee2a07a",
+      "src": "./assets/portraits/v51/person-source-8e144ee2a07a.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-94e29db6c9d3",
+      "src": "./assets/portraits/v51/person-source-94e29db6c9d3.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-9fb22672ebb7",
+      "src": "./assets/portraits/v51/person-source-9fb22672ebb7.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-a29f9749a487",
+      "src": "./assets/portraits/v51/person-source-a29f9749a487.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-a73297e2054c",
+      "src": "./assets/portraits/v51/person-source-a73297e2054c.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-a9d68d310c35",
+      "src": "./assets/portraits/v51/person-source-a9d68d310c35.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-aa94fe7e3f08",
+      "src": "./assets/portraits/v51/person-source-aa94fe7e3f08.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-b1cd2d31b2e6",
+      "src": "./assets/portraits/v51/person-source-b1cd2d31b2e6.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-b315955d0f7c",
+      "src": "./assets/portraits/v51/person-source-b315955d0f7c.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-b88e0c05cd6b",
+      "src": "./assets/portraits/v51/person-source-b88e0c05cd6b.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-bcc0b8512937",
+      "src": "./assets/portraits/v51/person-source-bcc0b8512937.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-c2c2cfbd720b",
+      "src": "./assets/portraits/v51/person-source-c2c2cfbd720b.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-c3714f80b20d",
+      "src": "./assets/portraits/v51/person-source-c3714f80b20d.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-c3919b8b2165",
+      "src": "./assets/portraits/v51/person-source-c3919b8b2165.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-c75be0515699",
+      "src": "./assets/portraits/v51/person-source-c75be0515699.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-c86f8a8b04c0",
+      "src": "./assets/portraits/v51/person-source-c86f8a8b04c0.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-d3147b8821ed",
+      "src": "./assets/portraits/v51/person-source-d3147b8821ed.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-e4d0a17db605",
+      "src": "./assets/portraits/v51/person-source-e4d0a17db605.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-ecb5b7edcaed",
+      "src": "./assets/portraits/v51/person-source-ecb5b7edcaed.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-f0c6d7226916",
+      "src": "./assets/portraits/v51/person-source-f0c6d7226916.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-source-f7fb403bf99f",
+      "src": "./assets/portraits/v51/person-source-f7fb403bf99f.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-wei-cao-man",
+      "src": "./assets/portraits/v51/person-wei-cao-man.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-wei-wei-kang",
+      "src": "./assets/portraits/v51/person-wei-wei-kang.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-wu-sun-ben",
+      "src": "./assets/portraits/v51/person-wu-sun-ben.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    },
+    {
+      "rawName": "V51撤出资源·person-wu-sun-quan",
+      "src": "./assets/portraits/v51/person-wu-sun-quan.png",
+      "oldPortraitKind": "ai-illustration-v51",
+      "reuseStatus": "unassigned",
+      "assignedTo": "",
+      "reason": "实体审校后撤出人物索引；资源保留在 V52 资源池，不作为史实肖像。"
+    }
+  ],
+  "summary": {
+    "requestedNames": 52,
+    "retiredAssets": 61
+  }
+}

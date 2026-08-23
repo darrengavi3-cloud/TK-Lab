@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>职官谱 · 三国官职爵位管理系统</title>
+<title>观史台 · 汉末至西晋史制资料工作台</title>
 <link rel="icon" href="data:," />
 
 <link rel="stylesheet" href="./assets/vendor/element-plus/index.css" />
@@ -25,16 +25,20 @@
 <script src="./data/battle-records.js"></script>
 <script src="./data/person-biographies.js"></script>
 <script src="./data/person-source-index.js"></script>
+<script src="./data/person-entity-audit.js"></script>
 <script src="./assets/map/data/hydronym-audit.js"></script>
 <script src="./data/person-era-rosters.js"></script>
 <script src="./data/person-portraits.js"></script>
 <script src="./data/portrait-manifest.js"></script>
+<script src="./data/v48-portrait-board.js"></script>
 <script src="./data/epigraphic-records.js"></script>
 <script src="./data/epigraphic-v46-jin.js"></script>
+<script src="./data/jinshi-schema.js"></script>
 <script src="./data/administrative-index.js"></script>
 <script src="./data/research-candidates.js"></script>
 <script src="./data/han-bai-guan-zhi.js"></script>
 <script src="./data/general-titles.js"></script>
+<script src="./data/office-order-policies.js"></script>
 <script src="./data/fangzhen-seat-supplement.js"></script>
 
 <style>
@@ -701,7 +705,7 @@ body{background:#F4F3EF;}
 .people-period-item{cursor:pointer}
 .people-period-item:hover{background:#FBF5EF}
 @media(max-width:860px){.people-view-layout{flex-direction:column}.people-view-nav{flex-direction:row;width:100%;position:static}.people-view-button{flex:1}}
-  .people-metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+  .people-metrics{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-bottom:10px;}
   .people-period-panel{margin:0 0 14px;padding:13px 14px;border:1px solid var(--rule);border-radius:12px;background:rgba(255,255,255,.82);}
   .people-period-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
   .people-period-title{font:700 15px 'Noto Serif SC','Songti SC',serif;color:var(--people-deep);}
@@ -714,8 +718,8 @@ body{background:#F4F3EF;}
   .people-period-item .meta{margin-top:4px;font-size:10.5px;color:#8A918A;line-height:1.45;}
   .people-period-item .note{margin-top:4px;font-size:10.5px;color:#6D746D;line-height:1.45;}
   .people-period-item .el-button{padding:0;margin-top:4px;}
-.people-metric{background:#fff;border:1px solid var(--rule);border-top:2px solid color-mix(in srgb,var(--people-accent) 55%,#fff);border-radius:11px;padding:13px 15px;}
-.people-metric strong{display:block;font:700 22px 'Noto Serif SC','Songti SC',serif;color:var(--people-deep);}
+.people-metric{background:#fff;border:1px solid var(--rule);border-top:2px solid color-mix(in srgb,var(--people-accent) 55%,#fff);border-radius:9px;padding:9px 11px;min-width:0;}
+.people-metric strong{display:block;font:700 18px 'Noto Serif SC','Songti SC',serif;color:var(--people-deep);}
 .people-metric span{font-size:11px;color:var(--ink-soft);}
 .person-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:12px;}
 .person-card{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--rule);border-radius:12px;background:#fff;cursor:pointer;transition:.16s;box-shadow:0 5px 16px rgba(30,37,30,.03);}
@@ -740,6 +744,7 @@ body{background:#F4F3EF;}
 .person-card-meta{font-size:10.5px;color:#8A918A;line-height:1.55;}
 .person-card-meta b{color:#5E665E;font-weight:650;}
 .person-card-count{margin-top:8px;padding-top:8px;border-top:1px dashed #DADCD6;font-size:10.5px;color:#7B827B;display:flex;justify-content:space-between;gap:6px;}
+.person-portrait-status{display:inline-flex;align-items:center;padding:2px 6px;border-radius:6px;background:#F7F0E4;color:#927443;font-size:9.5px;}
 .people-detail-head{display:flex;gap:16px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--rule);margin-bottom:14px;}
 .people-detail-portrait{width:112px;height:148px;flex:0 0 auto;border:2px solid var(--portrait-accent,#D8D4CA);border-radius:8px;overflow:hidden;background:color-mix(in srgb,var(--portrait-accent,#D8D4CA) 9%,#EDE4D4);display:grid;place-items:center;color:#A29A89;font:700 26px 'Noto Serif SC','Songti SC',serif;}
 .people-detail-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;}
@@ -905,7 +910,7 @@ body{background:#F4F3EF;}
   .brand .t2,.module-context{display:none}.topbar{gap:8px}.module-tab{padding:0 9px}.right-panel{width:320px}
   .catalog-workbench{grid-template-columns:240px minmax(0,1fr)}
   .fangzhen-metrics{grid-template-columns:repeat(2,1fr)}
-  .people-metrics{grid-template-columns:repeat(3,1fr)}
+  .people-metrics{grid-template-columns:repeat(4,1fr)}
   .battle-metrics{grid-template-columns:repeat(3,1fr)}
   .bulk-edit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .template-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1379,7 +1384,22 @@ const CATEGORY_GROUP_MAP = {
   '幕府属官':{group:'central',sub:'将军'}, '散官':{group:'central',sub:'大夫'}, '爵禄勋位':{group:'central',sub:'诸王官属'}, '其他':{group:'central',sub:'诸公'},
   '州牧刺史':{group:'local',sub:'州牧刺史'}, '郡国守相':{group:'local',sub:'郡国守相'}, '县邑令长':{group:'local',sub:'县邑令长'}, '州郡属官':{group:'local',sub:'州郡属官'}, '部族首领':{group:'local',sub:'部族首领'}
 };
-    function officeGroupOf(node){
+const OFFICE_ORDER_POLICIES = window.SGZ_OFFICE_ORDER_POLICIES || { hiddenCourtCategories:['其他'], hiddenCourtNames:['其他官署'], departmentOrder:[], commonCourtOrder:{}, namedDepartments:{}, militaryGroupOrder:{}, generalTitleVisibleEvidence:['确定','推定'] };
+function officePolicyForFaction(factionKey='wei'){
+  return OFFICE_ORDER_POLICIES;
+}
+function canonicalCourtOfficeName(node){
+  return String(node?.name||'').replace(/[（(].*?[)）]/g,'').replace(/\s+/g,'').trim();
+}
+function courtDepartmentLabel(node, factionKey='wei'){
+  const name=canonicalCourtOfficeName(node);
+  const policy=officePolicyForFaction(factionKey);
+  if(policy.namedDepartments?.[name]) return policy.namedDepartments[name];
+  if(policy.hiddenCourtCategories?.includes(node?.category)) return '';
+  if(policy.hiddenCourtNames?.includes(name)) return '';
+  return officeSubOf(node)||'';
+}
+function officeGroupOf(node){
       if(!node || node.kind!=='office') return 'all';
       return (CATEGORY_GROUP_MAP[node.category]||{}).group || 'central';
     }
@@ -1587,6 +1607,131 @@ html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC
 #map.tinted::after{background:radial-gradient(circle at 50% 42%,rgba(240,236,226,0) 58%,rgba(105,93,70,.17) 100%),linear-gradient(180deg,rgba(240,236,226,.08),rgba(205,193,169,.12))}
 @media(max-width:1100px){:root{--panel-w:270px;--side-w:166px}#info-panel{display:block!important}.panel-body{padding:16px}.pv-title{font-size:22px}}
 @media(max-width:760px){:root{--panel-w:36px;--side-w:36px}#sidebox{display:block;transform:none;opacity:.92;top:88px;left:8px;bottom:8px;max-height:none}#info-panel{display:block!important;right:8px;top:8px;bottom:8px}}
+</style>
+<style id="v48-premium-ui">
+:root{--v48-ink:#202420;--v48-muted:#737970;--v48-line:rgba(102,91,74,.18);--v48-surface:rgba(255,253,248,.92);--v48-shadow:0 18px 48px rgba(53,44,30,.08);--v48-focus:0 0 0 3px rgba(141,61,50,.18)}
+body{background:radial-gradient(circle at 18% -10%,rgba(196,164,108,.16),transparent 34%),linear-gradient(135deg,#efe9dc 0%,#f7f3eb 52%,#e9e6df 100%);color:var(--v48-ink)}
+.topbar{background:linear-gradient(100deg,rgba(249,246,238,.96),rgba(244,240,232,.9));border-bottom:1px solid var(--v48-line);box-shadow:0 8px 26px rgba(52,44,33,.07);backdrop-filter:blur(16px)}
+.seal-mark{box-shadow:0 7px 18px rgba(141,61,50,.18);letter-spacing:0}
+.module-tab{border-radius:10px;transition:background .18s ease,color .18s ease,transform .18s ease;}
+.module-tab:hover{background:rgba(141,61,50,.07);transform:translateY(-1px)}
+.module-tab.active{background:rgba(141,61,50,.1);box-shadow:inset 0 -2px 0 #8d3d32}
+.module-tab strong{letter-spacing:.04em}
+.module-page-inner{max-width:1500px;margin:0 auto;padding:30px clamp(18px,3vw,44px) 56px}
+.page-heading{padding:8px 0 18px;align-items:flex-end}.page-heading h1{font-size:clamp(28px,3vw,42px);letter-spacing:.04em;text-shadow:0 2px 0 rgba(255,255,255,.7)}
+.page-heading p{max-width:760px;color:#69716a;line-height:1.85}
+.people-toolbar,.fangzhen-toolbar,.battle-toolbar,.jinshi-toolbar,.shihuo-toolbar{background:var(--v48-surface);border:1px solid var(--v48-line);box-shadow:0 7px 24px rgba(55,46,35,.055);border-radius:14px;padding:12px 14px;position:relative}
+.people-toolbar:before,.fangzhen-toolbar:before,.battle-toolbar:before,.jinshi-toolbar:before,.shihuo-toolbar:before{content:"";position:absolute;left:14px;right:14px;top:0;height:2px;background:linear-gradient(90deg,#8d3d32,#c9a96e,transparent);opacity:.8}
+.people-toolbar .el-input__wrapper,.fangzhen-toolbar .el-input__wrapper,.battle-toolbar .el-input__wrapper,.jinshi-toolbar .el-input__wrapper,.shihuo-toolbar .el-input__wrapper{box-shadow:0 0 0 1px rgba(112,100,80,.17);border-radius:9px;background:#fffdf9}
+.people-toolbar .el-input__wrapper.is-focus,.fangzhen-toolbar .el-input__wrapper.is-focus,.battle-toolbar .el-input__wrapper.is-focus,.jinshi-toolbar .el-input__wrapper.is-focus,.shihuo-toolbar .el-input__wrapper.is-focus{box-shadow:var(--v48-focus)}
+.people-view-nav{background:rgba(255,253,248,.84);box-shadow:0 10px 28px rgba(55,46,35,.07);border-color:var(--v48-line)}
+.people-view-button{min-height:66px}.people-view-button.active{box-shadow:0 8px 18px rgba(141,61,50,.12)}
+.people-card,.person-card,.people-metric,.fangzhen-table-card,.battle-timeline-item,.jinshi-record-card,.shihuo-record-card{box-shadow:var(--v48-shadow);border-color:var(--v48-line)}
+.person-card{background:linear-gradient(150deg,#fffefa,#fbf7ef);border-radius:14px}.person-card:hover{transform:translateY(-3px);box-shadow:0 20px 42px rgba(55,46,35,.12)}
+.person-avatar,.people-detail-portrait{box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 8px 18px rgba(55,46,35,.1)}
+.general-title-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 0 12px;border-bottom:1px solid var(--v48-line)}.general-title-drawer-head strong{display:block;font:700 20px 'Noto Serif SC','Songti SC',serif;color:#433c34}.general-title-drawer-head span{display:block;margin-top:4px;font-size:11px;color:#8a918a}.general-title-source-note{margin:12px 0;padding:10px 12px;border-left:3px solid #a78345;background:#faf5e9;color:#746b5d;font-size:11.5px;line-height:1.7}.general-title-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.general-title-card{padding:10px 11px;border:1px solid var(--v48-line);border-radius:10px;background:#fffefa}.general-title-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.general-title-card-head strong{font:700 14px 'Noto Serif SC','Songti SC',serif;color:#343b35}.general-title-card-head span{font-size:10px;color:#8d3d32}.general-title-meta{display:flex;justify-content:space-between;gap:8px;margin-top:5px;font-size:10.5px;color:#7b827a}.general-title-meta .pending{color:#9a6b32}.general-title-card p{margin:6px 0 0;font-size:10.5px;color:#71796f;line-height:1.55}.general-title-foot{margin-top:14px;padding-top:10px;border-top:1px dashed var(--v48-line);font-size:10.5px;color:#858a84;line-height:1.6}
+.el-button:focus-visible,.module-tab:focus-visible,.people-view-button:focus-visible,.person-card:focus-visible{outline:none;box-shadow:var(--v48-focus)}
+@media(max-width:760px){.module-page-inner{padding:22px 12px 38px}.general-title-grid{grid-template-columns:1fr}.page-heading h1{font-size:30px}.people-view-nav{box-shadow:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+<style id="v51-editorial-workbench">
+:root{--v51-paper:#efede6;--v51-paper-deep:#e4e0d5;--v51-ink:#1e2521;--v51-muted:#69716b;--v51-rule:rgba(65,72,64,.18);--v51-seal:#963f34;--v51-gold:#a47b3d;--v51-shadow:0 12px 30px rgba(34,39,34,.07);--v51-focus:0 0 0 3px rgba(150,63,52,.22)}
+body{background:linear-gradient(180deg,#f5f3ee 0,#eeece5 42%,#e9e8e3 100%);color:var(--v51-ink)}
+.topbar{height:68px;padding:0 clamp(14px,2.6vw,38px);background:rgba(247,246,241,.93);border-bottom:1px solid var(--v51-rule);box-shadow:0 4px 18px rgba(43,48,43,.06);backdrop-filter:blur(14px)}
+.brand{gap:11px}.brand .t1{font-size:19px;letter-spacing:.16em;color:var(--v51-ink)}.brand .t2{font-size:10px;letter-spacing:.08em;color:var(--v51-muted)}.seal-mark{width:42px;height:42px;border-radius:7px;background:var(--v51-seal);box-shadow:0 6px 14px rgba(150,63,52,.18)}
+.module-tabs{gap:3px;padding:4px;border:1px solid var(--v51-rule);border-radius:8px;background:rgba(232,231,225,.76)}.module-tab{min-height:48px;padding:0 13px;border-radius:5px;color:#707770}.module-tab strong{font-size:13px}.module-tab small{font-size:10px;letter-spacing:.04em}.module-tab.active{background:#fbfaf6;box-shadow:inset 0 -2px 0 var(--v51-seal),0 2px 8px rgba(34,39,34,.08);color:var(--v51-ink)}
+.module-page-inner{max-width:1520px;padding:28px clamp(16px,3.5vw,54px) 58px}.page-heading{padding:10px 0 20px;border-bottom:1px solid var(--v51-rule);margin-bottom:16px}.page-kicker{font-size:11px;letter-spacing:.12em;color:var(--v51-seal);text-transform:none}.page-heading h1{font-size:clamp(29px,3.2vw,43px);letter-spacing:.06em;color:var(--v51-ink);text-shadow:none}.page-heading p{max-width:820px;color:var(--v51-muted);line-height:1.75}
+.people-workbench{background:linear-gradient(180deg,rgba(244,242,235,.78),rgba(234,234,229,.28) 420px,transparent 760px)}
+.people-toolbar,.fangzhen-toolbar,.battle-toolbar,.jinshi-toolbar,.shihuo-toolbar{border:1px solid var(--v51-rule);border-radius:7px;background:rgba(250,249,245,.86);box-shadow:var(--v51-shadow);padding:10px 12px}.people-toolbar:before,.fangzhen-toolbar:before,.battle-toolbar:before,.jinshi-toolbar:before,.shihuo-toolbar:before{left:12px;right:auto;width:82px;height:3px;background:var(--v51-seal);opacity:1}.people-toolbar .el-input__wrapper,.fangzhen-toolbar .el-input__wrapper,.battle-toolbar .el-input__wrapper,.jinshi-toolbar .el-input__wrapper,.shihuo-toolbar .el-input__wrapper{border-radius:5px;background:#fffefa;box-shadow:0 0 0 1px rgba(65,72,64,.2)}
+.people-view-layout{gap:18px}.people-view-nav{top:84px;width:92px;padding:7px;border:1px solid var(--v51-rule);border-radius:7px;background:rgba(249,248,243,.92);box-shadow:var(--v51-shadow)}.people-view-button{border-radius:5px;color:var(--v51-muted)}.people-view-button.active{background:#f6eee9;border-color:rgba(150,63,52,.46);color:var(--v51-seal);box-shadow:inset 3px 0 var(--v51-seal)}.people-view-button .pv-glyph{border-radius:5px;background:var(--v51-paper-deep);color:#675a43}.people-view-button.active .pv-glyph{background:var(--v51-seal);color:#fffdf8}
+.people-metrics{gap:7px;margin:0 0 14px}.people-metric{border:1px solid var(--v51-rule);border-top:3px solid var(--v51-gold);border-radius:6px;background:rgba(251,250,246,.92);box-shadow:none;padding:8px 10px}.people-metric strong{color:var(--v51-ink);font-size:18px}.people-metric span{color:var(--v51-muted)}
+.person-card{border:1px solid var(--v51-rule);border-radius:7px;background:rgba(251,250,246,.94);box-shadow:var(--v51-shadow);padding:12px}.person-card:hover{transform:translateY(-2px);border-color:rgba(150,63,52,.45);box-shadow:0 16px 30px rgba(34,39,34,.11)}.person-card-name strong,.people-detail-main h3{color:var(--v51-ink)}.person-avatar,.people-detail-portrait{border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 5px 12px rgba(34,39,34,.09)}
+.person-pill{border-radius:4px}.person-pill.office{background:#e7eef2}.person-pill.noble{background:#f3ead8}.person-pill.fangzhen{background:#e5eee6}.person-pill.han{background:#f5e5e1}.person-pill.wei{background:#e7eef2}.person-pill.wu{background:#e5eee6}.person-pill.jin{background:#ece8f1}
+.people-period-panel,.fangzhen-table-card,.battle-timeline-item,.jinshi-record-card,.shihuo-record-card{border:1px solid var(--v51-rule);border-radius:7px;background:rgba(250,249,245,.88);box-shadow:var(--v51-shadow)}
+.el-button{border-radius:5px}.el-button--primary{--el-button-bg-color:var(--v51-seal);--el-button-border-color:var(--v51-seal);--el-button-hover-bg-color:#7f332b;--el-button-hover-border-color:#7f332b}.el-button:focus-visible,.module-tab:focus-visible,.people-view-button:focus-visible,.person-card:focus-visible{outline:none;box-shadow:var(--v51-focus)}
+.el-drawer,.el-dialog{background:#f8f7f2}.el-drawer__header{border-bottom:1px solid var(--v51-rule);padding-bottom:12px}.el-drawer__body{color:var(--v51-ink)}
+.table-wrap,.el-table{border-color:var(--v51-rule)}.el-table th.el-table__cell{background:#e8e7e0;color:#424a43}.el-table tr{background:rgba(251,250,246,.94)}
+@media(max-width:1180px){.brand .t2{display:none}.module-tab{padding:0 9px}.topbar{height:64px}.people-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:760px){.topbar{height:96px;padding:6px 9px}.module-tabs{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.module-tab{min-width:76px;padding:0 8px}.module-tab strong{font-size:12px}.module-page-inner{padding:20px 12px 42px}.people-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.people-view-layout{gap:10px}.person-card{padding:10px}.person-card-grid{gap:8px}}
+</style>
+<style id="v54-theme-overrides">
+:root{
+  --v54-surface-0:#E9ECE8; --v54-surface-1:#F8FAF7; --v54-surface-2:#FFFFFF;
+  --v54-text-1:#17252D; --v54-text-2:#5D6A68; --v54-line:#CBD4D0;
+  --v54-accent:#A13E31; --v54-accent-soft:#F2E2DE; --v54-evidence:#927A4A;
+  --v54-focus:0 0 0 3px rgba(161,62,49,.22); --v54-radius:10px;
+  --v54-motion-fast:160ms; --v54-motion:220ms;
+}
+:root[data-sgz-theme="review-paper"]{
+  --v54-surface-0:#F4EEE2; --v54-surface-1:#FBF8F1; --v54-surface-2:#FFFDF8;
+  --v54-text-1:#2E2925; --v54-text-2:#71675B; --v54-line:#D8CDBA;
+  --v54-accent:#9E3F32; --v54-accent-soft:#F3E0DA; --v54-evidence:#A78345;
+}
+:root[data-sgz-theme="lamp-night"]{
+  --v54-surface-0:#152128; --v54-surface-1:#1C2B32; --v54-surface-2:#21353D;
+  --v54-text-1:#E9EFEA; --v54-text-2:#AABBB5; --v54-line:#40565D;
+  --v54-accent:#D07968; --v54-accent-soft:#4A302E; --v54-evidence:#D4B36A;
+  --v54-focus:0 0 0 3px rgba(208,121,104,.32);
+}
+:root[data-sgz-density="compact"]{ --v54-radius:8px; }
+:root[data-sgz-motion="reduced"]{ --v54-motion-fast:80ms; --v54-motion:100ms; }
+body{background:var(--v54-surface-0);color:var(--v54-text-1);transition:background-color var(--v54-motion) ease,color var(--v54-motion) ease;}
+.topbar,.left-toolbar,.right-panel{background:var(--v54-surface-1);border-color:var(--v54-line);}
+.canvas-wrap{background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 36%),var(--v54-surface-0);}
+.module-nav{background:color-mix(in srgb,var(--v54-surface-2) 72%,transparent);border:1px solid color-mix(in srgb,var(--v54-line) 72%,transparent);}
+.module-tab{border-radius:var(--v54-radius);transition:background-color var(--v54-motion-fast) ease,color var(--v54-motion-fast) ease,transform var(--v54-motion-fast) ease;}
+.module-tab.active{box-shadow:0 1px 0 color-mix(in srgb,var(--v54-line) 70%,transparent),0 5px 14px color-mix(in srgb,var(--v54-text-1) 8%,transparent);}
+.module-tab:hover{transform:translateY(-1px);}
+.global-header-tools{display:flex;align-items:center;gap:6px;flex:0 0 auto;}
+.global-search-trigger,.theme-trigger{height:36px;border:1px solid var(--v54-line);border-radius:var(--v54-radius);background:var(--v54-surface-2);color:var(--v54-text-1);font:600 12px/1 inherit;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:0 11px;transition:background-color var(--v54-motion-fast) ease,border-color var(--v54-motion-fast) ease,transform var(--v54-motion-fast) ease;}
+.global-search-trigger:hover,.theme-trigger:hover{border-color:var(--v54-accent);transform:translateY(-1px);}
+.global-search-trigger:focus-visible,.theme-trigger:focus-visible,.module-search-handoff:focus-visible,.theme-option:focus-visible,.theme-choice-row button:focus-visible{outline:none;box-shadow:var(--v54-focus);}
+.global-search-trigger span:first-child{font-size:19px;line-height:1;font-weight:400;}
+.global-search-trigger kbd{font:500 10px/1 inherit;color:var(--v54-text-2);padding:3px 5px;border:1px solid var(--v54-line);border-radius:5px;background:var(--v54-surface-0);}
+.theme-trigger{color:var(--v54-accent);}
+.global-search-field{position:relative;display:flex;align-items:center;}
+.global-search-field .global-search-input{flex:1;}
+.global-search-clear{position:absolute;right:9px;z-index:2;width:24px;height:24px;border:0;border-radius:50%;background:var(--v54-surface-0);color:var(--v54-text-2);font-size:18px;line-height:20px;cursor:pointer;}
+.global-search-clear:hover{color:var(--v54-accent);background:var(--v54-accent-soft);}
+.module-search-handoff{min-height:36px;border:1px solid var(--v54-line);border-radius:var(--v54-radius);background:var(--v54-surface-2);color:var(--v54-text-2);font:500 12px/1.2 inherit;padding:0 12px;cursor:pointer;text-align:left;transition:border-color var(--v54-motion-fast) ease,background-color var(--v54-motion-fast) ease,color var(--v54-motion-fast) ease;}
+.module-search-handoff:hover{border-color:var(--v54-accent);background:var(--v54-accent-soft);color:var(--v54-text-1);}
+.module-search-handoff span{margin-right:7px;color:var(--v54-accent);font-size:16px;vertical-align:-1px;}
+.theme-drawer-intro,.theme-drawer-note{color:var(--v54-text-2);font-size:12px;line-height:1.65;}
+.theme-option{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:10px;border:1px solid var(--v54-line);border-radius:var(--v54-radius);background:var(--v54-surface-2);color:var(--v54-text-1);cursor:pointer;margin-bottom:8px;transition:border-color var(--v54-motion-fast) ease,transform var(--v54-motion-fast) ease,background-color var(--v54-motion-fast) ease;}
+.theme-option:hover{transform:translateX(2px);border-color:var(--v54-accent);}
+.theme-option.active{border-color:var(--v54-accent);background:var(--v54-accent-soft);}
+.theme-swatches{display:flex;gap:3px;flex:0 0 auto;}
+.theme-swatches i{display:block;width:19px;height:32px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1);}
+.theme-option-copy{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.theme-option-copy strong{font-size:13px;}.theme-option-copy small{font-size:11px;color:var(--v54-text-2);}
+.theme-check{margin-left:auto;color:var(--v54-accent);font-weight:800;}
+.theme-choice-row{display:flex;gap:8px;}
+.theme-choice-row button{flex:1;height:34px;border:1px solid var(--v54-line);border-radius:8px;background:var(--v54-surface-2);color:var(--v54-text-2);cursor:pointer;}
+.theme-choice-row button.active{background:var(--v54-text-1);border-color:var(--v54-text-1);color:var(--v54-surface-2);}
+:root[data-sgz-density="compact"] .person-card{padding:8px;margin-bottom:7px;}
+:root[data-sgz-density="compact"] .filter-bar{padding-top:6px;padding-bottom:6px;}
+:root[data-sgz-density="compact"] .metric-grid{gap:6px;margin-bottom:10px;}
+:root[data-sgz-theme="lamp-night"] .el-drawer,
+:root[data-sgz-theme="lamp-night"] .el-dialog,
+:root[data-sgz-theme="lamp-night"] .el-drawer__body,
+:root[data-sgz-theme="lamp-night"] .el-dialog__body{background:var(--v54-surface-1);color:var(--v54-text-1);}
+:root[data-sgz-theme="lamp-night"] .el-input__wrapper,
+:root[data-sgz-theme="lamp-night"] .el-select .el-input__wrapper,
+:root[data-sgz-theme="lamp-night"] .el-textarea__inner{background:var(--v54-surface-2);box-shadow:0 0 0 1px var(--v54-line) inset;color:var(--v54-text-1);}
+:root[data-sgz-theme="lamp-night"] .el-input__inner,
+:root[data-sgz-theme="lamp-night"] .el-textarea__inner{color:var(--v54-text-1);}
+:root[data-sgz-theme="lamp-night"] .person-card,
+:root[data-sgz-theme="lamp-night"] .search-result,
+:root[data-sgz-theme="lamp-night"] .metric-card,
+:root[data-sgz-theme="lamp-night"] .official-card{background:var(--v54-surface-2);border-color:var(--v54-line);color:var(--v54-text-1);}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:var(--v54-motion-fast)!important;}
+  .module-tab:hover,.global-search-trigger:hover,.theme-trigger:hover,.theme-option:hover{transform:none;}
+}
+@media (max-width:760px){
+  .global-header-tools{gap:4px;}.global-search-trigger{padding:0 9px;}.global-search-trigger kbd{display:none;}.theme-trigger{padding:0 9px;}
+  .module-search-handoff{width:100%;order:-1;}
+}
 </style></head><body>
 <div id="app">
   <div id="map"></div>
@@ -2897,13 +3042,13 @@ const OFFICE_TEMPLATE_LIBRARY = [
 /* 维基百科《三国官制》条目补充（二手索引，正式引用须回查原典）。
  * 只补充原树缺失且可考的核心官署/职官；节点按 parent 名挂靠，找不到时挂势力根节点。 */
 const WIKI_OFFICE_SUPPLEMENTS = [
-  {faction:'han',parent:'',name:'司隶校尉（东汉）',category:'朝廷机关',serviceDomain:'文官',note:'东汉司隶校尉掌察百官及畿内七郡，领都官从事、功曹从事等属官，非州牧刺史。'},
-  {faction:'han',parent:'司隶校尉（东汉）',name:'都官从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌察百官犯法者。'},
-  {faction:'han',parent:'司隶校尉（东汉）',name:'功曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，主选举、考课。'},
-  {faction:'han',parent:'司隶校尉（东汉）',name:'簿曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌钱谷簿书。'},
-  {faction:'han',parent:'司隶校尉（东汉）',name:'兵曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文武兼',note:'司隶校尉属官，掌兵事。'},
-  {faction:'han',parent:'司隶校尉（东汉）',name:'部郡从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉分部督察所属郡国。'},
-  {faction:'han',parent:'司隶校尉（东汉）',name:'主簿',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉府主簿。'},
+  {faction:'han',parent:'',name:'司隶校尉（东汉）',category:'朝廷机关',serviceDomain:'文官',note:'东汉司隶校尉掌察百官及畿内七郡，领都官从事、功曹从事等属官，非州牧刺史。按《后汉书》卷117，司隶校尉属官段另载"别驾从事"；与州刺史府属官中的别驾不可视为同一父节点，是否在司隶府署显示仍待结合注家与具体任官确定，故此处存疑待考。'},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'都官从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌察百官犯法者。',sourceRefs:[{sourceTitle:'《后汉书》卷117·百官四',sourceLevel:'一手史料',sourceLocator:'司隶校尉·都官从事',url:'https://zh.wikisource.org/zh-hans/後漢書/卷117'}]},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'功曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，主选举、考课。',sourceRefs:[{sourceTitle:'《后汉书》卷117·百官四',sourceLevel:'一手史料',sourceLocator:'司隶校尉·功曹从事',url:'https://zh.wikisource.org/zh-hans/後漢書/卷117'}]},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'簿曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉属官，掌钱谷簿书。',sourceRefs:[{sourceTitle:'《后汉书》卷117·百官四',sourceLevel:'一手史料',sourceLocator:'司隶校尉·簿曹从事',url:'https://zh.wikisource.org/zh-hans/後漢書/卷117'}]},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'兵曹从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文武兼',note:'司隶校尉属官，掌兵事。',sourceRefs:[{sourceTitle:'《后汉书》卷117·百官四',sourceLevel:'一手史料',sourceLocator:'司隶校尉·兵曹从事',url:'https://zh.wikisource.org/zh-hans/後漢書/卷117'}]},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'部郡从事',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉分部督察所属郡国。',sourceRefs:[{sourceTitle:'《后汉书》卷117·百官四',sourceLevel:'一手史料',sourceLocator:'司隶校尉·部郡从事',url:'https://zh.wikisource.org/zh-hans/後漢書/卷117'}]},
+  {faction:'han',parent:'司隶校尉（东汉）',name:'主簿',category:'州郡属官',institutionType:'朝廷机关',serviceDomain:'文官',note:'司隶校尉府主簿。',sourceRefs:[{sourceTitle:'《后汉书》卷117·百官四',sourceLevel:'一手史料',sourceLocator:'司隶校尉·主簿',url:'https://zh.wikisource.org/zh-hans/後漢書/卷117'}]},
   {faction:'shu',parent:'丞相',name:'军师祭酒',category:'幕府属官',note:'蜀汉丞相府属官；诸葛亮开府置，参与谋议。'},
   {faction:'shu',parent:'丞相',name:'前军师',category:'幕府属官',note:'丞相府前后军师之一。'},
   {faction:'shu',parent:'丞相',name:'后军师',category:'幕府属官',note:'丞相府前后军师之一。'},
@@ -3316,7 +3461,7 @@ function O(prefix, parent, name, category, rank9, hanRank, extra){
     duty:'', figures:[], region:'', regionPath:[], jie:'无', kaifu:false, yaoling:false, worldTangBing:false,
     lushangshushi:false, jiaguan:'无',
     virtual:false, temporary:false, archived:false, hidden:false, customTags:[], aliases:'',
-    officeStartYear:null, officeEndYear:null, sources:'', evolution:'', evolutionEvents:[], relationType:'', directRules:'',
+    officeStartYear:null, officeEndYear:null, sources:'', sourceLevel:'', sourceLocator:'', sourceUrl:'', sourceExcerpt:'', evolution:'', evolutionEvents:[], relationType:'', directRules:'',
     polity:'', note:'', locked:false, color:'', icon:'', mountId:'', footnotes:[]
   }, extra||{});
   // GoJS 3.x 要求根节点完全不带 parent；parent:null 会令整个 TreeModel 构建失败。
@@ -4241,7 +4386,7 @@ figures:['羊祜（征南大将军 276—278）','司马骏（镇西／征西大
     const frontierGroup = O('tribal_o', root.key, '中原王朝护边官署', '属国护官', '', '', {
       polity:'汉魏晋', relationType:'视图分组（非直属）', note:'这些官署由汉魏晋朝廷设置，不属于异族内部官制。'
     });
-    const chanyu = O('tribal_o', internalGroup.key, '单于（匈奴）', '部族首领', '', '', {polity:'匈奴', duty:'部族共主', figures:['南匈奴呼厨泉']});
+    const chanyu = O('tribal_o', internalGroup.key, '单于（匈奴）', '部族首领', '', '', {polity:'匈奴', duty:'部族共主', figures:['呼厨泉']});
     const xiyu = O('tribal_o', frontierGroup.key, '西域都护／西域长史', '属国护官', '', '比二千石', {
       polity:'汉魏晋', jie:'依时期', duty:'中原王朝经营西域的护边官署；两名不可概括为“大都护”',
       sources:'《通典》卷三十六及两汉、魏晋相关纪传'
@@ -4283,6 +4428,17 @@ figures:['羊祜（征南大将军 276—278）','司马骏（镇西／征西大
       sourceLevel:'二手索引', confidence:'待核', officeStartYear:item.start??null, officeEndYear:item.end??null,
       customTags:[], _supplementKind:'wiki-office'
     });
+    // 若条目带一手来源引用，则用它覆盖维基默认来源，同时保留"维基引入"作为补充证据层。
+    // sources 保留维基作为引入来源；sourceLevel/sourceLocator/sourceUrl 标注一手史料供界面显示，避免混作单一证据层。
+    if(Array.isArray(item.sourceRefs) && item.sourceRefs.length){
+      const src=item.sourceRefs[0];
+      if(src.sourceTitle) node.sources += '；'+src.sourceTitle;
+      if(src.sourceLevel) node.sourceLevel = src.sourceLevel;
+      if(src.sourceLocator) node.sourceLocator = src.sourceLocator;
+      if(src.url) node.sourceUrl = src.url;
+      node.confidence = '核';
+      if(Array.isArray(node.customTags)) node.customTags.push('正史确认');
+    }
     node._presetParentName = parentNode.name;
     tree.push(node);
   });
@@ -4309,6 +4465,15 @@ function mergePresetSupplement(targetTrees){
         officeStartYear:normalizeYear(pn.officeStartYear), officeEndYear:normalizeYear(pn.officeEndYear),
         customTags:Array.isArray(pn.customTags)?pn.customTags.slice():[], _supplementKind:'wiki-office'
       });
+      if(Array.isArray(pn.sourceRefs) && pn.sourceRefs.length){
+        const src=pn.sourceRefs[0];
+        if(src.sourceTitle) node.sources += '；'+src.sourceTitle;
+        if(src.sourceLevel) node.sourceLevel = src.sourceLevel;
+        if(src.sourceLocator) node.sourceLocator = src.sourceLocator;
+        if(src.url) node.sourceUrl = src.url;
+        node.confidence = '核';
+        if(Array.isArray(node.customTags)) node.customTags.push('正史确认');
+      }
       if(occupied.has(node.key)) node.key=nextUniqueKey(prefix, occupied);
       occupied.add(node.key);
       saved.push(node);
@@ -4491,6 +4656,40 @@ function normalizeAndValidateTrees(rawTrees){
       group = cloneJSON(fallback[faction.key]) || { office:[], noble:[] };
       trees[faction.key] = group;
     }
+    // 将分级名号表中的具体武官补入朝堂树；已存在的节点不重复创建。
+    // 名号的制度排序仍由 general-titles.js 提供，树只负责可点击入口与武官分类。
+    const titlePolity = faction.key === 'shu' ? 'han' : faction.key === 'han' ? '' : faction.key;
+    const titleGroup = (window.SGZ_GENERAL_TITLES?.groups || []).find(item => item.polity === titlePolity);
+    const rootNode = (group.office || []).find(item => item.kind === 'root' || (item.parent == null && !item.parentKey));
+    if(titleGroup && rootNode){
+      const existingNames = new Set((group.office || []).map(item => String(item.name || '').replace(/（.*?）/g,'')));
+      const slug = value => String(value).replace(/[^\u4e00-\u9fffA-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'title';
+      const additions = [];
+      titleGroup.titles.forEach(title => {
+        const cleanTitle = String(title.title || '').replace(/（.*?）/g,'');
+        if(!cleanTitle || existingNames.has(cleanTitle)) return;
+        existingNames.add(cleanTitle);
+        additions.push({
+          key:`${faction.key}_general_title_${slug(cleanTitle)}_${title.sortOrder}`,
+          parent:rootNode.key,
+          name:cleanTitle,
+          kind:'office',
+          category:'将军武职',
+          rank9:/品/.test(String(title.grade || '')) ? String(title.grade) : '',
+          hanRank:'',
+          serviceDomain:'武官',
+          institutionType:'朝廷机关',
+          relationType:'制度并列',
+          sourceLevel:'制度整理',
+          confidence:title.evidence || '待考',
+          note:`${title.kind || '将军名号'}；排序 ${title.sortOrder}。具体任官人物、年代和府署关系以人物记、州镇表与原始出处为准。`,
+          sources:(title.sourceRefs || []).join('；'),
+          generalTitleSortOrder:Number(title.sortOrder),
+          generatedPattern:Boolean(title.generatedPattern),
+        });
+      });
+      group.office = [...group.office, ...additions];
+    }
     group.office = normalizeAndValidateNodes(group.office||[], faction.name+'官职体系', faction.key);
     group.noble = normalizeAndValidateNodes(group.noble||[], faction.name+'爵位体系', faction.key);
   });
@@ -4536,12 +4735,42 @@ const app = createApp({
     const showOfficeCompare = ref(false);
     const officeCompareQuery = ref('');
     const showTongdian = ref(false);
+    const showGeneralTitles = ref(false);
+    const generalTitlePolity = ref('wei');
     const showRankCompare = ref(false);
     const rankCompareQuery = ref('');
     const showTemplateLibrary = ref(false);
     const templateLibraryFaction = ref('han');
     const templateLibrarySearch = ref('');
     const showPalette = ref(false);
+    const showTheme = ref(false);
+    const themeKey = ref('laitai-day');
+    const densityMode = ref('comfortable');
+    const motionMode = ref('standard');
+    const themeOptions = [
+      {key:'laitai-day',label:'兰台清昼',note:'冷纸灰 · 青墨 · 朱印',swatches:['#E9ECE8','#17252D','#A13E31']},
+      {key:'review-paper',label:'朱批纸本',note:'暖白 · 炭墨 · 铜金',swatches:['#F4EEE2','#2E2925','#9E3F32']},
+      {key:'lamp-night',label:'青灯夜校',note:'深青黑 · 纸白 · 湖绿',swatches:['#152128','#E9EFEA','#79A79A']}
+    ];
+    function applyInterfacePreferences(){
+      const root=document.documentElement;
+      root.dataset.sgzTheme=themeKey.value;
+      root.dataset.sgzDensity=densityMode.value;
+      root.dataset.sgzMotion=motionMode.value;
+      try{ localStorage.setItem('sgz_ui_preferences',JSON.stringify({theme:themeKey.value,density:densityMode.value,motion:motionMode.value})); }catch(_){ /* 偏好保存失败不影响工程数据 */ }
+    }
+    function setTheme(value){ themeKey.value=value; applyInterfacePreferences(); }
+    function setDensity(value){ densityMode.value=value; applyInterfacePreferences(); }
+    function setMotion(value){ motionMode.value=value; applyInterfacePreferences(); }
+    function loadInterfacePreferences(){
+      try{
+        const saved=JSON.parse(localStorage.getItem('sgz_ui_preferences')||'{}');
+        if(themeOptions.some(item=>item.key===saved.theme)) themeKey.value=saved.theme;
+        if(['compact','comfortable'].includes(saved.density)) densityMode.value=saved.density;
+        if(['standard','reduced'].includes(saved.motion)) motionMode.value=saved.motion;
+      }catch(_){ /* 使用默认主题 */ }
+      applyInterfacePreferences();
+    }
     const showPersonProfile = ref(false);
     const showEvidence = ref(false);
     const selectedEvidence = ref(null);
@@ -4583,7 +4812,7 @@ const app = createApp({
     const autosaveStatus = ref('尚未自动缓存');
     const periodSelections = reactive({ han:'all', wei:'all', shu:'all', wu:'all', jin:'all', tribal:'all' });
     const canvasFilters = reactive({ query:'', category:'', rank:'', special:'', showArchived:false, showHidden:false, hideNonCore:false });
-    const searchFilters = reactive({ query:'', faction:'all', treeType:'all', category:'', rank:'', special:'', year:'' });
+    const searchFilters = reactive({ query:'', faction:'all', treeType:'all', category:'', rank:'', special:'', year:null });
     const searchState = reactive({ scope:'all', activeIndex:0, lastQuery:'', advanced:false });
     const searchScopeOptions = [
       { key:'all', label:'全部' }, { key:'office', label:'职官谱' }, { key:'people', label:'人物记' },
@@ -4597,6 +4826,7 @@ const app = createApp({
 
     const initialResearchModel = window.SGZResearchModel.migrate({schemaVersion:7,trees:buildPresets(),fangzhenRecords:FANGZHEN_PRESETS});
     const projectForReading = value=>window.SGZResearchModel.projectForReading(value);
+    const normalizeEpigraphicRecord = value=>window.SGZ_JINSHI_SCHEMA?.normalize ? window.SGZ_JINSHI_SCHEMA.normalize(value) : value;
     const readingText = value=>window.SGZResearchModel.readingText(value);
     const data = reactive({ trees: normalizeAndValidateTrees(initialResearchModel.trees) });
     const fangzhenRecords = ref(normalizeFangzhenRecords(initialResearchModel.fangzhenRecords));
@@ -4625,8 +4855,8 @@ const app = createApp({
     const epigraphicRecords = ref(cloneJSON([
       ...(window.SGZ_EPIGRAPHIC_RECORDS?.records||[]),
       ...(window.SGZ_EPIGRAPHIC_V46_JIN?.records||[]),
-    ]));
-    const epigraphicTypes = window.SGZ_EPIGRAPHIC_RECORDS?.types||['碑刻','墓志','摩崖','砖瓦题记','印章','其他'];
+    ].map(normalizeEpigraphicRecord)));
+    const epigraphicTypes = Array.from(new Set(epigraphicRecords.value.map(item=>item.materialType).filter(Boolean))).sort((a,b)=>a.localeCompare(b,'zh-CN'));
     const epigraphicPolities = ['汉','魏','吴','晋'];
     const epigraphicQuery = ref('');
     const epigraphicType = ref('all');
@@ -4642,7 +4872,7 @@ const app = createApp({
         if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
         if(epigraphicPolity.value!=='all' && item.polity!==epigraphicPolity.value) return false;
         if(epigraphicArchive.value!=='all' && item.archiveKind!==epigraphicArchive.value) return false;
-        if(q && !['name','type','year','yearText','polity','place','region','scriptStyle','form','inscription','people','offices','note'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
+        if(q && !['name','materialType','dateText','year','polity','findspot','scriptStyle','form','inscription','people','offices','note','sourceDocument','sourceLocator'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
         return true;
       }).sort((a,b)=>{
         const ay=Number.isFinite(Number(a.year))?Number(a.year):Infinity;
@@ -4650,7 +4880,7 @@ const app = createApp({
         return ay-by||String(a.yearText||'').localeCompare(String(b.yearText||''),'zh-CN')||String(a.name||'').localeCompare(String(b.name||''),'zh-CN');
       });
     });
-    const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.type).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.yearText).filter(Boolean)).size,polities:new Set(epigraphicRecords.value.map(item=>item.polity).filter(Boolean)).size}));
+    const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,types:new Set(epigraphicRecords.value.map(item=>item.materialType).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.dateText).filter(Boolean)).size,polities:new Set(epigraphicRecords.value.map(item=>item.polity).filter(Boolean)).size}));
     function epigraphicHighlight(text){
       const q=epigraphicQuery.value.trim().toLowerCase();
       const value=String(text||'');
@@ -4748,6 +4978,10 @@ const app = createApp({
     const currentArr = computed(()=> data.trees[currentFaction.value][treeType.value]);
     const currentFactionDef = computed(()=> factions.find(f=>f.key===currentFaction.value));
     const currentFactionLabel = computed(()=>currentFactionDef.value?.label||currentFactionDef.value?.short||currentFactionDef.value?.name||'');
+    const generalTitleGroups = computed(()=>window.SGZ_GENERAL_TITLES?.groups||[]);
+    const activeGeneralTitleGroup = computed(()=>generalTitleGroups.value.find(group=>group.polity===generalTitlePolity.value)||generalTitleGroups.value[0]||{titles:[]});
+    const generalTitleDisplayItems = computed(()=>activeGeneralTitleGroup.value.titles.filter(item=>!OFFICE_ORDER_POLICIES.hiddenCourtNames.includes(String(item.title||'').trim())));
+    const generalTitlesSource = computed(()=>window.SGZ_GENERAL_TITLES?.source||{});
     const rank9Enabled = computed(()=>RANK9_FACTIONS.includes(currentFaction.value));
     const periodOptions = computed(()=> PERIODS[currentFaction.value] || []);
     const currentPeriodKey = computed({
@@ -5250,6 +5484,10 @@ const app = createApp({
       if(node.virtual) return false;
       const name=String(node.name||'').trim();
       if(!name || /^(中央官署|地方官署|尚书台|中书台|御史台|九卿|诸公|将军武职|太子官属|诸王官属|制度总节点)$/.test(name)) return false;
+      const policy=officePolicyForFaction(currentFaction.value);
+      const canonical=canonicalCourtOfficeName(node);
+      if(policy.hiddenCourtCategories?.includes(node.category) || policy.hiddenCourtNames?.includes(canonical)) return false;
+      if(node.generalTitleSortOrder!=null && !policy.generalTitleVisibleEvidence.includes(String(node.confidence||'待考'))) return false;
       if(timelineEnabled.value){
         const start=normalizeYear(node.officeStartYear), end=normalizeYear(node.officeEndYear);
         if(start!==null && timelineYear.value<start) return false;
@@ -5307,6 +5545,12 @@ const app = createApp({
     }
     function courtNodeOrder(node){
       if(Number.isFinite(Number(node?.courtOrder))) return Number(node.courtOrder);
+      const policy=officePolicyForFaction(currentFaction.value);
+      const canonical=canonicalCourtOfficeName(node);
+      const commonOrder=policy.commonCourtOrder?.[currentFaction.value]?.[canonical];
+      if(Number.isFinite(Number(commonOrder))) return Number(commonOrder);
+      const general=Number(node?.generalTitleSortOrder);
+      if(Number.isFinite(general)) return general;
       const explicit=Number(node?.sortOrder);
       if(Number.isFinite(explicit)) return explicit;
       const rank=String(node?.rank9||node?.hanRank||'');
@@ -5346,10 +5590,11 @@ const app = createApp({
       const apexCivil=apex.filter(node=>courtBranchOf(node)==='civil');
       const apexMilitary=apex.filter(node=>courtBranchOf(node)==='military');
       const apexKeys=new Set(apex.filter(node=>!node.virtualSlot).map(node=>node.key));
-      const departmentOrder=['列卿','尚书台','中书台','御史台','常伯','大夫','将军','太子官属','诸王官属'];
+      const departmentOrder=officePolicyForFaction(currentFaction.value).departmentOrder||[];
       const grouped=new Map();
       central.filter(node=>!apexKeys.has(node.key)).forEach(node=>{
-        const label=officeSubOf(node)||'其他官署';
+        const label=courtDepartmentLabel(node,currentFaction.value);
+        if(!label) return;
         if(!grouped.has(label)) grouped.set(label,[]);
         grouped.get(label).push(node);
       });
@@ -6642,6 +6887,10 @@ const app = createApp({
       }
       nextTick(()=>rebuildModel());
     }
+    function openGeneralTitles(){
+      generalTitlePolity.value = ['han','wei','shu','wu','jin'].includes(currentFaction.value) ? currentFaction.value : 'wei';
+      showGeneralTitles.value = true;
+    }
     function switchTreeType(t){
       closeCourtResidence();
       treeType.value = t;
@@ -6947,6 +7196,15 @@ const app = createApp({
       return groups;
     });
     const commandPaletteCount=computed(()=>commandPaletteGroups.value.reduce((n,g)=>n+g.items.length,0));
+    function clearPaletteQuery(){
+      searchFilters.query='';
+      searchState.activeIndex=0;
+      nextTick(()=>document.querySelector('.global-search-input input')?.focus());
+    }
+    function paletteKeydown(event){
+      if(event?.isComposing) return;
+      paletteSelect();
+    }
     function paletteMove(delta){
       const total=commandPaletteCount.value;
       if(!total) return;
@@ -7011,8 +7269,20 @@ const app = createApp({
     function openPersonProfile(name){ activePersonName.value=name; showPersonProfile.value=true; }
     /* ---------- 人物志：统一人物档案 ---------- */
     function personKeyOf(name){ return String(name||'').replace(/（[^）]*）/g,'').replace(/\([^)]*\)/g,'').trim(); }
-    function personZiFor(name){
+    function personCanonicalNameFor(name){
       const key=personKeyOf(name);
+      return String(window.SGZ_PERSON_ENTITY_AUDIT?.normalizeMap?.[key]?.canonicalName||key);
+    }
+    function personEntityAllowed(name){
+      const key=personKeyOf(name);
+      const audit=window.SGZ_PERSON_ENTITY_AUDIT||{};
+      if(Object.prototype.hasOwnProperty.call(audit.exclusions||{},key)) return false;
+      if((audit.reviewNames||[]).includes(key)) return false;
+      if(Array.from(key).length<2 || /[〈〉《》{}|]/.test(key)) return false;
+      return true;
+    }
+    function personZiFor(name){
+      const key=personCanonicalNameFor(name);
       const direct=(window.SGZ_PERSON_ZI_SUPPLEMENT||[]).find(item=>item.name===key);
       if(direct) return direct.zi;
       const identity=window.SGZ_PERSON_IDENTITIES?.resolve(name);
@@ -7021,28 +7291,33 @@ const app = createApp({
     }
     function personIdOf(name,context={}){
       if(context?.personId) return String(context.personId);
-      return window.SGZResearchModel.personIdFor(personKeyOf(name),context||{});
+      return window.SGZResearchModel.personIdFor(personCanonicalNameFor(name),context||{});
     }
     function personRecordId(record,name,context={}){
       return personIdOf(name,{...context,...record,personId:record?.personId});
     }
     const PORTRAIT_POLITY_COLORS = {汉:'#8D3D32',季汉:'#A54136',蜀汉:'#A54136',魏:'#376B9E',吴:'#3F7652',晋:'#665483',西晋:'#665483',东晋:'#756194',匈奴:'#7A5230',鲜卑:'#7A5230',乌桓:'#7A5230',羌:'#7A5230'};
     function portraitMetaFor(name, personId){
-      const key=personKeyOf(name);
+      const key=personCanonicalNameFor(name);
       const manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
       const indexed=(personId&&manifest.byPersonId?.[personId])||manifest.byName?.[key];
       if(indexed) return indexed;
       const item=(window.SGZ_PERSON_PORTRAITS||{})[key];
       return typeof item==='string' ? {src:item,polity:'',color:''} : (item||{});
     }
+    function portraitStatusFor(name,personId){ return portraitMetaFor(name,personId)?.status||''; }
+    function personHasReadyPortrait(name,personId){
+      const status=portraitStatusFor(name,personId);
+      return status==='ready' || (!status && Boolean(portraitMetaFor(name,personId)?.src));
+    }
     function personPortraitFor(name, records, personId){
       const list=Array.isArray(records)?records:[];
       const record=list.find(item=>item&&item.portrait);
       if(record?.portrait) return record.portrait;
       const resolvedId=personId||list.find(item=>item?.personId)?.personId||'';
-      const custom=(resolvedId&&personMeta.map[resolvedId]?.portrait)||personMeta.map[personKeyOf(name)]?.portrait;
+      const custom=(resolvedId&&personMeta.map[resolvedId]?.portrait)||personMeta.map[personCanonicalNameFor(name)]?.portrait;
       const indexed=portraitMetaFor(name,resolvedId);
-      return custom || indexed.src || (window.SGZ_PERSON_PORTRAIT_MANIFEST?.fallbackSrc||'');
+      return custom || (indexed.status==='ready' ? indexed.src : '');
     }
     function polityColorFor(value){
       const text=String(value||'');
@@ -7152,7 +7427,9 @@ const app = createApp({
       const sourceIndex = window.SGZ_PERSON_SOURCE_INDEX||{};
       const defaultSourcePeople = new Set((sourceIndex.people||[]).filter(person=>person.includeInDefault===true).map(person=>person.personId));
       function entry(name,context={}){
-        const displayName=personKeyOf(name);
+        const rawName=personKeyOf(name);
+        if(!personEntityAllowed(rawName)) return null;
+        const displayName=personCanonicalNameFor(rawName);
         if(!displayName) return null;
         const personId=personIdOf(displayName,context);
         if(!map.has(personId)) map.set(personId,{key:personId,personId,name:displayName,canonicalName:'',searchKeys:[],aliases:[],zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],homonymStatus:'',homonymGroupId:'',appointments:[]});
@@ -7302,7 +7579,8 @@ const app = createApp({
         const manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
         const portrait=manifest.byPersonId?.[e.personId]||manifest.byName?.[personKeyOf(e.name)];
         const customPortrait=personMeta.map[e.personId]?.portrait||personMeta.map[personKeyOf(e.name)]?.portrait;
-        if(!customPortrait && portrait?.src) e.portrait=portrait.src;
+        if(!customPortrait && portrait?.status==='ready' && portrait?.src) e.portrait=portrait.src;
+        e.portraitStatus=portrait?.status||'';
         if(portrait?.polity) e.portraitPolity=e.portraitPolity||portrait.polity;
         if(portrait?.color) e.portraitAccent=e.portraitAccent||portrait.color;
         if(portrait?.sourceTitle) e.portraitSource=e.portraitSource||portrait.sourceTitle;
@@ -7353,7 +7631,7 @@ const app = createApp({
       const eraRange=personEraRange();
       return personRegistry.value.filter(p=>{
         if(peoplePolity.value!=='all' && !p.politics.includes(peoplePolity.value)) return false;
-        if(peopleOnlyPortrait.value && !personPortraitFor(p.name,p.appointments,p.personId)) return false;
+        if(peopleOnlyPortrait.value && !personHasReadyPortrait(p.name,p.personId)) return false;
         if(peopleKind.value==='office' && !p.appointments.some(a=>a.treeType==='office'||a.sourceCategory==='office')) return false;
         if(peopleKind.value==='noble' && !p.appointments.some(a=>a.treeType==='noble'||a.sourceCategory==='noble')) return false;
         if(peopleKind.value==='fangzhen' && !p.appointments.some(a=>a.treeType==='fangzhen')) return false;
@@ -7385,7 +7663,7 @@ const app = createApp({
     const peopleMetrics = computed(()=>{
       const stats={people:personRegistry.value.length,office:0,noble:0,fangzhen:0,roster:0,source:0,portrait:0,curated:0};
       personRegistry.value.forEach(p=>{
-        if(personPortraitFor(p.name,p.appointments,p.personId)) stats.portrait++;
+        if(personHasReadyPortrait(p.name,p.personId)) stats.portrait++;
         if(p.bioKind==='史传提要') stats.curated++;
         p.appointments.forEach(a=>{ if(a.source==='sourceIndex')stats.source++;if(a.treeType==='office'||a.sourceCategory==='office') stats.office++; else if(a.treeType==='noble'||a.sourceCategory==='noble') stats.noble++; else if(a.treeType==='fangzhen') stats.fangzhen++; else if(a.treeType==='roster') stats.roster++; });
       });
@@ -8141,11 +8419,102 @@ const app = createApp({
     const SNAPSHOT_KEY='sgz_zhiguanpu_snapshot';
     const RECOVERY_KEY='sgz_zhiguanpu_recovery';
     const SAVE_RING_KEY='sgz_zhiguanpu_saves';
+    const ARCHIVES_KEY='sgz_zhiguanpu_archives_v3';
+    const CACHE_POINTER_KEY='sgz_zhiguanpu_cache_pointer_v2';
+    const CACHE_DB_NAME='sgz_zhiguanpu_cache_v2';
+    const CACHE_STORE='documents';
+    const CACHE_CURRENT_ID='current';
+    const CACHE_SNAPSHOT_ID='snapshot';
+    const CACHE_ARCHIVES_ID='archives';
+    let cacheInitPromise=null;
+    let cacheDbPromise=null;
+    let cacheSaveChain=Promise.resolve();
     function hashPayload(text){
       let h=5381;
       const str=String(text||'');
       for(let i=0;i<str.length;i++){ h=((h<<5)+h+str.charCodeAt(i))>>>0; }
       return 'h'+h.toString(36);
+    }
+    function cacheByteLength(text){
+      try{ return new TextEncoder().encode(String(text||'')).length; }
+      catch(_){ return String(text||'').length*2; }
+    }
+    function isQuotaError(error){
+      return Boolean(error && (error.name==='QuotaExceededError' || error.code===22 || /quota|storage/i.test(String(error.message||error))));
+    }
+    function openCacheDb(){
+      if(cacheDbPromise) return cacheDbPromise;
+      cacheDbPromise=new Promise((resolve,reject)=>{
+        if(!window.indexedDB){ reject(new Error('当前浏览器不支持 IndexedDB')); return; }
+        const request=window.indexedDB.open(CACHE_DB_NAME,1);
+        request.onupgradeneeded=event=>{
+          const db=event.target.result;
+          if(!db.objectStoreNames.contains(CACHE_STORE)) db.createObjectStore(CACHE_STORE,{keyPath:'id'});
+        };
+        request.onsuccess=()=>resolve(request.result);
+        request.onerror=()=>reject(request.error||new Error('IndexedDB 打开失败'));
+      });
+      return cacheDbPromise;
+    }
+    function cacheGet(id){
+      return openCacheDb().then(db=>new Promise((resolve,reject)=>{
+        const tx=db.transaction(CACHE_STORE,'readonly');
+        const request=tx.objectStore(CACHE_STORE).get(id);
+        request.onsuccess=()=>resolve(request.result||null);
+        request.onerror=()=>reject(request.error||new Error('本地缓存读取失败'));
+      }));
+    }
+    function cachePut(value){
+      return openCacheDb().then(db=>new Promise((resolve,reject)=>{
+        const tx=db.transaction(CACHE_STORE,'readwrite');
+        tx.oncomplete=()=>resolve();
+        tx.onerror=()=>reject(tx.error||new Error('本地缓存写入失败'));
+        tx.objectStore(CACHE_STORE).put(value);
+      }));
+    }
+    function setCachePointer(backend, extra={}){
+      try{ localStorage.setItem(CACHE_POINTER_KEY,JSON.stringify({version:2,backend,updatedAt:Date.now(),...extra})); }catch(_){ }
+    }
+    function removeLegacyCacheCopies(){
+      [AUTOSAVE_KEY,SNAPSHOT_KEY,RECOVERY_KEY,SAVE_RING_KEY,ARCHIVES_KEY].forEach(key=>{
+        try{ localStorage.removeItem(key); }catch(_){ }
+      });
+    }
+    async function initializeLocalCache(){
+      if(cacheInitPromise) return cacheInitPromise;
+      cacheInitPromise=(async()=>{
+        try{
+          await openCacheDb();
+          const current=await cacheGet(CACHE_CURRENT_ID);
+          if(!current){
+            const legacyCurrent=localStorage.getItem(AUTOSAVE_KEY);
+            if(legacyCurrent){
+              const payload=JSON.parse(legacyCurrent);
+              await cachePut({id:CACHE_CURRENT_ID,savedAt:cacheSavedAt(legacyCurrent),hash:hashPayload(legacyCurrent),payload});
+            }
+          }
+          const legacySnapshot=localStorage.getItem(SNAPSHOT_KEY);
+          if(legacySnapshot && !(await cacheGet(CACHE_SNAPSHOT_ID))){
+            const snapshot=JSON.parse(legacySnapshot);
+            if(snapshot?.payload){
+              await cachePut({id:CACHE_SNAPSHOT_ID,savedAt:Number(snapshot.savedAt)||Date.now(),hash:String(snapshot.hash||hashPayload(snapshot.payload)),payload:JSON.parse(snapshot.payload)});
+            }
+          }
+          const legacyArchives=localStorage.getItem(ARCHIVES_KEY);
+          if(legacyArchives && !(await cacheGet(CACHE_ARCHIVES_ID))){
+            await cachePut({id:CACHE_ARCHIVES_ID,savedAt:Date.now(),payload:JSON.parse(legacyArchives)});
+          }
+          const verified=await cacheGet(CACHE_CURRENT_ID);
+          const legacyCurrent=localStorage.getItem(AUTOSAVE_KEY);
+          if(!legacyCurrent || (verified && verified.hash===hashPayload(legacyCurrent))) removeLegacyCacheCopies();
+          setCachePointer('indexeddb',verified?{hash:verified.hash,bytes:cacheByteLength(JSON.stringify(verified.payload))}:{});
+          return 'indexeddb';
+        }catch(error){
+          setCachePointer('localStorage',{reason:String(error.message||error)});
+          return 'localStorage';
+        }
+      })();
+      return cacheInitPromise;
     }
     function ackRecovery(hash){
       try{ localStorage.setItem(RECOVERY_KEY,JSON.stringify({ackHash:hash||hashPayload(localStorage.getItem(AUTOSAVE_KEY)),ackedAt:Date.now()})); }catch(_){}
@@ -8153,25 +8522,43 @@ const app = createApp({
     function cacheSavedAt(raw){
       try{ return Number(JSON.parse(raw||'{}').savedAt)||Date.now(); }catch(_){ return Date.now(); }
     }
-    function saveLocal(silent=false){
+    async function saveLocalNow(silent=false){
       if(typeof silent!=='boolean') silent=false;
+      const payload=projectPayload();
+      const json=JSON.stringify(payload);
+      const hash=hashPayload(json);
+      const bytes=cacheByteLength(json);
       try{
-        const payload=projectPayload();
-        const json=JSON.stringify(payload);
-        const hash=hashPayload(json);
-        const prev=localStorage.getItem(AUTOSAVE_KEY);
-        if(prev && prev!==json){
-          try{ localStorage.setItem(SNAPSHOT_KEY,JSON.stringify({savedAt:Date.now(),hash:hashPayload(prev),payload:prev})); }catch(_){}
+        const backend=await initializeLocalCache();
+        if(backend==='indexeddb'){
+          const previous=await cacheGet(CACHE_CURRENT_ID);
+          if(previous && previous.hash!==hash){
+            await cachePut({id:CACHE_SNAPSHOT_ID,savedAt:previous.savedAt||Date.now(),hash:previous.hash,payload:previous.payload});
+          }
+          await cachePut({id:CACHE_CURRENT_ID,savedAt:payload.savedAt,hash,payload:JSON.parse(json)});
+          setCachePointer('indexeddb',{hash,bytes});
+          removeLegacyCacheCopies();
+          autosaveStatus.value='已缓存至 IndexedDB · '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
+        }else{
+          // 退回 localStorage 时不再保存完整快照与历史环，避免同一份工程重复占用配额。
+          try{ localStorage.removeItem(SNAPSHOT_KEY); localStorage.removeItem(SAVE_RING_KEY); }catch(_){}
+          localStorage.setItem(AUTOSAVE_KEY,json);
+          setCachePointer('localStorage',{hash,bytes});
+          autosaveStatus.value='已缓存至浏览器本地 · '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
         }
-        localStorage.setItem(AUTOSAVE_KEY,json);
-        try{
-          const ring=JSON.parse(localStorage.getItem(SAVE_RING_KEY)||'[]');
-          ring.unshift({savedAt:payload.savedAt,hash,source:silent?'自动':'手动'});
-          localStorage.setItem(SAVE_RING_KEY,JSON.stringify(ring.slice(0,20)));
-        }catch(_){}
-        autosaveStatus.value='已缓存 '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
-        if(!silent){ ackRecovery(hash); ElementPlus.ElMessage.success('已缓存到浏览器本地'); pushHistory('保存工程到本地缓存'); }
-      }catch(e){ ElementPlus.ElMessage.error('本地缓存失败：'+e.message); }
+        if(!silent){ ackRecovery(hash); ElementPlus.ElMessage.success('工程已缓存（'+(backend==='indexeddb'?'IndexedDB':'浏览器本地')+'）'); pushHistory('保存工程到本地缓存'); }
+      }catch(error){
+        const detail=isQuotaError(error)
+          ? '本地缓存空间不足（当前工程约 '+(bytes/1024/1024).toFixed(2)+' MB）。工程未丢失，请先导出 JSON，或清理旧缓存后重试。'
+          : '本地缓存失败：'+String(error.message||error);
+        autosaveStatus.value=isQuotaError(error)?'缓存空间不足 · 可导出 JSON':'本地缓存失败';
+        ElementPlus.ElMessage.error(detail);
+      }
+    }
+    function saveLocal(silent=false){
+      const task=cacheSaveChain.then(()=>saveLocalNow(silent),()=>saveLocalNow(silent));
+      cacheSaveChain=task.catch(()=>{});
+      return task;
     }
     function applyLocalPayload(raw, sourceLabel, hash){
       if(!raw){ ElementPlus.ElMessage.warning('本地暂无缓存的工程'); return; }
@@ -8198,22 +8585,60 @@ const app = createApp({
         ElementPlus.ElMessage.success('已从'+sourceLabel+'恢复并迁移至研究数据模型 v7');
       }catch(err){ ElementPlus.ElMessage.error('本地缓存读取失败：'+err.message); }
     }
-    function loadLocal(){
-      applyLocalPayload(localStorage.getItem(AUTOSAVE_KEY),'本地缓存',hashPayload(localStorage.getItem(AUTOSAVE_KEY)||''));
+    async function loadLocal(){
+      try{
+        const backend=await initializeLocalCache();
+        if(backend==='indexeddb'){
+          const current=await cacheGet(CACHE_CURRENT_ID);
+          if(!current){ ElementPlus.ElMessage.warning('本地暂无缓存的工程'); return; }
+          applyLocalPayload(JSON.stringify(current.payload),'本地缓存',current.hash);
+          return;
+        }
+        const raw=localStorage.getItem(AUTOSAVE_KEY);
+        applyLocalPayload(raw,'本地缓存',hashPayload(raw||''));
+      }catch(error){ ElementPlus.ElMessage.error('本地缓存读取失败：'+String(error.message||error)); }
     }
-    function restoreSnapshot(){
-      let snap=null;
-      try{ snap=JSON.parse(localStorage.getItem(SNAPSHOT_KEY)||'null'); }catch(_){ snap=null; }
-      if(!snap || !snap.payload){ ElementPlus.ElMessage.warning('暂无最近自动快照（每次自动保存会保留上一版）'); return; }
-      applyLocalPayload(snap.payload,'最近自动快照',snap.hash);
+    async function restoreSnapshot(){
+      try{
+        const backend=await initializeLocalCache();
+        if(backend==='indexeddb'){
+          const snapshot=await cacheGet(CACHE_SNAPSHOT_ID);
+          if(!snapshot){ ElementPlus.ElMessage.warning('暂无最近自动快照（每次自动保存会保留上一版）'); return; }
+          applyLocalPayload(JSON.stringify(snapshot.payload),'最近自动快照',snapshot.hash);
+          return;
+        }
+        let snap=null;
+        try{ snap=JSON.parse(localStorage.getItem(SNAPSHOT_KEY)||'null'); }catch(_){ snap=null; }
+        if(!snap || !snap.payload){ ElementPlus.ElMessage.warning('暂无最近自动快照（当前浏览器已关闭冗余快照）'); return; }
+        applyLocalPayload(snap.payload,'最近自动快照',snap.hash);
+      }catch(error){ ElementPlus.ElMessage.error('自动快照读取失败：'+String(error.message||error)); }
     }
     // 启动时不再自动弹出恢复框：beforeunload 在刷新、嵌入页和文件页中并不可靠，
     // 旧会话标记会把正常打开误判为异常退出。缓存仍持续自动保存，恢复保留在“工程”菜单。
-    function readArchives(){
-      try{ const raw=localStorage.getItem('sgz_zhiguanpu_archives_v3'); archives.list=raw?JSON.parse(raw):[]; }
-      catch(_){ archives.list=[]; }
+    async function readArchives(){
+      try{
+        const backend=await initializeLocalCache();
+        if(backend==='indexeddb'){
+          const stored=await cacheGet(CACHE_ARCHIVES_ID);
+          archives.list=Array.isArray(stored?.payload)?stored.payload:[];
+          return;
+        }
+        const raw=localStorage.getItem(ARCHIVES_KEY); archives.list=raw?JSON.parse(raw):[];
+      }catch(_){ archives.list=[]; }
     }
-    function persistArchives(){ localStorage.setItem('sgz_zhiguanpu_archives_v3',JSON.stringify(archives.list)); }
+    async function persistArchives(){
+      try{
+        const backend=await initializeLocalCache();
+        const payload=cloneJSON(archives.list);
+        if(backend==='indexeddb') await cachePut({id:CACHE_ARCHIVES_ID,savedAt:Date.now(),payload});
+        else localStorage.setItem(ARCHIVES_KEY,JSON.stringify(payload));
+      }catch(error){ ElementPlus.ElMessage.error(isQuotaError(error)?'存档空间不足：请删除不用的旧存档或导出后清理缓存。':'存档保存失败：'+String(error.message||error)); }
+    }
+    function clearLegacyCacheCopies(){
+      ElementPlus.ElMessageBox.confirm('仅清理项目的旧浏览器缓存副本，不会删除 IndexedDB 当前工程或导出文件。确认继续？','清理旧缓存',{confirmButtonText:'清理',cancelButtonText:'取消',type:'warning'})
+        .then(()=>{ removeLegacyCacheCopies(); ElementPlus.ElMessage.success('旧缓存副本已清理'); })
+        .catch(()=>{});
+    }
     const ARCHIVE_CATEGORIES = ['未分类','里程碑','阶段草稿','对比基准','教学演示','备份'];
     const archiveCategoryFilter = ref('全部');
     const groupedArchives = computed(()=>{
@@ -8313,6 +8738,7 @@ const app = createApp({
     }
     function beforeUnload(){ saveLocal(true); }
     onMounted(()=>{
+      loadInterfacePreferences();
       readArchives();
       // 不在启动时阻断页面；需要恢复时从“工程 → 从本地缓存恢复”进入。
       const initialModule=String(location.hash||'').replace('#','');
@@ -8333,7 +8759,8 @@ const app = createApp({
 
     return {
       factions, activeModule, moduleContextLabel, switchModule, currentFaction, treeType, viewMode, officePresentation, setOfficePresentation, validationEnabled, zoomPct,
-      showLog, showStats, showVersions, showOfficials, showSearch, showBatch, showArchives, showCompare, showPalette, showTongdian,
+      showLog, showStats, showVersions, showOfficials, showSearch, showBatch, showArchives, showCompare, showPalette, showTheme, showTongdian, showGeneralTitles, generalTitlePolity,
+      themeKey, densityMode, motionMode, themeOptions, setTheme, setDensity, setMotion,
       showPersonProfile, activePersonName, activePersonAppointments, activePersonPortrait,
       showEvidence, selectedEvidence, openEvidence,
       showHistoryAudit, historyAuditSelection, currentHistoryEvidence, historyAuditClaims, historyAuditSources,
@@ -8365,7 +8792,7 @@ const app = createApp({
       CATEGORY_OPTIONS, SERVICE_DOMAIN_OPTIONS, INSTITUTION_TYPE_OPTIONS, RANK9_OPTIONS, HAN_RANK_OPTIONS, JIE_OPTIONS, JIAGUAN_OPTIONS, NOBLE_RANK_OPTIONS, INHERIT_OPTIONS, ICONS,
       RELATION_OPTIONS, REGION_OPTIONS, EVOLUTION_TYPES, BATCH_TEMPLATES, TONGDIAN_TABLE, CATEGORY_RANK9_MAP, calibrateRank9,
       HAN_RANK_FAMILIES, OFFICE_TEMPLATE_LIBRARY, OFFICE_GROUP_DEFS,
-      switchFaction, switchTreeType, switchViewMode,
+      switchFaction, openGeneralTitles, switchTreeType, switchViewMode,
       addChildNode, addSiblingNode, addCourtPosition, deleteCourtPosition, duplicateBranch, toggleLock, deleteNode, setColor, setIcon,
       copyBranches, cutBranches, pasteBranches, batchAddTemplate, generateKaifuTemplate,
       toggleSelectedBranches, toggleCategoryBranches, archiveSelected,
@@ -8375,10 +8802,10 @@ const app = createApp({
       versions, saveVersion, rollbackVersion,
       zoomIn, zoomOut, zoomFit,
       exportJSON, exportSplitJSON, exportTable, exportImage, exportSVG, exportMarkdown, exportStatsText, printDiagram,
-      importJSON, importExcel, saveLocal, loadLocal, restoreSnapshot, connectBackend,
+      importJSON, importExcel, saveLocal, loadLocal, restoreSnapshot, clearLegacyCacheCopies, connectBackend,
       statList, totalNodeCount, currentStatsMetrics, allFactionStats,
       searchResults, searchGroupedResults, resultExcerpt, jumpToSearchResult, resetCanvasFilters,
-      commandPaletteGroups, commandPaletteCount, paletteMove, paletteSelect, paletteGo, openCommandPalette, highlightMatch,
+      commandPaletteGroups, commandPaletteCount, clearPaletteQuery, paletteKeydown, paletteMove, paletteSelect, paletteGo, openCommandPalette, highlightMatch,
       comparisonTrees,
       showOfficeCompare, officeCompareQuery, officeCompareGroups, openOfficeCompareForSelected, jumpOfficeCompareItem,
       showRankCompare, rankCompareQuery, rankCompareRows, openRankCompareForSelected, jumpRankCompareRow,
@@ -8394,7 +8821,8 @@ const app = createApp({
       officialSummaryRecords, officialSummaryGroups, unassignedOfficialCount,
       addFigureRecord, removeFigureRecord, onFigureRulerChanged, uploadPortrait, clearPortrait,
       recordPeriodLabel, recordYearLabel, openPersonProfile, jumpToPersonAppointment,
-      peopleQuery, peoplePolity, peopleKind, peopleOnlyPortrait, peopleAdvanced, peopleView, filteredPeople, peopleMetrics,
+      peopleQuery, peoplePolity, peopleKind, peopleEra, peopleYear, peopleSource, peopleEvidence, peopleServiceDomain, peopleInstitutionType, peopleOnlyPortrait, peopleAdvanced, peopleView, filteredPeople, peopleMetrics,
+      generalTitleGroups, activeGeneralTitleGroup, generalTitleDisplayItems, generalTitlesSource,
       openPeopleDetailFromSnapshot,
       periodRosterPhase, periodRosterPhases, filteredPeriodOfficeSnapshots,
       showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass,
@@ -8420,7 +8848,7 @@ const app = createApp({
     <div class="topbar">
       <div class="seal-mark serif">職</div>
       <div class="brand">
-        <div class="t1">中华三国志</div>
+        <div class="t1">观史台</div>
         <div class="t2">汉末—西晋史制资料工作台</div>
       </div>
       <nav class="module-nav" aria-label="主功能模块">
@@ -8468,6 +8896,7 @@ const app = createApp({
               <el-dropdown-item @click="saveLocal()">保存到本地缓存</el-dropdown-item>
               <el-dropdown-item @click="loadLocal">从本地缓存恢复</el-dropdown-item>
               <el-dropdown-item @click="restoreSnapshot">从最近自动快照恢复</el-dropdown-item>
+              <el-dropdown-item divided @click="clearLegacyCacheCopies">清理旧缓存副本</el-dropdown-item>
               <el-dropdown-item @click="showArchives=true">多存档管理</el-dropdown-item>
               <el-dropdown-item @click="saveVersion">保存命名版本</el-dropdown-item>
               <el-dropdown-item @click="showVersions=true">版本回滚列表</el-dropdown-item>
@@ -8476,11 +8905,16 @@ const app = createApp({
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        <el-button size="small" circle @click="openCommandPalette('all')" title="全局检索（Ctrl/Cmd+K）">🔎</el-button>
         <el-button size="small" circle @click="showCompare=true" title="魏汉吴三栏对比">▥</el-button>
         <el-button size="small" circle @click="showPalette=true" title="势力配色">🎨</el-button>
         <el-button size="small" circle @click="showStats=true" title="统计面板">📊</el-button>
         <el-button size="small" circle @click="showLog=true" title="操作日志">🕘</el-button>
+      </div>
+      <div class="global-header-tools" aria-label="全局功能">
+        <button class="global-search-trigger" type="button" @click="openCommandPalette('all')" aria-label="打开全局检索（Ctrl/Cmd+K）">
+          <span aria-hidden="true">⌕</span><span>检索</span><kbd>⌘K</kbd>
+        </button>
+        <button class="theme-trigger" type="button" @click="showTheme=true" aria-label="打开界面主题设置">主题</button>
       </div>
     </div>
 
@@ -8538,6 +8972,7 @@ const app = createApp({
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item @click="showTongdian=true">官品体系（通典）</el-dropdown-item>
+                <el-dropdown-item @click="openGeneralTitles">将军名号分级表（V48）</el-dropdown-item>
                 <el-dropdown-item @click="openOfficeCompareForSelected">跨势力官制对照</el-dropdown-item>
                 <el-dropdown-item @click="openRankCompareForSelected">官品秩俸三轨对照</el-dropdown-item>
                 <el-dropdown-item @click="showTemplateLibrary=true">官署模板库</el-dropdown-item>
@@ -9165,7 +9600,7 @@ const app = createApp({
           </div>
         </div>
         <div class="people-toolbar">
-          <el-input v-model="peopleQuery" clearable placeholder="检索人物、字号、籍贯、官职或辖区…" prefix-icon="Search" />
+          <button class="module-search-handoff" type="button" @click="openCommandPalette('people')"><span aria-hidden="true">⌕</span>在统一检索中查人物、字号、官职或辖区</button>
           <el-select v-model="peoplePolity" size="small" style="width:132px;" aria-label="势力筛选">
             <el-option label="全部势力" value="all" />
             <el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.short||f.label||f.name" />
@@ -9271,7 +9706,7 @@ const app = createApp({
           </div>
         </div>
         <div class="battle-toolbar">
-          <el-input v-model="battleQuery" clearable placeholder="检索战役、事件、人物或战场…" prefix-icon="Search" />
+          <button class="module-search-handoff" type="button" @click="openCommandPalette('battle')"><span aria-hidden="true">⌕</span>在统一检索中查战役、事件或战场</button>
           <el-select v-model="battleKind" size="small" style="width:132px;" aria-label="记录类别">
             <el-option label="全部类别" value="all" />
             <el-option label="编年要事" value="event" />
@@ -9359,7 +9794,7 @@ const app = createApp({
           <span>{{fangzhenArchiveDef.key==='wei'?'魏的刺史、司隶校尉与都督职任按年代排列；跨 266 年者按魏、晋分段。':(fangzhenArchiveDef.key==='shu'?'汉的州牧、都督与郡守职任按辖区和年代排列。':(fangzhenArchiveDef.key==='wu'?'吴的州牧、刺史、太守、都尉与都督职任按州郡排列。':'按国家、官次、辖区和年代排列。'))}}</span>
         </div>
         <div class="fangzhen-toolbar">
-          <el-input v-model="fangzhenQuery" clearable placeholder="检索人物、官职、州郡、治所、别名或任期…" style="max-width:360px" />
+          <button class="module-search-handoff" type="button" @click="openCommandPalette('fangzhen')"><span aria-hidden="true">⌕</span>在统一检索中查人物、州郡、治所、别名或任期</button>
           <el-select v-model="fangzhenRecordType" style="width:160px" aria-label="档案类别">
             <el-option label="全部类别" value="all" />
             <el-option label="刺史／州牧" value="cishi" />
@@ -9444,7 +9879,7 @@ const app = createApp({
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.polities}}</strong><span>国别</span></div>
         </div>
         <div class="jinshi-toolbar">
-          <el-input v-model="epigraphicQuery" clearable placeholder="检索名称、出土地、人物、著录或释文…" prefix-icon="Search" />
+          <button class="module-search-handoff" type="button" @click="openCommandPalette('jinshi')"><span aria-hidden="true">⌕</span>在统一检索中查名称、人物或释文</button>
           <el-select v-model="epigraphicType" clearable style="width:140px" placeholder="材料类型">
             <el-option label="全部类型" value="all" />
             <el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type" />
@@ -9469,11 +9904,11 @@ const app = createApp({
           <el-table :data="filteredEpigraphicRecords" size="small" empty-text="暂无符合条件的金石材料">
             <el-table-column type="expand" width="42"><template #default="scope"><div class="epigraphic-inscription"><strong>释文</strong><div v-html="epigraphicHighlight(scope.row.inscription||'暂无完整释文')"></div><p v-if="scope.row.note" v-html="epigraphicHighlight(scope.row.note)"></p><div v-if="scope.row.disputeNote" class="epigraphic-dispute"><b>释读争议</b><span>{{scope.row.disputeNote}}</span></div></div></template></el-table-column>
             <el-table-column prop="displayName" label="名称" min-width="180" />
-            <el-table-column prop="type" label="类型" width="100" />
+            <el-table-column prop="materialType" label="材料类型" width="110" />
             <el-table-column prop="polity" label="国别" width="70" />
             <el-table-column label="层级" width="90"><template #default="scope"><span class="jinshi-archive" :class="epigraphicArchiveClass(scope.row.archiveKind)">{{scope.row.archiveKind}}</span></template></el-table-column>
-            <el-table-column label="年代" width="120"><template #default="scope">{{scope.row.yearText||scope.row.year||'年代未详'}}</template></el-table-column>
-            <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.place||scope.row.region||'出土地未详'}}</template></el-table-column>
+            <el-table-column label="年代" width="120"><template #default="scope">{{scope.row.dateText||'年代未详'}}</template></el-table-column>
+            <el-table-column label="出土地" min-width="150"><template #default="scope">{{scope.row.findspot||'出土地未详'}}</template></el-table-column>
             <el-table-column label="关联人物／官职" min-width="220"><template #default="scope"><span v-for="nm in (scope.row.people||'').split(/[、，,]/)" :key="nm" class="jinshi-person" @click="openEpigraphicPerson(nm)">{{nm}}</span><small v-if="scope.row.offices" style="display:block;color:#A29B8E;font-size:10px;">{{scope.row.offices}}</small></template></el-table-column>
             <el-table-column label="形制／书体" min-width="160"><template #default="scope">{{[scope.row.form,scope.row.scriptStyle].filter(Boolean).join(' · ')||'未详'}}</template></el-table-column>
             <el-table-column label="释文" min-width="220" show-overflow-tooltip><template #default="scope">{{scope.row.inscription||'—'}}</template></el-table-column>
@@ -9493,7 +9928,7 @@ const app = createApp({
           </div>
         </div>
         <div class="fangzhen-toolbar">
-          <el-input v-model="shihuoQuery" clearable placeholder="检索制度、事件或人物…" style="max-width:360px" />
+          <button class="module-search-handoff" type="button" @click="openCommandPalette('shihuo')"><span aria-hidden="true">⌕</span>在统一检索中查制度、事件或人物</button>
           <el-select v-model="shihuoCategory" style="width:160px" aria-label="类别筛选">
             <el-option label="全部类别" value="all" />
             <el-option v-for="c in SHIHUO_CATEGORIES" :key="c" :label="c" :value="c" />
@@ -9702,6 +10137,27 @@ const app = createApp({
       <template #footer><el-button @click="personMetaDialog.visible=false">取消</el-button><el-button type="primary" @click="savePersonMeta">保存档案</el-button></template>
     </el-dialog>
 
+    <el-drawer v-model="showGeneralTitles" title="将军名号 · 分级与证据状态" size="720px">
+      <div class="general-title-drawer-head">
+        <div>
+          <strong>{{activeGeneralTitleGroup.label}}</strong>
+          <span>{{activeGeneralTitleGroup.period}} · {{activeGeneralTitleGroup.ordering}}</span>
+        </div>
+        <el-select v-model="generalTitlePolity" size="small" style="width:150px" aria-label="将军名号政权">
+          <el-option v-for="group in generalTitleGroups" :key="group.polity" :label="group.label" :value="group.polity" />
+        </el-select>
+      </div>
+      <div class="general-title-source-note">{{generalTitlesSource.note || '名号按政权分列；具体人物与任期请回到人物记、州镇表核对。'}}</div>
+      <div class="general-title-grid">
+        <article v-for="item in generalTitleDisplayItems" :key="activeGeneralTitleGroup.polity+'-'+item.title" class="general-title-card">
+          <div class="general-title-card-head"><strong>{{item.title}}</strong><span>{{item.grade}}</span></div>
+          <div class="general-title-meta"><span>{{item.kind}}</span><span :class="item.evidence==='待考'?'pending':''">{{item.evidence}}</span></div>
+          <p v-if="item.note">{{item.note}}</p>
+        </article>
+      </div>
+      <div class="general-title-foot">共 {{generalTitleDisplayItems.length}} 个具体名号条目；聚合占位项已移入审校层。“待考”表示仍需按具体人物传、年代和官品条文逐条核实。</div>
+    </el-drawer>
+
     <el-drawer v-model="showOfficials" :title="'官员汇总 · '+currentFactionLabel" size="520px">
       <div class="summary-head">
         统计时期：{{ currentPeriodLabel }}<br/>
@@ -9755,10 +10211,13 @@ const app = createApp({
 
     <el-drawer v-model="showSearch" title="全局检索" size="min(680px,94vw)" class="command-palette-drawer">
       <div class="command-palette">
-        <el-input v-model="searchFilters.query" class="global-search-input" size="large" clearable
-          placeholder="搜索官职、人物、州镇、战事、食货、金石、古水名或时期；支持 @人物 #战事 年份"
-          @keydown.up.prevent="paletteMove(-1)" @keydown.down.prevent="paletteMove(1)"
-          @keydown.enter.prevent="paletteSelect()" @keydown.esc="showSearch=false" />
+        <div class="global-search-field">
+          <el-input v-model="searchFilters.query" class="global-search-input" size="large" clearable
+            placeholder="搜索官职、人物、州镇、战事、食货、金石、古水名或时期；支持 @人物 #战事 年份"
+            @keydown.up.prevent="paletteMove(-1)" @keydown.down.prevent="paletteMove(1)"
+            @keydown.enter.prevent="paletteKeydown($event)" @keydown.esc="showSearch=false" @clear="clearPaletteQuery" />
+          <button v-if="searchFilters.query" type="button" class="global-search-clear" aria-label="清除检索内容" @click="clearPaletteQuery">×</button>
+        </div>
         <div class="palette-scope-chips">
           <button v-for="option in searchScopeOptions" :key="option.key" class="palette-scope-chip"
                   :class="{active:searchState.scope===option.key}" @click="searchState.scope=option.key; searchState.activeIndex=0">{{option.label}}</button>
@@ -9930,6 +10389,21 @@ const app = createApp({
           <div class="template-card-names"><span v-for="nm in tpl.names" :key="nm" class="person-pill">{{nm}}</span></div>
         </div>
       </div>
+    </el-drawer>
+
+    <el-drawer v-model="showTheme" title="界面主题与阅读节奏" size="380px" class="theme-drawer">
+      <div class="theme-drawer-intro">主题只改变界面表达，不改变政权颜色、证据提示、地图几何或工程数据。</div>
+      <div class="field-group-title">界面主题</div>
+      <button v-for="item in themeOptions" :key="item.key" type="button" class="theme-option" :class="{active:themeKey===item.key}" @click="setTheme(item.key)">
+        <span class="theme-swatches"><i v-for="swatch in item.swatches" :key="swatch" :style="{background:swatch}"></i></span>
+        <span class="theme-option-copy"><strong>{{item.label}}</strong><small>{{item.note}}</small></span>
+        <span v-if="themeKey===item.key" class="theme-check" aria-label="当前主题">✓</span>
+      </button>
+      <div class="field-group-title">内容密度</div>
+      <div class="theme-choice-row"><button type="button" :class="{active:densityMode==='comfortable'}" @click="setDensity('comfortable')">舒展</button><button type="button" :class="{active:densityMode==='compact'}" @click="setDensity('compact')">紧凑</button></div>
+      <div class="field-group-title">动效</div>
+      <div class="theme-choice-row"><button type="button" :class="{active:motionMode==='standard'}" @click="setMotion('standard')">标准</button><button type="button" :class="{active:motionMode==='reduced'}" @click="setMotion('reduced')">减少动效</button></div>
+      <p class="theme-drawer-note">减少动效会关闭位移、交错进入和缩放，只保留短暂淡入；也会尊重系统的减少动效设置。</p>
     </el-drawer>
 
     <el-drawer v-model="showPalette" title="势力节点配色" size="340px">

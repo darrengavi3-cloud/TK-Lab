@@ -212,12 +212,12 @@ assert(rosterSource.includes('sourceWeiDuke213') && rosterSource.includes('sourc
 assert(rosterSource.includes('曹操') && rosterSource.includes('丞相') && rosterSource.includes('魏公国') && rosterSource.includes('延康元年·曹丕践祚前'), '213年魏公国与220年汉廷具名官员未接入');
 assert(rosterSource.includes('officeSnapshots') && rosterSource.includes("'未详'") && rosterSource.includes('光禄勋'), '220年人名未详官职快照未保留');
 assert(html.includes('periodRosterPhase') && html.includes('213／220 年时期官署快照') && html.includes('rosterFactionKey'), '时期官署快照或汉魏吴晋人物归档映射未接入');
-assert(portraitSource.includes("'华歆'") && portraitSource.includes("'贾诩'") && portraitSource.includes("'牵招'") && portraitSource.includes('ai-illustration'), '新增人物生成头像索引未接入');
+assert(portraitSource.includes('华歆') && portraitSource.includes('贾诩') && portraitSource.includes('牵招') && portraitSource.includes('ai-illustration'), '新增人物生成头像索引未接入');
 [mapConfig,mapBaseLayer,mapNarrative].forEach(source => assert(!source.includes('（今') && !source.includes('(今'), '地图可见文字仍含“今××”现代地名括注'));
 assert(!html.includes('cdnjs.cloudflare.com/ajax/libs'), '本地项目仍依赖 cdnjs');
 assert(!html.includes('workbuddy-space-static.codebuddy.work/page/'), '本地项目仍依赖 WorkBuddy 运行资源');
 assert(!html.includes('raw.githubusercontent.com/Heliog3nesis'), '本地项目仍依赖 GitHub 原始几何文件');
-assert(portable.includes('中华三国志 · 职官谱｜州镇表｜形势图'), '联网便携版尚未同步新界面标题');
+assert(portable.includes('观史台 · 职官谱｜人物记｜形势图'), '联网便携版尚未同步新界面标题');
 assert(portable.includes('window.HISTORY_MAP_REGISTRY='), '联网便携版未内嵌十六期地图注册表');
 assert(portable.includes('"id":"shaodi"') && portable.includes('"year":189'), '联网便携版未同步189年地图');
 assert(portable.includes('"id":"hanwang"') && portable.includes('"year":264'), '联网便携版未同步 264 年地图');

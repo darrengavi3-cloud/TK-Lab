@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "version": "V47",
+  "createdAt": "2026-08-21",
+  "title": "三书百官志来源对照与魏晋官制补全差异审计",
+  "scope": "先索引、后逐条回查；不直接批量入库",
+  "sourceIndex": "data/baiguanzhi-source-index.json",
+  "sourceClaims": "data/v47-baiguanzhi-source-claims.json",
+  "baseline": {
+    "researchSchemaVersion": 9,
+    "hanBaiGuanZhiRecords": 52,
+    "hanBaiGuanZhiHiddenRecords": 3,
+    "hanBaiGuanZhiVisibleRecords": 49,
+    "existingResidenceSources": ["data/office-residences.js", "data/kaifu-policies.js", "data/office-seat-policies.js"],
+    "existingPersonSource": "data/person-source-index.js",
+    "defaultPeriod": "168—316",
+    "extendedPeriod": "317年后仅作扩展档案/比较材料"
+  },
+  "items": [
+    {
+      "id": "audit-han-existing-entry",
+      "sourcePackageId": "chat-houhanshu-baiguanzhi",
+      "target": "data/han-bai-guan-zhi.js",
+      "status": "待逐条核对",
+      "decision": "保留现有入口，不重复追加",
+      "finding": "现有 52 条记录已覆盖尚书台、御史台和将军系统；其中 3 条为隐藏制度分组节点。",
+      "risk": "曹名、将军号和员额可能存在时期差异，不能由整理对话统一确定。",
+      "nextAction": "按《后汉书》卷 114—118 建立逐条 sourceClaim，并检查东汉/晚汉显示范围。",
+      "defaultRuntimeImport": false
+    },
+    {
+      "id": "audit-jin-central-tree",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "target": "index.html 西晋官职树",
+      "status": "待逐条核对",
+      "decision": "不批量追加官职节点",
+      "finding": "现有页面已经有西晋三公、九卿、尚书、中书、御史、将军、东宫和王国等制度节点。",
+      "risk": "同名官职可能代表制度机关、加号或临时任命；批量追加会造成重复节点和跨机构混类。",
+      "nextAction": "建立官职名—现有 node key—《晋书》卷二十四定位的差异表，再只修正缺口。",
+      "defaultRuntimeImport": false
+    },
+    {
+      "id": "audit-jin-residence-policy",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "target": "data/kaifu-policies.js 与 data/office-residences.js",
+      "status": "待逐条核对",
+      "decision": "先审资格与府主匹配，不新增通用府署",
+      "finding": "V45 已修复任意官位进入丞相府及府主不匹配问题；本轮整理可用于补充制度依据，但不能直接覆盖现有匹配逻辑。",
+      "risk": "长史、祭酒、掾属、司马、参军跨府同名；‘有属官’不等于‘法定开府’。",
+      "nextAction": "为每条开府断言补 qualificationType、府主、validYears、sourceLocator 和证据状态。",
+      "defaultRuntimeImport": false
+    },
+    {
+      "id": "audit-jin-military-classification",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "target": "西晋将军/禁军/边镇节点",
+      "status": "待逐条核对",
+      "decision": "仅做分类与制度边界审计",
+      "finding": "将军、领军、护军、二卫、五校及边镇必须保持武官或文武兼属性，不能混入文官席位。",
+      "risk": "都督、校尉、护军既可能是官职节点，也有具体任官和辖区记录；两层数据不能互相替代。",
+      "nextAction": "逐节点复核 serviceDomain、institutionType、residence 与 appointment 的分层。",
+      "defaultRuntimeImport": false
+    },
+    {
+      "id": "audit-jin-local-and-palace",
+      "sourcePackageId": "chat-jinshu-zhiguan",
+      "target": "州镇表、东宫、王府",
+      "status": "待逐条核对",
+      "decision": "沿用现有分层，候选只进入审校区",
+      "finding": "州郡县属官、东宫官属和王国官属必须分别归入州府/郡府/县署、东宫和王府。",
+      "risk": "职官志的制度概述没有给出具体人物任期，不能自动写入人物记或州镇表。",
+      "nextAction": "将制度属官候选与现有 office-residences、administrative-index、person-source-index 逐条对齐。",
+      "defaultRuntimeImport": false
+    },
+    {
+      "id": "audit-song-out-of-scope",
+      "sourcePackageId": "chat-songshu-baiguanzhi",
+      "target": "比较层",
+      "status": "已确定边界",
+      "decision": "不进入默认运行数据",
+      "finding": "《宋书·百官志》以刘宋现行制度为主，只有明确追述魏晋旧制的条文可作为比较证据。",
+      "risk": "把刘宋官品、置省和员额倒灌到西晋，会造成时代错置。",
+      "nextAction": "未来建立 officeEvolution/sourceClaim 比较层，并给每条记录标明‘刘宋现制’或‘魏晋追述’。",
+      "defaultRuntimeImport": false
+    }
+  ],
+  "summary": {
+    "items": 6,
+    "directRuntimeImports": 0,
+    "hanRecordsToReconcile": 52,
+    "sourcePackages": 3,
+    "explicitOutOfScopePackages": 1,
+    "nextBatch": "V47-C：将已核对 sourceClaim 与现有官职/府署/员额节点逐条匹配，形成审批清单"
+  }
+}

@@ -21,5 +21,5 @@ assert(html.includes('fullInscription') || html.includes('scope.row.inscription'
 assert(html.includes("displayName:(disputed?'* ':''"), '金石争议标记未接入');
 assert(fs.existsSync('templates/三国职官谱_V42_统一导入模板.xlsx'), 'V42 统一导入模板未生成');
 const portraitIndex = read('data/person-portraits.js');
-assert((portraitIndex.match(/src:/g)||[]).length >= 44, '现有头像资源索引异常');
+assert((portraitIndex.match(/(?:src|"src")\s*:/g)||[]).length >= 44, '现有头像资源索引异常');
 console.log('V42 数据模型、员额/府署、金石展示与统一导入模板断言通过（研究模型已升级至 v9）');

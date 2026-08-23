@@ -1,4 +1,4 @@
-# 中华三国志 · 职官谱本地项目版
+# 观史台 · 汉末至西晋史制资料工作台
 
 打开 `index.html` 即可使用。Vue、Element Plus、GoJS、XLSX、Leaflet、地图脚本、州郡几何和水系数据均已放入本目录；在线底图仍可在联网时启用，断网时不会影响职官谱数据与本地州郡图层加载。
 
@@ -21,6 +21,8 @@
 - `data/kaifu-policies.js`：开府资格政策（法定、加号、特诏、事实见府属、待考）与人物任官依据。
 - `data/office-seat-policies.js`：府署属官制度员额与展示席位规则。
 - `data/office-residences.js`：丞相府、三公府、将军府、都督府、州府、郡府、东宫等府署定义与属官分类。
+- `data/general-titles.js`：曹魏、季汉、孙吴、西晋将军、中郎将、校尉、都尉名号及证据状态。
+- `data/office-order-policies.js`：V54 朝堂文武分组、常伯顺序、聚合节点隐藏和待考名号显示策略。
 - `data/person-source-index.js`：《三国志》《晋书》逐卷人物与任官/爵位候选索引（正文与裴注分层）。
 - `data/person-volume-coverage.json`：195 卷逐卷处理状态与排除依据。
 - `data/hydronym-audit.json`：285 段水系几何、257 个唯一古水名与《水经注》40 卷卷次出处审计。
@@ -29,6 +31,9 @@
 - `data/v45-attachment-candidates.json`：两份附件的全量候选索引（存疑/待考）。
 - `data/v45-fangzhen-review.json`：州镇表存疑/遥领/未上任逐条复核清单。
 - `data/v45-shihuo-gap.json`：《晋书》卷二十六与食货志对照结论。
+- `data/baiguanzhi-source-index.json`：V47 三份百官志整理对话的来源包、候选制度族与接入边界；不直接作为运行时官职数据。
+- `data/v47-baiguanzhi-diff-audit.json`：V47 现有东汉百官志、西晋官制、府署资格与刘宋比较层的差异审计。
+- `data/v47-baiguanzhi-source-claims.json`：V47-B 回查正史原文形成的 15 条可审批 sourceClaim；不直接进入运行时数据。
 - `data/migration-v6.json`：本轮迁移前后数量、备份位置与验收规则。
 - `data/migration-v7.json`：V7时期快照、证据断言与来源索引的迁移说明。
 - `data/history-evidence.json`：V41 十六期历史快照、来源目录、关键辖区断言和审计规则的 canonical 数据。
@@ -66,6 +71,11 @@
 - `docs/V43府署古水系与人物记优化.md`：V43 开府府署、战场地名、古水名层、人物逐卷覆盖与发布记录。
 - `docs/V44检索高程与版块优化.md`：V44 全局命令面板、高程地形与战事纪/州镇表/食货志/金石录分批优化说明。
 - `docs/V45史实审核与数据补充.md`：V45 朝堂府署误入修复、人物重复与检索优化、史实审核与附件数据补充说明。
+- `docs/V46人物立绘州镇行政地图层级两晋金石录.md`：V46 全量立绘索引、州镇行政检索、形势图层级和两晋金石录说明。
+- `docs/V47三书百官志来源对照与魏晋官制审计.md`：V47 三份百官志整理的来源索引、历史范围分层和差异审计说明。
+- `docs/V50观史台立绘人物门禁与人物记界面优化.md`：V50 人物实体门禁、有人脸立绘状态、观史台品牌与人物记紧凑界面契约。
+- `docs/V54职官序位统一检索与主题重构.md`：V54 职官排序契约、统一检索入口、主题／密度／动效系统与史实审查边界。
+- `DESIGN.md`、`UX-CONTRACT.md`：V54 视觉令牌、组件与交互行为的规范源。
 - `assets/map/`：地图程序、Leaflet、州郡几何与水系。
 - `assets/vendor/`：页面运行依赖。
 - `scripts/`：资源下载、注册表构建与完整性验证脚本。
@@ -98,6 +108,7 @@ node 三国职官谱项目/scripts/verify-project.mjs
 node 三国职官谱项目/scripts/verify-map-data.mjs
 node 三国职官谱项目/scripts/verify-historical-model.mjs
 node 三国职官谱项目/scripts/verify-research-model.mjs
+node 三国职官谱项目/scripts/verify-v54.mjs
 ```
 
 V7 在 v6 的基础上增加“时期快照”和“控制断言”两类研究实体。地图郡级块数、正史行政基准和势力控制示意分开记录；点击形势图顶部“史料校验”或地图上的州郡，可查看当前时期的来源、断言和剩余考据限制。

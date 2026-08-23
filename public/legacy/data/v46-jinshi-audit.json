@@ -161,10 +161,10 @@
     }
   ],
   "output": {
-    "recordCount": 161,
-    "coreCount": 70,
-    "extendedCount": 91,
-    "recordsWithoutInscription": 120
+    "recordCount": 157,
+    "coreCount": 67,
+    "extendedCount": 90,
+    "recordsWithoutInscription": 117
   },
   "rules": {
     "deletion": "只排除 run 级 w:strike/w:dstrike 与 w:del/w:delText，保留同段正常文字",

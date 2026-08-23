@@ -17,14 +17,18 @@ const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
 const portraitManifestPath = path.join(root, 'data', 'portrait-manifest.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
 const epigraphicV46JinPath = path.join(root, 'data', 'epigraphic-v46-jin.js');
+const jinshiSchemaPath = path.join(root, 'data', 'jinshi-schema.js');
 const administrativeIndexPath = path.join(root, 'data', 'administrative-index.js');
 const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
 const generalTitlesPath = path.join(root, 'data', 'general-titles.js');
+const officeOrderPoliciesPath = path.join(root, 'data', 'office-order-policies.js');
 const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
 const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
+const personEntityAuditPath = path.join(root, 'data', 'person-entity-audit.js');
 const personZiSupplementPath = path.join(root, 'data', 'person-zi-supplement.js');
+const portraitBoardPath = path.join(root, 'data', 'v48-portrait-board.js');
 const hydronymAuditPath = path.join(root, 'assets', 'map', 'data', 'hydronym-audit.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
@@ -46,47 +50,57 @@ let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
 let portraitManifestScript = fs.readFileSync(portraitManifestPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
 const epigraphicV46JinScript = fs.readFileSync(epigraphicV46JinPath, 'utf8').trim();
+const jinshiSchemaScript = fs.readFileSync(jinshiSchemaPath, 'utf8').trim();
 const administrativeIndexScript = fs.readFileSync(administrativeIndexPath, 'utf8').trim();
 const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
 const generalTitlesScript = fs.readFileSync(generalTitlesPath, 'utf8').trim();
+const officeOrderPoliciesScript = fs.readFileSync(officeOrderPoliciesPath, 'utf8').trim();
 const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
 const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
+const personEntityAuditScript = fs.readFileSync(personEntityAuditPath, 'utf8').trim();
 const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
+const portraitBoardScript = fs.readFileSync(portraitBoardPath, 'utf8').trim();
 const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
 const portablePortraitAssets = {};
-function inlinePortraitAssets(script) {
-  let output = script;
-  for (const polityDir of fs.readdirSync(portraitDir)) {
-  const fullDir = path.join(portraitDir, polityDir);
-  if (!fs.statSync(fullDir).isDirectory()) continue;
-  for (const file of fs.readdirSync(fullDir).filter(name => /\.(png|jpe?g|webp)$/i.test(name))) {
-    const relative = `./assets/portraits/${polityDir}/${file}`;
-    const mime = file.toLowerCase().endsWith('.png') ? 'image/png' : (file.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
-    const data = `data:${mime};base64,${fs.readFileSync(path.join(fullDir, file)).toString('base64')}`;
-    portablePortraitAssets[relative] = data;
-    output = output.split(relative).join(data);
-  }
+const portraitManifestJson = portraitManifestScript
+  .replace(/^\s*window\.SGZ_PERSON_PORTRAIT_MANIFEST\s*=\s*/, '')
+  .replace(/;\s*$/, '');
+const portraitManifestData = JSON.parse(portraitManifestJson);
+const portablePortraitPaths = new Set(
+  (portraitManifestData.defaultPersonIds || [])
+    .map(personId => portraitManifestData.byPersonId?.[personId]?.src)
+    .filter(src => /^\.\/assets\/portraits\/.+\.(png|jpe?g|webp)$/i.test(String(src || '')))
+);
+for (const relative of portablePortraitPaths) {
+  const source = path.join(root, relative.replace(/^\.\//, ''));
+  if (!fs.existsSync(source)) throw new Error(`便携导出缺少默认人物立绘：${relative}`);
+  const mime = relative.toLowerCase().endsWith('.png') ? 'image/png' : (relative.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
+  portablePortraitAssets[relative] = `data:${mime};base64,${fs.readFileSync(source).toString('base64')}`;
 }
-  return output;
-}
-personPortraitsScript = inlinePortraitAssets(personPortraitsScript);
 const portablePortraitManifestScript = `${portraitManifestScript}
 (function(){
   var assets=${JSON.stringify(portablePortraitAssets)};
+  function inlineDefaultPortrait(item){
+    if(!item||!item.src) return;
+    if(assets[item.src]) item.src=assets[item.src];
+    else if(item.src.indexOf('./assets/portraits/')===0) item.src='';
+  }
+  Object.values(window.SGZ_PERSON_PORTRAITS||{}).forEach(inlineDefaultPortrait);
   var manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
   Object.values(manifest.byPersonId||{}).concat(Object.values(manifest.byName||{})).forEach(function(item){
-    if(item&&item.src&&assets[item.src]) item.src=assets[item.src];
+    inlineDefaultPortrait(item);
   });
   if(manifest.fallbackSrc&&assets[manifest.fallbackSrc]) manifest.fallbackSrc=assets[manifest.fallbackSrc];
+  else manifest.fallbackSrc='';
 })();`;
 const courtBackgroundData = `data:image/png;base64,${fs.readFileSync(courtBackgroundPath).toString('base64')}`;
 
 const replacements = [
   [
-    '<title>职官谱 · 三国官职爵位管理系统</title>',
-    '<title>中华三国志 · 职官谱｜州镇表｜形势图</title>'
+    '<title>观史台 · 汉末至西晋史制资料工作台</title>',
+    '<title>观史台 · 职官谱｜人物记｜形势图</title>'
   ],
   [
     '<link rel="stylesheet" href="./assets/vendor/element-plus/index.css" />',
@@ -157,6 +171,10 @@ const replacements = [
     `<script>\n${epigraphicV46JinScript}\n</script>`
   ],
   [
+    '<script src="./data/jinshi-schema.js"></script>',
+    `<script>\n${jinshiSchemaScript}\n</script>`
+  ],
+  [
     '<script src="./data/administrative-index.js"></script>',
     `<script>\n${administrativeIndexScript}\n</script>`
   ],
@@ -167,6 +185,10 @@ const replacements = [
   [
     '<script src="./data/general-titles.js"></script>',
     `<script>\n${generalTitlesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/office-order-policies.js"></script>',
+    `<script>\n${officeOrderPoliciesScript}\n</script>`
   ],
   [
     '<script src="./data/kaifu-policies.js"></script>',
@@ -185,8 +207,16 @@ const replacements = [
     `<script>\n${personSourceIndexScript}\n</script>`
   ],
   [
+    '<script src="./data/person-entity-audit.js"></script>',
+    `<script>\n${personEntityAuditScript}\n</script>`
+  ],
+  [
     '<script src="./data/person-zi-supplement.js"></script>',
     `<script>\n${personZiSupplementScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v48-portrait-board.js"></script>',
+    `<script>\n${portraitBoardScript}\n</script>`
   ],
   [
     '<script src="./assets/map/data/hydronym-audit.js"></script>',
