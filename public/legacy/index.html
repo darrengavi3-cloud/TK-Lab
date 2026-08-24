@@ -10523,6 +10523,21 @@ const app = createApp({
       </div>
     </el-drawer>
 
+    <el-drawer v-model="showTheme" title="界面主题与阅读节奏" size="380px" class="theme-drawer">
+      <div class="theme-drawer-intro">主题只改变界面表达，不改变政权颜色、证据提示、地图几何或工程数据。</div>
+      <div class="field-group-title">界面主题</div>
+      <button v-for="item in themeOptions" :key="item.key" type="button" class="theme-option" :class="{active:themeKey===item.key}" @click="setTheme(item.key)">
+        <span class="theme-swatches"><i v-for="swatch in item.swatches" :key="swatch" :style="{background:swatch}"></i></span>
+        <span class="theme-option-copy"><strong>{{item.label}}</strong><small>{{item.note}}</small></span>
+        <span v-if="themeKey===item.key" class="theme-check" aria-label="当前主题">✓</span>
+      </button>
+      <div class="field-group-title">内容密度</div>
+      <div class="theme-choice-row"><button type="button" :class="{active:densityMode==='comfortable'}" @click="setDensity('comfortable')">舒展</button><button type="button" :class="{active:densityMode==='compact'}" @click="setDensity('compact')">紧凑</button></div>
+      <div class="field-group-title">动效</div>
+      <div class="theme-choice-row"><button type="button" :class="{active:motionMode==='standard'}" @click="setMotion('standard')">标准</button><button type="button" :class="{active:motionMode==='reduced'}" @click="setMotion('reduced')">减少动效</button></div>
+      <p class="theme-drawer-note">减少动效会关闭位移、交错进入和缩放，只保留短暂淡入；也会尊重系统的减少动效设置。</p>
+    </el-drawer>
+
     <el-drawer v-model="showPalette" title="势力节点配色" size="340px">
       <div class="summary-head">颜色会自动应用于对应势力全部节点，并随完整 JSON 与多存档保存。</div>
       <div v-for="f in factions" :key="f.key" class="palette-row"><span>{{f.label||f.short||f.name}}</span><el-color-picker v-model="f.color" /></div>
