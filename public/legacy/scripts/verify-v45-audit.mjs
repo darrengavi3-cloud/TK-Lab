@@ -25,6 +25,8 @@ const shihuoGap = JSON.parse(read('data/v45-shihuo-gap.json'));
 const fangzhenReview = JSON.parse(read('data/v45-fangzhen-review.json'));
 const coverage = JSON.parse(read('data/person-volume-coverage.json'));
 const ziSupplement = JSON.parse(read('data/person-zi-supplement.json'));
+const ziRecords = ziSupplement.records || ziSupplement.supplements || [];
+const ziUnresolved = ziSupplement.audit?.unresolved || ziSupplement.unresolved || [];
 
 // 1. 朝堂/府署误入
 assert(html.includes('courtResidenceReason') && html.includes('府署定义：'), '府署入口依据函数未接入');
@@ -47,7 +49,7 @@ assert(mislabeled.length === 0, '诸公本人仍被误标为府署');
 assert(coverage.coverage.every(item => ['已处理','待复核'].includes(item.processedStatus)), '正史卷存在未处理状态');
 assert(coverage.coverage.filter(item => item.processedStatus === '待复核').length <= 60, '待复核卷过多');
 assert(Number.isInteger(sourceIndex.summary.appointments) && Number.isInteger(sourceIndex.summary.defaultAppointments), '人物任官统计缺少结构化数量');
-assert(html.includes('sourceVolumes') && html.includes('含 <b>{{p.sourceVolumes.length}}</b> 卷来源'), '人物卡片未显示卷次来源数');
+assert(html.includes('sourceVolumes') && (html.includes('含 <b>{{p.sourceVolumes.length}}</b> 卷来源') || html.includes('正史卷次')), '人物卡片或证据案卷未显示卷次来源');
 assert(html.includes('people-source-note') && html.includes('来源卷次：'), '人物详情未显示来源卷次列表');
 
 // 3. 附件候选与状态
@@ -67,7 +69,7 @@ assert(html.includes('activeBattleDetail.participants') && html.includes('active
 // 5. 州镇复核清单与审校中心
 assert(fangzhenReview.summary.total >= 60, '州镇存疑复核清单不足');
 assert(html.includes('showAuditCenter') && html.includes('exportAuditWorkbook') && html.includes('audit-issue-list'), '审校中心或复核工作簿导出未接入');
-assert(html.includes("courtResidenceAvailable(node)&&!residenceDefinitionFor(node)"), '无显式府署入口审计项未接入');
+assert(html.includes("courtResidenceStatus(node)==='府署未建档'"), '无显式府署入口审计项未接入');
 assert(portable.includes('courtResidenceReason') && portable.includes('exportAuditWorkbook'), '便携版未同步 V45 审校交互');
 assert(fs.existsSync(path.join(root, 'docs/V45史实审核与数据补充.md')), '缺少 V45 版本文档');
 assert(fs.existsSync(path.join(root, 'data/v45-release-manifest.json')), '缺少 V45 发布清单');
@@ -78,7 +80,7 @@ assert(!html.includes('都督职任（见州镇表）') && !html.includes('都�
 assert(html.includes('mergePersonEntries') && html.includes('所历朝代：'), '人物记去重或跨朝代标签未接入');
 assert(html.includes('同名重复人物'), '同名重复人物审计项未接入');
 assert(!html.includes('蜀汉与西南') && html.includes('BATTLE_CAMPS') && html.includes('政权沿革与内政'), '战事纪地域分组未改为国家间');
-assert(html.includes('<strong>国家间</strong>'), '战事纪“时间支线”未改名为“国家间”');
+assert(html.includes("battleView==='belligerent'") && html.includes('按交战方'), '战事纪缺少国家间／交战方视图');
 assert(portable.includes('mergePersonEntries') && portable.includes('BATTLE_CAMPS'), '便携版未同步本轮四项修复');
 
 // 7. 人物记本轮专项回归
@@ -88,8 +90,8 @@ assert(!defaultAppointments.some(item => badNames.includes(item.name)), '误识�
 const feiYi = sourceIndex.appointments.filter(item => /费祎|費禕/.test(item.name));
 assert(feiYi.length > 0 && new Set(feiYi.map(item => item.personId)).size === 1, '费祎跨卷/跨证据层未合并为单一 personId');
 assert(feiYi.every(item => item.personId === 'person:shu:fei-yi'), '费祎未归入显式身份 person:shu:fei-yi');
-assert(ziSupplement.supplements.some(item => item.name === '柳隐' && item.zi === '休然'), '柳隐表字补充缺失');
-assert(ziSupplement.unresolved.every(item => item.reason.includes('未检出') || item.reason.includes('帝王')), '未补表字必须说明理由，不得臆造');
+assert(ziRecords.some(item => item.name === '柳隐' && item.zi === '休然'), '柳隐表字补充缺失');
+assert(ziUnresolved.every(item => item.reason.includes('未检出') || item.reason.includes('帝王')), '未补表字必须说明理由，不得臆造');
 assert(html.includes('peopleView') && html.includes('people-view-nav') && html.includes('时期快照'), '人物记快照/人物双按钮未接入');
 assert(html.includes('openPeopleDetailFromSnapshot'), '快照条目跳转人物档案未接入');
 assert(read('data/person-biographies.js').includes("'柳隐':{zi:'休然'"), '柳隐表字未写入人物传记数据');
@@ -100,7 +102,7 @@ assert(sourceIndex.appointments.filter(a=>a.name==='蒋琬').length>=3 && new Se
 assert(new Set(sourceIndex.appointments.filter(a=>a.name==='费祎').map(a=>a.personId)).size===1, '费祎历官未合并');
 assert(!sourceIndex.appointments.some(a=>a.name==='曹爽'&&a.officeName==='掾'), '曹爽仍被误列为属官');
 assert(!sourceIndex.appointments.some(a=>/^司马(桓温|曹真|刁暢)$/.test(a.name)), '大司马/司马官职前缀仍被误当复姓');
-assert(ziSupplement.supplements.some(item=>item.name==='姜維'||item.name==='姜维'), '姜维表字未补充');
+assert(ziRecords.some(item=>item.name==='姜維'||item.name==='姜维'), '姜维表字未补充');
 assert(html.includes('personZiFor') && html.includes('SGZ_PERSON_ZI_SUPPLEMENT'), '表字补充未接入人物档案');
 assert(html.includes('mergedByOffice') && html.includes('sourceLocators.length>1'), '人物详情多段历官未去重或未标注多处出处');
 assert(!html.includes('赵王伦') && !html.includes('梁王肜') && !html.includes('成都王颖') && !html.includes('南阳王保') && !html.includes('东莞王伷') && !html.includes('高阳王珪') && !html.includes('汝阴王骏'), '西晋王爵人物名未更正为司马＋名');

@@ -18,6 +18,7 @@ function load(relative, name) {
 
 const source = load('data/person-source-index.js', 'SGZ_PERSON_SOURCE_INDEX');
 const audit = json('data/person-entity-audit.json');
+const canonicalFor = raw => audit.normalizeMap?.[raw]?.canonicalName || audit.normalizeMap?.[raw] || '';
 const manifest = load('data/portrait-manifest.js', 'SGZ_PERSON_PORTRAIT_MANIFEST');
 const board = load('data/v48-portrait-board.js', 'SGZ_V48_PORTRAIT_BOARD');
 const html = read('index.html');
@@ -28,9 +29,9 @@ const badNames = ['賁九江', '公女曼', '康代', '常侍大', '牧辽东', 
 const defaults = source.people.filter(item => item.includeInDefault === true);
 assert(defaults.every(item => item.entityType === 'person' && item.visibilityStatus === 'visible'), 'V50 默认人物实体门禁失败');
 assert(!defaults.some(item => badNames.includes(item.name) || badNames.some(name => (item.aliases || []).includes(name))), 'V50 已知官号/地名/残片仍在默认人物中');
-assert(audit.normalizations.some(item => item.rawName === '賁九江' && item.canonicalName === '孙贲'), '孙贲规范化缺失');
-assert(audit.normalizations.some(item => item.rawName === '公女曼' && item.canonicalName === '曹曼'), '曹曼规范化缺失');
-assert(audit.normalizations.some(item => item.rawName === '康代' && item.canonicalName === '韦康'), '韦康规范化缺失');
+assert(canonicalFor('賁九江') === '孙贲', '孙贲规范化缺失');
+assert(canonicalFor('公女曼') === '曹曼', '曹曼规范化缺失');
+assert(canonicalFor('康代') === '韦康', '韦康规范化缺失');
 assert(defaults.some(item => item.name === '孙贲') && defaults.some(item => item.name === '曹曼') && defaults.some(item => item.name === '韦康'), '规范化人物未进入默认人物索引');
 assert(board.count === 50 && manifest.summary.figmaBoardMapped === 50, '50 人设计板映射不完整');
 assert(Object.values(manifest.byPersonId).filter(item => item.status === 'ready').every(item => item.src), 'ready 立绘缺少资源');

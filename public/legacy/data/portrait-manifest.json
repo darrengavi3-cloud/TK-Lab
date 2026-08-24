@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-22T17:59:23.831Z",
+  "generatedAt": "2026-08-24T13:30:33.455Z",
   "scope": "人物记默认可见人物按稳定 personId 建立立绘索引；占位图仅作界面识别，不代表史实肖像。",
   "fallbackSrc": "./assets/portraits/generated/person-placeholder-v46.png",
   "defaultPersonIds": [
@@ -11,34 +11,34 @@
     "person:source:9f7272bc767c",
     "person:source:b2dc15c2b1f2",
     "person:source:72237d3083d5",
-    "person:source:397edec8b12a",
+    "person:wei:jia-xu",
     "person:source:2a7e68aa7262",
-    "person:source:121d406fe7d1",
-    "person:source:09f7e29a49fb",
+    "person:wei:cao-ren",
+    "person:wei:hua-xin",
     "person:source:11e5afb2df97",
     "person:wei:cao-man",
-    "person:source:603b840477e3",
+    "person:wei:cao-zhen",
     "person:source:6d19a25fbe7e",
     "person:source:f70e8bb46940",
     "person:source:57f563d7a1ce",
-    "person:source:1d12af903d2f",
+    "person:wei:wei-zhen",
     "person:source:a80a9d39a6e9",
     "person:source:5da0dd364783",
-    "person:source:e91b523e72ad",
+    "person:wei:cui-lin",
     "person:source:272c8716cddb",
     "person:source:182106820ab7",
     "person:source:c9646b99be7a",
     "person:wei:liu-fang",
-    "person:source:23b3d654e08b",
+    "person:wei:sun-li",
     "person:source:ef20cd1a60a8",
-    "person:source:73ba4a010168",
-    "person:source:d04dd2bef1e2",
-    "person:source:ab63a1750cf5",
-    "person:source:2831848a9591",
-    "person:source:1341c89829db",
+    "person:jin:sima-fu",
+    "person:jin:zheng-chong",
+    "person:wei:xiahou-xuan",
+    "person:jin:sima-wang",
+    "person:wei:xu-miao",
     "person:source:0e535702e1a5",
     "person:source:6bea1ab8f79e",
-    "person:source:838b8308032f",
+    "person:jin:xun-yi",
     "person:source:536f3eca900e",
     "person:shu:liu-shan",
     "person:source:b429e221c1e7",
@@ -52,7 +52,7 @@
     "person:source:5a26d1185d64",
     "person:source:032cc177a216",
     "person:han:zhang-lu",
-    "person:source:c2c2cfbd720b",
+    "person:wei:li-feng",
     "person:source:30f8afe4c18c",
     "person:source:f741747b83c4",
     "person:source:4e121ec2c327",
@@ -62,7 +62,7 @@
     "person:source:e77c1970c9ac",
     "person:source:004770996fff",
     "person:source:1208f55849a5",
-    "person:source:0ac0345962bc",
+    "person:wei:zou-qi",
     "person:source:6808f45cf265",
     "person:source:b88e0c05cd6b",
     "person:han:liu-biao",
@@ -74,20 +74,20 @@
     "person:source:bdf065c626f6",
     "person:source:ab031a3e252f",
     "person:shu:zhuge-liang",
-    "person:source:9001e293139f",
-    "person:source:a106eb6551c1",
+    "person:shu:wei-yan",
+    "person:shu:xu-jing",
     "person:source:d66a7f3fda55",
     "person:shu:jiang-wan",
     "person:shu:fei-yi",
     "person:shu:jiang-wei",
     "person:source:6225fb017a4d",
-    "person:source:cc650c22182b",
+    "person:shu:chen-zhi",
     "person:source:b9b442ab00f7",
-    "person:source:6570aa164b2e",
+    "person:han:tao-qian",
     "person:source:fce5078fab12",
     "person:han:liu-zhang",
-    "person:source:12d700a23b77",
-    "person:source:51390b3cd295",
+    "person:shu:fa-zheng",
+    "person:shu:dong-yun",
     "person:source:d7381b702ec2",
     "person:source:ee6c75cc5e60",
     "person:source:c9065395c9a7",
@@ -96,34 +96,34 @@
     "person:source:64911f32eff7",
     "person:source:6f24577154e3",
     "person:source:6787527ab62b",
-    "person:source:8dc0bfe19c5d",
+    "person:wu:lu-su",
     "person:source:f64651d5146e",
-    "person:source:8f0533393cfd",
-    "person:source:f88e20a568d0",
-    "person:source:20b3d8e91af1",
+    "person:wu:quan-cong",
+    "person:wu:lu-xun",
+    "person:wu:bu-zhi",
     "person:wu:sun-quan",
-    "person:source:c10071bc56e7",
+    "person:wu:zhuge-ke",
     "person:source:64b99027de6f",
-    "person:source:a3e7a34102f6",
+    "person:wu:puyang-xing",
     "person:source:8a094c46b36a",
-    "person:source:745dc71ccc2c",
-    "person:source:4fe4b9999e27",
-    "person:source:e8e51760ad21",
+    "person:wu:lu-kang",
+    "person:wu:zhang-ti",
+    "person:wu:teng-yin",
     "person:source:74484c7b8050",
     "person:source:85fd3c81396f",
     "person:source:87282926790c",
-    "person:source:64713c14be03",
+    "person:wu:he-zhi",
     "person:source:ab32fb630e93",
     "person:wu:sun-hao",
     "person:source:541aa70629a7",
     "person:source:dd8a51414ff5",
-    "person:source:b13a3444a2dd",
+    "person:wu:dai-liang",
     "person:wu:shi-kuang",
     "person:wu:sun-ben",
-    "person:source:d19aff65e0f7",
+    "person:wu:sun-shao",
     "person:source:13850e2cf763",
     "person:source:458e5685f88a",
-    "person:source:35a5246521f7",
+    "person:wu:sun-he",
     "person:source:e3995aefcddc",
     "person:source:54b1ec55b537",
     "person:source:9b6ac59b74f6"
@@ -262,8 +262,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:397edec8b12a": {
-      "personId": "person:source:397edec8b12a",
+    "person:wei:jia-xu": {
+      "personId": "person:wei:jia-xu",
       "name": "贾诩",
       "aliases": [
         "贾诩"
@@ -310,8 +310,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:121d406fe7d1": {
-      "personId": "person:source:121d406fe7d1",
+    "person:wei:cao-ren": {
+      "personId": "person:wei:cao-ren",
       "name": "曹仁",
       "aliases": [
         "曹仁"
@@ -334,8 +334,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:09f7e29a49fb": {
-      "personId": "person:source:09f7e29a49fb",
+    "person:wei:hua-xin": {
+      "personId": "person:wei:hua-xin",
       "name": "华歆",
       "aliases": [
         "华歆"
@@ -392,8 +392,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:603b840477e3": {
-      "personId": "person:source:603b840477e3",
+    "person:wei:cao-zhen": {
+      "personId": "person:wei:cao-zhen",
       "name": "曹真",
       "aliases": [
         "曹真"
@@ -467,8 +467,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:1d12af903d2f": {
-      "personId": "person:source:1d12af903d2f",
+    "person:wei:wei-zhen": {
+      "personId": "person:wei:wei-zhen",
       "name": "卫臻",
       "aliases": [
         "卫臻"
@@ -525,8 +525,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:e91b523e72ad": {
-      "personId": "person:source:e91b523e72ad",
+    "person:wei:cui-lin": {
+      "personId": "person:wei:cui-lin",
       "name": "崔林",
       "aliases": [
         "崔林"
@@ -610,8 +610,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:23b3d654e08b": {
-      "personId": "person:source:23b3d654e08b",
+    "person:wei:sun-li": {
+      "personId": "person:wei:sun-li",
       "name": "孙礼",
       "aliases": [
         "孙礼"
@@ -644,8 +644,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:73ba4a010168": {
-      "personId": "person:source:73ba4a010168",
+    "person:jin:sima-fu": {
+      "personId": "person:jin:sima-fu",
       "name": "司马孚",
       "aliases": [
         "司马孚"
@@ -668,8 +668,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:d04dd2bef1e2": {
-      "personId": "person:source:d04dd2bef1e2",
+    "person:jin:zheng-chong": {
+      "personId": "person:jin:zheng-chong",
       "name": "郑冲",
       "aliases": [
         "郑冲"
@@ -685,8 +685,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:ab63a1750cf5": {
-      "personId": "person:source:ab63a1750cf5",
+    "person:wei:xiahou-xuan": {
+      "personId": "person:wei:xiahou-xuan",
       "name": "夏侯玄",
       "aliases": [
         "夏侯玄"
@@ -702,8 +702,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:2831848a9591": {
-      "personId": "person:source:2831848a9591",
+    "person:jin:sima-wang": {
+      "personId": "person:jin:sima-wang",
       "name": "司马望",
       "aliases": [
         "司马望"
@@ -719,8 +719,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:1341c89829db": {
-      "personId": "person:source:1341c89829db",
+    "person:wei:xu-miao": {
+      "personId": "person:wei:xu-miao",
       "name": "徐邈",
       "aliases": [
         "徐邈"
@@ -770,8 +770,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:838b8308032f": {
-      "personId": "person:source:838b8308032f",
+    "person:jin:xun-yi": {
+      "personId": "person:jin:xun-yi",
       "name": "荀顗",
       "aliases": [
         "荀顗"
@@ -851,7 +851,7 @@
       "aliases": [
         "董旻"
       ],
-      "zi": "",
+      "zi": "叔穎",
       "src": "./assets/portraits/v51/person-source-97a50d999831.png",
       "polity": "未详",
       "color": "#8D948A",
@@ -1015,8 +1015,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:c2c2cfbd720b": {
-      "personId": "person:source:c2c2cfbd720b",
+    "person:wei:li-feng": {
+      "personId": "person:wei:li-feng",
       "name": "李丰",
       "aliases": [
         "李丰"
@@ -1192,8 +1192,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:0ac0345962bc": {
-      "personId": "person:source:0ac0345962bc",
+    "person:wei:zou-qi": {
+      "personId": "person:wei:zou-qi",
       "name": "邹岐",
       "aliases": [
         "邹岐"
@@ -1410,8 +1410,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:9001e293139f": {
-      "personId": "person:source:9001e293139f",
+    "person:shu:wei-yan": {
+      "personId": "person:shu:wei-yan",
       "name": "魏延",
       "aliases": [
         "魏延"
@@ -1427,8 +1427,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:a106eb6551c1": {
-      "personId": "person:source:a106eb6551c1",
+    "person:shu:xu-jing": {
+      "personId": "person:shu:xu-jing",
       "name": "许靖",
       "aliases": [
         "许靖"
@@ -1550,8 +1550,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:cc650c22182b": {
-      "personId": "person:source:cc650c22182b",
+    "person:shu:chen-zhi": {
+      "personId": "person:shu:chen-zhi",
       "name": "陈祗",
       "aliases": [
         "陈祗"
@@ -1584,8 +1584,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:6570aa164b2e": {
-      "personId": "person:source:6570aa164b2e",
+    "person:han:tao-qian": {
+      "personId": "person:han:tao-qian",
       "name": "陶谦",
       "aliases": [
         "陶谦"
@@ -1635,8 +1635,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:12d700a23b77": {
-      "personId": "person:source:12d700a23b77",
+    "person:shu:fa-zheng": {
+      "personId": "person:shu:fa-zheng",
       "name": "法正",
       "aliases": [
         "法正"
@@ -1652,8 +1652,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:51390b3cd295": {
-      "personId": "person:source:51390b3cd295",
+    "person:shu:dong-yun": {
+      "personId": "person:shu:dong-yun",
       "name": "董允",
       "aliases": [
         "董允"
@@ -1812,8 +1812,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:8dc0bfe19c5d": {
-      "personId": "person:source:8dc0bfe19c5d",
+    "person:wu:lu-su": {
+      "personId": "person:wu:lu-su",
       "name": "鲁肃",
       "aliases": [
         "鲁肃"
@@ -1853,8 +1853,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:8f0533393cfd": {
-      "personId": "person:source:8f0533393cfd",
+    "person:wu:quan-cong": {
+      "personId": "person:wu:quan-cong",
       "name": "全琮",
       "aliases": [
         "全琮"
@@ -1870,8 +1870,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:f88e20a568d0": {
-      "personId": "person:source:f88e20a568d0",
+    "person:wu:lu-xun": {
+      "personId": "person:wu:lu-xun",
       "name": "陆逊",
       "aliases": [
         "陆逊"
@@ -1894,8 +1894,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:20b3d8e91af1": {
-      "personId": "person:source:20b3d8e91af1",
+    "person:wu:bu-zhi": {
+      "personId": "person:wu:bu-zhi",
       "name": "步骘",
       "aliases": [
         "步骘"
@@ -1935,8 +1935,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:c10071bc56e7": {
-      "personId": "person:source:c10071bc56e7",
+    "person:wu:zhuge-ke": {
+      "personId": "person:wu:zhuge-ke",
       "name": "诸葛恪",
       "aliases": [
         "诸葛恪"
@@ -1976,8 +1976,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:a3e7a34102f6": {
-      "personId": "person:source:a3e7a34102f6",
+    "person:wu:puyang-xing": {
+      "personId": "person:wu:puyang-xing",
       "name": "濮阳兴",
       "aliases": [
         "濮阳兴"
@@ -2010,8 +2010,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:745dc71ccc2c": {
-      "personId": "person:source:745dc71ccc2c",
+    "person:wu:lu-kang": {
+      "personId": "person:wu:lu-kang",
       "name": "陆抗",
       "aliases": [
         "陆抗"
@@ -2034,8 +2034,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:4fe4b9999e27": {
-      "personId": "person:source:4fe4b9999e27",
+    "person:wu:zhang-ti": {
+      "personId": "person:wu:zhang-ti",
       "name": "张悌",
       "aliases": [
         "张悌"
@@ -2051,8 +2051,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:e8e51760ad21": {
-      "personId": "person:source:e8e51760ad21",
+    "person:wu:teng-yin": {
+      "personId": "person:wu:teng-yin",
       "name": "滕胤",
       "aliases": [
         "滕胤"
@@ -2119,8 +2119,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:64713c14be03": {
-      "personId": "person:source:64713c14be03",
+    "person:wu:he-zhi": {
+      "personId": "person:wu:he-zhi",
       "name": "何植",
       "aliases": [
         "何植"
@@ -2211,8 +2211,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:b13a3444a2dd": {
-      "personId": "person:source:b13a3444a2dd",
+    "person:wu:dai-liang": {
+      "personId": "person:wu:dai-liang",
       "name": "戴良",
       "aliases": [
         "戴良"
@@ -2262,8 +2262,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:d19aff65e0f7": {
-      "personId": "person:source:d19aff65e0f7",
+    "person:wu:sun-shao": {
+      "personId": "person:wu:sun-shao",
       "name": "孙邵",
       "aliases": [
         "孙邵"
@@ -2313,8 +2313,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:source:35a5246521f7": {
-      "personId": "person:source:35a5246521f7",
+    "person:wu:sun-he": {
+      "personId": "person:wu:sun-he",
       "name": "孙河",
       "aliases": [
         "孙河"
@@ -2446,8 +2446,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:unresolved:1gnpomm": {
-      "personId": "person:unresolved:1gnpomm",
+    "person:jin:xun-xu": {
+      "personId": "person:jin:xun-xu",
       "name": "荀勖",
       "aliases": [
         "荀勖"
@@ -2470,8 +2470,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:45e1c2cbae81": {
-      "personId": "person:source:45e1c2cbae81",
+    "person:jin:pei-xiu": {
+      "personId": "person:jin:pei-xiu",
       "name": "裴秀",
       "aliases": [
         "裴秀"
@@ -2494,8 +2494,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:37c04d0369b5": {
-      "personId": "person:source:37c04d0369b5",
+    "person:jin:yang-hu": {
+      "personId": "person:jin:yang-hu",
       "name": "羊祜",
       "aliases": [
         "羊祜"
@@ -2518,8 +2518,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:39b648a0de5f": {
-      "personId": "person:source:39b648a0de5f",
+    "person:jin:he-zeng": {
+      "personId": "person:jin:he-zeng",
       "name": "何曾",
       "aliases": [
         "何曾"
@@ -2542,8 +2542,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:unresolved:0zgzk7n": {
-      "personId": "person:unresolved:0zgzk7n",
+    "person:jin:wang-chen": {
+      "personId": "person:jin:wang-chen",
       "name": "王沈",
       "aliases": [
         "王沈"
@@ -2968,8 +2968,8 @@
       "designRef": null,
       "interfaceOnly": true
     },
-    "person:unresolved:0zw9xuk": {
-      "personId": "person:unresolved:0zw9xuk",
+    "person:shu:dong-jue": {
+      "personId": "person:shu:dong-jue",
       "name": "董厥",
       "aliases": [
         "董厥"
@@ -3290,8 +3290,8 @@
       "interfaceOnly": true,
       "designStatus": "figma-design"
     },
-    "person:source:6b39a55f3d4a": {
-      "personId": "person:source:6b39a55f3d4a",
+    "person:jin:shi-bao": {
+      "personId": "person:jin:shi-bao",
       "name": "石苞",
       "aliases": [
         "石苞"
@@ -3522,7 +3522,7 @@
       "interfaceOnly": true
     },
     "贾诩": {
-      "personId": "person:source:397edec8b12a",
+      "personId": "person:wei:jia-xu",
       "name": "贾诩",
       "aliases": [
         "贾诩"
@@ -3570,7 +3570,7 @@
       "designStatus": "figma-design"
     },
     "曹仁": {
-      "personId": "person:source:121d406fe7d1",
+      "personId": "person:wei:cao-ren",
       "name": "曹仁",
       "aliases": [
         "曹仁"
@@ -3594,7 +3594,7 @@
       "designStatus": "figma-design"
     },
     "华歆": {
-      "personId": "person:source:09f7e29a49fb",
+      "personId": "person:wei:hua-xin",
       "name": "华歆",
       "aliases": [
         "华歆"
@@ -3652,7 +3652,7 @@
       "interfaceOnly": true
     },
     "曹真": {
-      "personId": "person:source:603b840477e3",
+      "personId": "person:wei:cao-zhen",
       "name": "曹真",
       "aliases": [
         "曹真"
@@ -3727,7 +3727,7 @@
       "interfaceOnly": true
     },
     "卫臻": {
-      "personId": "person:source:1d12af903d2f",
+      "personId": "person:wei:wei-zhen",
       "name": "卫臻",
       "aliases": [
         "卫臻"
@@ -3785,7 +3785,7 @@
       "interfaceOnly": true
     },
     "崔林": {
-      "personId": "person:source:e91b523e72ad",
+      "personId": "person:wei:cui-lin",
       "name": "崔林",
       "aliases": [
         "崔林"
@@ -3870,7 +3870,7 @@
       "interfaceOnly": true
     },
     "孙礼": {
-      "personId": "person:source:23b3d654e08b",
+      "personId": "person:wei:sun-li",
       "name": "孙礼",
       "aliases": [
         "孙礼"
@@ -3904,7 +3904,7 @@
       "interfaceOnly": true
     },
     "司马孚": {
-      "personId": "person:source:73ba4a010168",
+      "personId": "person:jin:sima-fu",
       "name": "司马孚",
       "aliases": [
         "司马孚"
@@ -3928,7 +3928,7 @@
       "designStatus": "figma-design"
     },
     "郑冲": {
-      "personId": "person:source:d04dd2bef1e2",
+      "personId": "person:jin:zheng-chong",
       "name": "郑冲",
       "aliases": [
         "郑冲"
@@ -3945,7 +3945,7 @@
       "interfaceOnly": true
     },
     "夏侯玄": {
-      "personId": "person:source:ab63a1750cf5",
+      "personId": "person:wei:xiahou-xuan",
       "name": "夏侯玄",
       "aliases": [
         "夏侯玄"
@@ -3962,7 +3962,7 @@
       "interfaceOnly": true
     },
     "司马望": {
-      "personId": "person:source:2831848a9591",
+      "personId": "person:jin:sima-wang",
       "name": "司马望",
       "aliases": [
         "司马望"
@@ -3979,7 +3979,7 @@
       "interfaceOnly": true
     },
     "徐邈": {
-      "personId": "person:source:1341c89829db",
+      "personId": "person:wei:xu-miao",
       "name": "徐邈",
       "aliases": [
         "徐邈"
@@ -4030,7 +4030,7 @@
       "interfaceOnly": true
     },
     "荀顗": {
-      "personId": "person:source:838b8308032f",
+      "personId": "person:jin:xun-yi",
       "name": "荀顗",
       "aliases": [
         "荀顗"
@@ -4110,7 +4110,7 @@
       "aliases": [
         "董旻"
       ],
-      "zi": "",
+      "zi": "叔穎",
       "src": "./assets/portraits/v51/person-source-97a50d999831.png",
       "polity": "未详",
       "color": "#8D948A",
@@ -4275,7 +4275,7 @@
       "interfaceOnly": true
     },
     "李丰": {
-      "personId": "person:source:c2c2cfbd720b",
+      "personId": "person:wei:li-feng",
       "name": "李丰",
       "aliases": [
         "李丰"
@@ -4452,7 +4452,7 @@
       "interfaceOnly": true
     },
     "邹岐": {
-      "personId": "person:source:0ac0345962bc",
+      "personId": "person:wei:zou-qi",
       "name": "邹岐",
       "aliases": [
         "邹岐"
@@ -4670,7 +4670,7 @@
       "designStatus": "figma-design"
     },
     "魏延": {
-      "personId": "person:source:9001e293139f",
+      "personId": "person:shu:wei-yan",
       "name": "魏延",
       "aliases": [
         "魏延"
@@ -4687,7 +4687,7 @@
       "interfaceOnly": true
     },
     "许靖": {
-      "personId": "person:source:a106eb6551c1",
+      "personId": "person:shu:xu-jing",
       "name": "许靖",
       "aliases": [
         "许靖"
@@ -4810,7 +4810,7 @@
       "interfaceOnly": true
     },
     "陈祗": {
-      "personId": "person:source:cc650c22182b",
+      "personId": "person:shu:chen-zhi",
       "name": "陈祗",
       "aliases": [
         "陈祗"
@@ -4844,7 +4844,7 @@
       "interfaceOnly": true
     },
     "陶谦": {
-      "personId": "person:source:6570aa164b2e",
+      "personId": "person:han:tao-qian",
       "name": "陶谦",
       "aliases": [
         "陶谦"
@@ -4895,7 +4895,7 @@
       "interfaceOnly": true
     },
     "法正": {
-      "personId": "person:source:12d700a23b77",
+      "personId": "person:shu:fa-zheng",
       "name": "法正",
       "aliases": [
         "法正"
@@ -4912,7 +4912,7 @@
       "interfaceOnly": true
     },
     "董允": {
-      "personId": "person:source:51390b3cd295",
+      "personId": "person:shu:dong-yun",
       "name": "董允",
       "aliases": [
         "董允"
@@ -5072,7 +5072,7 @@
       "interfaceOnly": true
     },
     "鲁肃": {
-      "personId": "person:source:8dc0bfe19c5d",
+      "personId": "person:wu:lu-su",
       "name": "鲁肃",
       "aliases": [
         "鲁肃"
@@ -5113,7 +5113,7 @@
       "interfaceOnly": true
     },
     "全琮": {
-      "personId": "person:source:8f0533393cfd",
+      "personId": "person:wu:quan-cong",
       "name": "全琮",
       "aliases": [
         "全琮"
@@ -5130,7 +5130,7 @@
       "interfaceOnly": true
     },
     "陆逊": {
-      "personId": "person:source:f88e20a568d0",
+      "personId": "person:wu:lu-xun",
       "name": "陆逊",
       "aliases": [
         "陆逊"
@@ -5154,7 +5154,7 @@
       "designStatus": "figma-design"
     },
     "步骘": {
-      "personId": "person:source:20b3d8e91af1",
+      "personId": "person:wu:bu-zhi",
       "name": "步骘",
       "aliases": [
         "步骘"
@@ -5195,7 +5195,7 @@
       "designStatus": "figma-design"
     },
     "诸葛恪": {
-      "personId": "person:source:c10071bc56e7",
+      "personId": "person:wu:zhuge-ke",
       "name": "诸葛恪",
       "aliases": [
         "诸葛恪"
@@ -5236,7 +5236,7 @@
       "interfaceOnly": true
     },
     "濮阳兴": {
-      "personId": "person:source:a3e7a34102f6",
+      "personId": "person:wu:puyang-xing",
       "name": "濮阳兴",
       "aliases": [
         "濮阳兴"
@@ -5270,7 +5270,7 @@
       "interfaceOnly": true
     },
     "陆抗": {
-      "personId": "person:source:745dc71ccc2c",
+      "personId": "person:wu:lu-kang",
       "name": "陆抗",
       "aliases": [
         "陆抗"
@@ -5294,7 +5294,7 @@
       "designStatus": "figma-design"
     },
     "张悌": {
-      "personId": "person:source:4fe4b9999e27",
+      "personId": "person:wu:zhang-ti",
       "name": "张悌",
       "aliases": [
         "张悌"
@@ -5311,7 +5311,7 @@
       "interfaceOnly": true
     },
     "滕胤": {
-      "personId": "person:source:e8e51760ad21",
+      "personId": "person:wu:teng-yin",
       "name": "滕胤",
       "aliases": [
         "滕胤"
@@ -5379,7 +5379,7 @@
       "interfaceOnly": true
     },
     "何植": {
-      "personId": "person:source:64713c14be03",
+      "personId": "person:wu:he-zhi",
       "name": "何植",
       "aliases": [
         "何植"
@@ -5471,7 +5471,7 @@
       "interfaceOnly": true
     },
     "戴良": {
-      "personId": "person:source:b13a3444a2dd",
+      "personId": "person:wu:dai-liang",
       "name": "戴良",
       "aliases": [
         "戴良"
@@ -5522,7 +5522,7 @@
       "interfaceOnly": true
     },
     "孙邵": {
-      "personId": "person:source:d19aff65e0f7",
+      "personId": "person:wu:sun-shao",
       "name": "孙邵",
       "aliases": [
         "孙邵"
@@ -5573,7 +5573,7 @@
       "interfaceOnly": true
     },
     "孙河": {
-      "personId": "person:source:35a5246521f7",
+      "personId": "person:wu:sun-he",
       "name": "孙河",
       "aliases": [
         "孙河"
@@ -5706,7 +5706,7 @@
       "interfaceOnly": true
     },
     "荀勖": {
-      "personId": "person:unresolved:1gnpomm",
+      "personId": "person:jin:xun-xu",
       "name": "荀勖",
       "aliases": [
         "荀勖"
@@ -5730,7 +5730,7 @@
       "designStatus": "figma-design"
     },
     "裴秀": {
-      "personId": "person:source:45e1c2cbae81",
+      "personId": "person:jin:pei-xiu",
       "name": "裴秀",
       "aliases": [
         "裴秀"
@@ -5754,7 +5754,7 @@
       "designStatus": "figma-design"
     },
     "羊祜": {
-      "personId": "person:source:37c04d0369b5",
+      "personId": "person:jin:yang-hu",
       "name": "羊祜",
       "aliases": [
         "羊祜"
@@ -5778,7 +5778,7 @@
       "designStatus": "figma-design"
     },
     "何曾": {
-      "personId": "person:source:39b648a0de5f",
+      "personId": "person:jin:he-zeng",
       "name": "何曾",
       "aliases": [
         "何曾"
@@ -5802,7 +5802,7 @@
       "designStatus": "figma-design"
     },
     "王沈": {
-      "personId": "person:unresolved:0zgzk7n",
+      "personId": "person:jin:wang-chen",
       "name": "王沈",
       "aliases": [
         "王沈"
@@ -6252,7 +6252,7 @@
       "interfaceOnly": true
     },
     "董厥": {
-      "personId": "person:unresolved:0zw9xuk",
+      "personId": "person:shu:dong-jue",
       "name": "董厥",
       "aliases": [
         "董厥"
@@ -6574,7 +6574,7 @@
       "designStatus": "figma-design"
     },
     "石苞": {
-      "personId": "person:source:6b39a55f3d4a",
+      "personId": "person:jin:shi-bao",
       "name": "石苞",
       "aliases": [
         "石苞"

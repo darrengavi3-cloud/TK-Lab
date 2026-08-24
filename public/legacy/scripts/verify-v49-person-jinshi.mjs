@@ -21,6 +21,7 @@ const { SGZ_PERSON_SOURCE_INDEX: source, SGZ_PERSON_ENTITY_AUDIT: entityAudit, S
   ['SGZ_PERSON_SOURCE_INDEX', 'SGZ_PERSON_ENTITY_AUDIT', 'SGZ_JINSHI_SCHEMA', 'SGZ_PERSON_PORTRAIT_MANIFEST', 'SGZ_V48_PORTRAIT_BOARD', 'SGZ_EPIGRAPHIC_V46_JIN']
 );
 const audit = json('data/person-entity-audit.json');
+const canonicalFor = raw => audit.normalizeMap?.[raw]?.canonicalName || audit.normalizeMap?.[raw] || '';
 
 const badNames = ['豐雖宿', '都护', '扶波', '扶风', '桂林', '贵阳', '江阳', '公表权', '国硃寓', '海鹽', '懷義', '胡业亦', '黄琬代', '曹爽请', '曹爽引', '别部', '别驾', '常侍大', '牧辽东', '车骑', '左车骑', '右车骑', '车骑大', '伏波', '平北', '平狄', '安东', '安北', '平东', '越骑'];
 const defaultPeople = source.people.filter(item => item.includeInDefault === true);
@@ -29,14 +30,14 @@ assert(new Set(defaultPeople.map(item => item.personId)).size === defaultPeople.
 assert(new Set(defaultPeople.map(item => item.name)).size === defaultPeople.length, '默认人物规范姓名重复');
 assert(badNames.every(name => !defaultPeople.some(item => item.name === name || (item.aliases || []).includes(name))), '已知错误姓名仍进入默认人物记');
 assert(source.appointments.filter(item => item.includeInDefault === true).every(item => item.entityType === 'person' && item.visibilityStatus === 'visible'), '默认任官记录存在非人物实体');
-assert(audit.normalizations.some(item => item.rawName === '豐雖宿' && item.canonicalName === '李丰'), '豐雖宿未按出处规范化');
-assert(audit.normalizations.some(item => item.rawName === '胡业亦' && item.canonicalName === '胡业'), '胡业亦未按出处规范化');
-assert(audit.normalizations.some(item => item.rawName === '黄琬代' && item.canonicalName === '黄琬'), '黄琬代未按出处规范化');
-assert(audit.normalizations.some(item => item.rawName === '公表权' && item.canonicalName === '孙权'), '公表权未按出处规范化');
-assert(audit.normalizations.some(item => item.rawName === '国硃寓' && item.canonicalName === '朱寓'), '国硃寓未按出处规范化');
-assert(audit.normalizations.some(item => item.rawName === '賁九江' && item.canonicalName === '孙贲'), '賁九江未按出处规范化为孙贲');
-assert(audit.normalizations.some(item => item.rawName === '公女曼' && item.canonicalName === '曹曼'), '公女曼未按出处规范化为曹曼');
-assert(audit.normalizations.some(item => item.rawName === '康代' && item.canonicalName === '韦康'), '康代未按出处规范化为韦康');
+assert(canonicalFor('豐雖宿') === '李丰', '豐雖宿未按出处规范化');
+assert(canonicalFor('胡业亦') === '胡业', '胡业亦未按出处规范化');
+assert(canonicalFor('黄琬代') === '黄琬', '黄琬代未按出处规范化');
+assert(canonicalFor('公表权') === '孙权', '公表权未按出处规范化');
+assert(canonicalFor('国硃寓') === '朱寓', '国硃寓未按出处规范化');
+assert(canonicalFor('賁九江') === '孙贲', '賁九江未按出处规范化为孙贲');
+assert(canonicalFor('公女曼') === '曹曼', '公女曼未按出处规范化为曹曼');
+assert(canonicalFor('康代') === '韦康', '康代未按出处规范化为韦康');
 const feiYi = source.appointments.filter(item => item.name === '费祎');
 assert(feiYi.length > 0 && new Set(feiYi.map(item => item.personId)).size === 1, '费祎跨段任官未合并');
 
@@ -51,7 +52,7 @@ assert((manifest.summary?.designOnlyPortraits || 0) > 0, 'manifest 未统计 des
 assert((manifest.summary?.figmaBoardMapped || 0) === 50, 'Figma 设计板映射数量不是 50');
 assert(Object.values(manifest.byPersonId || {}).every(item => item.src && item.interfaceOnly === true), '立绘 manifest 存在无资源或缺界面声明的条目');
 
-assert(schema.schemaVersion === 'V49' && schema.columns.length >= 10, '金石录字段契约缺失');
+assert(['V49','V55'].includes(schema.schemaVersion) && schema.columns.length >= 10, '金石录字段契约缺失');
 assert(new Set(schema.columns.map(item => item.key)).size === schema.columns.length, '金石录表头字段重复');
 assert(schema.columns.every(item => item.label && item.sourceField), '金石录表头缺少 sourceField 映射');
 const normalizedJin = jin.records.map(record => schema.normalize(record));
@@ -64,7 +65,7 @@ assert(normalizedJin.every(record => !/伪刻|伪碑/.test(record.name)), '明�
 const html = read('index.html');
 assert(html.includes('./data/person-entity-audit.js') && html.includes('./data/jinshi-schema.js'), 'V49 审计/金石 schema 未接入主页面');
 assert(html.includes('personEntityAllowed') && html.includes('personCanonicalNameFor'), '人物实体门禁未接入人物注册表');
-assert(html.includes('prop="materialType"') && html.includes('scope.row.dateText') && html.includes('scope.row.findspot'), '金石表格仍使用旧字段表头');
+assert((html.includes('prop="materialType"') && html.includes('scope.row.dateText') && html.includes('scope.row.findspot')) || (html.includes('record.materialType') && html.includes('record.dateText') && html.includes('record.findspot')), '金石表格仍使用旧字段表头');
 const portablePath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 if (fs.existsSync(portablePath)) {
   const portable = fs.readFileSync(portablePath, 'utf8');

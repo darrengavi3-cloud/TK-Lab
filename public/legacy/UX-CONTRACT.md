@@ -1,4 +1,4 @@
-# 观史台交互契约（V54）
+# 观史台交互契约（V56）
 
 ## 检索与导航
 
@@ -35,3 +35,63 @@
 - 主题由 `data-sgz-theme` 控制，默认“兰台清昼”，可切换“朱批纸本”“青灯夜校”。主题只改变语义令牌，不改变政权色或史料数据。
 - 动效由 `data-sgz-motion` 控制；标准动效仅用于模块切换、抽屉进入和结果状态变化，减少动效时使用短淡入或直接切换。
 - 主题、密度和动效偏好使用独立的小型 `localStorage` 记录；工程数据仍由现有 IndexedDB 缓存负责。
+
+## V55 阅读／审校模式
+
+- 默认进入阅读模式，只呈现读者摘要、必要元数据和明确证据状态；原始记录与来源定位仍保留在数据对象中。
+- 审校模式显式显示编辑、来源定位、任期冲突、缺失释文和待考数量。切换模式不改写项目数据。
+- 缺少精确府署定义时显示“府署未建档”；不得用通用府署或丞相府作为任意官位的点击兜底。
+
+## V55 稳定身份与检索
+
+- 人物合并只能依据规范 `personId`。姓名、异体、表字和括号内容只能作为显式身份解析或检索键。
+- 同名异人必须分配不同 ID；人物卡以 ID 为键，每个 ID 只出现一次。旧 ID 仅通过登记的兼容映射迁移。
+- 空检索显示最近使用、常用入口和审校任务，不预先渲染全库。非空结果显示命中原因，并以模块加稳定 ID 去重。
+- 表字、立绘、人物详情和跨模块跳转优先按人物 ID 关联；姓名回退只服务旧数据兼容，不产生新合并。
+
+## V55 六版块交互
+
+- 职官谱：官位点击只选中官位；人物点击进入履历；“府”按钮只进入与该官位、时期和府主匹配的精确府署。
+- 战事纪：默认按年代，另有按交战方和按战役链；州名不是主要分类入口。
+- 州镇表：职任表、某年快照和两年对比互斥；重叠任期只在审校模式提示。
+- 食货志：146／157 基线与 168—316 主体分开；只有可比的确定年份数值进入比例图。
+- 金石录：列表字段与源文表头一一对应；详情显示完整释文或明确的缺载状态。
+- 形势图：V55 不改变地图本身，只保证战事和州镇的既有定位动作不回归。
+
+## V56 导航与证据案卷
+
+- 桌面模块切换的唯一所有者是左侧卷脊导航；顶部不再维护第二套模块标签。移动端固定显示“职官、人物、战事、形势、全部”。
+- 上下文栏是模块常用筛选的唯一所有者。页面内容区仅保留高级筛选、时间对比或审校动作，不重复政权、类别和检索入口。
+- `Ctrl/Cmd+K` 打开全局检索；“检索本页”只改变范围。IME 组合期间不执行 Enter，关闭后焦点回到原触发控件。
+- 桌面记录选择更新右侧证据案卷，不强制弹出抽屉；980px 以下记录详情使用全宽抽屉，并在关闭后恢复焦点。
+- 人物名录的每一行都是可聚焦按钮，以 `personId` 为键。详情时间线只显示该 ID 的全部任官、受爵、州镇和时期录，不按姓名重复建卡。
+- 官位卡点击只选择官位；只有显式“府”按钮或证据案卷中的“进入对应府署”动作可进入 `residenceDefinitionFor(当前官位)` 返回的精确府署。
+- 战事、州镇、金石和食货的行选择均更新同一证据案卷；地图定位、人物履历等跨模块动作保留稳定 ID 或记录 ID。
+- 证据状态由符号、文字和导轨共同表达：确定／推定、待考、争议不能只依赖颜色。
+
+## Canonical UI Map
+
+| Capability | Canonical owner | Source of truth | Allowed variants | Verification |
+| --- | --- | --- | --- | --- |
+| Table Selection | Element Plus table row selection and `selectV56Record` | `index.html` | Desktop evidence rail; mobile full-width detail | `node scripts/verify-v56.mjs` |
+| Select/Listbox | Element Plus `el-select` | `index.html` context bar | Compact width and mobile horizontal scroll only | `node scripts/verify-v56.mjs` |
+| Date | Element Plus year input and existing period registry | `index.html` | Single-year snapshot or two-year comparison | V43–V56 verification chain |
+| Form | Element Plus `el-form` in review mode | `index.html` | Reader mode hides mutation controls | V43–V56 verification chain |
+| Scrollbar | Global V56 standards and WebKit fallback | `assets/ui/v56.css` | Geometry may vary by bounded surface | Premium strict audit |
+| Toast | Element Plus `ElMessage` | `index.html` | Success, warning and error semantics | Existing project verification |
+| CRUD | Existing review-mode project editors | `index.html` | Reader mode is non-mutating | V43–V56 verification chain |
+
+## V56 响应式与偏好
+
+- 1280×720 顶栏不得换行，主要记录应在顶栏下约 160px 内出现；人物桌面首屏至少可见七条名录记录。
+- 390×844 不得横向溢出；证据栏隐藏，人物和金石的中栏详情改由全屏抽屉承载。
+- `uiPreferencesV56` 对应存储键为 `sgz_ui_preferences_v56`，只含 `theme`、`workspaceMode`、`navigationCollapsed`、`evidenceCollapsed`。
+- 支持 200% 缩放和 `prefers-reduced-motion`；减少动效时所有 V56 过渡缩短为近即时切换。
+
+## V57 统一检索与状态边界
+
+- 全局检索是唯一读者检索入口，顶栏显示“检索＋⌘K”；模块内不得出现“检索本页”或重复文本输入框。命令面板仍可按模块范围收窄。
+- 外观设置使用锚定浮层，不打开第二层页面；主题、密度和动效偏好继续写入独立的小型 UI 存储。
+- 阅读模式只显示 `evidenceStatus` 与有依据的“待考”；`reviewState`、审校任务和内部审计状态只在审校模式显示。
+- 每个可见人物必须有明确史料实体与有效关系；人物只按稳定 `personId` 出现一次。表字只有在正史正文、裴注或《晋书》等明确出处中才显示。
+- 职官谱只允许朝堂与表格两种前台视图，官位选择必须绑定所选官位；金石档案层级仅保留在内部数据与导出，食货志三个视图互斥。

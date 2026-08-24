@@ -49,7 +49,10 @@ function personIdFor(name, sourcePerson) {
   const key = canonicalName(name);
   const sourceMatch = sourcePerson || sourcePersonFor(key);
   const resolved = identities?.resolve?.(key);
-  return String(sourceMatch?.personId || resolved?.personId || model.personIdFor(key, { name: key }));
+  if (resolved?.personId) return String(resolved.personId);
+  const sourceId = String(sourceMatch?.personId || '');
+  if (sourceId) return String(identities?.canonicalPersonId?.(sourceId) || sourceId);
+  return String(model.personIdFor(key, { name: key }));
 }
 
 function ziFor(name) {
@@ -61,7 +64,7 @@ function ziFor(name) {
 
 function polityFor(personId) {
   const values = new Set((source.appointments || [])
-    .filter(item => item.personId === personId)
+    .filter(item => String(identities?.canonicalPersonId?.(item.personId) || item.personId) === personId)
     .map(item => String(item.polity || '').trim())
     .filter(Boolean));
   return Array.from(values).join('／') || '未详';
@@ -109,7 +112,7 @@ const defaultPeople = (source.people || []).filter(item => item.includeInDefault
 const byPersonId = {};
 const byName = {};
 defaultPeople.forEach(person => {
-  const item = entry(person.name, person, person.personId);
+  const item = entry(person.name, person, personIdFor(person.name, person));
   byPersonId[item.personId] = item;
   byName[item.name] = item;
 });
@@ -148,7 +151,7 @@ const manifest = {
   generatedAt: new Date().toISOString(),
   scope: '人物记默认可见人物按稳定 personId 建立立绘索引；占位图仅作界面识别，不代表史实肖像。',
   fallbackSrc,
-  defaultPersonIds: defaultPeople.map(person => String(person.personId)),
+  defaultPersonIds: defaultPeople.map(person => personIdFor(person.name, person)),
   byPersonId,
   byName,
   summary: {

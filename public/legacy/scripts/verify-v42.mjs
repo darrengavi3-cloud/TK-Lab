@@ -17,7 +17,7 @@ assert(html.includes('office-seat-policies.js') && html.includes('office-residen
 assert(html.includes('courtResidenceClass') && html.includes('courtSlotClick(courtActiveState.node)'), '州府点击进入府署逻辑未接入');
 assert(html.includes('residence-style-du-du') && html.includes('residence-style-prince') && html.includes('courtResidenceType'), '六类府署背景映射未完整接入');
 assert(html.includes('SGZ_BAIGUANZHI_STAFF') && html.includes("'州郡属官'"), '州郡属官文官分类未接入');
-assert(html.includes('fullInscription') || html.includes('scope.row.inscription'), '金石释文展示未接入');
+assert(html.includes('fullInscription') || html.includes('scope.row.inscription') || html.includes('jinshiPrimaryDetail.inscription'), '金石释文展示未接入');
 assert(html.includes("displayName:(disputed?'* ':''"), '金石争议标记未接入');
 assert(fs.existsSync('templates/三国职官谱_V42_统一导入模板.xlsx'), 'V42 统一导入模板未生成');
 const portraitIndex = read('data/person-portraits.js');

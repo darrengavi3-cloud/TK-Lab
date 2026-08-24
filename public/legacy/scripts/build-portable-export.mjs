@@ -9,29 +9,38 @@ const registryPath = path.join(root, 'data', 'map-period-registry.js');
 const wuRecordsPath = path.join(root, 'data', 'wu-fangzhen-records.js');
 const shuRecordsPath = path.join(root, 'data', 'shu-fangzhen-records.js');
 const fangzhenSupplementPath = path.join(root, 'data', 'fangzhen-term-supplement.js');
+const personIdentitiesPath = path.join(root, 'data', 'person-identities.js');
 const researchModelPath = path.join(root, 'data', 'research-model.js');
 const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
 const battleRecordsPath = path.join(root, 'data', 'battle-records.js');
+const shihuoRecordsPath = path.join(root, 'data', 'shihuo-records.js');
 const personBiographiesPath = path.join(root, 'data', 'person-biographies.js');
+const personEraRostersPath = path.join(root, 'data', 'person-era-rosters.js');
 const personPortraitsPath = path.join(root, 'data', 'person-portraits.js');
 const portraitManifestPath = path.join(root, 'data', 'portrait-manifest.js');
 const epigraphicRecordsPath = path.join(root, 'data', 'epigraphic-records.js');
 const epigraphicV46JinPath = path.join(root, 'data', 'epigraphic-v46-jin.js');
 const jinshiSchemaPath = path.join(root, 'data', 'jinshi-schema.js');
 const administrativeIndexPath = path.join(root, 'data', 'administrative-index.js');
+const researchCandidatesPath = path.join(root, 'data', 'research-candidates.js');
 const hanBaiGuanZhiPath = path.join(root, 'data', 'han-bai-guan-zhi.js');
 const generalTitlesPath = path.join(root, 'data', 'general-titles.js');
 const officeOrderPoliciesPath = path.join(root, 'data', 'office-order-policies.js');
 const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
 const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
+const fangzhenSeatSupplementPath = path.join(root, 'data', 'fangzhen-seat-supplement.js');
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
 const personEntityAuditPath = path.join(root, 'data', 'person-entity-audit.js');
+const personV57RuntimeRulesPath = path.join(root, 'data', 'person-v57-runtime-rules.js');
 const personZiSupplementPath = path.join(root, 'data', 'person-zi-supplement.js');
 const portraitBoardPath = path.join(root, 'data', 'v48-portrait-board.js');
 const hydronymAuditPath = path.join(root, 'assets', 'map', 'data', 'hydronym-audit.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
+const v55CssPath = path.join(root, 'assets', 'ui', 'v55.css');
+const v56CssPath = path.join(root, 'assets', 'ui', 'v56.css');
+const v57CssPath = path.join(root, 'assets', 'ui', 'v57.css');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const rootCopyPath = path.resolve(root, '..', '三国职官谱 .html');
 const downloadsCopyPath = process.env.HOME ? path.join(process.env.HOME, 'Downloads', '三国职官谱 .html') : null;
@@ -42,27 +51,36 @@ const registryScript = fs.readFileSync(registryPath, 'utf8').trim();
 const wuRecordsScript = fs.readFileSync(wuRecordsPath, 'utf8').trim();
 const shuRecordsScript = fs.readFileSync(shuRecordsPath, 'utf8').trim();
 const fangzhenSupplementScript = fs.readFileSync(fangzhenSupplementPath, 'utf8').trim();
+const personIdentitiesScript = fs.readFileSync(personIdentitiesPath, 'utf8').trim();
 const researchModelScript = fs.readFileSync(researchModelPath, 'utf8').trim();
 const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim();
 const battleRecordsScript = fs.readFileSync(battleRecordsPath, 'utf8').trim();
+const shihuoRecordsScript = fs.readFileSync(shihuoRecordsPath, 'utf8').trim();
 const personBiographiesScript = fs.readFileSync(personBiographiesPath, 'utf8').trim();
+const personEraRostersScript = fs.readFileSync(personEraRostersPath, 'utf8').trim();
 let personPortraitsScript = fs.readFileSync(personPortraitsPath, 'utf8').trim();
 let portraitManifestScript = fs.readFileSync(portraitManifestPath, 'utf8').trim();
 const epigraphicRecordsScript = fs.readFileSync(epigraphicRecordsPath, 'utf8').trim();
 const epigraphicV46JinScript = fs.readFileSync(epigraphicV46JinPath, 'utf8').trim();
 const jinshiSchemaScript = fs.readFileSync(jinshiSchemaPath, 'utf8').trim();
 const administrativeIndexScript = fs.readFileSync(administrativeIndexPath, 'utf8').trim();
+const researchCandidatesScript = fs.readFileSync(researchCandidatesPath, 'utf8').trim();
 const hanBaiGuanZhiScript = fs.readFileSync(hanBaiGuanZhiPath, 'utf8').trim();
 const generalTitlesScript = fs.readFileSync(generalTitlesPath, 'utf8').trim();
 const officeOrderPoliciesScript = fs.readFileSync(officeOrderPoliciesPath, 'utf8').trim();
 const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
 const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
+const fangzhenSeatSupplementScript = fs.readFileSync(fangzhenSeatSupplementPath, 'utf8').trim();
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
 const personEntityAuditScript = fs.readFileSync(personEntityAuditPath, 'utf8').trim();
+const personV57RuntimeRulesScript = fs.readFileSync(personV57RuntimeRulesPath, 'utf8').trim();
 const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
 const portraitBoardScript = fs.readFileSync(portraitBoardPath, 'utf8').trim();
 const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
+const v55Css = fs.readFileSync(v55CssPath, 'utf8').trim();
+const v56Css = fs.readFileSync(v56CssPath, 'utf8').trim();
+const v57Css = fs.readFileSync(v57CssPath, 'utf8').trim();
 const portablePortraitAssets = {};
 const portraitManifestJson = portraitManifestScript
   .replace(/^\s*window\.SGZ_PERSON_PORTRAIT_MANIFEST\s*=\s*/, '')
@@ -115,10 +133,6 @@ const replacements = [
     '<script src="https://cdnjs.cloudflare.com/ajax/libs/element-plus/2.11.4/index.full.min.js" crossorigin="anonymous"></script>'
   ],
   [
-    '<script src="./assets/vendor/gojs/go.js"></script>',
-    '<script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/3.1.10/go.js" crossorigin="anonymous"></script>'
-  ],
-  [
     '<script src="./assets/vendor/xlsx/xlsx.full.min.js"></script>',
     '<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" crossorigin="anonymous"></script>'
   ],
@@ -139,6 +153,10 @@ const replacements = [
     `<script>\n${fangzhenSupplementScript}\n</script>`
   ],
   [
+    '<script src="./data/person-identities.js"></script>',
+    `<script>\n${personIdentitiesScript}\n</script>`
+  ],
+  [
     '<script src="./data/research-model.js"></script>',
     `<script>\n${researchModelScript}\n</script>`
   ],
@@ -151,8 +169,16 @@ const replacements = [
     `<script>\n${battleRecordsScript}\n</script>`
   ],
   [
+    '<script src="./data/shihuo-records.js"></script>',
+    `<script>\n${shihuoRecordsScript}\n</script>`
+  ],
+  [
     '<script src="./data/person-biographies.js"></script>',
     `<script>\n${personBiographiesScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-era-rosters.js"></script>',
+    `<script>\n${personEraRostersScript}\n</script>`
   ],
   [
     '<script src="./data/person-portraits.js"></script>',
@@ -179,6 +205,10 @@ const replacements = [
     `<script>\n${administrativeIndexScript}\n</script>`
   ],
   [
+    '<script src="./data/research-candidates.js"></script>',
+    `<script>\n${researchCandidatesScript}\n</script>`
+  ],
+  [
     '<script src="./data/han-bai-guan-zhi.js"></script>',
     `<script>\n${hanBaiGuanZhiScript}\n</script>`
   ],
@@ -203,12 +233,20 @@ const replacements = [
     `<script>\n${officeResidencesScript}\n</script>`
   ],
   [
+    '<script src="./data/fangzhen-seat-supplement.js"></script>',
+    `<script>\n${fangzhenSeatSupplementScript}\n</script>`
+  ],
+  [
     '<script src="./data/person-source-index.js"></script>',
     `<script>\n${personSourceIndexScript}\n</script>`
   ],
   [
     '<script src="./data/person-entity-audit.js"></script>',
     `<script>\n${personEntityAuditScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-v57-runtime-rules.js"></script>',
+    `<script>\n${personV57RuntimeRulesScript}\n</script>`
   ],
   [
     '<script src="./data/person-zi-supplement.js"></script>',
@@ -221,6 +259,18 @@ const replacements = [
   [
     '<script src="./assets/map/data/hydronym-audit.js"></script>',
     `<script>\n${hydronymAuditScript}\n</script>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v55.css" />',
+    `<style>\n${v55Css}\n</style>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v56.css" />',
+    `<style>\n${v56Css}\n</style>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v57.css" />',
+    `<style>\n${v57Css}\n</style>`
   ],
   [
     /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,

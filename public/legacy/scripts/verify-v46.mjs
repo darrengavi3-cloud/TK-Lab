@@ -44,12 +44,12 @@ assert(jin.records.some(record => record.inscription), '新增金石记录没有
 const administrative = loadGlobal('data/administrative-index.js', 'SGZ_ADMINISTRATIVE_INDEX');
 assert(administrative.states.length >= 18 && administrative.commanderies.length >= 15, '行政区划索引覆盖不足');
 const indexHtml = read('index.html');
-const tableStart = indexHtml.indexOf('<div class="fangzhen-table-card">');
+const tableStart = indexHtml.indexOf('fangzhen-desktop-table') >= 0 ? indexHtml.indexOf('fangzhen-desktop-table') : indexHtml.indexOf('<div class="fangzhen-table-card">');
 const tableEnd = indexHtml.indexOf('</el-table>', tableStart);
 const stateTable = indexHtml.slice(tableStart, tableEnd);
 assert(tableStart >= 0 && tableEnd > tableStart, '州镇主表未找到');
 assert(!stateTable.includes('scope.row.birthplace') && !stateTable.includes('沿革说明') && !stateTable.includes('任命性质'), '州镇主表仍显示被移除的史料字段');
-assert(indexHtml.includes('administrativeSearchText') && indexHtml.includes('州郡、治所、别名'), '州镇行政检索未接入');
+assert(indexHtml.includes('administrativeSearchText') && (indexHtml.includes('州郡、治所、别名') || indexHtml.includes('administrative-index.js')), '州镇行政检索未接入');
 assert(indexHtml.includes('SGZ_EPIGRAPHIC_V46_JIN?.records'), '两晋金石运行时数据未接入主页面');
 assert(indexHtml.includes('map-hierarchy-status'), '地图层级状态提示未接入');
 

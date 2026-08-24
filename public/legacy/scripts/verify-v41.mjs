@@ -58,7 +58,7 @@ const readingTemplate=html.slice(templateStart,templateEnd);
 const forbiddenReadingLabels=[
   '史料校验','史实可信度','来源层级','置信度','研究状态','研究结论','史料状态','查看史料',
   '边界可信度','史料证据卡','文档考据','核心材料','资料来源','史料摘录','录入边界','史料出处',
-  '数据审计','史料卡','待补','待核','待录','已执行','据整理记录录入'
+  '数据审计','史料卡','待录','已执行','据整理记录录入'
 ];
 assert(forbiddenReadingLabels.every(label=>!readingTemplate.includes(label)),`阅读界面仍含禁用研究文案：${forbiddenReadingLabels.filter(label=>readingTemplate.includes(label)).join('、')}`);
 assert(html.includes('battleRecords:cloneJSON(battleRecords)') && html.includes('shihuoEvents:cloneJSON(shihuoEventRecords.value)') && html.includes('mapPeriods:cloneJSON(historyMapPeriods)'),'完整 JSON 或本地缓存未保存 V41 补充数据');
@@ -69,7 +69,7 @@ assert(dataStart>=0 && dataEnd>dataStart,'无法提取规范历史数据');
 const appContext={console,window:{HISTORY_MAP_REGISTRY:registry},document:{getElementById:()=>({innerHTML:''})}};
 appContext.window.window=appContext.window;
 vm.createContext(appContext);
-['data/research-model.js','data/wu-fangzhen-records.js','data/shu-fangzhen-records.js','data/fangzhen-term-supplement.js','data/han-bai-guan-zhi.js','data/fangzhen-seat-supplement.js'].forEach(file=>run(appContext,file));
+['data/research-model.js','data/wu-fangzhen-records.js','data/shu-fangzhen-records.js','data/fangzhen-term-supplement.js','data/han-bai-guan-zhi.js','data/fangzhen-seat-supplement.js','data/shihuo-records.js'].forEach(file=>run(appContext,file));
 new vm.Script(`${html.slice(dataStart,dataEnd)}
 globalThis.__v41={trees:normalizeAndValidateTrees(buildPresets()),fangzhen:normalizeFangzhenRecords(FANGZHEN_PRESETS),food:SHIHUO_RECORDS,foodEvents:SHIHUO_EVENTS,household:SHIHUO_HOUSEHOLD};`,{filename:'v41-inline-data.js'}).runInContext(appContext);
 const canonical=appContext.__v41;
@@ -104,17 +104,15 @@ assert(canonical.foodEvents.find(row=>row.id==='se_268')?.recordId==='sh_268_cha
 
 const evidenceSample={id:'sample',name:'材料',note:'释读',disputeNote:'另一释读',sourceTitle:'《原典》',confidence:'存疑',researchStatus:'待核',evidence:{title:'《原典》'}};
 const reading=model.projectForReading(evidenceSample);
-assert(reading.name==='材料' && reading.note==='释读；异说：另一释读','阅读投影未保留自然异说说明');
-assert(!model.readingMetaFields.some(field=>Object.hasOwn(reading,field)) && !Object.hasOwn(reading,'disputeNote'),'阅读投影仍含研究元数据');
+assert(reading.name==='材料' && reading.note==='释读' && reading.disputeNote==='另一释读','阅读投影改写了原始说明或异说字段');
+assert(reading.sourceTitle==='《原典》' && reading.confidence==='存疑' && reading.researchStatus==='待核' && reading.evidence.title==='《原典》','阅读投影丢失来源或审校状态');
 assert(evidenceSample.sourceTitle==='《原典》' && evidenceSample.evidence.title==='《原典》','阅读投影修改了规范对象');
 const projectedCorpus=model.projectForReading({
   trees:canonical.trees,fangzhen:canonical.fangzhen,food:canonical.food,foodEvents:canonical.foodEvents,
   household:canonical.household,epigraphic,biographies,battles,mapPeriods:registry.periods
 });
 const projectedText=JSON.stringify(projectedCorpus);
-const forbiddenProjectedTerms=[...forbiddenReadingLabels,'本项目','履历归纳','据研究文档录入','不重复导入'];
-assert(forbiddenProjectedTerms.every(term=>!projectedText.includes(term)),`动态阅读数据仍含禁用文案：${forbiddenProjectedTerms.filter(term=>projectedText.includes(term)).join('、')}`);
-assert(!/"(?:evidence|sourceTitle|sourceDocument|sourceUrl|sourceLevel|sourceLocator|sourceExcerpt|confidence|researchStatus|auditStatus|sourceTenureText)"\s*:/.test(projectedText),'动态阅读数据仍含研究元数据键');
+assert(projectedText.includes('"evidence"') && projectedText.includes('"sourceTitle"') && projectedText.includes('"researchStatus"'),'V55 阅读投影未保留证据与审校字段');
 assert(JSON.stringify(canonical).includes('"sourceTitle"') && JSON.stringify(canonical).includes('"confidence"'),'规范数据未保留来源与判断字段');
 
 const roundTripSource={schemaVersion:7,trees:{wei:{office:[{key:'root',kind:'root',name:'魏官制',sources:'《三国志》',confidence:'确定'}],noble:[]}},fangzhenRecords:[{id:'a',polity:'西晋',commander:'甲',title:'刺史',jurisdiction:'州',sourceTitle:'《晋书》',sourceExcerpt:'原文'}],battleRecords:{events:[{id:'event',battleId:'battle',sourceTitle:'《三国志》'}]},shihuoRecords:[{id:'food',sourceTitle:'《晋书》',confidence:'存疑'}],mapPeriods:[{id:'period',snapshotMoment:'年末态势',sourceIds:['source']} ]};

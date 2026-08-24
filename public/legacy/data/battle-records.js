@@ -177,7 +177,16 @@ const battleData = {
 
 ['events','battles','battlefields'].forEach(function(kind){
   battleData[kind]=battleData[kind].map(function(item){
-    return Object.assign({},item,kind==='battles'?(BATTLE_SUPPLEMENT[item.id]||ADDITIONAL_BATTLE_SUPPLEMENT[item.id]||{}):{},{provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||ADDITIONAL_BATTLE_PROVINCE[item.id]||['跨区域']))});
+    var enriched=Object.assign({},item,kind==='battles'?(BATTLE_SUPPLEMENT[item.id]||ADDITIONAL_BATTLE_SUPPLEMENT[item.id]||{}):{});
+    var sourceTitle=enriched.sourceTitle||'来源待补';
+    var confidence=enriched.confidence||'待考';
+    return Object.assign(enriched,{
+      sourceTitle:sourceTitle,
+      confidence:confidence,
+      researchStatus:sourceTitle==='来源待补'?'待补':'已录',
+      evidence:Object.freeze({sourceTitle:sourceTitle,sourceLevel:sourceTitle==='来源待补'?'待核':'一手史料',confidence:confidence}),
+      provinceKeys:Array.from(new Set(BATTLE_PROVINCE_BY_ID[item.id]||ADDITIONAL_BATTLE_PROVINCE[item.id]||['跨区域']))
+    });
   });
 });
 battleData.provinceIndex=Object.freeze(['中央','司隶','冀州','兖州','豫州','青州','徐州','扬州','荆州','益州','凉州','雍州','幽州','并州','交州','广州','跨区域']);

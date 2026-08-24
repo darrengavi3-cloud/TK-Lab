@@ -1,12 +1,15 @@
 {
-  "schemaVersion": "V46",
+  "schemaVersion": "V55",
   "source": "两晋金石录（2025.06.21更新）.docx",
   "sourcePath": "/Users/bobiaisi01/Desktop/两晋金石录（2025.06.21更新）.docx",
   "sourceHash": "3dd826cf2b3202b5e7954fe857c12abef926f38160e7ed15cb02cdba48c654b3",
   "paragraphCount": 2050,
   "textParagraphCount": 1068,
+  "headingCount": 133,
   "strikeParagraphCount": 31,
   "strikeCharCount": 778,
+  "deletedParagraphCount": 0,
+  "deletedCharCount": 0,
   "excludedStrikethrough": [
     {
       "paragraph": 729,
@@ -133,16 +136,22 @@
       "text": "升平二年戌午歲四月甲寅朔七日庚申薨以其年五月廿八日庚戌葬會稽山陰南鄉離上里離東山尾"
     }
   ],
+  "excludedDeletedText": [],
   "excludedRecords": [
     {
       "paragraph": 568,
-      "title": "魏雏碑（元康八年）",
+      "title": "魏雏碑",
       "reason": "非晋政权材料"
     },
     {
       "paragraph": 747,
       "title": "吴故征北将军海盐侯陆府君侯之碑（泰宁三年）",
       "reason": "非晋政权材料"
+    },
+    {
+      "paragraph": 1292,
+      "title": "晉帛仲理碑（永寧二年）",
+      "reason": "明显伪刻或伪碑"
     },
     {
       "paragraph": 1637,
@@ -153,22 +162,20 @@
       "paragraph": 1725,
       "title": "晋王羲之吴文残碑（唐立）当削",
       "reason": "明显伪刻或伪碑"
-    },
-    {
-      "paragraph": 1735,
-      "title": "后赵张宾碑",
-      "reason": "非晋政权材料"
     }
   ],
   "output": {
-    "recordCount": 157,
-    "coreCount": 67,
-    "extendedCount": 90,
-    "recordsWithoutInscription": 117
+    "recordCount": 128,
+    "coreCount": 65,
+    "extendedCount": 63,
+    "recordsWithoutInscription": 86,
+    "recordsWithFindspot": 14,
+    "structuredYears": 76
   },
   "rules": {
     "deletion": "只排除 run 级 w:strike/w:dstrike 与 w:del/w:delText，保留同段正常文字",
-    "scope": "仅收录西晋、东晋 section，伪刻、非晋、超出两晋范围记录排除",
-    "year": "无法可靠结构化的年代保留 yearText 并标记待考"
+    "scope": "仅收录西晋、东晋章节；伪刻、非晋、超出两晋范围记录排除",
+    "year": "yearText 只保存题名中的年代短语；无法可靠结构化者保留“年代未详”并标待考",
+    "fields": "题名、年代、出土地与释文分别抽取；空字段显式保留，不以推测补造"
   }
 }

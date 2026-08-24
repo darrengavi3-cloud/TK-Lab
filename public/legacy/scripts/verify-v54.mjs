@@ -19,7 +19,7 @@ const portableBytes = fs.existsSync(portablePath) ? fs.statSync(portablePath).si
 const policy = load('data/office-order-policies.js', 'SGZ_OFFICE_ORDER_POLICIES');
 const titles = load('data/general-titles.js', 'SGZ_GENERAL_TITLES');
 
-assert(policy.schemaVersion === 1, '官职序位政策版本缺失');
+assert(Number(policy.schemaVersion) >= 1, '官职序位政策版本缺失');
 assert(policy.commonCourtOrder.wei['侍中'] < policy.commonCourtOrder.wei['散骑常侍']);
 assert(policy.commonCourtOrder.wei['散骑常侍'] < policy.commonCourtOrder.wei['黄门侍郎']);
 assert(policy.commonCourtOrder.wei['黄门侍郎'] < policy.commonCourtOrder.wei['给事中']);

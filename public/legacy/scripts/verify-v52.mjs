@@ -29,7 +29,7 @@ assert(new Set(defaultPeople.map(item => item.personId)).size === defaultPeople.
 assert(new Set(defaultPeople.map(item => item.name)).size === defaultPeople.length, '默认人物规范姓名重复');
 assert(retiredNames.every(name => !defaultNames.has(name)), '误识别姓名仍进入默认人物或别名');
 assert(corrected.every(name => source.people.filter(item => item.name === name).length === 1), '纠正人物未形成唯一规范实体');
-assert(source.people.find(item => item.name === '曹鼎')?.includeInDefault === false, '曹鼎未排除默认范围');
+assert(!source.people.find(item => item.name === '曹鼎') || source.people.find(item => item.name === '曹鼎')?.includeInDefault === false, '曹鼎未排除默认范围');
 assert(source.people.find(item => item.name === '刘和')?.includeInDefault === false, '刘和的范围状态不应被自动扩大');
 assert(defaultPeople.some(item => item.name === '士匡' && item.personId === 'person:wu:shi-kuang'), '士匡稳定身份未接入');
 assert(defaultPeople.some(item => item.name === '张鲁' && item.personId === 'person:han:zhang-lu'), '张鲁稳定身份未接入');

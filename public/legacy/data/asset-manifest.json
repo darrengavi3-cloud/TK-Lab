@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-23T08:14:29.010Z",
+  "generatedAt": "2026-08-24T13:46:34.330Z",
   "offlineRuntime": true,
-  "fileCount": 315,
-  "totalBytes": 108475777,
+  "fileCount": 324,
+  "totalBytes": 109934700,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -1251,6 +1251,21 @@
       "sha256": "2c9f1a8414c5185d96e43c2eb6ac857c86e5cbc7b6c23a6d15b3d0bc49273310"
     },
     {
+      "path": "assets/ui/v55.css",
+      "bytes": 18243,
+      "sha256": "c871e2e5f2e9ed4294f69749a1953232c9dbb8d9b2b94d49cdf79c9e56c300e1"
+    },
+    {
+      "path": "assets/ui/v56.css",
+      "bytes": 30337,
+      "sha256": "52d3949380f17c820920e286574f8cc5caa2a5550d4d88391cc565469a92f45c"
+    },
+    {
+      "path": "assets/ui/v57.css",
+      "bytes": 5610,
+      "sha256": "4ae2fcb0a88cfe4c120fd0004781087db3888ef9a3160079784be253b8cbd0c5"
+    },
+    {
       "path": "assets/vendor/element-plus/index.css",
       "bytes": 339861,
       "sha256": "a8f36a018c0aab2e3cfe939af8fb7086a16d0e1505af865a0da534076bbe854a"
@@ -1287,8 +1302,8 @@
     },
     {
       "path": "data/battle-records.js",
-      "bytes": 34882,
-      "sha256": "8a958d15dd1a95348567cbd48cc88e5a8b7a913700ef764a0238d7499b5a2d9a"
+      "bytes": 35317,
+      "sha256": "ddcb2b0af3c24578b746bfb8ad046c5fe385a6301578459b7b54ef4216d93789"
     },
     {
       "path": "data/epigraphic-records.js",
@@ -1297,8 +1312,8 @@
     },
     {
       "path": "data/epigraphic-v46-jin.js",
-      "bytes": 215644,
-      "sha256": "17efb7e92b15ecf0d20cd1d8cc5ed538914dfa4eb5ca3f18f47c5fb93e4c3278"
+      "bytes": 299979,
+      "sha256": "459014a3b37a97c40a58a64f8eefb295f569c826b1737739bd41358077fe7154"
     },
     {
       "path": "data/fangzhen-seat-supplement.js",
@@ -1342,8 +1357,8 @@
     },
     {
       "path": "data/jinshi-schema.js",
-      "bytes": 2727,
-      "sha256": "8bfe7bcf4bd43b8bf7da8d13815e2c3cf1c211f2ce0929ffd0e9011e8a6332b7"
+      "bytes": 3453,
+      "sha256": "bff68c04901e5fb41ebc6721350373bf4ccae64b9022747cbbb7238d2b6b4aee"
     },
     {
       "path": "data/kaifu-policies.js",
@@ -1372,8 +1387,8 @@
     },
     {
       "path": "data/office-order-policies.js",
-      "bytes": 2482,
-      "sha256": "41a66a8c97122702b441bebbe39fb7edbb6c2218398dc604327c78f4fc6bcd4b"
+      "bytes": 2362,
+      "sha256": "240488be61c1fd464ed6c42bc60eec4ff4f7046494043013a2fa9a039feeb720"
     },
     {
       "path": "data/office-residences.js",
@@ -1392,13 +1407,13 @@
     },
     {
       "path": "data/person-entity-audit.js",
-      "bytes": 14213,
-      "sha256": "10888352a81ce983fc6c50b9bd0f78ad027c176d14135512eba0db30c8843612"
+      "bytes": 3128,
+      "sha256": "c3c8b771fb2c26af52b0cac5245f4136fc2ebabf816bce3f0cb30f84ebf86fc4"
     },
     {
       "path": "data/person-entity-audit.json",
-      "bytes": 124342,
-      "sha256": "d83c8393ba652bd3785891ddee5fbdd3f46ca9baa10ac9100f3160b9146c1d05"
+      "bytes": 4032,
+      "sha256": "13406f0c71689b42cc8d17ac90bd80aed20de8cd5bd35053defd027c55f1947f"
     },
     {
       "path": "data/person-era-rosters.js",
@@ -1407,8 +1422,8 @@
     },
     {
       "path": "data/person-identities.js",
-      "bytes": 7687,
-      "sha256": "f17bbe6e327dd2151d5fc84b5da0863fc718aead327aef14ff21940d204da432"
+      "bytes": 17026,
+      "sha256": "ee4b6265e7025f6e2d0fbd19dc99ad7f80eab557b7c52b637fd4f2e1ac639f19"
     },
     {
       "path": "data/person-portraits.js",
@@ -1417,13 +1432,23 @@
     },
     {
       "path": "data/person-source-index.js",
-      "bytes": 1536552,
-      "sha256": "e2a8c649c62555fbf6bf37e3c14d5d69fb0920658eb31659efd6dbc1adb50d17"
+      "bytes": 1314186,
+      "sha256": "90b78310ff676f8928fc9f3d092d8f65f2b1a09df863971ea93b489b391874ae"
+    },
+    {
+      "path": "data/person-source-index.json",
+      "bytes": 1612752,
+      "sha256": "0ca5d5739fa996a7f46a399c00529be1994e2853d38013f3b2cc5d9dec0217a9"
+    },
+    {
+      "path": "data/person-v57-runtime-rules.js",
+      "bytes": 1843,
+      "sha256": "bd2c2c5cadc53dbc30e9449ec645b87b268f42a8ce11674482c5fcd6f996e3f9"
     },
     {
       "path": "data/person-volume-coverage.json",
-      "bytes": 166074,
-      "sha256": "9dd26e1a3bb6cc1d4e5927ac7d3751600b20ee4955324698d416e985abc4ac09"
+      "bytes": 166798,
+      "sha256": "b6a059dfe0ac2d5ff5039582eb6adda092bd2164f4a08b9a071c46e347c4949d"
     },
     {
       "path": "data/person-zi-scan.json",
@@ -1432,13 +1457,13 @@
     },
     {
       "path": "data/person-zi-supplement.js",
-      "bytes": 9073,
-      "sha256": "d6532d3ef6fda2e595577d8c7d5587377387e809e6a69a12f1dbdd843f4ba0bd"
+      "bytes": 16657,
+      "sha256": "f7b19483e4618a5ad2073c891096c7e4602c58a2e10ce563b49193fafc58c4c1"
     },
     {
       "path": "data/person-zi-supplement.json",
-      "bytes": 13889,
-      "sha256": "b3becd0beeb074b8cae729bc554075492e30066a5eadfd71be823c107558350f"
+      "bytes": 17552,
+      "sha256": "b91cfae2fa64f08b6ef2e954dd0c1a6c4d93d8f93f551a44e787141dc3e28024"
     },
     {
       "path": "data/portrait-candidates.json",
@@ -1447,13 +1472,13 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 146023,
-      "sha256": "4f57fb5a57c42dda2f696fe9f064de2ae5262cc7b603a9a91709d0319285493d"
+      "bytes": 144814,
+      "sha256": "5a02bdd926fa81015c364616753828a11512cc238bdf474589145fdf298e192a"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 198192,
-      "sha256": "33d33bc254c7bd48465ae78f94bd63a1d5c487f88a0331b23b519d9954972e56"
+      "bytes": 196983,
+      "sha256": "104c0a58205417481853916fb79d638d2090fd2daa2ba636b014e3eefc5b94a1"
     },
     {
       "path": "data/portrait-pool-assignments-v52.json",
@@ -1482,13 +1507,18 @@
     },
     {
       "path": "data/research-model.js",
-      "bytes": 27991,
-      "sha256": "644c060d035cf6e3b001fb80c050628db54ea5e27fdbf6a85de7941cec6b2bbe"
+      "bytes": 31933,
+      "sha256": "d5b29b36704d24ef76e8c06ef14ec7b10bad1f7e9f77a16580dd50732d49a330"
     },
     {
       "path": "data/research-schema.json",
-      "bytes": 3787,
-      "sha256": "ba79a7d29f19943f5ea3e9771cb25c95fea70374b30ab5e76037f80b0dc0aaac"
+      "bytes": 4045,
+      "sha256": "742edf2e24245e708a8b9f0ac90f3e85f828a7ce6b394f9635f8e621e2bd3098"
+    },
+    {
+      "path": "data/shihuo-records.js",
+      "bytes": 28929,
+      "sha256": "395daa570f3b904979c5a6a1fd82cd670c4c6ddbf5e8891ec3afdf094faf9a0e"
     },
     {
       "path": "data/shu-fangzhen-records.js",
@@ -1542,8 +1572,8 @@
     },
     {
       "path": "data/v46-jinshi-audit.json",
-      "bytes": 5538,
-      "sha256": "cdf4ec440f824bb444bf8e21403406b8650ecd5c7edfccf0819980cde02db52e"
+      "bytes": 5858,
+      "sha256": "9d60ea0aa0c5c5a9794280592463e7696c52980f9e052d31ecc67d95cd6576eb"
     },
     {
       "path": "data/v47-baiguanzhi-approval-list.json",
@@ -1564,6 +1594,21 @@
       "path": "data/v48-portrait-board.js",
       "bytes": 4755,
       "sha256": "c251f2189d3e37e805c0216f05317ace1573171d9cf22d0180bfc32e78e2f0cc"
+    },
+    {
+      "path": "data/v55-audit.json",
+      "bytes": 3568,
+      "sha256": "0ad8af3205bc5b122914a1ee9660963f7b73e732a5b65e733126507c69af6b88"
+    },
+    {
+      "path": "data/v55-person-identity-audit.json",
+      "bytes": 1870,
+      "sha256": "a97a5b53c4e818ac26ec30252b8d8ec65d39a43b76893fe0fa1a2538dd27b761"
+    },
+    {
+      "path": "data/v55-release-manifest.json",
+      "bytes": 744,
+      "sha256": "471b7d6c266c4f0dcb1c55afe57fb73161f2191b092ea990816b2c0e7e44100e"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
