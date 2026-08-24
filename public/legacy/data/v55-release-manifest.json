@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "V55",
+  "baseline": "V54",
+  "canonicalSource": "/Users/bobiaisi01/Documents/中华三国志优化/三国职官谱项目",
+  "scope": "本地规范源、运行时和便携版；形势图冻结",
+  "artifacts": {
+    "runtime": "passed",
+    "portable": "passed",
+    "documentation": "passed",
+    "v55Verification": "passed",
+    "legacyVerification": "passed-18-of-18",
+    "desktopBrowser": "passed-1280x720",
+    "mobileBrowser": "passed-390x844"
+  },
+  "externalDelivery": {
+    "privateMirrorSync": "not-triggered",
+    "gitCommit": "not-triggered",
+    "gitPush": "not-triggered",
+    "sitesDeploy": "not-triggered"
+  },
+  "reason": "本轮确认范围为 V55 实施；未包含提交、推送或部署授权。"
+}

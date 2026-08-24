@@ -1,11 +1,11 @@
 {
-  "schemaVersion": 10,
-  "modelId": "sgz-person-source-index-v49",
-  "generatedAt": "2026-08-22T00:00:00+08:00",
+  "schemaVersion": 11,
+  "modelId": "sgz-person-source-index-v57",
+  "generatedAt": "2026-08-24T13:30:32.854Z",
   "summary": {
     "volumes": 195,
-    "people": 580,
-    "appointments": 919,
+    "people": 509,
+    "appointments": 766,
     "defaultAppointments": 177,
     "peiAnnotations": 53,
     "defaultPeople": 123
@@ -4094,5 +4094,46 @@
       ],
       "homonymReview": "显式身份表内的跨卷同人合并为同一稳定 personId；其余按卷次与证据层拆分，待显式消歧。"
     }
-  ]
+  ],
+  "v57": {
+    "removedPeople": 71,
+    "removedAppointments": 153,
+    "correctedNames": [
+      "公女曼",
+      "时孚",
+      "卓弟旻",
+      "虞子和",
+      "鲁镇南",
+      "豐雖宿",
+      "伯父鼎",
+      "时蒋济",
+      "胡业亦",
+      "康代",
+      "公表权",
+      "黄琬代",
+      "匡师友",
+      "賁九江",
+      "国硃寓",
+      "王敦表",
+      "李驤亦",
+      "曹曼",
+      "司马孚",
+      "董旻",
+      "刘和",
+      "张鲁",
+      "李丰",
+      "曹鼎",
+      "蒋济",
+      "胡业",
+      "韦康",
+      "孙权",
+      "黄琬",
+      "士匡",
+      "孙贲",
+      "朱寓",
+      "李襄",
+      "贲九江",
+      "南匈奴呼厨泉"
+    ]
+  }
 }

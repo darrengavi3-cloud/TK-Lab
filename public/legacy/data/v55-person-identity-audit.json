@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "V55",
+  "method": "桌面端人物记全分页运行时审计；逐卡读取 data-person-id 与规范姓名",
+  "before": {
+    "cards": 621,
+    "uniquePersonIds": 621,
+    "uniqueNames": 544,
+    "duplicateNameGroups": 57
+  },
+  "after": {
+    "cards": 545,
+    "uniquePersonIds": 545,
+    "uniqueNames": 544,
+    "duplicateNameGroups": 1,
+    "unresolvedDuplicateGroups": 0
+  },
+  "mergedSamePersons": [
+    "步骘",
+    "曹丕",
+    "曹仁",
+    "曹真",
+    "法正",
+    "华歆",
+    "贾诩",
+    "李胤",
+    "刘巴",
+    "卢钦",
+    "鲁芝",
+    "陆逊",
+    "谯周",
+    "卫瓘",
+    "卫臻",
+    "魏延",
+    "邹岐",
+    "许靖",
+    "李福",
+    "鲁肃",
+    "全琮",
+    "戴良",
+    "徐邈",
+    "诸葛恪",
+    "崔林",
+    "李譔",
+    "孙河",
+    "陈祗",
+    "陶谦",
+    "孙礼",
+    "夏侯玄",
+    "滕胤",
+    "石苞",
+    "司马望",
+    "陈骞",
+    "董厥",
+    "王祥",
+    "何曾",
+    "胡烈",
+    "李憙",
+    "袁邵",
+    "王沈",
+    "裴秀",
+    "司马孚",
+    "荀勖",
+    "荀顗",
+    "羊琇",
+    "郑冲",
+    "羊祜",
+    "司马伷",
+    "司马骏",
+    "陆抗",
+    "何植",
+    "张悌",
+    "濮阳兴",
+    "孙邵"
+  ],
+  "explicitHomonyms": [
+    {
+      "name": "李丰",
+      "persons": [
+        {
+          "personId": "person:shu:li-feng",
+          "label": "季汉李严之子"
+        },
+        {
+          "personId": "person:wei:li-feng",
+          "label": "曹魏中书令",
+          "legacyPersonId": "person:source:c2c2cfbd720b"
+        }
+      ],
+      "decision": "确属同名异人，不合并；人物卡、检索结果和详情均显示消歧标签。"
+    }
+  ],
+  "policy": "跨模块、跨任期和跨政权的同一人物只保留一个稳定 personId；同名异人保留不同 personId，并显式显示身份标签。"
+}

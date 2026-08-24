@@ -10,49 +10,38 @@
     volumeCoverage:'逐卷覆盖'
   });
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
-  const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','待核']);
+  const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','地图几何','待核']);
   const SERVICE_DOMAINS = Object.freeze(['文官','武官','文武兼','待考']);
   const INSTITUTION_TYPES = Object.freeze(['朝廷机关','丞相府','三公府','将军府','都督府','州府','郡府','县署','东宫','王府','属国机构','部族机构','待考']);
   const KAIFU_QUALIFICATIONS = Object.freeze(['法定开府','加号开府','特诏开府','事实见府属','待考']);
   const HISTORY_SNAPSHOT_STATUS = Object.freeze(['通过','通过（示意）','待核','存在冲突']);
+  const EVIDENCE_STATUS = Object.freeze(['确定','推定','存疑','争议']);
+  const REVIEW_STATES = Object.freeze(['未审','复核中','已核','排除']);
+  const READER_VISIBILITY = Object.freeze(['可见','仅审校','排除']);
   const READING_META_FIELDS = Object.freeze([
-    'evidence','sourceIds','sourceTitle','sourceDocument','sourceUrl','sourceLevel','sourceLocator','sourceExcerpt',
+    'rawRecord','readerSummary','evidence','sourceIds','sourceTitle','sourceDocument','sourceUrl','sourceLevel','sourceLocator','sourceExcerpt',
     'source','sources','bioSource','portraitSource','bibliography','confidence','status','researchStatus','auditStatus',
-    'archiveKind','archiveScope','importBatch','sourceTenureText','verificationState','evidenceNote','footnotes'
+    'evidenceStatus','reviewState','uncertaintyReason','readerVisibility','archiveKind','archiveScope','importBatch','sourceTenureText','verificationState','evidenceNote','footnotes'
   ]);
   const READING_META_FIELD_SET = new Set(READING_META_FIELDS);
 
   function clone(value){ return JSON.parse(JSON.stringify(value)); }
   function text(value){ return String(value == null ? '' : value).trim(); }
-  function readingText(value){
+  function readerSummaryText(value){
     return text(value)
       .replace(/据(?:研究文档|整理记录)录入[；。]?/g,'')
       .replace(/存疑、未详与未上任等措辞均保留，不据此推定常设官署[；。]?/g,'')
       .replace(/研究文档同条已合并，不重复导入[；。]?/g,'')
       .replace(/待逐字拓本复核/g,'释读尚需结合拓本')
       .replace(/待确认是否转入食货志/g,'材料类型介于金石与经济简牍之间')
-      .replace(/本项目/g,'')
-      .replace(/履历归纳/g,'履历提要')
-      .replace(/研究示意/g,'大致范围')
-      .replace(/研究文档|文档考据/g,'整理记录')
-      .replace(/来源文章/g,'相关整理')
-      .replace(/来源型/g,'汇列')
-      .replace(/研究结论/g,'说明')
-      .replace(/研究状态/g,'状态')
-      .replace(/录入边界/g,'范围')
-      .replace(/已执行/g,'已完成')
-      .replace(/史料校验|史实可信度|来源层级|史料状态|查看史料|边界可信度|史料证据卡|核心材料|资料来源|史料摘录|史料出处|数据审计|史料卡/g,'')
-      .replace(/沿革年代待考/g,'沿革年代未详')
-      .replace(/任期待考/g,'任期未详')
-      .replace(/年代待考/g,'年代未详')
-      .replace(/待补考/g,'未详')
-      .replace(/待核|待补|待考/g,'未详')
-      .replace(/资料置信度|置信度/g,'判断')
       .replace(/[；，、]{2,}/g,'；')
       .replace(/\s{2,}/g,' ')
       .replace(/^\s*[；，、]|[；，、]\s*$/g,'')
       .trim();
   }
+  // V55：阅读投影不得改写史料原文、证据状态或“待考”等审校词。
+  // 需要精简文案时显式调用 readerSummaryText，并与 rawRecord/evidence 分栏显示。
+  function readingText(value){ return text(value); }
   function slug(value){
     return text(value).toLowerCase().replace(/蜀汉|季汉/g,'汉').replace(/[\s·／/（）()—–-]+/g,'_').replace(/[^\w\u3400-\u9fff_]/g,'').replace(/^_+|_+$/g,'') || 'unknown';
   }
@@ -106,6 +95,42 @@
     if(raw==='争议') return raw;
     return '推定';
   }
+  function normalizeEvidenceStatus(value){
+    const raw=text(value);
+    if(EVIDENCE_STATUS.includes(raw)) return raw;
+    if(['高','较高','确定'].includes(raw)) return '确定';
+    if(['中','推定'].includes(raw)) return '推定';
+    if(['低','待考','存疑','待核','待补'].includes(raw)) return '存疑';
+    return '';
+  }
+  function normalizeReviewState(value){
+    const raw=text(value);
+    if(REVIEW_STATES.includes(raw)) return raw;
+    if(['已审','已复核','通过'].includes(raw)) return '已核';
+    if(['审核中','待复核','待审核','待确认'].includes(raw)) return '复核中';
+    if(['排除','已排除'].includes(raw)) return '排除';
+    return '未审';
+  }
+  function normalizeReaderVisibility(value){
+    const raw=text(value);
+    if(READER_VISIBILITY.includes(raw)) return raw;
+    if(['visible','reader','可见'].includes(raw)) return '可见';
+    if(['reviewOnly','review','仅审校'].includes(raw)) return '仅审校';
+    if(['excluded','排除'].includes(raw)) return '排除';
+    return '可见';
+  }
+  function normalizeAuditState(source){
+    const row=source||{};
+    const evidenceStatus=normalizeEvidenceStatus(row.evidenceStatus||row.researchStatus||row.confidence||row.status);
+    const reviewState=normalizeReviewState(row.reviewState||row.reviewStatus||row.auditStatus||row.verificationState);
+    const readerVisibility=normalizeReaderVisibility(row.readerVisibility||row.visibilityStatus);
+    return {
+      evidenceStatus,
+      reviewState:readerVisibility==='排除'?'排除':reviewState,
+      uncertaintyReason:text(row.uncertaintyReason||row.reviewReason||row.disputeNote||''),
+      readerVisibility
+    };
+  }
   function normalizeEvidence(source){
     const row=source||{};
     return {
@@ -141,7 +166,7 @@
     row.entityType='periodSnapshot';
     row.periodId=text(row.periodId||row.id)||'unknown';
     row.id=text(row.id)||stableId('period',[row.periodId]);
-    row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
+    row.year=row.year!==null&&row.year!==''&&row.year!==undefined&&Number.isFinite(Number(row.year))?Number(row.year):null;
     row.eraId=text(row.eraId);
     row.auditStatus=HISTORY_SNAPSHOT_STATUS.includes(text(row.auditStatus))?text(row.auditStatus):'待核';
     row.controlMode=text(row.controlMode)||'待核';
@@ -172,8 +197,24 @@
     row.personId=personIdFor(row.commander,{personId:row.personId,polity:row.polity,homonymDiscriminator:row.homonymDiscriminator});
     row.officeId=text(row.officeId)||stableId('office',[row.polity,row.title]);
     row.jurisdictionId=text(row.jurisdictionId)||stableId('jurisdiction',[row.polity,row.jurisdiction]);
+    row.administrativeUnitId=text(row.administrativeUnitId||row.unitId)||row.jurisdictionId;
+    row.administrativeUnitName=text(row.administrativeUnitName||row.jurisdiction);
+    row.unitId=row.administrativeUnitId;
+    row.startYear=row.startYear!==null&&row.startYear!==''&&row.startYear!==undefined&&Number.isFinite(Number(row.startYear))?Number(row.startYear):null;
+    row.endYear=row.endYear!==null&&row.endYear!==''&&row.endYear!==undefined&&Number.isFinite(Number(row.endYear))?Number(row.endYear):null;
+    row.seatName=text(row.seatName||row.seat);
+    row.rawRecord=clone(row.rawRecord||{
+      commander:text(row.commander),title:text(row.title),jurisdiction:text(row.jurisdiction),seat:text(row.seat),
+      tenureText:text(row.sourceTenureText||row.tenureText),note:text(row.note)
+    });
+    row.readerSummary=text(row.readerSummary)||readerSummaryText(row.note||row.sourceTenureText||row.tenureText);
+    row.seatHistory=Array.isArray(row.seatHistory)?row.seatHistory.map(item=>clone(item)):(text(row.seat)?[{
+      seat:text(row.seat),validFrom:Number.isFinite(Number(row.startYear))?Number(row.startYear):null,
+      validTo:Number.isFinite(Number(row.endYear))?Number(row.endYear):null,status:text(row.seatStatus)||'随本条职任记录',sourceTitle:text(row.sourceTitle)
+    }]:[]);
     row.evidence=normalizeEvidence(row);
     row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence);
+    Object.assign(row,normalizeAuditState(row));
     row.aliases=Array.isArray(row.aliases)?row.aliases.map(text).filter(Boolean):[];
     return row;
   }
@@ -205,6 +246,7 @@
     row.roles=Array.isArray(row.roles)?row.roles.map((role,roleIndex)=>normalizeResidenceRole(role,roleIndex,row)):[];
     row.evidence=row.evidence&&typeof row.evidence==='object'?normalizeEvidence(row.evidence):normalizeEvidence(row);
     row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence);
+    Object.assign(row,normalizeAuditState(row));
     row.note=text(row.note); return row;
   }
   function normalizeResidenceRole(record,index,residence){
@@ -229,6 +271,7 @@
     row.validTo=Number.isFinite(Number(row.validTo))?Number(row.validTo):null;
     row.sourceTenureText=text(row.sourceTenureText); row.evidence=normalizeEvidence(row.evidence||row);
     row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    Object.assign(row,normalizeAuditState(row));
     row.note=text(row.note); return row;
   }
   function normalizeHydronym(record,index){
@@ -252,6 +295,7 @@
     row.aliases=Array.isArray(row.aliases)?Array.from(new Set(row.aliases.map(text).filter(Boolean))):[];
     row.sourceIds=Array.isArray(row.sourceIds)?row.sourceIds.map(text).filter(Boolean):[];
     row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    Object.assign(row,normalizeAuditState(row));
     row.homonymStatus=text(row.homonymStatus)||'已按稳定 ID 区分';
     row.sourceIndex=Number.isFinite(Number(row.sourceIndex))?Number(row.sourceIndex):index;
     return row;
@@ -266,6 +310,7 @@
     row.endYear=Number.isFinite(Number(row.endYear))?Number(row.endYear):null;
     row.sourceTenureText=text(row.sourceTenureText); row.evidence=normalizeEvidence(row.evidence||row);
     row.researchStatus=text(row.researchStatus)||normalizeConfidence(row.confidence||row.status);
+    Object.assign(row,normalizeAuditState(row));
     return row;
   }
   function normalizeEpigraphicRecord(record,index){
@@ -274,7 +319,7 @@
     row.id=text(row.id)||stableId('epigraphic',[row.name||'待补',row.year||row.yearText||'',index]);
     row.name=text(row.name)||'未命名金石材料';
     row.type=text(row.type)||'其他';
-    row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
+    row.year=row.year!==null&&row.year!==''&&row.year!==undefined&&Number.isFinite(Number(row.year))?Number(row.year):null;
     row.yearText=text(row.yearText);
     row.polity=normalizePolity(row.polity);
     row.researchStatus=['待补','确定','推定','存疑','争议'].includes(text(row.researchStatus))?text(row.researchStatus):'待补';
@@ -286,6 +331,13 @@
     row.sourceLocator=text(row.sourceLocator);
     row.archiveKind=['核心','扩展','争议'].includes(text(row.archiveKind))?text(row.archiveKind):'核心';
     row.disputeNote=text(row.disputeNote);
+    row.rawRecord=clone(row.rawRecord||{
+      title:text(row.rawTitle||row.title||row.name),dateText:text(row.rawDateText||row.yearText),
+      findspot:text(row.rawFindspot||row.findspot||row.place),sourceLocator:row.sourceLocator
+    });
+    row.readerSummary=text(row.readerSummary)||readerSummaryText(row.note||row.inscriptionStatus||row.disputeNote);
+    row.evidence=row.evidence&&typeof row.evidence==='object'?normalizeEvidence(row.evidence):normalizeEvidence(row);
+    Object.assign(row,normalizeAuditState(row));
     return row;
   }
   function inferServiceDomain(row){
@@ -421,24 +473,25 @@
     if(!value || typeof value!=='object') return value;
     const out={};
     Object.entries(value).forEach(([key,item])=>{
-      if(READING_META_FIELD_SET.has(key)||key==='disputeNote'||key.startsWith('_')||/^source[A-Z_]/.test(key)) return;
+      if(key.startsWith('_')) return;
       out[key]=projectForReading(item);
     });
-    const dispute=readingText(value.disputeNote);
-    if(dispute){
-      const note=text(out.note);
-      out.note=note ? note.replace(/[；。]+$/,'')+'；异说：'+dispute : '异说：'+dispute;
-    }
+    const auditState=normalizeAuditState(value);
+    out.evidenceStatus=out.evidenceStatus||auditState.evidenceStatus;
+    out.reviewState=out.reviewState||auditState.reviewState;
+    out.uncertaintyReason=out.uncertaintyReason||auditState.uncertaintyReason;
+    out.readerVisibility=out.readerVisibility||auditState.readerVisibility;
+    if(!text(out.readerSummary)) out.readerSummary=readerSummaryText(value.readerSummary||value.summary||value.note||value.detail);
     return out;
   }
 
   global.SGZResearchModel=Object.freeze({
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
     serviceDomains:SERVICE_DOMAINS,institutionTypes:INSTITUTION_TYPES,kaifuQualifications:KAIFU_QUALIFICATIONS,
-    historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,stableId,normalizePolity,normalizeConfidence,
+    historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,evidenceStatuses:EVIDENCE_STATUS,reviewStates:REVIEW_STATES,readerVisibilities:READER_VISIBILITY,stableId,normalizePolity,normalizeConfidence,normalizeEvidenceStatus,normalizeReviewState,normalizeReaderVisibility,normalizeAuditState,
     personIdFor,hashId,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
-    readingMetaFields:READING_META_FIELDS,readingText,projectForReading,
+    readingMetaFields:READING_META_FIELDS,readingText,readerSummaryText,projectForReading,
     normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeResidenceRole,normalizeKaifuPolicy,normalizeHydronym,
     normalizePerson,normalizeAppointment,normalizeEpigraphicRecord,normalizeNode,normalizeOfficeClassifications,
     inferServiceDomain,inferInstitutionType,migrate,buildIndexes,recordsAtYear

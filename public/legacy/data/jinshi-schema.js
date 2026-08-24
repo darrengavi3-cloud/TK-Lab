@@ -26,7 +26,7 @@
     row.polity = text(row.polity);
     row.archiveKind = text(row.archiveKind || (row.researchStatus === '争议' ? '争议' : '核心'));
     row.dateText = text(row.dateText || row.yearText || (row.year != null ? `${row.year}年` : '年代未详'));
-    row.year = Number.isFinite(Number(row.year)) ? Number(row.year) : null;
+    row.year = row.year !== null && row.year !== '' && row.year !== undefined && Number.isFinite(Number(row.year)) ? Number(row.year) : null;
     row.findspot = text(row.findspot || row.place || row.region);
     row.place = row.findspot;
     row.region = text(row.region || row.findspot);
@@ -40,13 +40,16 @@
     row.researchStatus = text(row.researchStatus || row.evidenceStatus || '待考');
     row.sourceDocument = text(row.sourceDocument || row.source || row.sourceTitle);
     row.sourceLocator = text(row.sourceLocator);
+    row.rawRecord = row.rawRecord && typeof row.rawRecord === 'object' ? { ...row.rawRecord } : { title:text(row.rawTitle || row.title || row.name), dateText:row.dateText, findspot:row.findspot, sourceLocator:row.sourceLocator };
+    row.readerSummary = text(row.readerSummary || [row.dateText,row.findspot,row.inscriptionStatus].filter(Boolean).join(' · '));
+    row.evidence = row.evidence && typeof row.evidence === 'object' ? { ...row.evidence } : { sourceTitle:text(row.sourceTitle), sourceLevel:text(row.sourceLevel), confidence:text(row.confidence || row.researchStatus), sourceLocator:row.sourceLocator };
     return row;
   }
 
   global.SGZ_JINSHI_SCHEMA = Object.freeze({
-    schemaVersion:'V49',
-    modelId:'sgz-jinshi-record-v49',
-    policy:'页面表头只绑定规范字段；旧字段保留兼容读取，但不直接决定列语义。',
+    schemaVersion:'V55',
+    modelId:'sgz-jinshi-record-v55',
+    policy:'页面表头只绑定规范字段；题名、年代、出土地、释文、原始记录与证据分栏保存，旧字段仅作兼容读取。',
     columns,
     normalize,
   });

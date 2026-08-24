@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "V55",
+  "baseline": "V54",
+  "generatedAt": "2026-08-23T00:00:00+08:00",
+  "scope": "形势图之外的职官谱、人物记、战事纪、州镇表、食货志、金石录，以及全局检索和阅读／审校投影",
+  "sourcePolicy": "原始记录、读者摘要和证据对象分栏保存；不以界面摘要覆盖原始史料，不以数量门槛替代实体审校。",
+  "people": {
+    "sourcePeople": 580,
+    "defaultPeople": 123,
+    "sourceAppointments": 919,
+    "defaultAppointments": 177,
+    "canonicalDefaultIds": 123,
+    "ziResolvedByPersonId": 65,
+    "ziUnresolved": 0,
+    "runtimeCardsBeforeIdentityMerge": 621,
+    "runtimeCardsAfterIdentityMerge": 545,
+    "mergedDuplicateNameGroups": 56,
+    "explicitHomonymGroups": 1,
+    "unresolvedDuplicateNameGroups": 0,
+    "legacyIdMappings": {
+      "person:source:51390b3cd295": "person:shu:dong-yun"
+    },
+    "portraitReadyForDefault": 123
+  },
+  "offices": {
+    "classifiedOfficeNodes": 1700,
+    "institutionTypes": {
+      "朝廷机关": 566,
+      "郡府": 432,
+      "县署": 410,
+      "州府": 206,
+      "丞相府": 21,
+      "属国机构": 18,
+      "东宫": 16,
+      "将军府": 13,
+      "王府": 9,
+      "部族机构": 9
+    },
+    "serviceDomains": {
+      "文官": 1265,
+      "武官": 403,
+      "文武兼": 25,
+      "待考": 7
+    },
+    "generalTitles": {
+      "wei": { "total": 115, "pending": 46 },
+      "shu": { "total": 66, "pending": 35 },
+      "wu": { "total": 74, "pending": 51 },
+      "jin": { "total": 56, "pending": 22 }
+    }
+  },
+  "battles": {
+    "events": 47,
+    "battles": 25,
+    "battlefields": 12,
+    "primaryViews": ["chronology", "belligerent", "campaign"],
+    "pendingBattlefieldSources": [
+      "guandu-field",
+      "chibi-field",
+      "xiangfan-field",
+      "hefei-field",
+      "ruxu-field",
+      "yiling-field",
+      "jieting-field",
+      "qishan-field",
+      "wuzhang-field",
+      "tongguan-field",
+      "shouchun-field",
+      "dongxing-field"
+    ]
+  },
+  "shihuo": {
+    "records": 71,
+    "events": 19,
+    "householdRows": 8,
+    "comparableHouseholdRows": 4,
+    "baselineRecordIds": ["sh_146_kentian", "sh_157_hukou"]
+  },
+  "jinshi": {
+    "sourceHash": "3dd826cf2b3202b5e7954fe857c12abef926f38160e7ed15cb02cdba48c654b3",
+    "records": 128,
+    "core": 65,
+    "extended": 63,
+    "withInscription": 42,
+    "missingInscription": 86,
+    "strikeParagraphsExcluded": 31,
+    "strikeCharactersExcluded": 778,
+    "legacyCatalogRecords": 60,
+    "runtimeRecords": 188,
+    "runtimeWithInscription": 46,
+    "runtimeArchiveKinds": {
+      "核心": 123,
+      "扩展": 64,
+      "争议": 1
+    }
+  },
+  "mapFreeze": {
+    "policy": "V55 不修改形势图模块；只执行跨模块跳转回归。",
+    "sha256": {
+      "assets/map/js/app.js": "0bdf60c4e39a83b8b4511d6f6bd5187cfe5873f6cb277b8f926fe4bf63011ec8",
+      "assets/map/js/config.js": "fd6596ad59e6584aed1baab869f0340e3cbf54adfabd6f9f9ea96c0c149dde5b",
+      "assets/map/js/base-layer.js": "5e924debb700ed3c759a6bdd4910baeceef64986dd4f111881ddc93531ed095c"
+    }
+  },
+  "openReviewItems": [
+    "12 个战场坐标档案仍只有几何／界面说明，史料出处标记为来源待补。",
+    "86 条金石目录未在附件对应区段检出明确释文，界面显示源文未见明确释文标识，不自动补写。",
+    "各政权待考将军名号继续留在审校层，不据模板直接升级为确定官制。",
+    "文武兼与待考官职继续逐条回查，不以名称词缀静默改写史实。"
+  ]
+}
