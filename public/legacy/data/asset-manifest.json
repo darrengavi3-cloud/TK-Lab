@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T13:46:34.330Z",
+  "generatedAt": "2026-08-24T18:23:21.389Z",
   "offlineRuntime": true,
-  "fileCount": 324,
-  "totalBytes": 109934700,
+  "fileCount": 346,
+  "totalBytes": 117745898,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -1196,6 +1196,106 @@
       "sha256": "777c4c480447628a5d1bf440c4c482622544077f316ebc8379ea5c5aadcf5ddc"
     },
     {
+      "path": "assets/portraits/v58/cao-cao.png",
+      "bytes": 410177,
+      "sha256": "3649f3f7c13322d8c0cd1fbb439f438cd50ea4ccb68cc306130fa23679f04d34"
+    },
+    {
+      "path": "assets/portraits/v58/ding-feng.png",
+      "bytes": 396412,
+      "sha256": "3d70d7cb8e535fde644028231555929bf42eb327c2018204d78dea978fe3b7c3"
+    },
+    {
+      "path": "assets/portraits/v58/du-yu.png",
+      "bytes": 399021,
+      "sha256": "7dc902eb5a1cd9031e14d1603fbf380ed20aee2808f8c457b1bf81a9c4836fff"
+    },
+    {
+      "path": "assets/portraits/v58/huan-wen.png",
+      "bytes": 377749,
+      "sha256": "cfdc070b6eb6e0c768a72787e50a4fbc898c58f1734a749588ab2bd13a147c66"
+    },
+    {
+      "path": "assets/portraits/v58/liu-bei.png",
+      "bytes": 391756,
+      "sha256": "af341ece53a9a05d4a66c529526ea57c8afc9f804882c03b9019a41f76407e66"
+    },
+    {
+      "path": "assets/portraits/v58/liu-shi.png",
+      "bytes": 387015,
+      "sha256": "73c68cc3fc5c41c0d2b088f1296efd46a1633ab120692103b3f16ac3caefcf2f"
+    },
+    {
+      "path": "assets/portraits/v58/liu-yu.png",
+      "bytes": 391969,
+      "sha256": "c6a1e6e063fb5fd29e4bc07a1b8ccc07dd507ab17080ad29f0bd067e56e811b8"
+    },
+    {
+      "path": "assets/portraits/v58/lu-dai.png",
+      "bytes": 376231,
+      "sha256": "5cb6aacd83e6260fe0da884981e345ee43249525fc2eb226f93653236fc0127e"
+    },
+    {
+      "path": "assets/portraits/v58/lu-meng.png",
+      "bytes": 366508,
+      "sha256": "ac5c40ec0baafb4196945e727804d8e9cd0af60a474da7c39595a1ff100928fd"
+    },
+    {
+      "path": "assets/portraits/v58/shi-bao.png",
+      "bytes": 392381,
+      "sha256": "87fdf272fe9fa54764dfdfb42db25df1404057ee845018a591e2b63772e00b21"
+    },
+    {
+      "path": "assets/portraits/v58/sima-shi.png",
+      "bytes": 384318,
+      "sha256": "4d9e8795ee96942d7427fe1b8b1f6c818818c6268e767bd099f4c709bee3c0d3"
+    },
+    {
+      "path": "assets/portraits/v58/sima-yan.png",
+      "bytes": 377705,
+      "sha256": "896f69cd862cd5d55ad301b42d638100c98b228f97107266eb4e2d9672839b8d"
+    },
+    {
+      "path": "assets/portraits/v58/sima-yi.png",
+      "bytes": 408026,
+      "sha256": "0fcfc7a8d4bb981ac8ee232cd7d31966ca8d0fb7db049df372c4f8171ef14dd2"
+    },
+    {
+      "path": "assets/portraits/v58/wang-dao.png",
+      "bytes": 388583,
+      "sha256": "0ad72ef10b1e6e67ed21e6765b5af2fbae164983363cd2bc6dbac266e6349184"
+    },
+    {
+      "path": "assets/portraits/v58/wang-jun.png",
+      "bytes": 392939,
+      "sha256": "079a03f59bff2c786667ea49195cf74f7f8758ecf0b4153f3622254aa20a898e"
+    },
+    {
+      "path": "assets/portraits/v58/xi-jian.png",
+      "bytes": 398492,
+      "sha256": "3102ee3122c38539542028aebbabf1f0698859745df87f19b767d8dff64a7eda"
+    },
+    {
+      "path": "assets/portraits/v58/yang-jun.png",
+      "bytes": 392484,
+      "sha256": "5a5156799f55ff516ce6230e135f9971c17cf9efe3d5b5552b066fd84a3ea2cb"
+    },
+    {
+      "path": "assets/portraits/v58/zhang-hua.png",
+      "bytes": 374688,
+      "sha256": "8af4faafde3c53b37afba722212fafbe190dc0787d168bf40d4200a527db6363"
+    },
+    {
+      "path": "assets/portraits/v58/zhou-yu.png",
+      "bytes": 389428,
+      "sha256": "b7fc53756ab8260febac8eba1b7491e9825b8745ef90897f2028b238f2c83e0f"
+    },
+    {
+      "path": "assets/portraits/v58/zhuge-jin.png",
+      "bytes": 394057,
+      "sha256": "cdfcd8ccebb04786d09b5bad6734a985a13e1c3a0551d287b195119452a01e68"
+    },
+    {
       "path": "assets/portraits/wei/cheng-ji.png",
       "bytes": 18059,
       "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
@@ -1264,6 +1364,11 @@
       "path": "assets/ui/v57.css",
       "bytes": 5610,
       "sha256": "4ae2fcb0a88cfe4c120fd0004781087db3888ef9a3160079784be253b8cbd0c5"
+    },
+    {
+      "path": "assets/ui/v58.css",
+      "bytes": 10956,
+      "sha256": "944bf51f1d7911b30ff9ede260b3fe41f4bfb1f8453a56c716d1d757419f3ea6"
     },
     {
       "path": "assets/vendor/element-plus/index.css",
@@ -1472,13 +1577,13 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 144814,
-      "sha256": "5a02bdd926fa81015c364616753828a11512cc238bdf474589145fdf298e192a"
+      "bytes": 147916,
+      "sha256": "9c32206a3dc14a848f16a93a6be9d9ad2b644568fb2c4e1d434e4e06e697cc1e"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 196983,
-      "sha256": "104c0a58205417481853916fb79d638d2090fd2daa2ba636b014e3eefc5b94a1"
+      "bytes": 201665,
+      "sha256": "624269d335be24d659714023ff43864605a64bc4aed2f61d1039472ebbab4399"
     },
     {
       "path": "data/portrait-pool-assignments-v52.json",
@@ -1609,6 +1714,11 @@
       "path": "data/v55-release-manifest.json",
       "bytes": 744,
       "sha256": "471b7d6c266c4f0dcb1c55afe57fb73161f2191b092ea990816b2c0e7e44100e"
+    },
+    {
+      "path": "data/v58-portrait-board.js",
+      "bytes": 2519,
+      "sha256": "fda5f468b7e94136b9c821fc175019efbd407951f173faf2802b2fab753257f1"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

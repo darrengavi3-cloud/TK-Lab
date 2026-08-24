@@ -1,0 +1,156 @@
+:root {
+  --v58-paper: var(--v56-paper, #eef0eb);
+  --v58-surface: var(--v56-sheet, #fafbf7);
+  --v58-raised: var(--v56-sheet-raised, #ffffff);
+  --v58-ink: var(--v56-ink, #1b2b2e);
+  --v58-muted: var(--v56-muted, #687572);
+  --v58-line: var(--v56-rule, #d7ddd7);
+  --v58-accent: var(--v56-vermilion, #a34738);
+  --v58-green: var(--v56-green, #4e6961);
+  --v58-gold: var(--v56-gold, #9b7a3b);
+  --v58-focus: var(--v56-focus, 0 0 0 3px rgba(163, 71, 56, .22));
+  --v58-radius: 8px;
+  --v58-radius-small: 5px;
+}
+
+body, #app, .shell { color: var(--v58-ink); }
+.module-page:not(.history-map-page) { background: var(--v58-paper); }
+.module-page:not(.history-map-page) .module-page-inner { max-width: 1680px; }
+.module-page:not(.history-map-page) .page-heading { padding-bottom: 12px; }
+.module-page:not(.history-map-page) .page-kicker {
+  color: var(--v58-accent); font-size: 10px; font-weight: 700; letter-spacing: .14em;
+}
+.module-page:not(.history-map-page) h1 { color: var(--v58-ink); font-weight: 760; letter-spacing: -.02em; }
+.module-page:not(.history-map-page) .page-heading p { color: var(--v58-muted); max-width: 760px; }
+
+.v58-identity-strip, .v58-dossier-strip, .v58-evidence-strip {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+  margin-top: 10px; padding: 8px 10px; border: 1px solid var(--v58-line);
+  border-radius: var(--v58-radius-small); background: color-mix(in srgb, var(--v58-raised) 74%, transparent);
+  color: var(--v58-muted); font-size: 11px; line-height: 1.45;
+}
+.v58-identity-strip strong, .v58-dossier-strip strong, .v58-evidence-strip strong { color: var(--v58-ink); }
+.v58-status { display: inline-flex; align-items: center; gap: 4px; min-height: 20px; padding: 2px 7px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px; font-weight: 700; line-height: 1.2; }
+.v58-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.v58-status--ready { color: var(--v58-green); background: color-mix(in srgb, var(--v58-green) 9%, transparent); }
+.v58-status--pending { color: var(--v58-accent); background: color-mix(in srgb, var(--v58-accent) 8%, transparent); }
+.v58-status--uncertain { color: var(--v58-gold); background: color-mix(in srgb, var(--v58-gold) 10%, transparent); }
+.v58-caption { color: var(--v58-muted); font-size: 10px; }
+
+.people-workbench .people-toolbar, .battle-workbench .battle-toolbar, .jinshi-workbench .jinshi-toolbar,
+.shihuo-workbench .shihuo-polity-chips, .fangzhen-workbench .fangzhen-context {
+  border: 1px solid var(--v58-line); border-radius: var(--v58-radius); background: var(--v58-raised);
+}
+.people-workbench .people-toolbar, .battle-workbench .battle-toolbar, .jinshi-workbench .jinshi-toolbar { min-height: 42px; padding: 7px 10px; }
+.people-workbench .people-metrics, .jinshi-workbench .people-metrics, .shihuo-workbench .battle-metrics, .fangzhen-workbench .fangzhen-metrics { gap: 8px; }
+.people-metric, .jinshi-metric, .battle-metric, .fz-metric {
+  border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised);
+}
+.people-metric strong, .jinshi-metric strong, .battle-metric strong, .fz-metric strong { color: var(--v58-ink); }
+.people-metric span, .jinshi-metric span, .battle-metric span, .fz-metric span { color: var(--v58-muted); }
+
+.v56-people-master-detail { gap: 12px; align-items: stretch; }
+.v56-person-directory, .v56-person-dossier, .v56-jinshi-directory, .v56-jinshi-reader,
+.fangzhen-table-card, .shihuo-workbench .fangzhen-table-card {
+  border: 1px solid var(--v58-line); border-radius: var(--v58-radius); background: var(--v58-raised);
+  box-shadow: 0 8px 24px rgba(27, 43, 46, .035);
+}
+.v56-person-row, .v56-jinshi-row { position: relative; border-bottom-color: var(--v58-line); }
+.v56-person-row::before, .v56-jinshi-row::before, .v56-career-row::before,
+.battle-timeline-item::before, .v58-evidence-spine::before {
+  content: ''; position: absolute; inset-block: 10px; inset-inline-start: 0; width: 2px;
+  border-radius: 2px; background: var(--v58-line); transition: background-color .18s ease;
+}
+.v56-person-row.active::before, .v56-jinshi-row.active::before, .v56-career-row:hover::before,
+.battle-timeline-item:hover::before { background: var(--v58-accent); }
+.v56-person-row:focus-visible, .v56-jinshi-row:focus-visible, .v56-career-row:focus-visible,
+.battle-timeline-item:focus-visible { outline: none; box-shadow: var(--v58-focus); }
+.v56-person-dossier { position: relative; padding: 20px; }
+.v56-person-dossier::before, .v56-jinshi-reader::before, .fangzhen-table-card::before,
+.shihuo-workbench .fangzhen-table-card::before { content: ''; position: absolute; inset-block: 18px; inset-inline-start: 0; width: 3px; background: var(--v58-green); border-radius: 3px; }
+.v56-person-dossier-head { padding-bottom: 16px; border-bottom: 1px solid var(--v58-line); }
+.v56-person-dossier-head h2 { color: var(--v58-ink); }
+.v56-person-dossier-meta { color: var(--v58-muted); }
+.v58-dossier-strip { margin-top: 12px; }
+.v58-portrait-note { display: block; margin-top: 5px; color: var(--v58-muted); font-size: 10px; }
+.v56-career-timeline { position: relative; }
+.v56-career-row { position: relative; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 75%, transparent); }
+.v56-career-year { color: var(--v58-accent); font-variant-numeric: tabular-nums; }
+.v56-career-evidence { color: var(--v58-muted); }
+
+.battle-view-switch { display: flex; align-items: center; gap: 3px; margin: 12px 0 9px; padding: 3px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised); }
+.battle-view-switch button { min-height: 28px; border: 0; border-radius: 4px; background: transparent; color: var(--v58-muted); font-size: 11px; cursor: pointer; }
+.battle-view-switch button.active { background: var(--v58-ink); color: var(--v58-raised); }
+.v58-density-switch { margin-inline-start: auto; display: inline-flex; gap: 2px; padding-inline-start: 8px; border-inline-start: 1px solid var(--v58-line); }
+.v58-density-switch button { min-height: 24px; padding: 0 7px; border: 1px solid transparent; border-radius: 4px; }
+.v58-density-switch button.active { border-color: var(--v58-line); background: var(--v58-paper); color: var(--v58-ink); }
+.battle-vertical-scroll { position: relative; max-height: min(56vh, 570px); padding-inline-start: 8px; overflow: auto; }
+.battle-density-compact .battle-vertical-scroll { max-height: min(44vh, 420px); }
+.battle-timeline-item { position: relative; padding: 12px 14px 12px 20px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised); }
+.battle-timeline-desc { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; color: var(--v58-muted); }
+.battle-density-compact .battle-timeline-item { padding-block: 8px; }
+.battle-density-compact .battle-timeline-desc { -webkit-line-clamp: 1; }
+.battle-density-compact .battle-timeline-meta { display: none; }
+.battle-map-link, .battle-item-actions .battle-map-link { color: var(--v58-accent); }
+.v58-coordinate-pending { color: var(--v58-accent); font-size: 10px; font-weight: 700; }
+
+.fangzhen-workbench .fangzhen-archive-tabs { margin-bottom: 12px; }
+.fangzhen-workbench .fangzhen-context { padding: 10px 12px; }
+.fangzhen-workbench .fangzhen-context strong { color: var(--v58-ink); }
+.fangzhen-workbench .fangzhen-context span { color: var(--v58-muted); }
+.fangzhen-workbench .el-table th.el-table__cell { color: var(--v58-muted); font-size: 10px; }
+.fangzhen-workbench .el-table td.el-table__cell { color: var(--v58-ink); }
+
+.jinshi-workbench .jinshi-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.jinshi-workbench .v56-jinshi-workbench-grid { gap: 12px; }
+.v56-jinshi-directory, .v56-jinshi-reader { position: relative; overflow: hidden; }
+.v56-jinshi-row { padding-inline-start: 20px; }
+.v56-jinshi-row-title { color: var(--v58-ink); }
+.v56-jinshi-row-meta { color: var(--v58-muted); }
+.v58-jinshi-status { margin-top: 5px; display: block; color: var(--v58-accent); font-size: 10px; font-weight: 700; }
+.v56-jinshi-reader { padding: 18px; }
+.v56-jinshi-reader header { border-bottom-color: var(--v58-line); }
+.v56-jinshi-reader h2 { color: var(--v58-ink); }
+.v56-jinshi-inscription { background: color-mix(in srgb, var(--v58-paper) 70%, transparent); border-color: var(--v58-line); }
+.v58-filter-note { flex-basis: 100%; color: var(--v58-muted); font-size: 10px; }
+
+.shihuo-workbench .shihuo-polity-chips { padding: 8px 10px; }
+.shihuo-workbench .battle-metrics { margin-top: 10px; }
+.shihuo-workbench .fangzhen-table-card { position: relative; overflow: hidden; }
+.shihuo-workbench .fangzhen-context { border-bottom-color: var(--v58-line); }
+.shihuo-workbench .hh-empty { display: inline-flex; padding: 3px 6px; border: 1px dashed var(--v58-gold); border-radius: 4px; color: var(--v58-gold); font-size: 10px; }
+.v58-comparability-note { margin: 9px 0 0; padding: 7px 9px; border-left: 2px solid var(--v58-gold); color: var(--v58-muted); font-size: 11px; line-height: 1.5; }
+
+.v56-evidence-rail { background: color-mix(in srgb, var(--v58-surface) 96%, transparent); border-left-color: var(--v58-line); }
+.v56-evidence-head { border-bottom-color: var(--v58-line); }
+.v56-evidence-head strong { color: var(--v58-ink); }
+.v56-evidence-status { border-radius: 999px; font-weight: 700; }
+.v56-evidence-section { border-top-color: var(--v58-line); }
+.v58-evidence-spine { position: relative; padding-inline-start: 12px; }
+.v58-evidence-spine::before { inset-block: 0; }
+
+@media (max-width: 980px) {
+  .v56-people-master-detail { grid-template-columns: minmax(0, 1fr); }
+  .v56-person-dossier { min-height: 0; }
+  .battle-view-switch { flex-wrap: wrap; }
+  .v58-density-switch { margin-inline-start: 0; padding-inline-start: 0; border-inline-start: 0; }
+}
+@media (max-width: 760px) {
+  .module-page:not(.history-map-page) .module-page-inner { padding-inline: 10px; }
+  .module-page:not(.history-map-page) .page-heading { padding-top: 13px; }
+  .module-page:not(.history-map-page) h1 { font-size: 22px; }
+  .v56-person-dossier { padding: 14px; }
+  .v56-person-dossier-head { align-items: flex-start; }
+  .v58-dossier-strip { gap: 5px 9px; }
+  .battle-vertical-scroll { max-height: 52vh; padding-inline-start: 2px; }
+  .battle-density-compact .battle-vertical-scroll { max-height: 42vh; }
+  .v56-jinshi-workbench-grid { grid-template-columns: 1fr; }
+  .v56-jinshi-directory { max-height: 34vh; }
+  .jinshi-workbench .jinshi-toolbar .el-select { flex: 1 1 120px; width: auto !important; }
+  .v58-filter-note { order: 5; }
+  .shihuo-workbench .el-table { min-width: 680px; }
+  .shihuo-workbench .fangzhen-table-card { overflow-x: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v56-person-row::before, .v56-jinshi-row::before, .v56-career-row::before, .battle-timeline-item::before { transition: none; }
+}

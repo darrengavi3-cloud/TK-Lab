@@ -33,6 +33,9 @@ for (const personId of manifest.defaultPersonIds || []) {
   registerPortrait(manifest.byPersonId?.[personId]?.src);
 }
 registerPortrait(manifest.summary?.dengAiSrc);
+for (const portrait of Object.values(manifest.byPersonId || {})) {
+  if (portrait?.portraitKind === 'ui-illustration-v58') registerPortrait(portrait.src);
+}
 
 const missingBeforePrune = [...runtimePortraits].filter(
   (relativePath) => !fs.existsSync(path.join(legacyRoot, relativePath)),

@@ -32,6 +32,7 @@
 <script src="./data/person-portraits.js"></script>
 <script src="./data/portrait-manifest.js"></script>
 <script src="./data/v48-portrait-board.js"></script>
+<script src="./data/v58-portrait-board.js"></script>
 <script src="./data/epigraphic-records.js"></script>
 <script src="./data/epigraphic-v46-jin.js"></script>
 <script src="./data/jinshi-schema.js"></script>
@@ -971,6 +972,7 @@ body{background:#F4F3EF;}
 <link rel="stylesheet" href="./assets/ui/v55.css" />
 <link rel="stylesheet" href="./assets/ui/v56.css" />
 <link rel="stylesheet" href="./assets/ui/v57.css" />
+<link rel="stylesheet" href="./assets/ui/v58.css" />
 </head>
 <body>
 <div id="app"></div>
@@ -4803,6 +4805,8 @@ const app = createApp({
     const epigraphicType = ref('all');
     const epigraphicPolity = ref('all');
     const epigraphicArchive = ref('all');
+    const epigraphicInscriptionStatus = ref('all');
+    const epigraphicInscriptionStatuses = ['已录入','源文未见','残缺','待校'];
     const showEpigraphicDetail = ref(false);
     const activeEpigraphicDetail = ref(null);
     const filteredEpigraphicRecords = computed(()=>{
@@ -4811,10 +4815,13 @@ const app = createApp({
         const raw=epigraphicRecords.value[index]||{};
         const disputed=raw.researchStatus==='争议'||raw.archiveKind==='争议'||Boolean(raw.disputeNote);
         const archiveKind=['核心','扩展','争议'].includes(raw.archiveKind)?raw.archiveKind:(disputed?'争议':'核心');
-        return Object.assign({},item,{archiveKind,isDisputed:disputed,displayName:(disputed?'* ':'')+item.name});
+        const inscriptionState=String(raw.inscription||'').trim()?'已录入':String(raw.inscriptionStatus||'').includes('残缺')?'残缺':String(raw.inscriptionStatus||'').includes('待校')?'待校':'源文未见';
+        return Object.assign({},item,{archiveKind,isDisputed:disputed,inscriptionState,displayName:item.name});
       }).filter(item=>{
         if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
         if(epigraphicPolity.value!=='all' && item.polity!==epigraphicPolity.value) return false;
+        if(epigraphicArchive.value!=='all' && item.archiveKind!==epigraphicArchive.value) return false;
+        if(epigraphicInscriptionStatus.value!=='all' && item.inscriptionState!==epigraphicInscriptionStatus.value) return false;
         if(q && !['name','materialType','dateText','year','polity','findspot','scriptStyle','form','inscription','people','offices','note','sourceDocument','sourceLocator'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
         return true;
       }).sort((a,b)=>{
@@ -4920,6 +4927,7 @@ const app = createApp({
     const battlePeriodId = ref('all');
     const battleBranch = ref('all');
     const battleView = ref('chronology');
+    const battleDensity = ref('comfortable');
     const showBattleDetail = ref(false);
     const activeBattleDetail = ref(null);
     const currentHistoryPeriod = computed(()=>historyMapPeriods[historyMapIndex.value] || historyMapPeriods[0]);
@@ -7701,6 +7709,12 @@ const app = createApp({
     });
     const pagedPeople=computed(()=>filteredPeople.value.slice((peoplePage.value-1)*peoplePageSize.value,peoplePage.value*peoplePageSize.value));
     const peoplePrimaryDetail=computed(()=>activePeopleDetail.value||pagedPeople.value[0]||null);
+    const peopleArchiveScope=computed(()=>{
+      const person=peoplePrimaryDetail.value;
+      const sourcePeople=window.SGZ_PERSON_SOURCE_INDEX?.people||[];
+      const sourcePerson=person&&sourcePeople.find(item=>item.personId===person.personId);
+      return sourcePerson?.includeInDefault===true ? {label:'默认档案',detail:'默认人物档案范围'} : {label:'全量活动源／扩展档案',detail:'当前页面可见的工程活动源'};
+    });
     const peoplePageCount=computed(()=>Math.max(1,Math.ceil(filteredPeople.value.length/peoplePageSize.value)));
     watch([peopleQuery,peoplePolity,peopleKind,peopleEra,peopleYear,peopleSource,peopleEvidence,peopleServiceDomain,peopleInstitutionType,peopleOnlyPortrait],()=>{peoplePage.value=1;});
     watch(peoplePageCount,count=>{ if(peoplePage.value>count) peoplePage.value=count; });
@@ -8890,6 +8904,7 @@ const app = createApp({
       addFigureRecord, removeFigureRecord, onFigureRulerChanged, uploadPortrait, clearPortrait,
       recordPeriodLabel, recordYearLabel, openPersonProfile, jumpToPersonAppointment,
       peopleQuery, peoplePolity, peopleKind, peopleEra, peopleYear, peopleSource, peopleEvidence, peopleServiceDomain, peopleInstitutionType, peopleOnlyPortrait, peopleAdvanced, peopleView, filteredPeople, pagedPeople, peoplePrimaryDetail, peoplePage, peoplePageSize, peoplePageCount, peopleMetrics,
+      peopleArchiveScope, peopleCoverageSummary,
       generalTitleGroups, activeGeneralTitleGroup, generalTitleDisplayItems, generalTitlesSource,
       openPeopleDetailFromSnapshot,
       periodRosterPhase, periodRosterPhases, filteredPeriodOfficeSnapshots,
@@ -8898,14 +8913,14 @@ const app = createApp({
       personMetaDialog, openPersonMetaEditor, savePersonMeta, uploadPersonPortrait,
       showAuditCenter, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
       runDataAudit, auditJump, exportAuditReport, exportAuditWorkbook,
-      battleRecords, battleQuery, battleKind, battlePeriodId, battleBranch, battleView,
+      battleRecords, battleQuery, battleKind, battlePeriodId, battleBranch, battleView, battleDensity,
       battleEntryList, battlePeriodOptions, battleMetrics, filteredBattles, battleBranchOptions, battleBranchGroups, battleCampaignGroups, battleKindLabel, battleKindClass,
       showBattleDetail, activeBattleDetail, openBattleDetail, battleDetailYear, battlePeriodForItem, battleRelatedPeople, jumpToBattlePeriod,
       jumpBattleToMap, battleRelationChain,
       SHIHUO_POLITIES, SHIHUO_CATEGORIES, shihuoQuery, shihuoPolity, shihuoCategory, shihuoScope, shihuoRecordKind, shihuoView,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
       shihuoEvidenceClass, shihuoEvidenceLabel, householdMiniChart,
-      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, epigraphicArchive, filteredEpigraphicRecords, epigraphicMetrics, jinshiPrimaryDetail,
+      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, epigraphicArchive, epigraphicInscriptionStatus, epigraphicInscriptionStatuses, filteredEpigraphicRecords, epigraphicMetrics, jinshiPrimaryDetail,
       epigraphicHighlight, epigraphicArchiveClass, openEpigraphicPerson, showEpigraphicDetail, activeEpigraphicDetail, openEpigraphicDetail,
       mountOptions, jumpToMount,
       footnoteDialog, openFootnoteDialog, confirmFootnote, removeFootnote, footnotesFor, footnoteIndex,
@@ -8987,6 +9002,8 @@ const app = createApp({
       </template>
       <template v-else-if="activeModule==='jinshi'">
         <el-select v-model="epigraphicType" class="v56-context-select" size="small" aria-label="材料类型"><el-option label="全部类型" value="all"/><el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type"/></el-select>
+        <el-select v-model="epigraphicArchive" class="v56-context-select" size="small" aria-label="来源范围"><el-option label="全部范围" value="all"/><el-option label="核心" value="核心"/><el-option label="扩展" value="扩展"/><el-option label="争议" value="争议"/></el-select>
+        <el-select v-model="epigraphicInscriptionStatus" class="v56-context-select" size="small" aria-label="释文状态"><el-option label="全部释文状态" value="all"/><el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status" :value="status"/></el-select>
       </template>
       <template v-else-if="activeModule==='shihuo'">
         <el-select v-model="shihuoCategory" class="v56-context-select" size="small" aria-label="食货类别"><el-option label="全部类别" value="all"/><el-option v-for="c in SHIHUO_CATEGORIES" :key="c" :label="c" :value="c"/></el-select>
@@ -9679,6 +9696,7 @@ const app = createApp({
             <div class="page-kicker">人物记 · 人物 · 履历 · 立绘</div>
             <h1>人物记</h1>
             <p>汇总职官谱、州镇表与爵位体系中的同一人物全部职任，形成连续履历；字号、籍贯、生卒与立绘随工程自动保存。</p>
+            <div class="v58-identity-strip"><strong>档案范围</strong><span>活动源 {{peopleCoverageSummary.people||peopleMetrics.people}} 人／{{peopleCoverageSummary.appointments||peopleMetrics.records}} 条任官</span><span>默认档案由稳定 personId 控制，不因立绘数量扩展</span></div>
           </div>
         </div>
         <div class="people-toolbar">
@@ -9744,6 +9762,8 @@ const app = createApp({
                 <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}<small v-if="peoplePrimaryDetail.zi">字{{peoplePrimaryDetail.zi}}</small></h2>
                 <div class="v56-person-dossier-meta"><span>所历朝代：{{peoplePrimaryDetail.politics.join(' · ')||'未详'}}</span><span>生卒：{{peoplePrimaryDetail.birthYear||'?'}}—{{peoplePrimaryDetail.deathYear||'?'}}</span><span>籍贯：{{peoplePrimaryDetail.birthplace||'未详'}}</span><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
                 <div class="people-detail-tags"><span v-for="pol in peoplePrimaryDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
+                <div class="v58-dossier-strip"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{peoplePrimaryDetail.sourceVolumes.length?peoplePrimaryDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span><span class="v58-status" :class="peoplePrimaryDetail.sourceVolumes.length?'v58-status--ready':'v58-status--pending'">{{peoplePrimaryDetail.sourceVolumes.length?'来源已关联':'来源待补'}}</span></div>
+                <span v-if="peoplePrimaryDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像；立绘不作为人物身份或史料证据。</span>
                 <p class="v56-person-dossier-summary">{{peoplePrimaryDetail.bio||'暂无本传摘要；以下仅显示可验证的任官、受爵与州镇档案。'}}</p>
                 <el-button v-if="workspaceMode==='review'" class="review-only" size="small" plain @click="openPersonMetaEditor(peoplePrimaryDetail.personId)">编辑人物档案</el-button>
               </div>
@@ -9789,7 +9809,7 @@ const app = createApp({
       </div>
     </main>
 
-    <main v-if="activeModule==='battle'" class="module-page battle-workbench">
+    <main v-if="activeModule==='battle'" :class="['module-page','battle-workbench','battle-density-'+battleDensity]">
       <div class="module-page-inner">
         <div class="page-heading">
           <div>
@@ -9816,6 +9836,7 @@ const app = createApp({
           <button :class="{active:battleView==='chronology'}" @click="battleView='chronology'">按年代</button>
           <button :class="{active:battleView==='belligerent'}" @click="battleView='belligerent'">按交战方</button>
           <button :class="{active:battleView==='campaign'}" @click="battleView='campaign'">按战役链</button>
+          <span class="v58-density-switch" aria-label="战事密度"><button :class="{active:battleDensity==='comfortable'}" @click="battleDensity='comfortable'">舒展</button><button :class="{active:battleDensity==='compact'}" @click="battleDensity='compact'">紧凑</button></span>
         </div>
         <div v-if="!filteredBattles.length" class="summary-empty">没有匹配的战事记录。可减少筛选条件，或切换时期查看该年编年要事与战役。</div>
         <div v-else class="battle-vertical-scroll">
@@ -9823,19 +9844,19 @@ const app = createApp({
             <article v-for="item in filteredBattles" :key="'chronology-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)">
               <div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div>
               <div class="battle-timeline-meta">{{item.branch}}{{item.front?' · '+item.front:''}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div>
-              <div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="item.a">{{item.a}} <b>vs</b> {{item.b}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div>
+              <div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending">坐标来源待补</span><span v-if="item.a">{{item.a}} <b>vs</b> {{item.b}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div>
             </article>
           </div>
           <div v-else-if="battleView==='belligerent'" class="battle-group-stack">
             <section v-for="group in battleBranchGroups" :key="group.name" class="battle-branch-lane">
               <header class="battle-branch-head"><strong>{{group.name}}</strong><span>{{group.items.length}} 条</span></header>
-              <div class="battle-lane"><article v-for="item in group.items" :key="group.name+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
+              <div class="battle-lane"><article v-for="item in group.items" :key="group.name+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending">坐标来源待补</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
             </section>
           </div>
           <div v-else class="battle-group-stack">
             <section v-for="group in battleCampaignGroups" :key="group.id" class="battle-branch-lane">
               <header class="battle-branch-head"><strong>{{group.name}}</strong><span>{{group.items.length}} 条关联记录</span></header>
-              <div class="battle-lane"><article v-for="item in group.items" :key="group.id+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-meta">{{item.branch}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
+              <div class="battle-lane"><article v-for="item in group.items" :key="group.id+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-meta">{{item.branch}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending">坐标来源待补</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
             </section>
           </div>
         </div>
@@ -9965,11 +9986,12 @@ const app = createApp({
                     class="v56-jinshi-row" :class="{active:jinshiPrimaryDetail&&jinshiPrimaryDetail.id===record.id}" @click="openEpigraphicDetail(record)">
               <span class="v56-jinshi-row-title">{{record.displayName}}</span>
               <span class="v56-jinshi-row-meta">{{record.dateText||'年代未详'}} · {{record.materialType}} · {{record.findspot||'出土地未详'}}</span>
+              <span class="v58-jinshi-status">{{record.inscriptionState==='已录入'?'释文已录入':record.inscriptionState==='残缺'?'残缺释文':record.inscriptionState==='待校'?'待校释文':'源文未见释文'}}<template v-if="record.archiveKind==='争议'"> · 年代或归属存疑</template></span>
             </button>
           </div>
           <article v-if="jinshiPrimaryDetail" class="v56-jinshi-reader">
             <header><h2>{{jinshiPrimaryDetail.displayName}}</h2><p>{{jinshiPrimaryDetail.dateText||'年代未详'}} · {{jinshiPrimaryDetail.materialType}} · {{jinshiPrimaryDetail.findspot||'出土地未详'}}</p></header>
-            <dl class="v56-jinshi-fields"><div><dt>原始题名</dt><dd>{{jinshiPrimaryDetail.rawRecord&&jinshiPrimaryDetail.rawRecord.title||jinshiPrimaryDetail.rawTitle||jinshiPrimaryDetail.name}}</dd></div><div><dt>释文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionStatus||'源文未见明确释文标识'}}</dd></div></dl>
+            <dl class="v56-jinshi-fields"><div><dt>原始题名</dt><dd>{{jinshiPrimaryDetail.rawRecord&&jinshiPrimaryDetail.rawRecord.title||jinshiPrimaryDetail.rawTitle||jinshiPrimaryDetail.name}}</dd></div><div><dt>来源范围</dt><dd>{{jinshiPrimaryDetail.archiveKind}} · {{jinshiPrimaryDetail.sourceTitle||jinshiPrimaryDetail.sourceDocument||'来源待补'}}</dd></div><div><dt>释文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionState==='已录入'?'释文已录入':jinshiPrimaryDetail.inscriptionState==='残缺'?'残缺释文':jinshiPrimaryDetail.inscriptionState==='待校'?'待校释文':'源文未见明确释文标识'}}</dd></div><div><dt>源文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionStatus||'源文未见明确释文标识'}}</dd></div></dl>
             <section class="v56-jinshi-inscription"><h3>释文</h3><div v-if="jinshiPrimaryDetail.inscription" v-html="epigraphicHighlight(jinshiPrimaryDetail.inscription)"></div><p v-else>源文未见明确释文标识；本项目未作推测性补写。</p></section>
             <div v-if="jinshiPrimaryDetail.people||jinshiPrimaryDetail.offices" class="jinshi-related"><button v-for="nm in (jinshiPrimaryDetail.people||'').split(/[、，,]/).filter(Boolean)" :key="nm" @click="openEpigraphicPerson(nm)">{{nm}}</button><span v-if="jinshiPrimaryDetail.offices">{{jinshiPrimaryDetail.offices}}</span></div>
           </article>
@@ -10038,6 +10060,7 @@ const app = createApp({
         </div>
         <div v-if="shihuoView==='quantitative'" class="fangzhen-table-card" style="margin-top:14px;">
           <div class="fangzhen-context"><strong>户口与人口</strong><span>只对确定年份且非约数、非推算值的记录绘制比例；146／157 年基线与主体时段分开。</span></div>
+          <p class="v58-comparability-note">统计口径：按现有记录的地区范围、单位与数据性质判定可比性；不可比记录保留在表中，但不进入比例图。</p>
           <el-table :data="filteredShihuoHousehold" size="small" empty-text="当前政权暂无户口数据">
             <el-table-column label="政权" width="76">
               <template #default="scope"><span class="fz-polity-badge" :class="shihuoPolityClass(scope.row.polity)">{{scope.row.polity}}</span></template>
@@ -10229,6 +10252,8 @@ const app = createApp({
             <p v-if="activePeopleDetail.birthYear||activePeopleDetail.deathYear">生卒：{{activePeopleDetail.birthYear||'?'}}—{{activePeopleDetail.deathYear||'?'}}</p>
             <p v-if="activePeopleDetail.homonymStatus" class="homonym-note">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
             <p v-if="workspaceMode==='review'&&activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note review-only">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
+            <div class="v58-dossier-strip"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length?activePeopleDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span></div>
+            <span v-if="activePeopleDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像；立绘不作为人物身份或史料证据。</span>
             <p v-if="activePeopleDetail.bio" class="people-bio">{{activePeopleDetail.bio}}</p>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
             <div v-if="workspaceMode==='review'" class="review-only" style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.personId)">编辑人物档案</el-button></div>
