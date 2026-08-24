@@ -86,6 +86,21 @@ for (const relativePath of deploymentOnlyExclusions) {
   fs.rmSync(target, { recursive: true, force: true });
 }
 
+const siteClientRoot = path.join(projectRoot, 'dist', 'client');
+const publicOnlyExclusions = [
+  path.join(siteClientRoot, '三国职官谱 .html'),
+  path.join(legacyRoot, 'exports'),
+];
+for (const target of publicOnlyExclusions) {
+  if (!fs.existsSync(target)) continue;
+  for (const filePath of walkFiles(target)) {
+    const stat = fs.statSync(filePath);
+    removedBytes += stat.size;
+    removedFiles += 1;
+  }
+  fs.rmSync(target, { recursive: true, force: true });
+}
+
 const missingAfterPrune = [...runtimePortraits].filter(
   (relativePath) => !fs.existsSync(path.join(legacyRoot, relativePath)),
 );
