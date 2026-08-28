@@ -1,13 +1,13 @@
 (function(global){
   'use strict';
 
-  const SCHEMA_VERSION = 9;
+  const SCHEMA_VERSION = 10;
   const ENTITY_TYPES = Object.freeze({
     polity:'政权', office:'官职', title:'爵位', person:'人物', appointment:'任官',
     jurisdiction:'辖区', source:'史料', period:'时期', periodSnapshot:'时期快照',
     controlClaim:'控制断言', mapBoundary:'地图边界', event:'沿革事件', epigraphicRecord:'金石材料',
     seatPolicy:'员额规则', residence:'府署', kaifuPolicy:'开府资格', hydronym:'古水名',
-    volumeCoverage:'逐卷覆盖'
+    volumeCoverage:'逐卷覆盖', personSnapshot:'人物快照', peerageEvent:'封爵事件'
   });
   const CONFIDENCE = Object.freeze(['确定','推定','存疑','争议']);
   const SOURCE_LEVELS = Object.freeze(['一手史料','文档考据','二手索引','地图几何','待核']);
@@ -24,6 +24,12 @@
     'evidenceStatus','reviewState','uncertaintyReason','readerVisibility','archiveKind','archiveScope','importBatch','sourceTenureText','verificationState','evidenceNote','footnotes'
   ]);
   const READING_META_FIELD_SET = new Set(READING_META_FIELDS);
+  const READER_INTERNAL_FIELDS = Object.freeze([
+    'workbookSource','workbookSources','sourceRefs','readerVisible','readerEligibility','researchDisposition','candidateReason','rawName','officeRaw','titleRaw',
+    'homonymGroupId','homonymStatus','externalSearchLog','sourceVerification','candidateDisposition','inscriptionVariants','disposition','dispositionReason',
+    'sourcePersonId','sourceRecordId','sourceCitation','fieldWarnings','successionRaw','polityRaw','datasets','sourcePath'
+  ]);
+  const READER_INTERNAL_FIELD_SET = new Set(READER_INTERNAL_FIELDS);
 
   function clone(value){ return JSON.parse(JSON.stringify(value)); }
   function text(value){ return String(value == null ? '' : value).trim(); }
@@ -69,12 +75,14 @@
   function personIdFor(name,context){
     const displayName=text(name);
     const scope=context||{};
-    if(text(scope.personId)) return text(scope.personId);
     const resolver=global.SGZ_PERSON_IDENTITIES&&global.SGZ_PERSON_IDENTITIES.resolve;
+    let resolved=null;
     if(typeof resolver==='function'){
-      const resolved=resolver(displayName,scope);
-      if(resolved&&text(resolved.personId||resolved.id)) return text(resolved.personId||resolved.id);
+      resolved=resolver(displayName,scope);
+      if(scope.preservePersonId!==true&&resolved&&text(resolved.personId||resolved.id)) return text(resolved.personId||resolved.id);
     }
+    if(text(scope.personId)) return global.SGZ_PERSON_IDENTITIES?.canonicalPersonId?.(scope.personId)||text(scope.personId);
+    if(resolved&&text(resolved.personId||resolved.id)) return text(resolved.personId||resolved.id);
     const polity=polityCode(scope.polity||scope.factionKey);
     const discriminator=text(scope.homonymDiscriminator||scope.sourcePersonKey||'default');
     return `person:${polity}:${hashId([displayName,discriminator].join('|'))}`;
@@ -313,6 +321,24 @@
     Object.assign(row,normalizeAuditState(row));
     return row;
   }
+  function normalizePersonSnapshot(record,index){
+    const row=clone(record||{}); row.entityType='personSnapshot';
+    row.snapshotId=text(row.snapshotId||row.id)||stableId('snapshot260',[row.personId,row.year,index]); row.id=row.snapshotId;
+    row.personId=text(row.personId)?personIdFor(row.name,{...row,personId:row.personId}):''; row.name=text(row.name)||'未详人物';
+    row.year=Number.isFinite(Number(row.year))?Number(row.year):260;
+    row.polity=normalizePolity(row.polity); row.zi=text(row.zi); row.birthplace=text(row.birthplace); row.residence=text(row.residence);
+    row.office=text(row.office); row.family=text(row.family); row.readerVisible=row.readerVisible!==false;
+    return row;
+  }
+  function normalizePeerageEvent(record,index){
+    const row=clone(record||{}); row.entityType='peerageEvent';
+    row.eventId=text(row.eventId||row.id)||stableId('peerage',[row.sourceRecordId,row.rawRecipient,row.grantDate,index]); row.id=row.eventId;
+    row.recipientPersonIds=Array.isArray(row.recipientPersonIds)?Array.from(new Set(row.recipientPersonIds.map(text).filter(Boolean))):[];
+    row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
+    ['rawRecipient','grantDate','officeAtGrant','reason','rank','title','fiefHouseholds','fief','titleEvolution','succession','category','sourceCitation'].forEach(key=>{ row[key]=text(row[key]); });
+    row.readerVisible=row.readerVisible!==false;
+    return row;
+  }
   function normalizeEpigraphicRecord(record,index){
     const row=clone(record||{});
     row.entityType='epigraphicRecord';
@@ -428,8 +454,10 @@
     out.hydronyms=(out.hydronyms||fallback.hydronyms||[]).map(normalizeHydronym);
     out.personRecords=(out.personRecords||fallback.personRecords||[]).map(normalizePerson);
     out.appointments=(out.appointments||fallback.appointments||[]).map(normalizeAppointment);
+    out.personSnapshots=(out.personSnapshots||fallback.personSnapshots||[]).map(normalizePersonSnapshot);
+    out.peerageEvents=(out.peerageEvents||fallback.peerageEvents||[]).map(normalizePeerageEvent);
     out.volumeCoverage=clone(out.volumeCoverage||fallback.volumeCoverage||[]);
-    out.researchMeta=Object.assign({modelId:'sgz-research-model-v9',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate',compatibleFrom:[7,8]},out.researchMeta||{});
+    out.researchMeta=Object.assign({modelId:'sgz-research-model-v10',historicalScope:'168—316',migrationPolicy:'preserve-and-annotate',compatibleFrom:[7,8,9]},out.researchMeta||{});
     out.researchMeta.schemaVersion=SCHEMA_VERSION;
     return out;
   }
@@ -457,6 +485,16 @@
       people.get(record.personId).appointments.push({source:'appointment',...record});
       if(record.evidence.title||record.evidence.url) sources.set(record.evidence.id,record.evidence);
     });
+    (payload.personSnapshots||[]).map(normalizePersonSnapshot).filter(record=>record.personId).forEach(record=>{
+      if(!people.has(record.personId)) people.set(record.personId,{id:record.personId,personId:record.personId,name:record.name,aliases:[],appointments:[],snapshots:[],peerageEvents:[]});
+      if(!people.get(record.personId).snapshots) people.get(record.personId).snapshots=[];
+      people.get(record.personId).snapshots.push(record);
+    });
+    (payload.peerageEvents||[]).map(normalizePeerageEvent).forEach(record=>record.recipientPersonIds.forEach(personId=>{
+      if(!people.has(personId)) people.set(personId,{id:personId,personId,name:'未详人物',aliases:[],appointments:[],snapshots:[],peerageEvents:[]});
+      if(!people.get(personId).peerageEvents) people.get(personId).peerageEvents=[];
+      people.get(personId).peerageEvents.push(record);
+    }));
     return {byEntityId,people,offices,jurisdictions,sources};
   }
   function recordsAtYear(records,year){
@@ -485,15 +523,28 @@
     return out;
   }
 
+  // V60：读者投影只保留可阅读的事实字段；出处、审校和导入候选字段仍留在原始数据及审校模式。
+  function projectForReader(value){
+    if(Array.isArray(value)) return value.map(projectForReader);
+    if(typeof value==='string') return readingText(value);
+    if(!value || typeof value!=='object') return value;
+    const out={};
+    Object.entries(value).forEach(([key,item])=>{
+      if(key.startsWith('_') || READING_META_FIELD_SET.has(key) || READER_INTERNAL_FIELD_SET.has(key)) return;
+      out[key]=projectForReader(item);
+    });
+    return out;
+  }
+
   global.SGZResearchModel=Object.freeze({
     schemaVersion:SCHEMA_VERSION,entityTypes:ENTITY_TYPES,confidenceLevels:CONFIDENCE,sourceLevels:SOURCE_LEVELS,
     serviceDomains:SERVICE_DOMAINS,institutionTypes:INSTITUTION_TYPES,kaifuQualifications:KAIFU_QUALIFICATIONS,
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,evidenceStatuses:EVIDENCE_STATUS,reviewStates:REVIEW_STATES,readerVisibilities:READER_VISIBILITY,stableId,normalizePolity,normalizeConfidence,normalizeEvidenceStatus,normalizeReviewState,normalizeReaderVisibility,normalizeAuditState,
     personIdFor,hashId,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
-    readingMetaFields:READING_META_FIELDS,readingText,readerSummaryText,projectForReading,
+    readingMetaFields:READING_META_FIELDS,readerInternalFields:READER_INTERNAL_FIELDS,readingText,readerSummaryText,projectForReading,projectForReader,
     normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeResidenceRole,normalizeKaifuPolicy,normalizeHydronym,
-    normalizePerson,normalizeAppointment,normalizeEpigraphicRecord,normalizeNode,normalizeOfficeClassifications,
+    normalizePerson,normalizeAppointment,normalizePersonSnapshot,normalizePeerageEvent,normalizeEpigraphicRecord,normalizeNode,normalizeOfficeClassifications,
     inferServiceDomain,inferInstitutionType,migrate,buildIndexes,recordsAtYear
   });
 })(window);

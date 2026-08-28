@@ -2,6 +2,10 @@
   'use strict';
 
   function clean(value){ return String(value==null?'':value).replace(/\s+/g,'').trim(); }
+  function normalizeKey(value){
+    const raw=clean(value);
+    return clean(global.SGZ_PERSON_NAME_NORMALIZATION?.toSimplified?.(raw)||raw);
+  }
   function hashId(value){
     let hash=2166136261;
     const input=String(value||'');
@@ -121,14 +125,16 @@
   ];
   const aliases=new Map();
   identities.forEach(item=>Array.from(new Set([item.name].concat(item.aliases||[],item.normalizationAliases||[]))).forEach(alias=>{
-    const key=clean(alias);
-    if(!aliases.has(key)) aliases.set(key,[]);
-    aliases.get(key).push(item);
+    Array.from(new Set([clean(alias),normalizeKey(alias)])).filter(Boolean).forEach(key=>{
+      if(!aliases.has(key)) aliases.set(key,[]);
+      if(!aliases.get(key).includes(item)) aliases.get(key).push(item);
+    });
   }));
 
   function resolve(name,context={}){
     const raw=clean(name);
-    const candidates=aliases.get(raw)||[];
+    const normalized=normalizeKey(raw);
+    const candidates=Array.from(new Set([...(aliases.get(raw)||[]),...(aliases.get(normalized)||[])]));
     if(candidates.length===1) return candidates[0];
     if(candidates.length>1){
       const contextPersonId=String(context.personId||'').trim();
@@ -151,7 +157,10 @@
     return `person:${polity}:${hashId([clean(name),discriminator].join('|'))}`;
   }
   const legacyPersonIdMap=Object.freeze({
-    'person:source:51390b3cd295':'person:shu:dong-yun'
+    'person:source:51390b3cd295':'person:shu:dong-yun',
+    'person:wei:1gry14g':'person:snapshot260:3e5f85f692368a6c',
+    'person:wu:1rfsm7h':'person:snapshot260:d74daeb7bdfa21af',
+    'person:han:1s4pu5j':'person:snapshot260:271aa92317b30c95'
   });
   function canonicalPersonId(personId){
     const raw=String(personId||'').trim();

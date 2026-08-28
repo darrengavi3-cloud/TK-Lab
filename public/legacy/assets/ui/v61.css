@@ -1,0 +1,198 @@
+/* V61：人物全量视图、260 年快照与独立封爵事件。沿用 V57/V58 壳层与既有令牌。 */
+.v61-dataset-switch {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.v61-dataset-switch button {
+  min-width: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid rgba(107, 98, 85, .24);
+  border-radius: 9px;
+  background: rgba(246, 241, 228, .7);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.v61-dataset-switch button span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.v61-dataset-switch button b {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-size: 12px;
+}
+.v61-dataset-switch button.active {
+  border-color: rgba(156, 59, 46, .62);
+  background: rgba(156, 59, 46, .08);
+  color: var(--ink);
+}
+.v61-dataset-switch button:focus-visible,
+.v61-snapshot-card:focus-visible,
+.v61-peerage-event:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 2px;
+}
+.v61-person-section {
+  min-width: 0;
+  margin-top: 18px;
+}
+.v61-snapshot-stack,
+.v61-peerage-timeline {
+  display: grid;
+  gap: 8px;
+}
+.v61-snapshot-card {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 11px;
+  padding: 10px 12px;
+  border: 1px solid rgba(107, 98, 85, .18);
+  border-radius: 9px;
+  background: rgba(246, 241, 228, .54);
+}
+.v61-snapshot-year {
+  align-self: start;
+  padding-top: 1px;
+  color: var(--seal);
+  font: 600 14px/1.4 'sys-serif', serif;
+}
+.v61-snapshot-facts {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.v61-snapshot-facts strong,
+.v61-snapshot-facts small {
+  flex-basis: 100%;
+}
+.v61-snapshot-facts strong { color: var(--ink); font-size: 13px; }
+.v61-snapshot-facts small { color: #80786b; overflow-wrap: anywhere; }
+.v61-peerage-timeline {
+  position: relative;
+  padding-left: 15px;
+}
+.v61-peerage-timeline::before {
+  content: '';
+  position: absolute;
+  inset: 3px auto 3px 4px;
+  width: 1px;
+  background: rgba(156, 59, 46, .28);
+}
+.v61-peerage-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(88px, 132px) minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(176, 141, 63, .24);
+  border-radius: 9px;
+  background: rgba(246, 241, 228, .48);
+}
+.v61-peerage-event::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 16px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--seal);
+  border-radius: 50%;
+  background: var(--card);
+}
+.v61-peerage-event time {
+  color: var(--seal);
+  font-size: 11px;
+  line-height: 1.55;
+}
+.v61-peerage-event > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+.v61-peerage-event strong { color: var(--ink); font-size: 13px; }
+.v61-peerage-event span,
+.v61-peerage-event p,
+.v61-peerage-event small {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.v61-peerage-event small { color: #80786b; }
+
+@media (max-width: 760px) {
+  .v61-dataset-switch { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v61-peerage-event { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 430px) {
+  .v61-dataset-switch { grid-template-columns: 1fr; }
+  .v61-snapshot-card { grid-template-columns: 46px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v61-dataset-switch button { transition: none !important; }
+}
+
+.v61-jinshi-research {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line, #d9d3c4);
+}
+.v61-jinshi-research > h3 { margin: 0 0 8px; font-size: 15px; }
+.v61-jinshi-research > p { margin: 0 0 12px; color: var(--ink-soft); line-height: 1.65; }
+.v61-jinshi-sources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.v61-jinshi-sources a {
+  display: grid;
+  gap: 3px;
+  padding: 9px 10px;
+  border: 1px solid var(--line, #d9d3c4);
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(246, 241, 228, .54);
+}
+.v61-jinshi-sources a:hover,
+.v61-jinshi-sources a:focus-visible { border-color: var(--seal); }
+.v61-jinshi-sources span { color: var(--ink-soft); font-size: 11px; }
+.v61-jinshi-variant {
+  margin-top: 8px;
+  border: 1px solid var(--line, #d9d3c4);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.v61-jinshi-variant summary {
+  padding: 9px 11px;
+  cursor: pointer;
+  font-weight: 650;
+  background: rgba(246, 241, 228, .54);
+}
+.v61-jinshi-variant p,
+.v61-jinshi-variant pre {
+  margin: 0;
+  padding: 10px 12px;
+  border-top: 1px solid var(--line, #d9d3c4);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+  line-height: 1.72;
+}

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T13:46:34.330Z",
+  "generatedAt": "2026-08-28T12:57:58.701Z",
   "offlineRuntime": true,
-  "fileCount": 324,
-  "totalBytes": 109934700,
+  "fileCount": 362,
+  "totalBytes": 127974052,
   "files": [
     {
       "path": "assets/map/css/style.css",
@@ -1196,6 +1196,106 @@
       "sha256": "777c4c480447628a5d1bf440c4c482622544077f316ebc8379ea5c5aadcf5ddc"
     },
     {
+      "path": "assets/portraits/v58/cao-cao.png",
+      "bytes": 410177,
+      "sha256": "3649f3f7c13322d8c0cd1fbb439f438cd50ea4ccb68cc306130fa23679f04d34"
+    },
+    {
+      "path": "assets/portraits/v58/ding-feng.png",
+      "bytes": 396412,
+      "sha256": "3d70d7cb8e535fde644028231555929bf42eb327c2018204d78dea978fe3b7c3"
+    },
+    {
+      "path": "assets/portraits/v58/du-yu.png",
+      "bytes": 399021,
+      "sha256": "7dc902eb5a1cd9031e14d1603fbf380ed20aee2808f8c457b1bf81a9c4836fff"
+    },
+    {
+      "path": "assets/portraits/v58/huan-wen.png",
+      "bytes": 377749,
+      "sha256": "cfdc070b6eb6e0c768a72787e50a4fbc898c58f1734a749588ab2bd13a147c66"
+    },
+    {
+      "path": "assets/portraits/v58/liu-bei.png",
+      "bytes": 391756,
+      "sha256": "af341ece53a9a05d4a66c529526ea57c8afc9f804882c03b9019a41f76407e66"
+    },
+    {
+      "path": "assets/portraits/v58/liu-shi.png",
+      "bytes": 387015,
+      "sha256": "73c68cc3fc5c41c0d2b088f1296efd46a1633ab120692103b3f16ac3caefcf2f"
+    },
+    {
+      "path": "assets/portraits/v58/liu-yu.png",
+      "bytes": 391969,
+      "sha256": "c6a1e6e063fb5fd29e4bc07a1b8ccc07dd507ab17080ad29f0bd067e56e811b8"
+    },
+    {
+      "path": "assets/portraits/v58/lu-dai.png",
+      "bytes": 376231,
+      "sha256": "5cb6aacd83e6260fe0da884981e345ee43249525fc2eb226f93653236fc0127e"
+    },
+    {
+      "path": "assets/portraits/v58/lu-meng.png",
+      "bytes": 366508,
+      "sha256": "ac5c40ec0baafb4196945e727804d8e9cd0af60a474da7c39595a1ff100928fd"
+    },
+    {
+      "path": "assets/portraits/v58/shi-bao.png",
+      "bytes": 392381,
+      "sha256": "87fdf272fe9fa54764dfdfb42db25df1404057ee845018a591e2b63772e00b21"
+    },
+    {
+      "path": "assets/portraits/v58/sima-shi.png",
+      "bytes": 384318,
+      "sha256": "4d9e8795ee96942d7427fe1b8b1f6c818818c6268e767bd099f4c709bee3c0d3"
+    },
+    {
+      "path": "assets/portraits/v58/sima-yan.png",
+      "bytes": 377705,
+      "sha256": "896f69cd862cd5d55ad301b42d638100c98b228f97107266eb4e2d9672839b8d"
+    },
+    {
+      "path": "assets/portraits/v58/sima-yi.png",
+      "bytes": 408026,
+      "sha256": "0fcfc7a8d4bb981ac8ee232cd7d31966ca8d0fb7db049df372c4f8171ef14dd2"
+    },
+    {
+      "path": "assets/portraits/v58/wang-dao.png",
+      "bytes": 388583,
+      "sha256": "0ad72ef10b1e6e67ed21e6765b5af2fbae164983363cd2bc6dbac266e6349184"
+    },
+    {
+      "path": "assets/portraits/v58/wang-jun.png",
+      "bytes": 392939,
+      "sha256": "079a03f59bff2c786667ea49195cf74f7f8758ecf0b4153f3622254aa20a898e"
+    },
+    {
+      "path": "assets/portraits/v58/xi-jian.png",
+      "bytes": 398492,
+      "sha256": "3102ee3122c38539542028aebbabf1f0698859745df87f19b767d8dff64a7eda"
+    },
+    {
+      "path": "assets/portraits/v58/yang-jun.png",
+      "bytes": 392484,
+      "sha256": "5a5156799f55ff516ce6230e135f9971c17cf9efe3d5b5552b066fd84a3ea2cb"
+    },
+    {
+      "path": "assets/portraits/v58/zhang-hua.png",
+      "bytes": 374688,
+      "sha256": "8af4faafde3c53b37afba722212fafbe190dc0787d168bf40d4200a527db6363"
+    },
+    {
+      "path": "assets/portraits/v58/zhou-yu.png",
+      "bytes": 389428,
+      "sha256": "b7fc53756ab8260febac8eba1b7491e9825b8745ef90897f2028b238f2c83e0f"
+    },
+    {
+      "path": "assets/portraits/v58/zhuge-jin.png",
+      "bytes": 394057,
+      "sha256": "cdfcd8ccebb04786d09b5bad6734a985a13e1c3a0551d287b195119452a01e68"
+    },
+    {
       "path": "assets/portraits/wei/cheng-ji.png",
       "bytes": 18059,
       "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
@@ -1264,6 +1364,21 @@
       "path": "assets/ui/v57.css",
       "bytes": 5610,
       "sha256": "4ae2fcb0a88cfe4c120fd0004781087db3888ef9a3160079784be253b8cbd0c5"
+    },
+    {
+      "path": "assets/ui/v58.css",
+      "bytes": 10956,
+      "sha256": "944bf51f1d7911b30ff9ede260b3fe41f4bfb1f8453a56c716d1d757419f3ea6"
+    },
+    {
+      "path": "assets/ui/v60.css",
+      "bytes": 1615,
+      "sha256": "e5d4a5603cd8d0dd947d81165276652c8af28f5a89122299ea657240d11a6e1e"
+    },
+    {
+      "path": "assets/ui/v61.css",
+      "bytes": 4835,
+      "sha256": "1fc5f0d11cb29691ac298effdaafc60f8c0273593aec80e89d92f0dce6d02bcf"
     },
     {
       "path": "assets/vendor/element-plus/index.css",
@@ -1357,13 +1472,13 @@
     },
     {
       "path": "data/jinshi-schema.js",
-      "bytes": 3453,
-      "sha256": "bff68c04901e5fb41ebc6721350373bf4ccae64b9022747cbbb7238d2b6b4aee"
+      "bytes": 4335,
+      "sha256": "aaa45ad350b7f30463ba07b822ce4a58dc9ef1eb42a500be4accbcf672002976"
     },
     {
       "path": "data/kaifu-policies.js",
-      "bytes": 5920,
-      "sha256": "d50a17c233a63e4e8f286e0c7206ab4a3985ff798c07d67547ceaa057f9d2114"
+      "bytes": 7944,
+      "sha256": "42706e833f23ff23d9c5d40a84624f108ba194b424211f55e536b08c33966903"
     },
     {
       "path": "data/map-period-registry.js",
@@ -1392,8 +1507,8 @@
     },
     {
       "path": "data/office-residences.js",
-      "bytes": 12856,
-      "sha256": "b183f47631ff007fc60b7d2de9b0b8444377399ac156926bce832aeb72e00671"
+      "bytes": 19361,
+      "sha256": "676f464e6198ccb233fd13d5286b129c34b22567c20684859dcc671a4842a41c"
     },
     {
       "path": "data/office-seat-policies.js",
@@ -1422,8 +1537,18 @@
     },
     {
       "path": "data/person-identities.js",
-      "bytes": 17026,
-      "sha256": "ee4b6265e7025f6e2d0fbd19dc99ad7f80eab557b7c52b637fd4f2e1ac639f19"
+      "bytes": 17576,
+      "sha256": "f974a1fa1405286a26c925d8b832634465db3881247cab865b4d883f89b584f6"
+    },
+    {
+      "path": "data/person-name-normalization.js",
+      "bytes": 3253,
+      "sha256": "b8d3a6b00c41343a67de3380f6afdb0a1af4da21c76f5e155256b4604fc205b1"
+    },
+    {
+      "path": "data/person-name-normalization.json",
+      "bytes": 3299,
+      "sha256": "ca19a97db836df77c095cbb25efb80a6dfce08c7ce5217dd146c6aec369b3336"
     },
     {
       "path": "data/person-portraits.js",
@@ -1472,13 +1597,13 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 144814,
-      "sha256": "5a02bdd926fa81015c364616753828a11512cc238bdf474589145fdf298e192a"
+      "bytes": 147916,
+      "sha256": "9c32206a3dc14a848f16a93a6be9d9ad2b644568fb2c4e1d434e4e06e697cc1e"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 196983,
-      "sha256": "104c0a58205417481853916fb79d638d2090fd2daa2ba636b014e3eefc5b94a1"
+      "bytes": 201665,
+      "sha256": "624269d335be24d659714023ff43864605a64bc4aed2f61d1039472ebbab4399"
     },
     {
       "path": "data/portrait-pool-assignments-v52.json",
@@ -1507,13 +1632,13 @@
     },
     {
       "path": "data/research-model.js",
-      "bytes": 31933,
-      "sha256": "d5b29b36704d24ef76e8c06ef14ec7b10bad1f7e9f77a16580dd50732d49a330"
+      "bytes": 36011,
+      "sha256": "7c618cfa61fa4d517b620544b3a6437ad3781aa43c4943a9d7bec975be9ff239"
     },
     {
       "path": "data/research-schema.json",
-      "bytes": 4045,
-      "sha256": "742edf2e24245e708a8b9f0ac90f3e85f828a7ce6b394f9635f8e621e2bd3098"
+      "bytes": 4622,
+      "sha256": "9c1629fae698044ffb1d80bb94b3d454084ee83855a2251fcec2d7a19841244e"
     },
     {
       "path": "data/shihuo-records.js",
@@ -1609,6 +1734,71 @@
       "path": "data/v55-release-manifest.json",
       "bytes": 744,
       "sha256": "471b7d6c266c4f0dcb1c55afe57fb73161f2191b092ea990816b2c0e7e44100e"
+    },
+    {
+      "path": "data/v58-portrait-board.js",
+      "bytes": 2667,
+      "sha256": "825c5f2376dd57ec249ef64c5c59fc28b02b35a1e996d64eddb0a9320e722753"
+    },
+    {
+      "path": "data/v59-office-evidence-audit.json",
+      "bytes": 6401,
+      "sha256": "c9048f10ad8b499661d5f8edddc8fa9bf28bc7c586c07a92a302132e5e99dd68"
+    },
+    {
+      "path": "data/v60-figma-handoff.json",
+      "bytes": 12344,
+      "sha256": "4a79a6550774e2f28da5b4559b78c9e3f6d060ea0c2c1fca06965b683e95253b"
+    },
+    {
+      "path": "data/v60-person-workbook-import.js",
+      "bytes": 1679134,
+      "sha256": "bc805f76a8d93808cc852c7c846eaf28125f050e46364a91dacd321c8aab128c"
+    },
+    {
+      "path": "data/v60-person-workbook-import.json",
+      "bytes": 2174134,
+      "sha256": "a1da402f14cf11df6482c7f2f99cdb20d0d2f5861823b72f1d84c8e6419606c5"
+    },
+    {
+      "path": "data/v60-research-ledger.js",
+      "bytes": 175368,
+      "sha256": "5b8c402651915df33f54c801c3cf22f337481fd2741681bc0ec95eeb6a0295a6"
+    },
+    {
+      "path": "data/v60-research-ledger.json",
+      "bytes": 221533,
+      "sha256": "8cf7a2e6666a54a20e96c69d04fc240b9089abcb991e94945a52737af68d2ada"
+    },
+    {
+      "path": "data/v61-epigraphy-research.js",
+      "bytes": 714468,
+      "sha256": "9033bb8d259ba65300e1f8dda5a3bcb2c79312c7a6a702d9051fefd6c5457c4d"
+    },
+    {
+      "path": "data/v61-epigraphy-research.json",
+      "bytes": 824535,
+      "sha256": "b523ab6f5d122037ecccd8ebcf9beba7c5aab77964131cedccf819ffbffb729c"
+    },
+    {
+      "path": "data/v61-epigraphy-search-cache.json",
+      "bytes": 411776,
+      "sha256": "6a5cecd043ca25309e072df38d1ce6953a45a299ed6dc25192532a87df187d96"
+    },
+    {
+      "path": "data/v61-epigraphy-transcriptions.json",
+      "bytes": 17599,
+      "sha256": "ede07a3359532a551eefc363de66dd016d204283af9a85de5a3646bbf427913c"
+    },
+    {
+      "path": "data/v61-person-supplements.js",
+      "bytes": 1662928,
+      "sha256": "f05c0d79c9f908aefb3c04f2ade8d47ef9a04fcd39e385517a33cad738336f6b"
+    },
+    {
+      "path": "data/v61-person-supplements.json",
+      "bytes": 2300168,
+      "sha256": "fd7d72935eb6ab9c69f070c54aaac50c06341a3080ea69a8f6c97e4067b73c07"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

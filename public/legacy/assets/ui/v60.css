@@ -1,0 +1,22 @@
+/* V60：审校台账的轻量补充；读者投影仍由 .review-only 统一隐藏。 */
+.v60-audit-summary {
+  margin: 12px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(118, 96, 65, .18);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(249,247,241,.96), rgba(244,241,233,.9));
+}
+.v60-audit-summary-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; color:#3b423b; }
+.v60-audit-summary-head span { color:#8a8171; font-size:11px; }
+.v60-audit-summary-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+.v60-audit-summary-grid > div { min-width:0; padding:9px 10px; border-radius:9px; background:rgba(255,255,255,.66); }
+.v60-audit-summary-grid b, .v60-audit-summary-grid span, .v60-audit-summary-grid small { display:block; }
+.v60-audit-summary-grid b { color:#5d4931; font:600 19px/1.1 'sys-serif',serif; }
+.v60-audit-summary-grid span { margin-top:4px; color:#3f463f; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.v60-audit-summary-grid small { margin-top:3px; color:#8b8172; font-size:10px; }
+.v60-audit-summary p { margin:10px 0 0; color:#706b61; font-size:11px; line-height:1.65; }
+.v60-import-candidate { display:grid; gap:3px; margin-top:10px; padding:9px 10px; border-left:3px solid #9B7650; border-radius:7px; background:rgba(155,118,80,.08); color:#6f6558; font-size:11px; line-height:1.55; }
+.v60-import-candidate strong { color:#5d4931; font-size:12px; }
+@media (max-width: 680px) {
+  .v60-audit-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}

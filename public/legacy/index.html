@@ -14,17 +14,22 @@
 <script src="./data/wu-fangzhen-records.js"></script>
 <script src="./data/shu-fangzhen-records.js"></script>
 <script src="./data/fangzhen-term-supplement.js"></script>
+<script src="./data/person-name-normalization.js?v=61.2"></script>
 <script src="./data/person-identities.js"></script>
 <script src="./data/person-zi-supplement.js"></script>
 <script src="./data/research-model.js"></script>
 <script src="./data/office-seat-policies.js"></script>
-<script src="./data/kaifu-policies.js"></script>
-<script src="./data/office-residences.js"></script>
+<script src="./data/kaifu-policies.js?v=59"></script>
+<script src="./data/office-residences.js?v=59"></script>
 <script src="./data/history-evidence.js"></script>
 <script src="./data/battle-records.js"></script>
 <script src="./data/shihuo-records.js"></script>
 <script src="./data/person-biographies.js"></script>
 <script src="./data/person-source-index.js"></script>
+<script src="./data/v60-person-workbook-import.js?v=61.2"></script>
+<script src="./data/v61-person-supplements.js?v=61.2"></script>
+<script src="./data/v60-research-ledger.js"></script>
+<script src="./data/v61-epigraphy-research.js?v=61.2"></script>
 <script src="./data/person-entity-audit.js"></script>
 <script src="./data/person-v57-runtime-rules.js"></script>
 <script src="./assets/map/data/hydronym-audit.js"></script>
@@ -32,6 +37,7 @@
 <script src="./data/person-portraits.js"></script>
 <script src="./data/portrait-manifest.js"></script>
 <script src="./data/v48-portrait-board.js"></script>
+<script src="./data/v58-portrait-board.js"></script>
 <script src="./data/epigraphic-records.js"></script>
 <script src="./data/epigraphic-v46-jin.js"></script>
 <script src="./data/jinshi-schema.js"></script>
@@ -971,6 +977,9 @@ body{background:#F4F3EF;}
 <link rel="stylesheet" href="./assets/ui/v55.css" />
 <link rel="stylesheet" href="./assets/ui/v56.css" />
 <link rel="stylesheet" href="./assets/ui/v57.css" />
+<link rel="stylesheet" href="./assets/ui/v58.css" />
+<link rel="stylesheet" href="./assets/ui/v60.css" />
+<link rel="stylesheet" href="./assets/ui/v61.css?v=61.2" />
 </head>
 <body>
 <div id="app"></div>
@@ -4724,6 +4733,7 @@ const app = createApp({
     const peopleServiceDomain = ref('all');
     const peopleInstitutionType = ref('all');
     const peopleOnlyPortrait = ref(false);
+    const peopleDataset = ref('all');
     const peoplePage = ref(1);
     const peoplePageSize = computed(()=>viewportWidth.value<=760?20:48);
     const peopleAdvanced = ref(false);
@@ -4734,6 +4744,9 @@ const app = createApp({
     const personMeta = reactive({ map:{} });
     const personMetaDialog = reactive({ visible:false, personId:'', name:'', form:{} });
     const showAuditCenter = ref(false);
+    const v60Ledger = window.SGZ_V60_RESEARCH_LEDGER||{summary:{},researchQueue:[],epigraphy:[],v59Closures:[],legacyClosures:[],volumeClosures:[]};
+    const v61Epigraphy = window.SGZ_V61_EPIGRAPHY_RESEARCH||{summary:{},epigraphy:[],adoptedIds:[]};
+    const v61Supplement = window.SGZ_V61_PERSON_SUPPLEMENTS||{people:[],snapshots260:[],peerageEvents:[]};
     const auditIssues = ref([]);
     const auditFilters = reactive({ severity:'all', module:'all' });
     const auditLastRun = ref('');
@@ -4763,6 +4776,7 @@ const app = createApp({
 
     const initialResearchModel = window.SGZResearchModel.migrate({schemaVersion:7,trees:buildPresets(),fangzhenRecords:FANGZHEN_PRESETS});
     const projectForReading = value=>window.SGZResearchModel.projectForReading(value);
+    const projectForReader = value=>window.SGZResearchModel.projectForReader(value);
     const normalizeEpigraphicRecord = value=>window.SGZ_JINSHI_SCHEMA?.normalize ? window.SGZ_JINSHI_SCHEMA.normalize(value) : value;
     const readingText = value=>window.SGZResearchModel.readingText(value);
     const data = reactive({ trees: normalizeAndValidateTrees(initialResearchModel.trees) });
@@ -4793,40 +4807,48 @@ const app = createApp({
     const shihuoRecordKind = ref('all');
     const shihuoView = ref('institution');
     const shihuoRecords = ref(cloneJSON(SHIHUO_RECORDS));
+    const v60EpigraphyById = new Map((v60Ledger.epigraphy||[]).map(item=>[item.id,item]));
+    const v61EpigraphyById = new Map((v61Epigraphy.epigraphy||[]).map(item=>[item.id,item]));
     const epigraphicRecords = ref(cloneJSON([
       ...(window.SGZ_EPIGRAPHIC_RECORDS?.records||[]),
       ...(window.SGZ_EPIGRAPHIC_V46_JIN?.records||[]),
-    ].map(normalizeEpigraphicRecord)));
+    ].map(raw=>Object.assign({},normalizeEpigraphicRecord(raw),v60EpigraphyById.get(raw.id)||{},v61EpigraphyById.get(raw.id)||{}))));
     const epigraphicTypes = Array.from(new Set(epigraphicRecords.value.map(item=>item.materialType).filter(Boolean))).sort((a,b)=>a.localeCompare(b,'zh-CN'));
     const epigraphicPolities = ['汉','魏','吴','晋'];
     const epigraphicQuery = ref('');
     const epigraphicType = ref('all');
     const epigraphicPolity = ref('all');
     const epigraphicArchive = ref('all');
+    const epigraphicInscriptionStatus = ref('all');
+    const epigraphicInscriptionStatuses = ['已录入','源文未见','残缺','待校'];
     const showEpigraphicDetail = ref(false);
     const activeEpigraphicDetail = ref(null);
     const filteredEpigraphicRecords = computed(()=>{
       const q=epigraphicQuery.value.trim().toLowerCase();
-      return projectForReading(epigraphicRecords.value).map((item,index)=>{
-        const raw=epigraphicRecords.value[index]||{};
+      const rows=epigraphicRecords.value.map(raw=>{
+        const item=workspaceMode.value==='review'?projectForReading(raw):projectForReader(raw);
         const disputed=raw.researchStatus==='争议'||raw.archiveKind==='争议'||Boolean(raw.disputeNote);
         const archiveKind=['核心','扩展','争议'].includes(raw.archiveKind)?raw.archiveKind:(disputed?'争议':'核心');
-        return Object.assign({},item,{archiveKind,isDisputed:disputed,displayName:(disputed?'* ':'')+item.name});
-      }).filter(item=>{
+        const inscriptionState=String(raw.inscriptionStatus||'').trim()|| (String(raw.inscription||'').trim()?'已录入':'源文未见');
+        return Object.assign({},item,{archiveKind,isDisputed:disputed,inscriptionState,displayName:item.name});
+      });
+      return rows.filter(item=>{
         if(epigraphicType.value!=='all' && item.type!==epigraphicType.value) return false;
         if(epigraphicPolity.value!=='all' && item.polity!==epigraphicPolity.value) return false;
-        if(q && !['name','materialType','dateText','year','polity','findspot','scriptStyle','form','inscription','people','offices','note','sourceDocument','sourceLocator'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
+        if(epigraphicArchive.value!=='all' && item.archiveKind!==epigraphicArchive.value) return false;
+        if(epigraphicInscriptionStatus.value!=='all' && item.inscriptionState!==epigraphicInscriptionStatus.value) return false;
+        if(q && !['name','materialType','dateText','year','polity','findspot','scriptStyle','form','inscription','people','offices','note'].some(key=>String(item[key]||'').toLowerCase().includes(q))) return false;
         return true;
       }).sort((a,b)=>{
         const ay=Number.isFinite(Number(a.year))?Number(a.year):Infinity;
         const by=Number.isFinite(Number(b.year))?Number(b.year):Infinity;
         return ay-by||String(a.yearText||'').localeCompare(String(b.yearText||''),'zh-CN')||String(a.name||'').localeCompare(String(b.name||''),'zh-CN');
-      });
+      }).map(item=>workspaceMode.value==='review'?item:projectForReader(item));
     });
     const epigraphicMetrics = computed(()=>({total:epigraphicRecords.value.length,current:filteredEpigraphicRecords.value.length,withInscription:epigraphicRecords.value.filter(item=>String(item.inscription||'').trim()).length,missingInscription:epigraphicRecords.value.filter(item=>!String(item.inscription||'').trim()).length,types:new Set(epigraphicRecords.value.map(item=>item.materialType).filter(Boolean)).size,periods:new Set(epigraphicRecords.value.map(item=>item.year||item.dateText).filter(Boolean)).size,polities:new Set(epigraphicRecords.value.map(item=>item.polity).filter(Boolean)).size}));
     const jinshiPrimaryDetail = computed(()=>{
       const active=activeEpigraphicDetail.value;
-      return active&&filteredEpigraphicRecords.value.some(item=>item.id===active.id)?active:(filteredEpigraphicRecords.value[0]||null);
+      return (active&&filteredEpigraphicRecords.value.find(item=>item.id===active.id))||(filteredEpigraphicRecords.value[0]||null);
     });
     function epigraphicHighlight(text){
       const q=epigraphicQuery.value.trim().toLowerCase();
@@ -4920,6 +4942,7 @@ const app = createApp({
     const battlePeriodId = ref('all');
     const battleBranch = ref('all');
     const battleView = ref('chronology');
+    const battleDensity = ref('comfortable');
     const showBattleDetail = ref(false);
     const activeBattleDetail = ref(null);
     const currentHistoryPeriod = computed(()=>historyMapPeriods[historyMapIndex.value] || historyMapPeriods[0]);
@@ -5502,6 +5525,7 @@ const app = createApp({
       if(node?.virtualSlot) return '册立时置';
       const rank=node?.rank9||node?.hanRank||node?.category||'品秩未详';
       const stats=courtSeatStats(null,node);
+      if(workspaceMode.value!=='review') return `${rank} · 席${stats.display}／实${stats.actual}`;
       const residence=courtResidenceStatus(node);
       return `${rank} · 编${stats.authorized===null?'待考':stats.authorized}／席${stats.display}／实${stats.actual}${residence==='府署未建档'?' · 府署未建档':''}`;
     }
@@ -7298,9 +7322,15 @@ const app = createApp({
     function openPersonProfile(personRef){ openPeopleDetail(personRef); }
     /* ---------- 人物志：统一人物档案 ---------- */
     function personKeyOf(name){ return String(name||'').replace(/\s+/g,' ').trim(); }
+    function personSimplifiedKeyOf(name){
+      const key=personKeyOf(name);
+      return personKeyOf(window.SGZ_PERSON_NAME_NORMALIZATION?.toSimplified?.(key)||key);
+    }
     function personCanonicalNameFor(name){
       const key=personKeyOf(name);
-      return String(window.SGZ_PERSON_V57_RUNTIME_RULES?.normalizeMap?.[key]||window.SGZ_PERSON_ENTITY_AUDIT?.normalizeMap?.[key]?.canonicalName||key);
+      const simplified=personSimplifiedKeyOf(key);
+      const identity=window.SGZ_PERSON_IDENTITIES?.resolve(key)||window.SGZ_PERSON_IDENTITIES?.resolve(simplified);
+      return String(identity?.canonicalName||identity?.name||window.SGZ_PERSON_V57_RUNTIME_RULES?.normalizeMap?.[key]||window.SGZ_PERSON_V57_RUNTIME_RULES?.normalizeMap?.[simplified]||window.SGZ_PERSON_ENTITY_AUDIT?.normalizeMap?.[key]?.canonicalName||window.SGZ_PERSON_ENTITY_AUDIT?.normalizeMap?.[simplified]?.canonicalName||simplified);
     }
     function personEntityAllowed(name){
       const key=personKeyOf(name);
@@ -7322,11 +7352,35 @@ const app = createApp({
       const candidates=(window.SGZ_PERSON_ZI_SUPPLEMENT||[]).filter(item=>item.name===key);
       return candidates.length===1?candidates[0].zi||'':'';
     }
+    const personCandidateIdsByName=(()=>{
+      const map=new Map();
+      const add=(name,personId)=>{
+        const key=personCanonicalNameFor(name);
+        const id=window.SGZ_PERSON_IDENTITIES?.canonicalPersonId?.(personId)||String(personId||'');
+        if(!key||!id)return;
+        const ids=map.get(key)||new Set();ids.add(id);map.set(key,ids);
+      };
+      (window.SGZ_V60_PERSON_WORKBOOK_IMPORT?.people||[]).forEach(person=>add(person.name,person.personId));
+      (window.SGZ_V61_PERSON_SUPPLEMENTS?.people||[]).forEach(person=>add(person.name,person.personId));
+      (window.SGZ_PERSON_SOURCE_INDEX?.people||[]).filter(person=>person.entityType==='person'&&person.visibilityStatus==='visible').forEach(person=>[person.name,...(person.aliases||[])].forEach(name=>add(name,person.personId)));
+      return map;
+    })();
     function personIdOf(name,context={}){
       const identity=window.SGZ_PERSON_IDENTITIES?.resolve(name,context||{});
+      if(context?.preservePersonId!==true){
+        if(identity?.personId) return identity.personId;
+      }
+      let contextPersonId='';
+      if(context?.personId) contextPersonId=window.SGZ_PERSON_IDENTITIES?.canonicalPersonId?.(context.personId)||String(context.personId);
+      const generatedRuntimeId=/^person:(?:han|wei|wu|jin|unresolved):[0-9a-z]{7}$/.test(contextPersonId);
+      if(contextPersonId&&!generatedRuntimeId)return contextPersonId;
       if(identity?.personId) return identity.personId;
-      if(context?.personId) return window.SGZ_PERSON_IDENTITIES?.canonicalPersonId?.(context.personId)||String(context.personId);
-      return window.SGZResearchModel.personIdFor(personCanonicalNameFor(name),context||{});
+      const canonicalName=personCanonicalNameFor(name);
+      const linkedIds=personCandidateIdsByName.get(canonicalName);
+      if(linkedIds?.size===1)return [...linkedIds][0];
+      if(contextPersonId)return contextPersonId;
+      const generatedId=window.SGZResearchModel.personIdFor(canonicalName,context||{});
+      return window.SGZ_PERSON_IDENTITIES?.canonicalPersonId?.(generatedId)||generatedId;
     }
     function personRecordId(record,name,context={}){
       return personIdOf(name,{...context,...record,personId:record?.personId});
@@ -7334,10 +7388,11 @@ const app = createApp({
     function strictPersonIdForReference(personRef){
       const raw=personKeyOf(personRef);
       if(raw.startsWith('person:')) return window.SGZ_PERSON_IDENTITIES?.canonicalPersonId?.(raw)||raw;
-      const identity=window.SGZ_PERSON_IDENTITIES?.resolve(raw);
+      const canonical=personCanonicalNameFor(raw);
+      const identity=window.SGZ_PERSON_IDENTITIES?.resolve(raw)||window.SGZ_PERSON_IDENTITIES?.resolve(canonical);
       if(identity?.personId) return identity.personId;
       const sourceIds=new Set((window.SGZ_PERSON_SOURCE_INDEX?.people||[])
-        .filter(person=>person.includeInDefault===true&&[person.name,...(person.aliases||[])].map(personKeyOf).includes(raw))
+        .filter(person=>person.includeInDefault===true&&[person.name,...(person.aliases||[])].map(personCanonicalNameFor).includes(canonical))
         .map(person=>person.personId).filter(Boolean));
       return sourceIds.size===1?[...sourceIds][0]:'';
     }
@@ -7467,15 +7522,17 @@ const app = createApp({
     const personRegistry = computed(()=>{
       const map = new Map();
       const sourceIndex = window.SGZ_PERSON_SOURCE_INDEX||{};
+      const workbookImport = window.SGZ_V60_PERSON_WORKBOOK_IMPORT||{};
       const defaultSourcePeople = new Set((sourceIndex.people||[]).filter(person=>person.includeInDefault===true).map(person=>person.personId));
       function entry(name,context={}){
         const rawName=personKeyOf(name);
-        if(!personEntityAllowed(rawName)) return null;
-        const displayName=personCanonicalNameFor(rawName);
-        if(!displayName) return null;
-        const personId=personIdOf(displayName,context);
-        const identity=(window.SGZ_PERSON_IDENTITIES?.identities||[]).find(item=>item.personId===personId)||window.SGZ_PERSON_IDENTITIES?.resolve(displayName,context);
-        if(!map.has(personId)) map.set(personId,{key:personId,personId,name:displayName,canonicalName:identity?.canonicalName||'',searchKeys:[...(identity?.searchKeys||[])],aliases:[...(identity?.aliases||[])],zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],homonymStatus:identity?.homonymDiscriminator?`已消歧：${identity.homonymDiscriminator}`:'',homonymGroupId:identity?.homonymDiscriminator?`homonym:${displayName}`:'',appointments:[]});
+        if(!context.forceReaderRecord&&!personEntityAllowed(rawName)) return null;
+        const normalizedDisplayName=personCanonicalNameFor(rawName);
+        if(!normalizedDisplayName) return null;
+        const personId=personIdOf(normalizedDisplayName,context);
+        const identity=(window.SGZ_PERSON_IDENTITIES?.identities||[]).find(item=>item.personId===personId)||window.SGZ_PERSON_IDENTITIES?.resolve(normalizedDisplayName,context);
+        const displayName=identity?.canonicalName||identity?.name||normalizedDisplayName;
+        if(!map.has(personId)) map.set(personId,{key:personId,personId,name:displayName,canonicalName:identity?.canonicalName||'',searchKeys:[...(identity?.searchKeys||[])],aliases:[...(identity?.aliases||[])],zi:'',birthplace:'',birthYear:null,deathYear:null,bio:'',bioSource:'',bioKind:'',portrait:'',portraitPolity:'',portraitAccent:'',portraitSource:'',politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],datasets:[],snapshots260:[],peerageEvents:[],v60Records:[],workbookSources:[],sourceRefs:[],homonymStatus:identity?.homonymDiscriminator?`已消歧：${identity.homonymDiscriminator}`:'',homonymGroupId:identity?.homonymDiscriminator?`homonym:${displayName}`:'',importCandidate:false,readerVisible:true,readerEligibility:'eligible',researchDisposition:'确定',appointments:[]});
         return map.get(personId);
       }
       function addAppointment(target,record){
@@ -7493,6 +7550,7 @@ const app = createApp({
         if(normalized.evidenceLayer) target.evidenceLayers.push(normalized.evidenceLayer);
         if(normalized.researchStatus) target.researchStatuses.push(normalized.researchStatus);
         if(normalized.scopeStatus) target.scopeStatuses.push(normalized.scopeStatus);
+        target.datasets.push('project');
       }
       function preferredByName(name){
         const raw=personKeyOf(name);
@@ -7554,6 +7612,65 @@ const app = createApp({
         }
         addAppointment(e,{...record,source:'sourceIndex',nodeName:record.officeName,title:record.officeName,treeType:'source',sourceCategory:record.relationshipType==='爵位'?'noble':'office',factionName:record.sourceWork,polity:record.polity||'',note:record.sourceExcerpt});
       });
+      (workbookImport.people||[]).forEach(person=>{
+        const eligibility=String(person.readerEligibility||'audit-only');
+        if(person.readerVisible===false) return;
+        const e=entry(person.name,{personId:person.personId,polity:person.polity,forceReaderRecord:true});
+        if(!e) return;
+        e.importCandidate=true;
+        e.readerVisible=true;
+        e.readerEligibility=eligibility;
+        e.researchDisposition=person.researchDisposition||'存疑';
+        if(!e.workbookSource)e.workbookSource=person.workbookSource;
+        e.v60Records.push(person);
+        e.sourceRefs.push(...(person.sourceRefs||[]));
+        e.candidateReason=person.candidateReason||'';
+        if(!e.rawName)e.rawName=person.rawName||person.name;
+        if(!e.officeRaw)e.officeRaw=person.officeRaw||'';
+        if(!e.titleRaw)e.titleRaw=person.titleRaw||'';
+        e.homonymStatus=person.homonymStatus||e.homonymStatus;
+        e.homonymGroupId=person.homonymGroupId||e.homonymGroupId;
+        e.searchKeys.push(person.normalizedName||person.name,person.rawName||'');
+        e.datasets.push('v60');
+        if(person.workbookSource)e.workbookSources.push(person.workbookSource);
+        if(person.zi&&!e.zi) e.zi=person.zi==='—'?'':person.zi;
+        if(person.birthplace&&!e.birthplace) e.birthplace=person.birthplace==='—'?'':person.birthplace;
+        if(person.birthYear!==null&&person.birthYear!==undefined&&!e.birthYear) e.birthYear=person.birthYear;
+        if(person.deathYear!==null&&person.deathYear!==undefined&&!e.deathYear) e.deathYear=person.deathYear;
+        if(person.polity&&!e.politics.includes(person.polity)) e.politics.push(person.polity);
+      });
+      (v61Supplement.people||[]).filter(person=>person.readerVisible!==false).forEach(person=>{
+        const e=entry(person.name,{personId:person.personId,polity:(person.politics||[])[0]||'',forceReaderRecord:true});
+        if(!e) return;
+        e.aliases.push(...(person.aliases||[]));
+        e.searchKeys.push(person.name,...(person.aliases||[]));
+        e.datasets.push(...(person.datasets||[]));
+        e.workbookSources.push(...(person.workbookSources||[]));
+        e.politics.push(...(person.politics||[]));
+        if(person.zi&&!e.zi)e.zi=person.zi;
+        if(person.birthplace&&!e.birthplace)e.birthplace=person.birthplace;
+      });
+      (v61Supplement.snapshots260||[]).filter(record=>record.readerVisible&&record.personId).forEach(record=>{
+        const resolvedRecordId=personIdOf(record.name,{personId:record.personId,polity:record.polity});
+        const e=map.get(resolvedRecordId)||entry(record.name,{personId:record.personId,polity:record.polity,forceReaderRecord:true});
+        if(!e)return;
+        e.datasets.push('snapshot260');
+        e.snapshots260.push(record);
+        if(record.polity)e.politics.push(record.polity);
+        if(record.zi&&!e.zi)e.zi=record.zi;
+        if(record.birthplace&&!e.birthplace)e.birthplace=record.birthplace;
+      });
+      (v61Supplement.peerageEvents||[]).filter(record=>record.readerVisible).forEach(record=>{
+        (record.recipientPersonIds||[]).forEach(personId=>{
+          const person=(v61Supplement.people||[]).find(item=>item.personId===personId);
+          const resolvedPersonId=personIdOf(person?.name||record.rawRecipient,{personId,polity:'魏'});
+          const e=map.get(resolvedPersonId)||entry(person?.name||record.rawRecipient,{personId,polity:'魏',forceReaderRecord:true});
+          if(!e)return;
+          e.datasets.push('peerage');
+          e.peerageEvents.push(record);
+          e.politics.push('魏');
+        });
+      });
       Object.entries(window.SGZ_PERSON_BIOGRAPHIES||{}).forEach(([key,bio])=>{
         const e=preferredByName(key); if(!e) return;
         e.zi=bio.zi||e.zi;e.birthplace=bio.birthplace||e.birthplace;
@@ -7586,7 +7703,7 @@ const app = createApp({
         return [...buckets.values()].map(group=>{
           if(group.length===1) return group[0];
           const primary=group.find(e=>e.bioKind==='史传提要'||e.portrait)||group[0];
-          const merged={...primary,appointments:[],politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],aliases:[],searchKeys:[]};
+          const merged={...primary,appointments:[],politics:[],serviceDomains:[],institutionTypes:[],sourceWorks:[],sourceVolumes:[],evidenceLayers:[],researchStatuses:[],scopeStatuses:[],datasets:[],snapshots260:[],peerageEvents:[],v60Records:[],workbookSources:[],sourceRefs:[],aliases:[],searchKeys:[]};
           const seen=new Set();
           group.forEach(e=>{
             (e.appointments||[]).forEach(a=>{
@@ -7601,6 +7718,12 @@ const app = createApp({
             merged.evidenceLayers.push(...(e.evidenceLayers||[]));
             merged.researchStatuses.push(...(e.researchStatuses||[]));
             merged.scopeStatuses.push(...(e.scopeStatuses||[]));
+            merged.datasets.push(...(e.datasets||[]));
+            merged.snapshots260.push(...(e.snapshots260||[]));
+            merged.peerageEvents.push(...(e.peerageEvents||[]));
+            merged.v60Records.push(...(e.v60Records||[]));
+            merged.workbookSources.push(...(e.workbookSources||[]));
+            merged.sourceRefs.push(...(e.sourceRefs||[]));
             merged.aliases.push(...(e.aliases||[]));
             merged.searchKeys.push(...(e.searchKeys||[]));
             if(!merged.zi){ const zi=personZiFor(e.name,e.personId); if(zi) merged.zi=zi; }
@@ -7635,13 +7758,17 @@ const app = createApp({
         e.evidenceLayers=[...new Set(e.evidenceLayers.filter(Boolean))];
         e.researchStatuses=[...new Set(e.researchStatuses.filter(Boolean))];
         e.scopeStatuses=[...new Set(e.scopeStatuses.filter(Boolean))];
+        e.datasets=[...new Set(e.datasets.filter(Boolean))];
+        e.snapshots260=[...new Map((e.snapshots260||[]).map(item=>[item.snapshotId,item])).values()].sort((a,b)=>(a.workbookSource?.row||0)-(b.workbookSource?.row||0));
+        e.peerageEvents=[...new Map((e.peerageEvents||[]).map(item=>[item.eventId,item])).values()].sort((a,b)=>(a.year??9999)-(b.year??9999)||String(a.eventId).localeCompare(String(b.eventId)));
+        e.v60Records=[...new Map((e.v60Records||[]).map(item=>[[item.workbookSource?.sha256,item.workbookSource?.sheet,item.workbookSource?.row].join('|'),item])).values()].sort((a,b)=>(a.workbookSource?.row||0)-(b.workbookSource?.row||0));
+        e.workbookSources=[...new Map((e.workbookSources||[]).map(item=>[[item.sha256,item.sheet,item.row].join('|'),item])).values()];
         e.appointmentCount=e.appointments.length;
         const years=e.appointments.map(a=>[normalizeYear(a.startYear),normalizeYear(a.endYear)]).flat().filter(n=>n!==null);
         e.startYear=years.length?Math.min(...years):null;
         e.endYear=years.length?Math.max(...years):null;
-        if(!e.bio){e.bio='暂无本传摘要';e.bioSource='仅显示可核验任官／爵位档案';e.bioKind='无摘要';}
         e.sourceOnly=e.appointments.length>0&&e.appointments.every(item=>item.source==='sourceIndex');
-        e.appointments=projectForReading(e.appointments);
+        e.appointments=workspaceMode.value==='review'?projectForReading(e.appointments):projectForReader(e.appointments);
         return e;
       }).sort((a,b)=>String(a.name).localeCompare(String(b.name),'zh-CN'));
     });
@@ -7655,6 +7782,7 @@ const app = createApp({
       const target=Number(year);
       if(!Number.isFinite(target)) return false;
       if(person.birthYear!==null&&person.deathYear!==null&&person.birthYear<=target&&person.deathYear>=target) return true;
+      if((person.snapshots260||[]).some(record=>Number(record.year)===target))return true;
       return person.appointments.some(record=>{
         const start=normalizeYear(record.startYear),end=normalizeYear(record.endYear);
         return (start!==null||end!==null)&&(start===null||start<=target)&&(end===null||end>=target);
@@ -7666,24 +7794,38 @@ const app = createApp({
       const points=person.appointments.flatMap(record=>[normalizeYear(record.startYear),normalizeYear(record.endYear)]).filter(value=>value!==null);
       if(person.birthYear!==null)points.push(person.birthYear);
       if(person.deathYear!==null)points.push(person.deathYear);
+      (person.snapshots260||[]).forEach(record=>{if(Number.isFinite(Number(record.year)))points.push(Number(record.year));});
+      (person.peerageEvents||[]).forEach(record=>{if(Number.isFinite(Number(record.year)))points.push(Number(record.year));});
       return points.length?Math.min(...points.map(value=>Math.abs(value-year)))+1:10000;
+    }
+    function readableFact(value){
+      const raw=String(value==null?'':value).trim();
+      return raw&&!/^(?:—|-|未详|不详|待定|待考|\?|？)$/.test(raw);
+    }
+    function personLifespanLabel(person){
+      if(person.birthYear!==null&&person.deathYear!==null)return `生卒：${person.birthYear}—${person.deathYear}`;
+      if(person.birthYear!==null)return `生年：${person.birthYear}`;
+      if(person.deathYear!==null)return `卒年：${person.deathYear}`;
+      return '';
     }
     const filteredPeople = computed(()=>{
       const q=peopleQuery.value.trim().toLowerCase();
       const eraRange=personEraRange();
       return personRegistry.value.filter(p=>{
+        if(peopleDataset.value!=='all'&&!(p.datasets||[]).includes(peopleDataset.value))return false;
         if(peoplePolity.value!=='all' && !p.politics.includes(peoplePolity.value)) return false;
         if(peopleOnlyPortrait.value && !personHasReadyPortrait(p.name,p.personId)) return false;
         if(peopleKind.value==='office' && !p.appointments.some(a=>a.treeType==='office'||a.sourceCategory==='office')) return false;
-        if(peopleKind.value==='noble' && !p.appointments.some(a=>a.treeType==='noble'||a.sourceCategory==='noble')) return false;
+        if(peopleKind.value==='noble' && !p.peerageEvents.length&&!p.appointments.some(a=>a.treeType==='noble'||a.sourceCategory==='noble')) return false;
         if(peopleKind.value==='fangzhen' && !p.appointments.some(a=>a.treeType==='fangzhen')) return false;
         if(peopleKind.value==='roster' && !p.appointments.some(a=>a.treeType==='roster')) return false;
         if(peopleKind.value==='source' && !p.appointments.some(a=>a.source==='sourceIndex')) return false;
         if(eraRange){
-          const known=(p.startYear!==null||p.endYear!==null||p.birthYear!==null||p.deathYear!==null);
+          const known=(p.startYear!==null||p.endYear!==null||p.birthYear!==null||p.deathYear!==null||p.snapshots260.length||p.peerageEvents.some(event=>event.year!==null));
           if(!known) return false;
-          const start=p.startYear??p.birthYear??p.endYear??p.deathYear;
-          const end=p.endYear??p.deathYear??p.startYear??p.birthYear;
+          const extraYears=[...p.snapshots260.map(item=>Number(item.year)),...p.peerageEvents.map(item=>Number(item.year))].filter(Number.isFinite);
+          const start=Math.min(...[p.startYear,p.birthYear,p.endYear,p.deathYear,...extraYears].filter(value=>value!==null&&Number.isFinite(Number(value))).map(Number));
+          const end=Math.max(...[p.endYear,p.deathYear,p.startYear,p.birthYear,...extraYears].filter(value=>value!==null&&Number.isFinite(Number(value))).map(Number));
           if(start>eraRange[1]||end<eraRange[0]) return false;
         }
         if(peopleSource.value!=='all'){
@@ -7695,24 +7837,44 @@ const app = createApp({
         if(peopleServiceDomain.value!=='all'&&!p.serviceDomains.includes(peopleServiceDomain.value)) return false;
         if(peopleInstitutionType.value!=='all'&&!p.institutionTypes.includes(peopleInstitutionType.value)) return false;
         if(!q) return true;
-        const hay=[p.name,p.canonicalName,p.aliases.join(' '),p.searchKeys.join(' '),p.zi,p.birthplace,p.bio,p.personId,p.sourceVolumes.join(' ')].concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity,a.sourceLocator,a.sourceExcerpt].join(' '))).join('\n').toLowerCase();
+        const hay=[p.name,p.canonicalName,p.aliases.join(' '),p.searchKeys.join(' '),p.zi,p.birthplace,p.bio,p.personId,p.sourceVolumes.join(' ')]
+          .concat(p.appointments.map(a=>[a.nodeName,a.jurisdiction,a.seat,a.title,a.note,a.polity,a.sourceLocator,a.sourceExcerpt].join(' ')))
+          .concat(p.snapshots260.map(item=>[item.office,item.residence,item.family,item.polity].join(' ')))
+          .concat(p.peerageEvents.map(item=>[item.grantDate,item.rank,item.title,item.fief,item.titleEvolution].join(' '))).join('\n').toLowerCase();
         return hay.includes(q);
       }).sort((a,b)=>personRelevanceScore(a)-personRelevanceScore(b)||String(a.name).localeCompare(String(b.name),'zh-CN')||String(a.personId).localeCompare(String(b.personId)));
     });
     const pagedPeople=computed(()=>filteredPeople.value.slice((peoplePage.value-1)*peoplePageSize.value,peoplePage.value*peoplePageSize.value));
-    const peoplePrimaryDetail=computed(()=>activePeopleDetail.value||pagedPeople.value[0]||null);
+    const peoplePrimaryDetail=computed(()=>{
+      const active=activePeopleDetail.value&&filteredPeople.value.find(item=>item.personId===activePeopleDetail.value.personId);
+      return active||pagedPeople.value[0]||null;
+    });
+    const peopleArchiveScope=computed(()=>{
+      const person=peoplePrimaryDetail.value;
+      const sourcePeople=window.SGZ_PERSON_SOURCE_INDEX?.people||[];
+      const sourcePerson=person&&sourcePeople.find(item=>item.personId===person.personId);
+      return sourcePerson?.includeInDefault===true ? {label:'默认档案',detail:'默认人物档案范围'} : {label:'全量活动源／扩展档案',detail:'当前页面可见的工程活动源'};
+    });
     const peoplePageCount=computed(()=>Math.max(1,Math.ceil(filteredPeople.value.length/peoplePageSize.value)));
-    watch([peopleQuery,peoplePolity,peopleKind,peopleEra,peopleYear,peopleSource,peopleEvidence,peopleServiceDomain,peopleInstitutionType,peopleOnlyPortrait],()=>{peoplePage.value=1;});
+    watch([peopleQuery,peoplePolity,peopleKind,peopleEra,peopleYear,peopleSource,peopleEvidence,peopleServiceDomain,peopleInstitutionType,peopleOnlyPortrait,peopleDataset],()=>{peoplePage.value=1;});
     watch(peoplePageCount,count=>{ if(peoplePage.value>count) peoplePage.value=count; });
     const peopleMetrics = computed(()=>{
-      const stats={people:personRegistry.value.length,records:0,office:0,noble:0,fangzhen:0,roster:0,source:0,portrait:0,curated:0};
+      const stats={people:personRegistry.value.length,records:0,office:0,noble:0,fangzhen:0,roster:0,source:0,portrait:0,curated:0,snapshotRows:0,peerageEvents:0};
       personRegistry.value.forEach(p=>{
         if(personHasReadyPortrait(p.name,p.personId)) stats.portrait++;
         if(p.bioKind==='史传提要') stats.curated++;
+        stats.snapshotRows+=p.snapshots260.length;
+        stats.peerageEvents+=p.peerageEvents.length;
         p.appointments.forEach(a=>{ stats.records++;if(a.source==='sourceIndex')stats.source++;if(a.treeType==='office'||a.sourceCategory==='office') stats.office++; else if(a.treeType==='noble'||a.sourceCategory==='noble') stats.noble++; else if(a.treeType==='fangzhen') stats.fangzhen++; else if(a.treeType==='roster') stats.roster++; });
       });
       return stats;
     });
+    const peopleDatasetOptions=computed(()=>[
+      {key:'all',label:'全部人物',count:personRegistry.value.length},
+      {key:'v60',label:'V60 全量人物',count:`${window.SGZ_V60_PERSON_WORKBOOK_IMPORT?.summary?.workbookPeople||1196}条 · ${personRegistry.value.filter(person=>person.datasets.includes('v60')).length}人`},
+      {key:'snapshot260',label:'260 年人物纪',count:personRegistry.value.filter(person=>person.datasets.includes('snapshot260')).length},
+      {key:'peerage',label:'曹魏封爵人物',count:personRegistry.value.filter(person=>person.datasets.includes('peerage')).length},
+    ]);
     const peopleCoverageSummary=computed(()=>window.SGZ_PERSON_SOURCE_INDEX?.summary||{volumes:0,people:0,appointments:0,peiAnnotations:0});
     const periodRosterPhases = computed(()=>Array.from(new Set((window.SGZ_PERSON_ERA_ROSTERS?.officeSnapshots||[]).map(item=>item.phase).filter(Boolean))));
     const filteredPeriodOfficeSnapshots = computed(()=>{
@@ -8077,6 +8239,8 @@ const app = createApp({
       const workbook={
         generatedAt:new Date().toISOString(),
         auditIssues:auditIssues.value,
+        v60ResearchLedger:v60Ledger,
+        v61EpigraphyResearch:v61Epigraphy,
         pendingVolumes:(window.SGZ_PERSON_SOURCE_INDEX?.coverage||[]).filter(item=>item.processedStatus==='待复核').map(item=>({work:item.work,volume:item.volume,reason:item.exclusionReasons?.join('；')})),
         homonymPending:personRegistry.value.filter(p=>/同名待消歧/.test(p.homonymStatus||'')).map(p=>({name:p.name,personId:p.personId,volumes:p.sourceVolumes,status:p.homonymStatus})),
         doubtfulFangzhen:fangzhenRecords.value.filter(r=>['存疑','待考','未上任','遥领'].includes(r.appointmentStatus)).map(r=>({commander:r.commander,title:r.title,jurisdiction:r.jurisdiction,polity:r.polity,tenureText:r.tenureText||'',status:r.appointmentStatus,sourceTitle:r.sourceTitle||''})),
@@ -8237,7 +8401,7 @@ const app = createApp({
 
     /* ---------- 文件功能 ---------- */
     function exportJSON(){
-      const payload = window.SGZResearchModel.migrate({ schemaVersion:8, exportedAt:new Date().toISOString(), periods:PERIODS, mapPeriods:cloneJSON(historyMapPeriods), factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), epigraphicRecords:cloneJSON(epigraphicRecords.value), battleRecords:cloneJSON(battleRecords), shihuoRecords:cloneJSON(shihuoRecords.value), shihuoEvents:cloneJSON(shihuoEventRecords.value), shihuoHousehold:cloneJSON(shihuoHousehold.value), seatPolicies:cloneJSON(window.SGZ_SEAT_POLICIES||[]), residences:cloneJSON(window.SGZ_OFFICE_RESIDENCES||[]) });
+      const payload = window.SGZResearchModel.migrate({ schemaVersion:10, exportedAt:new Date().toISOString(), periods:PERIODS, mapPeriods:cloneJSON(historyMapPeriods), factionPalette:cloneJSON(factions), trees:data.trees, fangzhenRecords:cloneJSON(fangzhenRecords.value), personMeta:cloneJSON(personMeta.map), personSnapshots:cloneJSON(v61Supplement.snapshots260||[]), peerageEvents:cloneJSON(v61Supplement.peerageEvents||[]), epigraphicRecords:cloneJSON(epigraphicRecords.value), battleRecords:cloneJSON(battleRecords), shihuoRecords:cloneJSON(shihuoRecords.value), shihuoEvents:cloneJSON(shihuoEventRecords.value), shihuoHousehold:cloneJSON(shihuoHousehold.value), seatPolicies:cloneJSON(window.SGZ_SEAT_POLICIES||[]), residences:cloneJSON(window.SGZ_OFFICE_RESIDENCES||[]) });
       downloadBlob(JSON.stringify(payload, null, 2), 'application/json', '三国职官谱_' + currentFaction.value + '.json');
       pushHistory('导出 JSON');
     }
@@ -8473,8 +8637,9 @@ const app = createApp({
       if(Array.isArray(payload?.shihuoHousehold)) shihuoHousehold.value=cloneJSON(payload.shihuoHousehold);
     }
     function projectPayload(){
-      return window.SGZResearchModel.migrate({schemaVersion:7,trees:data.trees,fangzhenRecords:cloneJSON(fangzhenRecords.value),versions:versions.list,periodSelections:cloneJSON(periodSelections),
+      return window.SGZResearchModel.migrate({schemaVersion:10,trees:data.trees,fangzhenRecords:cloneJSON(fangzhenRecords.value),versions:versions.list,periodSelections:cloneJSON(periodSelections),
         factionPalette:cloneJSON(factions),personMeta:cloneJSON(personMeta.map),epigraphicRecords:cloneJSON(epigraphicRecords.value),
+        personSnapshots:cloneJSON(v61Supplement.snapshots260||[]),peerageEvents:cloneJSON(v61Supplement.peerageEvents||[]),
         mapPeriods:cloneJSON(historyMapPeriods),battleRecords:cloneJSON(battleRecords),shihuoRecords:cloneJSON(shihuoRecords.value),
         shihuoEvents:cloneJSON(shihuoEventRecords.value),shihuoHousehold:cloneJSON(shihuoHousehold.value),savedAt:Date.now()});
     }
@@ -8889,23 +9054,24 @@ const app = createApp({
       officialSummaryRecords, officialSummaryGroups, unassignedOfficialCount,
       addFigureRecord, removeFigureRecord, onFigureRulerChanged, uploadPortrait, clearPortrait,
       recordPeriodLabel, recordYearLabel, openPersonProfile, jumpToPersonAppointment,
-      peopleQuery, peoplePolity, peopleKind, peopleEra, peopleYear, peopleSource, peopleEvidence, peopleServiceDomain, peopleInstitutionType, peopleOnlyPortrait, peopleAdvanced, peopleView, filteredPeople, pagedPeople, peoplePrimaryDetail, peoplePage, peoplePageSize, peoplePageCount, peopleMetrics,
+      peopleQuery, peoplePolity, peopleKind, peopleEra, peopleYear, peopleSource, peopleEvidence, peopleServiceDomain, peopleInstitutionType, peopleOnlyPortrait, peopleAdvanced, peopleView, peopleDataset, peopleDatasetOptions, filteredPeople, pagedPeople, peoplePrimaryDetail, peoplePage, peoplePageSize, peoplePageCount, peopleMetrics,
+      peopleArchiveScope, peopleCoverageSummary,
       generalTitleGroups, activeGeneralTitleGroup, generalTitleDisplayItems, generalTitlesSource,
       openPeopleDetailFromSnapshot,
       periodRosterPhase, periodRosterPhases, filteredPeriodOfficeSnapshots,
-      showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass,
+      showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass, readableFact, personLifespanLabel,
       personPortraitFor, portraitStyleFor,
       personMetaDialog, openPersonMetaEditor, savePersonMeta, uploadPersonPortrait,
-      showAuditCenter, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
+      showAuditCenter, v60Ledger, v61Epigraphy, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
       runDataAudit, auditJump, exportAuditReport, exportAuditWorkbook,
-      battleRecords, battleQuery, battleKind, battlePeriodId, battleBranch, battleView,
+      battleRecords, battleQuery, battleKind, battlePeriodId, battleBranch, battleView, battleDensity,
       battleEntryList, battlePeriodOptions, battleMetrics, filteredBattles, battleBranchOptions, battleBranchGroups, battleCampaignGroups, battleKindLabel, battleKindClass,
       showBattleDetail, activeBattleDetail, openBattleDetail, battleDetailYear, battlePeriodForItem, battleRelatedPeople, jumpToBattlePeriod,
       jumpBattleToMap, battleRelationChain,
       SHIHUO_POLITIES, SHIHUO_CATEGORIES, shihuoQuery, shihuoPolity, shihuoCategory, shihuoScope, shihuoRecordKind, shihuoView,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
       shihuoEvidenceClass, shihuoEvidenceLabel, householdMiniChart,
-      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, epigraphicArchive, filteredEpigraphicRecords, epigraphicMetrics, jinshiPrimaryDetail,
+      epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicType, epigraphicPolity, epigraphicArchive, epigraphicInscriptionStatus, epigraphicInscriptionStatuses, filteredEpigraphicRecords, epigraphicMetrics, jinshiPrimaryDetail,
       epigraphicHighlight, epigraphicArchiveClass, openEpigraphicPerson, showEpigraphicDetail, activeEpigraphicDetail, openEpigraphicDetail,
       mountOptions, jumpToMount,
       footnoteDialog, openFootnoteDialog, confirmFootnote, removeFootnote, footnotesFor, footnoteIndex,
@@ -8987,6 +9153,8 @@ const app = createApp({
       </template>
       <template v-else-if="activeModule==='jinshi'">
         <el-select v-model="epigraphicType" class="v56-context-select" size="small" aria-label="材料类型"><el-option label="全部类型" value="all"/><el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type"/></el-select>
+        <el-select v-if="workspaceMode==='review'" v-model="epigraphicArchive" class="v56-context-select review-only" size="small" aria-label="来源范围"><el-option label="全部范围" value="all"/><el-option label="核心" value="核心"/><el-option label="扩展" value="扩展"/><el-option label="争议" value="争议"/></el-select>
+        <el-select v-if="workspaceMode==='review'" v-model="epigraphicInscriptionStatus" class="v56-context-select review-only" size="small" aria-label="释文状态"><el-option label="全部释文状态" value="all"/><el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status" :value="status"/></el-select>
       </template>
       <template v-else-if="activeModule==='shihuo'">
         <el-select v-model="shihuoCategory" class="v56-context-select" size="small" aria-label="食货类别"><el-option label="全部类别" value="all"/><el-option v-for="c in SHIHUO_CATEGORIES" :key="c" :label="c" :value="c"/></el-select>
@@ -9001,7 +9169,7 @@ const app = createApp({
         <el-upload :show-file-list="false" accept=".xlsx,.xls" :before-upload="importExcel"><el-button size="small">导入表格</el-button></el-upload>
         <el-dropdown trigger="click"><el-button size="small">工程与导出 ▾</el-button><template #dropdown><el-dropdown-menu><el-dropdown-item @click="saveLocal()">保存到本地缓存</el-dropdown-item><el-dropdown-item @click="loadLocal">从本地缓存恢复</el-dropdown-item><el-dropdown-item @click="clearLegacyCacheCopies">清理旧缓存副本</el-dropdown-item><el-dropdown-item @click="showAuditCenter=true;runDataAudit()">打开审校中心</el-dropdown-item><el-dropdown-item divided @click="exportJSON">导出完整工程 JSON</el-dropdown-item><el-dropdown-item @click="exportTable">导出表格</el-dropdown-item><el-dropdown-item @click="exportImage">导出图片</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
       </div>
-      <button class="v56-evidence-toggle" type="button" @click="toggleEvidenceRail" :aria-label="evidenceRailCollapsed?'展开证据案卷':'收起证据案卷'">{{evidenceRailCollapsed?'证据 ›':'证据 ‹'}}</button>
+      <button v-if="workspaceMode==='review'" class="v56-evidence-toggle review-only" type="button" @click="toggleEvidenceRail" :aria-label="evidenceRailCollapsed?'展开证据案卷':'收起证据案卷'">{{evidenceRailCollapsed?'证据 ›':'证据 ‹'}}</button>
     </section>
 
     <div v-show="activeModule==='offices'" class="body-row">
@@ -9265,8 +9433,8 @@ const app = createApp({
             <header class="court-heading">
               <div class="kicker">{{currentPeriodLabel}} · {{timelineEnabled?timelineYear+'年 · '+currentEraLabel:'官署沿革全期'}}</div>
               <h2>{{courtResidence.owner?courtResidence.owner.name:'府属'}} · {{courtResidenceName}}</h2>
-              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:(courtResidence.definition&&courtResidence.definition.ownerPersonName||'任职人物未详')}}</strong> · 开府依据：<strong>{{courtKaifuLabel(courtResidence.owner)}}</strong> · 府署类型：{{courtResidenceType}}</p>
-              <div class="residence-policy-strip">
+              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:(courtResidence.definition&&courtResidence.definition.ownerPersonName||'任职人物未详')}}</strong><template v-if="workspaceMode==='review'"> · 开府依据：<strong>{{courtKaifuLabel(courtResidence.owner)}}</strong></template> · 府署类型：{{courtResidenceType}}</p>
+              <div v-if="workspaceMode==='review'" class="residence-policy-strip review-only">
                 <span class="residence-policy-tag" :class="{verified:courtResidence.kaifuPolicy&&courtResidence.kaifuPolicy.researchStatus==='确定'}">{{courtResidence.kaifuPolicy&&courtResidence.kaifuPolicy.evidence&&courtResidence.kaifuPolicy.evidence.sourceLocator||'开府依据待考'}}</span>
                 <span class="residence-policy-tag" :class="{verified:courtResidence.definition&&courtResidence.definition.researchStatus==='确定'}">{{courtResidence.definition&&courtResidence.definition.evidence&&courtResidence.definition.evidence.sourceLocator||'府属来源待考'}}</span>
                 <span class="residence-policy-tag">制度员额与展示席位分列；实任人数按当前时期去重</span>
@@ -9306,7 +9474,7 @@ const app = createApp({
                   </div>
                   <div class="residence-role-meta">{{courtResidenceRoleMeta(node)}}</div>
                   <div class="residence-counts">
-                    <span :class="{uncertain:courtSeatStats(courtResidence.owner,node).authorized===null}"><b>{{courtSeatStats(courtResidence.owner,node).authorized===null?'待考':courtSeatStats(courtResidence.owner,node).authorized}}</b>制度员额</span>
+                    <span v-if="workspaceMode==='review'" :class="{uncertain:courtSeatStats(courtResidence.owner,node).authorized===null}"><b>{{courtSeatStats(courtResidence.owner,node).authorized===null?'待考':courtSeatStats(courtResidence.owner,node).authorized}}</b>制度员额</span>
                     <span><b>{{courtSeatStats(courtResidence.owner,node).display}}</b>展示席位</span>
                     <span><b>{{courtSeatStats(courtResidence.owner,node).actual}}</b>实任人数</span>
                   </div>
@@ -9678,8 +9846,14 @@ const app = createApp({
           <div>
             <div class="page-kicker">人物记 · 人物 · 履历 · 立绘</div>
             <h1>人物记</h1>
-            <p>汇总职官谱、州镇表与爵位体系中的同一人物全部职任，形成连续履历；字号、籍贯、生卒与立绘随工程自动保存。</p>
+            <p>汇总项目人物档案、V60 全量人物、260 年人物快照与曹魏封爵记录；快照官职和封爵事件均与正式任官模型分开。</p>
+            <div v-if="workspaceMode==='review'" class="v58-identity-strip review-only"><strong>审校定位</strong><span>V60 人物 1196 条</span><span>260 年表 823 行</span><span>封爵表 590 行</span><span>默认精选档案仍为 {{peopleCoverageSummary.defaultPeople||123}} 人</span></div>
           </div>
+        </div>
+        <div class="v61-dataset-switch" role="group" aria-label="人物数据集视图">
+          <button v-for="option in peopleDatasetOptions" :key="option.key" type="button" :class="{active:peopleDataset===option.key}" :aria-pressed="peopleDataset===option.key" @click="peopleDataset=option.key">
+            <span>{{option.label}}</span><b>{{option.count}}</b>
+          </button>
         </div>
         <div class="people-toolbar">
           <el-checkbox v-model="peopleOnlyPortrait" size="small">仅有立绘</el-checkbox>
@@ -9695,14 +9869,14 @@ const app = createApp({
             <el-option label="西晋（266—316）" value="jin" />
           </el-select>
           <el-input-number v-model="peopleYear" size="small" :min="168" :max="316" controls-position="right" style="width:120px" aria-label="相关年份" />
-          <el-select v-model="peopleSource" size="small" style="width:132px;" aria-label="史料来源">
+          <el-select v-if="workspaceMode==='review'" v-model="peopleSource" size="small" style="width:132px;" aria-label="史料来源">
             <el-option label="全部来源" value="all" />
             <el-option label="《三国志》正文" value="sgz" />
             <el-option label="裴松之注" value="pei" />
             <el-option label="《晋书》" value="jinshu" />
             <el-option label="工程内任官档案" value="curated" />
           </el-select>
-          <el-select v-model="peopleEvidence" size="small" style="width:132px;" aria-label="证据状态">
+          <el-select v-if="workspaceMode==='review'" v-model="peopleEvidence" size="small" style="width:132px;" aria-label="证据状态">
             <el-option label="全部证据状态" value="all" />
             <el-option label="确定／推定" value="confirmed" />
             <el-option label="存疑／待复核" value="pending" />
@@ -9718,9 +9892,9 @@ const app = createApp({
         </div>
         <div class="people-metrics">
           <div class="people-metric"><strong>{{filteredPeople.length}}</strong><span>当前人物</span></div>
-          <div class="people-metric"><strong>{{peopleMetrics.records}}</strong><span>可核履历</span></div>
-          <div class="people-metric"><strong>{{peopleMetrics.portrait}}</strong><span>已配立绘</span></div>
-          <div v-if="workspaceMode==='review'" class="people-metric review-only"><strong>{{peopleMetrics.source}}</strong><span>正史索引</span></div>
+          <div class="people-metric"><strong>{{peopleMetrics.records}}</strong><span>任官记录</span></div>
+          <div class="people-metric"><strong>{{peopleMetrics.snapshotRows}}</strong><span>260 年状态</span></div>
+          <div class="people-metric"><strong>{{peopleMetrics.peerageEvents}}</strong><span>人物封爵关联</span></div>
         </div>
         <template v-if="peopleView==='people'">
         <div v-if="!filteredPeople.length" class="summary-empty">没有匹配的人物。可减少筛选条件，或在职官谱、州镇表中录入人物后回到本页查看汇总。</div>
@@ -9732,9 +9906,11 @@ const app = createApp({
               <span class="person-avatar" :style="portraitStyleFor(p)"><img v-if="p.portrait" :src="p.portrait" :alt="p.name+'立绘'"/><span v-else>{{p.name.slice(0,1)}}</span></span>
               <span class="v56-person-row-copy">
                 <span class="v56-person-row-name"><strong>{{p.canonicalName||p.name}}</strong><small v-if="p.zi">字{{p.zi}}</small></span>
-                <span class="v56-person-row-meta">{{p.politics.join(' · ')||'朝代未详'}} · {{p.appointments.length?p.appointments[0].nodeName:'履历待补'}}</span>
+                <span v-if="p.politics.length||p.appointments.length||p.snapshots260.length" class="v56-person-row-meta"><template v-if="p.politics.length">{{p.politics.join(' · ')}}</template><template v-if="p.appointments.length"><template v-if="p.politics.length"> · </template>{{p.appointments[0].nodeName}}</template><template v-else-if="p.snapshots260.length&&readableFact(p.snapshots260[0].office)"><template v-if="p.politics.length"> · </template>{{p.snapshots260[0].office}}</template></span>
               </span>
-              <span class="v56-person-row-count">{{p.appointmentCount}} 条</span>
+              <span v-if="p.appointmentCount" class="v56-person-row-count">{{p.appointmentCount}} 任</span>
+              <span v-else-if="p.peerageEvents.length" class="v56-person-row-count">{{p.peerageEvents.length}} 爵</span>
+              <span v-else-if="p.snapshots260.length" class="v56-person-row-count">260</span>
             </button>
           </section>
           <article v-if="peoplePrimaryDetail" class="v56-person-dossier" :data-person-id="peoplePrimaryDetail.personId">
@@ -9742,21 +9918,57 @@ const app = createApp({
               <div class="people-detail-portrait" :style="portraitStyleFor(peoplePrimaryDetail)"><img v-if="peoplePrimaryDetail.portrait" :src="peoplePrimaryDetail.portrait" :alt="peoplePrimaryDetail.name+'立绘'"/><span v-else>{{peoplePrimaryDetail.name.slice(0,1)}}</span></div>
               <div>
                 <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}<small v-if="peoplePrimaryDetail.zi">字{{peoplePrimaryDetail.zi}}</small></h2>
-                <div class="v56-person-dossier-meta"><span>所历朝代：{{peoplePrimaryDetail.politics.join(' · ')||'未详'}}</span><span>生卒：{{peoplePrimaryDetail.birthYear||'?'}}—{{peoplePrimaryDetail.deathYear||'?'}}</span><span>籍贯：{{peoplePrimaryDetail.birthplace||'未详'}}</span><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
+                <div class="v56-person-dossier-meta"><span v-if="peoplePrimaryDetail.politics.length">所历朝代：{{peoplePrimaryDetail.politics.join(' · ')}}</span><span v-if="personLifespanLabel(peoplePrimaryDetail)">{{personLifespanLabel(peoplePrimaryDetail)}}</span><span v-if="readableFact(peoplePrimaryDetail.birthplace)">籍贯：{{peoplePrimaryDetail.birthplace}}</span><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
                 <div class="people-detail-tags"><span v-for="pol in peoplePrimaryDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
-                <p class="v56-person-dossier-summary">{{peoplePrimaryDetail.bio||'暂无本传摘要；以下仅显示可验证的任官、受爵与州镇档案。'}}</p>
+                <div v-if="workspaceMode==='review'&&peoplePrimaryDetail.importCandidate" class="v60-import-candidate review-only"><strong>附件人物候选 · {{peoplePrimaryDetail.researchDisposition}}</strong><template v-if="peoplePrimaryDetail.v60Records&&peoplePrimaryDetail.v60Records.length"><span v-for="record in peoplePrimaryDetail.v60Records" :key="record.workbookSource.row">{{record.workbookSource.sheet}} 第 {{record.workbookSource.row}} 行 · 原名 {{record.rawName||record.name}}<template v-if="record.officeRaw"> · 官职字段 {{record.officeRaw}}</template></span></template><span v-else>{{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.sheet}} 第 {{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.row}} 行 · 原名 {{peoplePrimaryDetail.rawName||peoplePrimaryDetail.name}}</span><span v-if="peoplePrimaryDetail.candidateReason">{{peoplePrimaryDetail.candidateReason}}</span></div>
+                <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{peoplePrimaryDetail.sourceVolumes.length?peoplePrimaryDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span><span class="v58-status" :class="peoplePrimaryDetail.sourceVolumes.length?'v58-status--ready':'v58-status--pending'">{{peoplePrimaryDetail.sourceVolumes.length?'来源已关联':'来源待补'}}</span></div>
+                <span v-if="peoplePrimaryDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像；立绘不作为人物身份或史料证据。</span>
+                <p v-if="readableFact(peoplePrimaryDetail.bio)" class="v56-person-dossier-summary">{{peoplePrimaryDetail.bio}}</p>
                 <el-button v-if="workspaceMode==='review'" class="review-only" size="small" plain @click="openPersonMetaEditor(peoplePrimaryDetail.personId)">编辑人物档案</el-button>
               </div>
             </header>
-            <h3 class="v56-dossier-section-title">历官与爵位时间线 · {{peoplePrimaryDetail.appointments.length}} 条</h3>
-            <div v-if="!peoplePrimaryDetail.appointments.length" class="summary-empty">暂无履历记录。</div>
-            <div v-else class="v56-career-timeline">
+            <section v-if="peoplePrimaryDetail.snapshots260.length" class="v61-person-section">
+              <h3 class="v56-dossier-section-title">260 年状态 · {{peoplePrimaryDetail.snapshots260.length}} 条</h3>
+              <div class="v61-snapshot-stack">
+                <article v-for="item in peoplePrimaryDetail.snapshots260" :key="item.snapshotId" class="v61-snapshot-card">
+                  <div class="v61-snapshot-year">260</div>
+                  <div class="v61-snapshot-facts">
+                    <strong v-if="readableFact(item.office)">{{item.office}}</strong>
+                    <span v-if="readableFact(item.polity)">势力：{{item.polity}}</span>
+                    <span v-if="readableFact(item.residence)">驻地：{{item.residence}}</span>
+                    <span v-if="readableFact(item.birthplace)">籍贯：{{item.birthplace}}</span>
+                    <span v-if="readableFact(item.family)">家族：{{item.family}}</span>
+                    <small v-if="workspaceMode==='review'" class="review-only">{{item.workbookSource.sheet}} 第 {{item.workbookSource.row}} 行 · {{item.disposition}}</small>
+                  </div>
+                </article>
+              </div>
+            </section>
+            <section v-if="peoplePrimaryDetail.peerageEvents.length" class="v61-person-section">
+              <h3 class="v56-dossier-section-title">封爵 · {{peoplePrimaryDetail.peerageEvents.length}} 条</h3>
+              <div class="v61-peerage-timeline">
+                <article v-for="item in peoplePrimaryDetail.peerageEvents" :key="item.eventId" class="v61-peerage-event">
+                  <time>{{readableFact(item.grantDate)?item.grantDate:(item.year||'')}}</time>
+                  <div>
+                    <strong><template v-if="readableFact(item.rank)">{{item.rank}}</template><template v-if="readableFact(item.rank)&&readableFact(item.title)"> · </template><template v-if="readableFact(item.title)">{{item.title}}</template></strong>
+                    <span v-if="readableFact(item.fief)">封地：{{item.fief}}</span>
+                    <span v-if="readableFact(item.fiefHouseholds)">食邑／封国：{{item.fiefHouseholds}}</span>
+                    <p v-if="readableFact(item.titleEvolution)">{{item.titleEvolution}}</p>
+                    <p v-if="readableFact(item.succession)">{{item.succession}}</p>
+                    <small v-if="workspaceMode==='review'" class="review-only">{{item.workbookSource.sheet}} 第 {{item.workbookSource.row}} 行 · {{item.sourceCitation}}</small>
+                  </div>
+                </article>
+              </div>
+            </section>
+            <section v-if="peoplePrimaryDetail.appointments.length" class="v61-person-section">
+            <h3 class="v56-dossier-section-title">历官时间线 · {{peoplePrimaryDetail.appointments.length}} 条</h3>
+            <div class="v56-career-timeline">
               <button v-for="(item,index) in peoplePrimaryDetail.appointments" :key="item.id||index" type="button" class="v56-career-row" @click="jumpToPersonAppointment(item)">
                 <span class="v56-career-year">{{recordYearLabel(item)}}</span>
                 <span class="v56-career-office">{{item.nodeName}}<small class="person-pill" :class="item.treeType==='fangzhen'?'fangzhen':(item.treeType==='office'?'office':(item.treeType==='roster'?'roster':'noble'))">{{item.treeType==='fangzhen'?'州镇':(item.treeType==='office'?'任官':(item.treeType==='roster'?'时期录':'受爵'))}}</small></span>
                 <span class="v56-career-evidence">{{item.factionName}} · {{recordPeriodLabel(item)}}<template v-if="item.jurisdiction"> · {{item.jurisdiction}}</template><template v-if="workspaceMode==='review'&&item.sourceLocators&&item.sourceLocators.length"> · {{item.sourceLocators.join('、')}}</template></span>
               </button>
             </div>
+            </section>
           </article>
         </div>
         <nav v-if="peoplePageCount>1" class="people-pagination" aria-label="人物档案分页">
@@ -9789,7 +10001,7 @@ const app = createApp({
       </div>
     </main>
 
-    <main v-if="activeModule==='battle'" class="module-page battle-workbench">
+    <main v-if="activeModule==='battle'" :class="['module-page','battle-workbench','battle-density-'+battleDensity]">
       <div class="module-page-inner">
         <div class="page-heading">
           <div>
@@ -9816,6 +10028,7 @@ const app = createApp({
           <button :class="{active:battleView==='chronology'}" @click="battleView='chronology'">按年代</button>
           <button :class="{active:battleView==='belligerent'}" @click="battleView='belligerent'">按交战方</button>
           <button :class="{active:battleView==='campaign'}" @click="battleView='campaign'">按战役链</button>
+          <span class="v58-density-switch" aria-label="战事密度"><button :class="{active:battleDensity==='comfortable'}" @click="battleDensity='comfortable'">舒展</button><button :class="{active:battleDensity==='compact'}" @click="battleDensity='compact'">紧凑</button></span>
         </div>
         <div v-if="!filteredBattles.length" class="summary-empty">没有匹配的战事记录。可减少筛选条件，或切换时期查看该年编年要事与战役。</div>
         <div v-else class="battle-vertical-scroll">
@@ -9823,19 +10036,19 @@ const app = createApp({
             <article v-for="item in filteredBattles" :key="'chronology-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)">
               <div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div>
               <div class="battle-timeline-meta">{{item.branch}}{{item.front?' · '+item.front:''}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div>
-              <div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="item.a">{{item.a}} <b>vs</b> {{item.b}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div>
+              <div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="workspaceMode==='review'&&item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending review-only">坐标来源待补</span><span v-if="item.a">{{item.a}} <b>vs</b> {{item.b}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div>
             </article>
           </div>
           <div v-else-if="battleView==='belligerent'" class="battle-group-stack">
             <section v-for="group in battleBranchGroups" :key="group.name" class="battle-branch-lane">
               <header class="battle-branch-head"><strong>{{group.name}}</strong><span>{{group.items.length}} 条</span></header>
-              <div class="battle-lane"><article v-for="item in group.items" :key="group.name+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
+              <div class="battle-lane"><article v-for="item in group.items" :key="group.name+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="workspaceMode==='review'&&item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending review-only">坐标来源待补</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
             </section>
           </div>
           <div v-else class="battle-group-stack">
             <section v-for="group in battleCampaignGroups" :key="group.id" class="battle-branch-lane">
               <header class="battle-branch-head"><strong>{{group.name}}</strong><span>{{group.items.length}} 条关联记录</span></header>
-              <div class="battle-lane"><article v-for="item in group.items" :key="group.id+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-meta">{{item.branch}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
+              <div class="battle-lane"><article v-for="item in group.items" :key="group.id+'-'+item.id" class="battle-timeline-item" @click="openBattleDetail(item)"><div class="battle-timeline-year">{{battleDetailYear(item)}}</div><div class="battle-timeline-title">{{item.title||item.name||item.text}}</div><div class="battle-timeline-meta">{{item.branch}}</div><div class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</div><div class="battle-item-actions"><span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span><span v-if="workspaceMode==='review'&&item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending review-only">坐标来源待补</span><button class="battle-map-link" @click.stop="jumpBattleToMap(item)">地图 ›</button></div></article></div>
             </section>
           </div>
         </div>
@@ -9925,7 +10138,7 @@ const app = createApp({
           <article v-for="record in fangzhenVisibleRecords" :key="'mobile-'+record.id" class="fangzhen-mobile-card" @click="selectV56Record('fangzhen',record)">
             <header><span class="fz-polity-badge" :class="fangzhenPolityClass(record.polity)">{{record.polity}}</span><span>{{fangzhenTypeLabel(record.recordType)}}</span><time>{{record.tenureText||'任期未详'}}</time></header>
             <button class="fz-mobile-person" @click="openPeopleDetail(record.personId||record.commander)">{{record.commander}}</button><strong>{{record.title}}</strong>
-            <dl><div><dt>辖区</dt><dd><button @click="jumpFangzhenToMap(record)">{{record.jurisdiction||'辖区未详'}}</button></dd></div><div><dt>治所</dt><dd>{{record.seat||'治所未详／待考'}}</dd></div></dl>
+            <dl><div><dt>辖区</dt><dd><button @click="jumpFangzhenToMap(record)">{{record.jurisdiction||'辖区未详'}}</button></dd></div><div><dt>治所</dt><dd>{{record.seat||'治所未详'}}</dd></div></dl>
           </article>
         </div>
         <section v-if="workspaceMode==='review'&&fangzhenOverlapIssues.length" class="fangzhen-overlap-audit review-only"><header>任期重叠审校</header><p v-for="issue in fangzhenOverlapIssues.slice(0,20)" :key="issue.id">{{issue.unit}} · {{issue.office}}：{{issue.a.commander}}（{{issue.a.tenureText||issue.a.startYear+'—'+issue.a.endYear}}）／{{issue.b.commander}}（{{issue.b.tenureText||issue.b.startYear+'—'+issue.b.endYear}}）</p></section>
@@ -9945,11 +10158,26 @@ const app = createApp({
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.current}}</strong><span>当前材料</span></div>
           <div class="jinshi-metric"><strong>{{epigraphicMetrics.withInscription}}</strong><span>已有释文</span></div>
           <div v-if="workspaceMode==='review'" class="jinshi-metric review-only"><strong>{{epigraphicMetrics.missingInscription}}</strong><span>释文未见</span></div>
+          <div v-if="workspaceMode==='review'" class="jinshi-metric review-only"><strong>{{v61Epigraphy.summary.adoptedTranscriptions||0}}</strong><span>V61 实补</span></div>
         </div>
         <div class="jinshi-toolbar">
+          <el-select v-if="workspaceMode==='review'" v-model="epigraphicType" clearable style="width:120px" placeholder="材料类型">
+            <el-option label="全部材料类型" value="all" />
+            <el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type" />
+          </el-select>
           <el-select v-model="epigraphicPolity" clearable style="width:110px" placeholder="国别">
             <el-option label="全部国别" value="all" />
             <el-option v-for="polity in epigraphicPolities" :key="polity" :label="polity" :value="polity" />
+          </el-select>
+          <el-select v-if="workspaceMode==='review'" v-model="epigraphicArchive" clearable style="width:120px" placeholder="来源范围">
+            <el-option label="全部来源范围" value="all" />
+            <el-option label="规范源" value="核心" />
+            <el-option label="扩展" value="扩展" />
+            <el-option label="争议" value="争议" />
+          </el-select>
+          <el-select v-if="workspaceMode==='review'" v-model="epigraphicInscriptionStatus" clearable style="width:120px" placeholder="释文状态">
+            <el-option label="全部释文状态" value="all" />
+            <el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status" :value="status" />
           </el-select>
           <span style="flex:1"></span>
           <span style="font-size:11px;color:#7E857E;">显示 {{filteredEpigraphicRecords.length}} / {{epigraphicRecords.length}} 条</span>
@@ -9965,12 +10193,29 @@ const app = createApp({
                     class="v56-jinshi-row" :class="{active:jinshiPrimaryDetail&&jinshiPrimaryDetail.id===record.id}" @click="openEpigraphicDetail(record)">
               <span class="v56-jinshi-row-title">{{record.displayName}}</span>
               <span class="v56-jinshi-row-meta">{{record.dateText||'年代未详'}} · {{record.materialType}} · {{record.findspot||'出土地未详'}}</span>
+              <span v-if="workspaceMode==='review'" class="v58-jinshi-status review-only">{{record.inscriptionState==='已录入'?'释文已录入':record.inscriptionState==='残缺'?'残缺释文':record.inscriptionState==='待校'?'待校释文':'源文未见释文'}}<template v-if="record.archiveKind==='争议'"> · 年代或归属存疑</template></span>
             </button>
           </div>
           <article v-if="jinshiPrimaryDetail" class="v56-jinshi-reader">
             <header><h2>{{jinshiPrimaryDetail.displayName}}</h2><p>{{jinshiPrimaryDetail.dateText||'年代未详'}} · {{jinshiPrimaryDetail.materialType}} · {{jinshiPrimaryDetail.findspot||'出土地未详'}}</p></header>
-            <dl class="v56-jinshi-fields"><div><dt>原始题名</dt><dd>{{jinshiPrimaryDetail.rawRecord&&jinshiPrimaryDetail.rawRecord.title||jinshiPrimaryDetail.rawTitle||jinshiPrimaryDetail.name}}</dd></div><div><dt>释文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionStatus||'源文未见明确释文标识'}}</dd></div></dl>
-            <section class="v56-jinshi-inscription"><h3>释文</h3><div v-if="jinshiPrimaryDetail.inscription" v-html="epigraphicHighlight(jinshiPrimaryDetail.inscription)"></div><p v-else>源文未见明确释文标识；本项目未作推测性补写。</p></section>
+            <dl v-if="workspaceMode==='review'" class="v56-jinshi-fields review-only"><div><dt>原始题名</dt><dd>{{jinshiPrimaryDetail.rawRecord&&jinshiPrimaryDetail.rawRecord.title||jinshiPrimaryDetail.rawTitle||jinshiPrimaryDetail.name}}</dd></div><div><dt>来源范围</dt><dd>{{jinshiPrimaryDetail.archiveKind}} · {{jinshiPrimaryDetail.sourceTitle||jinshiPrimaryDetail.sourceDocument||'来源待补'}}</dd></div><div><dt>释文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionState==='已录入'?'释文已录入':jinshiPrimaryDetail.inscriptionState==='残缺'?'残缺释文':jinshiPrimaryDetail.inscriptionState==='待校'?'待校释文':'源文未见明确释文标识'}}</dd></div><div><dt>源文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionStatus||'源文未见明确释文标识'}}</dd></div></dl>
+            <section v-if="jinshiPrimaryDetail.inscription" class="v56-jinshi-inscription"><h3>释文</h3><div v-html="epigraphicHighlight(jinshiPrimaryDetail.inscription)"></div></section>
+            <section v-if="workspaceMode==='review'&&jinshiPrimaryDetail.sourceVerification" class="v61-jinshi-research review-only">
+              <h3>V61 检索与释文分层</h3>
+              <p>{{jinshiPrimaryDetail.sourceVerification.result}}</p>
+              <div v-if="jinshiPrimaryDetail.sourceVerification.sources&&jinshiPrimaryDetail.sourceVerification.sources.length" class="v61-jinshi-sources">
+                <a v-for="source in jinshiPrimaryDetail.sourceVerification.sources" :key="source.url||source.title" :href="source.url" target="_blank" rel="noreferrer"><strong>{{source.title}}</strong><span>{{source.locator||source.role}}</span></a>
+              </div>
+              <details v-for="variant in (jinshiPrimaryDetail.inscriptionVariants||[])" :key="variant.type+'-'+variant.label" class="v61-jinshi-variant">
+                <summary>{{variant.label||variant.type}} · {{variant.type}}</summary>
+                <p v-if="variant.note">{{variant.note}}</p>
+                <pre v-if="variant.text">{{variant.text}}</pre>
+              </details>
+              <details v-if="jinshiPrimaryDetail.externalSearchLog&&jinshiPrimaryDetail.externalSearchLog.length" class="v61-jinshi-variant">
+                <summary>逐条检索日志（{{jinshiPrimaryDetail.externalSearchLog.length}}）</summary>
+                <p v-for="log in jinshiPrimaryDetail.externalSearchLog" :key="log.url+'-'+log.source"><b>{{log.source}}</b>：{{log.result}}</p>
+              </details>
+            </section>
             <div v-if="jinshiPrimaryDetail.people||jinshiPrimaryDetail.offices" class="jinshi-related"><button v-for="nm in (jinshiPrimaryDetail.people||'').split(/[、，,]/).filter(Boolean)" :key="nm" @click="openEpigraphicPerson(nm)">{{nm}}</button><span v-if="jinshiPrimaryDetail.offices">{{jinshiPrimaryDetail.offices}}</span></div>
           </article>
         </section>
@@ -10009,7 +10254,7 @@ const app = createApp({
         </div>
         <div v-if="shihuoView==='institution'" class="fangzhen-table-card">
           <el-table :data="filteredShihuoRecords" :row-class-name="fangzhenRowClassName" size="small" empty-text="暂无符合条件的经济制度条目" @row-click="record=>selectV56Record('shihuo',record)">
-            <el-table-column type="expand" width="42"><template #default="scope"><div class="shihuo-evidence-detail"><b>史料来源</b><span>{{scope.row.sourceTitle||scope.row.evidence&&scope.row.evidence.sourceTitle||'来源待补'}}</span><b>证据层</b><span>{{shihuoEvidenceLabel(scope.row)}} · {{scope.row.confidence||'待考'}}</span><p>{{scope.row.detail}}</p></div></template></el-table-column>
+            <el-table-column v-if="workspaceMode==='review'" type="expand" width="42"><template #default="scope"><div class="shihuo-evidence-detail"><b>史料来源</b><span>{{scope.row.sourceTitle||scope.row.evidence&&scope.row.evidence.sourceTitle||'来源待补'}}</span><b>证据层</b><span>{{shihuoEvidenceLabel(scope.row)}} · {{scope.row.confidence||'待考'}}</span><p>{{scope.row.detail}}</p></div></template></el-table-column>
             <el-table-column label="政权" width="78">
               <template #default="scope"><span class="fz-polity-badge" :class="shihuoPolityClass(scope.row.polity)">{{scope.row.polity}}</span></template>
             </el-table-column>
@@ -10021,23 +10266,24 @@ const app = createApp({
               <template #default="scope"><div style="font-weight:650;color:#2E352F;">{{scope.row.title}}</div></template>
             </el-table-column>
             <el-table-column prop="detail" label="内容与沿革" min-width="320" show-overflow-tooltip />
-            <el-table-column label="证据" width="108">
+            <el-table-column v-if="workspaceMode==='review'" label="证据" width="108">
               <template #default="scope"><span class="shihuo-evidence" :class="shihuoEvidenceClass(scope.row.confidence)">{{shihuoEvidenceLabel(scope.row)}}</span></template>
             </el-table-column>
           </el-table>
         </div>
         <div v-if="shihuoView==='chronology'" class="fangzhen-table-card shihuo-chronology-table" style="margin-top:14px;">
-          <div class="fangzhen-context"><strong>经济编年</strong><span>按年代升序排列；来源详情进入右侧证据案卷。</span></div>
+          <div class="fangzhen-context"><strong>经济编年</strong><span>按年代升序排列。<template v-if="workspaceMode==='review'">来源详情进入右侧证据案卷。</template></span></div>
           <el-table :data="shihuoEvents" size="small" empty-text="暂无符合条件的编年记录" @row-click="record=>selectV56Record('shihuo',record)">
             <el-table-column label="年代" width="120"><template #default="scope">{{scope.row.yearText||scope.row.year||'年代未详'}}</template></el-table-column>
             <el-table-column label="政权" width="82"><template #default="scope"><span class="fz-polity-badge" :class="shihuoPolityClass(scope.row.polity)">{{scope.row.polity}}</span></template></el-table-column>
             <el-table-column prop="title" label="事件" min-width="190" />
             <el-table-column prop="detail" label="内容" min-width="360" show-overflow-tooltip />
-            <el-table-column label="证据" width="100"><template #default="scope"><span class="shihuo-evidence" :class="shihuoEvidenceClass(scope.row.confidence)">{{shihuoEvidenceLabel(scope.row)}}</span></template></el-table-column>
+            <el-table-column v-if="workspaceMode==='review'" label="证据" width="100"><template #default="scope"><span class="shihuo-evidence" :class="shihuoEvidenceClass(scope.row.confidence)">{{shihuoEvidenceLabel(scope.row)}}</span></template></el-table-column>
           </el-table>
         </div>
         <div v-if="shihuoView==='quantitative'" class="fangzhen-table-card" style="margin-top:14px;">
           <div class="fangzhen-context"><strong>户口与人口</strong><span>只对确定年份且非约数、非推算值的记录绘制比例；146／157 年基线与主体时段分开。</span></div>
+          <p class="v58-comparability-note">统计口径：按现有记录的地区范围、单位与数据性质判定可比性；不可比记录保留在表中，但不进入比例图。</p>
           <el-table :data="filteredShihuoHousehold" size="small" empty-text="当前政权暂无户口数据">
             <el-table-column label="政权" width="76">
               <template #default="scope"><span class="fz-polity-badge" :class="shihuoPolityClass(scope.row.polity)">{{scope.row.polity}}</span></template>
@@ -10116,7 +10362,7 @@ const app = createApp({
       <div class="item">历史步骤 {{ history.index+1 }} / {{ history.stack.length }}</div>
     </div>
 
-    <aside class="v56-evidence-rail" aria-label="证据案卷">
+    <aside v-show="workspaceMode==='review'" class="v56-evidence-rail review-only" aria-label="证据案卷">
       <header class="v56-evidence-head"><strong>证据案卷</strong><span>{{v56ModuleMeta.short}}资料导轨</span><button type="button" @click="toggleEvidenceRail" :aria-label="evidenceRailCollapsed?'展开证据案卷':'收起证据案卷'">{{evidenceRailCollapsed?'‹':'›'}}</button></header>
       <div class="v56-evidence-body">
         <template v-if="activeModule==='people'&&peoplePrimaryDetail">
@@ -10174,8 +10420,8 @@ const app = createApp({
     <el-drawer v-model="showEpigraphicDetail" :title="'金石录 · '+(activeEpigraphicDetail?activeEpigraphicDetail.name:'')" size="min(720px,96vw)" class="jinshi-detail-drawer">
       <template v-if="activeEpigraphicDetail">
         <div class="jinshi-detail-meta"><b>{{activeEpigraphicDetail.materialType}}</b><span>{{activeEpigraphicDetail.dateText||'年代未详'}}</span><span>{{activeEpigraphicDetail.findspot||'出土地未详'}}</span></div>
-        <dl class="jinshi-detail-fields"><div><dt>原始题名</dt><dd>{{activeEpigraphicDetail.rawRecord&&activeEpigraphicDetail.rawRecord.title||activeEpigraphicDetail.rawTitle||activeEpigraphicDetail.name}}</dd></div><div><dt>来源定位</dt><dd>{{activeEpigraphicDetail.sourceTitle||activeEpigraphicDetail.sourceDocument||'来源待补'}} · {{activeEpigraphicDetail.sourceLocator||'定位待补'}}</dd></div><div><dt>证据状态</dt><dd>{{activeEpigraphicDetail.researchStatus||'待考'}} · {{activeEpigraphicDetail.evidence&&activeEpigraphicDetail.evidence.sourceLevel||activeEpigraphicDetail.sourceLevel||'待核'}}</dd></div></dl>
-        <section class="epigraphic-inscription"><strong>释文</strong><div v-if="activeEpigraphicDetail.inscription" v-html="epigraphicHighlight(activeEpigraphicDetail.inscription)"></div><div v-else class="jinshi-missing-text">源文未见明确释文标识；本项目未作推测性补写。</div></section>
+        <dl v-if="workspaceMode==='review'" class="jinshi-detail-fields review-only"><div><dt>原始题名</dt><dd>{{activeEpigraphicDetail.rawRecord&&activeEpigraphicDetail.rawRecord.title||activeEpigraphicDetail.rawTitle||activeEpigraphicDetail.name}}</dd></div><div><dt>来源定位</dt><dd>{{activeEpigraphicDetail.sourceTitle||activeEpigraphicDetail.sourceDocument||'来源待补'}} · {{activeEpigraphicDetail.sourceLocator||'定位待补'}}</dd></div><div><dt>证据状态</dt><dd>{{activeEpigraphicDetail.researchStatus||'待考'}} · {{activeEpigraphicDetail.evidence&&activeEpigraphicDetail.evidence.sourceLevel||activeEpigraphicDetail.sourceLevel||'待核'}}</dd></div></dl>
+        <section v-if="activeEpigraphicDetail.inscription" class="epigraphic-inscription"><strong>释文</strong><div v-html="epigraphicHighlight(activeEpigraphicDetail.inscription)"></div></section>
         <div v-if="activeEpigraphicDetail.people||activeEpigraphicDetail.offices" class="jinshi-related"><button v-for="nm in (activeEpigraphicDetail.people||'').split(/[、，,]/).filter(Boolean)" :key="nm" @click="openEpigraphicPerson(nm)">{{nm}}</button><span v-if="activeEpigraphicDetail.offices">{{activeEpigraphicDetail.offices}}</span></div>
         <div v-if="activeEpigraphicDetail.note||activeEpigraphicDetail.disputeNote" class="epigraphic-dispute"><b>释读说明</b><span>{{activeEpigraphicDetail.disputeNote||activeEpigraphicDetail.note}}</span></div>
       </template>
@@ -10201,8 +10447,8 @@ const app = createApp({
         </div>
         <div class="battle-detail-meta">
           <div class="row" v-if="activeBattleDetail.front"><span>战场方位</span>{{activeBattleDetail.front}}</div>
-          <div class="row"><span>史料来源</span>{{activeBattleDetail.sourceTitle||activeBattleDetail.evidence&&activeBattleDetail.evidence.sourceTitle||'来源待补'}}</div>
-          <div class="row"><span>证据状态</span>{{activeBattleDetail.confidence||'待考'}}<template v-if="workspaceMode==='review'"> · {{activeBattleDetail.researchStatus||'待核'}}</template></div>
+          <div v-if="workspaceMode==='review'" class="row review-only"><span>史料来源</span>{{activeBattleDetail.sourceTitle||activeBattleDetail.evidence&&activeBattleDetail.evidence.sourceTitle||'来源待补'}}</div>
+          <div v-if="workspaceMode==='review'" class="row review-only"><span>证据状态</span>{{activeBattleDetail.confidence||'待考'}} · {{activeBattleDetail.researchStatus||'待核'}}</div>
         </div>
         <div v-if="battleRelationChain(activeBattleDetail).length>1" class="battle-chain">
           <span v-for="(link,index) in battleRelationChain(activeBattleDetail)" :key="index" class="battle-chain-link">
@@ -10227,14 +10473,17 @@ const app = createApp({
             <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}<span v-if="activePeopleDetail.zi" style="margin-left:8px;font-size:14px;color:#8A918A;">字{{activePeopleDetail.zi}}</span></h3>
             <p v-if="activePeopleDetail.birthplace">籍贯：{{activePeopleDetail.birthplace}}</p>
             <p v-if="activePeopleDetail.birthYear||activePeopleDetail.deathYear">生卒：{{activePeopleDetail.birthYear||'?'}}—{{activePeopleDetail.deathYear||'?'}}</p>
-            <p v-if="activePeopleDetail.homonymStatus" class="homonym-note">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
+            <p v-if="workspaceMode==='review'&&activePeopleDetail.homonymStatus" class="homonym-note review-only">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
             <p v-if="workspaceMode==='review'&&activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note review-only">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
+            <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length?activePeopleDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span></div>
+            <span v-if="activePeopleDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像；立绘不作为人物身份或史料证据。</span>
             <p v-if="activePeopleDetail.bio" class="people-bio">{{activePeopleDetail.bio}}</p>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.politics" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
+            <div v-if="workspaceMode==='review'&&activePeopleDetail.importCandidate" class="v60-import-candidate review-only"><strong>附件人物候选 · {{activePeopleDetail.researchDisposition}}</strong><template v-if="activePeopleDetail.v60Records&&activePeopleDetail.v60Records.length"><span v-for="record in activePeopleDetail.v60Records" :key="record.workbookSource.row">{{record.workbookSource.sheet}} 第 {{record.workbookSource.row}} 行 · 原名 {{record.rawName||record.name}}<template v-if="record.officeRaw"> · 官职字段 {{record.officeRaw}}</template></span></template><span v-else>{{activePeopleDetail.workbookSource&&activePeopleDetail.workbookSource.sheet}} 第 {{activePeopleDetail.workbookSource&&activePeopleDetail.workbookSource.row}} 行 · 原名 {{activePeopleDetail.rawName||activePeopleDetail.name}}</span><span v-if="activePeopleDetail.candidateReason">{{activePeopleDetail.candidateReason}}</span></div>
             <div v-if="workspaceMode==='review'" class="review-only" style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.personId)">编辑人物档案</el-button></div>
           </div>
         </div>
-        <div v-if="!activePeopleDetail.appointments.length" class="summary-empty">暂无履历记录。</div>
+        <div v-if="workspaceMode==='review'&&!activePeopleDetail.appointments.length" class="summary-empty review-only">暂无履历记录。</div>
         <div v-else class="people-career-list">
           <div v-for="(item,index) in activePeopleDetail.appointments" :key="index" class="people-career-item" @click="jumpToPersonAppointment(item)">
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><b>{{item.nodeName}}</b><span class="person-pill" :class="item.treeType==='fangzhen'?'fangzhen':(item.treeType==='office'?'office':(item.treeType==='roster'?'roster':'noble'))">{{item.treeType==='fangzhen'?'州镇职任':(item.treeType==='office'?'任官':(item.treeType==='roster'?'时期官员录':'受爵'))}}</span></div>
@@ -10575,6 +10824,13 @@ const app = createApp({
           <el-button size="small" plain @click="exportAuditWorkbook()">导出复核工作簿</el-button>
         </div>
       </div>
+      <section class="v60-audit-summary review-only">
+        <div class="v60-audit-summary-head"><strong>V60 待考收口</strong><span>底层证据保留，阅读层不展示</span></div>
+        <div class="v60-audit-summary-grid">
+          <div v-for="item in v60Ledger.researchQueue" :key="item.id"><b>{{item.count}}</b><span>{{item.domain}}</span><small>{{item.disposition}}</small></div>
+        </div>
+        <p>金石空释文已检索 {{v61Epigraphy.summary.searchedRecords||0}} 条，实补 {{v61Epigraphy.summary.adoptedTranscriptions||0}} 条，仍空 {{v61Epigraphy.summary.missingAfterResearch||0}} 条；V59 队列已收口 {{v60Ledger.summary.v59ReviewQueueClosed||0}} 条；史书卷次已登记 {{v60Ledger.summary.booksClosed||0}} 卷。</p>
+      </section>
       <div class="audit-metrics">
         <div class="audit-metric total"><div class="value">{{auditMetrics.total}}</div><div class="label">问题总数</div></div>
         <div class="audit-metric error"><div class="value">{{auditMetrics.error}}</div><div class="label">错误</div></div>
