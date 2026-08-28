@@ -1,0 +1,456 @@
+{
+  "schemaVersion": "V60",
+  "modelId": "sgz-v60-figma-handoff",
+  "status": "pending",
+  "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+  "fileName": "观史台 · V48 人物立绘与 UI",
+  "reason": "Figma 当前为 Starter 计划且编辑席位／MCP 写入配额未解除；本地映射保留 pending，不伪造节点 ID。",
+  "requestedPages": [
+    {
+      "name": "V58 / Foundations",
+      "status": "pending"
+    },
+    {
+      "name": "V58 / Shell",
+      "status": "pending"
+    },
+    {
+      "name": "V58 / Modules",
+      "status": "pending"
+    },
+    {
+      "name": "V58 / Portraits",
+      "status": "pending"
+    },
+    {
+      "name": "V60 / Reader Clean State",
+      "status": "pending"
+    },
+    {
+      "name": "V60 / Research Workflow",
+      "status": "pending"
+    }
+  ],
+  "portraits": [
+    {
+      "order": 1,
+      "name": "曹操",
+      "personId": "person:wei:cao-cao",
+      "polity": "魏",
+      "role": "君主",
+      "src": "./assets/portraits/v58/cao-cao.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 1,
+        "role": "君主",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 2,
+      "name": "刘备",
+      "personId": "person:shu:liu-bei",
+      "polity": "汉",
+      "role": "君主",
+      "src": "./assets/portraits/v58/liu-bei.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 2,
+        "role": "君主",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 3,
+      "name": "司马炎",
+      "personId": "person:jin:sima-yan",
+      "polity": "晋",
+      "role": "君主",
+      "src": "./assets/portraits/v58/sima-yan.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 3,
+        "role": "君主",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 4,
+      "name": "司马懿",
+      "personId": "person:wei:sima-yi",
+      "polity": "魏／晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/sima-yi.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 4,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 5,
+      "name": "司马师",
+      "personId": "person:unresolved:1tjnx9a",
+      "polity": "魏／晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/sima-shi.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 5,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 6,
+      "name": "诸葛瑾",
+      "personId": "person:unresolved:0wbpe5n",
+      "polity": "吴",
+      "role": "将军",
+      "src": "./assets/portraits/v58/zhuge-jin.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 6,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 7,
+      "name": "吕岱",
+      "personId": "person:unresolved:1teot86",
+      "polity": "吴",
+      "role": "将军",
+      "src": "./assets/portraits/v58/lu-dai.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 7,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 8,
+      "name": "丁奉",
+      "personId": "person:unresolved:0w48d0q",
+      "polity": "吴",
+      "role": "将军",
+      "src": "./assets/portraits/v58/ding-feng.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 8,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 9,
+      "name": "周瑜",
+      "personId": "person:unresolved:017nhr4",
+      "polity": "吴",
+      "role": "将军",
+      "src": "./assets/portraits/v58/zhou-yu.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 9,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 10,
+      "name": "吕蒙",
+      "personId": "person:unresolved:1p6qcr2",
+      "polity": "吴",
+      "role": "将军",
+      "src": "./assets/portraits/v58/lu-meng.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 10,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 11,
+      "name": "王濬",
+      "personId": "person:unresolved:0h6p2zb",
+      "polity": "晋",
+      "role": "将军",
+      "src": "./assets/portraits/v58/wang-jun.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 11,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 12,
+      "name": "杜预",
+      "personId": "person:unresolved:12z4250",
+      "polity": "晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/du-yu.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 12,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 13,
+      "name": "石苞",
+      "personId": "person:jin:shi-bao",
+      "polity": "晋",
+      "role": "将军",
+      "src": "./assets/portraits/v58/shi-bao.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 13,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 14,
+      "name": "杨骏",
+      "personId": "person:jin:yang-jun",
+      "polity": "晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/yang-jun.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 14,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 15,
+      "name": "张华",
+      "personId": "person:source:e2ef6eff3eba",
+      "polity": "晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/zhang-hua.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 15,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 16,
+      "name": "王导",
+      "personId": "person:source:a93c1fafbcd4",
+      "polity": "晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/wang-dao.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 16,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 17,
+      "name": "郗鉴",
+      "personId": "person:jin:xi-jian",
+      "polity": "晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/xi-jian.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 17,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 18,
+      "name": "桓温",
+      "personId": "person:jin:huan-wen",
+      "polity": "晋",
+      "role": "将军",
+      "src": "./assets/portraits/v58/huan-wen.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 18,
+        "role": "将军",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 19,
+      "name": "刘寔",
+      "personId": "person:jin:liu-shi",
+      "polity": "晋",
+      "role": "公卿",
+      "src": "./assets/portraits/v58/liu-shi.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 19,
+        "role": "公卿",
+        "status": "pending"
+      }
+    },
+    {
+      "order": 20,
+      "name": "刘裕",
+      "personId": "person:jin:liu-yu",
+      "polity": "晋",
+      "role": "将军",
+      "src": "./assets/portraits/v58/liu-yu.png",
+      "purpose": "人物记界面识别立绘",
+      "interfaceOnly": true,
+      "status": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V58",
+        "pageName": "V58 / Portraits",
+        "nodeId": null,
+        "order": 20,
+        "role": "将军",
+        "status": "pending"
+      }
+    }
+  ]
+}

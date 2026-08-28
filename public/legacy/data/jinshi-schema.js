@@ -17,6 +17,14 @@
   ]);
 
   function text(value){ return String(value == null ? '' : value).trim(); }
+  function normalizeInscriptionStatus(row){
+    const raw=text(row.inscriptionStatus);
+    if(raw.includes('残缺')) return '残缺';
+    if(raw.includes('待校')) return '待校';
+    if(raw.includes('源文未见') || raw.includes('待补') || raw.includes('未见')) return '源文未见';
+    if(raw.includes('已录入') || text(row.inscription)) return '已录入';
+    return '源文未见';
+  }
   function normalize(raw){
     const row = { ...(raw || {}) };
     row.entityType = 'epigraphicRecord';
@@ -36,10 +44,14 @@
     row.scriptStyle = text(row.scriptStyle);
     row.inscription = String(row.inscription == null ? '' : row.inscription);
     row.note = text(row.note);
-    row.inscriptionStatus = text(row.inscriptionStatus || (row.inscription ? '已录入' : '待补释文'));
+    row.inscriptionStatus = normalizeInscriptionStatus(row);
     row.researchStatus = text(row.researchStatus || row.evidenceStatus || '待考');
     row.sourceDocument = text(row.sourceDocument || row.source || row.sourceTitle);
     row.sourceLocator = text(row.sourceLocator);
+    row.inscriptionVariants = Array.isArray(row.inscriptionVariants) ? row.inscriptionVariants.map(item => ({...(item||{})})) : [];
+    row.externalSearchLog = Array.isArray(row.externalSearchLog) ? row.externalSearchLog.map(item => ({...(item||{})})) : [];
+    row.sourceVerification = row.sourceVerification && typeof row.sourceVerification === 'object' ? {...row.sourceVerification} : {};
+    row.candidateDisposition = text(row.candidateDisposition || (row.inscription ? '采用' : '待复核'));
     row.rawRecord = row.rawRecord && typeof row.rawRecord === 'object' ? { ...row.rawRecord } : { title:text(row.rawTitle || row.title || row.name), dateText:row.dateText, findspot:row.findspot, sourceLocator:row.sourceLocator };
     row.readerSummary = text(row.readerSummary || [row.dateText,row.findspot,row.inscriptionStatus].filter(Boolean).join(' · '));
     row.evidence = row.evidence && typeof row.evidence === 'object' ? { ...row.evidence } : { sourceTitle:text(row.sourceTitle), sourceLevel:text(row.sourceLevel), confidence:text(row.confidence || row.researchStatus), sourceLocator:row.sourceLocator };
@@ -47,9 +59,9 @@
   }
 
   global.SGZ_JINSHI_SCHEMA = Object.freeze({
-    schemaVersion:'V55',
-    modelId:'sgz-jinshi-record-v55',
-    policy:'页面表头只绑定规范字段；题名、年代、出土地、释文、原始记录与证据分栏保存，旧字段仅作兼容读取。',
+    schemaVersion:'V61',
+    modelId:'sgz-jinshi-record-v61',
+    policy:'页面表头只绑定规范字段；题名、年代、出土地、原碑释文、补字、释读、后人增刻与证据分栏保存，旧字段仅作兼容读取。',
     columns,
     normalize,
   });

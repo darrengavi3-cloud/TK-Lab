@@ -1,5 +1,7 @@
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -9,6 +11,7 @@ const registryPath = path.join(root, 'data', 'map-period-registry.js');
 const wuRecordsPath = path.join(root, 'data', 'wu-fangzhen-records.js');
 const shuRecordsPath = path.join(root, 'data', 'shu-fangzhen-records.js');
 const fangzhenSupplementPath = path.join(root, 'data', 'fangzhen-term-supplement.js');
+const personNameNormalizationPath = path.join(root, 'data', 'person-name-normalization.js');
 const personIdentitiesPath = path.join(root, 'data', 'person-identities.js');
 const researchModelPath = path.join(root, 'data', 'research-model.js');
 const historyEvidencePath = path.join(root, 'data', 'history-evidence.js');
@@ -31,16 +34,24 @@ const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
 const fangzhenSeatSupplementPath = path.join(root, 'data', 'fangzhen-seat-supplement.js');
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
+const v60PersonWorkbookImportJsonPath = path.join(root, 'data', 'v60-person-workbook-import.json');
+const v61PersonSupplementsPath = path.join(root, 'data', 'v61-person-supplements.js');
+const v60ResearchLedgerPath = path.join(root, 'data', 'v60-research-ledger.js');
+const v61EpigraphyResearchPath = path.join(root, 'data', 'v61-epigraphy-research.js');
 const personEntityAuditPath = path.join(root, 'data', 'person-entity-audit.js');
 const personV57RuntimeRulesPath = path.join(root, 'data', 'person-v57-runtime-rules.js');
 const personZiSupplementPath = path.join(root, 'data', 'person-zi-supplement.js');
 const portraitBoardPath = path.join(root, 'data', 'v48-portrait-board.js');
+const v58PortraitBoardPath = path.join(root, 'data', 'v58-portrait-board.js');
 const hydronymAuditPath = path.join(root, 'assets', 'map', 'data', 'hydronym-audit.js');
 const portraitDir = path.join(root, 'assets', 'portraits');
 const courtBackgroundPath = path.join(root, 'assets', 'ui', 'court-ink-palace.png');
 const v55CssPath = path.join(root, 'assets', 'ui', 'v55.css');
 const v56CssPath = path.join(root, 'assets', 'ui', 'v56.css');
 const v57CssPath = path.join(root, 'assets', 'ui', 'v57.css');
+const v58CssPath = path.join(root, 'assets', 'ui', 'v58.css');
+const v60CssPath = path.join(root, 'assets', 'ui', 'v60.css');
+const v61CssPath = path.join(root, 'assets', 'ui', 'v61.css');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const rootCopyPath = path.resolve(root, '..', '三国职官谱 .html');
 const downloadsCopyPath = process.env.HOME ? path.join(process.env.HOME, 'Downloads', '三国职官谱 .html') : null;
@@ -51,6 +62,7 @@ const registryScript = fs.readFileSync(registryPath, 'utf8').trim();
 const wuRecordsScript = fs.readFileSync(wuRecordsPath, 'utf8').trim();
 const shuRecordsScript = fs.readFileSync(shuRecordsPath, 'utf8').trim();
 const fangzhenSupplementScript = fs.readFileSync(fangzhenSupplementPath, 'utf8').trim();
+const personNameNormalizationScript = fs.readFileSync(personNameNormalizationPath, 'utf8').trim();
 const personIdentitiesScript = fs.readFileSync(personIdentitiesPath, 'utf8').trim();
 const researchModelScript = fs.readFileSync(researchModelPath, 'utf8').trim();
 const historyEvidenceScript = fs.readFileSync(historyEvidencePath, 'utf8').trim();
@@ -73,10 +85,23 @@ const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
 const fangzhenSeatSupplementScript = fs.readFileSync(fangzhenSeatSupplementPath, 'utf8').trim();
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
+const v60PersonWorkbookImportData = JSON.parse(fs.readFileSync(v60PersonWorkbookImportJsonPath, 'utf8'));
+const v60WorkbookKeys = ['personId','name','rawName','normalizedName','zi','birthplace','birthYearRaw','birthYear','deathYearRaw','deathYear','polityRaw','polity','officeRaw','titleRaw','ordinal','workbookSource','homonymGroupId','homonymStatus','readerVisible','readerEligibility','researchDisposition','candidateReason'];
+const v60WorkbookTuples = v60PersonWorkbookImportData.people.map(person => v60WorkbookKeys.map(key => person[key] ?? null));
+const portableV60PersonWorkbookImportScript = `(function(global){
+  var keys=${JSON.stringify(v60WorkbookKeys)}, tuples=${JSON.stringify(v60WorkbookTuples)};
+  var people=tuples.map(function(row){var item={};keys.forEach(function(key,index){item[key]=row[index];});return item;});
+  global.SGZ_V60_PERSON_WORKBOOK_IMPORT=${JSON.stringify({schemaVersion:v60PersonWorkbookImportData.schemaVersion,modelId:v60PersonWorkbookImportData.modelId,scope:v60PersonWorkbookImportData.scope,workbook:v60PersonWorkbookImportData.workbook,policy:v60PersonWorkbookImportData.policy,summary:v60PersonWorkbookImportData.summary})};
+  global.SGZ_V60_PERSON_WORKBOOK_IMPORT.people=people;
+})(window);`;
+const v61PersonSupplementsScript = fs.readFileSync(v61PersonSupplementsPath, 'utf8').trim();
+const v60ResearchLedgerScript = fs.readFileSync(v60ResearchLedgerPath, 'utf8').trim();
+const v61EpigraphyResearchScript = fs.readFileSync(v61EpigraphyResearchPath, 'utf8').trim();
 const personEntityAuditScript = fs.readFileSync(personEntityAuditPath, 'utf8').trim();
 const personV57RuntimeRulesScript = fs.readFileSync(personV57RuntimeRulesPath, 'utf8').trim();
 const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
 const portraitBoardScript = fs.readFileSync(portraitBoardPath, 'utf8').trim();
+const v58PortraitBoardScript = fs.readFileSync(v58PortraitBoardPath, 'utf8').trim();
 const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
 const v55Css = fs.readFileSync(v55CssPath, 'utf8').trim();
 const v56Css = fs.readFileSync(v56CssPath, 'utf8').trim();
@@ -91,12 +116,39 @@ const portablePortraitPaths = new Set(
     .map(personId => portraitManifestData.byPersonId?.[personId]?.src)
     .filter(src => /^\.\/assets\/portraits\/.+\.(png|jpe?g|webp)$/i.test(String(src || '')))
 );
+Object.values(portraitManifestData.byPersonId || {})
+  .filter(item => item.portraitKind === 'ui-illustration-v58')
+  .map(item => item.src)
+  .filter(src => /^\.\/assets\/portraits\/.+\.(png|jpe?g|webp)$/i.test(String(src || '')))
+  .forEach(src => portablePortraitPaths.add(src));
+const portableImageTempRoot = process.platform === 'darwin' && fs.existsSync('/usr/bin/sips')
+  ? fs.mkdtempSync(path.join(os.tmpdir(), 'sgz-portable-portraits-'))
+  : '';
+let optimizedPortablePortraits = 0;
+let optimizedPortableBytes = 0;
 for (const relative of portablePortraitPaths) {
   const source = path.join(root, relative.replace(/^\.\//, ''));
   if (!fs.existsSync(source)) throw new Error(`便携导出缺少默认人物立绘：${relative}`);
   const mime = relative.toLowerCase().endsWith('.png') ? 'image/png' : (relative.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
-  portablePortraitAssets[relative] = `data:${mime};base64,${fs.readFileSync(source).toString('base64')}`;
+  const original = fs.readFileSync(source);
+  let selected = original;
+  if (portableImageTempRoot) {
+    const target = path.join(portableImageTempRoot, `${portablePortraitPaths.size}-${optimizedPortablePortraits}-${path.basename(relative)}`);
+    try {
+      execFileSync('/usr/bin/sips', ['--resampleHeightWidthMax', '384', source, '--out', target], { stdio: 'ignore' });
+      const resized = fs.readFileSync(target);
+      if (resized.length < original.length) {
+        selected = resized;
+        optimizedPortablePortraits += 1;
+        optimizedPortableBytes += original.length - resized.length;
+      }
+    } catch (_) {
+      selected = original;
+    }
+  }
+  portablePortraitAssets[relative] = `data:${mime};base64,${selected.toString('base64')}`;
 }
+if (portableImageTempRoot) fs.rmSync(portableImageTempRoot, { recursive: true, force: true });
 const portablePortraitManifestScript = `${portraitManifestScript}
 (function(){
   var assets=${JSON.stringify(portablePortraitAssets)};
@@ -151,6 +203,10 @@ const replacements = [
   [
     '<script src="./data/fangzhen-term-supplement.js"></script>',
     `<script>\n${fangzhenSupplementScript}\n</script>`
+  ],
+  [
+    '<script src="./data/person-name-normalization.js?v=61.2"></script>',
+    `<script>\n${personNameNormalizationScript}\n</script>`
   ],
   [
     '<script src="./data/person-identities.js"></script>',
@@ -221,7 +277,7 @@ const replacements = [
     `<script>\n${officeOrderPoliciesScript}\n</script>`
   ],
   [
-    '<script src="./data/kaifu-policies.js"></script>',
+    '<script src="./data/kaifu-policies.js?v=59"></script>',
     `<script>\n${kaifuPoliciesScript}\n</script>`
   ],
   [
@@ -229,7 +285,7 @@ const replacements = [
     `<script>\n${seatPoliciesScript}\n</script>`
   ],
   [
-    '<script src="./data/office-residences.js"></script>',
+    '<script src="./data/office-residences.js?v=59"></script>',
     `<script>\n${officeResidencesScript}\n</script>`
   ],
   [
@@ -239,6 +295,22 @@ const replacements = [
   [
     '<script src="./data/person-source-index.js"></script>',
     `<script>\n${personSourceIndexScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v60-person-workbook-import.js?v=61.2"></script>',
+    `<script>\n${portableV60PersonWorkbookImportScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v61-person-supplements.js?v=61.2"></script>',
+    `<script>\n${v61PersonSupplementsScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v60-research-ledger.js"></script>',
+    `<script>\n${v60ResearchLedgerScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v61-epigraphy-research.js?v=61.2"></script>',
+    `<script>\n${v61EpigraphyResearchScript}\n</script>`
   ],
   [
     '<script src="./data/person-entity-audit.js"></script>',
@@ -257,6 +329,10 @@ const replacements = [
     `<script>\n${portraitBoardScript}\n</script>`
   ],
   [
+    '<script src="./data/v58-portrait-board.js"></script>',
+    `<script>\n${v58PortraitBoardScript}\n</script>`
+  ],
+  [
     '<script src="./assets/map/data/hydronym-audit.js"></script>',
     `<script>\n${hydronymAuditScript}\n</script>`
   ],
@@ -271,6 +347,18 @@ const replacements = [
   [
     '<link rel="stylesheet" href="./assets/ui/v57.css" />',
     `<style>\n${v57Css}\n</style>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v58.css" />',
+    `<style>\n${fs.readFileSync(v58CssPath, 'utf8').trim()}\n</style>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v60.css" />',
+    `<style>\n${fs.readFileSync(v60CssPath, 'utf8').trim()}\n</style>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v61.css?v=61.2" />',
+    `<style>\n${fs.readFileSync(v61CssPath, 'utf8').trim()}\n</style>`
   ],
   [
     /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,
@@ -365,3 +453,4 @@ if (downloadsCopyPath && fs.existsSync(path.dirname(downloadsCopyPath))) {
 
 console.log(`已生成联网便携版：${exportPath}`);
 console.log(`已同步工作区根目录副本：${rootCopyPath}`);
+console.log(`便携立绘优化：${optimizedPortablePortraits} 张，减少 ${optimizedPortableBytes} 字节；规范源原图未改动`);

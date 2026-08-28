@@ -30,6 +30,7 @@
       order:index+1,name:row[0],personId:row[1],polity:row[2],role:row[3],priority:row[4],
       src:'./assets/portraits/v58/'+row[5],accent:palette[row[2]]||'#8D948A',
       status:'ready',interfaceOnly:true,designStatus:'figma-design',
+      designRef:{fileKey:'gvWRC5GHHSgd8QX9b2VJgo',version:'V58',pageName:'V58 / Portraits',nodeId:null,order:index+1,role:row[3],status:'pending'},
       sourceTitle:'V58 Figma 界面识别立绘（非史实肖像）'
     })))
   });

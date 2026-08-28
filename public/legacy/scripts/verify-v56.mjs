@@ -21,7 +21,7 @@ for (const token of ['--v56-paper','--v56-sheet','--v56-ink','--v56-green','--v5
   assert(css.includes(token), `缺少 V56 令牌 ${token}`);
 }
 assert(css.includes('--v56-topbar-h: 52px') && css.includes('--v56-motion-fast: 180ms') && css.includes('--v56-motion: 220ms'), '顶栏高度或动效时长偏离确认稿');
-assert(template.includes('class="v56-spine-nav"') && template.includes('class="v56-context-bar"') && template.includes('class="v56-evidence-rail"'), '卷脊、上下文栏或证据案卷未接入生产模板');
+assert(template.includes('class="v56-spine-nav"') && template.includes('class="v56-context-bar"') && template.includes('v56-evidence-rail'), '卷脊、上下文栏或证据案卷未接入生产模板');
 assert(!template.includes('class="module-nav"'), '生产模板仍保留顶部第二套模块导航');
 assert(template.includes('v56-current-module') && template.includes('打开全局检索（Ctrl/Cmd+K）'), '顶栏缺少当前模块或全局检索');
 

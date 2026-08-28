@@ -134,7 +134,7 @@ assert(read('scripts/extract-v55-shihuo.mjs').includes("status:'already-extracte
 
 const normalizedJinshi = jinshi.records.map(row => jinshiSchema.normalize(row));
 const runtimeJinshi = [...jinshiBase.records, ...jinshi.records].map(row => jinshiSchema.normalize(row));
-assert(jinshiSchema.schemaVersion === 'V55' && normalizedJinshi.length === 128, '金石录 V55 字段契约或记录数量异常');
+assert(jinshiSchema.schemaVersion === 'V61' && normalizedJinshi.length === 128, '金石录 V61 字段契约或 V55 规范记录数量异常');
 assert(new Set(normalizedJinshi.map(row => row.id)).size === normalizedJinshi.length, '金石录稳定 ID 重复');
 assert(normalizedJinshi.every(row => row.rawRecord && row.readerSummary && row.evidence && typeof row.inscription === 'string'), '金石录记录缺少原始／摘要／证据／释文分栏');
 assert(jinshiAudit.strikeParagraphCount === 31 && jinshiAudit.strikeCharCount === 778, '金石删除线审计基线异常');

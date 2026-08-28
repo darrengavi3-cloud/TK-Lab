@@ -16,7 +16,7 @@
 - `data/person-portraits.js`：人物立绘索引；当前补入用户提供参考图中的西晋九名人物，并按政权使用头像边框色。
 - `data/han-bai-guan-zhi.js`：东汉《后汉书·百官志》中央尚书台、御史台与将军系统补录；制度节点与任职人物分层保存。
 - `data/epigraphic-records.js`：金石录文档考据目录；首批纳入《蜀汉金石录》《孙吴金石录》《魏金石录》条目，按国别、材料层级、年代和研究状态筛选；不纳入异族核心材料，争议与承吴地材料保留在扩展档案。
-- `data/research-model.js`：v7 统一研究数据模型、旧档迁移、稳定实体编号与跨模块索引。
+- `data/research-model.js`：v10 统一研究数据模型、旧档迁移、稳定实体编号与跨模块索引；人物快照、封爵事件与任官分栏保存。
 - `data/research-schema.json`：统一实体字段与受控词表的机器可读说明。
 - `data/kaifu-policies.js`：开府资格政策（法定、加号、特诏、事实见府属、待考）与人物任官依据。
 - `data/office-seat-policies.js`：府署属官制度员额与展示席位规则。
@@ -24,6 +24,10 @@
 - `data/general-titles.js`：曹魏、季汉、孙吴、西晋将军、中郎将、校尉、都尉名号及证据状态。
 - `data/office-order-policies.js`：V54 朝堂文武分组、常伯顺序、聚合节点隐藏和待考名号显示策略。
 - `data/person-source-index.js`：《三国志》《晋书》逐卷人物与任官/爵位候选索引（正文与裴注分层）。
+- `data/v60-person-workbook-import.json`／`.js`：1196 条附件人物来源行、1192 个稳定人物实体及 1223 条来源记录的审校定位与全量人物记映射。
+- `data/v61-person-supplements.json`／`.js`：260 年人物快照与曹魏封爵事件；快照官职和封爵均不自动生成正式任官。
+- `data/v61-epigraphy-transcriptions.json`：V61 可追溯金石释文规范源，原碑、补字、释读和后人增刻分层。
+- `data/v61-epigraphy-research.json`／`.js`：142 条空释文的逐条网络检索、采用处置与读者运行覆盖层。
 - `data/person-volume-coverage.json`：195 卷逐卷处理状态与排除依据。
 - `data/hydronym-audit.json`：285 段水系几何、257 个唯一古水名与《水经注》40 卷卷次出处审计。
 - `data/v44-release-manifest.json`：V44 检索命令面板、高程底图与四大版块优化的发布清单。
@@ -75,6 +79,7 @@
 - `docs/V47三书百官志来源对照与魏晋官制审计.md`：V47 三份百官志整理的来源索引、历史范围分层和差异审计说明。
 - `docs/V50观史台立绘人物门禁与人物记界面优化.md`：V50 人物实体门禁、有人脸立绘状态、观史台品牌与人物记紧凑界面契约。
 - `docs/V54职官序位统一检索与主题重构.md`：V54 职官排序契约、统一检索入口、主题／密度／动效系统与史实审查边界。
+- `docs/V61全量人物260年快照曹魏封爵与金石释文.md`：V61 全量人物、260 年快照、曹魏封爵模型与四条可追溯金石释文。
 - `DESIGN.md`、`UX-CONTRACT.md`：V54 视觉令牌、组件与交互行为的规范源。
 - `assets/map/`：地图程序、Leaflet、州郡几何与水系。
 - `assets/vendor/`：页面运行依赖。
@@ -109,6 +114,7 @@ node 三国职官谱项目/scripts/verify-map-data.mjs
 node 三国职官谱项目/scripts/verify-historical-model.mjs
 node 三国职官谱项目/scripts/verify-research-model.mjs
 node 三国职官谱项目/scripts/verify-v54.mjs
+node 三国职官谱项目/scripts/verify-v61.mjs
 ```
 
 V7 在 v6 的基础上增加“时期快照”和“控制断言”两类研究实体。地图郡级块数、正史行政基准和势力控制示意分开记录；点击形势图顶部“史料校验”或地图上的州郡，可查看当前时期的来源、断言和剩余考据限制。

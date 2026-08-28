@@ -60,7 +60,7 @@ assert(registry.periods.find(period => period.year === 220)?.polities.join('、'
 assert(audit.periodReview.length === expectedIds.length, '逐期史实审校必须覆盖十六期');
 const v56Modules = html.includes("{key:'offices',label:'职官谱'") && html.includes("{key:'fangzhen',label:'州镇表'") && html.includes("{key:'map',label:'形势图'");
 assert(v56Modules || (html.includes('>职官谱</strong>') && html.includes('>州镇表</strong>') && html.includes('>形势图</strong>')), '职官谱、州镇表或形势图命名缺失');
-assert((html.includes("{key:'jinshi',label:'金石录'") || html.includes('>金石录</strong>')) && html.includes("activeModule==='jinshi'") && html.includes('epigraphicPolity') && html.includes('projectForReading(epigraphicRecords.value)'), '金石录内容、国别筛选或阅读投影未接入');
+assert((html.includes("{key:'jinshi',label:'金石录'") || html.includes('>金石录</strong>')) && html.includes("activeModule==='jinshi'") && html.includes('epigraphicPolity') && (html.includes('projectForReading(epigraphicRecords.value)') || html.includes('projectForReader(raw)')), '金石录内容、国别筛选或阅读投影未接入');
 const hanOfficeSource = read('data/han-bai-guan-zhi.js');
 assert(html.includes('data/han-bai-guan-zhi.js') && hanOfficeSource.includes('尚书令') && hanOfficeSource.includes('御史中丞') && hanOfficeSource.includes('将军府'), '东汉百官志中央官署补录未接入');
 assert(hanOfficeSource.includes('sortOrder:100') && hanOfficeSource.includes('sortOrder:210') && hanOfficeSource.includes('sortOrder:310'), '东汉具体官职位阶排序未接入');
@@ -205,7 +205,7 @@ assert(html.includes('cmd-label-compact') && html.includes('--cmd-shift-y'), 'V1
 assert(!mapBaseLayer.includes('今黄河') && !mapBaseLayer.includes('今长江'), '河水、江水仍附有现代名称');
 assert(historyEvidence.includes('sinica_western_jin_map') && historyEvidence.includes('taikang-sinica-crosscheck'), '280 年中研院西晋地图交叉校验未接入证据索引');
 assert(historyEvidence.includes('jinshu_juan15') && historyEvidence.includes('yongjia-yangzhou-recalibration'), '扬州郡界重校缺少《晋书·地理志下》证据');
-assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes("e.bioKind='史传提要'") && html.includes('暂无本传摘要'), '人物记史传提要或履历归纳未接入');
+assert((biographySource.match(/bioSource:/g)||[]).length>=30 && html.includes("e.bioKind='史传提要'") && html.includes('v-if="readableFact(peoplePrimaryDetail.bio)"') && !html.includes('暂无本传摘要'), '人物记史传提要或纯净空值渲染未接入');
 assert(!biographySource.includes('乐綝') && biographySource.includes('乐𬘭'), '乐𬘭姓名规范化未完成');
 assert(biographySource.includes('后与诸葛诞争执，甘露三年被诸葛诞杀死') && !biographySource.includes('最终为吴将文鸯所杀') && !biographySource.includes('受贾充指使刺杀曹髦'), '人物记史实修正未接入');
 assert(biographySource.includes('成济') && biographySource.includes('《三国志》卷四《三少帝纪》及裴松之注'), '成济传记来源未校正');
@@ -227,7 +227,7 @@ assert(portable.includes('SGZ_HISTORY_EVIDENCE'), '联网便携版未内嵌 V7 �
 assert(portable.includes('SGZ_BATTLE_RECORDS') && portable.includes('战事纪'), '联网便携版未同步战事纪档案');
 assert(portable.includes('SGZ_PERSON_BIOGRAPHIES') && portable.includes('court-ink-palace')===false, '联网便携版未内嵌人物生平或朝堂背景');
 assert(portable.includes('SGZ_PERSON_PORTRAITS') && portable.includes('data:image/png;base64,'), '联网便携版未内嵌人物立绘资源');
-assert(portable.includes('SGZ_EPIGRAPHIC_RECORDS') && portable.includes('projectForReading(epigraphicRecords.value)') && portable.includes('释读说明'), '联网便携版未同步金石录阅读投影');
+assert(portable.includes('SGZ_EPIGRAPHIC_RECORDS') && (portable.includes('projectForReading(epigraphicRecords.value)') || portable.includes('projectForReader(raw)')) && portable.includes('释读说明'), '联网便携版未同步金石录阅读投影');
 assert(portable.includes('官制对照') && portable.includes('沿革事件（结构化）') && portable.includes('bulk-edit-grid'), '联网便携版未同步职官谱第一阶段增强');
 assert(portable.includes('官品秩俸三轨对照') && portable.includes('官署模板库') && portable.includes('OFFICE_TEMPLATE_LIBRARY'), '联网便携版未同步职官谱第二阶段增强');
 assert(portable.includes('季汉官制') && portable.includes('WIKI_OFFICE_SUPPLEMENTS'), '联网便携版未同步季汉官制或维基补充');
