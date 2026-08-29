@@ -109,6 +109,8 @@ for (const person of people?.people || []) {
 }
 assert((people?.officeDisplayOverrides || []).every(row => row.rawTitle && row.displayTitle && row.rawTitle !== row.displayTitle), '官职净化覆盖缺少 rawTitle 或 displayTitle');
 assert((people?.officeDisplayOverrides || []).every(row => !/[（）()]|^【/.test(row.displayTitle)), '官职 displayTitle 仍含说明性括号或前置标记');
+assert(html.includes("if(workspaceMode.value!=='review')e.zi=readerPersonZi(e.zi)"), '阅读态未过滤待考、存疑或未详表字占位');
+assert(/function readerPersonZi\(value\)[\s\S]{0,260}?待考\|待校\|存疑\|未详\|不详\|未载\|缺载/.test(html), '人物表字读者过滤规则不完整');
 
 const modelContext = loadScripts(['data/research-model.js']);
 const researchModel = modelContext.SGZResearchModel;

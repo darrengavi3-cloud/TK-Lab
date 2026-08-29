@@ -7859,6 +7859,8 @@ const app = createApp({
         if(portrait?.color) e.portraitAccent=e.portraitAccent||portrait.color;
         if(portrait?.sourceTitle) e.portraitSource=e.portraitSource||portrait.sourceTitle;
         if(!e.zi)e.zi=personZiFor(e.name,e.personId);
+        e.auditZi=e.zi||'';
+        if(workspaceMode.value!=='review')e.zi=readerPersonZi(e.zi);
         e.politics=[...new Set(e.politics.filter(Boolean))];
         e.rawPolities=[...new Set([...(e.rawPolities||[]),...e.politics].filter(Boolean))];
         const overlay=v62PeopleById?.[e.personId]||{};
@@ -7918,6 +7920,10 @@ const app = createApp({
     function readableFact(value){
       const raw=String(value==null?'':value).trim();
       return raw&&!/^(?:—|-|未详|不详|待定|待考|\?|？)$/.test(raw);
+    }
+    function readerPersonZi(value){
+      const raw=String(value==null?'':value).trim();
+      return readableFact(raw)&&!/(?:待考|待校|存疑|未详|不详|未载|缺载)/.test(raw)?raw:'';
     }
     function personLifespanLabel(person){
       if(person.birthYear!==null&&person.deathYear!==null)return `生卒：${person.birthYear}—${person.deathYear}`;
