@@ -118,7 +118,7 @@ if (process.platform === 'darwin' && fs.existsSync(sipsPath)) {
   for (const relativePath of runtimePortraits) {
     const filePath = path.join(legacyRoot, relativePath);
     const before = fs.statSync(filePath).size;
-    execFileSync(sipsPath, ['--resampleHeightWidthMax', '256', filePath], {
+    execFileSync(sipsPath, ['--resampleHeightWidthMax', '192', filePath], {
       stdio: 'ignore',
     });
     const after = fs.statSync(filePath).size;
