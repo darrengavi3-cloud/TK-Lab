@@ -30,7 +30,9 @@ assert(html.includes('office-order-policies.js'), '主站未加载 V54 官职序
 assert(html.includes('generalTitleSortOrder') && html.includes('const general=Number(node?.generalTitleSortOrder)'), '朝堂未读取动态将军名号排序');
 assert(html.includes('courtDepartmentLabel(node,currentFaction.value)'), '朝堂未使用显式官署分组策略');
 assert(!html.includes('||\'其他官署\''), '朝堂仍保留其他官署兜底显示');
-assert(!/v-model="(peopleQuery|battleQuery|fangzhenQuery|epigraphicQuery|shihuoQuery)"/.test(html), '模块页仍存在重复检索输入框');
+assert(!/v-model="(battleQuery|fangzhenQuery|epigraphicQuery|shihuoQuery)"/.test(html), '模块页仍存在重复检索输入框');
+const v62PeopleSearchInputs = html.match(/<el-input[^>]+v-model="peopleQuery"[^>]*>/g) || [];
+assert(v62PeopleSearchInputs.length === 1 && v62PeopleSearchInputs[0].includes('v62-person-search'), '人物记只能保留 V62 常驻人物检索框');
 assert(html.includes('global-header-tools') && html.includes('打开全局检索'), '全局检索入口未固定到顶部');
 assert(html.includes('paletteKeydown($event)') && html.includes('if(event?.isComposing) return'), '统一检索 Enter 未处理中文输入法组合态');
 assert(html.includes('global-search-clear') && html.includes('清除检索内容'), '统一检索缺少应用内清空按钮');
@@ -55,7 +57,7 @@ assert(portableBytes > 0 && portableBytes < 100 * 1024 * 1024, `便携版体积 
 console.log(JSON.stringify({
   version: 'V54',
   court: { weiChangbo: ['侍中','散骑常侍','黄门侍郎','给事中'], hiddenOtherCourt: true },
-  search: { unifiedEntry: true, moduleInputsRemoved: true, imeSafe: true, explicitClear: true },
+  search: { unifiedEntry: true, moduleInputsRemovedExceptV62People: true, imeSafe: true, explicitClear: true },
   themes: ['兰台清昼','朱批纸本','青灯夜校'],
   generalTitles: Object.fromEntries(titles.groups.map(group => [group.polity, group.titles.length])),
   portable: { ready: Boolean(portable), bytes: portableBytes },

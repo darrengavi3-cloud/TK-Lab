@@ -34,8 +34,9 @@ assert(manifest.summary?.v58PortraitRecords === 20, 'manifest 未记录 20 个 V
 assert(manifest.summary?.v58PortraitMapped === 20, 'manifest 未映射完整 V58 立绘资源');
 
 for (const row of boardRows) {
-  const item = manifest.byPersonId?.[row.personId];
-  assert(item, `manifest 缺少 ${row.name}（${row.personId}）`);
+  const canonicalPersonId = manifest.legacyPersonIdAliases?.[row.personId] || row.personId;
+  const item = manifest.byPersonId?.[canonicalPersonId];
+  assert(item, `manifest 缺少 ${row.name}（${row.personId}→${canonicalPersonId}）`);
   if (!item) continue;
   assert(item.status === 'ready', `${row.name} 未标记 ready`);
   assert(item.interfaceOnly === true, `${row.name} 缺少 interfaceOnly 边界`);

@@ -27,7 +27,7 @@
   const READER_INTERNAL_FIELDS = Object.freeze([
     'workbookSource','workbookSources','sourceRefs','readerVisible','readerEligibility','researchDisposition','candidateReason','rawName','officeRaw','titleRaw',
     'homonymGroupId','homonymStatus','externalSearchLog','sourceVerification','candidateDisposition','inscriptionVariants','disposition','dispositionReason',
-    'sourcePersonId','sourceRecordId','sourceCitation','fieldWarnings','successionRaw','polityRaw','datasets','sourcePath'
+    'sourcePersonId','sourceRecordId','sourceCitation','fieldWarnings','successionRaw','polityRaw','datasets','sourcePath','rawTitle','rawRank','titleAnnotations','rankAnnotations'
   ]);
   const READER_INTERNAL_FIELD_SET = new Set(READER_INTERNAL_FIELDS);
 
@@ -48,6 +48,32 @@
   // V55：阅读投影不得改写史料原文、证据状态或“待考”等审校词。
   // 需要精简文案时显式调用 readerSummaryText，并与 rawRecord/evidence 分栏显示。
   function readingText(value){ return text(value); }
+  function titleParts(value){
+    const rawTitle=text(value);
+    const titleAnnotations=[];
+    const leading=[];
+    let displayTitle=rawTitle.replace(/^((?:【[^】]+】\s*)+)/,match=>{
+      leading.push(...Array.from(match.matchAll(/【([^】]+)】/g),item=>text(item[1])));
+      return '';
+    });
+    displayTitle=displayTitle.replace(/（([^（）]*)）|\(([^()]*)\)/g,(match,cn,ascii)=>{
+      const annotation=text(cn||ascii);
+      if(annotation) titleAnnotations.push(annotation);
+      return '';
+    }).replace(/\s{2,}/g,' ').trim();
+    titleAnnotations.unshift(...leading);
+    return {
+      rawTitle,
+      displayTitle:displayTitle||rawTitle,
+      titleAnnotations:Array.from(new Set(titleAnnotations.filter(Boolean)))
+    };
+  }
+  function displayTitleFor(value){
+    if(value&&typeof value==='object'){
+      return text(value.displayTitle)||titleParts(value.rawTitle||value.name||value.title||value.officeName).displayTitle;
+    }
+    return titleParts(value).displayTitle;
+  }
   function slug(value){
     return text(value).toLowerCase().replace(/蜀汉|季汉/g,'汉').replace(/[\s·／/（）()—–-]+/g,'_').replace(/[^\w\u3400-\u9fff_]/g,'').replace(/^_+|_+$/g,'') || 'unknown';
   }
@@ -202,6 +228,9 @@
     row.id=text(row.id)||stableId('appointment',[normalizePolity(row.polity),row.commander,row.title,row.startYear||row.tenureText,index]);
     row.entityType='appointment';
     row.polity=normalizePolity(row.polity);
+    const titleMeta=titleParts(row.rawTitle||row.title);
+    Object.assign(row,titleMeta);
+    row.title=titleMeta.displayTitle;
     row.personId=personIdFor(row.commander,{personId:row.personId,polity:row.polity,homonymDiscriminator:row.homonymDiscriminator});
     row.officeId=text(row.officeId)||stableId('office',[row.polity,row.title]);
     row.jurisdictionId=text(row.jurisdictionId)||stableId('jurisdiction',[row.polity,row.jurisdiction]);
@@ -313,7 +342,11 @@
     row.polity=normalizePolity(row.polity); row.personId=personIdFor(row.person||row.name,{...row,personId:row.personId});
     row.officeId=text(row.officeId)||stableId('office',[row.polity,row.officeName||row.title]);
     row.id=text(row.id)||stableId('appointment',[row.personId,row.officeId,row.jurisdictionId,row.startYear,row.sourceLocator,index]);
-    row.officeName=text(row.officeName||row.title); row.jurisdictionId=text(row.jurisdictionId); row.jurisdiction=text(row.jurisdiction);
+    row.officeName=text(row.officeName||row.title);
+    const officeTitleMeta=titleParts(row.rawTitle||row.officeName);
+    Object.assign(row,officeTitleMeta);
+    row.officeName=officeTitleMeta.displayTitle;
+    row.jurisdictionId=text(row.jurisdictionId); row.jurisdiction=text(row.jurisdiction);
     row.startYear=Number.isFinite(Number(row.startYear))?Number(row.startYear):null;
     row.endYear=Number.isFinite(Number(row.endYear))?Number(row.endYear):null;
     row.sourceTenureText=text(row.sourceTenureText); row.evidence=normalizeEvidence(row.evidence||row);
@@ -336,6 +369,14 @@
     row.recipientPersonIds=Array.isArray(row.recipientPersonIds)?Array.from(new Set(row.recipientPersonIds.map(text).filter(Boolean))):[];
     row.year=Number.isFinite(Number(row.year))?Number(row.year):null;
     ['rawRecipient','grantDate','officeAtGrant','reason','rank','title','fiefHouseholds','fief','titleEvolution','succession','category','sourceCitation'].forEach(key=>{ row[key]=text(row[key]); });
+    const titleMeta=titleParts(row.title);
+    row.rawTitle=titleMeta.rawTitle;
+    row.displayTitle=titleMeta.displayTitle;
+    row.titleAnnotations=titleMeta.titleAnnotations;
+    const rankMeta=titleParts(row.rank);
+    row.rawRank=rankMeta.rawTitle;
+    row.displayRank=rankMeta.displayTitle;
+    row.rankAnnotations=rankMeta.titleAnnotations;
     row.readerVisible=row.readerVisible!==false;
     return row;
   }
@@ -406,6 +447,9 @@
     const row=clone(node||{});
     const entityType=type==='noble'?'title':(row.kind==='root'?'institution':'office');
     row.entityType=entityType;
+    const titleMeta=titleParts(row.rawTitle||row.name);
+    Object.assign(row,titleMeta);
+    row.name=titleMeta.displayTitle;
     row.entityId=text(row.entityId)||stableId(entityType,[factionKey,row.key||row.name]);
     row.evidence=row.evidence&&typeof row.evidence==='object' ? normalizeEvidence(row.evidence) : normalizeEvidence({
       sourceTitle:row.sources,sourceLevel:row.sourceLevel,confidence:row.confidence
@@ -542,7 +586,7 @@
     historySnapshotStatuses:HISTORY_SNAPSHOT_STATUS,evidenceStatuses:EVIDENCE_STATUS,reviewStates:REVIEW_STATES,readerVisibilities:READER_VISIBILITY,stableId,normalizePolity,normalizeConfidence,normalizeEvidenceStatus,normalizeReviewState,normalizeReaderVisibility,normalizeAuditState,
     personIdFor,hashId,
     normalizeEvidence,normalizeSource,normalizeControlClaim,normalizePeriodSnapshot,buildHistoryIndex,
-    readingMetaFields:READING_META_FIELDS,readerInternalFields:READER_INTERNAL_FIELDS,readingText,readerSummaryText,projectForReading,projectForReader,
+    readingMetaFields:READING_META_FIELDS,readerInternalFields:READER_INTERNAL_FIELDS,readingText,readerSummaryText,titleParts,displayTitleFor,projectForReading,projectForReader,
     normalizeFangzhen,normalizeSeatPolicy,normalizeResidence,normalizeResidenceRole,normalizeKaifuPolicy,normalizeHydronym,
     normalizePerson,normalizeAppointment,normalizePersonSnapshot,normalizePeerageEvent,normalizeEpigraphicRecord,normalizeNode,normalizeOfficeClassifications,
     inferServiceDomain,inferInstitutionType,migrate,buildIndexes,recordsAtYear

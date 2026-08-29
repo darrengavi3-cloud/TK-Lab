@@ -2,6 +2,18 @@
   'use strict';
 
   const sources = Object.freeze({
+    houhanBaiGuanYi:{
+      id:'source:houhanshu:bai-guan-yi',title:'《后汉书·百官志一》',sourceLevel:'一手史料',
+      sourceLocator:'“将军，不常置”及“长史、司马皆一人……此皆府员职也”条',
+      sourceUrl:'https://ctext.org/hou-han-shu/bai-guan-yi#n79695',confidence:'确定',
+      note:'此处证明东汉重号将军有府员制度；不把“比公”直接改写为后世“开府仪同三司”。'
+    },
+    houhanBaiGuanSi:{
+      id:'source:houhanshu:bai-guan-si',title:'《后汉书·百官志四》',sourceLevel:'一手史料',
+      sourceLocator:'太子太傅、太子少傅及太子官属条',
+      sourceUrl:'https://ctext.org/hou-han-shu/bai-guan-si#n79795',confidence:'确定',
+      note:'太子少傅“悉主太子官属”；东宫官属是独立官署系统，不据此认定“开府仪同三司”。'
+    },
     jinshu24:{
       id:'source:jinshu:024:zhiguan',title:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',
       sourceLocator:'卷二十四“开府仪同三司”至“诸公及开府位从公”条',
@@ -37,8 +49,20 @@
   });
   const jinCivil = ['太宰','太傅','太保','司徒','司空'];
   const jinMilitary = ['大司马','大将军','太尉','骠骑将军','车骑将军','卫将军','伏波将军','抚军将军','都护将军','镇军将军','中军将军','征东将军','征西将军','征南将军','征北将军','镇东将军','镇西将军','镇南将军','镇北将军','龙骧将军','典军将军','上军将军','辅国将军'];
+  const hanPublic = ['太尉','司徒','司空'];
+  const hanHeavy = ['大将军','骠骑将军','车骑将军','卫将军'];
 
   const policies = [
+    ...hanPublic.map((officeName,index)=>({
+      id:`kaifu:han:public-office:${index+1}`,polity:'汉',officeName,qualificationType:'事实见府属',validFrom:168,validTo:220,
+      evidence:evidence(sources.houhanBaiGuanYi),researchStatus:'确定',
+      note:'《后汉书·百官志一》列公府长史、掾史属、令史及御属等府员；本项确认东汉公府常设府属，不自动改称“开府仪同三司”。'
+    })),
+    ...hanHeavy.map((officeName,index)=>({
+      id:`kaifu:han:heavy-general:${index+1}`,polity:'汉',officeName,qualificationType:'事实见府属',validFrom:168,validTo:220,
+      evidence:evidence(sources.houhanBaiGuanYi),researchStatus:'确定',
+      note:'《后汉书·百官志一》称大将军、骠骑、车骑、卫将军为“比公者四”，并列长史、司马、从事中郎、掾属、令史为府员；此为东汉府员制度证据，不等同晋代“开府仪同三司”。'
+    })),
     ...jinCivil.map((officeName,index)=>({
       id:`kaifu:jin:civil:${index+1}`,polity:'晋',officeName,qualificationType:'法定开府',validFrom:266,validTo:316,
       evidence:evidence(sources.jinshu24),researchStatus:'确定',
@@ -47,7 +71,7 @@
     ...jinMilitary.map((officeName,index)=>({
       id:`kaifu:jin:military:${index+1}`,polity:'晋',officeName,qualificationType:'加号开府',additionalTitle:'开府仪同三司',validFrom:266,validTo:316,
       evidence:evidence(sources.jinshu24),researchStatus:'确定',
-      note:'官名本身不等于人人开府；须有开府或位从公依据，未见加号者不得自动生成府属。'
+      note:'《职官志》说“开府者皆为位从公”；官名本身不等于人人开府，须有具体开府、加号或位从公依据，未见依据者不得自动生成府属。'
     })),
     {
       id:'kaifu:shu:zhugeliang:223',polity:'汉',officeName:'丞相',personName:'诸葛亮',qualificationType:'特诏开府',

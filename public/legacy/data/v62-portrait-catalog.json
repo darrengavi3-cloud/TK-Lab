@@ -1,0 +1,3681 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-29T17:37:15.057Z",
+  "scope": "V62 新增 100 个立绘的确定性资源槽与候选状态；图片生成、尺寸验证和 Figma 节点写入前不得标记 ready。",
+  "selectionStatus": "selected-awaiting-assets",
+  "dynastyOrder": [
+    "后汉",
+    "魏",
+    "季汉",
+    "吴",
+    "西晋"
+  ],
+  "quotaPerDynasty": 20,
+  "plannedTotal": 100,
+  "assignedTotal": 100,
+  "readyTotal": 100,
+  "shortages": {},
+  "reservedSlots": [
+    {
+      "portraitId": "portrait:v62:later-han:01",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-01.png",
+      "order": 1,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 1,
+      "personId": "person:workbook:7d75a510395553b6",
+      "name": "董承",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:17"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:02",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-02.png",
+      "order": 2,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 2,
+      "personId": "person:workbook:0f6d068fe13329f9",
+      "name": "焦触",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:18"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:03",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-03.png",
+      "order": 3,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 3,
+      "personId": "person:workbook:7e0c4f5a6d0c8d00",
+      "name": "刘艾",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:19"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:04",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-04.png",
+      "order": 4,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 4,
+      "personId": "person:workbook:d61012cd2773bc3e",
+      "name": "裴茂",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:20"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:05",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-05.png",
+      "order": 5,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 5,
+      "personId": "person:workbook:da0c41bf8e91fbc9",
+      "name": "种辑",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:21"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:06",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-06.png",
+      "order": 6,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 6,
+      "personId": "person:workbook:e7bf32bf5e8e975c",
+      "name": "鲍信",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:22"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:07",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-07.png",
+      "order": 7,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 7,
+      "personId": "person:workbook:e3f9a6640cb1080e",
+      "name": "蔡琰",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:23"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:08",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-08.png",
+      "order": 8,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 8,
+      "personId": "person:workbook:d0f498489fadeb6e",
+      "name": "蔡邕",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:24"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:09",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-09.png",
+      "order": 9,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 9,
+      "personId": "person:workbook:fa80e982b8a46867",
+      "name": "曹豹",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:25"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:10",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-10.png",
+      "order": 10,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 10,
+      "personId": "person:workbook:2e5ed8d3db8647a1",
+      "name": "曹鸾",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:26"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:11",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-11.png",
+      "order": 11,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 11,
+      "personId": "person:workbook:3eab58739902fd2e",
+      "name": "岑晊",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:27"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:12",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-12.png",
+      "order": 12,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 12,
+      "personId": "person:workbook:ac60c1f03a37e6cf",
+      "name": "陈超",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:28"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:13",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-13.png",
+      "order": 13,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 13,
+      "personId": "person:workbook:b506989f44c3aea3",
+      "name": "陈纪",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:29"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:14",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-14.png",
+      "order": 14,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 14,
+      "personId": "person:workbook:de323dd12864443e",
+      "name": "陈球",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:30"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:15",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-15.png",
+      "order": 15,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 15,
+      "personId": "person:workbook:1c16825fe69585bb",
+      "name": "陈寔",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:31"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:16",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-16.png",
+      "order": 16,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 16,
+      "personId": "person:workbook:7eba7742ef741dc7",
+      "name": "陈王刘宠",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:32"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:17",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-17.png",
+      "order": 17,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 17,
+      "personId": "person:workbook:c572b1f2033f824f",
+      "name": "陈翔",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:33"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:18",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-18.png",
+      "order": 18,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 18,
+      "personId": "person:workbook:c639f31d054cc11b",
+      "name": "陈瑀",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:34"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:19",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-19.png",
+      "order": 19,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 19,
+      "personId": "person:workbook:499a71d482343ff5",
+      "name": "淳于嘉",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:35"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:later-han:20",
+      "assetPath": "./assets/portraits/v62/later-han/later-han-20.png",
+      "order": 20,
+      "dynasty": "后汉",
+      "dynastyKey": "later-han",
+      "dynastyOrder": 1,
+      "slotOrder": 20,
+      "personId": "person:workbook:3fbc77cdc7562dee",
+      "name": "丁原",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:36"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "后汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:01",
+      "assetPath": "./assets/portraits/v62/wei/wei-01.png",
+      "order": 21,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 1,
+      "personId": "person:workbook:e238c9eff92fa144",
+      "name": "曹干",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:37"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 2,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:02",
+      "assetPath": "./assets/portraits/v62/wei/wei-02.png",
+      "order": 22,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 2,
+      "personId": "person:workbook:98aa8420efe7a238",
+      "name": "曹据",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:38"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 2,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:03",
+      "assetPath": "./assets/portraits/v62/wei/wei-03.png",
+      "order": 23,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 3,
+      "personId": "person:workbook:1b2ba786504b1956",
+      "name": "张既",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:39"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 3
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:04",
+      "assetPath": "./assets/portraits/v62/wei/wei-04.png",
+      "order": 24,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 4,
+      "personId": "person:workbook:f2cb323f3457c6b0",
+      "name": "曹彪",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:40"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:05",
+      "assetPath": "./assets/portraits/v62/wei/wei-05.png",
+      "order": 25,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 5,
+      "personId": "person:workbook:979c9b3883195d31",
+      "name": "曹冲",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:41"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:06",
+      "assetPath": "./assets/portraits/v62/wei/wei-06.png",
+      "order": 26,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 6,
+      "personId": "person:workbook:bfaff11f18f6e1e8",
+      "name": "曹纯",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:42"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:07",
+      "assetPath": "./assets/portraits/v62/wei/wei-07.png",
+      "order": 27,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 7,
+      "personId": "person:workbook:6affd0466e19d493",
+      "name": "曹芳",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:43"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:08",
+      "assetPath": "./assets/portraits/v62/wei/wei-08.png",
+      "order": 28,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 8,
+      "personId": "person:workbook:cc63642ba82dd152",
+      "name": "曹衮",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:44"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:09",
+      "assetPath": "./assets/portraits/v62/wei/wei-09.png",
+      "order": 29,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 9,
+      "personId": "person:workbook:725ae36bb5bd06f2",
+      "name": "曹洪",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:45"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:10",
+      "assetPath": "./assets/portraits/v62/wei/wei-10.png",
+      "order": 30,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 10,
+      "personId": "person:workbook:d7b65b21de9bb517",
+      "name": "曹徽",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:46"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:11",
+      "assetPath": "./assets/portraits/v62/wei/wei-11.png",
+      "order": 31,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 11,
+      "personId": "person:workbook:05c7226a4852188d",
+      "name": "曹均",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:47"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:12",
+      "assetPath": "./assets/portraits/v62/wei/wei-12.png",
+      "order": 32,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 12,
+      "personId": "person:workbook:7f47ce56dc5e8520",
+      "name": "曹峻",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:48"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:13",
+      "assetPath": "./assets/portraits/v62/wei/wei-13.png",
+      "order": 33,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 13,
+      "personId": "person:workbook:1bdbc92c1543a2d6",
+      "name": "曹林",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:49"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:14",
+      "assetPath": "./assets/portraits/v62/wei/wei-14.png",
+      "order": 34,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 14,
+      "personId": "person:workbook:7590bd760efbfdc3",
+      "name": "曹髦",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:50"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:15",
+      "assetPath": "./assets/portraits/v62/wei/wei-15.png",
+      "order": 35,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 15,
+      "personId": "person:workbook:af3bada3d40a46d0",
+      "name": "曹茂",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:51"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:16",
+      "assetPath": "./assets/portraits/v62/wei/wei-16.png",
+      "order": 36,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 16,
+      "personId": "person:workbook:c22e4ead822fc723",
+      "name": "曹叡",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:52"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:17",
+      "assetPath": "./assets/portraits/v62/wei/wei-17.png",
+      "order": 37,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 17,
+      "personId": "person:workbook:ad5d6234a151b525",
+      "name": "曹玹",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:53"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:18",
+      "assetPath": "./assets/portraits/v62/wei/wei-18.png",
+      "order": 38,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 18,
+      "personId": "person:workbook:bec98c99d0f5b097",
+      "name": "曹彰",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:54"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:19",
+      "assetPath": "./assets/portraits/v62/wei/wei-19.png",
+      "order": 39,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 19,
+      "personId": "person:workbook:ef9e0d9b1130dad3",
+      "name": "曹植",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:55"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wei:20",
+      "assetPath": "./assets/portraits/v62/wei/wei-20.png",
+      "order": 40,
+      "dynasty": "魏",
+      "dynastyKey": "wei",
+      "dynastyOrder": 2,
+      "slotOrder": 20,
+      "personId": "person:workbook:cccc022c814154e8",
+      "name": "常林",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:56"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "魏"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:01",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-01.png",
+      "order": 41,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 1,
+      "personId": "person:workbook:a637b126810271b9",
+      "name": "傅佥",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:57"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:02",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-02.png",
+      "order": 42,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 2,
+      "personId": "person:workbook:1af1ce828f3aaafd",
+      "name": "刘璇",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:58"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:03",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-03.png",
+      "order": 43,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 3,
+      "personId": "person:workbook:1f5828a372a09ce6",
+      "name": "卫继",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:59"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:04",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-04.png",
+      "order": 44,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 4,
+      "personId": "person:workbook:9e2ee1753dfa3426",
+      "name": "习隆",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:60"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:05",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-05.png",
+      "order": 45,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 5,
+      "personId": "person:workbook:a5064345bc83b618",
+      "name": "习忠",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:61"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:06",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-06.png",
+      "order": 46,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 6,
+      "personId": "person:workbook:e1ba34b02f7ac1a6",
+      "name": "向充",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:62"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:07",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-07.png",
+      "order": 47,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 7,
+      "personId": "person:workbook:c8aa56ee0f11b759",
+      "name": "阎宇",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:63"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:08",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-08.png",
+      "order": 48,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 8,
+      "personId": "person:workbook:d7443f8beee8f921",
+      "name": "杨戏",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:64"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:09",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-09.png",
+      "order": 49,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 9,
+      "personId": "person:workbook:dee704c978243700",
+      "name": "张南",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:65"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:10",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-10.png",
+      "order": 50,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 10,
+      "personId": "person:workbook:f210c9f07c2cd93d",
+      "name": "张遵",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:66"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:11",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-11.png",
+      "order": 51,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 11,
+      "personId": "person:workbook:f1fad217ef520660",
+      "name": "诸葛尚",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:67"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:12",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-12.png",
+      "order": 52,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 12,
+      "personId": "person:workbook:6d410b9f151f68d3",
+      "name": "宗预",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:68"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:13",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-13.png",
+      "order": 53,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 13,
+      "personId": "person:shu:liu-yin",
+      "name": "柳隐",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:69"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 1
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:14",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-14.png",
+      "order": 54,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 14,
+      "personId": "person:workbook:a329bbefb671b722",
+      "name": "常播",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:70"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:15",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-15.png",
+      "order": 55,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 15,
+      "personId": "person:workbook:8e680925d01bf18c",
+      "name": "陈到",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:71"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:16",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-16.png",
+      "order": 56,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 16,
+      "personId": "person:workbook:d1845a7cbc7c6d7a",
+      "name": "陈式",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:72"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:17",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-17.png",
+      "order": 57,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 17,
+      "personId": "person:workbook:67b21195e2087bcc",
+      "name": "陈术",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:73"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:18",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-18.png",
+      "order": 58,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 18,
+      "personId": "person:workbook:43442867c7455086",
+      "name": "陈震",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:74"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:19",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-19.png",
+      "order": 59,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 19,
+      "personId": "person:workbook:0df4164a51071fed",
+      "name": "程祁",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:75"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:shuhan:20",
+      "assetPath": "./assets/portraits/v62/shuhan/shuhan-20.png",
+      "order": 60,
+      "dynasty": "季汉",
+      "dynastyKey": "shuhan",
+      "dynastyOrder": 3,
+      "slotOrder": 20,
+      "personId": "person:workbook:8887ab2bb0b2711c",
+      "name": "邓芝",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:76"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "季汉"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:01",
+      "assetPath": "./assets/portraits/v62/wu/wu-01.png",
+      "order": 61,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 1,
+      "personId": "person:workbook:80a91bbe238e15c6",
+      "name": "车浚",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:77"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:02",
+      "assetPath": "./assets/portraits/v62/wu/wu-02.png",
+      "order": 62,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 2,
+      "personId": "person:workbook:f29d7e9d70a640ef",
+      "name": "丁固",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:78"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:03",
+      "assetPath": "./assets/portraits/v62/wu/wu-03.png",
+      "order": 63,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 3,
+      "personId": "person:workbook:222618478905ab79",
+      "name": "董朝",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:79"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:04",
+      "assetPath": "./assets/portraits/v62/wu/wu-04.png",
+      "order": 64,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 4,
+      "personId": "person:workbook:bb8abb86d772d993",
+      "name": "谷朗",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:80"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:05",
+      "assetPath": "./assets/portraits/v62/wu/wu-05.png",
+      "order": 65,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 5,
+      "personId": "person:workbook:c969b64fec4346e7",
+      "name": "郭诞",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:81"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:06",
+      "assetPath": "./assets/portraits/v62/wu/wu-06.png",
+      "order": 66,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 6,
+      "personId": "person:workbook:a16ba0fdb1064a4c",
+      "name": "贺惠",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:82"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:07",
+      "assetPath": "./assets/portraits/v62/wu/wu-07.png",
+      "order": 67,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 7,
+      "personId": "person:workbook:f9f355ba5327f2bb",
+      "name": "贺邵",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:83"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:08",
+      "assetPath": "./assets/portraits/v62/wu/wu-08.png",
+      "order": 68,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 8,
+      "personId": "person:workbook:6ae47f7f3d11f856",
+      "name": "华核",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:84"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:09",
+      "assetPath": "./assets/portraits/v62/wu/wu-09.png",
+      "order": 69,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 9,
+      "personId": "person:workbook:07458ffe5a5b8080",
+      "name": "皇象",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:85"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:10",
+      "assetPath": "./assets/portraits/v62/wu/wu-10.png",
+      "order": 70,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 10,
+      "personId": "person:workbook:c3139ab67610acfb",
+      "name": "李衡",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:86"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:11",
+      "assetPath": "./assets/portraits/v62/wu/wu-11.png",
+      "order": 71,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 11,
+      "personId": "person:workbook:f9ba00ef2e8cb6eb",
+      "name": "刘川",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:87"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:12",
+      "assetPath": "./assets/portraits/v62/wu/wu-12.png",
+      "order": 72,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 12,
+      "personId": "person:workbook:6461d936328dce8e",
+      "name": "刘纂",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:88"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:13",
+      "assetPath": "./assets/portraits/v62/wu/wu-13.png",
+      "order": 73,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 13,
+      "personId": "person:workbook:3d3f8290ac72a22e",
+      "name": "留平",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:89"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:14",
+      "assetPath": "./assets/portraits/v62/wu/wu-14.png",
+      "order": 74,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 14,
+      "personId": "person:workbook:a6515008ec34fc6b",
+      "name": "楼玄",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:90"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:15",
+      "assetPath": "./assets/portraits/v62/wu/wu-15.png",
+      "order": 75,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 15,
+      "personId": "person:workbook:3bd7adcda5f4b84a",
+      "name": "陆景",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:91"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:16",
+      "assetPath": "./assets/portraits/v62/wu/wu-16.png",
+      "order": 76,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 16,
+      "personId": "person:workbook:2a70a3c89774a782",
+      "name": "陆凯",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:92"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:17",
+      "assetPath": "./assets/portraits/v62/wu/wu-17.png",
+      "order": 77,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 17,
+      "personId": "person:workbook:5199c99492ff86cd",
+      "name": "陆胤",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:93"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:18",
+      "assetPath": "./assets/portraits/v62/wu/wu-18.png",
+      "order": 78,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 18,
+      "personId": "person:workbook:d424f6b95e39921f",
+      "name": "骆秀",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:94"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:19",
+      "assetPath": "./assets/portraits/v62/wu/wu-19.png",
+      "order": 79,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 19,
+      "personId": "person:workbook:6748437cee9445b8",
+      "name": "孟宗",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:95"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:wu:20",
+      "assetPath": "./assets/portraits/v62/wu/wu-20.png",
+      "order": 80,
+      "dynasty": "吴",
+      "dynastyKey": "wu",
+      "dynastyOrder": 4,
+      "slotOrder": 20,
+      "personId": "person:workbook:01f379501896fb4e",
+      "name": "缪祎",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:96"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "吴"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:01",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-01.png",
+      "order": 81,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 1,
+      "personId": "person:jin:pei-wei",
+      "name": "裴𫖮",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:97"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 2,
+        "sourceCoverageCount": 4
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "source-index",
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:02",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-02.png",
+      "order": 82,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 2,
+      "personId": "person:workbook:48da25c1f78ec1cc",
+      "name": "司马鉴",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:98"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:03",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-03.png",
+      "order": 83,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 3,
+      "personId": "person:workbook:6f1ecb0ce49e59ac",
+      "name": "司马睦",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:99"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:04",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-04.png",
+      "order": 84,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 4,
+      "personId": "person:workbook:e1ec6b341f56d583",
+      "name": "王澄",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:100"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 1,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v61-supplement",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:05",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-05.png",
+      "order": 85,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 5,
+      "personId": "person:workbook:b52165e508ceb24b",
+      "name": "陈畅",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:101"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:06",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-06.png",
+      "order": 86,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 6,
+      "personId": "person:workbook:e04ae5ba2f587dde",
+      "name": "成公简",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:102"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:07",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-07.png",
+      "order": 87,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 7,
+      "personId": "person:workbook:d0e6c08884e5b4b7",
+      "name": "程卫",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:103"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:08",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-08.png",
+      "order": 88,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 8,
+      "personId": "person:workbook:d672638086fa011f",
+      "name": "崔廓",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:104"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:09",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-09.png",
+      "order": 89,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 9,
+      "personId": "person:workbook:60ce0ea8efcb68e0",
+      "name": "崔悦",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:105"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:10",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-10.png",
+      "order": 90,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 10,
+      "personId": "person:workbook:670ecc1522d9cb72",
+      "name": "董养",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:106"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:11",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-11.png",
+      "order": 91,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 11,
+      "personId": "person:workbook:b0abeb4581766a0b",
+      "name": "窦允",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:107"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:12",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-12.png",
+      "order": 92,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 12,
+      "personId": "person:workbook:cb08029968d696a2",
+      "name": "杜锡",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:108"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:13",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-13.png",
+      "order": 93,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 13,
+      "personId": "person:workbook:a13fa2e905bde723",
+      "name": "高韬",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:109"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:14",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-14.png",
+      "order": 94,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 14,
+      "personId": "person:workbook:9d64f37b81689b86",
+      "name": "郭槐",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:110"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:15",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-15.png",
+      "order": 95,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 15,
+      "personId": "person:workbook:5febf0114b0f3111",
+      "name": "郭舒",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:111"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:16",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-16.png",
+      "order": 96,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 16,
+      "personId": "person:workbook:300f8b82f1e8cd81",
+      "name": "郭象",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:112"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:17",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-17.png",
+      "order": 97,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 17,
+      "personId": "person:workbook:dbd9b9d4aa498c28",
+      "name": "韩谧",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:113"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:18",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-18.png",
+      "order": 98,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 18,
+      "personId": "person:workbook:03dba6ca806ee088",
+      "name": "胡芳",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:114"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:19",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-19.png",
+      "order": 99,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 19,
+      "personId": "person:workbook:4327c0ec478b0c3e",
+      "name": "华芳",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:115"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    },
+    {
+      "portraitId": "portrait:v62:western-jin:20",
+      "assetPath": "./assets/portraits/v62/western-jin/western-jin-20.png",
+      "order": 100,
+      "dynasty": "西晋",
+      "dynastyKey": "western-jin",
+      "dynastyOrder": 5,
+      "slotOrder": 20,
+      "personId": "person:workbook:3047b8fb950735de",
+      "name": "皇甫方回",
+      "status": "ready",
+      "assetStatus": "ready",
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V62",
+        "pageName": "V62 / Portraits",
+        "nodeId": "80:116"
+      },
+      "interfaceOnly": true,
+      "candidateScore": {
+        "evidenceCertaintyScore": 2,
+        "dynastyCertaintyScore": 3,
+        "crossModuleCount": 0,
+        "appointmentCount": 0,
+        "sourceCoverageCount": 2
+      },
+      "dynastyTags": [
+        "西晋"
+      ],
+      "crossDynastyBasis": "single",
+      "sourceDatasets": [
+        "v60-workbook",
+        "v62-dynasty-audit"
+      ]
+    }
+  ]
+}

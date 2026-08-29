@@ -99,7 +99,9 @@ assert(html.includes("const workspaceMode = ref('reader')") && html.includes("se
 assert(html.includes('sgz_ui_preferences') && html.includes('workspaceMode:workspaceMode.value'), '工作模式偏好未使用独立小型存储');
 assert(html.includes('paletteIsLanding') && html.includes("push('shortcut','常用入口'") && html.includes("push('review','审校任务'"), '空检索落地页不完整');
 assert(html.includes('paletteMatchReason') && html.includes('matchReason:') && html.includes('const seen=new Set()'), '检索结果缺少命中原因或稳定去重');
-assert(!/v-model="(peopleQuery|battleQuery|fangzhenQuery|epigraphicQuery|shihuoQuery)"/.test(html), '模块页重新出现平行检索输入框');
+assert(!/v-model="(battleQuery|fangzhenQuery|epigraphicQuery|shihuoQuery)"/.test(html), '模块页重新出现平行检索输入框');
+const v62PeopleSearchInputs = html.match(/<el-input[^>]+v-model="peopleQuery"[^>]*>/g) || [];
+assert(v62PeopleSearchInputs.length === 1 && v62PeopleSearchInputs[0].includes('v62-person-search'), '人物记只能保留 V62 常驻人物检索框');
 
 // 4. 朝堂点击职责分离，只有精确府署定义才开放“府”入口。
 assert(html.includes('function courtSlotClick(node)') && html.includes('selectCourtSlot(node);'), '官位点击未限定为选择官位');
@@ -134,7 +136,7 @@ assert(read('scripts/extract-v55-shihuo.mjs').includes("status:'already-extracte
 
 const normalizedJinshi = jinshi.records.map(row => jinshiSchema.normalize(row));
 const runtimeJinshi = [...jinshiBase.records, ...jinshi.records].map(row => jinshiSchema.normalize(row));
-assert(jinshiSchema.schemaVersion === 'V61' && normalizedJinshi.length === 128, '金石录 V61 字段契约或 V55 规范记录数量异常');
+assert(['V61', 'V62'].includes(jinshiSchema.schemaVersion) && normalizedJinshi.length === 128, '金石录 V61／V62 字段契约或 V55 规范记录数量异常');
 assert(new Set(normalizedJinshi.map(row => row.id)).size === normalizedJinshi.length, '金石录稳定 ID 重复');
 assert(normalizedJinshi.every(row => row.rawRecord && row.readerSummary && row.evidence && typeof row.inscription === 'string'), '金石录记录缺少原始／摘要／证据／释文分栏');
 assert(jinshiAudit.strikeParagraphCount === 31 && jinshiAudit.strikeCharCount === 778, '金石删除线审计基线异常');

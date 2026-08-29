@@ -11,6 +11,7 @@ const registryPath = path.join(root, 'data', 'map-period-registry.js');
 const wuRecordsPath = path.join(root, 'data', 'wu-fangzhen-records.js');
 const shuRecordsPath = path.join(root, 'data', 'shu-fangzhen-records.js');
 const fangzhenSupplementPath = path.join(root, 'data', 'fangzhen-term-supplement.js');
+const v62JinFangzhenPath = path.join(root, 'data', 'v62-jin-fangzhen.js');
 const personNameNormalizationPath = path.join(root, 'data', 'person-name-normalization.js');
 const personIdentitiesPath = path.join(root, 'data', 'person-identities.js');
 const researchModelPath = path.join(root, 'data', 'research-model.js');
@@ -36,8 +37,10 @@ const fangzhenSeatSupplementPath = path.join(root, 'data', 'fangzhen-seat-supple
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
 const v60PersonWorkbookImportJsonPath = path.join(root, 'data', 'v60-person-workbook-import.json');
 const v61PersonSupplementsPath = path.join(root, 'data', 'v61-person-supplements.js');
+const v62PeopleOfficesPath = path.join(root, 'data', 'v62-people-offices.js');
 const v60ResearchLedgerPath = path.join(root, 'data', 'v60-research-ledger.js');
 const v61EpigraphyResearchPath = path.join(root, 'data', 'v61-epigraphy-research.js');
+const v62JinshiDisplayPath = path.join(root, 'data', 'v62-jinshi-display.js');
 const personEntityAuditPath = path.join(root, 'data', 'person-entity-audit.js');
 const personV57RuntimeRulesPath = path.join(root, 'data', 'person-v57-runtime-rules.js');
 const personZiSupplementPath = path.join(root, 'data', 'person-zi-supplement.js');
@@ -52,6 +55,7 @@ const v57CssPath = path.join(root, 'assets', 'ui', 'v57.css');
 const v58CssPath = path.join(root, 'assets', 'ui', 'v58.css');
 const v60CssPath = path.join(root, 'assets', 'ui', 'v60.css');
 const v61CssPath = path.join(root, 'assets', 'ui', 'v61.css');
+const v62CssPath = path.join(root, 'assets', 'ui', 'v62.css');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const rootCopyPath = path.resolve(root, '..', '三国职官谱 .html');
 const downloadsCopyPath = process.env.HOME ? path.join(process.env.HOME, 'Downloads', '三国职官谱 .html') : null;
@@ -62,6 +66,7 @@ const registryScript = fs.readFileSync(registryPath, 'utf8').trim();
 const wuRecordsScript = fs.readFileSync(wuRecordsPath, 'utf8').trim();
 const shuRecordsScript = fs.readFileSync(shuRecordsPath, 'utf8').trim();
 const fangzhenSupplementScript = fs.readFileSync(fangzhenSupplementPath, 'utf8').trim();
+const v62JinFangzhenScript = fs.readFileSync(v62JinFangzhenPath, 'utf8').trim();
 const personNameNormalizationScript = fs.readFileSync(personNameNormalizationPath, 'utf8').trim();
 const personIdentitiesScript = fs.readFileSync(personIdentitiesPath, 'utf8').trim();
 const researchModelScript = fs.readFileSync(researchModelPath, 'utf8').trim();
@@ -95,8 +100,10 @@ const portableV60PersonWorkbookImportScript = `(function(global){
   global.SGZ_V60_PERSON_WORKBOOK_IMPORT.people=people;
 })(window);`;
 const v61PersonSupplementsScript = fs.readFileSync(v61PersonSupplementsPath, 'utf8').trim();
+const v62PeopleOfficesScript = fs.readFileSync(v62PeopleOfficesPath, 'utf8').trim();
 const v60ResearchLedgerScript = fs.readFileSync(v60ResearchLedgerPath, 'utf8').trim();
 const v61EpigraphyResearchScript = fs.readFileSync(v61EpigraphyResearchPath, 'utf8').trim();
+const v62JinshiDisplayScript = fs.readFileSync(v62JinshiDisplayPath, 'utf8').trim();
 const personEntityAuditScript = fs.readFileSync(personEntityAuditPath, 'utf8').trim();
 const personV57RuntimeRulesScript = fs.readFileSync(personV57RuntimeRulesPath, 'utf8').trim();
 const personZiSupplementScript = fs.readFileSync(personZiSupplementPath, 'utf8').trim();
@@ -106,21 +113,18 @@ const hydronymAuditScript = fs.readFileSync(hydronymAuditPath, 'utf8').trim();
 const v55Css = fs.readFileSync(v55CssPath, 'utf8').trim();
 const v56Css = fs.readFileSync(v56CssPath, 'utf8').trim();
 const v57Css = fs.readFileSync(v57CssPath, 'utf8').trim();
+const v62Css = fs.readFileSync(v62CssPath, 'utf8').trim();
 const portablePortraitAssets = {};
 const portraitManifestJson = portraitManifestScript
   .replace(/^\s*window\.SGZ_PERSON_PORTRAIT_MANIFEST\s*=\s*/, '')
   .replace(/;\s*$/, '');
 const portraitManifestData = JSON.parse(portraitManifestJson);
 const portablePortraitPaths = new Set(
-  (portraitManifestData.defaultPersonIds || [])
-    .map(personId => portraitManifestData.byPersonId?.[personId]?.src)
-    .filter(src => /^\.\/assets\/portraits\/.+\.(png|jpe?g|webp)$/i.test(String(src || '')))
-);
-Object.values(portraitManifestData.byPersonId || {})
-  .filter(item => item.portraitKind === 'ui-illustration-v58')
+  Object.values(portraitManifestData.assetsById || portraitManifestData.byPersonId || {})
+  .filter(item => item?.status === 'ready')
   .map(item => item.src)
   .filter(src => /^\.\/assets\/portraits\/.+\.(png|jpe?g|webp)$/i.test(String(src || '')))
-  .forEach(src => portablePortraitPaths.add(src));
+);
 const portableImageTempRoot = process.platform === 'darwin' && fs.existsSync('/usr/bin/sips')
   ? fs.mkdtempSync(path.join(os.tmpdir(), 'sgz-portable-portraits-'))
   : '';
@@ -135,7 +139,7 @@ for (const relative of portablePortraitPaths) {
   if (portableImageTempRoot) {
     const target = path.join(portableImageTempRoot, `${portablePortraitPaths.size}-${optimizedPortablePortraits}-${path.basename(relative)}`);
     try {
-      execFileSync('/usr/bin/sips', ['--resampleHeightWidthMax', '384', source, '--out', target], { stdio: 'ignore' });
+      execFileSync('/usr/bin/sips', ['--resampleHeightWidthMax', '376', source, '--out', target], { stdio: 'ignore' });
       const resized = fs.readFileSync(target);
       if (resized.length < original.length) {
         selected = resized;
@@ -159,7 +163,7 @@ const portablePortraitManifestScript = `${portraitManifestScript}
   }
   Object.values(window.SGZ_PERSON_PORTRAITS||{}).forEach(inlineDefaultPortrait);
   var manifest=window.SGZ_PERSON_PORTRAIT_MANIFEST||{};
-  Object.values(manifest.byPersonId||{}).concat(Object.values(manifest.byName||{})).forEach(function(item){
+  Object.values(manifest.assetsById||{}).concat(Object.values(manifest.byPersonId||{}),Object.values(manifest.byName||{})).forEach(function(item){
     inlineDefaultPortrait(item);
   });
   if(manifest.fallbackSrc&&assets[manifest.fallbackSrc]) manifest.fallbackSrc=assets[manifest.fallbackSrc];
@@ -203,6 +207,10 @@ const replacements = [
   [
     '<script src="./data/fangzhen-term-supplement.js"></script>',
     `<script>\n${fangzhenSupplementScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v62-jin-fangzhen.js?v=62"></script>',
+    `<script>\n${v62JinFangzhenScript}\n</script>`
   ],
   [
     '<script src="./data/person-name-normalization.js?v=61.2"></script>',
@@ -305,12 +313,20 @@ const replacements = [
     `<script>\n${v61PersonSupplementsScript}\n</script>`
   ],
   [
+    '<script src="./data/v62-people-offices.js?v=62"></script>',
+    `<script>\n${v62PeopleOfficesScript}\n</script>`
+  ],
+  [
     '<script src="./data/v60-research-ledger.js"></script>',
     `<script>\n${v60ResearchLedgerScript}\n</script>`
   ],
   [
     '<script src="./data/v61-epigraphy-research.js?v=61.2"></script>',
     `<script>\n${v61EpigraphyResearchScript}\n</script>`
+  ],
+  [
+    '<script src="./data/v62-jinshi-display.js?v=62"></script>',
+    `<script>\n${v62JinshiDisplayScript}\n</script>`
   ],
   [
     '<script src="./data/person-entity-audit.js"></script>',
@@ -359,6 +375,10 @@ const replacements = [
   [
     '<link rel="stylesheet" href="./assets/ui/v61.css?v=61.2" />',
     `<style>\n${fs.readFileSync(v61CssPath, 'utf8').trim()}\n</style>`
+  ],
+  [
+    '<link rel="stylesheet" href="./assets/ui/v62.css?v=62" />',
+    `<style>\n${v62Css}\n</style>`
   ],
   [
     /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,

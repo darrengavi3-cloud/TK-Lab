@@ -28,6 +28,11 @@
 - `data/v61-person-supplements.json`／`.js`：260 年人物快照与曹魏封爵事件；快照官职和封爵均不自动生成正式任官。
 - `data/v61-epigraphy-transcriptions.json`：V61 可追溯金石释文规范源，原碑、补字、释读和后人增刻分层。
 - `data/v61-epigraphy-research.json`／`.js`：142 条空释文的逐条网络检索、采用处置与读者运行覆盖层。
+- `data/v62-people-offices.json`／`.js`：2309 个人物的五朝主标签、历史归属、已核表字与读者标题覆盖层。
+- `data/v62-jin-fangzhen.json`／`.js`：266—316 年西晋州镇候选台账及 29 条正史定位明确的读者记录。
+- `data/v62-jinshi-display.json`／`.js`：188 条金石的纯净题名、别名、版本标签与可无损回组的释文章节。
+- `data/v62-portrait-catalog.json`／`.js`：五朝各 20 人的 V62 生产立绘目录；不新增人物实体，也不作为历史证据。
+- `data/v62-figma-mapping.json`：九个 V58—V62 页面、五个组件集及 275 个立绘组件的真实 Figma 节点映射。
 - `data/person-volume-coverage.json`：195 卷逐卷处理状态与排除依据。
 - `data/hydronym-audit.json`：285 段水系几何、257 个唯一古水名与《水经注》40 卷卷次出处审计。
 - `data/v44-release-manifest.json`：V44 检索命令面板、高程底图与四大版块优化的发布清单。
@@ -80,6 +85,7 @@
 - `docs/V50观史台立绘人物门禁与人物记界面优化.md`：V50 人物实体门禁、有人脸立绘状态、观史台品牌与人物记紧凑界面契约。
 - `docs/V54职官序位统一检索与主题重构.md`：V54 职官排序契约、统一检索入口、主题／密度／动效系统与史实审查边界。
 - `docs/V61全量人物260年快照曹魏封爵与金石释文.md`：V61 全量人物、260 年快照、曹魏封爵模型与四条可追溯金石释文。
+- `docs/V62五朝人物立绘与职官人物州镇金石整修.md`：V62 五朝人物、曹魏爵制、西晋州镇、金石版式、100 张新立绘及 Figma 映射边界。
 - `DESIGN.md`、`UX-CONTRACT.md`：V54 视觉令牌、组件与交互行为的规范源。
 - `assets/map/`：地图程序、Leaflet、州郡几何与水系。
 - `assets/vendor/`：页面运行依赖。
@@ -115,6 +121,7 @@ node 三国职官谱项目/scripts/verify-historical-model.mjs
 node 三国职官谱项目/scripts/verify-research-model.mjs
 node 三国职官谱项目/scripts/verify-v54.mjs
 node 三国职官谱项目/scripts/verify-v61.mjs
+node 三国职官谱项目/scripts/verify-v62.mjs
 ```
 
 V7 在 v6 的基础上增加“时期快照”和“控制断言”两类研究实体。地图郡级块数、正史行政基准和势力控制示意分开记录；点击形势图顶部“史料校验”或地图上的州郡，可查看当前时期的来源、断言和剩余考据限制。
