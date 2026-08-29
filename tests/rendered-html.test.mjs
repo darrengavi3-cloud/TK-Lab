@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
 async function render() {
@@ -82,4 +82,52 @@ test("packages the V61 full people, peerage, and epigraphy data", async () => {
   assert.equal(epigraphy.summary.adoptedTranscriptions, 4);
   assert.equal(epigraphy.summary.missingAfterResearch, 138);
   assert.ok(normalization.traditional.length > 300);
+});
+
+test("packages the V62 five-dynasty data and all 275 production portraits", async () => {
+  const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
+  const [legacy, manifestRaw, catalogRaw, mappingRaw, peopleRaw, fangzhenRaw, jinshiRaw, v62Css] = await Promise.all([
+    readFile(new URL("index.html", legacyRoot), "utf8"),
+    readFile(new URL("data/portrait-manifest.json", legacyRoot), "utf8"),
+    readFile(new URL("data/v62-portrait-catalog.json", legacyRoot), "utf8"),
+    readFile(new URL("data/v62-figma-mapping.json", legacyRoot), "utf8"),
+    readFile(new URL("data/v62-people-offices.json", legacyRoot), "utf8"),
+    readFile(new URL("data/v62-jin-fangzhen.json", legacyRoot), "utf8"),
+    readFile(new URL("data/v62-jinshi-display.json", legacyRoot), "utf8"),
+    readFile(new URL("assets/ui/v62.css", legacyRoot), "utf8"),
+  ]);
+
+  const manifest = JSON.parse(manifestRaw);
+  const catalog = JSON.parse(catalogRaw);
+  const mapping = JSON.parse(mappingRaw);
+  const people = JSON.parse(peopleRaw);
+  const fangzhen = JSON.parse(fangzhenRaw);
+  const jinshi = JSON.parse(jinshiRaw);
+  const assets = Object.values(manifest.assetsById || {});
+  const v62Assets = assets.filter((asset) => asset.portraitKind === "ui-illustration-v62");
+  const dynastyCounts = Object.fromEntries(
+    ["后汉", "魏", "季汉", "吴", "西晋"].map((dynasty) => [
+      dynasty,
+      v62Assets.filter((asset) => asset.polity === dynasty).length,
+    ]),
+  );
+
+  assert.match(legacy, /v62-people-offices\.js\?v=62/);
+  assert.match(legacy, /v62-jin-fangzhen\.js\?v=62/);
+  assert.match(legacy, /v62-jinshi-display\.js\?v=62/);
+  assert.match(v62Css, /v62-person-search/);
+  assert.equal(assets.length, 275);
+  assert.equal(v62Assets.length, 100);
+  assert.deepEqual(dynastyCounts, { 后汉: 20, 魏: 20, 季汉: 20, 吴: 20, 西晋: 20 });
+  assert.equal(catalog.readyTotal, 100);
+  assert.equal(mapping.portraits.length, 275);
+  assert.equal(people.schemaVersion, "V62");
+  assert.equal(fangzhen.schemaVersion, "V62");
+  assert.equal(jinshi.schemaVersion, "V62");
+
+  await Promise.all(assets.filter((asset) => asset.status === "ready").map(async (asset) => {
+    const relative = String(asset.assetPath || asset.src || "").replace(/^\.\//, "");
+    const file = await stat(new URL(relative, legacyRoot));
+    assert.ok(file.isFile() && file.size > 0, `missing portrait asset: ${relative}`);
+  }));
 });

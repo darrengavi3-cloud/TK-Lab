@@ -60,14 +60,39 @@
     },
     {
       id:'residence:jin:military-kaifu',ownerOfficeName:'晋开府加兵公',polity:'晋',
+      ownerOfficeNames:['大司马','大将军','太尉','骠骑将军','车骑将军','卫将军','伏波将军','抚军将军','都护将军','镇军将军','中军将军','征东将军','征西将军','征南将军','征北将军','镇东将军','镇西将军','镇南将军','镇北将军','龙骧将军','典军将军','上军将军','辅国将军'],
       ownerCategories:['大将军／大司马','将军武职'],name:'晋开府将军府',residenceType:'将军府',backgroundStyle:'general',
       validFrom:266,validTo:316,ownerResolution:'selected-year-primary-appointment',evidence:jinEvidence,researchStatus:'确定',
-      note:'只有节点同时匹配开府资格时启用；普通将军号不自动等同开府。',
+      note:'适用于《职官志》所列重号将军中已有具体开府或位从公依据者；官名本身不自动等同开府，未见个别开府依据者不启用本府署。',
       roles:[
         role('长史','文官','将军府'),role('司马','文武兼','将军府'),role('从事中郎','文官','将军府'),
         role('主簿','文官','将军府'),role('记室督','文官','将军府'),role('舍人','文官','将军府'),
         role('兵曹','文武兼','将军府'),role('铠曹','文武兼','将军府'),role('士曹','文官','将军府'),
         role('营军都督','武官','将军府'),role('刺奸都督','武官','将军府'),role('帐下都督','武官','将军府'),role('外都督','武官','将军府')
+      ]
+    },
+    {
+      id:'residence:han:public-office',ownerOfficeName:'汉三公',polity:'汉',
+      ownerOfficeNames:['太尉','司徒','司空'],ownerCategories:['三公'],name:'汉三公府',residenceType:'三公府',backgroundStyle:'grand-minister',
+      validFrom:168,validTo:220,ownerResolution:'selected-year-primary-appointment',
+      evidence:{sourceTitle:'《后汉书·百官志一》',sourceLevel:'一手史料',sourceLocator:'太尉、司徒、司空条及各府长史、掾史属、令史及御属条',sourceUrl:'https://ctext.org/hou-han-shu/bai-guan-yi#n79687',confidence:'确定',evidenceNote:'东汉公府属官有明确府员记载；本条不把公府制度与魏晋“开府仪同三司”混用。'},
+      researchStatus:'确定',note:'东汉三公府按各公条记载府员；实际任官人物与任期仍须以人物本传逐条对应。',
+      roles:[
+        role('长史','文官','三公府'),role('西曹','文官','三公府'),role('东曹','文官','三公府'),role('户曹','文官','三公府'),
+        role('奏曹','文官','三公府'),role('辞曹','文官','三公府'),role('法曹','文官','三公府'),role('尉曹','文官','三公府'),
+        role('贼曹','文官','三公府'),role('决曹','文官','三公府'),role('兵曹','文武兼','三公府'),role('金曹','文官','三公府'),
+        role('仓曹','文官','三公府'),role('黄阁主簿','文官','三公府'),role('令史及御属','文官','三公府')
+      ]
+    },
+    {
+      id:'residence:han:heavy-general',ownerOfficeName:'汉比公重号将军',polity:'汉',
+      ownerOfficeNames:['大将军','骠骑将军','车骑将军','卫将军'],ownerCategories:['大将军／大司马','将军武职'],name:'汉重号将军府',residenceType:'将军府',backgroundStyle:'general',
+      validFrom:168,validTo:220,ownerResolution:'selected-year-primary-appointment',
+      evidence:{sourceTitle:'《后汉书·百官志一》',sourceLevel:'一手史料',sourceLocator:'“比公者四”及“长史、司马……此皆府员职也”条',sourceUrl:'https://ctext.org/hou-han-shu/bai-guan-yi#n79695',confidence:'确定',evidenceNote:'东汉重号将军有府员制度；“比公”与晋代“开府仪同三司”分别建模。'},
+      researchStatus:'确定',note:'东汉大将军、骠骑、车骑、卫将军列为比公者；府员条可以建立府署结构，但不据官名自动生成魏晋位从公状态。',
+      roles:[
+        role('长史','文官','将军府'),role('司马','文武兼','将军府'),role('从事中郎','文官','将军府'),
+        role('掾属','文官','将军府'),role('令史及御属','文官','将军府')
       ]
     },
     {
@@ -87,9 +112,44 @@
       roles:[role('郡丞','文官','郡府'),role('长史','文官','郡府'),role('五官掾','文官','郡府'),role('功曹史','文官','郡府'),role('主簿','文官','郡府'),role('督邮','文官','郡府'),role('决曹史','文官','郡府'),role('贼曹史','文官','郡府')]
     },
     {
-      id:'residence:royal:east-palace',ownerOfficeName:'储君／太子',ownerCategories:['太子官属'],name:'东宫',residenceType:'东宫',backgroundStyle:'prince',
-      ownerResolution:'selected-year-primary-appointment',evidence:{sourceTitle:'《后汉书·百官志》《晋书·职官志》',sourceLevel:'一手史料',sourceLocator:'太子太傅、少傅以下官属条',confidence:'推定',evidenceNote:'太子太傅、詹事、中庶子、洗马等官属见两志；具体员额按时期核。'},researchStatus:'推定',note:'太子官属归东宫，不再并入幕府属官。西晋东宫于泰始三年（267）始建官，咸宁元年（275）置詹事；东宫官属清单不因建置沿革扩增。',
-      roles:[role('太子太傅','文官','东宫'),role('太子少傅','文官','东宫'),role('太子詹事','文官','东宫'),role('太子中庶子','文官','东宫'),role('太子洗马','文官','东宫'),role('太子舍人','文官','东宫'),role('太子率更令','文官','东宫'),role('太子家令','文官','东宫'),role('太子仆','文官','东宫')]
+      id:'residence:han:east-palace',ownerOfficeName:'汉太子官属',polity:'汉',ownerOfficeNames:['太子'],ownerCategories:['太子官属'],name:'汉东宫',residenceType:'东宫',backgroundStyle:'prince',
+      validFrom:168,validTo:220,ownerResolution:'selected-year-primary-appointment',
+      evidence:{sourceTitle:'《后汉书·百官志四》',sourceLevel:'一手史料',sourceLocator:'太子太傅、太子少傅及太子率更令、庶子、舍人、家令、仆、中庶子、洗马、中盾条',sourceUrl:'https://ctext.org/hou-han-shu/bai-guan-si#n79795',confidence:'确定',evidenceNote:'太子少傅悉主太子官属；未立太子时官属有省置沿革，不能把东宫官属视为常设中央官署。'},
+      researchStatus:'确定',note:'汉东宫独立建档，不等同“开府仪同三司”。未有太子的时段不展示本府署。',
+      roles:[
+        role('太子太傅','文官','东宫',{sourceText:'一人，中二千石；职掌辅导太子；不领官属',countStatus:'确定'}),
+        role('太子少傅','文官','东宫',{sourceText:'二千石；悉主太子官属',countStatus:'确定'}),
+        role('太子率更令','文官','东宫',{sourceText:'一人，千石',countStatus:'确定'}),
+        role('太子庶子','文官','东宫',{sourceText:'四百石；无员',countStatus:'确定'}),
+        role('太子舍人','文官','东宫',{sourceText:'二百石；无员',countStatus:'确定'}),
+        role('太子家令','文官','东宫',{sourceText:'一人，千石',countStatus:'确定'}),
+        role('太子仆','文官','东宫',{sourceText:'一人，千石',countStatus:'确定'}),
+        role('太子中庶子','文官','东宫',{sourceText:'六百石；员五人',countStatus:'确定'}),
+        role('太子洗马','文官','东宫',{sourceText:'比六百石；旧注员十六人',countStatus:'确定'}),
+        role('太子中盾','文官','东宫',{sourceText:'一人，四百石',countStatus:'确定'})
+      ]
+    },
+    {
+      id:'residence:jin:east-palace',ownerOfficeName:'晋太子官属',polity:'晋',ownerOfficeNames:['太子'],ownerCategories:['太子官属'],name:'晋东宫',residenceType:'东宫',backgroundStyle:'prince',
+      validFrom:266,validTo:316,ownerResolution:'selected-year-primary-appointment',
+      evidence:{sourceTitle:'《晋书》卷二十四·职官志',sourceLevel:'一手史料',sourceLocator:'太子太傅、少傅、詹事及中庶子、舍人、率更令、家令、仆、左右卫率条',sourceUrl:'https://zh.wikisource.org/wiki/晉書/卷024',confidence:'确定',evidenceNote:'泰始三年置二傅，咸宁元年置詹事；詹事有省置反复，按制度沿革显示，不把所有官属合并为单一时点。'},
+      researchStatus:'确定',note:'晋东宫于泰始三年（267）置二傅；咸宁元年（275）杨珧为詹事掌宫事，二傅不复领官属；詹事后有省置反复。',
+      roles:[
+        role('太子太傅','文官','东宫',{sourceText:'泰始三年置一人；初与少傅并领官属，后由詹事掌宫事',countStatus:'确定'}),
+        role('太子少傅','文官','东宫',{sourceText:'泰始三年置一人；初与太傅并领官属',countStatus:'确定'}),
+        role('太子詹事','文官','东宫',{sourceText:'咸宁元年置；后有省置与复置',countStatus:'确定'}),
+        role('太子功曹','文官','东宫',{sourceText:'二傅初置官属之一',countStatus:'确定'}),
+        role('太子主簿','文官','东宫',{sourceText:'二傅初置官属之一',countStatus:'确定'}),
+        role('太子五官','文官','东宫',{sourceText:'二傅初置官属之一',countStatus:'确定'}),
+        role('太子中庶子','文官','东宫',{sourceText:'四人',countStatus:'确定'}),
+        role('太子中舍人','文官','东宫',{sourceText:'四人',countStatus:'确定'}),
+        role('太子食官令','文官','东宫',{sourceText:'一人',countStatus:'确定'}),
+        role('太子庶子','文官','东宫',{sourceText:'四人',countStatus:'确定'}),
+        role('太子舍人','文官','东宫',{sourceText:'十六人',countStatus:'确定'}),
+        role('太子洗马','文官','东宫',{sourceText:'八人',countStatus:'确定'}),
+        role('太子率更令','文官','东宫'),role('太子家令','文官','东宫'),role('太子仆','文官','东宫'),
+        role('太子左右卫率','武官','东宫',{sourceText:'泰始五年置',countStatus:'确定'})
+      ]
     },
     {
       id:'residence:sili:wei',ownerOfficeName:'司隶校尉（魏）',name:'司隶校尉府（魏）',residenceType:'朝廷机关',backgroundStyle:'plain',
