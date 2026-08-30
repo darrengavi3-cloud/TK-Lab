@@ -40,3 +40,15 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# Generated from the canonical reader bundle. Never edit or commit this mirror.
+/public/legacy/
+/public/.legacy-reader-stage-*/
+/public/三国职官谱 .html
+
+# Versioned canonical source lives in /atlas; generated or machine-local trees do not.
+/atlas/backups/
+/atlas/exports/
+/atlas/node_modules
+/atlas/public/
+/atlas/.DS_Store

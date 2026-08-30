@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "V65",
+  "generatedAt": "2026-08-30",
+  "policy": "史籍只能证明历史地名和战役范围；经纬度继续沿用既有地图点，不据本轮考证擅改。误差半径为地图表达尺度，不是测量精度。",
+  "records": [
+    {
+      "battlefieldId": "guandu-field", "name": "官渡战场", "lat": 34.74, "lng": 113.96,
+      "coordinateType": "历史战场区域示意点", "errorRadiusKm": 10, "localizationScope": "官渡古战场及中牟官渡镇周边区域", "confidence": "推定",
+      "sourceTitle": "《三国志》卷一·武帝纪", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷01", "sourceLocator": "建安五年官渡战事；建安七年“进军官渡”条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点确定；地图点位保留为区域示意", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "chibi-field", "name": "赤壁—乌林战场", "lat": 29.72, "lng": 113.9,
+      "coordinateType": "跨江战役区域中心点", "errorRadiusKm": 50, "localizationScope": "赤壁、乌林及长江两岸战役范围；具体古战场点仍有争议", "confidence": "存疑",
+      "sourceTitle": "《三国志》卷五十四·周瑜传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷54", "sourceLocator": "周瑜传：孙权遣周瑜、程普与刘备并力，遇曹军于赤壁条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点已核；现代精确点仍存争议", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "xiangfan-field", "name": "襄樊战场", "lat": 32.04, "lng": 112.15,
+      "coordinateType": "双城战役锚点", "errorRadiusKm": 12, "localizationScope": "襄阳、樊城及汉水两岸战役范围", "confidence": "推定",
+      "sourceTitle": "《三国志》卷四十七·吴主传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷47", "sourceLocator": "建安二十四年：关羽围曹仁于樊、汉水暴起条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点确定；地图点位为襄樊战役范围锚点", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "hefei-field", "name": "合肥—逍遥津战场", "lat": 31.82, "lng": 117.23,
+      "coordinateType": "城址与津渡战役锚点", "errorRadiusKm": 10, "localizationScope": "合肥城、逍遥津及津北撤军路线", "confidence": "推定",
+      "sourceTitle": "《三国志》卷四十七·吴主传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷47", "sourceLocator": "建安二十年合肥撤军、张辽于津北袭孙权条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点确定；地图点位为城津战役范围示意", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "ruxu-field", "name": "濡须口战场", "lat": 31.15, "lng": 117.72,
+      "coordinateType": "水陆前线区域示意点", "errorRadiusKm": 35, "localizationScope": "濡须口、巢湖南缘至长江北岸水道范围", "confidence": "存疑",
+      "sourceTitle": "《三国志》卷四十七·吴主传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷47", "sourceLocator": "建安十八年“曹公攻濡须，权与相拒月余”条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点已核；水道变迁使现代精确点存疑", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "yiling-field", "name": "夷陵—猇亭战场", "lat": 30.69, "lng": 111.29,
+      "coordinateType": "长距离战役走廊中心点", "errorRadiusKm": 45, "localizationScope": "巫峡、建平、秭归、夷陵至夷道、猇亭的战役走廊", "confidence": "推定",
+      "sourceTitle": "《三国志》卷五十八·陆逊传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷58", "sourceLocator": "陆逊传：刘备由巫峡、建平连围至夷陵界，孙桓别讨前锋于夷道条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "战役走廊确定；单点仅作范围中心示意", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "jieting-field", "name": "街亭战场", "lat": 34.85, "lng": 105.95,
+      "coordinateType": "争议历史地点候选区示意点", "errorRadiusKm": 35, "localizationScope": "陇右街亭诸候选区域，不指认单一遗址", "confidence": "存疑",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷35", "sourceLocator": "建兴六年：马谡督诸军在前，与张郃战于街亭条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地名确定；现代遗址定位仍存争议", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "qishan-field", "name": "祁山战场", "lat": 34.05, "lng": 105.05,
+      "coordinateType": "山地攻防区域锚点", "errorRadiusKm": 25, "localizationScope": "祁山堡及陇右多次攻防范围", "confidence": "推定",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷35", "sourceLocator": "建兴六年“身率诸军攻祁山”及建兴九年复出祁山条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点确定；地图点位为多次战事区域锚点", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "wuzhang-field", "name": "五丈原战场", "lat": 34.25, "lng": 107.63,
+      "coordinateType": "历史台原区域示意点", "errorRadiusKm": 10, "localizationScope": "武功五丈原及渭水南岸对峙范围", "confidence": "推定",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷35", "sourceLocator": "建兴十二年“据武功五丈原，与司马宣王对于渭南”条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点确定；地图点位为台原与对峙区示意", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "tongguan-field", "name": "潼关—关中战场", "lat": 34.62, "lng": 110.22,
+      "coordinateType": "关隘战役走廊锚点", "errorRadiusKm": 30, "localizationScope": "潼关、蒲坂津、渭口至渭南的行军与交战范围", "confidence": "推定",
+      "sourceTitle": "《三国志》卷一·武帝纪", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷01", "sourceLocator": "建安十六年马超等屯潼关、曹操与关西军夹关而军条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料关隘与行军路径确定；单点为战役走廊锚点", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "shouchun-field", "name": "寿春—淮南战场", "lat": 32.56, "lng": 116.78,
+      "coordinateType": "城址围攻区域锚点", "errorRadiusKm": 15, "localizationScope": "寿春城及淮南围城、援军活动范围", "confidence": "推定",
+      "sourceTitle": "《三国志》卷二十八·诸葛诞传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷28", "sourceLocator": "甘露二年诸葛诞闭城自守、王基督诸军围寿春条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料城址确定；地图点位为围城战役范围锚点", "coordinateUnchanged": true
+    },
+    {
+      "battlefieldId": "dongxing-field", "name": "东兴—巢湖战场", "lat": 31.15, "lng": 117.72,
+      "coordinateType": "堤防与水域战役示意点", "errorRadiusKm": 35, "localizationScope": "东兴堤、徐塘及巢湖相关水域范围", "confidence": "存疑",
+      "sourceTitle": "《三国志》卷五十五·丁奉传", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷55", "sourceLocator": "丁奉传：魏遣诸葛诞、胡遵等攻东兴，丁奉率三千径进至徐塘条", "accessedAt": "2026-08-30",
+      "searchState": "已核原典", "historicalDisposition": "史料地点已核；堤址、水道与现代精确点仍存疑", "coordinateUnchanged": true
+    }
+  ]
+}

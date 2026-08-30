@@ -1,0 +1,905 @@
+/* 观史台稳定组件层：V56/V57 组件规范收口。 */
+button.tool-btn,
+button.mini-tab,
+button.opt,
+button.person-link,
+button.official-name,
+button.person-pill {
+  font-family: inherit;
+}
+
+button.tool-btn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+button.person-link,
+button.official-name,
+button.person-pill {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+[role="button"]:focus-visible,
+button.people-period-item:focus-visible {
+  outline: none;
+  box-shadow: var(--sgz-focus);
+}
+
+button.people-period-item {
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.people-period-item > span { display: block; }
+button.people-period-item > .people-period-item-head { display: flex; }
+
+/* 观史台 V56：册府索引台。此文件是生产运行时的唯一 V56 视觉所有者。 */
+:root {
+  --v56-paper: #eef0eb;
+  --v56-sheet: #fafbf7;
+  --v56-sheet-raised: #ffffff;
+  --v56-ink: #1b2b2e;
+  --v56-muted: #64716e;
+  --v56-faint: #89918e;
+  --v56-green: #4e6961;
+  --v56-vermilion: #a34738;
+  --v56-vermilion-soft: #f3e6e2;
+  --v56-gold: #9b7a3b;
+  --v56-gold-soft: #f1ebdc;
+  --v56-rule: #d5d9d3;
+  --v56-rule-strong: #b9c0ba;
+  --v56-focus: 0 0 0 3px rgba(163, 71, 56, .22);
+  --v56-topbar-h: 52px;
+  --v56-context-h: 50px;
+  --v56-spine-w: 104px;
+  --v56-evidence-w: 360px;
+  --v56-motion-fast: 180ms;
+  --v56-motion: 220ms;
+  --v56-z-content: 1;
+  --v56-z-context: 24;
+  --v56-z-spine: 32;
+  --v56-z-evidence: 30;
+  --v56-z-topbar: 40;
+  --v56-z-sheet: 70;
+}
+
+:root[data-sgz-theme="review-paper"] {
+  --v56-paper: #f2eee5;
+  --v56-sheet: #fbf8f1;
+  --v56-sheet-raised: #fffdf8;
+  --v56-ink: #2e2925;
+  --v56-muted: #71685e;
+  --v56-green: #5b6b60;
+  --v56-vermilion: #9e3f32;
+  --v56-vermilion-soft: #f3e0da;
+  --v56-gold: #95733a;
+  --v56-gold-soft: #eee3cd;
+  --v56-rule: #d8cfc0;
+  --v56-rule-strong: #bbae99;
+}
+
+:root[data-sgz-theme="lamp-night"] {
+  color-scheme: dark;
+  --v56-paper: #111a1f;
+  --v56-sheet: #172329;
+  --v56-sheet-raised: #1d2d34;
+  --v56-ink: #edf1ec;
+  --v56-muted: #a9b7b1;
+  --v56-faint: #81918b;
+  --v56-green: #7fa398;
+  --v56-vermilion: #d47b69;
+  --v56-vermilion-soft: #3a2928;
+  --v56-gold: #d0ad68;
+  --v56-gold-soft: #342f25;
+  --v56-rule: #34464d;
+  --v56-rule-strong: #52656c;
+  --v56-focus: 0 0 0 3px rgba(212, 123, 105, .3);
+}
+
+* {
+  scrollbar-color: color-mix(in srgb, var(--v56-green) 48%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--v56-green) 38%, transparent);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+
+html,
+body,
+#app,
+.shell {
+  background: var(--v56-paper);
+  color: var(--v56-ink);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.serif,
+.brand .t1,
+.v56-context-identity strong,
+.v56-person-dossier h2,
+.v56-evidence-head strong {
+  font-family: "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.shell {
+  --v56-current-spine: var(--v56-spine-w);
+  --v56-current-evidence: var(--v56-evidence-w);
+  isolation: isolate;
+}
+
+.shell.spine-collapsed { --v56-current-spine: 58px; }
+.shell.evidence-collapsed { --v56-current-evidence: 44px; }
+.shell.workspace-mode-reader,
+.shell.workspace-mode-reader.evidence-collapsed { --v56-current-evidence: 0px; }
+
+body.v63-modal-open { overflow: hidden; }
+
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+[tabindex]:focus-visible,
+.el-input__wrapper:focus-within,
+.el-select__wrapper:focus-within {
+  outline: none;
+  box-shadow: var(--v56-focus) !important;
+}
+
+/* 顶栏：只承担品牌、当前模块、全局检索、模式与主题。 */
+.topbar {
+  position: relative;
+  z-index: var(--v56-z-topbar);
+  min-height: var(--v56-topbar-h);
+  height: var(--v56-topbar-h);
+  padding: 0 14px;
+  gap: 10px;
+  background: color-mix(in srgb, var(--v56-sheet) 96%, transparent);
+  border-color: var(--v56-rule);
+  box-shadow: 0 2px 10px rgba(27, 43, 46, .045);
+  backdrop-filter: blur(12px);
+}
+
+.seal-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: var(--v56-vermilion);
+  color: #fffaf4;
+  font-size: 15px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+}
+
+.brand {
+  min-width: 100px;
+  margin-right: 2px;
+  gap: 1px;
+}
+
+.brand .t1 {
+  color: var(--v56-ink);
+  font-size: 17px;
+  letter-spacing: .14em;
+}
+
+.brand .t2 {
+  color: var(--v56-muted);
+  font-size: 9px;
+  letter-spacing: .09em;
+}
+
+.v56-current-module {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-left: 12px;
+  border-left: 1px solid var(--v56-rule);
+  color: var(--v56-muted);
+}
+
+.v56-current-module strong { color: var(--v56-ink); font-size: 13px; }
+.v56-current-module span { font-size: 10px; }
+
+.global-header-tools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.global-search-trigger,
+.theme-trigger {
+  height: 32px;
+  border: 1px solid var(--v56-rule);
+  border-radius: 5px;
+  background: var(--v56-sheet-raised);
+  color: var(--v56-ink);
+  transition: border-color var(--v56-motion-fast) ease, background-color var(--v56-motion-fast) ease, color var(--v56-motion-fast) ease;
+}
+
+.global-search-trigger:hover,
+.theme-trigger:hover { border-color: var(--v56-vermilion); color: var(--v56-vermilion); }
+.global-search-trigger kbd { border-color: var(--v56-rule); background: var(--v56-paper); color: var(--v56-muted); }
+.theme-trigger { color: var(--v56-vermilion); }
+
+.workspace-mode-switch {
+  padding: 2px;
+  border-color: var(--v56-rule);
+  border-radius: 5px;
+  background: var(--v56-paper);
+}
+
+.workspace-mode-switch button { height: 26px; padding: 0 8px; border-radius: 3px; color: var(--v56-muted); }
+.workspace-mode-switch button.active { background: var(--v56-sheet-raised); color: var(--v56-vermilion); box-shadow: 0 1px 4px rgba(27,43,46,.08); }
+
+/* 卷脊导航 */
+.v56-spine-nav {
+  position: fixed;
+  z-index: var(--v56-z-spine);
+  top: var(--v56-topbar-h);
+  bottom: 0;
+  left: 0;
+  width: var(--v56-current-spine);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 7px 10px;
+  background: var(--v56-ink);
+  border-right: 1px solid color-mix(in srgb, var(--v56-ink) 70%, #000);
+  transition: width var(--v56-motion) ease;
+}
+
+.v56-spine-item,
+.v56-spine-toggle,
+.v56-mobile-more {
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--v56-sheet) 70%, transparent);
+  cursor: pointer;
+}
+
+.v56-spine-item {
+  position: relative;
+  min-height: 49px;
+  display: grid;
+  grid-template-columns: 28px minmax(0,1fr);
+  align-items: center;
+  gap: 7px;
+  padding: 5px 7px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  transition: color var(--v56-motion-fast) ease, background-color var(--v56-motion-fast) ease;
+}
+
+.v56-spine-item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: transparent;
+}
+
+.v56-spine-item:hover { color: var(--v56-sheet); background: rgba(255,255,255,.05); }
+.v56-spine-item.active { color: #fffdf8; background: rgba(255,255,255,.08); }
+.v56-spine-item.active::before { background: var(--v56-vermilion); }
+
+.v56-spine-glyph {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 3px;
+  font: 700 12px/1 "Songti SC", SimSun, serif;
+}
+
+.v56-spine-item.active .v56-spine-glyph { border-color: color-mix(in srgb, var(--v56-vermilion) 78%, #fff); background: var(--v56-vermilion); }
+.v56-spine-label { overflow: hidden; white-space: nowrap; font-size: 12px; letter-spacing: .08em; }
+.v56-spine-toggle { margin-top: auto; height: 34px; border: 1px solid rgba(255,255,255,.14); border-radius: 4px; font-size: 20px; }
+.v56-mobile-more { display: none; }
+.spine-collapsed .v56-spine-label { width: 0; opacity: 0; }
+.spine-collapsed .v56-spine-item { grid-template-columns: 28px; justify-content: center; padding-inline: 7px; }
+
+/* 吸顶上下文栏 */
+.v56-context-bar {
+  position: relative;
+  z-index: var(--v56-z-context);
+  min-height: var(--v56-context-h);
+  margin-left: var(--v56-current-spine);
+  margin-right: var(--v56-current-evidence);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  background: color-mix(in srgb, var(--v56-sheet) 97%, transparent);
+  border-bottom: 1px solid var(--v56-rule);
+  box-shadow: 0 3px 12px rgba(27,43,46,.035);
+  transition: margin var(--v56-motion) ease;
+}
+
+.v56-context-identity {
+  min-width: 170px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.v56-context-identity strong { color: var(--v56-ink); font-size: 15px; letter-spacing: .08em; }
+.v56-context-identity span { overflow: hidden; color: var(--v56-muted); font-size: 9.5px; text-overflow: ellipsis; white-space: nowrap; }
+
+.v56-context-search,
+.v56-evidence-toggle {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--v56-rule);
+  border-radius: 4px;
+  background: var(--v56-sheet-raised);
+  color: var(--v56-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.v56-context-search:hover,
+.v56-evidence-toggle:hover { border-color: var(--v56-vermilion); color: var(--v56-vermilion); }
+.v56-context-search span { margin-right: 5px; color: var(--v56-vermilion); }
+.v56-context-select { width: 124px; }
+.v56-context-wide { width: 170px; }
+.v56-context-spacer { flex: 1 1 auto; }
+.v56-context-actions { display: flex; align-items: center; gap: 5px; }
+
+.v56-segmented {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--v56-rule);
+  border-radius: 4px;
+  background: var(--v56-paper);
+}
+
+.v56-segmented button {
+  height: 26px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--v56-muted);
+  cursor: pointer;
+}
+
+.v56-segmented button.active { background: var(--v56-ink); color: var(--v56-sheet); }
+.v56-map-period { display: inline-flex; align-items: center; gap: 5px; color: var(--v56-ink); font-size: 11px; }
+.v56-map-period button { width: 28px; height: 28px; border: 1px solid var(--v56-rule); border-radius: 3px; background: var(--v56-sheet-raised); color: var(--v56-ink); cursor: pointer; }
+
+/* 主内容区域 */
+.body-row,
+.module-page,
+.statusbar {
+  margin-left: var(--v56-current-spine);
+  margin-right: var(--v56-current-evidence);
+  transition: margin var(--v56-motion) ease;
+}
+
+.body-row,
+.module-page { position: relative; z-index: var(--v56-z-content); }
+.module-page { padding: 0; background: var(--v56-paper); }
+.module-page-inner { max-width: none; margin: 0; padding: 12px 14px 48px; }
+.page-heading { display: none; }
+.people-view-layout { display: block; }
+.people-view-nav { display: none; }
+.people-view-content { min-width: 0; }
+
+.people-toolbar,
+.fangzhen-toolbar,
+.battle-toolbar,
+.jinshi-toolbar,
+.shihuo-toolbar {
+  min-height: 40px;
+  margin: 0 0 8px;
+  padding: 5px 7px;
+  border: 0;
+  border-bottom: 1px solid var(--v56-rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.people-toolbar::before,
+.fangzhen-toolbar::before,
+.battle-toolbar::before,
+.jinshi-toolbar::before,
+.shihuo-toolbar::before { display: none; }
+.module-page .module-search-handoff { display: none; }
+
+.people-metrics,
+.battle-metrics,
+.fangzhen-metrics { display: none; }
+
+.people-advanced-filters,
+.jinshi-chip-row,
+.shihuo-polity-chips,
+.battle-view-switch,
+.fangzhen-archive-tabs {
+  margin-bottom: 8px;
+}
+
+.fangzhen-context {
+  min-height: 34px;
+  margin-bottom: 7px;
+  padding: 6px 9px;
+  border: 1px solid var(--v56-rule);
+  border-left: 3px solid var(--v56-gold);
+  border-radius: 3px;
+  background: var(--v56-sheet);
+}
+
+.fangzhen-table-card,
+.people-period-panel,
+.battle-timeline-item,
+.jinshi-table-card {
+  border-color: var(--v56-rule);
+  border-radius: 4px;
+  background: var(--v56-sheet);
+  box-shadow: none;
+}
+
+.el-table,
+.el-table tr,
+.el-table td.el-table__cell { background: var(--v56-sheet); color: var(--v56-ink); }
+.el-table th.el-table__cell { background: color-mix(in srgb, var(--v56-paper) 74%, var(--v56-sheet)); color: var(--v56-ink); }
+
+/* 人物记：名录 + 档案详情 */
+.v56-people-master-detail {
+  min-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 92px);
+  display: grid;
+  grid-template-columns: minmax(270px, 34%) minmax(0, 1fr);
+  border: 1px solid var(--v56-rule);
+  background: var(--v56-sheet);
+}
+
+.v56-person-directory {
+  min-width: 0;
+  max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 94px);
+  overflow: auto;
+  border-right: 1px solid var(--v56-rule);
+}
+
+.v56-person-row {
+  position: relative;
+  width: 100%;
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 46px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px 7px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--v56-rule);
+  background: transparent;
+  color: var(--v56-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--v56-motion-fast) ease;
+}
+
+.v56-person-row::before {
+  content: "";
+  position: absolute;
+  inset: 8px auto 8px 0;
+  width: 3px;
+  background: transparent;
+}
+
+.v56-person-row:hover { background: color-mix(in srgb, var(--v56-green) 7%, transparent); }
+.v56-person-row.active { background: color-mix(in srgb, var(--v56-vermilion) 8%, transparent); }
+.v56-person-row.active::before { background: var(--v56-vermilion); }
+.v56-person-row .person-avatar { width: 42px; height: 50px; border-radius: 2px; }
+.v56-person-row-copy { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.v56-person-row-name { display: flex; align-items: baseline; gap: 7px; }
+.v56-person-row-name strong { font: 700 14px/1.2 "Songti SC", SimSun, serif; }
+.v56-person-row-name small { color: var(--v56-muted); font-size: 10px; }
+.v56-person-row-meta { overflow: hidden; color: var(--v56-muted); font-size: 10.5px; text-overflow: ellipsis; white-space: nowrap; }
+.v56-person-row-count { color: var(--v56-faint); font: 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+
+.v56-person-dossier {
+  min-width: 0;
+  max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 94px);
+  overflow: auto;
+  padding: 18px 20px 34px;
+}
+
+.v56-person-dossier-head { display: grid; grid-template-columns: 78px minmax(0,1fr); gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--v56-rule); }
+.v56-person-dossier-head .people-detail-portrait { width: 74px; height: 88px; border-radius: 3px; }
+.v56-person-dossier h2 { margin: 0 0 5px; color: var(--v56-ink); font-size: 25px; letter-spacing: .08em; }
+.v56-person-dossier h2 small { margin-left: 8px; color: var(--v56-muted); font: 12px/1.3 sans-serif; letter-spacing: 0; }
+.v56-person-dossier-summary { margin: 8px 0 0; color: var(--v56-muted); font-size: 12px; line-height: 1.65; }
+.v56-person-dossier-meta { display: flex; flex-wrap: wrap; gap: 5px 12px; color: var(--v56-muted); font-size: 10.5px; }
+.v56-dossier-section-title { margin: 16px 0 7px; color: var(--v56-green); font: 700 12px/1.2 "Songti SC", SimSun, serif; letter-spacing: .1em; }
+
+.v56-career-timeline { position: relative; display: flex; flex-direction: column; }
+.v56-career-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px minmax(150px,.7fr) minmax(0,1fr);
+  gap: 10px;
+  padding: 10px 6px 10px 18px;
+  border: 0;
+  border-top: 1px solid var(--v56-rule);
+  background: transparent;
+  text-align: left;
+  color: var(--v56-ink);
+  cursor: pointer;
+}
+.v56-career-row::before { content: ""; position: absolute; left: 3px; top: 15px; width: 7px; height: 7px; border: 2px solid var(--v56-green); border-radius: 50%; background: var(--v56-sheet); }
+.v56-career-row::after { content: ""; position: absolute; left: 7px; top: 24px; bottom: -1px; width: 1px; background: var(--v56-rule-strong); }
+.v56-career-row:last-child::after { display: none; }
+.v56-career-year { color: var(--v56-vermilion); font: 600 10.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.v56-career-office { font: 700 12px/1.5 "Songti SC", SimSun, serif; }
+.v56-career-evidence { color: var(--v56-muted); font-size: 10.5px; line-height: 1.55; }
+
+/* 职官谱：品秩／官署分带，宫殿仅作低透明度题头底纹。 */
+.canvas-wrap { background: var(--v56-paper); }
+.canvas-tabs { min-height: 42px; padding: 5px 10px; border-color: var(--v56-rule); background: var(--v56-sheet); }
+.canvas-tabs > .hint,
+.canvas-tabs > .period-select,
+.canvas-tabs > .period-summary-btn,
+.canvas-tabs > .view-switch,
+.canvas-tabs > .tab-sep { display: none; }
+.filter-bar,
+.timeline-bar,
+.classification-strip { border-color: var(--v56-rule); background: color-mix(in srgb, var(--v56-sheet) 88%, transparent); }
+.court-scroll { background: var(--v56-paper); }
+.court-canvas { position: relative; padding: 12px 14px 36px; background: var(--v56-sheet); }
+.court-canvas::before {
+  content: "朝堂官署";
+  position: absolute;
+  top: 5px;
+  right: 24px;
+  color: color-mix(in srgb, var(--v56-green) 8%, transparent);
+  font: 800 76px/1 "Songti SC", SimSun, serif;
+  letter-spacing: .18em;
+  pointer-events: none;
+}
+.court-heading { max-width: 840px; margin-bottom: 10px; text-align: left; }
+.court-heading h2 { color: var(--v56-ink); font-size: 20px; }
+.court-heading p { color: var(--v56-muted); }
+.court-heading-actions { justify-content: flex-start; }
+.court-tier { margin-bottom: 12px; padding: 8px 10px 10px; border: 1px solid var(--v56-rule); border-left: 4px solid var(--v56-gold); background: color-mix(in srgb, var(--v56-sheet-raised) 70%, transparent); }
+.court-tier-title { justify-content: flex-start; margin-bottom: 8px; }
+.court-tier-title::before,
+.court-tier-title::after { display: none; }
+.court-tier-title span { min-width: 92px; padding: 4px 9px; border: 0; background: var(--v56-ink); color: var(--v56-sheet); }
+.court-tier-grid { justify-content: flex-start; gap: 8px; }
+.court-columns { gap: 10px; margin-bottom: 12px; }
+.court-column { border-color: var(--v56-rule); background: var(--v56-sheet); }
+.court-column-title { justify-content: flex-start; background: var(--v56-ink) !important; }
+.court-slot { border-color: var(--v56-rule-strong); border-radius: 3px; background: var(--v56-sheet-raised); box-shadow: none; }
+.court-slot:hover,
+.court-slot.selected { border-color: var(--v56-vermilion); box-shadow: inset 0 0 0 1px var(--v56-vermilion); }
+.court-slot-name { background: var(--v56-ink); }
+.court-slot.civil .court-slot-name { background: var(--v56-vermilion); }
+.court-slot.military .court-slot-name { background: #35617d; }
+.court-residence-badge { border-color: var(--v56-gold); background: var(--v56-gold-soft); color: var(--v56-gold); }
+
+/* 其他案卷改为目录／行优先，不做卡片浮起。 */
+.battle-chronology-list { display: flex; flex-direction: column; gap: 0; }
+.battle-timeline-item { margin: 0; border-width: 0 0 1px 3px; border-left-color: var(--v56-green); border-radius: 0; }
+.battle-timeline-item:hover { transform: none; background: color-mix(in srgb, var(--v56-green) 5%, var(--v56-sheet)); }
+.battle-timeline-year { color: var(--v56-vermilion); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.battle-map-link { color: var(--v56-vermilion); }
+.jinshi-table-card { overflow: hidden; }
+.v56-jinshi-workbench-grid {
+  min-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 86px);
+  display: grid;
+  grid-template-columns: minmax(270px, 35%) minmax(0, 1fr);
+  border: 1px solid var(--v56-rule);
+  background: var(--v56-sheet);
+}
+.v56-jinshi-directory {
+  max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 88px);
+  overflow: auto;
+  border-right: 1px solid var(--v56-rule);
+}
+.v56-jinshi-row {
+  position: relative;
+  width: 100%;
+  min-height: 67px;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 4px 8px;
+  align-items: center;
+  padding: 9px 10px 9px 13px;
+  border: 0;
+  border-bottom: 1px solid var(--v56-rule);
+  background: transparent;
+  color: var(--v56-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.v56-jinshi-row::before { content: ""; position: absolute; inset: 9px auto 9px 0; width: 3px; background: transparent; }
+.v56-jinshi-row:hover { background: color-mix(in srgb, var(--v56-green) 6%, transparent); }
+.v56-jinshi-row.active { background: color-mix(in srgb, var(--v56-vermilion) 7%, transparent); }
+.v56-jinshi-row.active::before { background: var(--v56-vermilion); }
+.v56-jinshi-row-title { overflow: hidden; font: 700 13px/1.35 "Songti SC", SimSun, serif; text-overflow: ellipsis; white-space: nowrap; }
+.v56-jinshi-row-meta { grid-column: 1 / -1; overflow: hidden; color: var(--v56-muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.v56-jinshi-reader { max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 88px); overflow: auto; padding: 20px 22px 36px; }
+.v56-jinshi-reader header { padding-bottom: 13px; border-bottom: 1px solid var(--v56-rule); }
+.v56-jinshi-reader h2 { margin: 7px 0 4px; color: var(--v56-ink); font: 700 24px/1.35 "Songti SC", SimSun, serif; }
+.v56-jinshi-reader header p { margin: 0; color: var(--v56-muted); font-size: 10.5px; }
+.v56-jinshi-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 13px 0; }
+.v56-jinshi-fields div { padding: 8px; border: 1px solid var(--v56-rule); background: color-mix(in srgb, var(--v56-paper) 55%, transparent); }
+.v56-jinshi-fields dt { color: var(--v56-faint); font-size: 9.5px; }
+.v56-jinshi-fields dd { margin: 4px 0 0; color: var(--v56-ink); font-size: 11px; }
+.v56-jinshi-inscription { padding-top: 8px; border-top: 3px double var(--v56-rule-strong); }
+.v56-jinshi-inscription h3 { color: var(--v56-green); font: 700 13px "Songti SC", SimSun, serif; letter-spacing: .12em; }
+.v56-jinshi-inscription > div { color: var(--v56-ink); font: 15px/2 "Songti SC", SimSun, serif; white-space: pre-wrap; }
+.v56-jinshi-inscription > p { color: var(--v56-muted); font-size: 12px; }
+.shihuo-year-chip { border-color: var(--v56-rule); border-radius: 3px; background: var(--v56-sheet); box-shadow: none; }
+.shihuo-year-chip:hover { transform: none; border-color: var(--v56-vermilion); }
+
+/* 证据案卷 */
+.v56-evidence-rail {
+  position: fixed;
+  z-index: var(--v56-z-evidence);
+  top: calc(var(--v56-topbar-h) + var(--v56-context-h));
+  right: 0;
+  bottom: 0;
+  width: var(--v56-current-evidence);
+  display: flex;
+  flex-direction: column;
+  background: var(--v56-sheet);
+  border-left: 1px solid var(--v56-rule);
+  transition: width var(--v56-motion) ease;
+}
+.v56-evidence-head { min-height: 47px; display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 13px; border-bottom: 1px solid var(--v56-rule); }
+.v56-evidence-head::before { content: ""; width: 3px; align-self: stretch; background: var(--v56-gold); }
+.v56-evidence-head strong { color: var(--v56-ink); font-size: 15px; letter-spacing: .08em; }
+.v56-evidence-head span { color: var(--v56-muted); font-size: 9.5px; }
+.v56-evidence-head button { margin-left: auto; width: 26px; height: 26px; border: 1px solid var(--v56-rule); border-radius: 3px; background: transparent; color: var(--v56-muted); cursor: pointer; }
+.v56-evidence-body { min-width: 320px; flex: 1; overflow: auto; padding: 12px 14px 30px; }
+.v56-evidence-empty { padding: 34px 10px; color: var(--v56-muted); font-size: 11px; line-height: 1.7; text-align: center; }
+.v56-evidence-title { margin: 0 0 4px; color: var(--v56-ink); font: 700 19px/1.4 "Songti SC", SimSun, serif; }
+.v56-evidence-meta { margin-bottom: 12px; color: var(--v56-muted); font: 10px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.v56-evidence-section { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--v56-rule); }
+.v56-evidence-section h4 { margin: 0 0 7px; color: var(--v56-green); font: 700 11px/1.3 "Songti SC", SimSun, serif; letter-spacing: .08em; }
+.v56-evidence-section p { margin: 5px 0; color: var(--v56-muted); font-size: 11px; line-height: 1.65; overflow-wrap: anywhere; }
+.v56-evidence-source { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 6px; padding: 6px 0; border-top: 1px dashed var(--v56-rule); color: var(--v56-muted); font-size: 10.5px; line-height: 1.55; }
+.v56-evidence-source b { color: var(--v56-ink); }
+.v56-evidence-status { display: inline-flex; align-items: center; gap: 5px; padding: 2px 6px; border: 1px solid var(--v56-rule); border-radius: 3px; color: var(--v56-muted); font-size: 10px; }
+.v56-evidence-status::before { content: "○"; color: var(--v56-green); }
+.v56-evidence-status.pending::before { content: "△"; color: var(--v56-gold); }
+.v56-evidence-status.disputed::before { content: "!"; color: var(--v56-vermilion); }
+.evidence-collapsed .v56-evidence-body,
+.evidence-collapsed .v56-evidence-head strong,
+.evidence-collapsed .v56-evidence-head span { display: none; }
+.evidence-collapsed .v56-evidence-head { padding: 8px; writing-mode: vertical-rl; }
+.evidence-collapsed .v56-evidence-head::before { width: auto; height: 3px; }
+.evidence-collapsed .v56-evidence-head button { margin: auto 0 0; }
+
+.statusbar { background: var(--v56-ink); color: var(--v56-sheet); }
+
+.command-palette-drawer .el-drawer { background: var(--v56-sheet); }
+.command-palette-drawer .el-drawer__header { min-height: 52px; margin: 0 !important; padding: 12px 16px; border-bottom: 1px solid var(--v56-rule); }
+.command-palette-drawer .el-drawer__body { padding: 12px 14px 24px; }
+.palette-item { border-radius: 3px; }
+.palette-item.active { background: var(--v56-vermilion-soft); box-shadow: inset 3px 0 var(--v56-vermilion); }
+
+.v56-mobile-module-sheet { display: none; }
+
+@media (max-width: 1320px) {
+  :root { --v56-spine-w: 88px; --v56-evidence-w: 320px; }
+  .v56-context-identity { min-width: 130px; max-width: 170px; }
+  .v56-context-actions .el-upload { display: none; }
+  .v56-context-select { width: 112px; }
+}
+
+@media (max-width: 1100px) {
+  .v56-current-module span,
+  .brand .t2 { display: none; }
+  .v56-context-identity span { display: none; }
+  .v56-context-identity { min-width: auto; }
+  .v56-person-dossier { padding-inline: 14px; }
+}
+
+@media (max-width: 980px) {
+  .shell { --v56-current-evidence: 0px; }
+  .v56-evidence-rail,
+  .v56-evidence-toggle { display: none; }
+  .el-drawer { width: 100% !important; max-width: none !important; }
+  .v56-context-actions { display: none; }
+}
+
+@media (max-width: 760px) {
+  :root { --v56-topbar-h: 52px; --v56-context-h: 48px; }
+  .shell,
+  .shell.spine-collapsed { --v56-current-spine: 0px; }
+  .topbar { padding: 0 9px; gap: 7px; }
+  .seal-mark { width: 30px; height: 30px; }
+  .brand { min-width: 76px; }
+  .brand .t1 { font-size: 15px; }
+  .v56-current-module { display: none; }
+  .global-search-trigger { width: 34px; padding: 0; justify-content: center; }
+  .global-search-trigger span:nth-child(2),
+  .global-search-trigger kbd { display: none; }
+  .workspace-mode-switch button { padding: 0 6px; font-size: 11px; }
+  .theme-trigger { width: 40px; padding: 0; justify-content: center; font-size: 11px; }
+
+  .v56-spine-nav {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 4px 6px max(4px, env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(255,255,255,.12);
+    border-right: 0;
+  }
+  .v56-spine-item { min-height: 54px; display: flex; flex-direction: column; justify-content: center; gap: 3px; padding: 2px; border: 0; text-align: center; }
+  .v56-spine-item::before { inset: auto 18px -4px; width: auto; height: 3px; }
+  .v56-spine-glyph { width: 23px; height: 23px; font-size: 10px; }
+  .v56-spine-label { width: auto !important; opacity: 1 !important; font-size: 9px; letter-spacing: .03em; }
+  .v56-spine-item.module-fangzhen,
+  .v56-spine-item.module-jinshi,
+  .v56-spine-item.module-shihuo,
+  .v56-spine-toggle { display: none; }
+  .v56-mobile-more { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 9px; }
+  .v56-mobile-more span:first-child { width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 3px; font: 700 10px "Songti SC", SimSun, serif; }
+
+  .v56-context-bar { min-height: var(--v56-context-h); margin: 0; padding: 6px 8px; overflow-x: auto; overflow-y: hidden; }
+  .v56-context-identity { flex: 0 0 auto; }
+  .v56-context-identity strong { font-size: 13px; }
+  .v56-context-search { flex: 0 0 auto; }
+  .v56-context-select { flex: 0 0 110px; width: 110px; }
+  .v56-context-spacer { display: none; }
+
+  .body-row,
+  .module-page,
+  .statusbar { margin: 0; }
+  .body-row,
+  .module-page { padding-bottom: 64px; }
+  .module-page-inner { padding: 8px 8px 84px; }
+  .statusbar { display: none; }
+
+  .people-toolbar,
+  .fangzhen-toolbar,
+  .battle-toolbar,
+  .jinshi-toolbar,
+  .shihuo-toolbar { overflow-x: auto; flex-wrap: nowrap; }
+
+  .v56-people-master-detail { min-height: 0; display: block; border: 0; }
+  .v56-person-directory { max-height: none; border: 1px solid var(--v56-rule); }
+  .v56-person-dossier { display: none; }
+  .v56-person-row { min-height: 64px; }
+  .v56-jinshi-workbench-grid { min-height: 0; display: block; border: 0; }
+  .v56-jinshi-directory { max-height: none; border: 1px solid var(--v56-rule); }
+  .v56-jinshi-reader { display: none; }
+
+  .v56-mobile-module-sheet {
+    position: fixed;
+    z-index: var(--v56-z-sheet);
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(10,18,20,.42);
+  }
+  .v56-mobile-module-sheet section { width: 100%; max-height: min(88dvh, 720px); padding: 14px 14px calc(78px + env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain; border-radius: 12px 12px 0 0; background: var(--v56-sheet); box-shadow: 0 -16px 36px rgba(11,20,22,.18); }
+  .v56-mobile-module-sheet header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .v56-mobile-module-sheet header strong { font: 700 18px "Songti SC", SimSun, serif; }
+  .v56-mobile-module-sheet header button { width: 32px; height: 32px; border: 1px solid var(--v56-rule); border-radius: 50%; background: transparent; color: var(--v56-ink); font-size: 20px; }
+  .v56-mobile-module-sheet section > button:not(:first-child) { width: 100%; min-height: 48px; display: grid; grid-template-columns: 32px 70px minmax(0,1fr); align-items: center; gap: 8px; border: 0; border-top: 1px solid var(--v56-rule); background: transparent; color: var(--v56-ink); text-align: left; }
+  .v56-mobile-module-sheet section > button.active { color: var(--v56-vermilion); }
+  .v56-mobile-module-sheet section > button small { color: var(--v56-muted); }
+
+  .court-canvas { padding-inline: 8px; }
+  .court-canvas::before { font-size: 42px; }
+  .court-tier { padding-inline: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media print {
+  .v56-spine-nav,
+  .v56-context-bar,
+  .v56-evidence-rail { display: none !important; }
+  .body-row,
+  .module-page { margin: 0 !important; }
+}
+
+:root{
+  --v57-paper:#EEF0EB;
+  --v57-surface:#FAFBF7;
+  --v57-ink:#1B2B2E;
+  --v57-muted:#687572;
+  --v57-green:#4E6961;
+  --v57-vermilion:#A34738;
+  --v57-gold:#9B7A3B;
+  --v57-line:#D7DDD7;
+  --v57-focus:0 0 0 3px rgba(163,71,56,.22);
+}
+
+body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;color:var(--v57-ink);}
+.topbar{height:48px;min-height:48px;background:var(--v57-surface);border-bottom:1px solid var(--v57-line);}
+.global-header-tools{gap:5px;}
+.global-search-trigger,.theme-trigger,.workspace-mode-switch button{
+  height:30px;border-radius:6px;font:600 12px/1 -apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+  letter-spacing:0;padding:0 9px;transition:background-color .18s ease,border-color .18s ease,color .18s ease;
+}
+.global-search-trigger,.theme-trigger{border:1px solid var(--v57-line);background:var(--v57-surface);color:var(--v57-ink);}
+.global-search-trigger:hover,.theme-trigger:hover{transform:none;border-color:var(--v57-vermilion);background:#FFF8F5;}
+.global-search-trigger:focus-visible,.theme-trigger:focus-visible,.workspace-mode-switch button:focus-visible{outline:none;box-shadow:var(--v57-focus);}
+.global-search-trigger kbd{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--v57-muted);}
+.workspace-mode-switch{height:30px;padding:2px;border:1px solid var(--v57-line);border-radius:6px;background:#F2F4F0;}
+.workspace-mode-switch button{height:24px;border:0;background:transparent;color:var(--v57-muted);}
+.workspace-mode-switch button.active{background:var(--v57-ink);color:var(--v57-surface);}
+.v56-context-bar{min-height:44px;height:44px;padding:0 14px;background:rgba(250,251,247,.96);border-bottom:1px solid var(--v57-line);}
+.v56-context-identity strong,.v56-context-identity span{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;letter-spacing:0;}
+.v56-context-identity strong{font-size:14px;color:var(--v57-ink);}
+.v56-context-identity span{font-size:11px;color:var(--v57-muted);}
+.v56-segmented{gap:2px;padding:2px;border:1px solid var(--v57-line);border-radius:6px;background:#F2F4F0;}
+.v56-segmented button,.v56-context-bar .el-button,.v56-context-bar .el-select .el-input__wrapper{font-size:12px;}
+.v56-segmented button{height:26px;padding:0 9px;}
+.v56-context-bar .el-select .el-input__wrapper{min-height:28px;box-shadow:0 0 0 1px var(--v57-line) inset;border-radius:5px;}
+.v56-context-actions .el-button{height:28px;font-size:12px;}
+.v56-evidence-toggle{height:28px;font-size:12px;}
+.v57-appearance-popover{padding:12px!important;border:1px solid var(--v57-line)!important;border-radius:8px!important;box-shadow:0 12px 30px rgba(27,43,46,.14)!important;background:var(--v57-surface)!important;}
+.v57-appearance-popover .theme-drawer-intro{font-size:11px;line-height:1.55;color:var(--v57-muted);margin-bottom:8px;}
+.v57-appearance-popover .field-group-title{margin:10px 0 6px;font:600 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:var(--v57-muted);letter-spacing:.04em;}
+.v57-appearance-popover .theme-option{margin:0 0 5px;padding:7px;border-radius:5px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;}
+.v57-appearance-popover .theme-option:hover{transform:none;}
+.v57-appearance-popover .theme-swatches i{width:16px;height:24px;}
+.v57-appearance-popover .theme-option-copy strong{font-size:12px;}
+.v57-appearance-popover .theme-option-copy small{font-size:10px;}
+.v57-appearance-popover .theme-choice-row button{height:28px;font-size:11px;border-radius:5px;}
+.module-page h1,.page-heading h1{letter-spacing:0;font-size:25px;}
+.module-page p,.page-heading p{font-size:12px;line-height:1.65;}
+.el-button,.el-input__inner,.el-select,.el-checkbox,.el-radio,.el-table,.el-form-item__label{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;}
+.el-button{font-size:12px;}
+.el-input__inner{font-size:12px;}
+.el-form-item__label{font-size:12px;}
+.court-tier-title,.court-column-title,.court-department-head{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;letter-spacing:0;}
+.court-tier-title span{font-size:12px;}
+.court-slot-name{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-size:13px;letter-spacing:0;}
+.court-heir-tier{margin-top:0;}
+.jinshi-archive{display:none!important;}
+.jinshi-workbench .page-heading p,.shihuo-workbench .page-heading p{max-width:680px;}
+.shihuo-workbench .battle-metrics{display:none;}
+.shihuo-view-switch{display:flex;gap:2px;margin:10px 0;border-bottom:1px solid var(--v57-line);}
+.shihuo-view-switch button{border:0;border-bottom:2px solid transparent;background:transparent;padding:7px 12px;color:var(--v57-muted);font-size:12px;cursor:pointer;}
+.shihuo-view-switch button.active{color:var(--v57-vermilion);border-bottom-color:var(--v57-vermilion);font-weight:700;}
+@media(max-width:760px){
+  .topbar{height:46px;min-height:46px;}
+  .global-search-trigger span:not([aria-hidden]),.theme-trigger{font-size:0;width:30px;padding:0;}
+  .global-search-trigger span[aria-hidden]{font-size:17px;}
+  .global-search-trigger kbd{display:none;}
+  .v56-context-bar{height:auto;min-height:44px;padding:5px 9px;gap:5px;}
+  .v56-context-identity{min-width:72px;}
+  .v56-context-identity span{display:none;}
+  .v56-context-bar .el-select{max-width:120px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;}
+}

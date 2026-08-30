@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Canonical atlas, vendored libraries and generated deployment copies are
+    // validated by their own release checks; lint only maintained Site code.
+    "atlas/**",
+    "public/legacy/**",
+    "examples/**",
+    "drizzle/**",
   ]),
 ]);
 

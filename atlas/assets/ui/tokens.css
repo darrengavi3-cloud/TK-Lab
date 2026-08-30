@@ -1,0 +1,13 @@
+/* 观史台稳定令牌层：V64 起不再按版本追加视觉变量。 */
+:root {
+  --sgz-paper: var(--v56-paper, #eef0eb);
+  --sgz-surface: var(--v56-sheet, #fafbf7);
+  --sgz-surface-raised: var(--v56-sheet-raised, #ffffff);
+  --sgz-ink: var(--v56-ink, #1b2b2e);
+  --sgz-muted: var(--v56-muted, #64716e);
+  --sgz-rule: var(--v56-rule, #d5d9d3);
+  --sgz-accent: var(--v56-vermilion, #a34738);
+  --sgz-focus: var(--v56-focus, 0 0 0 3px rgba(163, 71, 56, .22));
+  --sgz-touch-target: 44px;
+  --sgz-reading-measure: 44em;
+}
