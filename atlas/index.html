@@ -21,6 +21,7 @@
 <script src="./data/han-bai-guan-zhi.js"></script>
 <script src="./data/general-titles.js"></script>
 <script src="./data/office-order-policies.js"></script>
+<script src="./assets/app/persistence-core.js?v=66.2"></script>
 
 <link rel="stylesheet" href="./assets/ui/tokens.css" />
 <link rel="stylesheet" href="./assets/ui/base.css" />
@@ -66,7 +67,7 @@ function loadSgzUiModule(name){
   if(sgzUiModulePromises.has(name))return sgzUiModulePromises.get(name);
   let request;
   if(name==='shell')request=import('./assets/app/shell.js');
-  else if(name==='persistence')request=import('./assets/app/persistence.js');
+  else if(name==='persistence')request=import('./assets/app/persistence.js?v=66.2');
   else if(name==='people')request=import('./assets/app/people.js');
   else if(name==='fangzhen')request=import('./assets/app/fangzhen.js');
   else if(name==='jinshi')request=import('./assets/app/jinshi.js');
@@ -181,7 +182,13 @@ function prepareSgzReviewData(){
 const SGZ_UI_CORE_READY=Promise.all([
   loadSgzUiModule('shell'),
   loadSgzUiModule('persistence')
-]).then(()=>window.SGZ_UI_MODULES);
+]).then(()=>{
+  const persistence=window.SGZ_UI_MODULES?.persistence;
+  if(!persistence?.createDirtyState||!persistence?.createPatchEngine){
+    throw new Error('持久化核心模块加载失败，请刷新页面后重试');
+  }
+  return window.SGZ_UI_MODULES;
+});
 let sheetJsLoadPromise=null;
 function ensureSheetJs(){
   if(window.XLSX)return Promise.resolve(window.XLSX);
@@ -1347,6 +1354,9 @@ function appendHanBaiGuanZhi(tree){
   };
   const createdByName=new Map();
   payload.records.forEach(record=>{
+    // 读者包只投影已通过构建期门禁的《百官志》记录；即使审校字段被剥离，
+    // 也必须保留其发布结论，不能在运行时退回“推定”并误隐藏大将军等制度节点。
+    const published=record.researchStatus==='确定'||window.SGZ_READER_BUILD===true;
     const parentName=record.parent==='__root__'?'__root__':record.parent;
     const parent=parentName==='__root__' ? root : (createdByName.get(parentName)||findExisting(parentName)||root);
     let node=findExisting(record.name) || createdByName.get(record.name);
@@ -1362,8 +1372,9 @@ function appendHanBaiGuanZhi(tree){
         sourceLocator:record.sourceLocator||payload.source.locator,
         sourceUrl:record.sourceUrl||payload.source.url||'',
         sourceExcerpt:record.sourceExcerpt||'',
-        confidence:record.confidence||'推定',
-        researchStatus:record.researchStatus||'推定',
+        confidence:record.confidence||(published?'确定':'推定'),
+        researchStatus:record.researchStatus||(published?'确定':'推定'),
+        officePublicationStatus:published?'verified':'review-only',
         customTags:Array.isArray(record.customTags)?record.customTags.slice():['东汉百官志补录']
       });
       tree.push(node);
@@ -1380,8 +1391,9 @@ function appendHanBaiGuanZhi(tree){
       node.sourceLocator=node.sourceLocator||record.sourceLocator||payload.source.locator;
       node.sourceUrl=node.sourceUrl||record.sourceUrl||payload.source.url||'';
       node.sourceExcerpt=node.sourceExcerpt||record.sourceExcerpt||'';
-      node.confidence=node.confidence||record.confidence||'推定';
-      node.researchStatus=node.researchStatus||record.researchStatus||'推定';
+      node.confidence=node.confidence||record.confidence||(published?'确定':'推定');
+      node.researchStatus=node.researchStatus||record.researchStatus||(published?'确定':'推定');
+      node.officePublicationStatus=published?'verified':'review-only';
       node.customTags=Array.from(new Set([...(node.customTags||[]),...(record.customTags||[]),'东汉百官志补录']));
     }
     createdByName.set(record.name,node);
@@ -3236,6 +3248,7 @@ const app = createApp({
     function switchModule(module,options={}){
       if(!options.fromUrl){urlApplyGeneration+=1;urlStateApplying=false;}
       if(module!=='map') pauseHistoryMap();
+      if(module!=='offices') closeHanCourtDetail(false);
       if(module==='map' && !historyMapBooted.value){
         historyMapUrl.value=HISTORY_MAP_URL;
         historyMapBooted.value=true;
@@ -3529,6 +3542,10 @@ const app = createApp({
     const courtStateKey = ref('');
     const showCourtResidence = ref(false);
     const activeCourtResidenceKey = ref('');
+    const activeCourtResidenceVirtual = ref(null);
+    const hanCourtActiveSection = ref('han-court-nine');
+    const showHanCourtDetail = ref(false);
+    let hanCourtDetailTrigger = null;
     function courtNodeVisible(node){
       if(!node || node.archived || node.hidden) return false;
       if(node.virtual) return false;
@@ -3682,6 +3699,130 @@ const app = createApp({
       })):[];
       return {root,heir,apex,apexCivil,apexMilitary,departments,columns,states,byKey};
     });
+    const HAN_COURT_SECTION_NAV = Object.freeze([
+      {id:'han-court-core',label:'中枢'},
+      {id:'han-court-nine',label:'九卿'},
+      {id:'han-court-secretariat',label:'台阁近侍'},
+      {id:'han-court-military',label:'军职宿卫'},
+      {id:'han-court-east-palace',label:'东宫'},
+      {id:'han-court-local',label:'地方行政'}
+    ]);
+    function hanCourtReadableNode(node){
+      if(!node||node.kind!=='office'||!courtNodeVisible(node)) return false;
+      if(workspaceMode.value==='review') return true;
+      const status=String(node.researchStatus||node.confidence||'');
+      const publication=String(node.officePublicationStatus||'');
+      if(publication&&publication!=='verified') return false;
+      if((node.customTags||[]).includes('东汉百官志补录')&&status&&status!=='确定') return false;
+      return !/^(?:待考|存疑|争议|排除)$/.test(status);
+    }
+    function hanCourtUnique(nodes){
+      const seen=new Set();
+      return (nodes||[]).filter(node=>{
+        if(!node||seen.has(node.key)) return false;
+        seen.add(node.key);
+        return true;
+      });
+    }
+    function hanCourtDutySummary(node){
+      const duty=readingText(node?.duty||'').replace(/[。；;]+$/g,'').trim();
+      if(!duty) return '';
+      return duty.split(/[，,；;]/).map(item=>item.trim()).filter(Boolean).slice(0,2).join(' · ');
+    }
+    const hanCourtStructure = computed(()=>{
+      if(currentFaction.value!=='han'||treeType.value!=='office') return {
+        core:[],nineGroups:[],secretariatGroups:[],militaryGroups:[],eastPalaceRoles:[],searchable:[],local:{states:0,commanderies:0,counties:0}
+      };
+      const nodes=currentArr.value.filter(hanCourtReadableNode);
+      const cleanName=node=>String(node?.name||'').replace(/[（(].*?[)）]/g,'').trim();
+      const find=name=>nodes.find(node=>cleanName(node)===name)||null;
+      const take=names=>hanCourtUnique(names.map(find).filter(Boolean));
+      const core=take(['太傅','太尉','司徒','司空','大将军']);
+      const nineGroups=[
+        {id:'ritual',label:'礼制',items:take(['太常','大鸿胪','宗正'])},
+        {id:'palace',label:'宫卫',items:take(['光禄勋','卫尉','太仆'])},
+        {id:'governance',label:'治政',items:take(['廷尉','大司农','少府'])}
+      ].filter(group=>group.items.length);
+      const groupByCategory=(id,label,categories)=>({
+        id,label,items:hanCourtUnique(nodes.filter(node=>categories.includes(String(node.category||''))).sort((a,b)=>courtNodeOrder(a)-courtNodeOrder(b)||cleanName(a).localeCompare(cleanName(b),'zh-CN')))
+      });
+      const secretariatGroups=[
+        groupByCategory('shangshu','尚书台',['尚书台省']),
+        groupByCategory('yushi','御史台',['御史台']),
+        groupByCategory('attendants','近侍',['散骑集书'])
+      ].filter(group=>group.items.length);
+      const militarySource=nodes.filter(node=>node.category==='将军武职'||node.category==='大将军／大司马'||node.category==='属国护官');
+      const militaryGroups=[
+        {id:'heavy',label:'比公重号',items:take(['骠骑将军','车骑将军','卫将军'])},
+        {id:'directions',label:'前后左右将军',items:take(['前将军','后将军','左将军','右将军'])},
+        {id:'regional',label:'方面将军',items:militarySource.filter(node=>node.relationType==='方面将军')},
+        {id:'zhonglang',label:'中郎宿卫',items:militarySource.filter(node=>node.relationType==='中郎将')},
+        {id:'five-colonels',label:'五校尉',items:militarySource.filter(node=>node.relationType==='五校尉')},
+        {id:'frontier',label:'边疆护官',items:militarySource.filter(node=>node.category==='属国护官')}
+      ].map(group=>({
+        ...group,
+        items:hanCourtUnique(group.items.filter(hanCourtReadableNode).sort((a,b)=>courtNodeOrder(a)-courtNodeOrder(b)||cleanName(a).localeCompare(cleanName(b),'zh-CN')))
+      })).filter(group=>group.items.length);
+      const eastPalace=(window.SGZ_OFFICE_RESIDENCES||[]).find(record=>record.id==='residence:han:east-palace');
+      const eastPalaceRoles=(eastPalace?.roles||[]).map((role,index)=>({key:`han-east-palace-role-${index}`,name:role.officeName,meta:role.sourceText||''}));
+      const searchable=hanCourtUnique([
+        ...core,
+        ...nineGroups.flatMap(group=>group.items),
+        ...secretariatGroups.flatMap(group=>group.items),
+        ...militaryGroups.flatMap(group=>group.items)
+      ]);
+      const localStates=courtHierarchy.value.states||[];
+      const localKeys=new Set(localStates.flatMap(state=>[state.node.key,...state.commanderies.map(node=>node.key)]));
+      const counties=currentArr.value.filter(node=>node.category==='县邑令长'&&localKeys.has(node.parent)).length;
+      return {
+        core,nineGroups,secretariatGroups,militaryGroups,eastPalaceRoles,searchable,
+        local:{states:localStates.length,commanderies:localStates.reduce((sum,state)=>sum+state.commanderies.length,0),counties}
+      };
+    });
+    const hanCourtSelectedDetail = computed(()=>{
+      if(currentFaction.value!=='han'||!selectedNode.value||selectedNode.value.kind==='root') return null;
+      const node=selectedNode.value;
+      const rawParent=currentArr.value.find(item=>item.key===node.parent)||null;
+      const parent=rawParent?.hidden&&rawParent.name==='将军府'?null:rawParent;
+      const children=currentArr.value.filter(item=>item.parent===node.key&&hanCourtReadableNode(item)).sort((a,b)=>courtNodeOrder(a)-courtNodeOrder(b));
+      return {node,parent,children,figures:courtFigures(node)};
+    });
+    function selectHanCourtNode(node,event){
+      if(!node) return;
+      courtSlotClick(node);
+      if(viewportWidth.value<=760&&node.kind!=='root'&&!showCourtResidence.value){
+        hanCourtDetailTrigger=event?.currentTarget||document.activeElement;
+        showHanCourtDetail.value=true;
+        nextTick(()=>document.querySelector('#han-court-detail .han-detail-close')?.focus({preventScroll:true}));
+      }
+    }
+    function scrollHanCourtSection(id){
+      hanCourtActiveSection.value=id;
+    }
+    function closeHanCourtDetail(restoreFocus=true){
+      showHanCourtDetail.value=false;
+      const trigger=hanCourtDetailTrigger;
+      hanCourtDetailTrigger=null;
+      if(restoreFocus&&trigger?.focus) nextTick(()=>trigger.focus({preventScroll:true}));
+    }
+    function handleHanCourtDetailKeydown(event){
+      if(event.key==='Escape'){
+        event.preventDefault();
+        closeHanCourtDetail();
+        return;
+      }
+      if(event.key!=='Tab'||viewportWidth.value>760) return;
+      const focusable=[...event.currentTarget.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')]
+        .filter(item=>!item.disabled&&item.getAttribute('aria-hidden')!=='true'&&item.getClientRects().length);
+      if(!focusable.length){ event.preventDefault(); return; }
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){ event.preventDefault();last.focus(); }
+      else if(!event.shiftKey&&document.activeElement===last){ event.preventDefault();first.focus(); }
+    }
+    function openHanEastPalace(){
+      const heir=courtHierarchy.value.heir;
+      if(heir&&courtResidenceAvailable(heir)) openCourtResidence(heir);
+    }
     const courtActiveState = computed(()=>{
       const states=courtHierarchy.value.states||[];
       return states.find(item=>item.node.key===courtStateKey.value)||states[0]||null;
@@ -3862,7 +4003,7 @@ const app = createApp({
       return [node?.serviceDomain,node?.institutionType,node?.hanRank,node?.rank9,node?.note&&/待考|未详/.test(node.note)?'任职未详':''].filter(Boolean).join(' · ')||'府属官次未详';
     }
     const courtResidence = computed(()=>{
-      const owner=currentArr.value.find(node=>node.key===activeCourtResidenceKey.value)||null;
+      const owner=currentArr.value.find(node=>node.key===activeCourtResidenceKey.value)||activeCourtResidenceVirtual.value||null;
       const roles=courtResidenceRolesFor(owner).slice().sort((a,b)=>courtResidenceRoleOrder(a)-courtResidenceRoleOrder(b)||String(a.name).localeCompare(String(b.name),'zh-CN'));
       return {owner,roles,definition:residenceDefinitionFor(owner),kaifuPolicy:courtKaifuPolicyFor(owner)};
     });
@@ -3890,11 +4031,12 @@ const app = createApp({
     function courtKaifuLabel(owner){ return courtKaifuPolicyFor(owner)?.qualificationType||'待考'; }
     function openCourtResidence(node){
       if(!courtResidenceAvailable(node)) return selectCourtSlot(node);
-      selectedKey.value=node.key;
+      activeCourtResidenceVirtual.value=node.virtualSlot?node:null;
+      if(!node.virtualSlot) selectedKey.value=node.key;
       activeCourtResidenceKey.value=node.key;
       showCourtResidence.value=true;
     }
-    function closeCourtResidence(){ showCourtResidence.value=false; activeCourtResidenceKey.value=''; }
+    function closeCourtResidence(){ showCourtResidence.value=false; activeCourtResidenceKey.value=''; activeCourtResidenceVirtual.value=null; }
     function editCourtResidenceOwner(){
       const owner=courtResidence.value.owner;
       if(!owner) return;
@@ -3902,7 +4044,11 @@ const app = createApp({
       setOfficePresentation('table');
     }
     function courtSlotClick(node){
-      if(!node||node.virtualSlot) return;
+      if(!node) return;
+      if(node.virtualSlot){
+        if(currentFaction.value==='han'&&courtResidenceAvailable(node)) openCourtResidence(node);
+        return;
+      }
       selectCourtSlot(node);
     }
     function courtDisplayName(node){ return courtSlotKey(node)==='太子'?'太子':String(node?.name||''); }
@@ -5069,6 +5215,7 @@ const app = createApp({
 
     function switchFaction(k){
       closeCourtResidence();
+      closeHanCourtDetail(false);
       currentFaction.value = k;
       selectedKey.value = null;
       catalogFocusKey.value = null;
@@ -5083,6 +5230,7 @@ const app = createApp({
     }
     function switchTreeType(t){
       closeCourtResidence();
+      closeHanCourtDetail(false);
       treeType.value = t;
       selectedKey.value = null;
       catalogFocusKey.value = null;
@@ -7766,7 +7914,11 @@ const app = createApp({
         setCachePointer('localStorage',{pendingPatchSync:true,patchCount:payload.patches.length,bytes:cacheByteLength(json)});
       }catch(_){ /* 页面卸载阶段不能再弹出交互提示 */ }
     }
-    function syncViewport(){ viewportWidth.value=window.innerWidth; }
+    function syncViewport(){
+      const wasMobile=viewportWidth.value<=760;
+      viewportWidth.value=window.innerWidth;
+      if(wasMobile&&viewportWidth.value>760&&showHanCourtDetail.value) closeHanCourtDetail(false);
+    }
     onMounted(()=>{
       loadInterfacePreferences();
       loadSearchHistory();
@@ -7796,7 +7948,7 @@ const app = createApp({
     });
 
     return {
-      factions, activeModule, moduleContextLabel, v56ModuleItems, v56ModuleMeta, moduleSearchScope, switchModule, currentFaction, treeType, viewMode, officePresentation, setOfficePresentation, validationEnabled, zoomPct,
+      factions, activeModule, viewportWidth, moduleContextLabel, v56ModuleItems, v56ModuleMeta, moduleSearchScope, switchModule, currentFaction, treeType, viewMode, officePresentation, setOfficePresentation, validationEnabled, zoomPct,
       showLog, showStats, showVersions, showOfficials, showSearch, showBatch, showArchives, showCompare, showPalette, showTheme, showTongdian, showGeneralTitles, generalTitlePolity,
       themeKey, densityMode, motionMode, workspaceMode, themeOptions, setTheme, setDensity, setMotion, setWorkspaceMode,
       spineCollapsed, evidenceRailCollapsed, showMobileModules, toggleSpine, toggleEvidenceRail, openMobileModules, closeMobileModules, handleMobileModulesKeydown, v56ActiveRecord, selectV56Record,
@@ -7814,7 +7966,8 @@ const app = createApp({
       courtPrimaryFigure, courtFigureCount, courtSeatCount, courtFigureSlots, courtColumnCount, courtSeatMeta, courtRulerLabel, courtDisplayName,
       courtBranchOf, courtSeatStats, showCourtResidence, courtResidence, courtResidenceAvailable, courtResidenceStatus, courtResidenceRoleMeta,
       openCourtResidence, closeCourtResidence, editCourtResidenceOwner, courtSlotClick, openCourtPerson, courtResidenceStyle, courtResidenceClass, courtResidenceType, courtResidenceName, courtKaifuLabel,
-      courtResidenceReason,
+      courtResidenceReason, HAN_COURT_SECTION_NAV, hanCourtActiveSection, hanCourtStructure, hanCourtSelectedDetail, showHanCourtDetail,
+      hanCourtDutySummary, selectHanCourtNode, scrollHanCourtSection, closeHanCourtDetail, handleHanCourtDetailKeydown, openHanEastPalace,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
@@ -8095,7 +8248,152 @@ const app = createApp({
           <span>{{timelineEnabled ? timelineYear+'年 · '+currentEraLabel+'；自动隐藏未设／已废官职' : '显示全部沿革时期；打开后自动显示国家年号'}}</span>
         </div>
         <div v-if="officePresentation==='catalog'&&treeType==='office'&&!showCourtResidence" class="court-scroll">
-          <div v-if="courtHierarchy.root" class="court-canvas" :style="{'--court-accent':currentFactionDef.color}">
+          <div v-if="currentFaction==='han'&&courtHierarchy.root" class="han-court-canvas" :style="{'--court-accent':currentFactionDef.color}">
+            <header class="han-court-header">
+              <div>
+                <div class="han-court-kicker">《后汉书·百官志》</div>
+                <h2>后汉官职结构</h2>
+              </div>
+              <div v-if="workspaceMode==='review'" class="court-heading-actions review-only">
+                <el-button size="small" type="primary" plain @click="addCourtPosition">＋ 添加朝堂位置</el-button>
+                <el-button size="small" text @click="setOfficePresentation('table')">打开数据表</el-button>
+              </div>
+            </header>
+
+            <div class="han-court-layout" :class="{'review-mode':workspaceMode==='review'}">
+              <nav class="han-court-nav" aria-label="后汉官职结构分区" :inert="showHanCourtDetail&&viewportWidth<=760?true:undefined">
+                <button v-for="item in HAN_COURT_SECTION_NAV" :key="item.id" type="button"
+                        :class="{active:hanCourtActiveSection===item.id}" :aria-current="hanCourtActiveSection===item.id?'location':undefined"
+                        @click="scrollHanCourtSection(item.id)">{{item.label}}</button>
+              </nav>
+
+              <main class="han-court-map" :inert="showHanCourtDetail&&viewportWidth<=760?true:undefined">
+                <section id="han-court-core" class="han-court-section han-court-core-section">
+                  <header class="han-court-section-head"><span>01</span><div><h3>中枢</h3><small>皇权、东宫与辅政公位</small></div></header>
+                  <div class="han-imperial-axis" aria-label="皇帝">
+                    <div class="han-office-card han-office-card--sovereign han-office-card--structural">
+                      <span class="han-office-eyebrow">最高统治者</span><strong>{{courtHierarchy.root.name}}</strong>
+                    </div>
+                    <span class="han-structure-line" aria-hidden="true"></span>
+                  </div>
+                  <div class="han-core-stage">
+                    <div class="han-core-grid" aria-label="辅政、公位与大将军">
+                      <button v-for="node in hanCourtStructure.core" :key="'han-core-'+node.key" type="button" class="han-office-card"
+                              :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
+                              @click="selectHanCourtNode(node,$event)">
+                        <span class="han-office-eyebrow">{{node.category}}</span><strong>{{node.name}}</strong>
+                        <small>{{node.hanRank||'品秩未录'}}</small><p v-if="hanCourtDutySummary(node)">{{hanCourtDutySummary(node)}}</p>
+                        <span v-if="courtResidenceAvailable(node)" class="han-office-residence">府</span>
+                      </button>
+                    </div>
+                    <div class="han-heir-branch">
+                      <button type="button" class="han-office-card han-office-card--heir" @click="openHanEastPalace">
+                        <span class="han-office-eyebrow">东宫</span><strong>太子</strong><small>查看官属</small>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+
+                <section v-if="hanCourtActiveSection==='han-court-nine'" id="han-court-nine" class="han-court-section">
+                  <header class="han-court-section-head"><span>02</span><div><h3>九卿</h3><small>礼制 · 宫卫 · 治政</small></div></header>
+                  <div class="han-nine-grid">
+                    <article v-for="group in hanCourtStructure.nineGroups" :key="group.id" class="han-nine-group">
+                      <h4>{{group.label}}</h4>
+                      <button v-for="node in group.items" :key="'han-nine-'+node.key" type="button" class="han-office-card han-office-card--compact"
+                              :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
+                              @click="selectHanCourtNode(node,$event)">
+                        <strong>{{node.name}}</strong><small>{{node.hanRank}}</small><p>{{hanCourtDutySummary(node)}}</p>
+                      </button>
+                    </article>
+                  </div>
+                </section>
+
+                <section v-if="hanCourtActiveSection==='han-court-secretariat'" id="han-court-secretariat" class="han-court-section">
+                  <header class="han-court-section-head"><span>03</span><div><h3>台阁近侍</h3><small>章奏、监察与近侍官分区</small></div></header>
+                  <div class="han-functional-grid">
+                    <article v-for="group in hanCourtStructure.secretariatGroups" :key="group.id" class="han-functional-group">
+                      <header><h4>{{group.label}}</h4><span>{{group.items.length}}</span></header>
+                      <div class="han-office-chip-grid">
+                        <button v-for="node in group.items" :key="'han-secretariat-'+node.key" type="button"
+                                :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
+                                @click="selectHanCourtNode(node,$event)">
+                          <strong>{{node.name}}</strong><small>{{node.hanRank||node.category}}</small>
+                        </button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section v-if="hanCourtActiveSection==='han-court-military'" id="han-court-military" class="han-court-section">
+                  <header class="han-court-section-head"><span>04</span><div><h3>军职宿卫</h3><small>将军、郎卫、校尉与护边职分组</small></div></header>
+                  <div class="han-military-list">
+                    <article v-for="group in hanCourtStructure.militaryGroups" :key="group.id" class="han-military-group">
+                      <h4>{{group.label}}</h4>
+                      <div class="han-office-chip-grid">
+                        <button v-for="node in group.items" :key="'han-military-'+node.key" type="button"
+                                :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
+                                @click="selectHanCourtNode(node,$event)">
+                          <strong>{{node.name}}</strong><small>{{node.hanRank||'品秩未录'}}</small><span v-if="courtResidenceAvailable(node)">府</span>
+                        </button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section v-if="hanCourtActiveSection==='han-court-east-palace'" id="han-court-east-palace" class="han-court-section han-east-palace-section">
+                  <header class="han-court-section-head"><span>05</span><div><h3>东宫</h3><small>太子官属独立成署</small></div></header>
+                  <div class="han-east-palace-body">
+                    <div class="han-east-palace-roles" aria-label="东宫官属摘要">
+                      <span v-for="role in hanCourtStructure.eastPalaceRoles" :key="role.key">{{role.name}}</span>
+                    </div>
+                    <button type="button" class="han-system-action" @click="openHanEastPalace">查看东宫官属</button>
+                  </div>
+                </section>
+
+                <section v-if="hanCourtActiveSection==='han-court-local'" id="han-court-local" class="han-court-section han-local-section">
+                  <header class="han-court-section-head"><span>06</span><div><h3>地方行政</h3><small>州、郡国、县邑三级索引</small></div></header>
+                  <div class="han-local-ladder" aria-label="后汉地方行政层级">
+                    <div><strong>州级长官</strong><span>{{hanCourtStructure.local.states}} 州级节点</span></div><i aria-hidden="true"></i>
+                    <div><strong>郡国长官</strong><span>{{hanCourtStructure.local.commanderies}} 郡国节点</span></div><i aria-hidden="true"></i>
+                    <div><strong>县邑长吏</strong><span>{{hanCourtStructure.local.counties}} 县邑节点</span></div>
+                  </div>
+                  <button type="button" class="han-system-action" @click="switchModule('fangzhen')">进入州镇表</button>
+                </section>
+              </main>
+
+              <teleport to="body" :disabled="viewportWidth>760">
+                <button v-if="workspaceMode!=='review'&&showHanCourtDetail" type="button" class="han-court-detail-backdrop" aria-label="关闭官职详情" @click="closeHanCourtDetail()"></button>
+                <aside v-if="workspaceMode!=='review'" id="han-court-detail" class="han-court-detail" :class="{'mobile-open':showHanCourtDetail}"
+                       :role="viewportWidth<=760?'dialog':'complementary'" :aria-modal="viewportWidth<=760?'true':undefined"
+                       aria-label="后汉官职详情" aria-live="polite" @keydown="handleHanCourtDetailKeydown">
+                <button type="button" class="han-detail-close" aria-label="关闭官职详情" @click="closeHanCourtDetail()">关闭</button>
+                <template v-if="hanCourtSelectedDetail">
+                  <header><span>{{hanCourtSelectedDetail.node.category}}</span><h3>{{hanCourtSelectedDetail.node.name}}</h3></header>
+                  <dl>
+                    <div v-if="hanCourtSelectedDetail.node.hanRank||hanCourtSelectedDetail.node.rank9"><dt>品秩</dt><dd>{{hanCourtSelectedDetail.node.hanRank||hanCourtSelectedDetail.node.rank9}}</dd></div>
+                    <div v-if="hanCourtSelectedDetail.parent"><dt>结构归属</dt><dd>{{hanCourtSelectedDetail.parent.name}}</dd></div>
+                  </dl>
+                  <section v-if="hanCourtSelectedDetail.node.duty"><h4>职掌</h4><p>{{hanCourtSelectedDetail.node.duty}}</p></section>
+                  <section v-if="hanCourtSelectedDetail.figures.length"><h4>任官人物</h4><div class="han-detail-people"><button v-for="figure in hanCourtSelectedDetail.figures" :key="figure.id||figure.personId||figure.name" type="button" @click="openCourtPerson(figure)">{{figure.name}}</button></div></section>
+                  <section v-if="hanCourtSelectedDetail.children.length"><h4>属官</h4><div class="han-detail-children"><button v-for="child in hanCourtSelectedDetail.children.slice(0,12)" :key="child.key" type="button" @click="selectHanCourtNode(child,$event)">{{child.name}}</button></div></section>
+                  <button v-if="courtResidenceAvailable(hanCourtSelectedDetail.node)" type="button" class="han-detail-residence" @click="openCourtResidence(hanCourtSelectedDetail.node)">进入府属</button>
+                </template>
+                <template v-else>
+                  <header><span>官署详情</span><h3>后汉百官</h3></header>
+                  <div class="han-detail-overview"><strong>{{hanCourtStructure.searchable.length}}</strong><span>项当前可见中央官职</span></div>
+                </template>
+                </aside>
+              </teleport>
+            </div>
+
+            <footer class="han-court-legend" aria-label="结构图说明">
+              <span><i class="axis"></i>连线表示展示层级，不自动等同逐级直属</span>
+              <span><i class="group"></i>分组表示制度功能，不跨类强定尊卑</span>
+              <span><i class="residence">府</i>仅在已有府属规范记录时出现</span>
+            </footer>
+          </div>
+
+          <div v-else-if="courtHierarchy.root" class="court-canvas" :style="{'--court-accent':currentFactionDef.color}">
             <header class="court-heading">
               <h2>{{currentFactionDef.label||currentFactionDef.name}}中央官署总览</h2>
               <div v-if="workspaceMode==='review'" class="court-heading-actions review-only">
@@ -8913,7 +9211,7 @@ const app = createApp({
             <el-table-column label="辖区" min-width="145"><template #default="scope"><button type="button" class="person-link" @click.stop="jumpFangzhenToMap(scope.row)">{{scope.row.jurisdiction||'—'}}</button></template></el-table-column>
             <el-table-column label="治所／驻地" min-width="150">
               <template #default="scope">
-                <div>{{scope.row.seat||'审校记录未发布'}}</div>
+                <div v-if="scope.row.seat">{{scope.row.seat}}</div>
               </template>
             </el-table-column>
             <el-table-column label="任期" min-width="220">
@@ -8931,7 +9229,7 @@ const app = createApp({
           <article v-for="record in fangzhenVisibleRecords" :key="'mobile-'+record.id" class="fangzhen-mobile-card" role="button" tabindex="0" @click="selectV56Record('fangzhen',record)" @keydown.enter.prevent="selectV56Record('fangzhen',record)" @keydown.space.prevent="selectV56Record('fangzhen',record)">
             <header><span class="fz-polity-badge" :class="fangzhenPolityClass(record.polity)">{{record.polity}}</span><span>{{fangzhenTypeLabel(record.recordType)}}</span><time>{{record.tenureText||'任期未详'}}</time></header>
             <button class="fz-mobile-person" @click.stop="openPeopleDetail(record.personId||record.commander)">{{record.commander}}</button><strong>{{record.title}}</strong>
-            <dl><div><dt>辖区</dt><dd><button @click.stop="jumpFangzhenToMap(record)">{{record.jurisdiction||'辖区未详'}}</button></dd></div><div><dt>治所</dt><dd>{{record.seat||'审校记录未发布'}}</dd></div></dl>
+            <dl><div><dt>辖区</dt><dd><button @click.stop="jumpFangzhenToMap(record)">{{record.jurisdiction||'辖区未详'}}</button></dd></div><div v-if="record.seat"><dt>治所</dt><dd>{{record.seat}}</dd></div></dl>
           </article>
         </div>
         <section v-if="workspaceMode==='review'&&fangzhenOverlapIssues.length" class="fangzhen-overlap-audit review-only"><header>任期重叠审校</header><p v-for="issue in fangzhenOverlapIssues.slice(0,20)" :key="issue.id">{{issue.unit}} · {{issue.office}}：{{issue.a.commander}}（{{issue.a.tenureText||issue.a.startYear+'—'+issue.a.endYear}}）／{{issue.b.commander}}（{{issue.b.tenureText||issue.b.startYear+'—'+issue.b.endYear}}）</p></section>
@@ -9198,7 +9496,7 @@ const app = createApp({
           <h3 class="v56-evidence-title">{{v56ActiveRecord.record.commander}} · {{v56ActiveRecord.record.title}}</h3>
           <div class="v56-evidence-meta">{{v56ActiveRecord.record.id}} · {{v56ActiveRecord.record.tenureText||'任期未详'}}</div>
           <span class="v56-evidence-status" :class="{pending:['待考','存疑'].includes(v56ActiveRecord.record.confidence)}">{{v56ActiveRecord.record.confidence||'证据状态待考'}}</span>
-          <section class="v56-evidence-section"><h4>行政关系</h4><p>{{v56ActiveRecord.record.polity||'政权待考'}} · {{v56ActiveRecord.record.jurisdiction||'辖区未详'}}</p><p>治所：{{v56ActiveRecord.record.seat||'审校记录未发布'}}</p></section>
+          <section class="v56-evidence-section"><h4>行政关系</h4><p>{{v56ActiveRecord.record.polity||'政权待考'}} · {{v56ActiveRecord.record.jurisdiction||'辖区未详'}}</p><p v-if="v56ActiveRecord.record.seat">治所：{{v56ActiveRecord.record.seat}}</p></section>
           <section class="v56-evidence-section"><h4>跨模块动作</h4><el-button size="small" plain @click="openPeopleDetail(v56ActiveRecord.record.personId||v56ActiveRecord.record.commander)">查看人物履历</el-button><el-button size="small" plain @click="jumpFangzhenToMap(v56ActiveRecord.record)">地图定位</el-button></section>
         </template>
         <template v-else-if="activeModule==='jinshi'&&activeEpigraphicDetail">

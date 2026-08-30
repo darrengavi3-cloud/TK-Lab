@@ -621,17 +621,35 @@ if (!fs.existsSync(v66FangzhenReaderPath)) fail('缺少 data/v66-fangzhen-reader
 const v66FangzhenSource = readJson(v66FangzhenReaderPath);
 const v66FangzhenRecords = (v66FangzhenSource.records || []).map(row => pickFields(row, fangzhenFields));
 const fangzhenReaderIds = new Set(v66FangzhenRecords.map(row => String(row.id || '')));
-if (v66FangzhenRecords.length !== 27 || fangzhenReaderIds.size !== 27) {
-  fail(`V66 州镇读者投影应为 27 条唯一记录，当前 ${v66FangzhenRecords.length}/${fangzhenReaderIds.size}`);
+const v65FangzhenAudit = readJson(path.join(root, 'data', 'v65-fangzhen-audit.json'));
+const expectedFangzhenReaderIds = new Set((v65FangzhenAudit.records || [])
+  .filter(row => row.readerVisible === true && row.publicationStatus === 'reader-visible')
+  .map(row => String(row.recordId || '')));
+if (v66FangzhenRecords.length !== 45 || fangzhenReaderIds.size !== 45 || expectedFangzhenReaderIds.size !== 45) {
+  fail(`V66 州镇任职读者投影应继承 V65 的 45 条唯一记录，当前 ${v66FangzhenRecords.length}/${fangzhenReaderIds.size}/${expectedFangzhenReaderIds.size}`);
 }
-if (v66FangzhenRecords.some(row => !row.seat || !row.seatName || !row.seatType || !row.seatPeriodId || !row.administrativeUnitId)) {
-  fail('V66 读者州镇记录存在未通过分期治所门禁的数据');
+if ([...expectedFangzhenReaderIds].some(id => !fangzhenReaderIds.has(id))) {
+  fail('V66 州镇任职读者投影与 V65 reader-visible ID 集合不一致');
+}
+const verifiedSeatRecordIds = new Set((v66FangzhenSource.verifiedSeatRecordIds || []).map(String));
+const rowsWithSeat = v66FangzhenRecords.filter(row => row.seat !== undefined);
+if (verifiedSeatRecordIds.size !== 27 || rowsWithSeat.length !== 27) {
+  fail(`V66 读者州镇已核治所应为 27 条，当前 ${verifiedSeatRecordIds.size}/${rowsWithSeat.length}`);
+}
+const seatFields = ['seat','seatName','seatType','seatPeriodId','administrativeUnitId','seatValidFromYear','seatValidToYear'];
+if (v66FangzhenRecords.some(row => {
+  const present = seatFields.filter(field => row[field] !== undefined);
+  return (present.length !== 0 && present.length !== seatFields.length)
+    || (present.length === seatFields.length && !verifiedSeatRecordIds.has(String(row.id || '')));
+})) {
+  fail('V66 读者州镇治所字段不是全有或全无，或与已核 ID 集合不一致');
 }
 const fangzhenReaderPayload = {
   schemaVersion: 'V66-reader',
   modelId: 'sgz-v66-fangzhen-reader',
-  summary: { records: v66FangzhenRecords.length },
+  summary: { records: v66FangzhenRecords.length, verifiedSeats: verifiedSeatRecordIds.size },
   recordIds: [...fangzhenReaderIds].sort(compareText),
+  verifiedSeatRecordIds: [...verifiedSeatRecordIds].sort(compareText),
   records: v66FangzhenRecords
 };
 assertNoBannedPayloadKeys(fangzhenReaderPayload);

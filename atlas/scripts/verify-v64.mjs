@@ -363,12 +363,18 @@ assert(readerManifest.readerProjection?.personAppointmentReferenceCount === actu
 assert(readerManifest.readerProjection?.personPeerageReferenceCount === actualPeerageRelations.size && readerManifest.readerProjection?.personPeerageRelationCount === actualPeerageRelations.size, '封爵关联清单计数不闭合');
 
 const sourceIndexHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-const persistenceModule = fs.readFileSync(path.join(root, 'assets/app/persistence.js'), 'utf8');
+const persistenceModule = [
+  fs.readFileSync(path.join(root, 'assets/app/persistence-core.js'), 'utf8'),
+  fs.readFileSync(path.join(root, 'assets/app/persistence.js'), 'utf8')
+].join('\n');
 const canonicalRelationLoader = "loadSgzDataScript('v63-reader-person-relations','./data/v63-reader-person-relations.js?v=64','SGZ_V63_READER_PERSON_RELATIONS')";
 const canonicalPeopleRefresh = "if(section==='people')refreshLazyPeopleData()";
 assert(sourceIndexHtml.includes(canonicalRelationLoader), '规范入口未加载 V63 纯净读者人物关联');
 assert(sourceIndexHtml.indexOf(canonicalRelationLoader) < sourceIndexHtml.indexOf(canonicalPeopleRefresh), '规范入口人物关联没有在人物数据刷新前加载');
 assert(!/snapshotAll/.test(sourceIndexHtml + persistenceModule), '仍存在 snapshotAll 整库快照模式');
+assert(sourceIndexHtml.includes('<script src="./assets/app/persistence-core.js?v=66.2"></script>'), '持久化核心未作为同步首屏依赖加载');
+assert(/SGZ_UI_MODULES\.persistence=Object\.freeze\(\{createDirtyState,createPatchEngine\}\)/.test(persistenceModule), '持久化核心未注册稳定全局接口');
+assert(sourceIndexHtml.includes("if(!persistence?.createDirtyState||!persistence?.createPatchEngine)"), '界面启动前未验证持久化核心接口');
 assert(/autosaveInterval=setInterval\(\(\)=>\{if\(pendingPersistencePatches\.length\)saveLocal\(true\);\},30000\)/.test(sourceIndexHtml), '30 秒周期未限定为增量补丁刷新');
 assert(/checkpointInterval=setInterval\([\s\S]*?saveLocalNow\(true,true\)[\s\S]*?,600000\)/.test(sourceIndexHtml), '完整检查点未限定为 10 分钟');
 const beforeUnloadBody = sourceIndexHtml.match(/function beforeUnload\(\)\{([\s\S]*?)\n\s*\}\n\s*function syncViewport/)?.[1] || '';
