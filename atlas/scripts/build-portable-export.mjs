@@ -33,7 +33,9 @@ const officeOrderPoliciesPath = path.join(root, 'data', 'office-order-policies.j
 const kaifuPoliciesPath = path.join(root, 'data', 'kaifu-policies.js');
 const seatPoliciesPath = path.join(root, 'data', 'office-seat-policies.js');
 const officeResidencesPath = path.join(root, 'data', 'office-residences.js');
-const fangzhenSeatSupplementPath = path.join(root, 'data', 'fangzhen-seat-supplement.js');
+const v66PeerageStagesPath = path.join(root, 'data', 'v66-peerage-stages.js');
+const v66AdministrativeSeatPeriodsPath = path.join(root, 'data', 'v66-administrative-seat-periods.js');
+const v66FangzhenReaderPath = path.join(root, 'data', 'v66-fangzhen-reader.js');
 const personSourceIndexPath = path.join(root, 'data', 'person-source-index.js');
 const v60PersonWorkbookImportJsonPath = path.join(root, 'data', 'v60-person-workbook-import.json');
 const v61PersonSupplementsPath = path.join(root, 'data', 'v61-person-supplements.js');
@@ -102,7 +104,9 @@ const officeOrderPoliciesScript = fs.readFileSync(officeOrderPoliciesPath, 'utf8
 const kaifuPoliciesScript = fs.readFileSync(kaifuPoliciesPath, 'utf8').trim();
 const seatPoliciesScript = fs.readFileSync(seatPoliciesPath, 'utf8').trim();
 const officeResidencesScript = fs.readFileSync(officeResidencesPath, 'utf8').trim();
-const fangzhenSeatSupplementScript = fs.readFileSync(fangzhenSeatSupplementPath, 'utf8').trim();
+const v66PeerageStagesScript = fs.readFileSync(v66PeerageStagesPath, 'utf8').trim();
+const v66AdministrativeSeatPeriodsScript = fs.readFileSync(v66AdministrativeSeatPeriodsPath, 'utf8').trim();
+const v66FangzhenReaderScript = fs.readFileSync(v66FangzhenReaderPath, 'utf8').trim();
 const personSourceIndexScript = fs.readFileSync(personSourceIndexPath, 'utf8').trim();
 const v60PersonWorkbookImportData = JSON.parse(fs.readFileSync(v60PersonWorkbookImportJsonPath, 'utf8'));
 const v60WorkbookKeys = ['personId','name','rawName','normalizedName','zi','birthplace','birthYearRaw','birthYear','deathYearRaw','deathYear','polityRaw','polity','officeRaw','titleRaw','ordinal','workbookSource','homonymGroupId','homonymStatus','readerVisible','readerEligibility','researchDisposition','candidateReason'];
@@ -306,10 +310,6 @@ const replacements = [
     `<script>\n${officeResidencesScript}\n</script>`
   ],
   [
-    '<script src="./data/fangzhen-seat-supplement.js"></script>',
-    `<script>\n${fangzhenSeatSupplementScript}\n</script>`
-  ],
-  [
     '<script src="./data/person-source-index.js"></script>',
     `<script>\n${personSourceIndexScript}\n</script>`
   ],
@@ -439,10 +439,15 @@ replacements.forEach(([from, to]) => {
   }
   html = html.replace(pattern, to);
 });
+// V66 replaces the polity/jurisdiction-wide seat guess with a 30-record,
+// time-scoped reader projection. Keep compatibility code if present, but never
+// embed or lazy-load the obsolete generic patch in either portable artifact.
+html = html.replace(/^\s*loadSgzDataScript\('fangzhen-seat-supplement',[^\n]+\n?/gm, '');
 for (const marker of [
   '<script src="./data/v63-reader-people.js"></script>',
   '<script src="./data/v63-reader-people.js?v=63"></script>',
-  '<script src="./data/v63-reader-people.js?v=65"></script>'
+  '<script src="./data/v63-reader-people.js?v=65"></script>',
+  '<script src="./data/v63-reader-people.js?v=66"></script>'
 ]) {
   if (html.includes(marker)) html = html.replace(marker, `<script>\n${v63ReaderPeopleScript}\n</script>`);
 }
@@ -453,7 +458,8 @@ const portableLateData = Array.from(new Set([
   personPortraitsScript, portablePortraitManifestScript, epigraphicRecordsScript, epigraphicV46JinScript,
   jinshiSchemaScript, administrativeIndexScript, researchCandidatesScript, hanBaiGuanZhiScript,
   generalTitlesScript, officeOrderPoliciesScript, kaifuPoliciesScript, seatPoliciesScript,
-  officeResidencesScript, fangzhenSeatSupplementScript, personSourceIndexScript,
+  officeResidencesScript, v66PeerageStagesScript, v66AdministrativeSeatPeriodsScript,
+  v66FangzhenReaderScript, personSourceIndexScript,
   portableV60PersonWorkbookImportScript, v61PersonSupplementsScript, v62PeopleOfficesScript,
   v63ReaderPeopleScript, v60ResearchLedgerScript, v61EpigraphyResearchScript, v62JinshiDisplayScript,
   personEntityAuditScript, personV57RuntimeRulesScript, personZiSupplementScript,
@@ -461,6 +467,9 @@ const portableLateData = Array.from(new Set([
 ])).filter(source => source && !html.includes(source));
 if (portableLateData.length) {
   html = html.replace('</head>', `${portableLateData.map(source => `<script>\n${source}\n</script>`).join('\n')}\n</head>`);
+}
+if (html.includes('data/fangzhen-seat-supplement.js')) {
+  throw new Error('便携导出仍引用旧通用治所补丁');
 }
 
 // 新增地图图层与行政快照尚未部署到历史远端包；便携版把这些小型运行脚本

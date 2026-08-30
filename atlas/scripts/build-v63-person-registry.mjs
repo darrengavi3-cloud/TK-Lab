@@ -378,8 +378,6 @@ const readerPeople = people.filter(person => person.publicationStatus.name === '
   for (const [statusKey, valueKey] of Object.entries(valueKeys)) {
     if (person.publicationStatus[statusKey] === 'verified' && person.values[statusKey] !== undefined) output[valueKey] = person.values[statusKey];
   }
-  const datasets = (person.readerDatasets || []).filter(dataset => dataset !== 'peerage' || person.publicationStatus.peerage === 'verified');
-  if (datasets.length) output.datasets = datasets;
   return output;
 });
 

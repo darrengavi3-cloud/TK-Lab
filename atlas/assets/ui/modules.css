@@ -79,20 +79,33 @@ body, #app, .shell { color: var(--v58-ink); }
 .v56-career-year { color: var(--v58-accent); font-variant-numeric: tabular-nums; }
 .v56-career-evidence { color: var(--v58-muted); }
 
-.battle-view-switch { display: flex; align-items: center; gap: 3px; margin: 12px 0 9px; padding: 3px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised); }
-.battle-view-switch button { min-height: 28px; border: 0; border-radius: 4px; background: transparent; color: var(--v58-muted); font-size: 11px; cursor: pointer; }
-.battle-view-switch button.active { background: var(--v58-ink); color: var(--v58-raised); }
-.v58-density-switch { margin-inline-start: auto; display: inline-flex; gap: 2px; padding-inline-start: 8px; border-inline-start: 1px solid var(--v58-line); }
-.v58-density-switch button { min-height: 24px; padding: 0 7px; border: 1px solid transparent; border-radius: 4px; }
-.v58-density-switch button.active { border-color: var(--v58-line); background: var(--v58-paper); color: var(--v58-ink); }
-.battle-vertical-scroll { position: relative; max-height: min(56vh, 570px); padding-inline-start: 8px; overflow: auto; }
-.battle-density-compact .battle-vertical-scroll { max-height: min(44vh, 420px); }
-.battle-timeline-item { position: relative; padding: 12px 14px 12px 20px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised); }
-.battle-timeline-desc { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; color: var(--v58-muted); }
-.battle-density-compact .battle-timeline-item { padding-block: 8px; }
-.battle-density-compact .battle-timeline-desc { -webkit-line-clamp: 1; }
-.battle-density-compact .battle-timeline-meta { display: none; }
-.battle-map-link, .battle-item-actions .battle-map-link { color: var(--v58-accent); }
+.v66-context-note { color: var(--v58-muted); font-size: 11px; letter-spacing: .04em; }
+.v66-battle-anchors { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; padding: 4px 0 10px; border-bottom: 1px solid var(--v58-line); }
+.v66-battle-anchors button { min-width: 64px; min-height: 32px; padding: 0 12px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: var(--v58-ink); font: 650 12px 'Noto Serif SC','Songti SC',serif; cursor: pointer; }
+.v66-battle-anchors button:hover { border-color: var(--v58-line); background: var(--v58-raised); }
+.v66-battle-anchors button:focus-visible,
+.v66-battle-open:focus-visible,
+.v66-battle-neighbors button:focus-visible { outline: none; box-shadow: var(--v58-focus); }
+.v66-battle-anchors > span { margin-inline-start: auto; color: var(--v58-muted); font-size: 11px; }
+.battle-vertical-scroll { position: relative; max-height: min(68vh, 700px); overflow: auto; scrollbar-gutter: stable; }
+.battle-chronology-list { position: relative; display: flex; flex-direction: column; gap: 0; padding-inline-start: 30px; }
+.battle-chronology-list::before { content: ''; position: absolute; inset-block: 0; inset-inline-start: 9px; width: 1px; background: var(--v58-line); }
+.battle-timeline-item { position: relative; display: grid; grid-template-columns: 82px minmax(0,1.45fr) minmax(150px,.72fr) auto; align-items: center; gap: 14px; margin: 0; padding: 15px 4px 15px 0; border: 0; border-bottom: 1px solid color-mix(in srgb,var(--v58-line) 76%,transparent); border-radius: 0; background: transparent; box-shadow: none; cursor: default; }
+.battle-timeline-item::before { content: ''; position: absolute; inset: 22px auto auto -25px; width: 9px; height: 9px; border: 2px solid var(--v58-paper); border-radius: 50%; background: var(--v58-green); box-shadow: 0 0 0 1px var(--v58-green); }
+.battle-timeline-item:hover { transform: none; border-color: color-mix(in srgb,var(--v58-line) 76%,transparent); background: color-mix(in srgb,var(--v58-green) 4%,transparent); box-shadow: none; }
+.v66-battle-era { grid-column: 1 / -1; margin: 2px 0 -2px; color: var(--v58-gold); font: 700 11px 'Noto Serif SC','Songti SC',serif; letter-spacing: .12em; }
+.battle-timeline-year { color: var(--v58-accent); font: 700 12px ui-monospace,SFMono-Regular,Menlo,monospace; font-variant-numeric: tabular-nums; }
+.v66-battle-open { display: grid; gap: 4px; min-width: 0; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+.battle-timeline-title { margin: 0; color: var(--v58-ink); font: 700 14px 'Noto Serif SC','Songti SC',serif; line-height: 1.45; }
+.battle-timeline-desc { display: -webkit-box; margin: 0; overflow: hidden; color: var(--v58-muted); font-size: 11px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.v66-battle-facts { display: grid; gap: 4px; min-width: 0; color: var(--v58-muted); font-size: 10.5px; line-height: 1.45; }
+.v66-battle-facts span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.battle-item-actions { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin: 0; }
+.battle-map-link, .battle-item-actions .battle-map-link { margin: 0; color: var(--v58-accent); }
+:root[data-sgz-density="compact"] .battle-timeline-item { padding-block: 9px; }
+:root[data-sgz-density="compact"] .battle-timeline-desc { -webkit-line-clamp: 1; }
+.v66-battle-neighbors { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin: 14px 0; }
+.v66-battle-neighbors button { min-height: 38px; padding: 8px 10px; overflow: hidden; border: 1px solid var(--v58-line); border-radius: 4px; background: var(--v58-raised); color: var(--v58-ink); text-align: left; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
 .v58-coordinate-pending { color: var(--v58-accent); font-size: 10px; font-weight: 700; }
 
 .fangzhen-workbench .fangzhen-archive-tabs { margin-bottom: 12px; }
@@ -133,8 +146,9 @@ body, #app, .shell { color: var(--v58-ink); }
 @media (max-width: 980px) {
   .v56-people-master-detail { grid-template-columns: minmax(0, 1fr); }
   .v56-person-dossier { min-height: 0; }
-  .battle-view-switch { flex-wrap: wrap; }
-  .v58-density-switch { margin-inline-start: 0; padding-inline-start: 0; border-inline-start: 0; }
+  .battle-timeline-item { grid-template-columns: 74px minmax(0,1fr) auto; }
+  .v66-battle-facts { grid-column: 2; }
+  .battle-item-actions { grid-column: 3; grid-row: 1 / span 2; }
 }
 @media (max-width: 760px) {
   .module-page:not(.history-map-page) .module-page-inner { padding-inline: 10px; }
@@ -143,8 +157,15 @@ body, #app, .shell { color: var(--v58-ink); }
   .v56-person-dossier { padding: 14px; }
   .v56-person-dossier-head { align-items: flex-start; }
   .v58-dossier-strip { gap: 5px 9px; }
-  .battle-vertical-scroll { max-height: 52vh; padding-inline-start: 2px; }
-  .battle-density-compact .battle-vertical-scroll { max-height: 42vh; }
+  .battle-vertical-scroll { max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 72px); }
+  .battle-chronology-list { padding-inline-start: 24px; }
+  .battle-chronology-list::before { inset-inline-start: 7px; }
+  .battle-timeline-item { grid-template-columns: 62px minmax(0,1fr); gap: 8px 10px; padding-block: 12px; }
+  .battle-timeline-item::before { inset-inline-start: -21px; }
+  .v66-battle-era { grid-column: 1 / -1; }
+  .v66-battle-facts { grid-column: 2; }
+  .battle-item-actions { grid-column: 2; grid-row: auto; justify-content: flex-start; }
+  .v66-battle-neighbors { grid-template-columns: 1fr; }
   .v56-jinshi-workbench-grid { grid-template-columns: 1fr; }
   .v56-jinshi-directory { max-height: 34vh; }
   .jinshi-workbench .jinshi-toolbar .el-select { flex: 1 1 120px; width: auto !important; }
@@ -179,46 +200,7 @@ body, #app, .shell { color: var(--v58-ink); }
   .v60-audit-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 
-/* V61：人物全量视图、260 年快照与独立封爵事件。沿用 V57/V58 壳层与既有令牌。 */
-.v61-dataset-switch {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  margin: 0 0 12px;
-}
-.v61-dataset-switch button {
-  min-width: 0;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 8px 11px;
-  border: 1px solid rgba(107, 98, 85, .24);
-  border-radius: 9px;
-  background: rgba(246, 241, 228, .7);
-  color: var(--ink-soft);
-  cursor: pointer;
-  font: inherit;
-  text-align: left;
-}
-.v61-dataset-switch button span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.v61-dataset-switch button b {
-  flex: 0 0 auto;
-  color: var(--ink);
-  font-size: 12px;
-}
-.v61-dataset-switch button.active {
-  border-color: rgba(156, 59, 46, .62);
-  background: rgba(156, 59, 46, .08);
-  color: var(--ink);
-}
-.v61-dataset-switch button:focus-visible,
+/* V61：人物时期官署与独立封爵事件。沿用 V57/V58 壳层与既有令牌。 */
 .v61-snapshot-card:focus-visible,
 .v61-peerage-event:focus-visible {
   outline: 2px solid var(--seal);
@@ -318,15 +300,10 @@ body, #app, .shell { color: var(--v58-ink); }
 .v61-peerage-event small { color: #80786b; }
 
 @media (max-width: 760px) {
-  .v61-dataset-switch { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .v61-peerage-event { grid-template-columns: 1fr; gap: 4px; }
 }
 @media (max-width: 430px) {
-  .v61-dataset-switch { grid-template-columns: 1fr; }
   .v61-snapshot-card { grid-template-columns: 46px minmax(0, 1fr); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .v61-dataset-switch button { transition: none !important; }
 }
 
 .v61-jinshi-research {
@@ -562,8 +539,7 @@ body, #app, .shell { color: var(--v58-ink); }
 }
 
 .v56-person-row:focus-visible,
-.v56-career-row:focus-visible,
-.v61-dataset-switch button:focus-visible {
+.v56-career-row:focus-visible {
   position: relative;
   z-index: 1;
   outline: none;
@@ -824,7 +800,6 @@ body, #app, .shell { color: var(--v58-ink); }
     min-height: var(--v62-touch-target);
   }
 
-  .v61-dataset-switch button,
   .v56-person-row,
   .jinshi-workbench .v56-jinshi-row {
     min-height: var(--v62-touch-target);
@@ -899,10 +874,6 @@ body, #app, .shell { color: var(--v58-ink); }
 }
 
 @media (max-width: 430px) {
-  .v61-dataset-switch {
-    gap: 6px;
-  }
-
   .people-workbench .people-toolbar > .el-checkbox,
   .people-workbench .people-toolbar > .el-button {
     min-height: 36px;
@@ -947,5 +918,100 @@ body, #app, .shell { color: var(--v58-ink); }
     outline: 2px solid CanvasText;
     outline-offset: -2px;
     box-shadow: none;
+  }
+}
+
+.v66-peerage-count {
+  color: var(--accent, #8f3f32);
+  border-color: color-mix(in srgb, var(--accent, #8f3f32) 34%, var(--rule));
+}
+
+.v66-peerage-events {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.v66-peerage-events > header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.v66-peerage-events > header small,
+.v66-peerage-events > header strong {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.v66-peerage-events > header h3 {
+  margin: 2px 0 0;
+  font: 600 20px/1.25 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.v66-peerage-event-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--rule);
+}
+
+.v66-peerage-event-list article {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 9px 12px;
+  background: var(--panel);
+}
+
+.v66-peerage-event-list time,
+.v66-peerage-event-list span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.v66-peerage-event-list b,
+.v66-peerage-event-list span {
+  display: block;
+}
+
+.v66-peerage-event-recipients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.v66-peerage-event-list button,
+.v66-peerage-backlink {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--accent, #8f3f32);
+  cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  .v66-peerage-event-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .v66-peerage-event-list article {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .v66-peerage-event-recipients {
+    grid-column: 2;
+    justify-self: start;
+    justify-content: flex-start;
   }
 }

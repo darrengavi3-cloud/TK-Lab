@@ -102,8 +102,8 @@ assert(!('readerEligibility' in projected) && !('workbookSource' in projected) &
 const migrated = modelContext.SGZResearchModel.migrate({ schemaVersion: 10, personSnapshots: supplement.snapshots260, peerageEvents: supplement.peerageEvents });
 assert(migrated.schemaVersion === 10 && migrated.personSnapshots.length === 823 && migrated.peerageEvents.length === 590, '研究模型未接入人物快照或封爵事件');
 
-assert(html.includes('./data/person-name-normalization.js?v=61.2') && html.includes('./data/v61-person-supplements.js?v=61.2') && html.includes('./data/v61-epigraphy-research.js?v=61.2') && html.includes('./assets/ui/v61.css?v=61.2'), 'V61 姓名规范、数据或样式未按当前版本挂入页面');
-assert(html.includes('全部人物') && html.includes('V60 全量人物') && html.includes('260 年人物纪') && html.includes('曹魏封爵人物'), '人物记四个数据集视图不完整');
+assert(html.includes('./data/person-name-normalization.js?v=61.2') && html.includes('./data/v61-person-supplements.js?v=61.2') && html.includes('./data/v61-epigraphy-research.js?v=61.2'), 'V61 姓名规范或数据未按当前版本挂入页面');
+assert(html.includes('personRegistry') && !html.includes('V60 全量人物') && !html.includes('260 年人物纪') && !html.includes('曹魏封爵人物') && !html.includes('peopleDataset'), '人物记未归一为单一全量名录');
 assert(html.includes('personSnapshots:cloneJSON') && html.includes('peerageEvents:cloneJSON'), '完整工程导出未包含 V61 人物数据');
 assert(html.includes("v-if=\"workspaceMode==='review'&&jinshiPrimaryDetail.sourceVerification\"") && css.includes('.v61-jinshi-research'), '金石审校详情未接入或未受审校模式门禁');
 assert(sha256('data/map-period-registry.json') === 'fe3894be8f88512a77431d3e2dc9b7242ca488b580e0341c306d97b8c04147a8', '地图时期注册表发生变化');

@@ -1644,13 +1644,13 @@
     },
     {
       "path": "client/legacy/assets/ui/base.css",
-      "bytes": 101041,
-      "sha256": "45ff7244327eceb24d4a07427e14e9943cc3dd9ae9611710879da12895dff0fe"
+      "bytes": 101015,
+      "sha256": "8bdadf132f0f470b8ffc9fb80e6139f45e5c1d9f7e7f6f29306965f45d92288e"
     },
     {
       "path": "client/legacy/assets/ui/components.css",
-      "bytes": 36920,
-      "sha256": "14875b135231ddbb096a671403939d95fd490973077f51502254006651a3cbfc"
+      "bytes": 36926,
+      "sha256": "f701e71ededd3e00fc9591d1e425115b643ac26c5ae2e97b1e3964b6f7d5475b"
     },
     {
       "path": "client/legacy/assets/ui/court-ink-palace.png",
@@ -1659,8 +1659,8 @@
     },
     {
       "path": "client/legacy/assets/ui/modules.css",
-      "bytes": 31873,
-      "sha256": "122dcf7a9de0c16512abc2922392b14856eafff2c9c260733476678203de6753"
+      "bytes": 35164,
+      "sha256": "0fb1bc4d72ac85bada5ebb7ed5a931d9f75e2b731ceb37d6e5bd973bae5572ed"
     },
     {
       "path": "client/legacy/assets/ui/responsive.css",
@@ -1669,8 +1669,8 @@
     },
     {
       "path": "client/legacy/assets/ui/tokens.css",
-      "bytes": 525,
-      "sha256": "55594138ec0648a80cd403869184a0eea8e6ebe87702baeab4cda83475162085"
+      "bytes": 524,
+      "sha256": "a000ad80563e48d4504446297856489bc19ca4453122776a12f5b2d64681b2fc"
     },
     {
       "path": "client/legacy/assets/vendor/element-plus/index.css",
@@ -1708,19 +1708,9 @@
       "sha256": "d5dbdab479d411f51268fd5a878d82f6702b480760381e01ef6352d317aa28c0"
     },
     {
-      "path": "client/legacy/data/fangzhen-seat-supplement.js",
-      "bytes": 971,
-      "sha256": "0b59a6d45012028dd34d911868193cb44cd14f9d1f4ea1d01aaef8710bed5d85"
-    },
-    {
-      "path": "client/legacy/data/fangzhen-term-supplement.js",
-      "bytes": 116,
-      "sha256": "bc52ad8246da5a2b9c567e4f6cf7cb46935a68d255849aab40d99a8d7d6a9352"
-    },
-    {
       "path": "client/legacy/data/general-titles.js",
-      "bytes": 54100,
-      "sha256": "1cd9c202e99480f9b2fddf0361a75acdbc5ab04bb9c7e1ebb70d3d8481da5a7e"
+      "bytes": 55061,
+      "sha256": "a5d38cac412065a0d5e5a3d2dc2d1a310610e75827822f1f596f53193c79b20d"
     },
     {
       "path": "client/legacy/data/han-bai-guan-zhi.js",
@@ -1749,8 +1739,8 @@
     },
     {
       "path": "client/legacy/data/office-order-policies.js",
-      "bytes": 2362,
-      "sha256": "240488be61c1fd464ed6c42bc60eec4ff4f7046494043013a2fa9a039feeb720"
+      "bytes": 2353,
+      "sha256": "6157089bffee3b42b61f425e09d527be5d8a902dbe094e4c00dd43f7f1688841"
     },
     {
       "path": "client/legacy/data/office-residences.js",
@@ -1793,29 +1783,19 @@
       "sha256": "00e55681a59035a6209020a54ea5686de5f7faecee0cf3b4d2fd65f5f97f80fc"
     },
     {
-      "path": "client/legacy/data/shu-fangzhen-records.js",
-      "bytes": 122,
-      "sha256": "98ad3677e3bd3019d6bbe861e03a0a861d44efa48c84de148d40a2b60df9bd70"
-    },
-    {
-      "path": "client/legacy/data/v62-jin-fangzhen-reader.js",
-      "bytes": 16652,
-      "sha256": "a688d7a5899a7b5647b19d5531a127c1629b2e5927d8c63aed66bc36f042a2a3"
-    },
-    {
       "path": "client/legacy/data/v62-jinshi-display.js",
       "bytes": 1940,
       "sha256": "99830efc5ced7efb0ba50fe376ca171c97363e47169ff4baeaf5dbd3e2a0cde8"
     },
     {
       "path": "client/legacy/data/v63-reader-people.js",
-      "bytes": 421201,
-      "sha256": "948372ffbfa0301741e7c5904b7453eba1974cb4f64bfe918caa674cb10083d2"
+      "bytes": 374636,
+      "sha256": "0519dc01b8508785b4334d9ba53a77cb751ca1ca8b1284f3d17fdeb600c23975"
     },
     {
       "path": "client/legacy/data/v63-reader-people.json",
-      "bytes": 628137,
-      "sha256": "0ff6d647845fb8fa662b62d8ba73fac6fd1caf8e5395c46e13e5460dc49f2e93"
+      "bytes": 531832,
+      "sha256": "51df97316c5d330e6dd068333ba27db7833520baad16587367a02f179eb7e439"
     },
     {
       "path": "client/legacy/data/v63-reader-person-relations.js",
@@ -1833,24 +1813,24 @@
       "sha256": "b5d724a4c1f6078a70eed029ef27efc92a90c1bcfb804ce019c7ac7d3469765c"
     },
     {
-      "path": "client/legacy/data/v65-fangzhen-reader.js",
-      "bytes": 1309,
-      "sha256": "c7a747c5925bffaa8c11e9f96e1bffe7855b84f7507c1587fd61674eba3e6d06"
+      "path": "client/legacy/data/v66-fangzhen-reader.js",
+      "bytes": 18386,
+      "sha256": "e0da348bdb99b8f4ce99c102b14e8c05dab32cba1bc37e5d28a00702cef712bf"
     },
     {
-      "path": "client/legacy/data/wu-fangzhen-records.js",
-      "bytes": 110,
-      "sha256": "c333751c01aeb46faa4b3dcf2f4892cf95a1a5526165aa42d4f1c98a09848cde"
+      "path": "client/legacy/data/v66-peerage-stages.js",
+      "bytes": 178445,
+      "sha256": "a198148f0f255d37486e7416b11b79e4b4d9765dcca9877518aa8cc7dba6882d"
     },
     {
       "path": "client/legacy/index.html",
-      "bytes": 703631,
-      "sha256": "3f7018a3edd1b48e608b656313cfb1b0bfae7fe5daf11f48c93f992ff6a1e76b"
+      "bytes": 709681,
+      "sha256": "4419f4acfe266f88474739bdf63a63ddb1d9d5ed176ffa5070452deb9f2b98f1"
     },
     {
       "path": "client/legacy/reader-bundle.json",
-      "bytes": 66856,
-      "sha256": "40d295d8db362ad73e924e013b3c2b448b20b3422887176b097589ccb97cb6e4"
+      "bytes": 66098,
+      "sha256": "8fdb23125624085ec8493c781288cfdd3b0157126fd019acd6a95452c1d4cc28"
     },
     {
       "path": "client/window.svg",
@@ -1879,8 +1859,8 @@
     },
     {
       "path": "server/index.js",
-      "bytes": 637536,
-      "sha256": "0c8a13f32c3ccbff21772ed7ee6b467cf65f35f27c65bb562985f67fef118219"
+      "bytes": 637362,
+      "sha256": "32dc9701800bf1276dc00e55d15c49d000aa5a8327fdf51dfcbcfe0894d06336"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
@@ -1905,7 +1885,7 @@
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "5f522259c5e4d3c0c4b0c07d4707a90727abdd764507927ce028885b07bee925"
+      "sha256": "8ecb52f27434a9a3e55c5bc2157ac71f6d19c921e231c1ddbc85fefc619239f6"
     },
     {
       "path": "server/vinext-externals.json",
@@ -1915,7 +1895,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "5f522259c5e4d3c0c4b0c07d4707a90727abdd764507927ce028885b07bee925"
+      "sha256": "8ecb52f27434a9a3e55c5bc2157ac71f6d19c921e231c1ddbc85fefc619239f6"
     },
     {
       "path": "server/wrangler.json",
@@ -1923,9 +1903,9 @@
       "sha256": "f4adf351b2136969e2cc51a435cd8d6c2a6f73f29a0293805df28b51f0b21d27"
     }
   ],
-  "aggregateSha256": "71acdc3de0b3a8b2bd4fc85fad424eb9f597a8ddca9ae99117b5037e7e01dbe0",
+  "aggregateSha256": "c742adc96a3b16b69e7ae3e7ec8f41b2f2c219697b939eab52333e3ce8edd742",
   "summary": {
-    "fileCount": 384,
-    "totalBytes": 30735059
+    "fileCount": 380,
+    "totalBytes": 30779080
   }
 }

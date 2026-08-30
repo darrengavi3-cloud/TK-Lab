@@ -131,20 +131,17 @@ const readerText = read('data/v63-reader-people.json');
 for (const token of ['workbookSource', 'workbookSources', 'sourcePath', 'sourceRecordId', 'reviewCandidates', 'externalSearchLog', 'audit-only', '/Users/', 'publicationStatus']) {
   assert(!readerText.includes(token), `V63 读者数据泄露审校字段或本机路径：${token}`);
 }
-const readerAllowedFields = new Set(['personId','name','aliases','zi','birthplace','birthYear','deathYear','bio','dynastyTags','historicalAffiliations','appointmentIds','peerageEventIds','portraitIds','datasets']);
+const readerAllowedFields = new Set(['personId','name','aliases','zi','birthplace','birthYear','deathYear','bio','dynastyTags','historicalAffiliations','appointmentIds','peerageEventIds','portraitIds']);
 const statusFieldForReaderField = { appointmentIds: 'appointments', peerageEventIds: 'peerage', portraitIds: 'portraits' };
 for (const person of reader.people || []) {
   assert(Object.keys(person).every(field => readerAllowedFields.has(field)), `${person.personId} 读者投影包含未允许字段`);
-  assert((person.datasets || []).every(dataset => ['v60','snapshot260','peerage'].includes(dataset)), `${person.personId} 读者数据集标识超出白名单`);
-  for (const field of Object.keys(person).filter(field => !['personId','datasets'].includes(field))) {
+  assert(!Object.prototype.hasOwnProperty.call(person,'datasets'), `${person.personId} 读者投影仍泄露后台数据集来源`);
+  for (const field of Object.keys(person).filter(field => field !== 'personId')) {
     const statusField = statusFieldForReaderField[field] || field;
     assert(registry.publicationByPersonId[person.personId]?.[statusField] === 'verified', `${person.personId}.${field} 未验证却进入读者数据`);
   }
 }
 assert(reader.people.length === registry.people.filter(row => row.publicationStatus.name === 'verified').length, '读者人物数量与 name=verified 门禁不一致');
-assert(reader.people.filter(person => person.datasets?.includes('v60')).length > 0, 'V60 人物专题关联未进入纯净读者投影');
-assert(reader.people.filter(person => person.datasets?.includes('snapshot260')).length > 0, '260 年人物纪专题关联未进入纯净读者投影');
-assert(reader.people.filter(person => person.datasets?.includes('peerage')).length > 0, '曹魏封爵人物专题关联未进入纯净读者投影');
 const readerById = new Map((reader.people || []).map(row => [row.personId, row]));
 const auditOnlyRows = (v60.people || []).filter(row => row.readerEligibility === 'audit-only');
 assert(auditOnlyRows.length === 1066, `V60 audit-only 候选不是 1066 条，实际 ${auditOnlyRows.length}`);

@@ -23,6 +23,13 @@ const deterministicFiles = [
   'data/v63-reader-people.js',
   'data/v63-reader-person-relations.json',
   'data/v63-reader-person-relations.js',
+  'data/v66-peerage-stages.json',
+  'data/v66-peerage-stages.js',
+  'data/v66-administrative-seat-periods.json',
+  'data/v66-administrative-seat-periods.js',
+  'data/v66-fangzhen-seat-audit.json',
+  'data/v66-fangzhen-reader.json',
+  'data/v66-fangzhen-reader.js',
   'data/asset-manifest.json',
   'exports/三国职官谱-单文件版.html',
   'exports/观史台-轻量单文件版.html',
@@ -87,7 +94,8 @@ const currentValidators = Array.from(new Set([
   'verify-research-model.mjs',
   'verify-v63.mjs',
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v64(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
-  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v65(?:[-.].*)?\.mjs$/.test(fileName)).sort()
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v65(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v66(?:[-.].*)?\.mjs$/.test(fileName)).sort()
 ])).filter(fileName => fs.existsSync(path.join(scriptDir, fileName)));
 for (const validator of currentValidators) run(validator);
 
@@ -109,7 +117,7 @@ if (includeHistorical) {
   }
 }
 
-console.log('\nV64 release:check 全部通过。');
+console.log('\nV66 release:check 全部通过。');
 console.log(`双重构建哈希：${second.aggregateSha256}`);
 console.log(`当前不变量验证：${currentValidators.length} 项`);
 console.log(`历史快照验证：${includeHistorical ? '已显式执行' : '未执行（使用 --include-historical 单独审计）'}`);

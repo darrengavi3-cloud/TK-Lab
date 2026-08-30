@@ -30,7 +30,7 @@ test("server-renders the historical atlas shell", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>中华三国志·职官谱<\/title>/);
-  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=65"/);
+  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=66\.1"/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
@@ -44,7 +44,7 @@ test("packages the current court, reader people, and map assets", async () => {
     readFile(new URL("../public/legacy/assets/ui/court-ink-palace.png", import.meta.url)),
   ]);
 
-  assert.match(page, /src="\/legacy\/index\.html\?v=65"/);
+  assert.match(page, /src="\/legacy\/index\.html\?v=66\.1"/);
   assert.match(layout, /中华三国志·职官谱/);
   assert.match(legacy, /courtHierarchy|朝堂谱系|SGZ_V63_READER_PEOPLE/);
   assert.match(readerPeople, /曹操|诸葛亮|司马懿/);
@@ -66,22 +66,22 @@ test("packages the V63 field-gated full people reader projection", async () => {
   const people = payload.people || Object.values(payload.byPersonId || payload.peopleById || {});
   const readerManifest = JSON.parse(readerManifestRaw);
 
-  assert.match(legacy, /V60 全量人物/);
-  assert.match(legacy, /260 年人物纪/);
-  assert.match(legacy, /曹魏封爵人物/);
+  assert.doesNotMatch(legacy, /V60 全量人物|260 年人物纪|曹魏封爵人物|peopleDataset/);
+  assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
-  assert.ok(people.length >= 1196);
+  assert.equal(people.length, 2317);
   assert.equal(new Set(people.map((person) => person.personId)).size, people.length);
   assert.ok(people.every((person) => person.personId && person.name));
+  assert.ok(people.every((person) => !("datasets" in person)));
 });
 
-test("packages all 275 production portraits without the review workbooks", async () => {
+test("packages all 275 production portraits and the V66 seat-gated reader records", async () => {
   const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
   const [legacy, manifestRaw, fangzhenSource, jinshiSource] = await Promise.all([
     readFile(new URL("index.html", legacyRoot), "utf8"),
     readFile(new URL("data/portrait-manifest.json", legacyRoot), "utf8"),
-    readFile(new URL("data/v62-jin-fangzhen-reader.js", legacyRoot), "utf8"),
+    readFile(new URL("data/v66-fangzhen-reader.js", legacyRoot), "utf8"),
     readFile(new URL("data/v62-jinshi-display.js", legacyRoot), "utf8"),
   ]);
 
@@ -96,9 +96,10 @@ test("packages all 275 production portraits without the review workbooks", async
   );
 
   assert.doesNotMatch(legacy, /v62-people-offices\.js/);
-  assert.match(legacy, /v62-jin-fangzhen-reader\.js/);
+  assert.match(legacy, /v66-fangzhen-reader\.js/);
   assert.match(legacy, /v62-jinshi-display\.js\?v=62/);
-  assert.match(fangzhenSource, /SGZ_V62_JIN_FANGZHEN/);
+  assert.match(fangzhenSource, /SGZ_V66_FANGZHEN_READER/);
+  assert.doesNotMatch(fangzhenSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
   assert.match(jinshiSource, /SGZ_V62_JINSHI_DISPLAY/);
   assert.equal(assets.length, 275);
   assert.equal(v62Assets.length, 100);

@@ -866,7 +866,7 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 .v56-context-actions .el-button{height:28px;font-size:12px;}
 .v56-evidence-toggle{height:28px;font-size:12px;}
 .v57-appearance-popover{padding:12px!important;border:1px solid var(--v57-line)!important;border-radius:8px!important;box-shadow:0 12px 30px rgba(27,43,46,.14)!important;background:var(--v57-surface)!important;}
-.v57-appearance-popover .theme-drawer-intro{font-size:11px;line-height:1.55;color:var(--v57-muted);margin-bottom:8px;}
+.v57-appearance-popover .appearance-popover-intro{font-size:11px;line-height:1.55;color:var(--v57-muted);margin-bottom:8px;}
 .v57-appearance-popover .field-group-title{margin:10px 0 6px;font:600 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:var(--v57-muted);letter-spacing:.04em;}
 .v57-appearance-popover .theme-option{margin:0 0 5px;padding:7px;border-radius:5px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;}
 .v57-appearance-popover .theme-option:hover{transform:none;}

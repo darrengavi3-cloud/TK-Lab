@@ -73,8 +73,8 @@ assert((html.includes("{key:'shihuo',label:'食货志'") || html.includes('>食�
 assert((html.includes("{key:'people',label:'人物记'") && html.includes("{key:'battle',label:'战事纪'")) || (html.includes('>人物记</strong>') && html.includes('>战事纪</strong>')), '人物记或战事纪模块命名缺失');
 assert(html.includes("sub:['诸公','列卿','大夫','尚书台','中书台','御史台','常伯','将军','太子官属','诸王官属']"), '职官谱中央细分类未接入');
 assert(html.includes('data/battle-records.js') && html.includes('SGZ_BATTLE_RECORDS'), '战事纪统一档案未接入');
-assert(html.includes('battle-workbench') && html.includes('battle-vertical-scroll') && html.includes('battleBranchGroups'), '战事纪纵向支线时间轴未接入');
-assert(read('data/battle-records.js').includes('provinceKeys') && html.includes('battleBranchGroups') && html.includes('battleCampaignGroups') && !html.includes('battleProvinceGroups'), '战事纪未按 V55 改为年代／交战方／战役链三视图');
+assert(html.includes('battle-workbench') && html.includes('battle-vertical-scroll') && html.includes('battle-chronology-list') && html.includes('BATTLE_ERA_ANCHORS'), '战事纪 V66 单一编年线未接入');
+assert(read('data/battle-records.js').includes('provinceKeys') && !html.includes('battleBranchGroups') && !html.includes('battleCampaignGroups') && !html.includes('battleProvinceGroups'), '战事纪仍保留交战方／战役链等旧分组模型');
 assert(html.includes('court-columns') && html.includes('courtSeatCount') && html.includes('deleteCourtPosition') && html.includes('黄门侍郎'), '朝堂文武分列、席位数或自定义位置管理未接入');
 assert(html.includes('historyMapBooted') && html.includes('loading="lazy"'), '形势图延迟创建与复用策略未接入');
 assert(read('assets/map/js/panel.js').includes('renderCapitalLegend') && read('assets/map/js/app.js').includes('Panel.renderCapitalLegend') && historyEmbed.includes('legend-capitals') && historyEmbed.includes('stroke-dasharray:5 5') && historyEmbed.includes('js/config.js?v=41'), '形势图都城图例、异族范围样式或 V41 缓存版本未接入');
@@ -213,7 +213,7 @@ assert(biographySource.includes('成济') && biographySource.includes('《三国
 assert(rosterSource.includes('sourceWeiDuke213') && rosterSource.includes('sourceHanEnd220') && rosterSource.includes('schemaVersion:2'), '213/220时期名录来源或版本未接入');
 assert(rosterSource.includes('曹操') && rosterSource.includes('丞相') && rosterSource.includes('魏公国') && rosterSource.includes('延康元年·曹丕践祚前'), '213年魏公国与220年汉廷具名官员未接入');
 assert(rosterSource.includes('officeSnapshots') && rosterSource.includes("'未详'") && rosterSource.includes('光禄勋'), '220年人名未详官职快照未保留');
-assert(html.includes('periodRosterPhase') && html.includes('213／220 年时期官署快照') && html.includes('rosterFactionKey'), '时期官署快照或汉魏吴晋人物归档映射未接入');
+assert(html.includes('periodRosterPhase') && html.includes('213／220 年时期官署') && html.includes('rosterFactionKey'), '时期官署或汉魏吴晋人物归档映射未接入');
 assert(portraitSource.includes('华歆') && portraitSource.includes('贾诩') && portraitSource.includes('牵招') && portraitSource.includes('ai-illustration'), '新增人物生成头像索引未接入');
 [mapConfig,mapBaseLayer,mapNarrative].forEach(source => assert(!source.includes('（今') && !source.includes('(今'), '地图可见文字仍含“今××”现代地名括注'));
 assert(!html.includes('cdnjs.cloudflare.com/ajax/libs'), '本地项目仍依赖 cdnjs');

@@ -218,12 +218,13 @@ for (const relative of codeIdentifierExceptions) {
 const readerHtml = fs.readFileSync(path.join(readerDir, 'index.html'), 'utf8');
 const readerHead = readerHtml.slice(0, readerHtml.indexOf('</head>') + 7);
 assert(!/<script\s+[^>]*src=["'][^"']*assets\/vendor\/xlsx\/xlsx\.full\.min\.js/.test(readerHead), '读者首屏仍加载 SheetJS');
-assert(!readerHead.includes('v65-fangzhen-reader.js'), '读者首屏仍提前加载州镇发布登记');
-assert(readerHtml.includes("loadSgzDataScript('v65-fangzhen-reader','./data/v65-fangzhen-reader.js?v=65','SGZ_V65_FANGZHEN_READER')"), '州镇发布登记未按板块延迟载入');
+assert(!readerHead.includes('v66-fangzhen-reader.js'), '读者首屏仍提前加载州镇读者投影');
+assert(readerHtml.includes("loadSgzDataScript('v66-fangzhen-reader','./data/v66-fangzhen-reader.js?v=66','SGZ_V66_FANGZHEN_READER')"), '当前州镇读者投影未按板块延迟载入');
+assert(!readerHtml.includes('v65-fangzhen-reader.js'), '读者 HTML 仍加载已被 V66 替代的旧州镇发布登记');
 assert(!/window\.SGZ_(?:V60_PERSON_WORKBOOK_IMPORT|V61_PERSON_SUPPLEMENTS|V60_RESEARCH_LEDGER|V61_EPIGRAPHY_RESEARCH|PERSON_SOURCE_INDEX)\s*=/.test(readerHtml), '读者 HTML 内嵌审校数据');
 assert(!/"(?:workbookSource|workbookSources|workbookHash|sheet|row|sourceRecordId|rowAudit|externalSearchLog|searchLog|searchState|historicalDisposition|researchDisposition|publicationStatus|sourceLocator|sourceExcerpt|evidence)"\s*:/.test(readerHtml), '读者 HTML 内嵌审校字段负载');
 assert(readerHtml.includes('SGZ_READER_BUILD') && readerHtml.includes('v63-reader-people.js'), '读者 HTML 未启用 V63 纯净投影');
-assert(readerHtml.includes('v63-reader-people.js?v=65'), 'V65 人物读者包缺少缓存版本标记，旧浏览器可能继续读取过期专题关联');
+assert(readerHtml.includes('v63-reader-people.js?v=66'), 'V66 人物读者包缺少缓存版本标记，旧浏览器可能继续读取过期专题关联');
 const headHtml = readerHtml.slice(0, readerHtml.indexOf('</head>') + 7);
 const firstScreenFiles = new Set(['index.html']);
 for (const match of headHtml.matchAll(/<(?:script|link)\b[^>]*(?:src|href)=["']([^"']+)["'][^>]*>/g)) {

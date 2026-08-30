@@ -34,6 +34,8 @@ const bannedRuntimeFiles = new Set([
   'data/v65-general-title-research.json',
   'data/v65-shihuo-metrics-audit.js',
   'data/v65-volume-review.js',
+  'data/v66-administrative-seat-periods.js',
+  'data/fangzhen-seat-supplement.js',
   'assets/map/data/hydronym-audit.js'
 ]);
 const bannedPayloadKeys = new Set([
@@ -68,7 +70,7 @@ const readerCodeIdentifierExceptions = new Set([
 const readerThirdPartyCodePrefixes = ['assets/vendor/', 'assets/map/vendor/'];
 
 function fail(message) {
-  throw new Error(`V64 读者包构建失败：${message}`);
+  throw new Error(`V66 读者包构建失败：${message}`);
 }
 
 function sha256(buffer) {
@@ -111,7 +113,8 @@ function assignment(globalName, value, aliases = []) {
 const fangzhenFields = [
   'id','entityType','eraGroup','archiveScope','polity','recordType','commander','personId','title',
   'commission','relation','appointmentStatus','jurisdiction','seat','birthplace','startYear','endYear',
-  'tenureText','sourceTenureText','confirmedRange','note'
+  'tenureText','sourceTenureText','confirmedRange','note','seatName','seatType','seatPeriodId',
+  'administrativeUnitId','seatValidFromYear','seatValidToYear'
 ];
 const battleEventFields = ['title','battleId','id','year','era','emperor','text','sideA','sideB','result','front','provinceKeys'];
 const battleFields = ['id','name','year','a','b','result','desc','lat','lng','participants','strengthNote','provinceKeys'];
@@ -458,6 +461,71 @@ registerProjection(
 );
 registerProjection('data/v63-reader-person-relations.json', readerPersonRelationsJson);
 
+// V66 peerage links are derived from the full 525-row review ledger. The
+// reader receives only events with at least one verified Cao Wei rank stage,
+// plus recomputed node counts. Source citations, record-row identifiers,
+// review dispositions and unresolved events remain outside the reader bundle.
+const v66PeeragePath = path.join(root, 'data', 'v66-peerage-stages.json');
+if (!fs.existsSync(v66PeeragePath)) fail('缺少 data/v66-peerage-stages.json，不能生成曹魏爵制读者投影');
+const v66PeerageSource = readJson(v66PeeragePath);
+const v66PeerageEventFields = [
+  'eventId','recipientPersonIds','rawRecipient','year','grantDate','rank','title','category',
+  'peeragePhase','disposition','linkDisposition','rankStages','titleStages','rankLevelNodeIds','peerageNodeIds','peerageNodeId'
+];
+const v66PeerageStageFields = [
+  'stageIndex','year','rawRank','normalizedRank','rankLevel','marquisType','rankLevelNodeId',
+  'candidatePeerageNodeId','title','peerageNodeId'
+];
+const v66PeerageEvents = (v66PeerageSource.events || [])
+  .filter(event => event.publicationStatus === 'verified' && event.disposition === 'linked')
+  .map(event => {
+    const projected = pickFields(event, v66PeerageEventFields);
+    projected.recipientPersonIds = [...(event.recipientPersonIds || [])];
+    projected.rankStages = (event.rankStages || [])
+      .filter(stage => stage.publicationStatus === 'verified' && stage.peerageNodeId)
+      .map(stage => pickFields(stage, v66PeerageStageFields));
+    const verifiedStageIndexes = new Set(projected.rankStages.map(stage => Number(stage.stageIndex)));
+    projected.titleStages = (event.titleStages || [])
+      .filter(stage => verifiedStageIndexes.has(Number(stage.stageIndex)))
+      .map(stage => pickFields(stage, ['stageIndex','year','title']));
+    return projected;
+  });
+const v66PeerageEventsById = new Map(v66PeerageEvents.map(event => [String(event.eventId || ''), event]));
+if (v66PeerageEventsById.size !== Number(v66PeerageSource.summary?.linkedEvents || 0)) {
+  fail('V66 曹魏爵制已核事件与汇总数不一致');
+}
+const v66PeerageNodes = (v66PeerageSource.nodes || []).map(node => {
+  const directEventIds = (node.directEventIds || []).filter(eventId => v66PeerageEventsById.has(String(eventId)));
+  const aggregateEventIds = (node.aggregateEventIds || []).filter(eventId => v66PeerageEventsById.has(String(eventId)));
+  const recipientIds = eventIds => [...new Set(eventIds.flatMap(eventId => v66PeerageEventsById.get(String(eventId))?.recipientPersonIds || []))].sort(compareText);
+  const directRecipientPersonIds = recipientIds(directEventIds);
+  const aggregateRecipientPersonIds = recipientIds(aggregateEventIds);
+  return {
+    ...pickFields(node, ['nodeId','label','rankLevel','marquisType','order','parentId']),
+    directEventIds,
+    directRecipientPersonIds,
+    directEventCount: directEventIds.length,
+    directRecipientCount: directRecipientPersonIds.length,
+    aggregateEventIds,
+    aggregateRecipientPersonIds,
+    eventCount: aggregateEventIds.length,
+    recipientCount: aggregateRecipientPersonIds.length
+  };
+});
+const v66PeerageReader = {
+  schemaVersion: 'V66-reader',
+  modelId: 'sgz-v66-wei-peerage-stages-reader',
+  summary: {
+    linkedEvents: v66PeerageEvents.length,
+    linkedPeople: new Set(v66PeerageEvents.flatMap(event => event.recipientPersonIds || [])).size,
+    nodes: v66PeerageNodes.length
+  },
+  nodes: v66PeerageNodes,
+  events: v66PeerageEvents
+};
+assertNoBannedPayloadKeys(v66PeerageReader);
+registerProjection('data/v66-peerage-stages.js', assignment('SGZ_V66_PEERAGE_STAGES', v66PeerageReader));
+
 // Office-policy sources are review workbooks.  The reader gets only rows whose
 // historical disposition is already “确定”, and only the fields required to
 // render the institution.  Source locators, excerpts, evidence notes and
@@ -548,16 +616,29 @@ registerProjection('data/person-era-rosters.js', assignment('SGZ_PERSON_ERA_ROST
     .map(row => pickFields(row, eraRosterFields))
 }));
 
-const fangzhenAuditPath = path.join(root, 'data', 'v65-fangzhen-audit.json');
-if (!fs.existsSync(fangzhenAuditPath)) fail('缺少 data/v65-fangzhen-audit.json，不能判定州镇记录的读者发布边界');
-const fangzhenAudit = readJson(fangzhenAuditPath);
-const fangzhenReaderIds = new Set((fangzhenAudit.records || []).filter(row => row.readerVisible === true && row.publicationStatus === 'reader-visible').map(row => String(row.recordId || '')));
-if (!fangzhenReaderIds.size) fail('V65 州镇发布登记未产生任何读者可见记录');
+const v66FangzhenReaderPath = path.join(root, 'data', 'v66-fangzhen-reader.json');
+if (!fs.existsSync(v66FangzhenReaderPath)) fail('缺少 data/v66-fangzhen-reader.json，不能判定分期治所发布边界');
+const v66FangzhenSource = readJson(v66FangzhenReaderPath);
+const v66FangzhenRecords = (v66FangzhenSource.records || []).map(row => pickFields(row, fangzhenFields));
+const fangzhenReaderIds = new Set(v66FangzhenRecords.map(row => String(row.id || '')));
+if (v66FangzhenRecords.length !== 27 || fangzhenReaderIds.size !== 27) {
+  fail(`V66 州镇读者投影应为 27 条唯一记录，当前 ${v66FangzhenRecords.length}/${fangzhenReaderIds.size}`);
+}
+if (v66FangzhenRecords.some(row => !row.seat || !row.seatName || !row.seatType || !row.seatPeriodId || !row.administrativeUnitId)) {
+  fail('V66 读者州镇记录存在未通过分期治所门禁的数据');
+}
 const fangzhenReaderPayload = {
-  schemaVersion: 'V65-reader',
-  recordIds: [...fangzhenReaderIds].sort()
+  schemaVersion: 'V66-reader',
+  modelId: 'sgz-v66-fangzhen-reader',
+  summary: { records: v66FangzhenRecords.length },
+  recordIds: [...fangzhenReaderIds].sort(compareText),
+  records: v66FangzhenRecords
 };
-registerProjection('data/v65-fangzhen-reader.js', assignment('SGZ_V65_FANGZHEN_READER', fangzhenReaderPayload));
+assertNoBannedPayloadKeys(fangzhenReaderPayload);
+registerProjection(
+  'data/v66-fangzhen-reader.js',
+  assignment('SGZ_V66_FANGZHEN_READER', fangzhenReaderPayload, [['SGZ_V66_FANGZHEN_READER_RECORDS', 'payload.records']])
+);
 
 function readerFangzhenRows(relative, globalName) {
   return (runtimeGlobal(relative, globalName) || [])
@@ -591,11 +672,6 @@ registerProjection('data/administrative-index.js', assignment('SGZ_ADMINISTRATIV
   commanderies: (administrativeIndex.commanderies || []).map(row => pickFields(row, ['name','aliases','seats','states','periods'])),
   seatAliases: plain(administrativeIndex.seatAliases || {})
 }));
-const seatSupplement = runtimeGlobal('data/fangzhen-seat-supplement.js', 'SGZ_FANGZHEN_SEAT_SUPPLEMENT');
-registerProjection('data/fangzhen-seat-supplement.js', assignment('SGZ_FANGZHEN_SEAT_SUPPLEMENT', Object.fromEntries(
-  Object.entries(seatSupplement || {}).map(([id, row]) => [id, pickFields(row, ['seat'])])
-)));
-
 const battleSource = runtimeGlobal('data/battle-records.js', 'SGZ_BATTLE_RECORDS');
 registerProjection('data/battle-records.js', assignment('SGZ_BATTLE_RECORDS', {
   schemaVersion: battleSource.schemaVersion,
@@ -740,7 +816,16 @@ html = html.replace(
   /function prepareSgzReviewData\(\)\{[\s\S]*?\n\}\nconst SGZ_UI_CORE_READY=/,
   'function prepareSgzReviewData(){return Promise.resolve([]);}\nconst SGZ_UI_CORE_READY='
 );
+// The canonical workbench may still know the old generic seat patch for local
+// migration, but the V66 reader is driven exclusively by the verified,
+// time-scoped projection. Remove both the loader and any review-only seat
+// registry loader before dependency discovery.
+html = html.replace(/^\s*loadSgzDataScript\('fangzhen-seat-supplement',[^\n]+\n?/gm, '');
+html = html.replace(/^\s*loadSgzDataScript\('v66-administrative-seat-periods',[^\n]+\n?/gm, '');
 html = html.replace('./data/v62-jin-fangzhen.js?v=62', './data/v62-jin-fangzhen-reader.js');
+html = html.replace(/\.\/data\/v63-reader-people\.js\?v=\d+(?:\.\d+)?/g, './data/v63-reader-people.js?v=66');
+html = html.replace(/\.\/data\/v63-reader-person-relations\.js\?v=\d+(?:\.\d+)?/g, './data/v63-reader-person-relations.js?v=66');
+html = html.replace("&&event.publicationStatus==='verified'", '');
 html = html.replace(
   "      workspaceMode.value=value==='review'?'review':'reader';",
   "      workspaceMode.value=window.SGZ_READER_BUILD?'reader':(value==='review'?'review':'reader');"
@@ -774,23 +859,23 @@ if (!html.includes('data/v63-reader-people.js')) {
   html = html.replace('</head>', '<script src="./data/v63-reader-people.js"></script>\n</head>');
 }
 if (!html.includes('v63-reader-person-relations')) {
-  const peopleReaderLoader = "      loadSgzDataScript('v63-reader-people','./data/v63-reader-people.js?v=65','SGZ_V63_READER_PEOPLE'),";
-  if (!html.includes(peopleReaderLoader)) fail('无法注册 V63 读者人物关联按需脚本：人物数据加载锚点已变更');
+  const peopleReaderLoader = html.match(/^\s*loadSgzDataScript\('v63-reader-people','\.\/data\/v63-reader-people\.js\?v=\d+(?:\.\d+)?','SGZ_V63_READER_PEOPLE'\),\s*$/m)?.[0];
+  if (!peopleReaderLoader) fail('无法注册 V63 读者人物关联按需脚本：人物数据加载锚点已变更');
   html = html.replace(
     peopleReaderLoader,
-    `${peopleReaderLoader}\n      loadSgzDataScript('v63-reader-person-relations','./data/v63-reader-person-relations.js?v=64','SGZ_V63_READER_PERSON_RELATIONS'),`
+    `${peopleReaderLoader}\n      loadSgzDataScript('v63-reader-person-relations','./data/v63-reader-person-relations.js?v=66','SGZ_V63_READER_PERSON_RELATIONS'),`
   );
 }
-if (!html.includes('v65-fangzhen-reader')) {
+if (!html.includes('v66-fangzhen-reader')) {
   const fangzhenReaderLoader = "      loadSgzDataScript('v62-jin-fangzhen','./data/v62-jin-fangzhen-reader.js','SGZ_V62_JIN_FANGZHEN_RECORDS'),";
-  if (!html.includes(fangzhenReaderLoader)) fail('无法注册 V65 州镇读者登记按需脚本：州镇数据加载锚点已变更');
+  if (!html.includes(fangzhenReaderLoader)) fail('无法注册 V66 州镇读者投影按需脚本：州镇数据加载锚点已变更');
   html = html.replace(
     fangzhenReaderLoader,
-    `      loadSgzDataScript('v65-fangzhen-reader','./data/v65-fangzhen-reader.js?v=65','SGZ_V65_FANGZHEN_READER'),\n${fangzhenReaderLoader}`
+    `      loadSgzDataScript('v66-fangzhen-reader','./data/v66-fangzhen-reader.js?v=66','SGZ_V66_FANGZHEN_READER'),\n${fangzhenReaderLoader}`
   );
 }
 const fangzhenPresetTerminator = '];\n// V28：把州镇表任期待补表合并进预置档案；原文仍保留在 sourceTenureText。';
-if (!html.includes(fangzhenPresetTerminator)) fail('无法为读者包应用 V65 州镇可见登记：预置表锚点已变更');
+if (!html.includes(fangzhenPresetTerminator)) fail('无法为读者包应用 V66 州镇可见登记：预置表锚点已变更');
 const fangzhenPresetStart = 'const FANGZHEN_PRESETS = [';
 const fangzhenPresetStartIndex = html.indexOf(fangzhenPresetStart);
 const fangzhenPresetEndIndex = html.indexOf(fangzhenPresetTerminator, fangzhenPresetStartIndex);
@@ -809,7 +894,7 @@ html = html.replace(
   `];\n// V28：把州镇表任期待补表合并进预置档案；原文仍保留在 sourceTenureText。`
 );
 const lazyFangzhenTerminator = '      ];\n      additions.forEach(record=>{';
-if (!html.includes(lazyFangzhenTerminator)) fail('无法为读者包应用 V65 州镇可见登记：按需数据锚点已变更');
+if (!html.includes(lazyFangzhenTerminator)) fail('无法为读者包应用 V66 州镇可见登记：按需数据锚点已变更');
 html = html.replace(
   lazyFangzhenTerminator,
   `      ];\n      additions.forEach(record=>{`
@@ -984,6 +1069,8 @@ const bundleManifest = {
     codeIdentifierExceptions: [...readerCodeIdentifierExceptions].sort(),
     thirdPartyCodePrefixes: readerThirdPartyCodePrefixes.slice(),
     fangzhenReaderRecordCount: fangzhenReaderIds.size,
+    peerageNodeCount: v66PeerageNodes.length,
+    peerageLinkedEventCount: v66PeerageEvents.length,
     generalTitleReaderCount: actualReaderGeneralKeys.size,
     generalTitleLegacyVerifiedCount: oldVerifiedGeneralKeys.size,
     generalTitleV65VerifiedCount: v65VerifiedGeneralKeys.size,
@@ -1014,6 +1101,6 @@ for (const item of bundleManifest.files) {
 
 fs.rmSync(outputPath, { recursive: true, force: true });
 fs.renameSync(stagingPath, outputPath);
-console.log(`已生成 V64 读者 Web 包：${outputPath}`);
+console.log(`已生成 V66 读者 Web 包：${outputPath}`);
 console.log(`读者包：${bundleManifest.fileCount + 1} 文件，${bundleManifest.totalBytes} 字节，${bundleManifest.personCount} 人，${bundleManifest.portraitCount} 张立绘`);
 console.log('泄露扫描：本机绝对路径0，审校运行文件0，禁止投影字段0');

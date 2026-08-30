@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 505,
-  "totalBytes": 235544302,
-  "aggregateSha256": "e424cb53f42e89e4713de7717b4ad5c5ab1a543e7d08c1649b65f72bc9048e81",
+  "fileCount": 512,
+  "totalBytes": 238162678,
+  "aggregateSha256": "95b80b1860383222a344915788dde9b564700d9982b7a29efc22f3a7201d1a49",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -1883,13 +1883,13 @@
     },
     {
       "path": "assets/ui/base.css",
-      "bytes": 101121,
-      "sha256": "7b7a3ab4bd5de127f5a309629a7c7d76cca821309705a24ae8ccfa78fc905aae"
+      "bytes": 101095,
+      "sha256": "d7591ff5283a81f91a39f08bf5ae23377314207c19c89f28df5296e40f322388"
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 36920,
-      "sha256": "14875b135231ddbb096a671403939d95fd490973077f51502254006651a3cbfc"
+      "bytes": 36926,
+      "sha256": "f701e71ededd3e00fc9591d1e425115b643ac26c5ae2e97b1e3964b6f7d5475b"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -1898,8 +1898,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 31873,
-      "sha256": "122dcf7a9de0c16512abc2922392b14856eafff2c9c260733476678203de6753"
+      "bytes": 35164,
+      "sha256": "0fb1bc4d72ac85bada5ebb7ed5a931d9f75e2b731ceb37d6e5bd973bae5572ed"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -1908,8 +1908,8 @@
     },
     {
       "path": "assets/ui/tokens.css",
-      "bytes": 525,
-      "sha256": "55594138ec0648a80cd403869184a0eea8e6ebe87702baeab4cda83475162085"
+      "bytes": 524,
+      "sha256": "a000ad80563e48d4504446297856489bc19ca4453122776a12f5b2d64681b2fc"
     },
     {
       "path": "assets/ui/v55.css",
@@ -2008,8 +2008,8 @@
     },
     {
       "path": "data/general-titles.js",
-      "bytes": 10663,
-      "sha256": "fdb4155db45688be81142fe8e84ae5f5b075fb898fc3a8a2715d5380e47d0b0c"
+      "bytes": 11083,
+      "sha256": "b14f6822bbe430019715c187ded7365e7e5b394ee9a541e01bcb64afb49cf967"
     },
     {
       "path": "data/han-bai-guan-zhi.js",
@@ -2068,8 +2068,8 @@
     },
     {
       "path": "data/office-order-policies.js",
-      "bytes": 2362,
-      "sha256": "240488be61c1fd464ed6c42bc60eec4ff4f7046494043013a2fa9a039feeb720"
+      "bytes": 2353,
+      "sha256": "6157089bffee3b42b61f425e09d527be5d8a902dbe094e4c00dd43f7f1688841"
     },
     {
       "path": "data/office-residences.js",
@@ -2423,13 +2423,13 @@
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 421201,
-      "sha256": "948372ffbfa0301741e7c5904b7453eba1974cb4f64bfe918caa674cb10083d2"
+      "bytes": 374636,
+      "sha256": "0519dc01b8508785b4334d9ba53a77cb751ca1ca8b1284f3d17fdeb600c23975"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 628137,
-      "sha256": "0ff6d647845fb8fa662b62d8ba73fac6fd1caf8e5395c46e13e5460dc49f2e93"
+      "bytes": 531832,
+      "sha256": "51df97316c5d330e6dd068333ba27db7833520baad16587367a02f179eb7e439"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -2515,6 +2515,41 @@
       "path": "data/v65-volume-review.json",
       "bytes": 41840,
       "sha256": "eae8f2adeb974df4e3c4dc419c644a683cde94c22f447f3fac48022025095f8c"
+    },
+    {
+      "path": "data/v66-administrative-seat-periods.js",
+      "bytes": 15970,
+      "sha256": "ea6d4af999af9b7c627919412ab9fb59d23c0a1afb269890ee34a6715049e277"
+    },
+    {
+      "path": "data/v66-administrative-seat-periods.json",
+      "bytes": 18884,
+      "sha256": "95eaead8bf9d196cb7f511624d2ca61605c4f54f997c3b55e4e09b9786248a5e"
+    },
+    {
+      "path": "data/v66-fangzhen-reader.js",
+      "bytes": 18648,
+      "sha256": "104041935d112894cc19fdc9e428be248f714e4385d658f9c3c66bb416c0f2af"
+    },
+    {
+      "path": "data/v66-fangzhen-reader.json",
+      "bytes": 23638,
+      "sha256": "d98ce6a14a8396d0dcff76b70b0baf75a9207cd9341f9c58735066453a43aea7"
+    },
+    {
+      "path": "data/v66-fangzhen-seat-audit.json",
+      "bytes": 591783,
+      "sha256": "bbed101073af6a3cb2f916e2eabd185ccf8b53fcce21ac9f80dde4ea0a99e696"
+    },
+    {
+      "path": "data/v66-peerage-stages.js",
+      "bytes": 868009,
+      "sha256": "d1a56d8bf0396d3371b409bcf4944339083ae2eb33e747af0e62de71b51683e6"
+    },
+    {
+      "path": "data/v66-peerage-stages.json",
+      "bytes": 1220633,
+      "sha256": "cfb277739b1d1e48e650bf8a858c17cc82df7a8959ace7bc8a35be8b7d1b5339"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

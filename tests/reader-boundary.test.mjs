@@ -50,6 +50,11 @@ test("deploys only the field-gated reader projection", async () => {
     "data/v65-volume-review.js",
     "data/v65-fangzhen-audit.js",
     "data/v65-epigraphy-audit.js",
+    "data/v66-peerage-stages.json",
+    "data/v66-administrative-seat-periods.js",
+    "data/v66-administrative-seat-periods.json",
+    "data/v66-fangzhen-seat-audit.js",
+    "data/v66-fangzhen-seat-audit.json",
   ];
   for (const relative of bannedFiles) {
     assert.equal(existsSync(new URL(relative, legacyRoot)), false, `reader build leaked ${relative}`);
@@ -78,14 +83,47 @@ test("deploys only the field-gated reader projection", async () => {
   }
 
   const readerPeopleSource = await readFile(new URL("data/v63-reader-people.js", legacyRoot), "utf8");
+  const fangzhenReaderSource = await readFile(new URL("data/v66-fangzhen-reader.js", legacyRoot), "utf8");
+  const peerageReaderSource = await readFile(new URL("data/v66-peerage-stages.js", legacyRoot), "utf8");
   const context = { window: {} };
   vm.createContext(context);
   vm.runInContext(readerPeopleSource, context, { filename: "v63-reader-people.js" });
   const readerPeople = context.window.SGZ_V63_READER_PEOPLE;
   assert.ok(readerPeople, "reader people payload is missing");
   const people = readerPeople.people || Object.values(readerPeople.byPersonId || readerPeople.peopleById || {});
-  assert.ok(people.length >= 1196, `expected the full searchable roster, received ${people.length}`);
+  assert.equal(people.length, 2317, `expected the unified 2317-person roster, received ${people.length}`);
   assert.ok(people.every((person) => person.personId && person.name), "reader person lacks a stable id or name");
+  assert.ok(people.every((person) => !("datasets" in person)), "reader person leaked source dataset labels");
+
+  vm.runInContext(fangzhenReaderSource, context, { filename: "v66-fangzhen-reader.js" });
+  const fangzhenReader = context.window.SGZ_V66_FANGZHEN_READER;
+  assert.equal(fangzhenReader?.schemaVersion, "V66-reader");
+  assert.equal(fangzhenReader?.records?.length, fangzhenReader?.summary?.records);
+  assert.ok(fangzhenReader.records.every((record) => record.id && record.seatName));
+  assert.doesNotMatch(fangzhenReaderSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
+
+  vm.runInContext(peerageReaderSource, context, { filename: "v66-peerage-stages.js" });
+  const peerageReader = context.window.SGZ_V66_PEERAGE_STAGES;
+  assert.equal(peerageReader?.schemaVersion, "V66-reader");
+  assert.equal(peerageReader?.nodes?.length, 13);
+  assert.equal(peerageReader?.events?.length, 194);
+  assert.equal(peerageReader?.summary?.linkedPeople, 166);
+  assert.ok(peerageReader.events.every((event) => {
+    const verifiedIndexes = new Set((event.rankStages || []).map((stage) => Number(stage.stageIndex)));
+    return (event.titleStages || []).every((stage) => verifiedIndexes.has(Number(stage.stageIndex)));
+  }), "reader peerage title stage escaped its verified rank-stage gate");
+  const caorui = peerageReader.events.find((event) => event.eventId === "peerage:239");
+  assert.equal((caorui?.titleStages || []).map((stage) => stage.title).join("|"), "齐公|平原王");
+  assert.equal((caorui?.rankStages || []).map((stage) => `${stage.year}:${stage.title}:${stage.peerageNodeId}`).join("|"), "221:齐公:peerage:wei:rank:gong|222:平原王:peerage:wei:rank:wang");
+  assert.ok(!(caorui?.rankStages || []).some((stage) => stage.title === "武德侯"), "review-only 武德侯 stage escaped into the reader timeline source");
+  assert.doesNotMatch(peerageReaderSource, /sourceCitation|sourceRecordId|searchState|historicalDisposition|publicationStatus|review-only/);
+
+  assert.doesNotMatch(html, /V60 全量人物|260 年人物纪|曹魏封爵人物|peopleDataset/);
+  assert.match(html, /peoplePrimaryPeerageTimeline/);
+  assert.match(html, /stage\.publicationStatus!==['"]review-only['"]/);
+  assert.match(html, /返回爵制节点/);
+  assert.doesNotMatch(html, /治所未详/);
+  assert.doesNotMatch(html, /battleBranchGroups|battleCampaignGroups|battlePeriodId|battleDensity|battleView/);
 });
 
 test("renders imported text only through text bindings", async () => {

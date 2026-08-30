@@ -87,6 +87,7 @@ const jinshiDisplay = loadJson('data/v62-jinshi-display.json');
 const portraitCatalog = loadJson('data/v62-portrait-catalog.json');
 const figmaMapping = loadJson('data/v62-figma-mapping.json');
 const v61Supplement = loadJson('data/v61-person-supplements.json');
+const v66PeerageStages = loadJson('data/v66-peerage-stages.json');
 
 /* 五朝人物标签、表字来源和标题净化。 */
 assert(people?.schemaVersion === 'V62', '五朝人物覆盖层 schemaVersion 不是 V62');
@@ -145,6 +146,16 @@ assert(sameArray(marquisTypes, ['县侯', '乡侯', '亭侯', '关内侯', '关�
 assert(weiSection.includes("peeragePhase:'魏初承汉／咸熙五等'") && html.includes("return '列侯未详'"), '曹魏爵制阶段或列侯未详规则未接入');
 assert(v61Supplement?.peerageEvents?.length === 590, '曹魏封爵总记录不再是 590 条');
 assert(v61Supplement?.peerageEvents?.filter(row => row.readerVisible).length === 525, '曹魏读者封爵事件不再是 525 条');
+const expectedPeerageNodeIds = [
+  'peerage:wei:rank:wang', 'peerage:wei:rank:gong', 'peerage:wei:rank:hou',
+  'peerage:wei:rank:bo', 'peerage:wei:rank:zi', 'peerage:wei:rank:nan',
+  'peerage:wei:rank:hou:xian', 'peerage:wei:rank:hou:xiang', 'peerage:wei:rank:hou:ting',
+  'peerage:wei:rank:hou:guannei', 'peerage:wei:rank:hou:guanzhong',
+  'peerage:wei:rank:hou:minghao', 'peerage:wei:rank:hou:unspecified',
+];
+assert(v66PeerageStages?.schemaVersion === 'V66', '曹魏爵制分期台账未升级为 V66');
+assert(sameArray((v66PeerageStages?.nodes || []).map(row => row.nodeId), expectedPeerageNodeIds), '曹魏爵位节点未使用固定语义 ID 或顺序发生变化');
+assert(v66PeerageStages?.summary?.closedEvents === 525 && (v66PeerageStages?.events || []).length === 525, '曹魏 525 条读者封爵事件未形成逐条处置');
 
 /* 西晋州镇：发现来源只能建候选，采用记录必须回到可定位原典。 */
 const dispositions = ['采用', '重复', '审校保留', '排除', '明确无候选'];
@@ -232,7 +243,7 @@ assert(!/v-html\s*=\s*["']epigraphicHighlight/.test(html), '金石释文仍通�
 const highlightStart = html.indexOf('function epigraphicHighlight');
 const highlightEnd = html.indexOf('function epigraphicArchiveClass', highlightStart + 1);
 const highlightSource = highlightStart >= 0 && highlightEnd > highlightStart ? html.slice(highlightStart, highlightEnd) : '';
-assert(highlightSource.includes('fragments') && !/innerHTML|<mark|replace\([^\n]*<span/.test(highlightSource), '金石高亮函数未返回安全文本片段');
+assert(highlightSource.includes('SGZ_UI_MODULES.jinshi.highlightTextFragments') && !/innerHTML|<mark|replace\([^\n]*<span/.test(highlightSource), '金石高亮函数未委托安全文本片段模块');
 assert(html.includes('v-for="(fragment,index) in epigraphicHighlight(section.text)"') && html.includes('{{fragment.text}}'), '金石释文模板未使用转义文本片段渲染');
 
 /* 立绘：保住既有 175 项，新 100 项五朝各 20，并与真实 Figma 映射一致。 */

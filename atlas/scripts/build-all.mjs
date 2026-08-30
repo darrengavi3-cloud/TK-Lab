@@ -151,6 +151,12 @@ const optionalV63Builder = ['build-v63-person-registry.mjs', 'build-v63-person-d
   .find(fileName => fs.existsSync(path.join(scriptDir, fileName)));
 if (!optionalV63Builder) throw new Error('缺少 V63 person-registry 生成器；未登记字段不得静默放行。');
 run(optionalV63Builder);
+// V66 derives the public Cao Wei peerage links and time-scoped administrative
+// seats before the source lock is evaluated. Both builders are deterministic,
+// so their committed JSON/JS projections participate in the same input lock as
+// the rest of the canonical data.
+run('build-v66-peerage-stages.mjs');
+run('build-v66-fangzhen-seats.mjs');
 // Generate the public relation projection before the source lock is evaluated.
 // This makes the canonical local reader and the exported reader consume the
 // same committed, deterministic 179/535 fact payload.
@@ -175,6 +181,6 @@ if (!skipPortable) run('build-portable-export.mjs');
 run('build-asset-manifest.mjs');
 run('build-deployment-manifest.mjs');
 
-console.log('\nV64 build-all 已完成。');
+console.log('\nV66 build-all 已完成。');
 console.log(`输入锁：${existingLock.aggregateSha256}`);
 console.log('产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单');
