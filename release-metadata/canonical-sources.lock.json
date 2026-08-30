@@ -3,19 +3,19 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 590,
-  "totalBytes": 255048063,
-  "aggregateSha256": "88bf1f5101e5825414af1dceee9a559f7ebe93f9fed5ccd06725aff04e6b6779",
+  "fileCount": 593,
+  "totalBytes": 255194144,
+  "aggregateSha256": "23b91856c7867a482f5f7cd2e75e1e51168e530eaf9c2b10c4f93338c9369dd6",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 12111,
-      "sha256": "7f92a4521fc4598e2876038d1858b22fb9515257926b8155f7b43256df1e969b"
+      "bytes": 13214,
+      "sha256": "ebc0ddd821de1cf077b8b38a00154ef0d04b95f7de0c0de813394328933fddda"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 13983,
-      "sha256": "4ff5a9d48a4c198d1bde0e45af5724d8ddccc4f96763841b5efb2505e4e5f937"
+      "bytes": 15261,
+      "sha256": "99e81cff8208a3c8432123c09d13bb5a227edc1c73d64fcff9eb5792dc4f14f1"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -33,9 +33,14 @@
       "sha256": "e6975c2fa25bbc64d73029b3486b03824b7a97db31ba47986b1bf7e9ad46e070"
     },
     {
+      "path": "assets/app/persistence-core.js",
+      "bytes": 8040,
+      "sha256": "6c9685532147fecef86279964f42aad95e3cb573cc2433272a5e8c9dc04d16e3"
+    },
+    {
       "path": "assets/app/persistence.js",
-      "bytes": 7544,
-      "sha256": "0dcb4cb90b732115cd4f80f583d4111a7e693de01b3260b5d1556e419efd2913"
+      "bytes": 317,
+      "sha256": "b189d193c61d91a5305bb3dbe8964f62904f3279b962c5d6f67cc765b6ecf73f"
     },
     {
       "path": "assets/app/shell.js",
@@ -1899,8 +1904,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 35164,
-      "sha256": "0fb1bc4d72ac85bada5ebb7ed5a931d9f75e2b731ceb37d6e5bd973bae5572ed"
+      "bytes": 51840,
+      "sha256": "d1fa7f15e7ae0fc7def1be9d8877338f3ef5dbc890d78936755c41eb4f99c9d3"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -2519,18 +2524,18 @@
     },
     {
       "path": "data/v66-fangzhen-reader.js",
-      "bytes": 18648,
-      "sha256": "104041935d112894cc19fdc9e428be248f714e4385d658f9c3c66bb416c0f2af"
+      "bytes": 27025,
+      "sha256": "534278f995131da82c871ccc3a9adca3d2da883cf29cc2505535432ad6e12f71"
     },
     {
       "path": "data/v66-fangzhen-reader.json",
-      "bytes": 23638,
-      "sha256": "d98ce6a14a8396d0dcff76b70b0baf75a9207cd9341f9c58735066453a43aea7"
+      "bytes": 34447,
+      "sha256": "95d2f8270e92a79b61e82bae6eeae7dd075e891799c3edc4e38551078d400631"
     },
     {
       "path": "data/v66-fangzhen-seat-audit.json",
-      "bytes": 591783,
-      "sha256": "bbed101073af6a3cb2f916e2eabd185ccf8b53fcce21ac9f80dde4ea0a99e696"
+      "bytes": 660323,
+      "sha256": "54bd3bee85cc2c6ddd7795cddcca2233a1507d94a1d19a8d3b5a926101262ddd"
     },
     {
       "path": "data/v66-peerage-stages.js",
@@ -2574,8 +2579,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 724373,
-      "sha256": "dcb98545c6c60ee981fd23e2e9cde8f1f56c33543bb6a2187ab7ba6fa1dbbc3a"
+      "bytes": 745428,
+      "sha256": "b7bdd56b284c28b98537d90d4e0ea902753e5aa069bf7835eefe592998e18d72"
     },
     {
       "path": "scripts/assign-v52-portrait-pool.mjs",
@@ -2614,13 +2619,13 @@
     },
     {
       "path": "scripts/build-portable-export.mjs",
-      "bytes": 41690,
-      "sha256": "e8669b7a2fb15cd40a5da3b364db6a76711a5bc2e0f4bd84ead0da60f59ad593"
+      "bytes": 41990,
+      "sha256": "b233bd370a8316272263cc54f217b3d795017c1d5d0b2b0f66c65470444b03a6"
     },
     {
       "path": "scripts/build-reader-bundle.mjs",
-      "bytes": 63466,
-      "sha256": "8d92b4a04af06df7ae466252797eb5c3451801facd9d9e4f56a7b052a540407b"
+      "bytes": 64795,
+      "sha256": "c65b1c143a7f508a8f1223a00b3cc8277adb3e289b733ae5e221d35b4ca971ba"
     },
     {
       "path": "scripts/build-v42-import-template.mjs",
@@ -2709,8 +2714,8 @@
     },
     {
       "path": "scripts/build-v66-fangzhen-seats.mjs",
-      "bytes": 14884,
-      "sha256": "e6ba8b613dff325980bc992e6e89ffd573a18c19bc5b7cdea6726f930b0a66d8"
+      "bytes": 17081,
+      "sha256": "decb259353fb642bafd8ee37ae2574652ec8abf45a49e11a82adef3e5ed5c0f9"
     },
     {
       "path": "scripts/build-v66-peerage-stages.mjs",
@@ -2929,8 +2934,8 @@
     },
     {
       "path": "scripts/verify-v64.mjs",
-      "bytes": 32935,
-      "sha256": "6cf7535935d5740eabc7f6304c1a72c2dc35dc65289c4311f13dfc26207157a3"
+      "bytes": 33503,
+      "sha256": "726a8a91addf2a143de655d74d6cfcbd9bf11d6a1e873d81aa3fe3e9948858d1"
     },
     {
       "path": "scripts/verify-v65-battle-shihuo.mjs",
@@ -2953,9 +2958,19 @@
       "sha256": "4a561b63537177580e40a9d8856fe1a4f37bf51ce0b90a3769be91e0750fec01"
     },
     {
+      "path": "scripts/verify-v66-han-court-ui.mjs",
+      "bytes": 7592,
+      "sha256": "6d5ebf9b80955535bdb49782ff4f9f964049fc3923bea74abb9239b2f7df729f"
+    },
+    {
+      "path": "scripts/verify-v66-runtime-init.mjs",
+      "bytes": 3052,
+      "sha256": "f1f0edd21cac75b9687e047d67824f4bc75426e2585d00f39f57bc2acc22ee1d"
+    },
+    {
       "path": "scripts/verify-v66.mjs",
-      "bytes": 29578,
-      "sha256": "a4f8b55783545ebc6b898219e39e220d3a95f72c266edc68a3cf0c389dd7e958"
+      "bytes": 31970,
+      "sha256": "17167ea35fae68aa7d45b3dfbbd2392020fd5a01db76041a961abe009e503fc3"
     }
   ]
 }

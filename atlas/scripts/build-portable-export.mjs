@@ -64,6 +64,7 @@ const consolidatedCssPaths = [
 ].map(fileName => path.join(root, 'assets', 'ui', fileName));
 const uiModulePaths = ['shell', 'persistence', 'people', 'fangzhen', 'jinshi']
   .map(moduleName => ({ moduleName, filePath: path.join(root, 'assets', 'app', `${moduleName}.js`) }));
+const persistenceCorePath = path.join(root, 'assets', 'app', 'persistence-core.js');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const lightExportPath = path.join(root, 'exports', '观史台-轻量单文件版.html');
 const readerBundlePath = path.join(root, 'exports', '观史台-读者版');
@@ -183,6 +184,7 @@ const portablePortraitManifestScript = `${portraitManifestScript}
   else manifest.fallbackSrc=${JSON.stringify(transparentPixel)};
 })();`;
 const courtBackgroundData = `data:image/png;base64,${fs.readFileSync(courtBackgroundPath).toString('base64')}`;
+const persistenceCoreScript = fs.readFileSync(persistenceCorePath, 'utf8').trim();
 
 const replacements = [
   [
@@ -296,6 +298,10 @@ const replacements = [
   [
     '<script src="./data/office-order-policies.js"></script>',
     `<script>\n${officeOrderPoliciesScript}\n</script>`
+  ],
+  [
+    '<script src="./assets/app/persistence-core.js?v=66.2"></script>',
+    `<script>\n${persistenceCoreScript}\n</script>`
   ],
   [
     '<script src="./data/kaifu-policies.js?v=59"></script>',

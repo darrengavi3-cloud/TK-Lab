@@ -78,7 +78,7 @@
       "assets/vendor/",
       "assets/map/vendor/"
     ],
-    "fangzhenReaderRecordCount": 27,
+    "fangzhenReaderRecordCount": 45,
     "peerageNodeCount": 13,
     "peerageLinkedEventCount": 194,
     "generalTitleReaderCount": 248,
@@ -103,9 +103,9 @@
     "firstScreenSheetJs": 0,
     "explicitCodeIdentifierExceptions": 3
   },
-  "fileCount": 352,
-  "totalBytes": 119728723,
-  "aggregateSha256": "b874de9b2488428f4d8a58953cc9138cc55503462c5336c72464d49714ebb9fc",
+  "fileCount": 353,
+  "totalBytes": 119781365,
+  "aggregateSha256": "43a5fbc3332723cb21dcdd4de226c751bbd8ab41dc4e1fe4a7b20937ab759616",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -123,9 +123,14 @@
       "sha256": "e6975c2fa25bbc64d73029b3486b03824b7a97db31ba47986b1bf7e9ad46e070"
     },
     {
+      "path": "assets/app/persistence-core.js",
+      "bytes": 8040,
+      "sha256": "6c9685532147fecef86279964f42aad95e3cb573cc2433272a5e8c9dc04d16e3"
+    },
+    {
       "path": "assets/app/persistence.js",
-      "bytes": 7544,
-      "sha256": "0dcb4cb90b732115cd4f80f583d4111a7e693de01b3260b5d1556e419efd2913"
+      "bytes": 317,
+      "sha256": "b189d193c61d91a5305bb3dbe8964f62904f3279b962c5d6f67cc765b6ecf73f"
     },
     {
       "path": "assets/app/shell.js",
@@ -1699,8 +1704,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 35164,
-      "sha256": "0fb1bc4d72ac85bada5ebb7ed5a931d9f75e2b731ceb37d6e5bd973bae5572ed"
+      "bytes": 51840,
+      "sha256": "d1fa7f15e7ae0fc7def1be9d8877338f3ef5dbc890d78936755c41eb4f99c9d3"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -1854,8 +1859,8 @@
     },
     {
       "path": "data/v66-fangzhen-reader.js",
-      "bytes": 18386,
-      "sha256": "e0da348bdb99b8f4ce99c102b14e8c05dab32cba1bc37e5d28a00702cef712bf"
+      "bytes": 26636,
+      "sha256": "096cb9e83f608fcdd488791f063ea7523972e5786e5422f74c08e6af5f677bb5"
     },
     {
       "path": "data/v66-peerage-stages.js",
@@ -1864,8 +1869,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 709681,
-      "sha256": "4419f4acfe266f88474739bdf63a63ddb1d9d5ed176ffa5070452deb9f2b98f1"
+      "bytes": 736584,
+      "sha256": "5447ae024b098428620c3acdcf22702e27f0c4fea003ed08485e153ccc6ff1c1"
     }
   ]
 }

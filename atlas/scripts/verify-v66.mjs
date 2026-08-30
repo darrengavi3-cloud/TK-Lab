@@ -109,6 +109,7 @@ const portraitManifest = json('data/portrait-manifest.json');
 const mapRegistry = json('data/map-period-registry.json');
 const peerage = json('data/v66-peerage-stages.json');
 const seatPeriods = json('data/v66-administrative-seat-periods.json');
+const v65FangzhenAudit = json('data/v65-fangzhen-audit.json');
 const seatAudit = json('data/v66-fangzhen-seat-audit.json');
 const fangzhenReader = json('data/v66-fangzhen-reader.json');
 
@@ -311,25 +312,45 @@ assert(seatAudit?.schemaVersion === 'V66', '州镇治所审校台账 schemaVersi
 assert(seatRows.length === 533, `州镇治所处置不是 533 条：${seatRows.length}`);
 assert(new Set(seatRows.map(row => row.recordId)).size === 533, '州镇治所处置 recordId 不唯一');
 assert(seatRows.every(row => ['reader-visible', 'review-only'].includes(row.publicationStatus)), '州镇治所台账存在未处置的发布状态');
-const publicSeatRows = seatRows.filter(row => row.publicationStatus === 'reader-visible');
+const upstreamReaderIds = new Set(rowsOf(v65FangzhenAudit)
+  .filter(row => row.readerVisible === true && row.publicationStatus === 'reader-visible')
+  .map(row => row.recordId));
+const recordReaderRows = seatRows.filter(row => row.readerVisible === true && row.publicationStatus === 'reader-visible');
+const publicSeatRows = seatRows.filter(row => row.seatReaderVisible === true && row.seatPublicationStatus === 'reader-visible');
+assert(upstreamReaderIds.size === 45 && recordReaderRows.length === 45, '州镇任职读者门禁没有继承 V65 的 45 条记录');
+assert(recordReaderRows.every(row => upstreamReaderIds.has(row.recordId)), 'V66 州镇任职读者 ID 与 V65 门禁不一致');
+assert(publicSeatRows.length === 27, `V66 已核治所公开数不是 27 条：${publicSeatRows.length}`);
 assert(publicSeatRows.every(row => {
   const resolution = row.seatResolution || row.resolution || row;
   const sources = resolution.sources || [];
   const sourceComplete = sources.length > 0 && sources.every(source => source.sourceLocator && source.sourceExcerpt && source.sourceUrl);
   return seatOf(row) && sourceComplete && resolution.validFromYear !== undefined && resolution.validToYear !== undefined;
 }), '读者可见治所缺名称、来源定位、摘录或有效年代');
-assert(seatRows.filter(row => !seatOf(row)).every(row => row.publicationStatus === 'review-only'), '未能确定治所的州镇记录未整条留在审校态');
+assert(recordReaderRows.filter(row => !row.seatReaderVisible).length === 18, '已公开任职但未公开治所的记录不是 18 条');
 const v62JinSeatRows = seatRows.filter(row => row.dataset === 'v62-jin-primary' || row.sourceDataset === 'v62-jin-primary');
 assert(v62JinSeatRows.length === 29, `V62 西晋州镇治所处置不是 29 条：${v62JinSeatRows.length}`);
-assert(v62JinSeatRows.filter(row => seatOf(row)).length === 25 && v62JinSeatRows.filter(row => !seatOf(row) && row.publicationStatus === 'review-only').length === 4, '西晋 29 条重点记录未按 25 已核／4 暂缓公开闭合');
+assert(v62JinSeatRows.every(row => row.readerVisible) && v62JinSeatRows.filter(row => row.seatReaderVisible).length === 25 && v62JinSeatRows.filter(row => !row.seatReaderVisible).length === 4, '西晋 29 条任职未完整公开或治所未按 25 已核／4 暂缓闭合');
 for (const recordId of ['fz-v62-jin-gaoguang-youzhou','fz-v62-jin-qianhong-liangzhou','fz-v62-jin-taokan-jingzhou','fz-v62-jin-zhangguang-liangzhou']) {
-  assert(v62JinSeatRows.some(row => row.recordId === recordId && row.publicationStatus === 'review-only' && !seatOf(row)), `应暂缓的西晋治所仍被公开：${recordId}`);
+  assert(v62JinSeatRows.some(row => row.recordId === recordId && row.readerVisible && !row.seatReaderVisible && !seatOf(row)), `应隐藏治所但保留任职的西晋记录处置错误：${recordId}`);
 }
 assert(seatPeriods?.schemaVersion === 'V66' && seatPeriodsRows.length > 0, '缺少 V66 分期行政治所规范表');
 assert(seatPeriodsRows.every(row => (row.administrativeUnitId || row.unitId) && seatOf(row) && (row.validFromYear !== undefined || row.validFrom !== undefined || row.startYear !== undefined) && (row.validToYear !== undefined || row.validTo !== undefined || row.endYear !== undefined)), '分期行政治所规范表缺稳定行政区 ID、治所或有效年代');
-assert(fangzhenReader?.schemaVersion === 'V66-reader' && readerFangzhenRows.length === publicSeatRows.length, '州镇读者投影与 reader-visible 治所处置数不一致');
-assert(readerFangzhenRows.every(row => row.id && seatOf(row) && !Object.keys(row).some(key => /^(?:source|audit|review|publication)/i.test(key))), '州镇读者投影缺 ID／治所或泄露审校来源字段');
-assert(!JSON.stringify(fangzhenReader || {}).includes('治所未详') && !html.includes('治所未详'), '读者州镇页仍会显示“治所未详”');
+const readerFangzhenIds = new Set(readerFangzhenRows.map(row => row.id));
+assert(fangzhenReader?.schemaVersion === 'V66-reader' && readerFangzhenRows.length === 45 && readerFangzhenIds.size === 45, '州镇读者投影不是 V65 门禁的 45 条唯一任职记录');
+assert([...upstreamReaderIds].every(id => readerFangzhenIds.has(id)), '州镇读者投影与 V65 reader-visible ID 集合不一致');
+const readerPolityCounts = readerFangzhenRows.reduce((counts, row) => ({ ...counts, [row.polity]: (counts[row.polity] || 0) + 1 }), {});
+assert(readerPolityCounts['魏'] === 1 && readerPolityCounts['汉'] === 11 && readerPolityCounts['吴'] === 1 && readerPolityCounts['晋'] === 32, `州镇读者政权数量错误：${JSON.stringify(readerPolityCounts)}`);
+const readerSeatRows = readerFangzhenRows.filter(row => seatOf(row));
+assert(readerSeatRows.length === 27 && readerSeatRows.every(row => publicSeatRows.some(audit => audit.recordId === row.id)), '州镇读者投影已核治所不是 27 条或 ID 不闭合');
+const seatFieldKeys = ['seat','seatName','seatType','seatPeriodId','administrativeUnitId','seatValidFromYear','seatValidToYear'];
+assert(readerFangzhenRows.every(row => {
+  const present = seatFieldKeys.filter(key => row[key] !== undefined);
+  return row.id && (present.length === 0 || present.length === seatFieldKeys.length)
+    && !Object.keys(row).some(key => /^(?:source|audit|review|publication)/i.test(key));
+}), '州镇读者投影治所字段不是全有或全无，或泄露审校来源字段');
+assert(!seatOf(readerFangzhenRows.find(row => row.id === 'fz_wei_cishi_5_0')) && !seatOf(readerFangzhenRows.find(row => row.id === 'fz_han_liuyan')), '邹岐或刘焉被错误附加未核治所');
+assert(seatOf(readerFangzhenRows.find(row => row.id === 'fz_han_lvbu_yan')) && seatOf(readerFangzhenRows.find(row => row.id === 'fz_shu_lihui')), '吕布或李恢的已核治所未进入读者投影');
+assert(!JSON.stringify(fangzhenReader || {}).includes('治所未详') && !html.includes('治所未详') && !html.includes('审校记录未发布'), '读者州镇页仍会显示治所占位文案');
 
 /* 战事纪：84 条规范源、62 条去重读者编年记录。 */
 const battles = runtime('data/battle-records.js', 'SGZ_BATTLE_RECORDS');

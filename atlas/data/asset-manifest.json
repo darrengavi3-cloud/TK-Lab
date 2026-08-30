@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 512,
-  "totalBytes": 238162678,
-  "aggregateSha256": "95b80b1860383222a344915788dde9b564700d9982b7a29efc22f3a7201d1a49",
+  "fileCount": 513,
+  "totalBytes": 238267893,
+  "aggregateSha256": "38317a534d74b283cfb7adfeb3ff75d76a6e7c2236394a6bccdd5eb84835c897",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -22,9 +22,14 @@
       "sha256": "e6975c2fa25bbc64d73029b3486b03824b7a97db31ba47986b1bf7e9ad46e070"
     },
     {
+      "path": "assets/app/persistence-core.js",
+      "bytes": 8040,
+      "sha256": "6c9685532147fecef86279964f42aad95e3cb573cc2433272a5e8c9dc04d16e3"
+    },
+    {
       "path": "assets/app/persistence.js",
-      "bytes": 7544,
-      "sha256": "0dcb4cb90b732115cd4f80f583d4111a7e693de01b3260b5d1556e419efd2913"
+      "bytes": 317,
+      "sha256": "b189d193c61d91a5305bb3dbe8964f62904f3279b962c5d6f67cc765b6ecf73f"
     },
     {
       "path": "assets/app/shell.js",
@@ -1898,8 +1903,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 35164,
-      "sha256": "0fb1bc4d72ac85bada5ebb7ed5a931d9f75e2b731ceb37d6e5bd973bae5572ed"
+      "bytes": 51840,
+      "sha256": "d1fa7f15e7ae0fc7def1be9d8877338f3ef5dbc890d78936755c41eb4f99c9d3"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -2528,18 +2533,18 @@
     },
     {
       "path": "data/v66-fangzhen-reader.js",
-      "bytes": 18648,
-      "sha256": "104041935d112894cc19fdc9e428be248f714e4385d658f9c3c66bb416c0f2af"
+      "bytes": 27025,
+      "sha256": "534278f995131da82c871ccc3a9adca3d2da883cf29cc2505535432ad6e12f71"
     },
     {
       "path": "data/v66-fangzhen-reader.json",
-      "bytes": 23638,
-      "sha256": "d98ce6a14a8396d0dcff76b70b0baf75a9207cd9341f9c58735066453a43aea7"
+      "bytes": 34447,
+      "sha256": "95d2f8270e92a79b61e82bae6eeae7dd075e891799c3edc4e38551078d400631"
     },
     {
       "path": "data/v66-fangzhen-seat-audit.json",
-      "bytes": 591783,
-      "sha256": "bbed101073af6a3cb2f916e2eabd185ccf8b53fcce21ac9f80dde4ea0a99e696"
+      "bytes": 660323,
+      "sha256": "54bd3bee85cc2c6ddd7795cddcca2233a1507d94a1d19a8d3b5a926101262ddd"
     },
     {
       "path": "data/v66-peerage-stages.js",

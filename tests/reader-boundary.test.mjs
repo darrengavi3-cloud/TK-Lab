@@ -98,9 +98,23 @@ test("deploys only the field-gated reader projection", async () => {
   vm.runInContext(fangzhenReaderSource, context, { filename: "v66-fangzhen-reader.js" });
   const fangzhenReader = context.window.SGZ_V66_FANGZHEN_READER;
   assert.equal(fangzhenReader?.schemaVersion, "V66-reader");
+  assert.equal(fangzhenReader?.records?.length, 45);
   assert.equal(fangzhenReader?.records?.length, fangzhenReader?.summary?.records);
-  assert.ok(fangzhenReader.records.every((record) => record.id && record.seatName));
-  assert.doesNotMatch(fangzhenReaderSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
+  assert.equal(fangzhenReader?.summary?.verifiedSeats, 27);
+  assert.equal(fangzhenReader?.verifiedSeatRecordIds?.length, 27);
+  const seatFields = ["seat", "seatName", "seatType", "seatPeriodId", "administrativeUnitId", "seatValidFromYear", "seatValidToYear"];
+  assert.ok(fangzhenReader.records.every((record) => {
+    const present = seatFields.filter((field) => record[field] !== undefined);
+    return record.id && (present.length === 0 || present.length === seatFields.length);
+  }), "reader fangzhen seat fields are not all-or-none");
+  const polityCounts = Object.groupBy(fangzhenReader.records, (record) => record.polity);
+  assert.equal(polityCounts["魏"]?.length, 1);
+  assert.equal(polityCounts["汉"]?.length, 11);
+  assert.equal(polityCounts["吴"]?.length, 1);
+  assert.equal(polityCounts["晋"]?.length, 32);
+  assert.equal(fangzhenReader.records.find((record) => record.id === "fz_wei_cishi_5_0")?.seatName, undefined);
+  assert.ok(fangzhenReader.records.find((record) => record.id === "fz_han_lvbu_yan")?.seatName);
+  assert.doesNotMatch(fangzhenReaderSource, /治所未详|审校记录未发布|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
 
   vm.runInContext(peerageReaderSource, context, { filename: "v66-peerage-stages.js" });
   const peerageReader = context.window.SGZ_V66_PEERAGE_STAGES;

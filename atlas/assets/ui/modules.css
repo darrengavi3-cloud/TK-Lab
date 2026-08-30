@@ -789,6 +789,837 @@ body, #app, .shell { color: var(--v58-ink); }
   }
 }
 
+/* 后汉百官志：中枢主图、功能分区与官位详情共用同一结构层。 */
+.han-court-canvas {
+  min-width: 0;
+  min-height: 100%;
+  padding: 18px 20px 24px;
+  background: var(--v56-paper, var(--paper));
+  color: var(--v56-ink, var(--ink));
+}
+
+.han-court-header {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto 14px;
+  padding: 0 2px 14px;
+  border-bottom: 1px solid var(--v56-rule, var(--rule));
+}
+
+.han-court-kicker {
+  margin-bottom: 4px;
+  color: var(--v56-vermilion, var(--accent));
+  font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .06em;
+}
+
+.han-court-header h2 {
+  margin: 0;
+  color: var(--v56-ink, var(--ink));
+  font: 700 24px/1.2 "Songti SC", "Noto Serif SC", SimSun, serif;
+  letter-spacing: .04em;
+}
+
+.han-court-layout {
+  display: grid;
+  grid-template-columns: 112px minmax(560px, 1fr) 252px;
+  align-items: start;
+  gap: 14px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.han-court-layout.review-mode {
+  grid-template-columns: 112px minmax(0, 1fr);
+}
+
+.han-court-nav,
+.han-court-detail {
+  position: sticky;
+  top: 10px;
+}
+
+.han-court-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 8px;
+  background: var(--v56-sheet, var(--panel));
+}
+
+.han-court-nav button {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--v56-muted, var(--muted));
+  cursor: pointer;
+  font-size: 11.5px;
+  text-align: left;
+}
+
+.han-court-nav button:hover,
+.han-court-nav button.active {
+  border-left-color: var(--v56-vermilion, var(--accent));
+  background: color-mix(in srgb, var(--v56-vermilion, var(--accent)) 7%, transparent);
+  color: var(--v56-ink, var(--ink));
+  font-weight: 650;
+}
+
+.han-court-map {
+  min-width: 0;
+}
+
+.han-court-section {
+  scroll-margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 13px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 9px;
+  background: var(--v56-sheet, var(--panel));
+}
+
+.han-court-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.han-court-section-head > span {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 1px solid var(--v56-gold, #9b7a3b);
+  border-radius: 50%;
+  color: var(--v56-gold, #9b7a3b);
+  font: 600 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.han-court-section-head h3,
+.han-court-section-head small {
+  display: block;
+  margin: 0;
+}
+
+.han-court-section-head h3 {
+  font: 700 17px/1.25 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.han-court-section-head small {
+  margin-top: 2px;
+  color: var(--v56-muted, var(--muted));
+  font-size: 10px;
+}
+
+.han-imperial-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px auto 14px;
+}
+
+.han-structure-line {
+  width: 1px;
+  height: 24px;
+  background: var(--v56-rule-strong, var(--rule));
+}
+
+.han-office-card {
+  position: relative;
+  min-width: 0;
+  min-height: 94px;
+  padding: 11px 10px 10px;
+  border: 1px solid var(--v56-rule-strong, var(--rule));
+  border-radius: 6px;
+  background: var(--v56-sheet-raised, var(--panel));
+  color: var(--v56-ink, var(--ink));
+  cursor: pointer;
+  text-align: left;
+}
+
+.han-office-card:hover,
+.han-office-card.selected {
+  border-color: var(--v56-vermilion, var(--accent));
+  box-shadow: inset 3px 0 0 var(--v56-vermilion, var(--accent));
+}
+
+.han-office-card--structural {
+  cursor: default;
+}
+
+.han-office-card--structural:hover {
+  border-color: var(--v56-gold, #9b7a3b);
+  box-shadow: none;
+}
+
+.han-office-card:focus-visible,
+.han-office-chip-grid button:focus-visible,
+.han-system-action:focus-visible,
+.han-detail-people button:focus-visible,
+.han-detail-children button:focus-visible,
+.han-detail-residence:focus-visible,
+.han-court-nav button:focus-visible {
+  outline: 2px solid var(--v56-vermilion, var(--accent));
+  outline-offset: 2px;
+}
+
+.han-office-card strong,
+.han-office-card small,
+.han-office-card p,
+.han-office-eyebrow {
+  display: block;
+}
+
+.han-office-card strong {
+  font: 700 15px/1.35 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.han-office-card small,
+.han-office-eyebrow {
+  color: var(--v56-muted, var(--muted));
+  font-size: 9.5px;
+}
+
+.han-office-eyebrow {
+  margin-bottom: 5px;
+  letter-spacing: .08em;
+}
+
+.han-office-card small {
+  margin-top: 4px;
+}
+
+.han-office-card p {
+  margin: 7px 0 0;
+  color: var(--v56-muted, var(--muted));
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.han-office-card--sovereign,
+.han-office-card--heir {
+  width: min(220px, 54%);
+  min-height: 76px;
+  text-align: center;
+}
+
+.han-office-card--sovereign {
+  border-color: var(--v56-gold, #9b7a3b);
+  background: color-mix(in srgb, var(--v56-gold-soft, #f2ebdc) 58%, var(--v56-sheet, var(--panel)));
+}
+
+.han-office-card--heir {
+  width: min(180px, 46%);
+  min-height: 70px;
+}
+
+.han-core-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  padding-top: 13px;
+  border-top: 1px solid var(--v56-rule, var(--rule));
+}
+
+.han-core-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.han-heir-branch {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  border-left: 1px solid var(--v56-rule-strong, var(--rule));
+}
+
+.han-heir-branch .han-office-card--heir {
+  width: 100%;
+}
+
+.han-office-residence {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 1px solid var(--v56-gold, #9b7a3b);
+  border-radius: 50%;
+  color: var(--v56-gold, #9b7a3b);
+  font: 700 10px/1 "Songti SC", SimSun, serif;
+}
+
+.han-nine-grid,
+.han-functional-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.han-nine-group,
+.han-functional-group,
+.han-military-group {
+  min-width: 0;
+  margin: 0;
+  padding: 9px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--v56-paper, var(--paper)) 54%, var(--v56-sheet, var(--panel)));
+}
+
+.han-nine-group h4,
+.han-functional-group h4,
+.han-military-group h4 {
+  margin: 0 0 8px;
+  color: var(--v56-green, #4e6961);
+  font-size: 11px;
+  letter-spacing: .06em;
+}
+
+.han-office-card--compact {
+  width: 100%;
+  min-height: 78px;
+}
+
+.han-office-card--compact + .han-office-card--compact {
+  margin-top: 6px;
+}
+
+.han-functional-group > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.han-functional-group > header span {
+  color: var(--v56-muted, var(--muted));
+  font: 600 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.han-office-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.han-office-chip-grid button {
+  position: relative;
+  min-width: 0;
+  min-height: 48px;
+  padding: 7px 8px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 5px;
+  background: var(--v56-sheet, var(--panel));
+  color: var(--v56-ink, var(--ink));
+  cursor: pointer;
+  text-align: left;
+}
+
+.han-office-chip-grid button:hover,
+.han-office-chip-grid button.selected {
+  border-color: var(--v56-vermilion, var(--accent));
+  background: color-mix(in srgb, var(--v56-vermilion, var(--accent)) 5%, var(--v56-sheet, var(--panel)));
+}
+
+.han-office-chip-grid strong,
+.han-office-chip-grid small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.han-office-chip-grid strong {
+  font: 650 11.5px/1.35 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.han-office-chip-grid small {
+  margin-top: 3px;
+  color: var(--v56-muted, var(--muted));
+  font-size: 9px;
+}
+
+.han-office-chip-grid button > span {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: var(--v56-gold, #9b7a3b);
+  font-size: 9px;
+}
+
+.han-military-list {
+  display: grid;
+  gap: 7px;
+}
+
+.han-military-group {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+}
+
+.han-military-group h4 {
+  margin: 6px 0 0;
+}
+
+.han-military-group .han-office-chip-grid {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+}
+
+.han-east-palace-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.han-east-palace-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.han-east-palace-roles span {
+  padding: 4px 7px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 999px;
+  background: var(--v56-sheet-raised, var(--panel));
+  color: var(--v56-muted, var(--muted));
+  font-size: 9.5px;
+}
+
+.han-system-action,
+.han-detail-residence {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--v56-vermilion, var(--accent));
+  border-radius: 5px;
+  background: transparent;
+  color: var(--v56-vermilion, var(--accent));
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 11px;
+}
+
+.han-system-action:hover,
+.han-detail-residence:hover {
+  background: color-mix(in srgb, var(--v56-vermilion, var(--accent)) 7%, transparent);
+}
+
+.han-local-section > .han-system-action {
+  display: block;
+  margin: 12px 0 0 auto;
+}
+
+.han-local-ladder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr);
+  align-items: center;
+}
+
+.han-local-ladder > div {
+  padding: 10px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 5px;
+  background: var(--v56-sheet-raised, var(--panel));
+  text-align: center;
+}
+
+.han-local-ladder strong,
+.han-local-ladder span {
+  display: block;
+}
+
+.han-local-ladder strong {
+  font: 650 12px/1.4 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.han-local-ladder span {
+  margin-top: 3px;
+  color: var(--v56-muted, var(--muted));
+  font-size: 9.5px;
+}
+
+.han-local-ladder i {
+  height: 1px;
+  background: var(--v56-rule-strong, var(--rule));
+}
+
+.han-court-detail-backdrop,
+.han-detail-close {
+  display: none;
+}
+
+.han-court-detail {
+  max-height: calc(100vh - 142px);
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-top: 3px solid var(--v56-vermilion, var(--accent));
+  border-radius: 8px;
+  outline: 0;
+  background: var(--v56-sheet, var(--panel));
+}
+
+.han-court-detail:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--v56-vermilion, var(--accent)) 16%, transparent);
+}
+
+.han-court-detail > header span {
+  color: var(--v56-vermilion, var(--accent));
+  font-size: 9.5px;
+  letter-spacing: .08em;
+}
+
+.han-court-detail > header h3 {
+  margin: 3px 0 12px;
+  font: 700 22px/1.25 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.han-court-detail dl {
+  margin: 0;
+  border-top: 1px solid var(--v56-rule, var(--rule));
+}
+
+.han-court-detail dl > div {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--v56-rule, var(--rule));
+  font-size: 10.5px;
+}
+
+.han-court-detail dt {
+  color: var(--v56-muted, var(--muted));
+}
+
+.han-court-detail dd {
+  margin: 0;
+}
+
+.han-court-detail section {
+  margin-top: 13px;
+}
+
+.han-court-detail section h4 {
+  margin: 0 0 5px;
+  color: var(--v56-muted, var(--muted));
+  font-size: 10px;
+  letter-spacing: .06em;
+}
+
+.han-court-detail section p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.han-detail-people,
+.han-detail-children {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.han-detail-people button,
+.han-detail-children button {
+  min-height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--v56-rule, var(--rule));
+  border-radius: 4px;
+  background: var(--v56-sheet-raised, var(--panel));
+  color: var(--v56-ink, var(--ink));
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.han-detail-residence {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.han-detail-overview {
+  padding: 18px 0 6px;
+  border-top: 1px solid var(--v56-rule, var(--rule));
+  text-align: center;
+}
+
+.han-detail-overview strong,
+.han-detail-overview span {
+  display: block;
+}
+
+.han-detail-overview strong {
+  color: var(--v56-vermilion, var(--accent));
+  font: 700 32px/1 "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.han-detail-overview span {
+  margin-top: 6px;
+  color: var(--v56-muted, var(--muted));
+  font-size: 10px;
+}
+
+.han-court-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  max-width: 1440px;
+  margin: 14px auto 0;
+  padding: 10px 12px;
+  border-top: 1px solid var(--v56-rule, var(--rule));
+  color: var(--v56-muted, var(--muted));
+  font-size: 9.5px;
+}
+
+.han-court-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.han-court-legend i.axis {
+  width: 18px;
+  height: 1px;
+  background: var(--v56-rule-strong, var(--rule));
+}
+
+.han-court-legend i.group {
+  width: 14px;
+  height: 10px;
+  border: 1px solid var(--v56-green, #4e6961);
+  border-radius: 2px;
+}
+
+.han-court-legend i.residence {
+  display: grid;
+  width: 17px;
+  height: 17px;
+  place-items: center;
+  border: 1px solid var(--v56-gold, #9b7a3b);
+  border-radius: 50%;
+  color: var(--v56-gold, #9b7a3b);
+  font: 700 8px/1 "Songti SC", SimSun, serif;
+}
+
+@media (max-width: 1180px) {
+  .han-court-layout {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+
+  .han-court-detail {
+    position: static;
+    grid-column: 2;
+    max-height: none;
+  }
+
+  .han-core-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .han-court-canvas {
+    padding: 12px 9px 18px;
+  }
+
+  .han-court-header {
+    display: block;
+  }
+
+  .han-court-header h2 {
+    font-size: 21px;
+  }
+
+  .han-court-header .court-heading-actions {
+    margin-top: 8px;
+  }
+
+  .han-court-layout {
+    display: block;
+  }
+
+  .han-court-nav {
+    position: sticky;
+    z-index: 5;
+    top: 0;
+    flex-direction: row;
+    overflow-x: auto;
+    margin-bottom: 9px;
+    padding: 4px;
+    scrollbar-width: thin;
+  }
+
+  .han-court-nav button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .han-court-nav button:hover,
+  .han-court-nav button.active {
+    border-bottom-color: var(--v56-vermilion, var(--accent));
+  }
+
+  .han-court-section {
+    scroll-margin-top: 50px;
+    padding: 11px;
+  }
+
+  .han-office-card--sovereign {
+    width: 62%;
+  }
+
+  .han-office-card--heir {
+    width: 54%;
+  }
+
+  .han-core-grid,
+  .han-nine-grid,
+  .han-functional-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .han-core-grid {
+    gap: 6px;
+  }
+
+  .han-core-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .han-heir-branch {
+    padding: 10px 0 0;
+    border-top: 1px solid var(--v56-rule-strong, var(--rule));
+    border-left: 0;
+  }
+
+  .han-heir-branch .han-office-card--heir {
+    width: 100%;
+  }
+
+  .han-office-card {
+    min-height: 82px;
+  }
+
+  .han-military-group {
+    display: block;
+  }
+
+  .han-military-group h4 {
+    margin: 0 0 7px;
+  }
+
+  .han-office-chip-grid,
+  .han-military-group .han-office-chip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .han-east-palace-body {
+    display: block;
+  }
+
+  .han-east-palace-body .han-system-action {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .han-local-ladder {
+    grid-template-columns: 1fr;
+  }
+
+  .han-local-ladder i {
+    width: 1px;
+    height: 18px;
+    margin: 0 auto;
+  }
+
+  .han-court-detail-backdrop {
+    position: fixed;
+    z-index: 2998;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(20, 26, 24, .46);
+  }
+
+  .han-court-detail {
+    position: fixed;
+    z-index: 2999;
+    inset: 0;
+    display: none;
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 14px 16px calc(24px + env(safe-area-inset-bottom));
+    border: 0;
+    border-radius: 0;
+    background: var(--v56-sheet, var(--panel));
+    overscroll-behavior: contain;
+  }
+
+  .han-court-detail.mobile-open {
+    display: block;
+  }
+
+  .han-detail-close {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    min-height: 44px;
+    margin: 0 0 8px auto;
+    border: 1px solid var(--v56-rule-strong, var(--rule));
+    border-radius: 6px;
+    background: var(--v56-sheet-raised, var(--panel));
+    color: var(--v56-ink, var(--ink));
+    cursor: pointer;
+  }
+
+  .han-detail-people button,
+  .han-detail-children button,
+  .han-detail-residence,
+  .han-system-action {
+    min-height: 44px;
+    font-size: 11px;
+  }
+
+  body:has(.han-court-detail.mobile-open) {
+    overflow: hidden;
+  }
+
+  .han-court-legend {
+    display: grid;
+  }
+}
+
 @media (max-width: 760px) {
   :root { --v62-reading-measure: 100%; }
 
