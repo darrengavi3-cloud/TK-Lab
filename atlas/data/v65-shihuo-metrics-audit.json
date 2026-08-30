@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "V65",
+  "generatedAt": "2026-08-30",
+  "policy": "户、口、覆盖地区、人口定义、资料性质和可比性分别记录。只有 comparability.chartEligible 为 true 的记录进入图表；可比不等于疆域、时点完全相同。",
+  "records": [
+    {
+      "metricId": "hh_157", "recordId": "sh_157_hukou", "year": 157, "polity": "汉", "households": "10,677,960 户", "population": "56,486,856 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "东汉天下编户区域", "populationDefinition": "后世史志所录天下民户与男女口数", "dataNature": "战乱前全国户口基线；后世史志汇总",
+      "comparability": {"status": "条件可比", "chartEligible": true, "comparisonGroup": "全国或亡国户口总量", "reason": "户、口单位明确；作为战乱前基线单独标识，不与三国局部政权直接等同。"},
+      "sourceTitle": "《晋书》卷十四·地理志上", "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷014", "sourceLocator": "地理志上总叙：桓帝永寿三年，户一千六十七万七千九百六十、口五千六百四十八万六千八百五十六", "accessedAt": "2026-08-30", "searchState": "已核原典", "historicalDisposition": "确定"
+    },
+    {
+      "metricId": "hh_221", "recordId": "sh_221_hukou", "year": 221, "polity": "汉", "households": "约 200,000 户", "population": "约 900,000 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "刘备政权所领益州区域", "populationDefinition": "后世史志系于章武元年的民户与男女口概数", "dataNature": "后世史志系年汇总；整数概数，非现存同时户籍原件",
+      "comparability": {"status": "不可比", "chartEligible": false, "comparisonGroup": "后世回顾值", "reason": "虽可定位至章武元年条，但为整数概数且资料形成层级与亡国图籍不同。"},
+      "sourceTitle": "《晋书》卷十四·地理志上", "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷014", "sourceLocator": "地理志上总叙：刘备章武元年，有户二十万、男女九十万口", "accessedAt": "2026-08-30", "searchState": "已核原典", "historicalDisposition": "存疑"
+    },
+    {
+      "metricId": "hh_242", "recordId": "sh_242_hukou", "year": 242, "polity": "吴", "households": "约 523,000 户", "population": "约 2,400,000 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "孙权政权所领江东区域", "populationDefinition": "后世史志系于赤乌五年的民户与男女口汇总", "dataNature": "后世史志系年汇总；《晋书》与《通典》数字有异",
+      "comparability": {"status": "不可比", "chartEligible": false, "comparisonGroup": "后世回顾值", "reason": "《晋书》作523,000户、2,400,000口，《通典》作520,000户、2,300,000口，版本数字未统一。"},
+      "sourceTitle": "《晋书》卷十四·地理志上", "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷014", "sourceLocator": "地理志上总叙：孙权赤乌五年，有户五十二万三千、男女口二百四十万", "accessedAt": "2026-08-30", "searchState": "已核原典及异文", "historicalDisposition": "存疑"
+    },
+    {
+      "metricId": "hh_263_wei", "recordId": "sh_263_hukou_wei", "year": null, "polity": "魏", "households": "约 663,423 户", "population": "约 4,432,881 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "魏本部推算范围，不含同条另列的蜀亡国户口", "populationDefinition": "魏平蜀后合计数扣除蜀亡国簿户口所得余数", "dataNature": "现代算术派生值；并非景元四年直接户籍记载",
+      "comparability": {"status": "不可比", "chartEligible": false, "comparisonGroup": "派生估算", "reason": "数值由后世合计与蜀亡国簿相减得到，统计时点和覆盖口径不能独立核验。"},
+      "sourceTitle": "《通典》卷七·食货七", "sourceUrl": "https://zh.wikisource.org/wiki/通典/卷007", "sourceLocator": "历代盛衰户口条：魏平蜀后天下合计943,423户、5,372,881口，后接蜀亡时280,000户、940,000口", "accessedAt": "2026-08-30", "searchState": "已核推算路径", "historicalDisposition": "存疑"
+    },
+    {
+      "metricId": "hh_263_shu", "recordId": "sh_263_hukou_shu", "year": 263, "polity": "汉", "households": "280,000 户", "population": "940,000 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "汉炎兴元年亡国时所领州郡", "populationDefinition": "士民簿所领民户与男女口；带甲将士与吏另列，不计入人口字段", "dataNature": "亡国时士民簿汇总，由裴注引王隐《蜀记》保存",
+      "comparability": {"status": "条件可比", "chartEligible": true, "comparisonGroup": "全国或亡国户口总量", "reason": "时点、户口单位与覆盖范围明确；与吴亡图籍比较时仍须注明两个政权领土不同。"},
+      "sourceTitle": "《三国志》卷三十三·后主传注引王隐《蜀记》", "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷33", "sourceLocator": "炎兴元年裴注引王隐《蜀记》：尚书郎李虎送士民簿，领户二十八万、男女口九十四万", "accessedAt": "2026-08-30", "searchState": "已核原典", "historicalDisposition": "确定"
+    },
+    {
+      "metricId": "hh_263_wu", "recordId": "sh_263_hukou_wu", "year": null, "polity": "吴", "households": "约 530,000 户", "population": "约 3,240,000 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "项目旧称“吴中期”，无可核定统计范围", "populationDefinition": "未找到可说明3,240,000口所含人群的原典", "dataNature": "项目旧推算值；本轮未找到匹配原典",
+      "comparability": {"status": "不可比", "chartEligible": false, "comparisonGroup": "无原典候选", "reason": "《晋书》《通典》赤乌五年数字及吴亡图籍均不与530,000户、3,240,000口匹配。"},
+      "sourceTitle": "《晋书》卷十四·地理志上（排查）", "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷014", "sourceLocator": "排查孙权赤乌五年条、魏平蜀合计条及吴亡户口；未见530,000户、3,240,000口组合", "accessedAt": "2026-08-30", "searchState": "明确无候选", "historicalDisposition": "明确无候选"
+    },
+    {
+      "metricId": "hh_280_wu", "recordId": "sh_280_hukou_wu", "year": 280, "polity": "吴", "households": "523,000 户", "population": "2,300,000 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "吴天纪四年亡国时所领四州、四十三郡、三百一十三县", "populationDefinition": "吴亡图籍所领民户与男女口；吏与兵另列，不计入人口字段", "dataNature": "亡国时图籍汇总，由裴注引《晋阳秋》保存",
+      "comparability": {"status": "条件可比", "chartEligible": true, "comparisonGroup": "全国或亡国户口总量", "reason": "时点、单位和行政覆盖范围明确；与其他政权比较仍须注明领土差异。"},
+      "sourceTitle": "《三国志》卷四十八·孙皓传注引《晋阳秋》", "sourceUrl": "https://zh.wikisource.org/wiki/三嗣主傳", "sourceLocator": "孙皓出降裴注引《晋阳秋》：领州四、郡四十三、县三百一十三，户五十二万三千、男女口二百三十万", "accessedAt": "2026-08-30", "searchState": "已核原典", "historicalDisposition": "确定"
+    },
+    {
+      "metricId": "hh_280_jin", "recordId": "sh_280_hukou", "year": 280, "polity": "晋", "households": "2,459,840 户", "population": "16,163,863 口",
+      "statisticalUnit": {"households": "户", "population": "口"}, "regionScope": "西晋平吴后统一范围", "populationDefinition": "后世史志所录太康元年天下民户与人口总计", "dataNature": "统一后全国户口总计；《晋书》《通典》同载",
+      "comparability": {"status": "条件可比", "chartEligible": true, "comparisonGroup": "全国或亡国户口总量", "reason": "年份、户口单位与天下覆盖范围明确；跨政权比较时仍须注明疆域变化。"},
+      "sourceTitle": "《晋书》卷十四·地理志上", "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷014", "sourceLocator": "地理志上总叙：太康元年平吴，大凡户二百四十五万九千八百四十、口一千六百一十六万三千八百六十三", "accessedAt": "2026-08-30", "searchState": "已核原典", "historicalDisposition": "确定"
+    }
+  ]
+}

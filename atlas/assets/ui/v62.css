@@ -1,0 +1,571 @@
+/*
+ * 观史台 V62：五朝人物、爵位目录与金石释文的增量视觉层。
+ * V57 壳层与形势图保持冻结；颜色、边界、焦点与动效继续取自 V56/V58 语义令牌。
+ */
+:root {
+  --v62-reading-measure: 44em;
+  --v62-row-marker: 3px;
+  --v62-touch-target: 44px;
+}
+
+/* 人物记：检索是名录的首要入口，结果理由沿用“案卷脊线”标识。 */
+.people-workbench .people-toolbar {
+  align-items: center;
+  gap: 8px;
+  overflow: visible;
+}
+
+.people-workbench .v63-person-search-field {
+  position: relative;
+  flex: 1 1 360px;
+  min-width: min(360px, 100%);
+  max-width: 680px;
+}
+
+.people-workbench .v62-person-search { width: 100%; }
+
+.v63-person-search-field .el-input__wrapper { padding-inline-end: 38px; }
+
+.v63-person-search-clear {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 50%;
+  inset-inline-end: 7px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--v56-muted);
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.v63-person-search-clear:hover { color: var(--v56-vermilion); background: var(--v56-vermilion-soft); }
+.v63-person-search-clear:focus-visible { outline: none; box-shadow: var(--v56-focus); }
+
+.people-workbench .v62-person-search .el-input__wrapper {
+  min-height: 36px;
+  border-radius: var(--v58-radius-small, 5px);
+  background: var(--v56-sheet-raised);
+  box-shadow: 0 0 0 1px var(--v56-rule-strong) inset;
+  transition: box-shadow var(--v56-motion-fast) ease, background-color var(--v56-motion-fast) ease;
+}
+
+.people-workbench .v62-person-search .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--v56-green) inset;
+}
+
+.people-workbench .v62-person-search .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--v56-vermilion) inset, var(--v56-focus);
+}
+
+.people-workbench .v62-person-search .el-input__inner {
+  color: var(--v56-ink);
+  font-size: 13px;
+}
+
+.people-workbench .v62-person-search .el-input__inner::placeholder {
+  color: var(--v56-faint);
+  opacity: 1;
+}
+
+.people-workbench .v62-person-search .el-input__clear {
+  min-width: 24px;
+  min-height: 24px;
+  color: var(--v56-muted);
+  border-radius: 4px;
+}
+
+.people-workbench .v62-person-search .el-input__clear:hover,
+.people-workbench .v62-person-search .el-input__clear:focus-visible {
+  color: var(--v56-vermilion);
+  background: var(--v56-vermilion-soft);
+  outline: none;
+  box-shadow: var(--v56-focus);
+}
+
+.v62-person-match {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  padding-inline-start: 9px;
+  overflow: hidden;
+  color: var(--v56-vermilion);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v62-person-match::before {
+  content: '';
+  position: absolute;
+  inset-block: .35em;
+  inset-inline-start: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.v62-person-match.match-related { color: var(--v56-green); }
+
+.v56-person-row.keyboard-active {
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 0 0 2px var(--v56-green);
+}
+
+.v62-historical-affiliations {
+  margin: 7px 0 0;
+  padding-inline-start: 9px;
+  border-inline-start: 2px solid var(--v56-rule-strong);
+  color: var(--v56-muted);
+  font-size: 11px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.people-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.people-detail-tags .person-pill {
+  position: relative;
+  min-height: 22px;
+  gap: 5px;
+  padding: 3px 8px 3px 7px;
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  border-radius: 4px;
+  font-weight: 650;
+}
+
+.people-detail-tags .person-pill::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.person-pill.han { color: var(--v56-vermilion); background: var(--v56-vermilion-soft); }
+.person-pill.wei { color: #315f8d; background: #eaf2f8; }
+.person-pill.jihan { color: #84622f; background: var(--v56-gold-soft); }
+.person-pill.wu { color: #356a49; background: #eaf3ed; }
+.person-pill.jin { color: #604c8d; background: #f0ecf7; }
+
+:root[data-sgz-theme="lamp-night"] .person-pill.wei { color: #a9c8df; background: #203645; }
+:root[data-sgz-theme="lamp-night"] .person-pill.jihan { color: var(--v56-gold); background: var(--v56-gold-soft); }
+:root[data-sgz-theme="lamp-night"] .person-pill.wu { color: #9bc8aa; background: #20372c; }
+:root[data-sgz-theme="lamp-night"] .person-pill.jin { color: #c0addf; background: #302a42; }
+
+.v56-person-row {
+  scroll-margin-block: calc(var(--v56-context-h) + 8px);
+}
+
+.v56-person-row:hover .v56-person-row-name strong,
+.v56-person-row.active .v56-person-row-name strong {
+  color: var(--v56-vermilion);
+}
+
+.v56-person-row:active {
+  background: color-mix(in srgb, var(--v56-vermilion) 13%, transparent);
+}
+
+.v56-person-row:focus-visible,
+.v56-career-row:focus-visible,
+.v61-dataset-switch button:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--v56-vermilion), var(--v56-focus);
+}
+
+/* 曹魏爵制与其他爵位目录：层级优先，说明退居元数据。 */
+.catalog-workbench .catalog-hierarchy {
+  background: var(--v56-sheet);
+  border-color: var(--v56-rule);
+}
+
+.catalog-workbench .catalog-tree-row {
+  min-height: 38px;
+  border-radius: 4px;
+  color: var(--v56-muted);
+  transition: background-color var(--v56-motion-fast) ease, color var(--v56-motion-fast) ease, border-color var(--v56-motion-fast) ease;
+}
+
+.catalog-workbench .catalog-tree-row.root {
+  min-height: 42px;
+  margin-block-end: 5px;
+  border-block-end-color: var(--v56-rule-strong);
+  color: var(--v56-ink);
+}
+
+.catalog-workbench .catalog-tree-row:hover {
+  background: color-mix(in srgb, var(--v56-green) 8%, transparent);
+  color: var(--v56-ink);
+}
+
+.catalog-workbench .catalog-tree-row.active {
+  border-color: color-mix(in srgb, var(--v56-vermilion) 45%, var(--v56-rule));
+  background: var(--v56-vermilion-soft);
+  color: var(--v56-ink);
+  box-shadow: inset var(--v62-row-marker) 0 var(--v56-vermilion);
+}
+
+.catalog-workbench .catalog-tree-toggle {
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 4px;
+}
+
+.catalog-workbench .catalog-tree-toggle:focus-visible,
+.catalog-workbench .catalog-person-chip:focus-visible {
+  outline: none;
+  box-shadow: var(--v56-focus);
+}
+
+.catalog-workbench .catalog-content {
+  background: var(--v56-paper);
+}
+
+.catalog-workbench .catalog-card {
+  border-radius: 6px;
+  background: var(--v56-sheet-raised);
+  box-shadow: none;
+  transition: border-color var(--v56-motion-fast) ease, box-shadow var(--v56-motion-fast) ease, background-color var(--v56-motion-fast) ease;
+}
+
+.catalog-workbench .catalog-card:hover {
+  transform: none;
+  border-color: var(--v56-rule-strong);
+  box-shadow: inset 0 0 0 1px var(--v56-rule-strong);
+}
+
+.catalog-workbench .catalog-card.selected {
+  box-shadow: inset 0 0 0 1px var(--catalog-accent, var(--v56-vermilion));
+}
+
+/* 金石录：目录负责定位，释文区负责连续阅读。 */
+.jinshi-workbench .v56-jinshi-workbench-grid {
+  grid-template-columns: minmax(286px, 32%) minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.jinshi-workbench .v56-jinshi-directory,
+.jinshi-workbench .v56-jinshi-reader {
+  min-height: 0;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+
+.jinshi-workbench .v56-jinshi-directory {
+  background: color-mix(in srgb, var(--v56-paper) 54%, var(--v56-sheet));
+}
+
+.jinshi-workbench .v56-jinshi-row {
+  min-height: 70px;
+  padding: 10px 12px 10px 17px;
+  transition: background-color var(--v56-motion-fast) ease, color var(--v56-motion-fast) ease;
+}
+
+.jinshi-workbench .v56-jinshi-row:hover {
+  background: color-mix(in srgb, var(--v56-green) 8%, transparent);
+}
+
+.jinshi-workbench .v56-jinshi-row:active {
+  background: color-mix(in srgb, var(--v56-vermilion) 12%, transparent);
+}
+
+.jinshi-workbench .v56-jinshi-row:focus-visible {
+  z-index: 1;
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--v56-vermilion), var(--v56-focus);
+}
+
+.v62-jinshi-variant-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 19px;
+  margin-inline-start: 7px;
+  padding: 1px 6px;
+  border: 1px solid var(--v56-gold);
+  border-radius: 4px;
+  color: var(--v56-gold);
+  background: var(--v56-gold-soft);
+  font: 650 9.5px/1.3 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  letter-spacing: 0;
+  vertical-align: .12em;
+  white-space: nowrap;
+}
+
+.v62-jinshi-aliases {
+  margin-top: 5px !important; /* Element Plus/base header uses a zero-margin shorthand. */
+  color: var(--v56-muted) !important; /* Preserve readable alias contrast across all three themes. */
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.jinshi-workbench .v56-jinshi-reader {
+  padding: 22px clamp(20px, 4vw, 54px) 48px;
+  background: var(--v56-sheet-raised);
+}
+
+.jinshi-workbench .v56-jinshi-reader > header,
+.jinshi-workbench .v56-jinshi-reader > section,
+.jinshi-workbench .v56-jinshi-reader > dl,
+.jinshi-workbench .v56-jinshi-reader > div {
+  max-width: var(--v62-reading-measure);
+  margin-inline: auto;
+}
+
+.jinshi-workbench .v56-jinshi-reader > header {
+  padding-block: 3px 15px;
+}
+
+.jinshi-workbench .v56-jinshi-reader h2 {
+  font-family: "Songti SC", "Noto Serif SC", SimSun, serif;
+  font-size: clamp(22px, 2.1vw, 29px);
+  line-height: 1.35;
+  letter-spacing: .035em;
+  overflow-wrap: anywhere;
+}
+
+.jinshi-workbench .v56-jinshi-inscription {
+  margin-top: 22px;
+  padding-top: 14px;
+}
+
+.v62-transcription {
+  max-width: var(--v62-reading-measure);
+  color: var(--v56-ink);
+  font-family: "Songti SC", "Noto Serif SC", SimSun, serif;
+  font-size: 16px;
+  line-height: 2;
+  letter-spacing: .02em;
+  text-align: start;
+  line-break: strict;
+  word-break: normal;
+}
+
+.v62-transcription-section + .v62-transcription-section {
+  margin-top: 26px;
+  padding-top: 21px;
+  border-top: 1px solid var(--v56-rule);
+}
+
+.v62-transcription-section h4 {
+  position: relative;
+  margin: 0 0 10px;
+  padding-inline-start: 12px;
+  color: var(--v56-green);
+  font: 700 12px/1.4 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  letter-spacing: .12em;
+}
+
+.v62-transcription-section h4::before {
+  content: '';
+  position: absolute;
+  inset-block: 1px;
+  inset-inline-start: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--v56-gold);
+}
+
+.v62-transcription-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.v62-transcription mark {
+  padding: 1px 2px;
+  border-radius: 2px;
+  background: var(--v56-gold-soft);
+  color: var(--v56-vermilion);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.jinshi-detail-drawer .epigraphic-inscription {
+  max-width: var(--v62-reading-measure);
+  margin-inline: auto;
+  padding: 18px clamp(14px, 4vw, 28px);
+  border: 1px solid var(--v56-rule);
+  background: var(--v56-sheet-raised);
+}
+
+.jinshi-detail-drawer .v62-transcription {
+  margin-top: 10px;
+}
+
+@media (max-width: 980px) {
+  .people-workbench .people-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .people-workbench .v63-person-search-field {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .v56-people-master-detail,
+  .v56-jinshi-workbench-grid {
+    min-height: 0;
+  }
+
+  .v56-person-directory,
+  .v56-person-dossier,
+  .v56-jinshi-directory,
+  .v56-jinshi-reader {
+    max-height: none;
+  }
+}
+
+@media (max-width: 760px) {
+  :root { --v62-reading-measure: 100%; }
+
+  .people-workbench .people-toolbar {
+    overflow: visible;
+  }
+
+  .people-workbench .v62-person-search .el-input__wrapper {
+    min-height: var(--v62-touch-target);
+  }
+
+  .v61-dataset-switch button,
+  .v56-person-row,
+  .jinshi-workbench .v56-jinshi-row {
+    min-height: var(--v62-touch-target);
+  }
+
+  .v56-person-row-meta,
+  .v62-person-match,
+  .v56-jinshi-row-title,
+  .v56-jinshi-row-meta {
+    white-space: normal;
+    text-overflow: clip;
+  }
+
+  .v56-person-row-meta,
+  .v62-person-match {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .jinshi-workbench .v56-jinshi-directory {
+    max-height: none;
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+
+  .jinshi-workbench .v56-jinshi-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+    padding-block: 11px;
+  }
+
+  .jinshi-workbench .v56-jinshi-reader {
+    display: none;
+  }
+
+  /* The drawer receives an inline width from Element Plus; mobile reading must own the full viewport. */
+  .jinshi-detail-drawer.el-drawer {
+    width: 100vw !important;
+    max-width: 100vw;
+  }
+
+  .jinshi-detail-drawer .el-drawer__header {
+    min-height: 52px;
+    margin: 0;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--v56-rule);
+  }
+
+  .jinshi-detail-drawer .el-drawer__body {
+    padding: 14px 12px calc(28px + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+  }
+
+  .jinshi-detail-drawer .epigraphic-inscription {
+    padding: 15px 14px 24px;
+  }
+
+  .v62-transcription {
+    font-size: 16px;
+    line-height: 1.95;
+    letter-spacing: 0;
+  }
+
+  .catalog-workbench .catalog-content {
+    padding-inline: 12px;
+  }
+
+  .catalog-workbench .catalog-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 430px) {
+  .v61-dataset-switch {
+    gap: 6px;
+  }
+
+  .people-workbench .people-toolbar > .el-checkbox,
+  .people-workbench .people-toolbar > .el-button {
+    min-height: 36px;
+  }
+
+  .v56-person-row {
+    grid-template-columns: 46px minmax(0, 1fr);
+  }
+
+  .v56-person-row-count {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .v62-jinshi-variant-label {
+    margin-block-start: 4px;
+    margin-inline-start: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .people-workbench .v62-person-search .el-input__wrapper,
+  .catalog-workbench .catalog-tree-row,
+  .catalog-workbench .catalog-card,
+  .jinshi-workbench .v56-jinshi-row {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .v62-person-match::before,
+  .people-detail-tags .person-pill::before,
+  .v62-transcription-section h4::before {
+    background: currentColor;
+  }
+
+  .v56-person-row:focus-visible,
+  .v56-career-row:focus-visible,
+  .jinshi-workbench .v56-jinshi-row:focus-visible,
+  .catalog-workbench .catalog-tree-toggle:focus-visible,
+  .catalog-workbench .catalog-person-chip:focus-visible {
+    outline: 2px solid CanvasText;
+    outline-offset: -2px;
+    box-shadow: none;
+  }
+}

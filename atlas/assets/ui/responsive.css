@@ -1,0 +1,17 @@
+/* 观史台稳定响应式与无障碍层。模块专属规则保留在 modules.css。 */
+@media (max-width: 760px) {
+  .v56-mobile-module-sheet [role="dialog"] {
+    max-height: min(88dvh, 720px);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+  .v58-status::before { forced-color-adjust: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within { scroll-behavior: auto; }
+}

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import vm from 'node:vm';
-import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import sharp from 'sharp';
 
 const projectRoot = process.cwd();
 const legacyRoot = path.join(projectRoot, 'dist', 'client', 'legacy');
@@ -12,13 +12,7 @@ if (!fs.existsSync(legacyRoot)) {
 }
 
 const manifestPath = path.join(legacyRoot, 'data', 'portrait-manifest.json');
-const portraitsIndexPath = path.join(legacyRoot, 'data', 'person-portraits.js');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-const context = { window: {} };
-vm.createContext(context);
-vm.runInContext(fs.readFileSync(portraitsIndexPath, 'utf8'), context, {
-  filename: portraitsIndexPath,
-});
 
 const runtimePortraits = new Set();
 const registerPortrait = (src) => {
@@ -26,9 +20,6 @@ const registerPortrait = (src) => {
   runtimePortraits.add(path.normalize(src.slice(2)));
 };
 
-for (const portrait of Object.values(context.window.SGZ_PERSON_PORTRAITS || {})) {
-  registerPortrait(portrait?.src);
-}
 for (const personId of manifest.defaultPersonIds || []) {
   registerPortrait(manifest.byPersonId?.[personId]?.src);
 }
@@ -113,22 +104,59 @@ if (missingAfterPrune.length) {
 
 let optimizedPortraits = 0;
 let optimizedBytes = 0;
-const sipsPath = '/usr/bin/sips';
-if (process.platform === 'darwin' && fs.existsSync(sipsPath)) {
-  for (const relativePath of runtimePortraits) {
-    const filePath = path.join(legacyRoot, relativePath);
-    const before = fs.statSync(filePath).size;
-    execFileSync(sipsPath, ['--resampleHeightWidthMax', '192', filePath], {
-      stdio: 'ignore',
-    });
-    const after = fs.statSync(filePath).size;
-    if (after < before) {
-      optimizedPortraits += 1;
-      optimizedBytes += before - after;
-    }
+for (const relativePath of runtimePortraits) {
+  const filePath = path.join(legacyRoot, relativePath);
+  const extension = path.extname(filePath).toLowerCase();
+  if (extension !== '.png') {
+    throw new Error(`Unsupported runtime portrait format: ${relativePath}`);
   }
+
+  const input = fs.readFileSync(filePath);
+  const metadata = await sharp(input, { failOn: 'error' }).metadata();
+  const maxDimension = Math.max(metadata.width || 0, metadata.height || 0);
+  if (maxDimension <= 192) continue;
+
+  const output = await sharp(input, { failOn: 'error' })
+    .resize({ width: 192, height: 192, fit: 'inside', withoutEnlargement: true })
+    .png({ compressionLevel: 9, adaptiveFiltering: false })
+    .toBuffer();
+  fs.writeFileSync(filePath, output);
+  optimizedPortraits += 1;
+  optimizedBytes += Math.max(0, input.length - output.length);
 }
 
+const deploymentRoot = path.join(projectRoot, 'dist');
+const deploymentManifestPath = path.join(deploymentRoot, 'deployment-manifest.json');
+const releaseMetadataRoot = path.join(projectRoot, 'release-metadata');
+const deploymentFiles = walkFiles(deploymentRoot)
+  .filter((filePath) => filePath !== deploymentManifestPath)
+  .map((filePath) => {
+    const bytes = fs.statSync(filePath).size;
+    const sha256 = createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
+    return {
+      path: path.relative(deploymentRoot, filePath).split(path.sep).join('/'),
+      bytes,
+      sha256,
+    };
+  })
+  .sort((left, right) => left.path.localeCompare(right.path, 'en'));
+const aggregateSha256 = createHash('sha256')
+  .update(deploymentFiles.map((item) => `${item.path}\0${item.bytes}\0${item.sha256}\n`).join(''))
+  .digest('hex');
+const deploymentManifest = {
+  schemaVersion: 2,
+  manifestKind: 'post-prune-deployment',
+  files: deploymentFiles,
+  aggregateSha256,
+  summary: {
+    fileCount: deploymentFiles.length,
+    totalBytes: deploymentFiles.reduce((sum, item) => sum + item.bytes, 0),
+  },
+};
+fs.writeFileSync(deploymentManifestPath, `${JSON.stringify(deploymentManifest, null, 2)}\n`);
+fs.mkdirSync(releaseMetadataRoot, { recursive: true });
+fs.copyFileSync(deploymentManifestPath, path.join(releaseMetadataRoot, 'deployment-manifest.json'));
+
 console.log(
-  `Sites build pruned: kept ${runtimePortraits.size} runtime portraits; removed ${removedFiles} files (${removedBytes} bytes); optimized ${optimizedPortraits} portraits (${optimizedBytes} bytes).`,
+  `Sites build pruned: kept ${runtimePortraits.size} runtime portraits; removed ${removedFiles} files (${removedBytes} bytes); optimized ${optimizedPortraits} portraits (${optimizedBytes} bytes); deployment manifest ${deploymentFiles.length} files (${aggregateSha256}).`,
 );

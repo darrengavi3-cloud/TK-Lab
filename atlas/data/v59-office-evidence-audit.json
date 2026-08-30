@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "auditId": "v59-office-evidence-audit",
+  "version": "V59",
+  "scope": "开府资格、三公府、重号将军府与太子东宫府属",
+  "rule": "官名、比公或一般府员记录不得自动改写为开府仪同三司；只有存在对应朝代的制度条文、具体开府／位从公依据或人物任官出处时，才建立确定府署。",
+  "sources": [
+    {
+      "id": "source:houhanshu:bai-guan-yi",
+      "title": "《后汉书·百官志一》",
+      "locator": "“将军，不常置”及“长史、司马皆一人……此皆府员职也”条",
+      "url": "https://ctext.org/hou-han-shu/bai-guan-yi#n79695",
+      "confidence": "确定"
+    },
+    {
+      "id": "source:houhanshu:bai-guan-si",
+      "title": "《后汉书·百官志四》",
+      "locator": "太子太傅、太子少傅及太子官属条",
+      "url": "https://ctext.org/hou-han-shu/bai-guan-si#n79795",
+      "confidence": "确定"
+    },
+    {
+      "id": "source:jinshu:024:zhiguan",
+      "title": "《晋书》卷二十四·职官志",
+      "locator": "“开府仪同三司”至“诸公及开府位从公”、东宫官属条",
+      "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+      "confidence": "确定",
+      "note": "页面为古籍转录，使用卷内条文定位；具体人物任期仍须另以本传复核。"
+    }
+  ],
+  "resolved": [
+    {
+      "id": "v59:han:public-office",
+      "domain": "三公府",
+      "polity": "汉",
+      "subject": ["太尉", "司徒", "司空"],
+      "status": "确定",
+      "conclusion": "东汉公府有长史、掾史属、令史及御属等府员；本批次按事实见府属建模，不称魏晋式开府仪同三司。",
+      "sourceIds": ["source:houhanshu:bai-guan-yi"],
+      "runtimeIds": ["kaifu:han:public-office:1", "kaifu:han:public-office:2", "kaifu:han:public-office:3", "residence:han:public-office"]
+    },
+    {
+      "id": "v59:han:heavy-general",
+      "domain": "重号将军府",
+      "polity": "汉",
+      "subject": ["大将军", "骠骑将军", "车骑将军", "卫将军"],
+      "status": "确定",
+      "conclusion": "东汉《百官志》将四者列为比公者，并记将军府员；这是府员制度证据，不是对每位任官者自动加授开府仪同三司。",
+      "sourceIds": ["source:houhanshu:bai-guan-yi"],
+      "runtimeIds": ["kaifu:han:heavy-general:1", "kaifu:han:heavy-general:2", "kaifu:han:heavy-general:3", "kaifu:han:heavy-general:4", "residence:han:heavy-general"]
+    },
+    {
+      "id": "v59:han:east-palace",
+      "domain": "东宫",
+      "polity": "汉",
+      "subject": "太子官属",
+      "status": "确定",
+      "conclusion": "太子少傅悉主太子官属，太傅、率更令、庶子、舍人、家令、仆、中庶子、洗马、中盾均有条文定位；未立太子时有省置沿革。",
+      "sourceIds": ["source:houhanshu:bai-guan-si"],
+      "runtimeIds": ["residence:han:east-palace"]
+    },
+    {
+      "id": "v59:jin:public-office",
+      "domain": "三公及位从公府",
+      "polity": "晋",
+      "subject": ["太宰", "太傅", "太保", "太尉", "司徒", "司空"],
+      "status": "确定",
+      "conclusion": "《晋书·职官志》明列诸公及开府位从公者的长史、东西阁祭酒、东西曹掾、户仓贼曹令史属及记室令史。",
+      "sourceIds": ["source:jinshu:024:zhiguan"],
+      "runtimeIds": ["residence:jin:public-office"]
+    },
+    {
+      "id": "v59:jin:military-kaifu",
+      "domain": "开府将军府",
+      "polity": "晋",
+      "subject": ["大司马", "大将军", "太尉", "骠骑将军", "车骑将军", "卫将军", "伏波等大将军"],
+      "status": "确定",
+      "conclusion": "《晋书·职官志》称所列诸大将军“开府者皆为位从公”；本项确认资格类别与府属结构，不把官名本身当作每位任官者的开府事实。",
+      "sourceIds": ["source:jinshu:024:zhiguan"],
+      "runtimeIds": ["kaifu:jin:military:1", "kaifu:jin:military:2", "kaifu:jin:military:4", "kaifu:jin:military:5", "kaifu:jin:military:6", "residence:jin:military-kaifu"]
+    },
+    {
+      "id": "v59:jin:east-palace",
+      "domain": "东宫",
+      "polity": "晋",
+      "subject": "太子官属",
+      "status": "确定",
+      "conclusion": "泰始三年置太子太傅、少傅；咸宁元年置詹事掌宫事，二傅不复领官属；中庶子、舍人、洗马、率更令、家令、仆、左右卫率等有条文定位，并保留省置沿革。",
+      "sourceIds": ["source:jinshu:024:zhiguan"],
+      "runtimeIds": ["residence:jin:east-palace"]
+    }
+  ],
+  "reviewQueue": [
+    {
+      "id": "v59:general-title-patterns",
+      "domain": "将军名号模板",
+      "scope": "曹魏、季汉、孙吴、西晋的四征、四镇、四安、四平及杂号模板",
+      "status": "待复核",
+      "reason": "模板只证明名号可能出现，不能证明每一朝每一时点均常置，也不能证明开府资格。",
+      "sourceBoundary": "逐名号、逐人物、逐时期核对《三国志》《晋书》本传与官制条文；完成前保留待考。",
+      "runtimeIds": ["SGZ_GENERAL_TITLES"]
+    },
+    {
+      "id": "v59:unsupported-polity-east-palace",
+      "domain": "东宫",
+      "scope": "魏、季汉、孙吴",
+      "status": "待复核",
+      "reason": "本批次已核实后汉与西晋条文；其他政权未以同等层级的逐条出处闭合，不生成确定府署。",
+      "sourceBoundary": "继续核对对应《三国志》纪传与官制材料后再建政权专属东宫记录。",
+      "runtimeIds": []
+    },
+    {
+      "id": "v59:individual-kaifu-events",
+      "domain": "具体任官开府事实",
+      "scope": "魏、蜀汉、孙吴、晋的具体人物与任期",
+      "status": "待复核",
+      "reason": "制度资格不等于人物实际开府；需要稳定 personId、appointmentId、年份和原文定位四项同时闭合。",
+      "sourceBoundary": "已闭合的诸葛亮、孙壹等既有记录保持原证据等级；未闭合记录不得由官名或模板自动升级。",
+      "runtimeIds": ["SGZ_KAIFU_POLICIES"]
+    }
+  ],
+  "boundary": "本台账关闭的是本批次新增府署与开府制度条目的笼统待考；reviewQueue 中的跨政权名号模板和具体人物事件仍是明确可追踪的待复核项，不伪装成已考证。"
+}

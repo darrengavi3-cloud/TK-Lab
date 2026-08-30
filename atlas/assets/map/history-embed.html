@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<base href="./">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+:root{--topbar-h:0px;--panel-w:clamp(270px,22vw,330px);--side-w:clamp(164px,15vw,190px);--parchment:#f0ece2;--ink:#202420;--ink-soft:#6f756f;--seal:#8d3d32;--gold:#a78345}
+*{box-sizing:border-box}
+html,body,#app{height:100%;margin:0;background:#f4f3ef;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;color:#202420}
+#map{inset:0!important;background:#e8e3d7}
+#timeline,#topbar,#layers-toggle,#vtitle{display:none!important}
+.mount-frame{inset:0;border-width:5px;pointer-events:none}
+.territory{fill-opacity:.34!important;stroke-width:1.35!important;stroke-opacity:.84!important;filter:saturate(.92)}
+.territory:hover{fill-opacity:.43!important}
+.wu-commandery{fill-opacity:.24!important;stroke:#51463b!important;stroke-width:.72!important;stroke-opacity:.62!important}
+.wu-commandery:hover{fill-opacity:.34!important}
+.major-river{stroke-width:3.1!important;opacity:.78!important;filter:drop-shadow(0 0 1px rgba(255,255,255,.8))}
+.major-river-label{font-family:"KaiTi","STKaiti",serif;color:#3f6878;font-size:13px;font-weight:700;letter-spacing:1px;text-shadow:0 0 4px #f7f3e9,0 0 2px #f7f3e9;white-space:nowrap}
+.frontier-route{filter:drop-shadow(0 1px 1px rgba(247,243,233,.95))}
+.battlefield-label span{display:inline-block;padding:2px 5px;border:1px solid rgba(141,61,50,.42);border-radius:3px;background:rgba(247,243,233,.88);color:#7c342c;font:11px "KaiTi",serif;white-space:nowrap;box-shadow:0 1px 4px rgba(43,38,34,.08)}
+.hydronym-label span{display:inline-block;padding:2px 6px;border:1px solid rgba(53,96,107,.38);border-radius:3px;background:rgba(244,240,228,.9);color:#35606b;font:11px "KaiTi",serif;white-space:nowrap;box-shadow:0 1px 4px rgba(38,44,46,.12);cursor:pointer}
+.hydronym-label.is-pending span{color:#7a6a4f;border-color:rgba(122,106,79,.4);background:rgba(247,243,233,.82)}
+.elev-readout{margin-top:6px;padding:6px 8px;border:1px solid rgba(53,96,107,.3);border-radius:4px;background:rgba(244,240,228,.75);color:#35606b;font-size:10.5px;letter-spacing:.5px}
+.pv-search{width:100%;box-sizing:border-box;margin-bottom:8px;padding:6px 9px;border:1px solid rgba(84,78,66,.3);border-radius:4px;background:rgba(255,252,244,.7);color:#202420;font-family:inherit;font-size:12px}
+.hydronym-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow:auto}
+.hydronym-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;width:100%;text-align:left;cursor:pointer;background:rgba(255,252,244,.5);border:1px solid rgba(160,152,138,.25);border-left:2px solid rgba(53,96,107,.45);border-radius:3px;padding:5px 8px;font-family:inherit;color:#202420}
+.hydronym-row.is-pending{border-left-color:rgba(122,106,79,.5)}
+.hydronym-row b{font-size:12px}.hydronym-row small{color:#a29b8e;font-size:10px;white-space:nowrap}
+.yizhou-island-outline{stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(43,38,34,.16))}
+.real-coastline{pointer-events:none;stroke-linejoin:round;stroke-linecap:round}
+.faction-label{font-size:27px!important;letter-spacing:6px!important;opacity:.88!important;z-index:660!important}
+.province-label{font-size:13.5px!important;letter-spacing:1.5px!important;opacity:.98!important;z-index:690!important;font-weight:700!important}
+.cmd-label{font-size:10.5px!important;letter-spacing:.7px!important;opacity:.72!important;z-index:640!important;transition:font-size .18s ease,opacity .18s ease;pointer-events:none}
+.county-label{font-size:9px!important;letter-spacing:.2px!important;opacity:.9!important;z-index:710!important;display:none;pointer-events:auto;transition:font-size .18s ease,opacity .18s ease}
+.zoom-gte-7 .county-label.county-seat{display:block}
+.zoom-gte-8 .county-label{display:block}
+.zoom-gte-8 .county-label{font-size:10px!important;opacity:.96!important}
+.county-label span{font-weight:600;color:#5c5348;white-space:nowrap;background:rgba(255,252,244,.78);border:1px solid rgba(92,83,72,.18);border-radius:3px;padding:1px 4px;box-shadow:0 1px 3px rgba(43,38,34,.08)}
+.county-label.county-seat span{color:#8a3b2f;font-weight:800;border-color:rgba(138,59,47,.32)}
+.zoom-gte-7 .cmd-label{font-size:11.5px!important;opacity:.88!important}
+.zoom-gte-8 .cmd-label{font-size:12px!important;opacity:.94!important}
+.zoom-lte-5 .faction-label,.zoom-lte-4 .faction-label,.zoom-lte-3 .faction-label{font-size:27px!important;letter-spacing:6px!important;opacity:.88!important}
+.zoom-lte-5 .province-label,.zoom-lte-4 .province-label{font-size:13.5px!important;letter-spacing:1.5px!important;opacity:.98!important}
+.zoom-lte-5 .cmd-label{font-size:9px!important;opacity:.64!important}
+.zoom-lte-4 .cmd-label{font-size:7.5px!important;letter-spacing:.3px!important;opacity:.50!important}
+.faction-label span,.province-label span,.cmd-label span,.county-label span{transform-origin:center center;transform:translate(-50%,calc(-50% + var(--cmd-shift-y,0px)))}
+.province-label span{padding:3px 7px;border:1px solid rgba(84,78,66,.28);border-radius:7px;background:rgba(250,248,242,.88);box-shadow:0 1px 5px rgba(43,38,34,.10)}
+.historical-influence{stroke-linecap:round;filter:drop-shadow(0 1px 2px rgba(247,243,233,.9))}.historical-influence-hatch{stroke:none!important;stroke-width:0!important;stroke-linejoin:round;stroke-linecap:round;mix-blend-mode:multiply;pointer-events:none}
+.faction-annotation{z-index:700!important;pointer-events:none}.faction-annotation span{display:flex;flex-direction:column;align-items:center;gap:0;transform:translate(-50%,-50%);padding:0;border:0;background:transparent;color:var(--annotation-color);white-space:nowrap;filter:drop-shadow(0 1px 0 #f7f3e9) drop-shadow(0 -1px 0 #f7f3e9) drop-shadow(1px 0 0 #f7f3e9) drop-shadow(-1px 0 0 #f7f3e9)}.faction-annotation b{font:700 15px "Noto Serif SC","Songti SC",serif;letter-spacing:1px}.faction-annotation small{font-size:9.5px;color:#5f584e;font-weight:600}
+  .minority-region{stroke:rgba(112,103,89,.76)!important;stroke-width:1.05!important;stroke-dasharray:5 5!important;stroke-linejoin:round;mix-blend-mode:multiply;pointer-events:none}.minority-label{font-family:"KaiTi","STKaiti",serif;display:flex!important;justify-content:center;align-items:center;pointer-events:none}.minority-label span{display:inline-block;transform:translate(-50%,-50%);color:var(--minority-color,#625b52);font-size:13px;font-weight:700;letter-spacing:2px;white-space:nowrap;text-shadow:0 0 3px rgba(247,243,233,.96),0 0 1px rgba(247,243,233,.96)}
+.faction-filter{width:100%;border:0;border-radius:4px;background:transparent;font:inherit;text-align:left;cursor:pointer;transition:background .15s ease,color .15s ease}.faction-filter:hover,.faction-filter.active{background:rgba(141,61,50,.08);color:#202420}.faction-filter.active .lg-swatch{box-shadow:0 0 0 2px rgba(141,61,50,.2)}
+.lg-layer-row{font-size:11px;letter-spacing:.6px}.lg-admin-swatch{background:rgba(112,128,113,.42)}.lg-state-swatch{background:linear-gradient(135deg,#dce7df 0 50%,#e5e0ed 50% 100%)}.lg-commandery-swatch{background:rgba(197,207,200,.62);border-style:dashed}.lg-influence-line{width:18px;height:12px;border:0;border-radius:2px;background:repeating-linear-gradient(135deg,rgba(156,59,46,.72) 0 2px,transparent 2px 6px);opacity:.8}
+.lg-group{margin:7px 0 3px}.lg-group:first-of-type{margin-top:0}.lg-group-title{display:flex;align-items:center;gap:6px;margin-bottom:4px;padding:2px 0;color:#8a8477;font-size:9.5px;font-weight:700;letter-spacing:1.4px}.lg-group-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(160,152,138,.35),transparent)}.lg-county-swatch{width:13px;height:13px;border-radius:50%;background:#8f8a7d;box-shadow:inset 0 0 0 2px rgba(255,252,244,.65)}.lg-capital-icon{width:14px;height:14px;flex:0 0 auto;border:2px solid var(--capital-color,#8D3D32);border-radius:50%;background:#FFFDF8;box-shadow:inset 0 0 0 3px rgba(255,255,255,.65);margin-top:1px}.lg-minority-swatch{width:18px;height:12px;border:1px dashed #8A8170;background:rgba(168,151,120,.12)}.lg-hydronym-swatch{width:18px;height:12px;border:1px solid rgba(53,96,107,.42);background:rgba(200,224,226,.55);position:relative}.lg-hydronym-swatch::after{content:'';position:absolute;left:3px;right:3px;top:50%;height:1px;background:rgba(53,96,107,.65)}.lg-hint{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed rgba(160,152,138,.35);color:#a29b8e;font-size:9px;line-height:1.55;letter-spacing:.3px}
+.map-filter-status{margin-top:8px;padding:6px 8px;border:1px solid rgba(84,78,66,.14);border-radius:5px;background:rgba(247,243,234,.78);color:#6f756f;font-size:10.5px;line-height:1.45;letter-spacing:.4px}#map-state-filter{width:100%;min-height:28px;padding:4px 7px;border:1px solid #d6d0c3;border-radius:4px;background:rgba(255,255,255,.72);color:#6f756f;font:inherit;font-size:11px}.map-clear-filter{width:100%;margin-top:7px;padding:5px 8px;border:1px solid #d6d0c3;border-radius:4px;background:transparent;color:#6f756f;font:inherit;font-size:11px;cursor:pointer}.map-clear-filter:hover{background:rgba(141,61,50,.08);color:#202420}
+.leaflet-top.leaflet-left{margin-top:10px;margin-left:10px}
+#sidebox{top:88px;left:14px;bottom:14px;background:rgba(255,255,255,.95);border:1px solid #daddd7;border-radius:11px;box-shadow:0 7px 20px rgba(30,37,30,.10);font-family:inherit}
+#info-panel{display:block!important;top:14px;right:14px;bottom:14px;width:var(--panel-w);background:rgba(255,255,255,.97);border:1px solid #daddd7;border-radius:11px;box-shadow:-7px 0 22px rgba(30,37,30,.08)}
+.panel-body{padding:18px 20px 30px}
+.pv-head{border-bottom:1px solid #e2e4df}
+.pv-title{font-family:"Noto Serif SC","Songti SC",serif;font-size:25px;color:#202420}
+.pv-year,.pv-label{color:#8d3d32}
+.pv-summary{font-size:13px;line-height:1.8;color:#414741}
+.pv-tag,.pv-kind,.pv-hint{color:#6f756f}
+.pv-roster{display:flex;flex-direction:column;gap:8px}.roster-group{padding:7px 8px;background:rgba(255,252,244,.48);border-left:2px solid rgba(141,61,50,.38)}.roster-group>b{display:block;margin-bottom:5px;color:#8d3d32;font-size:11px;letter-spacing:1px}.roster-group>div{display:flex;flex-wrap:wrap;gap:5px 8px}.roster-item{display:inline-flex;align-items:baseline;gap:4px;max-width:100%;font-size:11.5px;color:#6c675e;line-height:1.55}.roster-meta{color:#a39b8c;font-size:9.5px;white-space:nowrap}.roster-item strong{color:#202420;font-weight:600}.roster-item small{color:#9a9489;font-size:10.5px}
+.pv-link{display:inline-block;margin:12px 0 4px;padding:7px 12px;border:1px solid #d3b9ae;border-radius:7px;background:#fdf6f1;color:#8a4b3d;text-decoration:none;font-size:13px}
+.county-grid{display:flex;flex-wrap:wrap;gap:6px;max-height:220px;overflow:auto;padding:2px}
+.county-chip{display:inline-flex;align-items:center;gap:3px;padding:4px 8px;border:1px solid #d8d4c9;border-radius:6px;background:#fffdf8;color:#4c463c;font-size:12px;text-decoration:none}
+.county-chip i{font-style:normal;color:#a04c3d;font-size:10px}
+.pv-empty{color:#8a857c;font-size:12px}
+.pv-back{display:block;margin:14px 0 4px;padding:7px 12px;border:1px solid #cfd3cb;border-radius:7px;background:#fff;color:#3f473d;cursor:pointer}
+#map.tinted::after{background:radial-gradient(circle at 50% 42%,rgba(240,236,226,0) 58%,rgba(105,93,70,.17) 100%),linear-gradient(180deg,rgba(240,236,226,.08),rgba(205,193,169,.12))}
+@media(max-width:1100px){:root{--panel-w:270px;--side-w:166px}#info-panel{display:block!important}.panel-body{padding:16px}.pv-title{font-size:22px}}
+@media(max-width:760px){:root{--panel-w:36px;--side-w:36px}#sidebox{display:block;transform:none;opacity:.92;top:88px;left:8px;bottom:8px;max-height:none}#info-panel{display:block!important;right:8px;top:8px;bottom:8px}}
+</style>
+<style id="v48-premium-ui">
+:root{--v48-ink:#202420;--v48-muted:#737970;--v48-line:rgba(102,91,74,.18);--v48-surface:rgba(255,253,248,.92);--v48-shadow:0 18px 48px rgba(53,44,30,.08);--v48-focus:0 0 0 3px rgba(141,61,50,.18)}
+body{background:radial-gradient(circle at 18% -10%,rgba(196,164,108,.16),transparent 34%),linear-gradient(135deg,#efe9dc 0%,#f7f3eb 52%,#e9e6df 100%);color:var(--v48-ink)}
+.topbar{background:linear-gradient(100deg,rgba(249,246,238,.96),rgba(244,240,232,.9));border-bottom:1px solid var(--v48-line);box-shadow:0 8px 26px rgba(52,44,33,.07);backdrop-filter:blur(16px)}
+.seal-mark{box-shadow:0 7px 18px rgba(141,61,50,.18);letter-spacing:0}
+.module-tab{border-radius:10px;transition:background .18s ease,color .18s ease,transform .18s ease;}
+.module-tab:hover{background:rgba(141,61,50,.07);transform:translateY(-1px)}
+.module-tab.active{background:rgba(141,61,50,.1);box-shadow:inset 0 -2px 0 #8d3d32}
+.module-tab strong{letter-spacing:.04em}
+.module-page-inner{max-width:1500px;margin:0 auto;padding:30px clamp(18px,3vw,44px) 56px}
+.page-heading{padding:8px 0 18px;align-items:flex-end}.page-heading h1{font-size:clamp(28px,3vw,42px);letter-spacing:.04em;text-shadow:0 2px 0 rgba(255,255,255,.7)}
+.page-heading p{max-width:760px;color:#69716a;line-height:1.85}
+.people-toolbar,.fangzhen-toolbar,.battle-toolbar,.jinshi-toolbar,.shihuo-toolbar{background:var(--v48-surface);border:1px solid var(--v48-line);box-shadow:0 7px 24px rgba(55,46,35,.055);border-radius:14px;padding:12px 14px;position:relative}
+.people-toolbar:before,.fangzhen-toolbar:before,.battle-toolbar:before,.jinshi-toolbar:before,.shihuo-toolbar:before{content:"";position:absolute;left:14px;right:14px;top:0;height:2px;background:linear-gradient(90deg,#8d3d32,#c9a96e,transparent);opacity:.8}
+.people-toolbar .el-input__wrapper,.fangzhen-toolbar .el-input__wrapper,.battle-toolbar .el-input__wrapper,.jinshi-toolbar .el-input__wrapper,.shihuo-toolbar .el-input__wrapper{box-shadow:0 0 0 1px rgba(112,100,80,.17);border-radius:9px;background:#fffdf9}
+.people-toolbar .el-input__wrapper.is-focus,.fangzhen-toolbar .el-input__wrapper.is-focus,.battle-toolbar .el-input__wrapper.is-focus,.jinshi-toolbar .el-input__wrapper.is-focus,.shihuo-toolbar .el-input__wrapper.is-focus{box-shadow:var(--v48-focus)}
+.people-view-nav{background:rgba(255,253,248,.84);box-shadow:0 10px 28px rgba(55,46,35,.07);border-color:var(--v48-line)}
+.people-view-button{min-height:66px}.people-view-button.active{box-shadow:0 8px 18px rgba(141,61,50,.12)}
+.people-card,.person-card,.people-metric,.fangzhen-table-card,.battle-timeline-item,.jinshi-record-card,.shihuo-record-card{box-shadow:var(--v48-shadow);border-color:var(--v48-line)}
+.person-card{background:linear-gradient(150deg,#fffefa,#fbf7ef);border-radius:14px}.person-card:hover{transform:translateY(-3px);box-shadow:0 20px 42px rgba(55,46,35,.12)}
+.person-avatar,.people-detail-portrait{box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 8px 18px rgba(55,46,35,.1)}
+.general-title-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 0 12px;border-bottom:1px solid var(--v48-line)}.general-title-drawer-head strong{display:block;font:700 20px 'Noto Serif SC','Songti SC',serif;color:#433c34}.general-title-drawer-head span{display:block;margin-top:4px;font-size:11px;color:#8a918a}.general-title-source-note{margin:12px 0;padding:10px 12px;border-left:3px solid #a78345;background:#faf5e9;color:#746b5d;font-size:11.5px;line-height:1.7}.general-title-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.general-title-card{padding:10px 11px;border:1px solid var(--v48-line);border-radius:10px;background:#fffefa}.general-title-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.general-title-card-head strong{font:700 14px 'Noto Serif SC','Songti SC',serif;color:#343b35}.general-title-card-head span{font-size:10px;color:#8d3d32}.general-title-meta{display:flex;justify-content:space-between;gap:8px;margin-top:5px;font-size:10.5px;color:#7b827a}.general-title-meta .pending{color:#9a6b32}.general-title-card p{margin:6px 0 0;font-size:10.5px;color:#71796f;line-height:1.55}.general-title-foot{margin-top:14px;padding-top:10px;border-top:1px dashed var(--v48-line);font-size:10.5px;color:#858a84;line-height:1.6}
+.el-button:focus-visible,.module-tab:focus-visible,.people-view-button:focus-visible,.person-card:focus-visible{outline:none;box-shadow:var(--v48-focus)}
+@media(max-width:760px){.module-page-inner{padding:22px 12px 38px}.general-title-grid{grid-template-columns:1fr}.page-heading h1{font-size:30px}.people-view-nav{box-shadow:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+<style id="v51-editorial-workbench">
+:root{--v51-paper:#efede6;--v51-paper-deep:#e4e0d5;--v51-ink:#1e2521;--v51-muted:#69716b;--v51-rule:rgba(65,72,64,.18);--v51-seal:#963f34;--v51-gold:#a47b3d;--v51-shadow:0 12px 30px rgba(34,39,34,.07);--v51-focus:0 0 0 3px rgba(150,63,52,.22)}
+body{background:linear-gradient(180deg,#f5f3ee 0,#eeece5 42%,#e9e8e3 100%);color:var(--v51-ink)}
+.topbar{height:68px;padding:0 clamp(14px,2.6vw,38px);background:rgba(247,246,241,.93);border-bottom:1px solid var(--v51-rule);box-shadow:0 4px 18px rgba(43,48,43,.06);backdrop-filter:blur(14px)}
+.brand{gap:11px}.brand .t1{font-size:19px;letter-spacing:.16em;color:var(--v51-ink)}.brand .t2{font-size:10px;letter-spacing:.08em;color:var(--v51-muted)}.seal-mark{width:42px;height:42px;border-radius:7px;background:var(--v51-seal);box-shadow:0 6px 14px rgba(150,63,52,.18)}
+.module-tabs{gap:3px;padding:4px;border:1px solid var(--v51-rule);border-radius:8px;background:rgba(232,231,225,.76)}.module-tab{min-height:48px;padding:0 13px;border-radius:5px;color:#707770}.module-tab strong{font-size:13px}.module-tab small{font-size:10px;letter-spacing:.04em}.module-tab.active{background:#fbfaf6;box-shadow:inset 0 -2px 0 var(--v51-seal),0 2px 8px rgba(34,39,34,.08);color:var(--v51-ink)}
+.module-page-inner{max-width:1520px;padding:28px clamp(16px,3.5vw,54px) 58px}.page-heading{padding:10px 0 20px;border-bottom:1px solid var(--v51-rule);margin-bottom:16px}.page-kicker{font-size:11px;letter-spacing:.12em;color:var(--v51-seal);text-transform:none}.page-heading h1{font-size:clamp(29px,3.2vw,43px);letter-spacing:.06em;color:var(--v51-ink);text-shadow:none}.page-heading p{max-width:820px;color:var(--v51-muted);line-height:1.75}
+.people-workbench{background:linear-gradient(180deg,rgba(244,242,235,.78),rgba(234,234,229,.28) 420px,transparent 760px)}
+.people-toolbar,.fangzhen-toolbar,.battle-toolbar,.jinshi-toolbar,.shihuo-toolbar{border:1px solid var(--v51-rule);border-radius:7px;background:rgba(250,249,245,.86);box-shadow:var(--v51-shadow);padding:10px 12px}.people-toolbar:before,.fangzhen-toolbar:before,.battle-toolbar:before,.jinshi-toolbar:before,.shihuo-toolbar:before{left:12px;right:auto;width:82px;height:3px;background:var(--v51-seal);opacity:1}.people-toolbar .el-input__wrapper,.fangzhen-toolbar .el-input__wrapper,.battle-toolbar .el-input__wrapper,.jinshi-toolbar .el-input__wrapper,.shihuo-toolbar .el-input__wrapper{border-radius:5px;background:#fffefa;box-shadow:0 0 0 1px rgba(65,72,64,.2)}
+.people-view-layout{gap:18px}.people-view-nav{top:84px;width:92px;padding:7px;border:1px solid var(--v51-rule);border-radius:7px;background:rgba(249,248,243,.92);box-shadow:var(--v51-shadow)}.people-view-button{border-radius:5px;color:var(--v51-muted)}.people-view-button.active{background:#f6eee9;border-color:rgba(150,63,52,.46);color:var(--v51-seal);box-shadow:inset 3px 0 var(--v51-seal)}.people-view-button .pv-glyph{border-radius:5px;background:var(--v51-paper-deep);color:#675a43}.people-view-button.active .pv-glyph{background:var(--v51-seal);color:#fffdf8}
+.people-metrics{gap:7px;margin:0 0 14px}.people-metric{border:1px solid var(--v51-rule);border-top:3px solid var(--v51-gold);border-radius:6px;background:rgba(251,250,246,.92);box-shadow:none;padding:8px 10px}.people-metric strong{color:var(--v51-ink);font-size:18px}.people-metric span{color:var(--v51-muted)}
+.person-card{border:1px solid var(--v51-rule);border-radius:7px;background:rgba(251,250,246,.94);box-shadow:var(--v51-shadow);padding:12px}.person-card:hover{transform:translateY(-2px);border-color:rgba(150,63,52,.45);box-shadow:0 16px 30px rgba(34,39,34,.11)}.person-card-name strong,.people-detail-main h3{color:var(--v51-ink)}.person-avatar,.people-detail-portrait{border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 5px 12px rgba(34,39,34,.09)}
+.person-pill{border-radius:4px}.person-pill.office{background:#e7eef2}.person-pill.noble{background:#f3ead8}.person-pill.fangzhen{background:#e5eee6}.person-pill.han{background:#f5e5e1}.person-pill.wei{background:#e7eef2}.person-pill.wu{background:#e5eee6}.person-pill.jin{background:#ece8f1}
+.people-period-panel,.fangzhen-table-card,.battle-timeline-item,.jinshi-record-card,.shihuo-record-card{border:1px solid var(--v51-rule);border-radius:7px;background:rgba(250,249,245,.88);box-shadow:var(--v51-shadow)}
+.el-button{border-radius:5px}.el-button--primary{--el-button-bg-color:var(--v51-seal);--el-button-border-color:var(--v51-seal);--el-button-hover-bg-color:#7f332b;--el-button-hover-border-color:#7f332b}.el-button:focus-visible,.module-tab:focus-visible,.people-view-button:focus-visible,.person-card:focus-visible{outline:none;box-shadow:var(--v51-focus)}
+.el-drawer,.el-dialog{background:#f8f7f2}.el-drawer__header{border-bottom:1px solid var(--v51-rule);padding-bottom:12px}.el-drawer__body{color:var(--v51-ink)}
+.table-wrap,.el-table{border-color:var(--v51-rule)}.el-table th.el-table__cell{background:#e8e7e0;color:#424a43}.el-table tr{background:rgba(251,250,246,.94)}
+@media(max-width:1180px){.brand .t2{display:none}.module-tab{padding:0 9px}.topbar{height:64px}.people-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:760px){.topbar{height:96px;padding:6px 9px}.module-tabs{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.module-tab{min-width:76px;padding:0 8px}.module-tab strong{font-size:12px}.module-page-inner{padding:20px 12px 42px}.people-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.people-view-layout{gap:10px}.person-card{padding:10px}.person-card-grid{gap:8px}}
+</style>
+<style id="v54-theme-overrides">
+:root{
+  --v54-surface-0:#E9ECE8; --v54-surface-1:#F8FAF7; --v54-surface-2:#FFFFFF;
+  --v54-text-1:#17252D; --v54-text-2:#5D6A68; --v54-line:#CBD4D0;
+  --v54-accent:#A13E31; --v54-accent-soft:#F2E2DE; --v54-evidence:#927A4A;
+  --v54-focus:0 0 0 3px rgba(161,62,49,.22); --v54-radius:10px;
+  --v54-motion-fast:160ms; --v54-motion:220ms;
+}
+:root[data-sgz-theme="review-paper"]{
+  --v54-surface-0:#F4EEE2; --v54-surface-1:#FBF8F1; --v54-surface-2:#FFFDF8;
+  --v54-text-1:#2E2925; --v54-text-2:#71675B; --v54-line:#D8CDBA;
+  --v54-accent:#9E3F32; --v54-accent-soft:#F3E0DA; --v54-evidence:#A78345;
+}
+:root[data-sgz-theme="lamp-night"]{
+  --v54-surface-0:#152128; --v54-surface-1:#1C2B32; --v54-surface-2:#21353D;
+  --v54-text-1:#E9EFEA; --v54-text-2:#AABBB5; --v54-line:#40565D;
+  --v54-accent:#D07968; --v54-accent-soft:#4A302E; --v54-evidence:#D4B36A;
+  --v54-focus:0 0 0 3px rgba(208,121,104,.32);
+}
+:root[data-sgz-density="compact"]{ --v54-radius:8px; }
+:root[data-sgz-motion="reduced"]{ --v54-motion-fast:80ms; --v54-motion:100ms; }
+body{background:var(--v54-surface-0);color:var(--v54-text-1);transition:background-color var(--v54-motion) ease,color var(--v54-motion) ease;}
+.topbar,.left-toolbar,.right-panel{background:var(--v54-surface-1);border-color:var(--v54-line);}
+.canvas-wrap{background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 36%),var(--v54-surface-0);}
+.module-nav{background:color-mix(in srgb,var(--v54-surface-2) 72%,transparent);border:1px solid color-mix(in srgb,var(--v54-line) 72%,transparent);}
+.module-tab{border-radius:var(--v54-radius);transition:background-color var(--v54-motion-fast) ease,color var(--v54-motion-fast) ease,transform var(--v54-motion-fast) ease;}
+.module-tab.active{box-shadow:0 1px 0 color-mix(in srgb,var(--v54-line) 70%,transparent),0 5px 14px color-mix(in srgb,var(--v54-text-1) 8%,transparent);}
+.module-tab:hover{transform:translateY(-1px);}
+.global-header-tools{display:flex;align-items:center;gap:6px;flex:0 0 auto;}
+.global-search-trigger,.theme-trigger{height:36px;border:1px solid var(--v54-line);border-radius:var(--v54-radius);background:var(--v54-surface-2);color:var(--v54-text-1);font:600 12px/1 inherit;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:0 11px;transition:background-color var(--v54-motion-fast) ease,border-color var(--v54-motion-fast) ease,transform var(--v54-motion-fast) ease;}
+.global-search-trigger:hover,.theme-trigger:hover{border-color:var(--v54-accent);transform:translateY(-1px);}
+.global-search-trigger:focus-visible,.theme-trigger:focus-visible,.module-search-handoff:focus-visible,.theme-option:focus-visible,.theme-choice-row button:focus-visible{outline:none;box-shadow:var(--v54-focus);}
+.global-search-trigger span:first-child{font-size:19px;line-height:1;font-weight:400;}
+.global-search-trigger kbd{font:500 10px/1 inherit;color:var(--v54-text-2);padding:3px 5px;border:1px solid var(--v54-line);border-radius:5px;background:var(--v54-surface-0);}
+.theme-trigger{color:var(--v54-accent);}
+.global-search-field{position:relative;display:flex;align-items:center;}
+.global-search-field .global-search-input{flex:1;}
+.global-search-clear{position:absolute;right:9px;z-index:2;width:24px;height:24px;border:0;border-radius:50%;background:var(--v54-surface-0);color:var(--v54-text-2);font-size:18px;line-height:20px;cursor:pointer;}
+.global-search-clear:hover{color:var(--v54-accent);background:var(--v54-accent-soft);}
+.module-search-handoff{min-height:36px;border:1px solid var(--v54-line);border-radius:var(--v54-radius);background:var(--v54-surface-2);color:var(--v54-text-2);font:500 12px/1.2 inherit;padding:0 12px;cursor:pointer;text-align:left;transition:border-color var(--v54-motion-fast) ease,background-color var(--v54-motion-fast) ease,color var(--v54-motion-fast) ease;}
+.module-search-handoff:hover{border-color:var(--v54-accent);background:var(--v54-accent-soft);color:var(--v54-text-1);}
+.module-search-handoff span{margin-right:7px;color:var(--v54-accent);font-size:16px;vertical-align:-1px;}
+.theme-drawer-intro,.theme-drawer-note{color:var(--v54-text-2);font-size:12px;line-height:1.65;}
+.theme-option{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:10px;border:1px solid var(--v54-line);border-radius:var(--v54-radius);background:var(--v54-surface-2);color:var(--v54-text-1);cursor:pointer;margin-bottom:8px;transition:border-color var(--v54-motion-fast) ease,transform var(--v54-motion-fast) ease,background-color var(--v54-motion-fast) ease;}
+.theme-option:hover{transform:translateX(2px);border-color:var(--v54-accent);}
+.theme-option.active{border-color:var(--v54-accent);background:var(--v54-accent-soft);}
+.theme-swatches{display:flex;gap:3px;flex:0 0 auto;}
+.theme-swatches i{display:block;width:19px;height:32px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1);}
+.theme-option-copy{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.theme-option-copy strong{font-size:13px;}.theme-option-copy small{font-size:11px;color:var(--v54-text-2);}
+.theme-check{margin-left:auto;color:var(--v54-accent);font-weight:800;}
+.theme-choice-row{display:flex;gap:8px;}
+.theme-choice-row button{flex:1;height:34px;border:1px solid var(--v54-line);border-radius:8px;background:var(--v54-surface-2);color:var(--v54-text-2);cursor:pointer;}
+.theme-choice-row button.active{background:var(--v54-text-1);border-color:var(--v54-text-1);color:var(--v54-surface-2);}
+:root[data-sgz-density="compact"] .person-card{padding:8px;margin-bottom:7px;}
+:root[data-sgz-density="compact"] .filter-bar{padding-top:6px;padding-bottom:6px;}
+:root[data-sgz-density="compact"] .metric-grid{gap:6px;margin-bottom:10px;}
+:root[data-sgz-theme="lamp-night"] .el-drawer,
+:root[data-sgz-theme="lamp-night"] .el-dialog,
+:root[data-sgz-theme="lamp-night"] .el-drawer__body,
+:root[data-sgz-theme="lamp-night"] .el-dialog__body{background:var(--v54-surface-1);color:var(--v54-text-1);}
+:root[data-sgz-theme="lamp-night"] .el-input__wrapper,
+:root[data-sgz-theme="lamp-night"] .el-select .el-input__wrapper,
+:root[data-sgz-theme="lamp-night"] .el-textarea__inner{background:var(--v54-surface-2);box-shadow:0 0 0 1px var(--v54-line) inset;color:var(--v54-text-1);}
+:root[data-sgz-theme="lamp-night"] .el-input__inner,
+:root[data-sgz-theme="lamp-night"] .el-textarea__inner{color:var(--v54-text-1);}
+:root[data-sgz-theme="lamp-night"] .person-card,
+:root[data-sgz-theme="lamp-night"] .search-result,
+:root[data-sgz-theme="lamp-night"] .metric-card,
+:root[data-sgz-theme="lamp-night"] .official-card{background:var(--v54-surface-2);border-color:var(--v54-line);color:var(--v54-text-1);}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:var(--v54-motion-fast)!important;}
+  .module-tab:hover,.global-search-trigger:hover,.theme-trigger:hover,.theme-option:hover{transform:none;}
+}
+@media (max-width:760px){
+  .global-header-tools{gap:4px;}.global-search-trigger{padding:0 9px;}.global-search-trigger kbd{display:none;}.theme-trigger{padding:0 9px;}
+  .module-search-handoff{width:100%;order:-1;}
+}
+</style></head><body>
+<div id="app">
+  <div id="map"></div>
+  <div class="mount-frame" aria-hidden="true"></div>
+  <div id="sidebox">
+    <button class="panel-collapse" id="sidebox-collapse" title="收起图层" aria-label="收起图层">‹</button>
+    <div class="sb-section"><div class="sb-title">图 例</div>
+      <div class="lg-group"><div class="lg-group-title">势力归属</div><div id="legend-factions"></div></div>
+      <div class="lg-group"><div class="lg-group-title">都城图例</div><div id="legend-capitals"></div></div>
+      <div class="lg-group"><div class="lg-group-title">政区图层</div>
+        <div class="lg-item lg-layer-row"><span class="lg-swatch lg-admin-swatch"></span>国家／势力归属</div>
+        <div class="lg-item lg-layer-row"><span class="lg-swatch lg-state-swatch"></span>州级行政色</div>
+        <div class="lg-item lg-layer-row"><span class="lg-swatch lg-commandery-swatch"></span>郡级淡色层</div>
+        <div class="lg-item lg-layer-row"><span class="lg-county-swatch"></span>县政区（郡县点）</div>
+      </div>
+      <div class="lg-group"><div class="lg-group-title">符号与范围</div>
+        <div class="lg-item lg-layer-row"><span class="lg-route lg-influence-line"></span>军势／争议范围</div>
+        <div class="lg-item"><span class="lg-dot city"></span>城池</div>
+        <div class="lg-item"><span class="lg-dot battle"></span>战役</div>
+        <div class="lg-item"><span class="lg-route"></span>进军路线</div>
+        <div class="lg-item lg-layer-row"><span class="lg-minority-swatch"></span>域外活动范围（推定）</div>
+        <div class="lg-item lg-layer-row"><span class="lg-hydronym-swatch"></span>古水名（《水经注》卷次标注）</div>
+      </div>
+      <span class="lg-hint">点击势力名称可聚焦；低缩放显示国／势力，中缩放显示州，高缩放显示郡；8 级以上显示县政区点。</span>
+    </div>
+    <div class="sb-section"><div class="sb-title">显示模式</div>
+      <label><input name="map-display-mode" value="research" type="radio" checked> 综合态势</label>
+      <label><input name="map-display-mode" value="administrative" type="radio"> 行政层</label>
+      <div id="map-filter-status" class="map-filter-status">综合态势 · 全部势力 · 全部州</div>
+      <div id="map-hierarchy-status" class="map-filter-status">当前层级：国／势力层（低缩放）</div>
+    </div>
+    <div class="sb-section"><div class="sb-title">聚焦范围</div>
+      <select id="map-state-filter" aria-label="按州聚焦"><option value="all">全部州</option></select>
+      <button type="button" id="map-clear-filter" class="map-clear-filter">清除聚焦</button>
+    </div>
+    <div class="sb-section"><div class="sb-title">底 图</div>
+      <label><input id="bm-terrain" name="basemap" value="terrain" type="radio" checked> 素色地形</label>
+      <label><input id="bm-topo" name="basemap" value="topo" type="radio"> 地形图</label>
+      <label><input id="bm-elevation" name="basemap" value="elevation" type="radio"> 高程山影</label>
+      <label><input id="bm-osm" name="basemap" value="osm" type="radio"> 现代地图</label>
+    </div>
+    <div class="sb-section"><div class="sb-title">图 层</div>
+      <label><input id="lyr-terr" type="checkbox" checked> 层级底图（随缩放互斥）</label>
+      <label><input id="lyr-province-tint" type="checkbox" checked> 州色／郡浅色</label>
+      <label><input id="lyr-wu-cmd" type="checkbox" checked> 郡界淡色块（高缩放）</label>
+      <label><input id="lyr-cmd-label" type="checkbox" checked> 郡名标签（高缩放）</label>
+      <label><input id="lyr-county" type="checkbox" checked> 县政区（郡县点）</label>
+      <label><input id="lyr-route" type="checkbox" checked> 进军路线</label>
+      <label><input id="lyr-frontier-route" type="checkbox" checked> 边界通道</label>
+      <label><input id="lyr-btl" type="checkbox" checked> 战役地点</label>
+      <label><input id="lyr-battlefield" type="checkbox" checked> 重要战场</label>
+      <label><input id="lyr-minorities" type="checkbox" checked> 周边族群范围</label>
+      <label><input id="lyr-city" type="checkbox" checked> 重要城池</label>
+      <label><input id="lyr-water" type="checkbox" checked> 河湖水系</label>
+      <label><input id="lyr-hydronym" type="checkbox" checked> 古水名标注</label>
+      <label><input id="lyr-elev" type="checkbox"> 高程读数</label>
+      <label><input id="lyr-tint" type="checkbox" checked> 古韵纸色</label>
+    </div>
+    <div class="sb-section"><div class="sb-title">高程读数</div><div id="elev-readout" class="elev-readout">高程读数已关闭</div></div>
+  </div>
+  <aside id="info-panel">
+    <button class="panel-collapse" id="info-collapse" title="收起详情" aria-label="收起详情">›</button>
+    <div class="scroll-roller top"><i></i></div><div class="panel-body"><div class="pv-hint">正在载入州郡边界资料…</div></div><div class="scroll-roller bottom"><i></i></div>
+  </aside>
+  <div id="timeline" aria-hidden="true">
+    <div class="tl-controls"><button id="tl-prev">‹</button><button id="tl-play">▶</button><button id="tl-next">›</button></div>
+    <div id="tl-current"></div><div id="tl-track"></div>
+  </div>
+</div>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="js/config.js?v=41"></script>
+<script src="js/safe-html.js"></script>
+<script src="data/geo-water.js"></script>
+<script src="data/hydronym-audit.js"></script>
+<script src="data/geo-coastline.js"></script>
+<script src="data/three-kingdoms.js"></script>
+<script src="data/political-snapshots.js"></script>
+<script src="data/administrative-events.js"></script>
+<script src="data/administrative-snapshots.js"></script>
+<script src="data/county-registry.js"></script>
+<script src="data/history-evidence.js"></script>
+<script src="data/strategic-geography.js"></script>
+<script src="../../data/battle-records.js"></script>
+<script src="data/all-provinces-local.js"></script>
+<script src="js/bridge.js"></script>
+<script>
+if(FACTIONS.shu){
+  FACTIONS.shu.name='汉';
+  FACTIONS.shu.desc='刘备于成都即帝位，国号汉。诸葛亮治国整军，屡次北伐中原。';
+}
+FACTIONS.han.name='汉';
+FACTIONS.jin.desc='泰始元年，司马炎受魏禅建立西晋；公元 280 年平吴，天下复归一统。';
+THREE_KINGDOMS.meta.subtitle='汉 · 三国 · 晋';
+var LOCAL_PERIOD_META=[{"id":"huangjin","sourcePeriodId":"huangjin","year":184,"snapshotMoment":"中平元年黄巾起事后","eraId":"han","axisLabel":"汉","name":"黄巾之乱","tagline":"汉室将倾 · 烽烟初燃","summary":"184 年尚无常设雍州；黄巾遍起八州，州郡募兵镇压，地方军事力量由此坐大。","eraLabel":"中平","mapVariant":"han184","required":true,"expectedProvinceCount":13,"polities":["汉"],"confidence":{"overall":"high","polity":"high","provinceRoster":"high","geometry":"medium"},"researchNote":"州级结构按东汉十三州部表达，不绘尚未常设的雍州；郡界由后期几何资料回溯归并，边线为考据示意。","sourceIds":["houhanshu_juan9","wikipedia_han_admin","map_geometry_archive"]},{"id":"shaodi","sourcePeriodId":"shaodi","year":189,"snapshotMoment":"九月董卓废少帝、立献帝后","eraId":"han","axisLabel":"汉","eraLabel":"光熹／昭宁／永汉","name":"少帝即位","tagline":"宫门流血 · 董卓入京","summary":"189 年灵帝崩，少帝刘辩即位；何进遇弑，董卓入京，九月废少帝、立献帝。中央百官与州郡长吏仍属于东汉官制，董卓是入京掌政的军事实力，不是新朝代。","mapVariant":"han184","required":true,"expectedProvinceCount":13,"polities":["汉廷","董卓"],"confidence":{"overall":"medium","polity":"high","provinceRoster":"high","geometry":"medium"},"researchNote":"少帝、献帝之际的中央百官与州郡长吏按用户提供的知乎考据表整理；行政底图仍按东汉十三州部，不提前绘制雍州。","sourceIds":["houhanshu_juan9","zhihu_han_officials","map_geometry_archive"]},{"id":"dongzhuo","sourcePeriodId":"dongzhuo","year":190,"snapshotMoment":"初平元年迁都长安后","eraId":"han","axisLabel":"汉","eraLabel":"初平","name":"群雄讨董","tagline":"群雄讨董 · 中原板荡","summary":"190—191 年关东州郡起兵讨董；袁绍、曹操、袁术、孙坚等各有屯驻，董卓焚洛阳、迁献帝于长安，联盟随后瓦解。","mapVariant":"han184","required":true,"expectedProvinceCount":13,"polities":["汉廷州郡","董卓","韩馥","刘岱及兖州诸军","孔伷等关东诸军","刘表","刘焉","士燮","韩遂","马腾"],"confidence":{"overall":"medium","polity":"medium","provinceRoster":"high","geometry":"low"},"researchNote":"190 年仍未正式设置雍州。冀州按韩馥整州着色；颍川、河内、陈留、东郡、济北、广陵、山阳及金城、汉阳按对应军势分郡着色。人物标签使用无框文字，避免遮挡边界。","sourceIds":["houhanshu_juan9","wikipedia_dongzhuo","wikipedia_han_admin","map_geometry_archive"]},{"id":"xingping","sourcePeriodId":"xingping","year":194,"snapshotMoment":"兴平元年年末主态势","eraId":"han","axisLabel":"汉","eraLabel":"兴平","name":"兴平割据","tagline":"兖徐易主 · 群雄并峙","summary":"兴平元年（194）：吕布袭兖州，曹操失兖州大部；陶谦卒，刘备领徐州；刘焉卒，刘璋继任益州牧；孙策仍依袁术，次年方渡江。","mapVariant":"han194","required":true,"expectedProvinceCount":14,"polities":["汉廷（李傕郭汜）","曹操","吕布","刘备","袁绍","公孙瓒","刘表","刘璋","张鲁","孙策","公孙度","凉州诸部","士燮"],"confidence":{"overall":"medium","polity":"medium","provinceRoster":"medium","geometry":"low"},"researchNote":"兴平元年（194）分凉州河西四郡置雍州，本图按河西雍州表达；兖州为吕布、曹操争夺区，徐州以刘备接领为主，江东仍属扬州刺史部且孙策未渡江。","sourceIds":["houhanshu_juan9","sanguozhi","wikipedia_yongzhou","map_geometry_archive"]},{"id":"jianbing","sourcePeriodId":"jianbing","year":199,"snapshotMoment":"建安四年年末主态势","eraId":"han","axisLabel":"汉","eraLabel":"建安","name":"群雄兼并","tagline":"河北归一 · 江东初定","summary":"袁绍攻灭公孙瓒，据有河北四州；曹操挟天子据兖豫徐，孙策平定江东；刘表、刘璋、张鲁、公孙度、士燮各保一方。","mapVariant":"han199","required":true,"polities":["曹操","袁绍","刘表","刘璋","孙策","张鲁","公孙度","士燮","凉州诸部"],"confidence":{"overall":"medium","polity":"medium","provinceRoster":"medium","geometry":"low"},"researchNote":"199 年为年度变局：袁绍灭公孙瓒、孙策定江东；张鲁汉中、公孙度辽东按郡级分色表达，州界为考据示意。","sourceIds":["sanguozhi","map_geometry_archive"]},{"id":"guandu","sourcePeriodId":"guandu","year":200,"snapshotMoment":"官渡之战后","eraId":"han","axisLabel":"汉","name":"官渡之战","tagline":"曹操崛起 · 北疆一统","summary":"曹操奇袭乌巢击败袁绍，北方形势开始由群雄割据转向曹氏统一。","eraLabel":"建安","mapVariant":"early","required":true,"polities":["汉廷及曹操","袁绍","孙氏","刘表","刘璋","士燮","凉州诸部"],"confidence":{"overall":"medium","polity":"medium","provinceRoster":"medium","geometry":"low"},"researchNote":"兴平元年（194）分凉州河西四郡置雍州。200 年图中的雍州严格限定武威、张掖、酒泉、敦煌；关中三辅仍属司隶，不能套用曹魏以后关中雍州的范围。","sourceIds":["houhanshu_juan9","wikipedia_han_admin","map_geometry_archive"]},{"id":"chibi","sourcePeriodId":"chibi","year":208,"snapshotMoment":"赤壁之战后的年度主态势","eraId":"han","axisLabel":"汉","name":"赤壁之战","tagline":"烈火长江 · 三分雏形","summary":"建安十三年刘表卒、刘琮降曹，刘备退至夏口并与孙权结盟；孙刘联军在赤壁击退曹军，荆州由此进入重新分配阶段。","eraLabel":"建安","mapVariant":"late","required":true,"polities":["汉廷及曹操","荆州刘表旧部／刘琮","刘备","孙权","刘璋","士燮","韩遂、马氏等凉州诸部"],"confidence":{"overall":"medium","polity":"medium","provinceRoster":"medium","geometry":"low"},"researchNote":"208 年不能压缩成单一静态领土截面：刘表当年去世，刘琮继任后降曹，刘备是退驻夏口、樊口的机动军势，孙权仍据江东。州色表示主要控制和荆州旧部过渡，虚线小范围表示刘备等非完整州域势力；不提前使用魏、吴国号。","sourceIds":["sanguozhi","map_geometry_archive"]},{"id":"xiangfan","sourcePeriodId":"xiangfan","year":219,"snapshotMoment":"建安二十四年年末","eraId":"han","axisLabel":"汉","eraLabel":"建安","name":"襄樊之战","tagline":"荆益连横 · 水淹七军","summary":"刘备取汉中称汉中王；关羽北伐襄樊，水淹七军；孙权袭取荆州，关羽败亡，荆州转入孙吴。","mapVariant":"han219","required":true,"polities":["曹操","刘备","孙权","士燮","公孙氏"],"confidence":{"overall":"medium","polity":"medium","provinceRoster":"medium","geometry":"low"},"researchNote":"219 年为年度变局：刘备据益州、汉中与荆南，曹操据北方及荆州北部，孙权据江东并于年底袭取江陵。","sourceIds":["sanguozhi","map_geometry_archive"]},{"id":"sanguo","sourcePeriodId":"sanguo","year":220,"snapshotMoment":"黄初元年魏受禅后","eraId":"three","axisLabel":"三国","name":"曹魏代汉","tagline":"汉魏嬗代 · 三国渐成","summary":"220 年曹丕代汉建魏；刘备仍为汉中王，次年即帝位；孙权当时尚未称帝，三国国家格局仍在形成。","mapVariant":"late","required":true,"polities":["魏","刘备","孙权"],"confidence":{"overall":"medium","polity":"high","provinceRoster":"medium","geometry":"medium"},"researchNote":"国家版图按三国形成期概括表达；220 年仅魏已建国，刘备于 221 年称帝、孙权于 229 年称帝。此节点保留原序列位置，但不再写作三国同年并立。","sourceIds":["sanguozhi","map_geometry_archive"]},{"id":"beifa","sourcePeriodId":"beifa","year":228,"snapshotMoment":"建兴六年第一次北伐期间","eraId":"three","axisLabel":"三国","name":"北伐时期","tagline":"祁山烟尘 · 南北相持","summary":"诸葛亮北伐中原，魏、汉、吴三国在秦岭、江汉与江淮长期相持。","mapVariant":"late","required":true,"polities":["魏","汉","吴"],"confidence":{"overall":"medium","polity":"high","provinceRoster":"medium","geometry":"medium"},"researchNote":"版图按建兴六年形势表达；北伐路线与前线为历史示意，不作精确军事测绘。","sourceIds":["sanguozhi","map_geometry_archive"]},{"id":"guijin","sourcePeriodId":"guijin","year":263,"snapshotMoment":"景元四年十一月汉降前","eraId":"three","axisLabel":"三国","name":"魏伐汉","tagline":"剑阁告急 · 三国仍存","summary":"景元四年（263），魏军分道伐汉；刘禅至十一月才投降。本节点以投降前的年度主态势表达，魏、汉、吴三国仍然并存。","mapVariant":"three263","required":true,"polities":["魏","汉","吴"],"confidence":{"overall":"high","polity":"high","provinceRoster":"medium","geometry":"medium"},"researchNote":"263 年为年度变局。为避免把汉全年抹去，此图固定在刘禅投降前；汉的巴郡、巴西等二十二郡均保留郡色。汉亡后的稳定接收状态另列 264 年。","sourceIds":["sanguozhi","huayangguozhi_juan3","wikipedia_shuhan_admin","map_geometry_archive"]},{"id":"hanwang","sourcePeriodId":"guijin","year":264,"snapshotMoment":"咸熙元年梁州分置后","eraId":"three","axisLabel":"三国","name":"汉亡入魏","tagline":"益梁接收 · 魏吴并立","summary":"咸熙元年（264），汉已亡，原汉疆域由魏接收；吴仍据江南，西晋尚未建立。","mapVariant":"wei264","required":true,"polities":["魏","吴"],"confidence":{"overall":"high","polity":"high","provinceRoster":"medium","geometry":"medium"},"researchNote":"承接 263 年十一月刘禅投降及咸熙元年（264）分益州巴、汉七郡置梁州的结果；本图按梁州、益州分置后的稳定截面表达，不提前使用晋国号。","sourceIds":["sanguozhi","huayangguozhi_juan3","wikipedia_caowei_admin","map_geometry_archive"]},{"id":"jinchu","sourcePeriodId":"guijin","year":266,"snapshotMoment":"泰始元年晋受禅后","eraId":"jin","axisLabel":"晋","name":"西晋建立","tagline":"晋代魏兴 · 南北并立","summary":"司马炎受魏禅建立西晋；晋据原魏、汉故地，吴仍据江南，形成晋、吴并立局面。","eraLabel":"泰始","mapVariant":"jin266","required":true,"polities":["晋","吴"],"confidence":{"overall":"high","polity":"high","provinceRoster":"high","geometry":"medium"},"researchNote":"此图表现泰始元年建晋当年；传统纪年记咸熙二年十二月受禅，折合公历进入 266 年。梁州已于咸熙元年（264）分置，本图保留；秦、宁、平三州分别于 269、271、276 年设置，不提前绘入 266 年州界。","sourceIds":["jinshu_juan2","jinshu_juan14","map_geometry_archive"]},{"id":"taikang","sourcePeriodId":"taikang","year":280,"snapshotMoment":"太康元年吴降后","eraId":"jin","axisLabel":"晋","name":"晋灭吴","tagline":"三分归晋 · 九州混一","summary":"太康元年，晋灭吴，三国分立局面结束；州级结构按平吴后的十九州表达。","eraLabel":"太康","mapVariant":"jin280","required":true,"expectedProvinceCount":19,"polities":["晋"],"confidence":{"overall":"high","polity":"high","provinceRoster":"high","geometry":"medium"},"researchNote":"十九州为司、冀、兖、豫、荆、徐、扬、青、幽、平、并、雍、凉、秦、梁、益、宁、交、广；郡界以现有后期几何资料重新归并，并参照中研院西晋历史地图校验州级空间关系。","sourceIds":["jinshu_juan14","sinica_western_jin_map","map_geometry_archive"]},{"id":"hui_di","sourcePeriodId":"hui_di","year":290,"snapshotMoment":"太熙元年惠帝即位后","eraId":"jin","axisLabel":"晋","eraLabel":"太熙／永熙","name":"惠帝嗣位","tagline":"武帝晏驾 · 乱端肇启","summary":"太熙元年武帝崩，惠帝即位；贾后干政、八王之乱渐起，然西晋疆域仍大体维持统一。","mapVariant":"jin290","required":true,"expectedProvinceCount":19,"polities":["晋"],"confidence":{"overall":"medium","polity":"high","provinceRoster":"high","geometry":"medium"},"researchNote":"州级结构延续太康十九州；八王之乱为权力斗争，尚未改变州郡版图。","sourceIds":["jinshu_juan3","jinshu_juan14","map_geometry_archive"]},{"id":"yongjia","sourcePeriodId":"yongjia","year":311,"snapshotMoment":"永嘉五年洛阳陷落后","eraId":"jin","axisLabel":"晋","eraLabel":"永嘉","name":"永嘉之乱","tagline":"胡骑入洛 · 神州陆沉","summary":"永嘉五年，刘聪遣刘曜、石勒等攻陷洛阳，俘怀帝；中原大乱，琅邪王司马睿经营江东，西晋名存实亡。","mapVariant":"jin311","required":true,"expectedProvinceCount":20,"polities":["晋","汉赵","后赵"],"confidence":{"overall":"low","polity":"medium","provinceRoster":"medium","geometry":"low"},"researchNote":"311 年以洛阳陷落为节点：中原及河北残破；扬州按元康元年已分江州、永兴元年已置义兴与历阳且毗陵已改晋陵的建置表达。边界为据郡治方位回切的研究示意。","sourceIds":["jinshu_juan5","jinshu_juan102","jinshu_juan15","map_geometry_archive"]}];
+var LOCAL_PERIOD_META_BY_YEAR={};
+LOCAL_PERIOD_META.forEach(function(period){LOCAL_PERIOD_META_BY_YEAR[period.year]=period;});
+var sourcePeriods=THREE_KINGDOMS.periods.slice();
+var periodById={};
+sourcePeriods.forEach(function(period){periodById[period.id]=period;});
+Object.assign(periodById.huangjin,{
+  summary:'184 年尚无常设雍州。黄巾起事后，州郡募兵镇压，地方军事力量由此坐大。',
+  researchNote:'州界按东汉十三州部归并；262 年底图中的后置郡已尽量还原为汉末名称。'
+});
+Object.assign(periodById.shaodi,{name:'少帝即位',tagline:'宫门流血 · 董卓入京',summary:'189 年灵帝崩，少帝刘辩即位；何进遇弑，董卓入京，九月废少帝、立献帝。中央百官与州郡长吏仍属东汉官制。',researchNote:'少帝、献帝之际百官与州郡长吏按考据名录作注记；行政底图仍为东汉十三州部，不提前显示雍州。'});
+Object.assign(periodById.beifa,{name:'北伐时期'});
+Object.assign(periodById.guijin,{
+  year:263,name:'魏伐汉',tagline:'剑阁告急 · 三国仍存',
+  summary:'景元四年，魏军分道伐汉；刘禅至十一月才投降。本节点以投降前态势表达，魏、汉、吴仍然并存。',
+  dynasty:'三国',mapVariant:'three263',
+  events:[{year:263,era:'景元四年／炎兴元年',emperor:'魏元帝曹奂／汉后主刘禅',text:'魏军分道伐汉，十一月刘禅出降'}],
+  reigns:[
+    {era:'景元',emperor:'魏元帝曹奂',years:'260—264'},
+    {era:'炎兴',emperor:'汉后主刘禅',years:'263'},
+    {era:'永安',emperor:'吴景帝孙休',years:'258—264'}
+  ],
+  researchNote:'263 年固定为刘禅投降前的年度主态势；汉亡后的稳定接收状态另列 264 年。'
+});
+periodById.guijin.routes=(periodById.guijin.routes||[]).map(function(route){return Object.assign({},route,{faction:'wei'});});
+Object.assign(periodById.taikang,{
+  year:280,name:'晋灭吴',tagline:'三分归晋 · 九州混一',
+  summary:'司马炎于公元 266 年受魏禅建立西晋。太康元年（280），晋灭吴，三国分立局面结束。',
+  dynasty:'西晋',mapVariant:'jin280',
+  researchNote:'州级结构按《晋书·地理志》太康平吴后的十九州复原；郡界以现有 262 年几何资料重新归并。'
+});
+if(!(periodById.taikang.events||[]).some(function(event){return Number(event.year)===266;})){
+  periodById.taikang.events=(periodById.taikang.events||[]).concat([
+    {year:266,era:'泰始元年',emperor:'晋武帝司马炎',text:'受魏禅，建立西晋'}
+  ]).sort(function(a,b){return Number(a.year)-Number(b.year);});
+}
+var hanwangPeriod=JSON.parse(JSON.stringify(periodById.guijin));
+Object.assign(hanwangPeriod,{
+  id:'hanwang',year:264,name:'汉亡入魏',tagline:'益梁接收 · 魏吴并立',
+  summary:'咸熙元年，汉已亡，原汉疆域由魏接收；吴仍据江南，西晋尚未建立。',
+  dynasty:'三国',mapVariant:'wei264',battles:[],routes:[],
+  eraLabel:'咸熙／元兴',
+  events:[{year:264,era:'咸熙元年',emperor:'魏元帝曹奂',text:'原汉疆域由魏接收，钟会之乱平定'}],
+  reigns:[
+    {era:'咸熙',emperor:'魏元帝曹奂',years:'264—265'},
+    {era:'永安／元兴',emperor:'吴景帝孙休／吴末帝孙皓',years:'264'}
+  ],
+  researchNote:'承接 263 年十一月刘禅投降后的结果；以次年稳定截面显示魏、吴两国。'
+});
+var jinchuPeriod=JSON.parse(JSON.stringify(hanwangPeriod));
+Object.assign(jinchuPeriod,{
+  id:'jinchu',year:266,name:'西晋建立',tagline:'晋代魏兴 · 南北并立',
+  summary:'咸熙二年十二月，司马炎受魏禅，换算为公元 266 年。晋据原魏、汉故地，吴仍据江南。',
+  dynasty:'西晋',mapVariant:'jin266',battles:[],routes:[],
+  eraLabel:'泰始',
+  events:[
+    {year:266,era:'泰始元年',emperor:'晋武帝司马炎',text:'受魏禅，建立西晋'},
+    {year:264,era:'咸熙元年',emperor:'魏元帝曹奂',text:'分益州巴、汉七郡置梁州'},
+    {year:269,era:'泰始五年',emperor:'晋武帝司马炎',text:'分雍、凉、梁州置秦州'},
+    {year:271,era:'泰始七年',emperor:'晋武帝司马炎',text:'分益、交州置宁州'},
+    {year:276,era:'咸宁二年',emperor:'晋武帝司马炎',text:'分幽州置平州'},
+    {year:280,era:'太康元年',emperor:'晋武帝司马炎',text:'灭吴，统一天下'}
+  ],
+  reigns:[
+    {era:'泰始',emperor:'晋武帝司马炎',years:'266—274'},
+    {era:'甘露／宝鼎',emperor:'吴末帝孙皓',years:'265—269'}
+  ],
+  researchNote:'此图表现西晋建立当年；梁、秦、宁、平四州尚未全部形成，故不提前画入 266 年州界。'
+});
+sourcePeriods.splice(sourcePeriods.indexOf(periodById.guijin)+1,0,hanwangPeriod,jinchuPeriod);
+var periodResearchNotes={
+  shaodi:'189 年仍为东汉十三州部；少帝、献帝之际中央百官与州郡长吏作为局势注记，董卓入京路线为示意。',
+  dongzhuo:'190 年仍未正式设置雍州，关中归入司隶、河西与陇右归入凉州；势力边界为州域级近似。',
+  guandu:'雍州已于 194 年出现；本图按 200 年主要控制区表达，州内前线不等同于精确国界。',
+  chibi:'荆州、扬州按魏与孙刘控制区拆分，边界取州郡几何近似，不表示现代行政界。',
+  sanguo:'国家版图按三国形成期表达，郡界几何主要依据 262 年资料，早置、后置郡以说明文字区分。',
+  beifa:'北伐路线与国家版图按 228 年形势表达；战争前线为示意线，不作精确军事测绘。'
+};
+sourcePeriods.forEach(function(period){
+  if(!period.researchNote&&periodResearchNotes[period.id]) period.researchNote=periodResearchNotes[period.id];
+  var registered=LOCAL_PERIOD_META_BY_YEAR[period.year];
+  if(registered){
+    period.axisLabel=registered.axisLabel;
+    period.name=registered.name||period.name;
+    period.tagline=registered.tagline||period.tagline;
+    period.summary=registered.summary||period.summary;
+    period.mapVariant=registered.mapVariant||period.mapVariant;
+    period.researchNote=registered.researchNote||period.researchNote;
+    period.confidence=registered.confidence||null;
+    period.sourceIds=registered.sourceIds||[];
+  }
+  var snapshot=(window.ADMINISTRATIVE_SNAPSHOTS||{})[period.id];
+  if(snapshot&&snapshot.note&&String(period.researchNote||'').indexOf(snapshot.note)===-1){
+    period.researchNote=[period.researchNote,'建置快照：'+snapshot.note].filter(Boolean).join(' ');
+  }
+});
+THREE_KINGDOMS.periods=sourcePeriods;
+PROVINCE_PERIODS.huangjin.dataSource='han184';
+PROVINCE_PERIODS.shaodi.dataSource='han184';
+PROVINCE_PERIODS.dongzhuo.dataSource='han184';
+PROVINCE_PERIODS.xingping.dataSource='han194';
+PROVINCE_PERIODS.jianbing.dataSource='han199';
+PROVINCE_PERIODS.guandu.dataSource='han200';
+PROVINCE_PERIODS.chibi.dataSource='han208';
+PROVINCE_PERIODS.xiangfan.dataSource='han219';
+PROVINCE_PERIODS.sanguo.dataSource='three220';
+PROVINCE_PERIODS.beifa.dataSource='three228';
+PROVINCE_PERIODS.sanguo.provinces.qinzhou='wei';
+PROVINCE_PERIODS.huangjin.provinces={
+  bingzhou:'han',jiaozhou:'han',jingzhou:'han',jizhou:'han',liangzhou:'han',
+  qingzhou:'han',sili:'han',xuzhou:'han',yangzhou:'han',yanzhou:'han',
+  yizhou:'han',youzhou:'han',yuzhou:'han'
+};
+window.HISTORY_PROVINCE_VARIANTS={
+  three263:{
+    dataSource:'late',
+    provinces:{
+      bingzhou:'wei',jiaozhou:'wu',jing_wei:'wei',jing_wu:'wu',
+      jizhou:'wei',liangzhou:'wei',qingzhou:'wei',sili:'wei',
+      xuzhou:'wei',yang_wei:'wei',yang_wu:'wu',yanzhou:'wei',
+      yizhou:'shu',yongzhou:'wei',youzhou:'wei',yuzhou:'wei'
+    }
+  },
+  wei264:{
+    dataSource:'wei264',
+    provinces:{
+      bingzhou:'wei',jiaozhou:'wu',guangzhou:'wu',jing_wei:'wei',jing_wu:'wu',
+      jizhou:'wei',liangzhou:'wei',liang_state:'wei',qingzhou:'wei',sili:'wei',
+      xuzhou:'wei',yang_wei:'wei',yang_wu:'wu',yanzhou:'wei',
+      yizhou:'wei',yongzhou:'wei',youzhou:'wei',yuzhou:'wei'
+    }
+  },
+  jin266:{
+    dataSource:'jin266',
+    provinces:{
+      bingzhou:'jin',jiaozhou:'wu',guangzhou:'wu',jing_wei:'jin',jing_wu:'wu',
+      jizhou:'jin',liangzhou:'jin',liang_state:'jin',qingzhou:'jin',sili:'jin',
+      xuzhou:'jin',yang_wei:'jin',yang_wu:'wu',yanzhou:'jin',
+      yizhou:'jin',yongzhou:'jin',youzhou:'jin',yuzhou:'jin'
+    }
+  }
+};
+Object.assign(PROVINCE_PERIODS.guijin,window.HISTORY_PROVINCE_VARIANTS.three263);
+PROVINCE_PERIODS.hanwang=Object.assign({},PROVINCE_PERIODS.guijin,window.HISTORY_PROVINCE_VARIANTS.wei264);
+PROVINCE_PERIODS.jinchu=Object.assign({},PROVINCE_PERIODS.hanwang,window.HISTORY_PROVINCE_VARIANTS.jin266);
+function useHanName(value){
+  return String(value||'').replace(/蜀汉|季汉/g,'汉').replace(/蜀势/g,'汉势').replace(/伐蜀/g,'伐汉');
+}
+THREE_KINGDOMS.periods.forEach(function(p){
+  p.tagline=useHanName(p.tagline).replace(/魏蜀吴/g,'魏汉吴');
+  p.summary=useHanName(p.summary);
+  (p.events||[]).forEach(function(e){e.text=useHanName(e.text);e.emperor=useHanName(e.emperor);});
+  (p.reigns||[]).forEach(function(r){r.emperor=useHanName(r.emperor);});
+  (p.routes||[]).forEach(function(r){r.name=useHanName(r.name);});
+});
+THREE_KINGDOMS.battles.forEach(function(b){
+  ['name','a','b','desc','result'].forEach(function(k){b[k]=useHanName(b[k]);});
+});
+THREE_KINGDOMS.cities.forEach(function(city){
+  city.name=useHanName(city.name);
+  city.desc=useHanName(city.desc);
+});
+</script>
+<script>
+/*
+ * WorkBuddy 第 1 版发布包漏带了动态州郡数据文件。这里从新版地图注明的
+ * Zhou Dadudu / Threekingdoms Archive 公开资料中读取同源边界，并转换为
+ * 新版地图所需的数据结构；原版 app.js 的时间、图层和面板逻辑保持不变。
+ */
+(function(){
+  var GEO_SOURCE='data/All_Provinces.json';
+  var EARTH_RADIUS=6378137;
+  var PROVINCE_KEYS={
+    'Bingzhou':'bingzhou','Jiaozhou':'jiaozhou','Jingzhou (Wei)':'jing_wei',
+    'Jingzhou (Wu)':'jing_wu','Jizhou':'jizhou','Liangzhou':'liangzhou',
+    'Qingzhou':'qingzhou','Sili':'sili','Xuzhou':'xuzhou',
+    'Yangzhou (Wei)':'yang_wei','Yangzhou (Wu)':'yang_wu','Yanzhou':'yanzhou',
+    'Yizhou (North)':'yizhou','Yizhou (South)':'yizhou','Yongzhou':'yongzhou',
+    'Youzhou':'youzhou','Yuzhou':'yuzhou'
+  };
+
+  function lonLat(point){
+    var lon=point[0]/EARTH_RADIUS*180/Math.PI;
+    var lat=(2*Math.atan(Math.exp(point[1]/EARTH_RADIUS))-Math.PI/2)*180/Math.PI;
+    return [Number(lon.toFixed(5)),Number(lat.toFixed(5))];
+  }
+  function simplifyRing(points){
+    if(!points||points.length<=4) return points||[];
+    var tolerance=6000;
+    var sqTolerance=tolerance*tolerance;
+    var result=[points[0]];
+    var previous=points[0];
+    for(var i=1;i<points.length-1;i+=1){
+      var point=points[i];
+      var dx=point[0]-previous[0];
+      var dy=point[1]-previous[1];
+      if(dx*dx+dy*dy>=sqTolerance){
+        result.push(point);
+        previous=point;
+      }
+    }
+    result.push(points[points.length-1]);
+    return result.length>=4?result:points;
+  }
+  function convertGeometry(geometry){
+    if(geometry.type==='Polygon'){
+      return {type:'Polygon',coordinates:geometry.coordinates.map(function(ring){
+        return simplifyRing(ring).map(lonLat);
+      })};
+    }
+    return {type:'MultiPolygon',coordinates:geometry.coordinates.map(function(polygon){
+      return polygon.map(function(ring){return simplifyRing(ring).map(lonLat);});
+    })};
+  }
+  function convertGeometryExact(geometry){
+    /*
+     * 郡界必须保留底稿中的共享顶点，才能在合并后真正消除内部线。
+     * 先做 6km 简化会让相邻多边形各自丢掉不同顶点，导致共享边无法配对；
+     * 州级展示仍使用 convertGeometry 的轻量简化，郡级展示改用此精确转换。
+     */
+    if(geometry.type==='Polygon'){
+      return {type:'Polygon',coordinates:geometry.coordinates.map(function(ring){
+        return ring.map(lonLat);
+      })};
+    }
+    return {type:'MultiPolygon',coordinates:geometry.coordinates.map(function(polygon){
+      return polygon.map(function(ring){return ring.map(lonLat);});
+    })};
+  }
+  function polygonParts(geometry){
+    return geometry.type==='Polygon'?[geometry.coordinates]:geometry.coordinates;
+  }
+  function coordinateKey(point){
+    return Number(point[0]).toFixed(5)+','+Number(point[1]).toFixed(5);
+  }
+  function dissolvePolygonParts(parts){
+    /*
+     * 后期底稿把一个早期母郡切成多个相邻多边形。仅合并成 MultiPolygon
+     * 仍会把共享边描出来，因此这里按共享线段做轻量边界溶解：成对抵消
+     * 内部边，再沿剩余边重建外轮廓。遇到无法闭合的复杂环时回退原几何，
+     * 保证地图宁可保留细线，也不会因几何修复而出现空白。
+     */
+    if(!Array.isArray(parts)||parts.length<2) return parts||[];
+    var edgeBuckets={};
+    var edges=[];
+    function addEdge(a,b){
+      if(!a||!b) return;
+      var aKey=coordinateKey(a),bKey=coordinateKey(b);
+      if(aKey===bKey) return;
+      var canonical=aKey<bKey?aKey+'|'+bKey:bKey+'|'+aKey;
+      var bucket=edgeBuckets[canonical]||(edgeBuckets[canonical]=[]);
+      var pair=bucket.find(function(edge){return !edge.used;});
+      var edge={a:[a[0],a[1]],b:[b[0],b[1]],aKey:aKey,bKey:bKey,used:false};
+      if(pair){pair.used=true;edge.used=true;}
+      bucket.push(edge);
+      edges.push(edge);
+    }
+    (parts||[]).forEach(function(polygon){
+      (polygon||[]).forEach(function(ring){
+        if(!Array.isArray(ring)||ring.length<4) return;
+        for(var i=0;i<ring.length-1;i+=1) addEdge(ring[i],ring[i+1]);
+        if(coordinateKey(ring[ring.length-1])!==coordinateKey(ring[0])) addEdge(ring[ring.length-1],ring[0]);
+      });
+    });
+    var remaining=edges.filter(function(edge){return !edge.used;});
+    if(!remaining.length) return parts;
+    var outgoing={};
+    remaining.forEach(function(edge){(outgoing[edge.aKey]||(outgoing[edge.aKey]=[])).push(edge);});
+    var loops=[];
+    remaining.forEach(function(start){
+      if(start.used) return;
+      var firstKey=start.aKey;
+      var loop=[start.a];
+      var edge=start;
+      var guard=0;
+      while(edge&&!edge.used&&guard++<remaining.length+4){
+        edge.used=true;
+        loop.push(edge.b);
+        if(edge.bKey===firstKey) break;
+        var next=(outgoing[edge.bKey]||[]).find(function(candidate){return !candidate.used;});
+        edge=next||null;
+      }
+      if(loop.length>=4&&coordinateKey(loop[0])===coordinateKey(loop[loop.length-1])) loops.push(loop);
+    });
+    var usedPoints=loops.reduce(function(total,loop){return total+loop.length-1;},0);
+    if(!loops.length||usedPoints<Math.max(3,Math.floor(remaining.length*.88))) return parts;
+    return loops.map(function(loop){return [loop];});
+  }
+  function geometryLabel(geometry){
+    var minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+    function visit(value){
+      if(Array.isArray(value)&&value.length>=2&&typeof value[0]==='number'){
+        minX=Math.min(minX,value[0]); minY=Math.min(minY,value[1]);
+        maxX=Math.max(maxX,value[0]); maxY=Math.max(maxY,value[1]);
+        return;
+      }
+      if(Array.isArray(value)) value.forEach(visit);
+    }
+    visit(geometry.coordinates);
+    if(!Number.isFinite(minX)) return null;
+    var point=lonLat([(minX+maxX)/2,(minY+maxY)/2]);
+    return [point[1],point[0]];
+  }
+  function geometryLabelWgs(geometry){
+    var minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+    function visit(value){
+      if(Array.isArray(value)&&value.length>=2&&typeof value[0]==='number'){
+        minX=Math.min(minX,value[0]); minY=Math.min(minY,value[1]);
+        maxX=Math.max(maxX,value[0]); maxY=Math.max(maxY,value[1]);
+        return;
+      }
+      if(Array.isArray(value)) value.forEach(visit);
+    }
+    visit(geometry.coordinates);
+    return Number.isFinite(minX)?[(minY+maxY)/2,(minX+maxX)/2]:null;
+  }
+  function clipRingByLine(ring,valueAt,keepPositive){
+    if(!Array.isArray(ring)||ring.length<4) return [];
+    var source=ring.slice();
+    if(coordinateKey(source[0])===coordinateKey(source[source.length-1])) source.pop();
+    var output=[];
+    for(var i=0;i<source.length;i+=1){
+      var current=source[i],previous=source[(i+source.length-1)%source.length];
+      var cv=valueAt(current),pv=valueAt(previous);
+      var currentInside=keepPositive?cv>=0:cv<=0;
+      var previousInside=keepPositive?pv>=0:pv<=0;
+      if(currentInside!==previousInside){
+        var divisor=pv-cv;
+        var ratio=Math.abs(divisor)<1e-10?0:pv/divisor;
+        output.push([
+          Number((previous[0]+(current[0]-previous[0])*ratio).toFixed(5)),
+          Number((previous[1]+(current[1]-previous[1])*ratio).toFixed(5))
+        ]);
+      }
+      if(currentInside) output.push([current[0],current[1]]);
+    }
+    if(output.length<3) return [];
+    if(coordinateKey(output[0])!==coordinateKey(output[output.length-1])) output.push([output[0][0],output[0][1]]);
+    return output.length>=4?output:[];
+  }
+  function clipGeometryByLine(geometry,valueAt,keepPositive){
+    var parts=polygonParts(geometry),clipped=[];
+    parts.forEach(function(polygon){
+      if(!polygon||!polygon.length) return;
+      var outer=clipRingByLine(polygon[0],valueAt,keepPositive);
+      if(!outer.length) return;
+      var next=[outer];
+      polygon.slice(1).forEach(function(hole){var ring=clipRingByLine(hole,valueAt,keepPositive);if(ring.length)next.push(ring);});
+      clipped.push(next);
+    });
+    return {type:'MultiPolygon',coordinates:clipped};
+  }
+  function splitCommanderyByLine(features,sourceName,childSourceName,childName,valueAt,childPositive){
+    var out=[];
+    features.forEach(function(feature){
+      if(feature.sourceName!==sourceName||feature.state!=='扬州'){out.push(feature);return;}
+      var parentGeometry=clipGeometryByLine(feature.geometry,valueAt,!childPositive);
+      var childGeometry=clipGeometryByLine(feature.geometry,valueAt,childPositive);
+      if(!parentGeometry.coordinates.length||!childGeometry.coordinates.length){out.push(feature);return;}
+      out.push(Object.assign({},feature,{geometry:parentGeometry,label:geometryLabelWgs(parentGeometry)}));
+      out.push(Object.assign({},feature,{sourceName:childSourceName,name:childName,geometry:childGeometry,label:geometryLabelWgs(childGeometry)}));
+    });
+    return out;
+  }
+  function recalibrateJinYangzhou(features,year){
+    var out=features.map(function(feature){
+      if(feature.state!=='扬州') return feature;
+      if(feature.sourceName==='Xindu') return Object.assign({},feature,{name:'新安郡'});
+      if(feature.sourceName==='Piling Colonel Directing Agriculture'&&year>=281){
+        return Object.assign({},feature,{name:year>=304?'晋陵郡':'毗陵郡'});
+      }
+      return feature;
+    });
+    /* 吴宝鼎元年已置吴兴、东阳；262 年底稿未分出，按郡治方位切回母郡。 */
+    out=splitCommanderyByLine(out,'Wu','Wuxing','吴兴郡',function(point){return point[0]-120.25;},false);
+    out=splitCommanderyByLine(out,'Guiji / Kuaiji','Dongyang','东阳郡',function(point){return point[0]+point[1]*0.6-138.0;},false);
+    /* 太康二年分丹阳置宣城、毗陵；280 年快照不提前显示宣城。 */
+    if(year>=281) out=splitCommanderyByLine(out,'Danyang','Xuancheng','宣城郡',function(point){return point[0]+point[1]*0.55-136.05;},false);
+    if(year>=304){
+      /* 永兴元年置义兴、历阳；义兴取吴兴阳羡及丹阳永世一带。 */
+      out=splitCommanderyByLine(out,'Wuxing','Yixing','义兴郡',function(point){return point[1]+point[0]*0.22-57.50;},true);
+      out=splitCommanderyByLine(out,'Danyang','Yixing','义兴郡',function(point){return point[0]-point[1]*0.5-103.45;},true);
+      out=splitCommanderyByLine(out,'Huainan','Liyang','历阳郡',function(point){return point[0]-point[1]*1.2-79.0;},true);
+    }
+    return mergeNamedCommanderies(out);
+  }
+  function cleanProvinceName(name){
+    return String(name||'').replace(/（[^）]*）/g,'');
+  }
+  function provinceGroupKey(englishName,mode){
+    if(mode!=='late'){
+      if(englishName.indexOf('Jingzhou')===0) return 'jingzhou';
+      if(englishName.indexOf('Yangzhou')===0) return 'yangzhou';
+    }
+    return PROVINCE_KEYS[englishName]||String(englishName||'').toLowerCase().replace(/[^a-z]+/g,'_');
+  }
+  function buildProvinces(source,mode){
+    var groups={};
+    source.filter(function(feature){return feature.properties.level==='province';}).forEach(function(feature){
+      var properties=feature.properties;
+      var key=provinceGroupKey(properties.Name_EN,mode);
+      if(!groups[key]) groups[key]=[];
+      groups[key].push(feature);
+    });
+    return Object.keys(groups).map(function(key){
+      var members=groups[key];
+      var parts=[];
+      members.forEach(function(feature){parts=parts.concat(polygonParts(feature.geometry));});
+      var combined={type:'MultiPolygon',coordinates:dissolvePolygonParts(parts)};
+      var first=members[0].properties;
+      return {
+        key:key,
+        name:key==='sili'&&mode==='late'?'司州':cleanProvinceName(first.Name_CHS),
+        kingdom:mode==='jin'?'jin':first.kingdom,
+        label:geometryLabel(combined),
+        geometry:convertGeometry(combined)
+      };
+    });
+  }
+  function commanderyName(name){
+    name=String(name||'').replace(/楗\/犍为|楗为/g,'犍为');
+    return /(?:国|州|校尉)$/.test(name)?name:name+'郡';
+  }
+  function buildCommanderies(source){
+    return source.filter(function(feature){return feature.properties.level==='commandery';}).map(function(feature){
+      var properties=feature.properties;
+      var normalizedSourceName=properties.Name_EN==='Zhuya Zhou'?'Zhuya'
+        :(properties.Name_EN==='Fuyihujun'?'Beidi':properties.Name_EN);
+      return {
+        key:'commandery_'+properties.id,
+        name:normalizedSourceName==='Beidi'?'北地郡':(normalizedSourceName==='Zhuya'?'珠崖郡':commanderyName(properties.Name_CHS)),
+        state:cleanProvinceName(properties.Prov_CHS),
+        kingdom:properties.kingdom,
+        sourceName:normalizedSourceName,
+        sourceProvince:properties.Prov_EN,
+        label:geometryLabel(feature.geometry),
+        geometry:convertGeometryExact(feature.geometry)
+      };
+    });
+  }
+  /*
+   * 184 年郡名采用东汉当时名称；262 年资料中明确晚置的郡不在汉视图重复出现。
+   * 州界则将全部后世细分郡重新归并为东汉十三州部，以免过滤后留下空洞。
+   */
+  var HAN_184_KEEP={
+    'Bingzhou':['Shangdang','Yanmen','Taiyuan','Xihe'],
+    'Yangzhou (Wei)':['Lujiang','Huainan'],
+    'Yuzhou':['Pei State','Liang State','Runan','Chen','Yingchuan'],
+    'Yanzhou':['Taishan','Shanyang','Rencheng','Jibei State','Dongping State','Jiyin','Chenliu State','Dong','Lu'],
+    'Qingzhou':['Jinan State','Qi State','Beihai State','Donglai',"Le'an"],
+    'Xuzhou':['Xiapi','Guangling','Donghai State','Langya State','Pengcheng State'],
+    'Sili':['Hongnong','Henei','Henan','Hedong'],
+    'Yangzhou (Wu)':['Danyang','Guiji / Kuaiji','Lujiang','Wu','Yuzhang'],
+    'Jingzhou (Wu)':['Guiyang','Lingling','Wuling','Changsha','Jiangxia','Nan'],
+    'Jingzhou (Wei)':['Nanyang'],
+    'Yizhou (South)':['Yongchang','Jianning','Zangke','Yuesui'],
+    'Yizhou (North)':['Ba','Jianwei','Guanghan','Shu','Hanzhong','Wudu'],
+    'Jiaozhou':['Rinan','Jiaozhi','Jiuzhen','Yulin','Hepu','Cangwu','Nanhai'],
+    'Youzhou':['Lelang','Xuantu','Liaodong','Liaoxi','Youbeiping','Yuyang','Yan State','Fanyang','Shanggu','Dai'],
+    'Liangzhou':['Dunhuang','Zhangye','Wuwei','Jincheng','Jiuquan'],
+    'Yongzhou':['Jingzhao','Beidi','Fufeng','Tianshui','Longxi','Pingyi','Anding'],
+    'Jizhou':['Pingyuan','Bohai','Hejian','Anping','Julu','Zhao State','Wei','Changshan','Qinghe','Zhongshan State']
+  };
+  var HAN_NAME_184={
+    'Huainan':'九江郡',
+    'Jianning':'益州郡',
+    'Fanyang':'涿郡',
+    'Jianwei':'犍为郡',
+    'Henan':'河南尹',
+    'Jingzhao':'京兆尹',
+    'Pingyi':'左冯翊',
+    'Fufeng':'右扶风',
+    'Tianshui':'汉阳郡'
+  };
+  var STATE_KEYS={
+    '司隶':'sili','并州':'bingzhou','冀州':'jizhou','兖州':'yanzhou','豫州':'yuzhou',
+    '青州':'qingzhou','徐州':'xuzhou','扬州':'yangzhou','荆州':'jingzhou',
+    '益州':'yizhou','凉州':'liangzhou','幽州':'youzhou','交州':'jiaozhou',
+    '广州':'guangzhou'
+  };
+  function hanStateInfo(feature){
+    var province=feature.sourceProvince;
+    var sourceName=feature.sourceName;
+    /* 262 年底稿在魏吴、魏汉边界处拆分过若干郡；220 年前须按东汉州属重新归并。 */
+    if(sourceName==='Jiangxia') return {key:'jingzhou',name:'荆州',kingdom:'han'};
+    if(sourceName==='Lujiang') return {key:'yangzhou',name:'扬州',kingdom:'han'};
+    if(sourceName==='Hanzhong') return {key:'yizhou',name:'益州',kingdom:'han'};
+    if(sourceName==='Wudu') return {key:'liangzhou',name:'凉州',kingdom:'han'};
+    if(province.indexOf('Jingzhou')===0) return {key:'jingzhou',name:'荆州',kingdom:'han'};
+    if(province.indexOf('Yangzhou')===0) return {key:'yangzhou',name:'扬州',kingdom:'han'};
+    if(province.indexOf('Yizhou')===0) return {key:'yizhou',name:'益州',kingdom:'han'};
+    if(province==='Yongzhou'){
+      if(['Jingzhao','Fufeng','Pingyi'].indexOf(sourceName)!==-1) return {key:'sili',name:'司隶',kingdom:'han'};
+      return {key:'liangzhou',name:'凉州',kingdom:'han'};
+    }
+    if(province==='Jizhou'&&sourceName==='Pingyuan') return {key:'qingzhou',name:'青州',kingdom:'han'};
+    if(province==='Yanzhou'&&sourceName==='Lu') return {key:'yuzhou',name:'豫州',kingdom:'han'};
+    var names={
+      'Bingzhou':'并州','Jiaozhou':'交州','Jizhou':'冀州','Liangzhou':'凉州',
+      'Qingzhou':'青州','Sili':'司隶','Xuzhou':'徐州','Yanzhou':'兖州',
+      'Youzhou':'幽州','Yuzhou':'豫州'
+    };
+    var name=names[province]||cleanProvinceName(feature.state);
+    return {key:STATE_KEYS[name]||String(province).toLowerCase(),name:name,kingdom:'han'};
+  }
+  function threeKingdomsStateInfo(feature,periodKey){
+    var province=feature.sourceProvince;
+    var sourceName=feature.sourceName;
+    var kingdom=feature.kingdom;
+    if(periodKey==='han194'){
+      if(province==='Liangzhou'&&['Dunhuang','Zhangye','Wuwei','Jiuquan'].indexOf(sourceName)!==-1){
+        return {key:'yongzhou',name:'雍州',kingdom:'han'};
+      }
+      if(province==='Yongzhou'){
+        if(['Jingzhao','Fufeng','Pingyi'].indexOf(sourceName)!==-1) return {key:'sili',name:'司隶',kingdom:'han'};
+        return {key:'liangzhou',name:'凉州',kingdom:'han'};
+      }
+      return hanStateInfo(feature);
+    }
+    if(periodKey==='han199'||periodKey==='han200'||periodKey==='han208'){
+      if(province==='Liangzhou'&&['Dunhuang','Zhangye','Wuwei','Jiuquan'].indexOf(sourceName)!==-1){
+        return {key:'yongzhou',name:'雍州',kingdom:'han'};
+      }
+      if(province==='Yongzhou'){
+        if(['Jingzhao','Fufeng','Pingyi'].indexOf(sourceName)!==-1) return {key:'sili',name:'司隶',kingdom:'han'};
+        return {key:'liangzhou',name:'凉州',kingdom:'han'};
+      }
+      if(province==='Sili') return {key:'sili',name:'司隶',kingdom:'han'};
+      if(sourceName==='Jiangxia') return {key:province==='Jingzhou (Wei)'?'jing_wei':'jing_wu',name:'荆州',kingdom:'han'};
+      if(sourceName==='Lujiang') return {key:province==='Yangzhou (Wei)'?'yang_wei':'yang_wu',name:'扬州',kingdom:'han'};
+      if(sourceName==='Hanzhong') return {key:'yizhou',name:'益州',kingdom:'han'};
+      if(sourceName==='Wudu') return {key:'liangzhou',name:'凉州',kingdom:'han'};
+      if(province==='Jingzhou (Wei)') return {key:'jing_wei',name:'荆州',kingdom:'han'};
+      if(province==='Jingzhou (Wu)') return {key:'jing_wu',name:'荆州',kingdom:'han'};
+      if(province==='Yangzhou (Wei)') return {key:'yang_wei',name:'扬州',kingdom:'han'};
+      if(province==='Yangzhou (Wu)') return {key:'yang_wu',name:'扬州',kingdom:'han'};
+      if(province.indexOf('Yizhou')===0) return {key:'yizhou',name:'益州',kingdom:'han'};
+      return hanStateInfo(feature);
+    }
+    if(periodKey==='han219'){
+      if(province==='Liangzhou'&&['Dunhuang','Zhangye','Wuwei','Jiuquan'].indexOf(sourceName)!==-1){
+        return {key:'yongzhou',name:'雍州',kingdom:'han'};
+      }
+      if(province==='Yongzhou'){
+        if(['Jingzhao','Fufeng','Pingyi'].indexOf(sourceName)!==-1) return {key:'sili',name:'司隶',kingdom:'han'};
+        return {key:'liangzhou',name:'凉州',kingdom:'han'};
+      }
+      if(province==='Sili') return {key:'sili',name:'司隶',kingdom:'han'};
+      /* 262 年底稿把同一郡沿魏吴边界切成多块；219 年按母郡统一州属，
+         同时保留 jing_wei / jing_wu 州级分组，避免郡块重复或州级空洞。 */
+      if(sourceName==='Jiangxia') return {key:province==='Jingzhou (Wei)'?'jing_wei':'jing_wu',name:'荆州',kingdom:'han'};
+      if(sourceName==='Lujiang') return {key:province==='Yangzhou (Wei)'?'yang_wei':'yang_wu',name:'扬州',kingdom:'han'};
+      if(sourceName==='Hanzhong') return {key:'yizhou',name:'益州',kingdom:'han'};
+      if(sourceName==='Wudu') return {key:'liangzhou',name:'凉州',kingdom:'han'};
+    }
+    /* 安丰郡建安二十二年（221）分庐江置；220 年归并回母郡后，几何仍带豫州州属，
+       须按母郡统一回扬州，否则 220 年会出现第三块“庐江”。 */
+    if(periodKey==='three220'&&sourceName==='Lujiang'&&province!=='Yangzhou (Wei)'&&province!=='Yangzhou (Wu)'){
+      return {key:'yang_wei',name:'扬州',kingdom:kingdom};
+    }
+    if(province==='Jingzhou (Wei)') return {key:'jing_wei',name:'荆州',kingdom:kingdom};
+    if(province==='Jingzhou (Wu)') return {key:'jing_wu',name:'荆州',kingdom:kingdom};
+    if(province==='Yangzhou (Wei)') return {key:'yang_wei',name:'扬州',kingdom:kingdom};
+    if(province==='Yangzhou (Wu)') return {key:'yang_wu',name:'扬州',kingdom:kingdom};
+    if(province.indexOf('Yizhou')===0) return {key:'yizhou',name:'益州',kingdom:kingdom};
+    if(province==='Yongzhou'){
+      if(['Jingzhao','Fufeng','Pingyi'].indexOf(sourceName)!==-1) return {key:'sili',name:'司州',kingdom:kingdom};
+      if(periodKey==='three220'&&['Longxi','Tianshui',"Nan'an",'Guangwei'].indexOf(sourceName)!==-1){
+        return {key:'qinzhou',name:'秦州',kingdom:kingdom};
+      }
+      return {key:'yongzhou',name:'雍州',kingdom:kingdom};
+    }
+    var names={Bingzhou:'并州',Jiaozhou:'交州',Jizhou:'冀州',Liangzhou:'凉州',Qingzhou:'青州',Sili:'司州',Xuzhou:'徐州',Yanzhou:'兖州',Youzhou:'幽州',Yuzhou:'豫州'};
+    var keys={Bingzhou:'bingzhou',Jiaozhou:'jiaozhou',Jizhou:'jizhou',Liangzhou:'liangzhou',Qingzhou:'qingzhou',Sili:'sili',Xuzhou:'xuzhou',Yanzhou:'yanzhou',Youzhou:'youzhou',Yuzhou:'yuzhou'};
+    return {key:keys[province]||String(province).toLowerCase(),name:names[province]||feature.state,kingdom:kingdom};
+  }
+  var POST_HAN_LIANG_STATE_NAMES=['Hanzhong','Zitong','Ba','Badong','Baxi','Fuling','Weixing','Shangyong','Xincheng'];
+  function postHanStateInfo(feature,nonWuKingdom){
+    var province=feature.sourceProvince;
+    var sourceName=feature.sourceName;
+    var kingdom=feature.kingdom==='wu'?'wu':nonWuKingdom;
+    if(province==='Jiaozhou'){
+      var guang=['Nanhai','Cangwu','Yulin','Gaoliang','Hepu'];
+      return guang.indexOf(sourceName)!==-1
+        ?{key:'guangzhou',name:'广州',kingdom:'wu'}
+        :{key:'jiaozhou',name:'交州',kingdom:'wu'};
+    }
+    /* 梁州：咸熙元年（264）分益州巴、汉七郡置，辖汉中、魏兴、上庸、新城、梓潼及巴系诸郡。 */
+    if(POST_HAN_LIANG_STATE_NAMES.indexOf(sourceName)!==-1) return {key:'liang_state',name:'梁州',kingdom:kingdom};
+    if(province==='Jingzhou (Wei)') return {key:'jing_wei',name:'荆州',kingdom:kingdom};
+    if(province==='Jingzhou (Wu)') return {key:'jing_wu',name:'荆州',kingdom:'wu'};
+    if(province==='Yangzhou (Wei)') return {key:'yang_wei',name:'扬州',kingdom:kingdom};
+    if(province==='Yangzhou (Wu)') return {key:'yang_wu',name:'扬州',kingdom:'wu'};
+    if(province.indexOf('Yizhou')===0) return {key:'yizhou',name:'益州',kingdom:kingdom};
+    if(province==='Yongzhou'){
+      if(['Jingzhao','Fufeng','Pingyi'].indexOf(sourceName)!==-1) return {key:'sili',name:'司州',kingdom:kingdom};
+      return {key:'yongzhou',name:'雍州',kingdom:kingdom};
+    }
+    var names={
+      'Bingzhou':'并州','Jizhou':'冀州','Liangzhou':'凉州','Qingzhou':'青州',
+      'Sili':'司州','Xuzhou':'徐州','Yanzhou':'兖州','Yongzhou':'雍州',
+      'Youzhou':'幽州','Yuzhou':'豫州'
+    };
+    var keys={
+      'Bingzhou':'bingzhou','Jizhou':'jizhou','Liangzhou':'liangzhou',
+      'Qingzhou':'qingzhou','Sili':'sili','Xuzhou':'xuzhou','Yanzhou':'yanzhou',
+      'Yongzhou':'yongzhou','Youzhou':'youzhou','Yuzhou':'yuzhou'
+    };
+    return {key:keys[province]||String(province).toLowerCase(),name:names[province]||feature.state,kingdom:kingdom};
+  }
+  function jin280StateInfo(feature,year){
+    var province=feature.sourceProvince;
+    var sourceName=feature.sourceName;
+    if(province==='Jiaozhou'){
+      return ['Nanhai','Cangwu','Yulin','Gaoliang','Hepu'].indexOf(sourceName)!==-1
+        ?{key:'guangzhou',name:'广州',kingdom:'jin'}
+        :{key:'jiaozhou',name:'交州',kingdom:'jin'};
+    }
+    if(province==='Youzhou'){
+      return ['Changli','Liaodong','Xuantu','Daifang','Lelang'].indexOf(sourceName)!==-1
+        ?{key:'pingzhou',name:'平州',kingdom:'jin'}
+        :{key:'youzhou',name:'幽州',kingdom:'jin'};
+    }
+    if(province==='Yongzhou'){
+      return ['Longxi',"Nan'an",'Tianshui','Guangwei'].indexOf(sourceName)!==-1
+        ?{key:'qinzhou',name:'秦州',kingdom:'jin'}
+        :{key:'yongzhou',name:'雍州',kingdom:'jin'};
+    }
+    if(province==='Liangzhou'){
+      return sourceName==='Jincheng'
+        ?{key:'qinzhou',name:'秦州',kingdom:'jin'}
+        :{key:'liangzhou',name:'凉州',kingdom:'jin'};
+    }
+    if(province==='Yizhou (North)'){
+      if(['Wudu','Yinping'].indexOf(sourceName)!==-1) return {key:'qinzhou',name:'秦州',kingdom:'jin'};
+      if(['Hanzhong','Zitong','Guanghan','Dongguanghan','Fuling','Ba','Baxi','Badong'].indexOf(sourceName)!==-1){
+        return {key:'liang_state',name:'梁州',kingdom:'jin'};
+      }
+      return {key:'yizhou',name:'益州',kingdom:'jin'};
+    }
+    if(province==='Yizhou (South)'){
+      return ['Yongchang','Xinggu','Jianning','Yunnan'].indexOf(sourceName)!==-1
+        ?{key:'ningzhou',name:'宁州',kingdom:'jin'}
+        :{key:'yizhou',name:'益州',kingdom:'jin'};
+    }
+    if(province.indexOf('Jingzhou')===0) return {key:'jingzhou',name:'荆州',kingdom:'jin'};
+    if(province.indexOf('Yangzhou')===0){
+      if(Number(year)>=291&&['Yuzhang','Poyang','Luling','Linchuan',"Jian'an"].indexOf(sourceName)!==-1){
+        return {key:'jiangzhou',name:'江州',kingdom:'jin'};
+      }
+      return {key:'yangzhou',name:'扬州',kingdom:'jin'};
+    }
+    var names={
+      'Bingzhou':'并州','Jizhou':'冀州','Qingzhou':'青州','Sili':'司州',
+      'Xuzhou':'徐州','Yanzhou':'兖州','Yuzhou':'豫州'
+    };
+    var keys={
+      'Bingzhou':'bingzhou','Jizhou':'jizhou','Qingzhou':'qingzhou',
+      'Sili':'sili','Xuzhou':'xuzhou','Yanzhou':'yanzhou','Yuzhou':'yuzhou'
+    };
+    return {key:keys[province]||String(province).toLowerCase(),name:names[province]||feature.state,kingdom:'jin'};
+  }
+  function buildHistoricalProvinces(commanderies,infoFor){
+    var groups={};
+    commanderies.forEach(function(feature){
+      var info=infoFor(feature);
+      if(!groups[info.key]) groups[info.key]={info:info,members:[]};
+      groups[info.key].members.push(feature);
+    });
+    return Object.keys(groups).map(function(key){
+      var group=groups[key];
+      var parts=[];
+      group.members.forEach(function(feature){parts=parts.concat(polygonParts(feature.geometry));});
+      var combined={type:'MultiPolygon',coordinates:dissolvePolygonParts(parts)};
+      return {
+        key:key,name:group.info.name,kingdom:group.info.kingdom,
+        label:geometryLabelWgs(combined),geometry:combined
+      };
+    });
+  }
+  function buildHan184Commanderies(commanderies,periodKey){
+    var merges=(window.ADMINISTRATIVE_COMMANDERY_MERGES||{})[periodKey||'han184']||{};
+    var bySource={};
+    commanderies.forEach(function(feature){bySource[feature.sourceName]=feature;});
+    var normalized=commanderies.map(function(feature){
+      var target=feature.sourceName;
+      var seen={};
+      while(merges[target]&&merges[target]!==target&&!seen[target]){
+        seen[target]=true;
+        target=merges[target];
+      }
+      var targetFeature=bySource[target];
+      var staged=Object.assign({},feature,{sourceName:target,name:HAN_NAME_184[target]||(targetFeature&&targetFeature.name)||feature.name});
+      var info=hanStateInfo(staged);
+      return Object.assign(staged,{state:info.name,kingdom:'han'});
+    });
+    var groups={};
+    normalized.forEach(function(feature){
+      var key=feature.state+'|'+feature.name;
+      if(!groups[key]) groups[key]={first:feature,parts:[]};
+      groups[key].parts=groups[key].parts.concat(polygonParts(feature.geometry));
+    });
+    return Object.keys(groups).map(function(key){
+      var group=groups[key];
+      var geometry={type:'MultiPolygon',coordinates:dissolvePolygonParts(group.parts)};
+      return Object.assign({},group.first,{geometry:geometry,label:geometryLabelWgs(geometry)});
+    });
+  }
+  function buildPeriodCommanderies(commanderies,periodKey){
+    if(periodKey==='han184'||periodKey==='han189'||periodKey==='han190') return buildHan184Commanderies(commanderies,periodKey);
+    var merges=(window.ADMINISTRATIVE_COMMANDERY_MERGES||{})[periodKey]||{};
+    var names=window.ADMINISTRATIVE_NAME_OVERRIDES||{};
+    var periodNames=(window.ADMINISTRATIVE_PERIOD_NAME_OVERRIDES||{})[periodKey]||{};
+    var bySource={};
+    commanderies.forEach(function(feature){bySource[feature.sourceName]=feature;});
+    var normalized=commanderies.map(function(feature){
+      var target=feature.sourceName;
+      var seen={};
+      while(merges[target]&&merges[target]!==target&&!seen[target]){
+        seen[target]=true;
+        target=merges[target];
+      }
+      var targetFeature=bySource[target];
+      var renamed=periodNames[target]||names[target]||(targetFeature&&targetFeature.name)||feature.name;
+      var staged=Object.assign({},feature,{sourceName:target,name:renamed});
+      var info=threeKingdomsStateInfo(staged,periodKey);
+      return Object.assign(staged,{state:info.name,kingdom:periodKey.indexOf('han')===0?'han':feature.kingdom});
+    });
+    return mergeNamedCommanderies(normalized);
+  }
+  function buildPostHanCommanderies(commanderies,periodKey,infoFor){
+    var merges=(window.ADMINISTRATIVE_COMMANDERY_MERGES||{})[periodKey]||{};
+    var bySource={};
+    commanderies.forEach(function(feature){bySource[feature.sourceName]=feature;});
+    var normalized=commanderies.map(function(feature){
+      var target=feature.sourceName;
+      var seen={};
+      while(merges[target]&&merges[target]!==target&&!seen[target]){
+        seen[target]=true;
+        target=merges[target];
+      }
+      var targetFeature=bySource[target];
+      var staged=Object.assign({},feature,{sourceName:target,name:(targetFeature&&targetFeature.name)||feature.name});
+      var info=infoFor(staged);
+      return Object.assign(staged,{state:info.name,kingdom:info.kingdom});
+    });
+    return mergeNamedCommanderies(normalized);
+  }
+  function mergeNamedCommanderies(commanderies){
+    var groups={};
+    commanderies.forEach(function(feature){
+      var key=feature.kingdom+'|'+feature.state+'|'+feature.name;
+      if(!groups[key]) groups[key]={first:feature,parts:[]};
+      groups[key].parts=groups[key].parts.concat(polygonParts(feature.geometry));
+    });
+    return Object.keys(groups).map(function(key){
+      var group=groups[key];
+      var geometry={type:'MultiPolygon',coordinates:dissolvePolygonParts(group.parts)};
+      return Object.assign({},group.first,{geometry:geometry,label:geometryLabelWgs(geometry)});
+    });
+  }
+  function applyPeriodLabelOverrides(features,periodId){
+    var overrides=(window.ADMINISTRATIVE_PERIOD_LABEL_OVERRIDES||{})[periodId]||{};
+    return features.map(function(feature){
+      var label=overrides[feature.sourceName];
+      return label ? Object.assign({},feature,{label:label}) : feature;
+    });
+  }
+  function prepareGeoData(payload){
+    var source=payload.features||[];
+    var commanderies=mergeNamedCommanderies(buildCommanderies(source));
+    var han184=buildHan184Commanderies(commanderies,'han184');
+    var han189=buildHan184Commanderies(commanderies,'han189');
+    var han190=buildPeriodCommanderies(commanderies,'han190');
+    var han194=buildPeriodCommanderies(commanderies,'han194');
+    var han199=buildPeriodCommanderies(commanderies,'han199');
+    var han200=buildPeriodCommanderies(commanderies,'han200');
+    var han208=buildPeriodCommanderies(commanderies,'han208');
+    var han219=buildPeriodCommanderies(commanderies,'han219');
+    var three220=buildPeriodCommanderies(commanderies,'three220');
+    var three228=buildPeriodCommanderies(commanderies,'three228');
+    var jin266=buildPostHanCommanderies(commanderies,'jin266',function(feature){return postHanStateInfo(feature,'jin');});
+    var jin290=buildPostHanCommanderies(commanderies,'jin290',function(feature){return jin280StateInfo(feature,290);});
+    var jin311=buildPostHanCommanderies(commanderies,'jin311',function(feature){return jin280StateInfo(feature,311);});
+    var three263=commanderies.map(function(feature){
+      return Object.assign({},feature,{
+        state:feature.sourceProvince==='Sili'?'司州':feature.state
+      });
+    });
+    var wei264=buildPostHanCommanderies(commanderies,'wei264',function(feature){return postHanStateInfo(feature,'wei');});
+    var jin280=mergeNamedCommanderies(commanderies.map(function(feature){
+      var info=jin280StateInfo(feature,280);
+      var correctedName=feature.sourceName==='Guangwei'?'略阳郡'
+        :(feature.sourceName==='Dongguanghan'?'新都郡':feature.name);
+      return Object.assign({},feature,{name:correctedName,state:info.name,kingdom:'jin'});
+    }));
+    jin280=recalibrateJinYangzhou(jin280,280);
+    jin290=recalibrateJinYangzhou(jin290.map(function(feature){var info=jin280StateInfo(feature,290);return Object.assign({},feature,{state:info.name,kingdom:info.kingdom});}),290);
+    jin311=recalibrateJinYangzhou(jin311.map(function(feature){var info=jin280StateInfo(feature,311);return Object.assign({},feature,{state:info.name,kingdom:info.kingdom});}),311);
+    return {
+      provinces:{
+        early:buildProvinces(source,'early'),
+        han184:buildHistoricalProvinces(commanderies,hanStateInfo),
+        han194:buildHistoricalProvinces(han194,function(feature){return threeKingdomsStateInfo(feature,'han194');}),
+        han199:buildHistoricalProvinces(han199,function(feature){return threeKingdomsStateInfo(feature,'han199');}),
+        han200:buildHistoricalProvinces(han200,function(feature){return threeKingdomsStateInfo(feature,'han200');}),
+        han208:buildHistoricalProvinces(han208,function(feature){return threeKingdomsStateInfo(feature,'han208');}),
+        han219:buildHistoricalProvinces(han219,function(feature){return threeKingdomsStateInfo(feature,'han219');}),
+        three220:buildHistoricalProvinces(three220,function(feature){return threeKingdomsStateInfo(feature,'three220');}),
+        three228:buildHistoricalProvinces(three228,function(feature){return threeKingdomsStateInfo(feature,'three228');}),
+        late:buildProvinces(source,'late'),
+        wei264:buildHistoricalProvinces(wei264,function(feature){return postHanStateInfo(feature,'wei');}),
+        jin266:buildHistoricalProvinces(jin266,function(feature){return postHanStateInfo(feature,'jin');}),
+        jin290:buildHistoricalProvinces(jin290,function(feature){return jin280StateInfo(feature,290);}),
+        jin311:buildHistoricalProvinces(jin311,function(feature){return jin280StateInfo(feature,311);}),
+        jin:buildHistoricalProvinces(jin280,function(feature){return jin280StateInfo(feature,280);})
+      },
+      commanderies:han184,
+      shu:commanderies,
+      wu:wei264,
+      jin:jin280,
+      jin290:jin290,
+      jin311:jin311,
+      three263:three263,
+      wei263:three263,
+      wei264:wei264,
+      jin266:jin266,
+      commanderyByPeriod:{
+        huangjin:han184,shaodi:han189,dongzhuo:han190,xingping:applyPeriodLabelOverrides(han194,'xingping'),jianbing:applyPeriodLabelOverrides(han199,'jianbing'),
+        guandu:han200,chibi:han208,xiangfan:applyPeriodLabelOverrides(han219,'xiangfan'),
+        sanguo:three220,beifa:three228,guijin:applyPeriodLabelOverrides(three263,'guijin'),
+        hanwang:applyPeriodLabelOverrides(wei264,'hanwang'),jinchu:applyPeriodLabelOverrides(jin266,'jinchu'),taikang:applyPeriodLabelOverrides(jin280,'taikang'),
+        hui_di:applyPeriodLabelOverrides(jin290,'hui_di'),yongjia:applyPeriodLabelOverrides(jin311,'yongjia')
+      }
+    };
+  }
+  function getJson(url){
+    return fetch(url,{mode:'cors'}).then(function(response){
+      if(!response.ok) throw new Error('HTTP '+response.status);
+      return response.json();
+    });
+  }
+  var geoInput=window.ALL_PROVINCES_LOCAL
+    ? Promise.resolve(window.ALL_PROVINCES_LOCAL)
+    : getJson(GEO_SOURCE);
+  var geoReady=geoInput.then(prepareGeoData).then(function(data){
+    window.__HISTORY_GEO_DATA=data;
+    return data;
+  });
+  window.__historyMapGeoReady=geoReady;
+
+  var nativeAppend=document.head.appendChild.bind(document.head);
+  document.head.appendChild=function(node){
+    var src=node&&node.tagName==='SCRIPT'?String(node.getAttribute('src')||''):'';
+    var provinceMatch=src.match(/data\/geo-provinces-(early|late|jin|jin290|jin311|han184|han194|han199|han200|han208|han219|three220|three228|jin266|wei264)\.js$/);
+    var isGeoScript=provinceMatch||
+      /data\/geo-wu-commanderies-263\.js$/.test(src)||
+      /data\/geo-commanderies-jin\.js$/.test(src)||
+      /data\/geo-shu-commanderies\.js$/.test(src)||
+      /data\/geo-commanderies\.js$/.test(src);
+    if(!isGeoScript) return nativeAppend(node);
+    geoReady.then(function(data){
+      if(provinceMatch) window.GEO_PROVINCES=data.provinces[provinceMatch[1]];
+      else if(/geo-wu-commanderies-263\.js$/.test(src)){
+        var activeVariant=window.__activeMapVariant==='jin266'?'jin266':'wei263';
+        window.GEO_WU_COMMANDERIES_263=data[activeVariant];
+      }
+      else if(/geo-commanderies-jin\.js$/.test(src)) window.GEO_COMMANDERIES_JIN=data.jin;
+      else if(/geo-shu-commanderies\.js$/.test(src)) window.GEO_SHU_COMMANDERIES=data.shu;
+      else window.GEO_COMMANDERIES=data.commanderies;
+      if(typeof node.onload==='function') node.onload();
+    }).catch(function(error){
+      console.error('州郡边界资料载入失败：',error);
+      var body=document.querySelector('#info-panel .panel-body');
+      if(body){
+        var failureHead=document.createElement('div');failureHead.className='pv-head';
+        var failureTitle=document.createElement('h2');failureTitle.className='pv-title';failureTitle.textContent='地图资料载入失败';
+        var failureSummary=document.createElement('p');failureSummary.className='pv-summary';failureSummary.textContent='请确认 assets/map/data 目录完整，并运行项目验证脚本检查本地资源。';
+        failureHead.appendChild(failureTitle);body.replaceChildren(failureHead,failureSummary);
+      }
+      if(typeof node.onerror==='function') node.onerror(error);
+    });
+    return node;
+  };
+})();
+</script>
+<script src="js/base-layer.js?v=41"></script>
+<script src="js/territories.js"></script>
+<script src="js/wu-commanderies.js"></script>
+<script src="js/commanderies.js"></script>
+<script src="js/counties.js"></script>
+<script>
+/* 州、郡同国同系分色；两套郡界互斥，避免跨时期切换时残留叠线。 */
+(function(){
+  var TONES=['#F2E6D2','#DCE7DF','#E5E0ED','#ECDDD8','#DFE5CF','#D9E6EA','#EADFC8'];
+  function rgb(hex){
+    var value=String(hex||'#6c675e').replace('#','');
+    if(value.length===3) value=value.split('').map(function(c){return c+c;}).join('');
+    return [parseInt(value.slice(0,2),16),parseInt(value.slice(2,4),16),parseInt(value.slice(4,6),16)];
+  }
+  function mix(a,b,ratio){
+    var one=rgb(a),two=rgb(b);
+    var out=one.map(function(value,index){return Math.round(value*(1-ratio)+two[index]*ratio);});
+    return '#'+out.map(function(value){return value.toString(16).padStart(2,'0');}).join('');
+  }
+  function hash(value){
+    return Array.from(String(value||'')).reduce(function(total,char){return (total*31+char.charCodeAt(0))>>>0;},7);
+  }
+  function historicalColor(feature,factionId,level){
+    var faction=FACTIONS[factionId]||FACTIONS[feature.kingdom]||{color:'#746c60'};
+    if(level==='faction'||window.__provinceTintEnabled===false) return faction.color;
+    var rawKey=String(feature.key||'').replace(/_(wei|wu)$/,'');
+    var stateKeys={'司隶':'sili','司州':'sili','并州':'bingzhou','冀州':'jizhou','兖州':'yanzhou','豫州':'yuzhou','青州':'qingzhou','徐州':'xuzhou','扬州':'yangzhou','荆州':'jingzhou','益州':'yizhou','梁州':'liang_state','凉州':'liangzhou','雍州':'yongzhou','秦州':'qinzhou','幽州':'youzhou','平州':'pingzhou','交州':'jiaozhou','广州':'guangzhou','宁州':'ningzhou'};
+    var stateKey=stateKeys[feature.state]||stateKeys[feature.sourceProvince]||(rawKey==='jing'?'jingzhou':rawKey==='yang'?'yangzhou':rawKey);
+    var stateTone=(window.PROVINCE_COLOR_PALETTE||{})[stateKey]||TONES[hash(stateKey||feature.state||feature.key)%TONES.length];
+    return level==='commandery'?mix(stateTone,'#fffdf8',.58):stateTone;
+  }
+  var lastTerritoryFeatures=[];
+  var lastTerritoryMapping={};
+  function applyTerritoryHierarchyDom(){
+    var level=window.__MAP_HIERARCHY_LEVEL||'province';
+    var all=Array.from(document.querySelectorAll('.territory'));
+    var current=all.slice(-lastTerritoryFeatures.length);
+    current.forEach(function(path,index){
+      var feature=lastTerritoryFeatures[index]||{};
+      var factionId=(lastTerritoryMapping&&lastTerritoryMapping[feature.key])||feature.kingdom;
+      path.style.setProperty('fill',historicalColor(feature,factionId,level),'important');
+      path.style.setProperty('fill-opacity',level==='commandery'?'0':'0.30','important');
+      path.style.setProperty('stroke-opacity',level==='province'?'0.9':'0','important');
+      path.style.setProperty('stroke-width',level==='province'?'1.5':'0','important');
+    });
+    document.querySelectorAll('.faction-label').forEach(function(label){label.style.visibility=level==='faction'?'visible':'hidden';});
+    document.querySelectorAll('.province-label').forEach(function(label){label.style.visibility=level==='province'?'visible':'hidden';});
+    if(window.__scheduleLabelLayout) window.__scheduleLabelLayout();
+  }
+  window.addEventListener('sgz-map-hierarchy',applyTerritoryHierarchyDom);
+  var labelLayoutTimer=0;
+  function overlaps(a,b,padding){
+    return !(a.right+padding<b.left||a.left-padding>b.right||a.bottom+padding<b.top||a.top-padding>b.bottom);
+  }
+  function declutterLabels(){
+    var countries=Array.from(document.querySelectorAll('.faction-label'));
+    var provinces=Array.from(document.querySelectorAll('.province-label'));
+    var commanderies=Array.from(document.querySelectorAll('.cmd-label'));
+    var hierarchy=window.__MAP_HIERARCHY_LEVEL||'province';
+    var app=document.getElementById('app');
+    var compact=!!(app&&app.classList.contains('zoom-lte-5'));
+    var tiny=!!(app&&app.classList.contains('zoom-lte-4'));
+    var all=countries.concat(provinces,commanderies);
+    all.forEach(function(label){
+      var visible=label.classList.contains('faction-label')?hierarchy==='faction':label.classList.contains('province-label')?hierarchy==='province':hierarchy==='commandery';
+      label.style.visibility=visible?'visible':'hidden';
+    });
+    var accepted=[];
+    // 先固定州名，再让势力大字与郡名避开，避免国号压住行政信息。
+    provinces.filter(function(label){return hierarchy==='province'&&label.style.visibility!=='hidden';}).forEach(function(label){
+      var rect=label.getBoundingClientRect();
+      if(rect.width&&rect.height) accepted.push(rect);
+    });
+    countries.filter(function(label){return hierarchy==='faction'&&label.style.visibility!=='hidden';}).forEach(function(label){
+      var span=label.querySelector('span');
+      if(!span) return;
+      span.style.setProperty('--cmd-shift-y','0px');
+      var base=span.getBoundingClientRect();
+      var candidates=[0,-38,38,-76,76,-114,114];
+      var selected=0;
+      for(var i=0;i<candidates.length;i++){
+        var shift=candidates[i];
+        var candidate={left:base.left,right:base.right,top:base.top+shift,bottom:base.bottom+shift};
+        if(!accepted.some(function(rect){return overlaps(candidate,rect,4);})){selected=shift;break;}
+      }
+      span.style.setProperty('--cmd-shift-y',selected+'px');
+      var chosen=span.getBoundingClientRect();
+      accepted.push(chosen);
+    });
+    // V10：郡名是行政信息本身，不再用碰撞避让把它隐藏。
+    // 缩略视图只对文字做有限的上下错位，保留每一个郡块的名称，同时避免
+    // 河内—魏郡、巴—巴西等相邻小郡的文字完全叠成一团。
+    var visibleCommanderies=commanderies.filter(function(label){
+      if(hierarchy!=='commandery') return false;
+      var rect=label.getBoundingClientRect();
+      return rect.width&&rect.height;
+    }).sort(function(a,b){
+      var ar=a.getBoundingClientRect(),br=b.getBoundingClientRect();
+      return ar.top-br.top||ar.left-br.left;
+    });
+    visibleCommanderies.forEach(function(label){
+      var span=label.querySelector('span');
+      if(!span) return;
+      label.classList.toggle('cmd-label-compact',compact);
+      label.classList.toggle('cmd-label-tiny',tiny);
+      label.style.visibility='visible';
+      label.style.zIndex=compact?'640':'650';
+      span.style.setProperty('--cmd-shift-y','0px');
+      var base=span.getBoundingClientRect();
+      var candidates=compact?[0,-8,8,-16,16,-24,24,-34,34]:[0,-10,10,-20,20,-32,32,-46,46];
+      var selected=0;
+      for(var i=0;i<candidates.length;i++){
+        var shift=candidates[i];
+        var candidate={left:base.left,right:base.right,top:base.top+shift,bottom:base.bottom+shift};
+        if(!accepted.some(function(rect){return overlaps(candidate,rect,tiny?1:2);})){selected=shift;break;}
+      }
+      span.style.setProperty('--cmd-shift-y',selected+'px');
+      var chosen=span.getBoundingClientRect();
+      accepted.push(chosen);
+    });
+  }
+  function scheduleLabelLayout(){
+    clearTimeout(labelLayoutTimer);
+    labelLayoutTimer=setTimeout(declutterLabels,90);
+  }
+  window.addEventListener('resize',scheduleLabelLayout);
+  var mapApp=document.getElementById('app');
+  if(mapApp && typeof mapApp.nodeType==='number'){
+    new MutationObserver(scheduleLabelLayout).observe(mapApp,{attributes:true,attributeFilter:['class']});
+  }
+  var renderTerritories=Territories.render;
+  Territories.render=function(map,features,mapping,opts){
+    lastTerritoryFeatures=features||[];
+    lastTerritoryMapping=mapping||{};
+    var result=renderTerritories.apply(Territories,arguments);
+    requestAnimationFrame(function(){
+      applyTerritoryHierarchyDom();
+      scheduleLabelLayout();
+    });
+    return result;
+  };
+  var renderWu=WuCommanderies.render;
+  var renderGeneral=Commanderies.render;
+  WuCommanderies.render=function(map,opts){
+    Commanderies.hide();
+    window.GEO_WU_COMMANDERIES_263=(window.GEO_WU_COMMANDERIES_263||[]).map(function(feature){
+      return Object.assign({},feature,{color:historicalColor(feature,feature.kingdom,'commandery')});
+    });
+    var result=renderWu.call(WuCommanderies,map,opts);
+    scheduleLabelLayout();
+    return result;
+  };
+  Commanderies.render=function(map,data,opts){
+    WuCommanderies.hide();
+    var colored=(data||[]).map(function(feature){
+      return Object.assign({},feature,{color:historicalColor(feature,feature.kingdom,'commandery')});
+    });
+    var result=renderGeneral.call(Commanderies,map,colored,opts);
+    scheduleLabelLayout();
+    return result;
+  };
+})();
+</script>
+<script src="js/markers.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/strategic-layers.js?v=41"></script>
+<script src="js/hydronyms.js"></script>
+<script src="js/panel.js"></script>
+<script>
+(function(){
+  function textNode(tag,className,text){
+    var node=document.createElement(tag);
+    if(className)node.className=className;
+    node.textContent=String(text==null?'':text);
+    return node;
+  }
+  function section(label,className){
+    var node=textNode('div','pv-section','');
+    node.appendChild(textNode('div','pv-label',label));
+    var body=textNode('div',className||'','');node.appendChild(body);
+    return {node:node,body:body};
+  }
+  function factionsFor(periodId){
+    var def=PROVINCE_PERIODS[periodId]||{};
+    var map=def.provinces||{};
+    var ids=Array.from(new Set(Object.values(map)));
+    var audited=(window.POLITICAL_SNAPSHOT_AUDIT||{})[periodId]||{};
+    Object.values(audited.commanderyFactions||{}).forEach(function(id){if(ids.indexOf(id)===-1)ids.push(id);});
+    (audited.annotations||[]).forEach(function(item){if(ids.indexOf(item.faction)===-1)ids.push(item.faction);});
+    (audited.expected||[]).forEach(function(id){if(ids.indexOf(id)===-1)ids.push(id);});
+    var order=['han','huangjin','dongzhuo','liguo','hanfu','yuan_shao','kongzhou','liudai','zhangmiao','qiaomao','baoxin','wangkuang','zhangchao','yuanyi','lianjun','lubu','caocao','liubiao','liuzhang','liubei','sunquan','gongsunzan','gongsundu','liangzhou','hansui','mateng','shikie','wei','shu','wu','jin','hantuo','shile','sunce'];
+    return order.filter(function(id){return ids.indexOf(id)!==-1&&FACTIONS[id];}).map(function(id){return FACTIONS[id];});
+  }
+  Panel.periodView=function(p){
+    var periodLabel=p.range?('公元 '+p.range+' 年'):((p.year||'')+' 年');
+    var rosterGroups={};
+    (p.officialRoster||[]).forEach(function(item){(rosterGroups[item.group]||(rosterGroups[item.group]=[])).push(item);});
+    var statusSuffix={存疑:'（一说）',待考:'（任职未详）'};
+    var panel=document.getElementById('info-panel');
+    var body=panel&&panel.querySelector('.panel-body');
+    if(!body)return;
+    var fragment=document.createDocumentFragment();
+    var head=textNode('div','pv-head','');
+    head.appendChild(textNode('div','pv-year',periodLabel));
+    head.appendChild(textNode('h2','pv-title',p.name));
+    head.appendChild(textNode('div','pv-tag',String(p.tagline||'')+(p.snapshotMoment?' · '+p.snapshotMoment:'')));
+    fragment.appendChild(head);
+    fragment.appendChild(textNode('p','pv-summary',p.summary));
+    var territories=section('国家与政权','pv-chips');
+    factionsFor(p.id).forEach(function(f){var chip=textNode('span','chip',f.name);chip.style.setProperty('--c',String(f.color||''));territories.body.appendChild(chip);});
+    fragment.appendChild(territories.node);
+    var reignSection=section('年号与皇帝','pv-reigns');
+    (p.reigns||[]).forEach(function(r){
+      var row=textNode('div','reign-row','');
+      row.appendChild(textNode('span','reign-era',r.era));row.appendChild(textNode('span','reign-emp',r.emperor));row.appendChild(textNode('span','reign-yr',r.years||''));
+      reignSection.body.appendChild(row);
+    });
+    fragment.appendChild(reignSection.node);
+    if(Object.keys(rosterGroups).length){
+      var rosterSection=section('中央与州郡长吏','pv-roster');
+      Object.keys(rosterGroups).forEach(function(group){
+        var rosterGroup=textNode('div','roster-group','');rosterGroup.appendChild(textNode('b','',group));
+        var rosterItems=textNode('div','','');
+        rosterGroups[group].forEach(function(item){
+          var status=item.status||'推定';var rosterItem=textNode('span','roster-item','');
+          rosterItem.appendChild(textNode('span','roster-meta',String(item.period||'')+(item.section?' · '+item.section:'')));
+          rosterItem.appendChild(textNode('strong','',String(item.name||'')+(statusSuffix[status]||'')));
+          rosterItem.appendChild(textNode('small','',item.office));rosterItems.appendChild(rosterItem);
+        });
+        rosterGroup.appendChild(rosterItems);rosterSection.body.appendChild(rosterGroup);
+      });
+      fragment.appendChild(rosterSection.node);
+    }
+    var eventSection=section('编年要事','');var eventList=textNode('ul','ev-list','');eventSection.node.replaceChild(eventList,eventSection.body);
+    (p.events||[]).forEach(function(e){
+      var item=textNode('li','','');item.appendChild(textNode('span','ev-year',e.year));var copy=textNode('span','ev-text','');
+      copy.appendChild(textNode('span','ev-era',e.era||''));copy.appendChild(textNode('span','ev-emperor',e.emperor?' · '+e.emperor:''));copy.appendChild(textNode('span','ev-desc',e.text));item.appendChild(copy);eventList.appendChild(item);
+    });
+    fragment.appendChild(eventSection.node);
+    var back=textNode('button','pv-back','古水名索引');back.type='button';back.addEventListener('click',function(){Panel.hydronymIndex();});fragment.appendChild(back);
+    fragment.appendChild(textNode('div','pv-hint','点击地图上的城池、战役、古水名或州郡，以观其详。'));
+    body.replaceChildren(fragment);
+    panel.classList.add('is-open');
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    if(window.innerWidth<=760){
+      document.getElementById('sidebox')?.classList.add('is-collapsed');
+      document.getElementById('info-panel')?.classList.add('is-collapsed');
+    }
+  });
+})();
+</script>
+<script src="js/timeline.js"></script>
+<script>
+(function(){
+  Object.keys(FACTIONS).forEach(function(id){FACTIONS[id].__baseName=FACTIONS[id].name;});
+  var originalInit=Timeline.init.bind(Timeline);
+  Timeline.init=function(periods,onChange){
+    return originalInit(periods,function(index,opts){
+      var period=periods[index]||{};
+      Object.keys(FACTIONS).forEach(function(id){FACTIONS[id].name=FACTIONS[id].__baseName;});
+      var politicalSnapshot=(window.POLITICAL_SNAPSHOT_AUDIT||{})[period.id]||{};
+      Object.keys(politicalSnapshot.displayNames||{}).forEach(function(id){if(FACTIONS[id])FACTIONS[id].name=politicalSnapshot.displayNames[id];});
+      var variant=period.mapVariant;
+      if(variant&&window.HISTORY_PROVINCE_VARIANTS[variant]){
+        window.__activeMapVariant=variant;
+        PROVINCE_PERIODS[period.id]=Object.assign({},PROVINCE_PERIODS[period.id]||PROVINCE_PERIODS.guijin,window.HISTORY_PROVINCE_VARIANTS[variant]);
+        var geo=window.__HISTORY_GEO_DATA;
+        if(geo&&geo[variant]) window.GEO_WU_COMMANDERIES_263=geo[variant];
+      }
+      return onChange(index,opts);
+    });
+  };
+  window.HistoryMapTimeline=Timeline;
+})();
+</script>
+<script src="js/app.js"></script>
+</body></html>
