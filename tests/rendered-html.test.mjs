@@ -30,7 +30,7 @@ test("server-renders the historical atlas shell", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>中华三国志·职官谱<\/title>/);
-  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=66\.2"/);
+  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=67"/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
@@ -44,7 +44,7 @@ test("packages the current court, reader people, and map assets", async () => {
     readFile(new URL("../public/legacy/assets/ui/court-ink-palace.png", import.meta.url)),
   ]);
 
-  assert.match(page, /src="\/legacy\/index\.html\?v=66\.2"/);
+  assert.match(page, /src="\/legacy\/index\.html\?v=67"/);
   assert.match(layout, /中华三国志·职官谱/);
   assert.match(legacy, /courtHierarchy|朝堂谱系|SGZ_V63_READER_PEOPLE/);
   assert.match(readerPeople, /曹操|诸葛亮|司马懿/);

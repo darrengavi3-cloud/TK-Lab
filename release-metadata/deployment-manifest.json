@@ -69,13 +69,13 @@
     },
     {
       "path": "client/legacy/assets/app/fangzhen.js",
-      "bytes": 1886,
-      "sha256": "d9e65ed85610579c5ecc97a7687171bcbb238f7c44862d3a3d420e5d9396dbcf"
+      "bytes": 3950,
+      "sha256": "2933b3250d757e355a4494a0ac41231c3c20e61a1cfc23307b45ca989e62a2ed"
     },
     {
       "path": "client/legacy/assets/app/jinshi.js",
-      "bytes": 1566,
-      "sha256": "ef7cc7e87b037157c04532f54837aeedd5f86a7261f4b182ba21f2c343e77990"
+      "bytes": 2796,
+      "sha256": "a32f32267a7e3fa29b4e7526eddca8e9c7c8d452626dc82a69c8b264a0954258"
     },
     {
       "path": "client/legacy/assets/app/people.js",
@@ -1664,8 +1664,8 @@
     },
     {
       "path": "client/legacy/assets/ui/modules.css",
-      "bytes": 51840,
-      "sha256": "d1fa7f15e7ae0fc7def1be9d8877338f3ef5dbc890d78936755c41eb4f99c9d3"
+      "bytes": 67467,
+      "sha256": "ceefff186db27aa74e657bd2a996da9cdee5cd00a94475f50f2244b9e1d6beb9"
     },
     {
       "path": "client/legacy/assets/ui/responsive.css",
@@ -1674,8 +1674,8 @@
     },
     {
       "path": "client/legacy/assets/ui/tokens.css",
-      "bytes": 524,
-      "sha256": "a000ad80563e48d4504446297856489bc19ca4453122776a12f5b2d64681b2fc"
+      "bytes": 687,
+      "sha256": "f490aeb22ec9123fc8e0f13746f87cd1eff1d927e7c4a50174b4b3fb025df1e3"
     },
     {
       "path": "client/legacy/assets/vendor/element-plus/index.css",
@@ -1729,8 +1729,8 @@
     },
     {
       "path": "client/legacy/data/jinshi-schema.js",
-      "bytes": 10016,
-      "sha256": "bada46026c50e1ab6eb3e9503f5c618f1e1fdeaac700a5ad586d3f3ec4af67c7"
+      "bytes": 11031,
+      "sha256": "5d05944d79752991803cc4344dc31e0b17fdf245b4864934101eab525e56e600"
     },
     {
       "path": "client/legacy/data/kaifu-policies.js",
@@ -1829,13 +1829,13 @@
     },
     {
       "path": "client/legacy/index.html",
-      "bytes": 736584,
-      "sha256": "5447ae024b098428620c3acdcf22702e27f0c4fea003ed08485e153ccc6ff1c1"
+      "bytes": 752210,
+      "sha256": "a97c903c91f39f1468013bf8ee5c9dd1b351ecc9901681ce6774e37b994d0cd5"
     },
     {
       "path": "client/legacy/reader-bundle.json",
       "bytes": 66262,
-      "sha256": "16668c3f01ef3f8b3cb7d48974cd2916f8d8dbc533b0402a0d06e01afd93082f"
+      "sha256": "ea1ca60b9964293efbb476dabf7a3fb6ed23549a93b8d15c1bf2e1cbd795fa9f"
     },
     {
       "path": "client/window.svg",
@@ -1864,8 +1864,8 @@
     },
     {
       "path": "server/index.js",
-      "bytes": 637405,
-      "sha256": "1a0f8a2c78eb1ed5776e28bf64121d8d092a0e2bc6f3b33726d4e2d1cf539ee3"
+      "bytes": 637403,
+      "sha256": "8d3145aa8b8cb80a1ceea7791153ede343b0c5fd8753cbbcc9c3cf1971f0c719"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
@@ -1890,7 +1890,7 @@
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "26bafda993dc2832c48b68b99530d2cf069d0a666a51f6165db03e9bab39d58f"
+      "sha256": "1de31038fc189a3b01d68cc277e87d8048d8ea71ff10438540fafe9d769caae9"
     },
     {
       "path": "server/vinext-externals.json",
@@ -1900,7 +1900,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "26bafda993dc2832c48b68b99530d2cf069d0a666a51f6165db03e9bab39d58f"
+      "sha256": "1de31038fc189a3b01d68cc277e87d8048d8ea71ff10438540fafe9d769caae9"
     },
     {
       "path": "server/wrangler.json",
@@ -1908,9 +1908,9 @@
       "sha256": "f4adf351b2136969e2cc51a435cd8d6c2a6f73f29a0293805df28b51f0b21d27"
     }
   ],
-  "aggregateSha256": "319bbc64f403cb6911502fd766f3f45963fb2f0f779f9da75865061c6a7d1467",
+  "aggregateSha256": "1d8deda67b246672039ae0d68670189d72a8a4ebfe7cf012c62562811cf97535",
   "summary": {
     "fileCount": 381,
-    "totalBytes": 30831929
+    "totalBytes": 30867652
   }
 }
