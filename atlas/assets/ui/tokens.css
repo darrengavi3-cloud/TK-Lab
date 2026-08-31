@@ -10,4 +10,8 @@
   --sgz-focus: var(--v56-focus, 0 0 0 3px rgba(163, 71, 56, .22));
   --sgz-touch-target: 44px;
   --sgz-reading-measure: 44em;
+  --sgz-dossier-masthead: #171a18;
+  --sgz-dossier-masthead-ink: #f3ead5;
+  --sgz-dossier-masthead-muted: #bdb5a2;
+  --sgz-dossier-gold: var(--v56-gold, #9b7a3b);
 }

@@ -3,29 +3,29 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 593,
-  "totalBytes": 255194538,
-  "aggregateSha256": "44872045503532fb87e851cb5db5fa8dcbb637a51903b5633c5c34adc44c3022",
+  "fileCount": 594,
+  "totalBytes": 255241808,
+  "aggregateSha256": "1bb10358aea40043e6b97a534585128287a93aeff63806f205314ee44cbd0426",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 13214,
-      "sha256": "ebc0ddd821de1cf077b8b38a00154ef0d04b95f7de0c0de813394328933fddda"
+      "bytes": 15119,
+      "sha256": "4c24c0363b1dd0ceb700a2619435febeb2c731483aab87f1191192359c9c6540"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 15261,
-      "sha256": "99e81cff8208a3c8432123c09d13bb5a227edc1c73d64fcff9eb5792dc4f14f1"
+      "bytes": 16874,
+      "sha256": "a349fd58b8ecf28c67a34698f9dbb51aa649706bea192752385f52cdbc482581"
     },
     {
       "path": "assets/app/fangzhen.js",
-      "bytes": 1886,
-      "sha256": "d9e65ed85610579c5ecc97a7687171bcbb238f7c44862d3a3d420e5d9396dbcf"
+      "bytes": 3950,
+      "sha256": "2933b3250d757e355a4494a0ac41231c3c20e61a1cfc23307b45ca989e62a2ed"
     },
     {
       "path": "assets/app/jinshi.js",
-      "bytes": 1566,
-      "sha256": "ef7cc7e87b037157c04532f54837aeedd5f86a7261f4b182ba21f2c343e77990"
+      "bytes": 2796,
+      "sha256": "a32f32267a7e3fa29b4e7526eddca8e9c7c8d452626dc82a69c8b264a0954258"
     },
     {
       "path": "assets/app/people.js",
@@ -1904,8 +1904,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 51840,
-      "sha256": "d1fa7f15e7ae0fc7def1be9d8877338f3ef5dbc890d78936755c41eb4f99c9d3"
+      "bytes": 67467,
+      "sha256": "ceefff186db27aa74e657bd2a996da9cdee5cd00a94475f50f2244b9e1d6beb9"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -1914,8 +1914,8 @@
     },
     {
       "path": "assets/ui/tokens.css",
-      "bytes": 524,
-      "sha256": "a000ad80563e48d4504446297856489bc19ca4453122776a12f5b2d64681b2fc"
+      "bytes": 687,
+      "sha256": "f490aeb22ec9123fc8e0f13746f87cd1eff1d927e7c4a50174b4b3fb025df1e3"
     },
     {
       "path": "assets/ui/v55.css",
@@ -2039,8 +2039,8 @@
     },
     {
       "path": "data/jinshi-schema.js",
-      "bytes": 10016,
-      "sha256": "bada46026c50e1ab6eb3e9503f5c618f1e1fdeaac700a5ad586d3f3ec4af67c7"
+      "bytes": 11031,
+      "sha256": "5d05944d79752991803cc4344dc31e0b17fdf245b4864934101eab525e56e600"
     },
     {
       "path": "data/kaifu-policies.js",
@@ -2579,8 +2579,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 745428,
-      "sha256": "b7bdd56b284c28b98537d90d4e0ea902753e5aa069bf7835eefe592998e18d72"
+      "bytes": 761054,
+      "sha256": "880d06a69780f757a554c37fcb10ed99630cf3e0d313e90b7456997137aff6d5"
     },
     {
       "path": "scripts/assign-v52-portrait-pool.mjs",
@@ -2595,7 +2595,7 @@
     {
       "path": "scripts/build-all.mjs",
       "bytes": 8939,
-      "sha256": "640fa80ddf7a195cc5b0b22e3820e32e9f326e9f3af72f20fdafc1a09a0cbac0"
+      "sha256": "db93ca98512f167e76ed5b63b21d4189049ff1685af7793dd380afeb12202869"
     },
     {
       "path": "scripts/build-asset-manifest.mjs",
@@ -2769,8 +2769,8 @@
     },
     {
       "path": "scripts/release-check.mjs",
-      "bytes": 5340,
-      "sha256": "f35859206cc9929d2e678b4fb17e93dfb21b581842d10f7041f4a66a04d12c93"
+      "bytes": 5445,
+      "sha256": "07c845c67e0f696ab68091e1f5df8ecc1607222745fe0e2e1b0402cf207e6555"
     },
     {
       "path": "scripts/research-v61-epigraphy.mjs",
@@ -2964,13 +2964,18 @@
     },
     {
       "path": "scripts/verify-v66-runtime-init.mjs",
-      "bytes": 3446,
-      "sha256": "e60cd3cb37292235e6efff549e7d5e6468cef419490c093c15617b02fe63f00e"
+      "bytes": 3449,
+      "sha256": "546e062a9453a83cc44b9b0e7236d362e9e1082dcb73adab0dd7d10bf23857ab"
     },
     {
       "path": "scripts/verify-v66.mjs",
       "bytes": 31970,
       "sha256": "17167ea35fae68aa7d45b3dfbbd2392020fd5a01db76041a961abe009e503fc3"
+    },
+    {
+      "path": "scripts/verify-v67.mjs",
+      "bytes": 7919,
+      "sha256": "a730fd0342de6a707ded692efcb4dc45d0d8475389f80113c5fb79edccee7e1e"
     }
   ]
 }

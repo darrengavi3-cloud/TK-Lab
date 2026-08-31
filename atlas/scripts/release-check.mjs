@@ -95,7 +95,8 @@ const currentValidators = Array.from(new Set([
   'verify-v63.mjs',
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v64(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v65(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
-  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v66(?:[-.].*)?\.mjs$/.test(fileName)).sort()
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v66(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v67(?:[-.].*)?\.mjs$/.test(fileName)).sort()
 ])).filter(fileName => fs.existsSync(path.join(scriptDir, fileName)));
 for (const validator of currentValidators) run(validator);
 
@@ -117,7 +118,7 @@ if (includeHistorical) {
   }
 }
 
-console.log('\nV66 release:check 全部通过。');
+console.log('\nV67 release:check 全部通过。');
 console.log(`双重构建哈希：${second.aggregateSha256}`);
 console.log(`当前不变量验证：${currentValidators.length} 项`);
 console.log(`历史快照验证：${includeHistorical ? '已显式执行' : '未执行（使用 --include-historical 单独审计）'}`);

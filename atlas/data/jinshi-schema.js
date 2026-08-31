@@ -130,6 +130,25 @@
     if(raw.includes('已录入') || text(row.inscription)) return '已录入';
     return '源文未见';
   }
+  function normalizeMediaAssets(value){
+    return (Array.isArray(value) ? value : []).map((asset,index)=>({
+      assetId:text(asset?.assetId || `media-${index+1}`),
+      kind:text(asset?.kind || 'image'),
+      localPath:text(asset?.localPath),
+      sourceTitle:text(asset?.sourceTitle),
+      sourceUrl:text(asset?.sourceUrl),
+      rightsStatus:text(asset?.rightsStatus),
+      altText:text(asset?.altText),
+      width:Number.isFinite(Number(asset?.width)) ? Number(asset.width) : null,
+      height:Number.isFinite(Number(asset?.height)) ? Number(asset.height) : null,
+      publicationStatus:text(asset?.publicationStatus || 'review-only'),
+    })).filter(asset=>asset.publicationStatus==='verified'
+      &&asset.localPath
+      &&asset.altText
+      &&!/^([a-z][a-z0-9+.-]*:|\/|\\)/i.test(asset.localPath)
+      &&!asset.localPath.split(/[\\/]/).includes('..'))
+      .map(({publicationStatus,...asset})=>asset);
+  }
   function normalize(raw){
     const row = { ...(raw || {}) };
     row.entityType = 'epigraphicRecord';
@@ -152,6 +171,7 @@
     row.form = text(row.form);
     row.scriptStyle = text(row.scriptStyle);
     row.inscription = String(row.inscription == null ? '' : row.inscription);
+    row.mediaAssets = normalizeMediaAssets(row.mediaAssets);
     const suppliedSections=Array.isArray(row.transcriptionSections) ? row.transcriptionSections.map(item=>({...item})) : [];
     row.transcriptionSections=reconstructTranscriptionSections(suppliedSections)===row.inscription
       ? suppliedSections
@@ -180,6 +200,7 @@
     parseTranscriptionSections,
     reconstructTranscriptionSections,
     deriveTitlePresentation,
+    normalizeMediaAssets,
     normalize,
   });
 })(window);

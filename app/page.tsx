@@ -3,7 +3,7 @@ export default function Home() {
     <main className="legacy-shell">
       <iframe
         className="legacy-frame"
-        src="/legacy/index.html?v=66.2"
+        src="/legacy/index.html?v=67"
         title="中华三国志·职官谱"
       />
     </main>

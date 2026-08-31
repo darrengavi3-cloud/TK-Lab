@@ -181,6 +181,6 @@ if (!skipPortable) run('build-portable-export.mjs');
 run('build-asset-manifest.mjs');
 run('build-deployment-manifest.mjs');
 
-console.log('\nV66 build-all 已完成。');
+console.log('\nV67 build-all 已完成。');
 console.log(`输入锁：${existingLock.aggregateSha256}`);
 console.log('产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单');

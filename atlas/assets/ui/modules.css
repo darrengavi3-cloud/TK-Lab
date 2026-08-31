@@ -115,6 +115,89 @@ body, #app, .shell { color: var(--v58-ink); }
 .fangzhen-workbench .el-table th.el-table__cell { color: var(--v58-muted); font-size: 10px; }
 .fangzhen-workbench .el-table td.el-table__cell { color: var(--v58-ink); }
 
+/* 州镇表与金石录共用的“墨案双卷”题签。 */
+.v67-module-masthead {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 64px;
+  margin-bottom: 12px;
+  padding: 9px 14px;
+  border: 1px solid color-mix(in srgb, var(--sgz-dossier-gold) 36%, transparent);
+  border-radius: 6px;
+  background: var(--sgz-dossier-masthead);
+  color: var(--sgz-dossier-masthead-ink);
+}
+.v67-masthead-title { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.v67-masthead-title > span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--sgz-dossier-gold); color: var(--sgz-dossier-gold); font: 700 18px/1 "Songti SC", SimSun, serif; }
+.v67-masthead-title small { display: block; color: var(--sgz-dossier-masthead-muted); font-size: 9px; letter-spacing: .14em; }
+.v67-masthead-title h1 { margin: 1px 0 0 !important; color: var(--sgz-dossier-masthead-ink) !important; font: 700 20px/1.2 "Songti SC", SimSun, serif !important; letter-spacing: .08em !important; }
+.v67-masthead-tabs { display: flex; align-items: stretch; gap: 3px; min-width: 0; overflow-x: auto; scrollbar-gutter: stable; }
+.v67-masthead-tabs button { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 5px 10px; border: 1px solid transparent; border-radius: 3px; background: transparent; color: var(--sgz-dossier-masthead-muted); cursor: pointer; white-space: nowrap; }
+.v67-masthead-tabs button:hover { border-color: color-mix(in srgb, var(--sgz-dossier-gold) 48%, transparent); color: var(--sgz-dossier-masthead-ink); }
+.v67-masthead-tabs button.active { border-color: var(--sgz-dossier-gold); background: color-mix(in srgb, var(--sgz-dossier-gold) 22%, transparent); color: var(--sgz-dossier-masthead-ink); }
+.v67-masthead-tabs button:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--sgz-dossier-masthead), 0 0 0 4px var(--sgz-dossier-gold); }
+.v67-masthead-tabs small { min-width: 18px; color: inherit; font: 650 9px ui-monospace, SFMono-Regular, Menlo, monospace; text-align: center; }
+.v67-masthead-meta { display: grid; grid-template-columns: auto auto; align-items: baseline; gap: 1px 5px; margin-inline-start: auto; color: var(--sgz-dossier-masthead-muted); font-size: 9px; white-space: nowrap; }
+.v67-masthead-meta strong { color: var(--sgz-dossier-masthead-ink); font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.v67-fangzhen-workbench { display: grid; grid-template-columns: minmax(142px, 176px) minmax(520px, 1fr) minmax(270px, 340px); align-items: start; gap: 10px; min-width: 0; }
+.v67-fangzhen-index,
+.v67-fangzhen-table-panel,
+.v67-fangzhen-dossier,
+.v67-fangzhen-related > article { border: 1px solid var(--v58-line); border-radius: 6px; background: var(--v58-raised); }
+.v67-fangzhen-index { grid-row: span 2; max-height: min(68vh, 670px); overflow: auto; scrollbar-gutter: stable; }
+.v67-fangzhen-index header,
+.v67-panel-heading,
+.v67-fangzhen-related article > header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-height: 42px; padding: 10px 12px; border-bottom: 1px solid var(--v58-line); }
+.v67-fangzhen-index header strong,
+.v67-panel-heading strong,
+.v67-fangzhen-related article > header strong { color: var(--v58-ink); font: 700 13px/1.35 "Songti SC", SimSun, serif; }
+.v67-fangzhen-index header small,
+.v67-panel-heading span,
+.v67-panel-heading small,
+.v67-fangzhen-related article > header small { color: var(--v58-muted); font-size: 9.5px; }
+.v67-fangzhen-index > button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 38px; padding: 7px 12px; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent); background: transparent; color: var(--v58-ink); text-align: start; cursor: pointer; }
+.v67-fangzhen-index > button:hover { background: color-mix(in srgb, var(--v58-green) 7%, transparent); }
+.v67-fangzhen-index > button.active { background: color-mix(in srgb, var(--v58-gold) 18%, transparent); color: var(--v58-accent); font-weight: 700; }
+.v67-fangzhen-index > button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--v58-accent); }
+.v67-fangzhen-index > button small { color: var(--v58-muted); font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.v67-fangzhen-table-panel { min-width: 0; overflow: hidden; }
+.v67-panel-heading > div { display: grid; gap: 2px; }
+.v67-fangzhen-table-panel .fangzhen-table-card { border: 0; border-radius: 0; box-shadow: none; }
+.v67-fangzhen-table-panel .fangzhen-table-card::before { display: none; }
+.v67-fangzhen-table-panel .el-table { --el-table-current-row-bg-color: color-mix(in srgb, var(--v58-gold) 15%, var(--v58-raised)); }
+.v67-fangzhen-table-panel .el-table__row { cursor: pointer; }
+.v67-pagination { display: flex; align-items: center; justify-content: space-between; min-height: 42px; padding: 6px 10px; border-top: 1px solid var(--v58-line); color: var(--v58-muted); font-size: 10px; }
+.v67-pagination button,
+.v67-dossier-actions button { min-height: 30px; padding: 5px 10px; border: 1px solid var(--v58-line); border-radius: 4px; background: var(--v58-raised); color: var(--v58-ink); cursor: pointer; }
+.v67-pagination button:hover:not(:disabled),
+.v67-dossier-actions button:hover { border-color: var(--v58-accent); color: var(--v58-accent); }
+.v67-pagination button:focus-visible,
+.v67-dossier-actions button:focus-visible,
+.v67-fangzhen-related td button:focus-visible,
+.v67-fangzhen-person button:focus-visible { outline: none; box-shadow: var(--v58-focus); }
+.v67-pagination button:disabled { opacity: .42; cursor: default; }
+.v67-fangzhen-dossier { min-width: 0; padding: 15px 16px 17px; }
+.v67-fangzhen-dossier > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--v58-line); }
+.v67-fangzhen-dossier > header small { color: var(--v58-muted); font-size: 9.5px; }
+.v67-fangzhen-dossier h2 { margin: 4px 0 0; color: var(--v58-ink); font: 700 24px/1.25 "Songti SC", SimSun, serif; }
+.v67-fangzhen-person { display: grid; gap: 4px; padding: 14px 0 12px; }
+.v67-fangzhen-person button { justify-self: start; padding: 0; border: 0; background: transparent; color: var(--v58-accent); font: 700 17px/1.4 "Songti SC", SimSun, serif; cursor: pointer; }
+.v67-fangzhen-person strong { color: var(--v58-ink); font-size: 12px; line-height: 1.5; }
+.v67-fact-grid { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--v58-line); }
+.v67-fact-grid > div { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 8px; padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent); }
+.v67-fact-grid dt { color: var(--v58-muted); font-size: 10px; }
+.v67-fact-grid dd { margin: 0; color: var(--v58-ink); font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }
+.v67-dossier-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+.v67-fangzhen-related { grid-column: 2 / 4; display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 10px; }
+.v67-fangzhen-related article { min-width: 0; overflow: hidden; }
+.v67-fangzhen-related table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+.v67-fangzhen-related th,
+.v67-fangzhen-related td { padding: 8px 10px; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 76%, transparent); color: var(--v58-ink); text-align: start; vertical-align: top; }
+.v67-fangzhen-related th { color: var(--v58-muted); font-size: 9px; font-weight: 650; }
+.v67-fangzhen-related td button { padding: 0; border: 0; background: transparent; color: var(--v58-accent); cursor: pointer; }
+
 .jinshi-workbench .jinshi-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
 .jinshi-workbench .v56-jinshi-workbench-grid { gap: 12px; }
 .v56-jinshi-directory, .v56-jinshi-reader { position: relative; overflow: hidden; }
@@ -1844,5 +1927,407 @@ body, #app, .shell { color: var(--v58-ink); }
     grid-column: 2;
     justify-self: start;
     justify-content: flex-start;
+  }
+}
+
+/* V67 双卷工作台：州镇表与金石录共用既有令牌，不增加版本级样式入口。 */
+.v67-jinshi-masthead-copy {
+  min-width: 0;
+  color: var(--sgz-dossier-masthead-muted);
+  font: 500 11px/1.5 "Songti SC", SimSun, serif;
+  letter-spacing: .08em;
+}
+
+.jinshi-workbench .v56-jinshi-workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 34%) minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  min-height: 0;
+  max-height: none;
+}
+
+.jinshi-workbench .v56-jinshi-directory {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: min(74vh, 780px);
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--v58-line);
+  border-radius: 6px;
+  background: var(--v58-raised);
+}
+
+.jinshi-workbench .v56-jinshi-directory > div[role="list"] {
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.v67-jinshi-directory-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 48px;
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--v58-line);
+}
+
+.v67-jinshi-directory-head > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.v67-jinshi-directory-head strong {
+  color: var(--v58-ink);
+  font: 700 15px/1.35 "Songti SC", SimSun, serif;
+}
+
+.v67-jinshi-directory-head small,
+.v67-jinshi-directory-head > span {
+  color: var(--v58-muted);
+  font-size: 9.5px;
+}
+
+.jinshi-workbench .v56-jinshi-row {
+  width: 100%;
+  min-height: 62px;
+  padding: 10px 38px 10px 14px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent);
+  border-radius: 0;
+  background: transparent;
+}
+
+.jinshi-workbench .v56-jinshi-row::after {
+  inset-inline-end: 15px;
+}
+
+.jinshi-workbench .v56-jinshi-row.active {
+  background: color-mix(in srgb, var(--v58-gold) 15%, var(--v58-raised));
+  box-shadow: inset 3px 0 0 var(--v58-accent);
+}
+
+.jinshi-workbench .v56-jinshi-reader {
+  min-height: 0;
+  max-height: none;
+  padding: 19px 24px 28px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  border: 1px solid var(--v58-line);
+  border-radius: 6px;
+  background: var(--v58-raised);
+}
+
+.v67-jinshi-reader-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--v58-line);
+}
+
+.v67-jinshi-reader-head > div {
+  min-width: 0;
+}
+
+.v67-jinshi-reader-head > div > small {
+  color: var(--v58-muted);
+  font-size: 9.5px;
+  letter-spacing: .08em;
+}
+
+.v67-jinshi-reader-head h2 {
+  margin: 3px 0 0;
+  color: var(--v58-ink);
+  font: 700 26px/1.3 "Songti SC", SimSun, serif;
+}
+
+.v67-jinshi-reader-head nav {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.v67-jinshi-reader-head nav button,
+.v67-jinshi-thumbnails button {
+  min-height: 32px;
+  padding: 5px 10px;
+  border: 1px solid var(--v58-line);
+  border-radius: 4px;
+  background: var(--v58-raised);
+  color: var(--v58-ink);
+  cursor: pointer;
+}
+
+.v67-jinshi-reader-head nav button:hover:not(:disabled),
+.v67-jinshi-thumbnails button:hover {
+  border-color: var(--v58-accent);
+  color: var(--v58-accent);
+}
+
+.v67-jinshi-reader-head nav button:focus-visible,
+.v67-jinshi-thumbnails button:focus-visible {
+  outline: none;
+  box-shadow: var(--v58-focus);
+}
+
+.v67-jinshi-reader-head nav button:disabled {
+  opacity: .42;
+  cursor: default;
+}
+
+.v67-jinshi-media {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.v67-jinshi-media figure {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--v58-line);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--v58-paper) 82%, var(--v58-raised));
+}
+
+.v67-jinshi-media figure > img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 390px;
+  object-fit: contain;
+}
+
+.v67-jinshi-media figcaption {
+  color: var(--v58-muted);
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.v67-jinshi-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.v67-jinshi-thumbnails button {
+  width: 58px;
+  height: 58px;
+  padding: 3px;
+}
+
+.v67-jinshi-thumbnails button.active {
+  border-color: var(--v58-accent);
+  box-shadow: inset 0 0 0 1px var(--v58-accent);
+}
+
+.v67-jinshi-thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.v67-jinshi-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 0;
+  border-top: 1px solid var(--v58-line);
+}
+
+.v67-jinshi-facts > div {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent);
+}
+
+.v67-jinshi-facts > div:nth-child(odd) {
+  padding-inline-end: 18px;
+}
+
+.v67-jinshi-facts dt {
+  color: var(--v58-muted);
+  font-size: 10px;
+}
+
+.v67-jinshi-facts dd {
+  margin: 0;
+  color: var(--v58-ink);
+  font-size: 11px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.v67-jinshi-related {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--v58-line);
+}
+
+.v67-jinshi-related h3 {
+  margin: 0 0 8px;
+  color: var(--v58-ink);
+  font: 700 14px/1.4 "Songti SC", SimSun, serif;
+}
+
+.v67-jinshi-related p {
+  margin: 0 0 9px;
+  color: var(--v58-muted);
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.v67-fangzhen-dossier-mobile {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.v67-fangzhen-related-mobile {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 14px;
+}
+
+@media (max-width: 1180px) {
+  .v67-fangzhen-workbench {
+    grid-template-columns: minmax(130px, 155px) minmax(480px, 1fr) minmax(245px, 290px);
+  }
+}
+
+@media (max-width: 980px) {
+  .v67-module-masthead {
+    flex-wrap: wrap;
+  }
+
+  .v67-masthead-tabs {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .v67-fangzhen-workbench {
+    grid-template-columns: minmax(130px, 160px) minmax(0, 1fr);
+  }
+
+  .v67-fangzhen-dossier,
+  .v67-fangzhen-related {
+    display: none;
+  }
+
+  .jinshi-workbench .v56-jinshi-workbench-grid {
+    display: block;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .jinshi-workbench .v56-jinshi-directory {
+    display: block;
+    height: auto;
+  }
+
+  .jinshi-workbench .v56-jinshi-directory > div[role="list"] {
+    overflow: visible;
+  }
+
+  .jinshi-workbench .v56-jinshi-reader {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .v67-module-masthead {
+    gap: 10px;
+    margin-inline: -2px;
+    padding: 9px 10px;
+  }
+
+  .v67-masthead-title h1 {
+    font-size: 18px !important;
+  }
+
+  .v67-jinshi-masthead-copy {
+    display: none;
+  }
+
+  .v67-masthead-meta {
+    margin-inline-start: auto;
+  }
+
+  .v67-masthead-tabs button,
+  .v67-pagination button,
+  .v67-dossier-actions button,
+  .v67-jinshi-reader-head nav button {
+    min-height: 44px;
+  }
+
+  .v67-fangzhen-workbench {
+    display: block;
+  }
+
+  .v67-fangzhen-index,
+  .v67-fangzhen-workbench > .v67-fangzhen-dossier,
+  .v67-fangzhen-workbench > .v67-fangzhen-related {
+    display: none;
+  }
+
+  .v67-fangzhen-table-panel {
+    border-radius: 5px;
+  }
+
+  .v67-panel-heading {
+    min-height: 48px;
+  }
+
+  .v67-fangzhen-drawer.el-drawer,
+  .jinshi-detail-drawer.el-drawer {
+    width: 100vw !important;
+    max-width: 100vw;
+  }
+
+  .v67-fangzhen-drawer .el-drawer__header,
+  .jinshi-detail-drawer .el-drawer__header {
+    min-height: 52px;
+    margin: 0;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--v58-line);
+  }
+
+  .v67-fangzhen-drawer .el-drawer__body,
+  .jinshi-detail-drawer .el-drawer__body {
+    padding: 14px 12px calc(28px + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+  }
+
+  .v67-fangzhen-related-mobile {
+    display: grid;
+  }
+
+  .v67-jinshi-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .v67-jinshi-facts > div:nth-child(odd) {
+    padding-inline-end: 0;
+  }
+
+  .v67-jinshi-reader-head {
+    display: grid;
+  }
+
+  .v67-jinshi-reader-head nav {
+    justify-content: space-between;
+  }
+
+  .v67-jinshi-reader-head nav button {
+    flex: 1;
   }
 }
