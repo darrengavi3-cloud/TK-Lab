@@ -21,6 +21,7 @@ const deterministicFiles = [
   'data/v63-person-registry.js',
   'data/v63-reader-people.json',
   'data/v63-reader-people.js',
+  'data/v62-reader-scope.json',
   'data/v63-reader-person-relations.json',
   'data/v63-reader-person-relations.js',
   'data/v66-peerage-stages.json',
@@ -30,6 +31,23 @@ const deterministicFiles = [
   'data/v66-fangzhen-seat-audit.json',
   'data/v66-fangzhen-reader.json',
   'data/v66-fangzhen-reader.js',
+  'data/v69-person-profiles.json',
+  'data/v69-person-profiles.js',
+  'data/v69-person-profile-audit.json',
+  'data/v69-person-profile-audit.js',
+  'data/v69-portrait-production.json',
+  'data/v69-portrait-candidates.json',
+  'data/v69-portrait-candidates.js',
+  'data/v69-battle-person-links.json',
+  'data/v69-battle-person-links.js',
+  'data/v69-fangzhen-reader.json',
+  'data/v69-fangzhen-reader.js',
+  'data/v69-epigraphic-records.json',
+  'data/v69-epigraphic-records.js',
+  'data/v69-epigraphy-audit.json',
+  'data/v69-epigraphy-audit.js',
+  'data/v69-epigraphy-removals.json',
+  'data/v69-epigraphy-search-cache.json',
   'data/asset-manifest.json',
   'exports/三国职官谱-单文件版.html',
   'exports/观史台-轻量单文件版.html',
@@ -96,7 +114,9 @@ const currentValidators = Array.from(new Set([
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v64(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v65(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v66(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
-  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v67(?:[-.].*)?\.mjs$/.test(fileName)).sort()
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v67(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v68(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
+  ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v69(?:[-.].*)?\.mjs$/.test(fileName)).sort()
 ])).filter(fileName => fs.existsSync(path.join(scriptDir, fileName)));
 for (const validator of currentValidators) run(validator);
 
@@ -118,7 +138,7 @@ if (includeHistorical) {
   }
 }
 
-console.log('\nV67 release:check 全部通过。');
+console.log('\nV69 release:check 全部通过。');
 console.log(`双重构建哈希：${second.aggregateSha256}`);
 console.log(`当前不变量验证：${currentValidators.length} 项`);
 console.log(`历史快照验证：${includeHistorical ? '已显式执行' : '未执行（使用 --include-historical 单独审计）'}`);

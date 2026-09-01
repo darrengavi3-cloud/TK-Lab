@@ -31,6 +31,12 @@ const source = sourceWindow.SGZ_PERSON_SOURCE_INDEX || { people: [], appointment
 const board = boardWindow.SGZ_V48_PORTRAIT_BOARD || { records: [] };
 const v58Board = v58BoardWindow.SGZ_V58_PORTRAIT_BOARD || { records: [] };
 const entityAudit = entityAuditWindow.SGZ_PERSON_ENTITY_AUDIT || { normalizeMap: {} };
+const v69PortraitProduction = fs.existsSync(path.join(dataDir, 'v69-portrait-production.json'))
+  ? JSON.parse(fs.readFileSync(path.join(dataDir, 'v69-portrait-production.json'), 'utf8'))
+  : { records: [] };
+const v69PortraitCandidates = fs.existsSync(path.join(dataDir, 'v69-portrait-candidates.json'))
+  ? JSON.parse(fs.readFileSync(path.join(dataDir, 'v69-portrait-candidates.json'), 'utf8'))
+  : { candidates: [] };
 const fallbackSrc = './assets/portraits/generated/person-placeholder-v46.png';
 const polityColors = { 汉: '#A54136', 魏: '#376B9E', 吴: '#3F7652', 晋: '#665483' };
 
@@ -387,6 +393,52 @@ function v62BuildManifest() {
     portraitsByCanonicalPersonId.get(personId).push(asset);
   });
 
+  // V69 assets are admitted one by one from the production ledger.  A row is
+  // only public when its local 512x512 file and its real Figma node/component
+  // IDs have both been recorded; the remaining frozen candidates stay out of
+  // the reader manifest until production is complete.
+  const candidateByPersonId = new Map((v69PortraitCandidates.candidates || []).map(item => [item.personId, item]));
+  const v69Colors = { '后汉': '#77736B', '魏': '#376B9E', '季汉': '#A34738', '吴': '#4E6961', '西晋': '#665483' };
+  const v69ProductionComplete = v69PortraitProduction.status === 'complete'
+    && (v69PortraitProduction.records || []).length === (v69PortraitCandidates.candidates || []).length;
+  for (const row of v69ProductionComplete ? (v69PortraitProduction.records || []) : []) {
+    const candidate = candidateByPersonId.get(row.personId);
+    if (!candidate || row.status !== 'ready') continue;
+    if (!v62PngIsReady(row.assetPath)) continue;
+    const portraitId = `portrait:v69:${String(row.order).padStart(2, '0')}`;
+    const personId = String(row.personId);
+    if (assetsById[portraitId] || portraitsByCanonicalPersonId.has(personId)) continue;
+    const dynasty = (candidate.dynastyTags || [])[0] || '未详';
+    const asset = {
+      portraitId,
+      personId,
+      name: String(row.name || candidate.name || '').trim(),
+      aliases: Array.from(new Set([String(row.name || candidate.name || '').trim()].filter(Boolean))),
+      zi: '',
+      src: row.assetPath,
+      assetPath: row.assetPath,
+      polity: dynasty,
+      color: v69Colors[dynasty] || '#8D948A',
+      sourceTitle: 'V69 界面识别立绘（非史实肖像）',
+      sourceUrl: '',
+      portraitKind: 'ui-illustration-v69',
+      status: 'ready',
+      designStatus: 'figma-design',
+      designRef: {
+        fileKey: 'gvWRC5GHHSgd8QX9b2VJgo',
+        version: 'V69',
+        pageName: row.pageName || 'V69 / Portraits',
+        nodeId: row.nodeId,
+        componentId: row.componentId
+      },
+      interfaceOnly: true,
+      catalogOrder: Object.keys(assetsById).length + 1,
+      legacyPersonIds: []
+    };
+    assetsById[portraitId] = asset;
+    portraitsByCanonicalPersonId.set(personId, [asset]);
+  }
+
   const canonicalByPersonId = {};
   const canonicalByName = {};
   portraitsByCanonicalPersonId.forEach((assets, personId) => {
@@ -410,7 +462,10 @@ function v62BuildManifest() {
     });
   });
 
-  const generatedAt = new Date().toISOString();
+  // Keep manifest/catalog output reproducible across release-check's
+  // consecutive builds.  build-all supplies SOURCE_DATE_EPOCH from the
+  // deterministic source lock; a fixed fallback preserves standalone use.
+  const generatedAt = new Date(Number(process.env.SOURCE_DATE_EPOCH || 1788019200) * 1000).toISOString();
   const defaultPersonIds = Array.from(new Set(defaultPeople.map(person => v62CanonicalPersonId(personIdFor(person.name, person)))));
   const assets = Object.values(assetsById);
   const manifest = {

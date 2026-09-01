@@ -3,24 +3,24 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 594,
-  "totalBytes": 255241808,
-  "aggregateSha256": "1bb10358aea40043e6b97a534585128287a93aeff63806f205314ee44cbd0426",
+  "fileCount": 715,
+  "totalBytes": 305141638,
+  "aggregateSha256": "7801972c09148978c1645cb316d3ff39bc5e6910b525cf59112dc7139f31623c",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 15119,
-      "sha256": "4c24c0363b1dd0ceb700a2619435febeb2c731483aab87f1191192359c9c6540"
+      "bytes": 17278,
+      "sha256": "fca9e26bac749ad232cf7f5b1f6c2b400e952dfadcc5a513183af2ec9fe4a1ab"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 16874,
-      "sha256": "a349fd58b8ecf28c67a34698f9dbb51aa649706bea192752385f52cdbc482581"
+      "bytes": 18797,
+      "sha256": "b98c0dee4420c34c2ed2a1b06984b4eb58125c0bce414b9d5f9682f62835d493"
     },
     {
       "path": "assets/app/fangzhen.js",
-      "bytes": 3950,
-      "sha256": "2933b3250d757e355a4494a0ac41231c3c20e61a1cfc23307b45ca989e62a2ed"
+      "bytes": 5709,
+      "sha256": "586f94477db3cfe889f4912cbe70eecd48f741281cb896c6a0e72ea8157db5f0"
     },
     {
       "path": "assets/app/jinshi.js",
@@ -1838,6 +1838,506 @@
       "sha256": "73e0b358420b86c80b3dca78258a9f7b591beb7400d24d1ae73051781638b517"
     },
     {
+      "path": "assets/portraits/v69/later-han/73-yang-zhong.png",
+      "bytes": 425660,
+      "sha256": "4de8f98cfdd5f3354884ed077ad0905918264ed2d65240b6624f0279cfa38eb1"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/liu-bian.png",
+      "bytes": 427774,
+      "sha256": "cd589c5d7b7bedd1a610cc4206ecf71fcd758e74009460c5bf703edafcaa4f91"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/liu-hong.png",
+      "bytes": 447842,
+      "sha256": "13b09fc0bc287d670a4ad01a543fba65dcb8e9d1d26841466e64ff2583e395a6"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/liu-xie.png",
+      "bytes": 444600,
+      "sha256": "e1597bd0a1695f31a7510ae7e962e43e81cb4e35d1f481c085468c0d6f1e3a7a"
+    },
+    {
+      "path": "assets/portraits/v69/shuhan/21-guan-yu.png",
+      "bytes": 452483,
+      "sha256": "2532f9e2697c76fe651abbbc52e117e7243fb1b3c272ef575539b2bae2d6cce5"
+    },
+    {
+      "path": "assets/portraits/v69/wei/100-dang-xun.png",
+      "bytes": 407976,
+      "sha256": "b7e814c56d5a95d890f612e302098e0f59b7c43e8e2399e20d186b06b07b28a9"
+    },
+    {
+      "path": "assets/portraits/v69/wei/16-wang-ling.png",
+      "bytes": 446631,
+      "sha256": "cccc40fe6e6e6dea4b0268aa80ececfb81c2e6964adb61815faec1a73f22e8a9"
+    },
+    {
+      "path": "assets/portraits/v69/wei/17-xiahou-yuan.png",
+      "bytes": 452004,
+      "sha256": "d29e9abd074867ae9b73b9b9856219cea56d8016332f4a28d43f440a828ba508"
+    },
+    {
+      "path": "assets/portraits/v69/wei/18-zhang-he.png",
+      "bytes": 464738,
+      "sha256": "26f51d49c38c6d6514d16524859a32f622a9c23ab0ec2155cef4cc141f3a2700"
+    },
+    {
+      "path": "assets/portraits/v69/wei/19-zhang-liao.png",
+      "bytes": 460716,
+      "sha256": "3f291a200bb424b6d308647102fef9a16fc3877dd1a9f3a49603b68f091254d0"
+    },
+    {
+      "path": "assets/portraits/v69/wei/22-yu-jin.png",
+      "bytes": 458875,
+      "sha256": "392b8ce734913905c3f2332497550cd865832cfb447cc2f897658b4994e04ea1"
+    },
+    {
+      "path": "assets/portraits/v69/wei/24-lü-chang.png",
+      "bytes": 424725,
+      "sha256": "ea3d6c403a82e97b69afb948e0929c03469dec66564774fa161e1fb2fb4d5520"
+    },
+    {
+      "path": "assets/portraits/v69/wei/25-guo-huai.png",
+      "bytes": 453965,
+      "sha256": "36534e4d6a910d2da0fdc1b2e849fb27f318e9690db10c9665e0bc21e54e4b24"
+    },
+    {
+      "path": "assets/portraits/v69/wei/26-guo-biao.png",
+      "bytes": 436380,
+      "sha256": "6801798a55b2bb533c2ccb084db2b24bbb0b8509ccb5792d4117b02524efbae0"
+    },
+    {
+      "path": "assets/portraits/v69/wei/28-xu-chu.png",
+      "bytes": 452675,
+      "sha256": "53f2988c298968469403c10717cb8e7589172e9ebf30d9df28932304bc48fbdd"
+    },
+    {
+      "path": "assets/portraits/v69/wei/29-cao-fan.png",
+      "bytes": 432010,
+      "sha256": "0bcb55272194a94a1cb0755223320f41b0f796948b4e54961637ecd9982b6140"
+    },
+    {
+      "path": "assets/portraits/v69/wei/30-cao-yu.png",
+      "bytes": 396098,
+      "sha256": "e088edee206d347600bb7a452aaec312f410a4972eba4f8803adbd52640a3cc0"
+    },
+    {
+      "path": "assets/portraits/v69/wei/31-liu-jing.png",
+      "bytes": 460706,
+      "sha256": "c97c3a75a5692579be801452ddb9e2a74f14558d3f76a06d75024bb5d392d92d"
+    },
+    {
+      "path": "assets/portraits/v69/wei/32-pang-hui.png",
+      "bytes": 446769,
+      "sha256": "5e80159f3431080a57791d649a2c9cc02c09cb52a4dc57d5b7ef5a4c439340dc"
+    },
+    {
+      "path": "assets/portraits/v69/wei/33-you-chu.png",
+      "bytes": 457590,
+      "sha256": "ca6d1a4da2b197ea3a14f424556cc628e0246747ab735277a7dbbf1271074e86"
+    },
+    {
+      "path": "assets/portraits/v69/wei/34-zhao-yan.png",
+      "bytes": 427815,
+      "sha256": "b9503a0fd5faf841c799167f6299c9d62bf8775147569636a0a6719848813729"
+    },
+    {
+      "path": "assets/portraits/v69/wei/36-bian-bing.png",
+      "bytes": 422295,
+      "sha256": "c1a13e469f1aa198027abf762aee7fb9c77ceefd9b201577e9a922a8bb2047ec"
+    },
+    {
+      "path": "assets/portraits/v69/wei/37-cao-cong.png",
+      "bytes": 423903,
+      "sha256": "788b9ec7734d98b5def1bad9429626b815ec27dd62a5a0a9ee4436d9a7f8b0fc"
+    },
+    {
+      "path": "assets/portraits/v69/wei/38-cao-kai.png",
+      "bytes": 418725,
+      "sha256": "5b967bc1c48b9f7105712f3aac2a6ff00218c5a024fd2e2ab91884a121df5ec2"
+    },
+    {
+      "path": "assets/portraits/v69/wei/39-cao-xi.png",
+      "bytes": 418192,
+      "sha256": "c4181af697c5ad194ed53aeda676a2af42ae3910f45d0f51fd5127aa55126290"
+    },
+    {
+      "path": "assets/portraits/v69/wei/40-cao-yi.png",
+      "bytes": 432426,
+      "sha256": "6de7752507c324dd39a1f5d37761325f88f62508f2e5823718800f7828f1ce9c"
+    },
+    {
+      "path": "assets/portraits/v69/wei/41-cheng-yu.png",
+      "bytes": 447543,
+      "sha256": "997a749beac74dfc594577d53affa9c5c504fe0d90b0fb1fc4bfead92294f33a"
+    },
+    {
+      "path": "assets/portraits/v69/wei/42-du-xi.png",
+      "bytes": 422053,
+      "sha256": "9542af2b77de1835b7408303744e253d046c035b39997fe249be548edd2308d6"
+    },
+    {
+      "path": "assets/portraits/v69/wei/43-fu-gu.png",
+      "bytes": 419491,
+      "sha256": "bed34c4113538c51d9390e5595058484e13481e9a6476d1b9212dda53eb7d538"
+    },
+    {
+      "path": "assets/portraits/v69/wei/44-guo-cheng.png",
+      "bytes": 439105,
+      "sha256": "c58189e5e67dc28b7cba3e2be4f6372ef5dd61ae92b3f2b3a80a1b24eb343f60"
+    },
+    {
+      "path": "assets/portraits/v69/wei/45-guo-du.png",
+      "bytes": 432270,
+      "sha256": "84038f6f4b55df11eee0bfbe2ff07531e175c06e58a0728546c84d2ed2417b13"
+    },
+    {
+      "path": "assets/portraits/v69/wei/46-guo-fu.png",
+      "bytes": 450266,
+      "sha256": "809826767ecc3c5c9e1b54363df9ab2e484be9d039a4a29c8e7f73c7e7912dcf"
+    },
+    {
+      "path": "assets/portraits/v69/wei/47-guo-zhi.png",
+      "bytes": 444791,
+      "sha256": "a75ee4646d883d977738207d089f37e6d5ce8c78ea91537614f65e3017bde743"
+    },
+    {
+      "path": "assets/portraits/v69/wei/48-hao-zhao.png",
+      "bytes": 460666,
+      "sha256": "34711fbad7a0333cf8cdb78a3e5ad2d4e44f5e204e8b741def073bbbff70a320"
+    },
+    {
+      "path": "assets/portraits/v69/wei/49-hu-zhi.png",
+      "bytes": 442123,
+      "sha256": "0cded877d4a1bea3e8253f42479211bb76d6123de1606f59c96f6c6d98382972"
+    },
+    {
+      "path": "assets/portraits/v69/wei/50-jia-kui.png",
+      "bytes": 443977,
+      "sha256": "53b6c093d44f91c3fff65ea87b6c4043b990d61dab80fa44d66e6a903a030b66"
+    },
+    {
+      "path": "assets/portraits/v69/wei/51-liu-ye.png",
+      "bytes": 428018,
+      "sha256": "c2e4ed099830152184e96f84654c19404cbc9b3adb4d184063055d0b5dd1f387"
+    },
+    {
+      "path": "assets/portraits/v69/wei/52-man-chong.png",
+      "bytes": 436766,
+      "sha256": "af5f3171db516fe2c08e23e69933366c95985afa6f2d3d1d020cb9764a5bdd02"
+    },
+    {
+      "path": "assets/portraits/v69/wei/53-pang-fu.png",
+      "bytes": 430993,
+      "sha256": "960bdf4f07f0b7607c3481aa37730795c45425ce7ce2241f69918ef974bad4bb"
+    },
+    {
+      "path": "assets/portraits/v69/wei/54-pei-qian.png",
+      "bytes": 423127,
+      "sha256": "163e2e8b3d776acf042a51d74660a4ee95b3699ffdae7eb756bde60a4f3c7c36"
+    },
+    {
+      "path": "assets/portraits/v69/wei/62-wang-chang.png",
+      "bytes": 449401,
+      "sha256": "bcacd66d40a662da07a5f1e890259c57f51c6b57940f23781d6b7ec41d4cacf8"
+    },
+    {
+      "path": "assets/portraits/v69/wei/63-wang-guan.png",
+      "bytes": 446550,
+      "sha256": "0c40517dfc48b5ef83056f5803a66b9a84f83fc8e81662cfa70eac572edb1bcd"
+    },
+    {
+      "path": "assets/portraits/v69/wei/64-wang-lang.png",
+      "bytes": 428538,
+      "sha256": "aaa465edeea918f362a949c77ce20c9d683c8065b3fb800a91523bdd419d0a3c"
+    },
+    {
+      "path": "assets/portraits/v69/wei/65-wen-ping.png",
+      "bytes": 473804,
+      "sha256": "cc9bc4723e94a7e3761f9605fda975b876a61eba43704653d7b4a82d99b4a195"
+    },
+    {
+      "path": "assets/portraits/v69/wei/68-xiahou-shang.png",
+      "bytes": 449369,
+      "sha256": "2bb129e7981073145ad19b356d57860611e94e3f10a7ef88bc948991f11d0b42"
+    },
+    {
+      "path": "assets/portraits/v69/wei/69-xu-huang.png",
+      "bytes": 475143,
+      "sha256": "5fc97cf5a68a013a0f0b1eee8b705bf9fa8295ad199952058f6bb4753c973b38"
+    },
+    {
+      "path": "assets/portraits/v69/wei/70-xu-xuan.png",
+      "bytes": 439689,
+      "sha256": "43a71c49e87da892df7dd6fa1642e8719dc2a838d172e40c991f4e3d784d6054"
+    },
+    {
+      "path": "assets/portraits/v69/wei/71-yan-pu.png",
+      "bytes": 412736,
+      "sha256": "2f00afbd336c5323b141a8b7b2ae67ad154616bd0b551fe3977edcf7052b741f"
+    },
+    {
+      "path": "assets/portraits/v69/wei/74-zang-ba.png",
+      "bytes": 461550,
+      "sha256": "2530cfd21a243884792414e9476c5702c9b75831fd18304ad22ea6599ad65482"
+    },
+    {
+      "path": "assets/portraits/v69/wei/75-zhen-de.png",
+      "bytes": 443398,
+      "sha256": "5cb497e4a05b0054a6a5ccee558a1ebddbb9b9f4e9f620ce075bc62c6e1e8917"
+    },
+    {
+      "path": "assets/portraits/v69/wei/76-zhen-wen.png",
+      "bytes": 435460,
+      "sha256": "d584fcbb849ad75f63e34cb663d536f8a2c7929123cd0f592ce034a0955738f2"
+    },
+    {
+      "path": "assets/portraits/v69/wei/77-zhen-xiang.png",
+      "bytes": 428819,
+      "sha256": "58e73441ea8b19ddb6e3dbb2c79017c22edf581e1570c48948134493c3734455"
+    },
+    {
+      "path": "assets/portraits/v69/wei/78-zhen-yi.png",
+      "bytes": 431753,
+      "sha256": "6971f98cc39a49dcb796e7793565f011a1a563c480105092fe957442a7e7323b"
+    },
+    {
+      "path": "assets/portraits/v69/wei/79-zhu-ling.png",
+      "bytes": 480068,
+      "sha256": "a5d7f71f3e54dc7f10ea137e6b0207585d98ed17e063b8d47a06f4b3ec948ea7"
+    },
+    {
+      "path": "assets/portraits/v69/wei/80-bian-guang.png",
+      "bytes": 439659,
+      "sha256": "137cc072f4e0fb651e90195a4217e6a11ab32392ee6996c2af72f9242d44b674"
+    },
+    {
+      "path": "assets/portraits/v69/wei/81-bian-hui.png",
+      "bytes": 450980,
+      "sha256": "cae77262f4cbdafcca8ff50fe70524694962933cd5cf9bafdf699fc24244d2e2"
+    },
+    {
+      "path": "assets/portraits/v69/wei/82-bian-lan.png",
+      "bytes": 415655,
+      "sha256": "a4dce32acf5ee0eb32edc167602ee6ec500308992b8aac284512eac16a6c4d2e"
+    },
+    {
+      "path": "assets/portraits/v69/wei/83-bian-yuan.png",
+      "bytes": 442153,
+      "sha256": "226195f2748ec86b311799aecb5673b63df4a71f5c0461a4f5c26f66372fe18d"
+    },
+    {
+      "path": "assets/portraits/v69/wei/84-cao-ai.png",
+      "bytes": 428495,
+      "sha256": "b59ca55a0ad7507e3a1e3420d0dcb298570cd8320cbb669896d3ae753585f8a9"
+    },
+    {
+      "path": "assets/portraits/v69/wei/85-cao-bin.png",
+      "bytes": 422672,
+      "sha256": "3dc33c416a24f2a35babfe0b1eba78d751bbf3b9dc1e3a98cea4195209427f92"
+    },
+    {
+      "path": "assets/portraits/v69/wei/86-cao-chu.png",
+      "bytes": 422772,
+      "sha256": "ac2ac2d185783483dcb1a1eda4e8224785f40166ca3d26214dbbd5ac0f32c0bd"
+    },
+    {
+      "path": "assets/portraits/v69/wei/87-cao-kang.png",
+      "bytes": 406108,
+      "sha256": "b1363a1775cb7697f09aef32089f89b5683825347eeb65ad04d8ed59c63ff694"
+    },
+    {
+      "path": "assets/portraits/v69/wei/88-cao-min.png",
+      "bytes": 409520,
+      "sha256": "b4ece7a15a069cfb491742bd360870986434d34a3a50e08ff523e5bfb3c58673"
+    },
+    {
+      "path": "assets/portraits/v69/wei/89-cao-tai.png",
+      "bytes": 420072,
+      "sha256": "07b0cb0494d14302df35c9d957ed2aaf941a391b0bbd8e252cfa2ccd10548df4"
+    },
+    {
+      "path": "assets/portraits/v69/wei/90-cao-xun.png",
+      "bytes": 413507,
+      "sha256": "e5516510f3ab0e531260b8a23d34f2c4d4b0ad447e771445fe6b9735287eacb5"
+    },
+    {
+      "path": "assets/portraits/v69/wei/91-cao-yan.png",
+      "bytes": 422432,
+      "sha256": "57bd47cc5746d4f97bdb4e834448244b4b9416690a36c167b0868f836dbbbd51"
+    },
+    {
+      "path": "assets/portraits/v69/wei/92-cao-yu.png",
+      "bytes": 400380,
+      "sha256": "a526389c9e6883a5365df086e88b1e78edf64b6675a70df19406676daa555fbf"
+    },
+    {
+      "path": "assets/portraits/v69/wei/93-cao-zan.png",
+      "bytes": 422149,
+      "sha256": "1200641785ff03fdb8391a841e992cf7032e2a930c0d49fb7f19d50942c3c746"
+    },
+    {
+      "path": "assets/portraits/v69/wei/94-cao-ze.png",
+      "bytes": 393523,
+      "sha256": "d93d615c78f3e78d1b26bbb84e8cd1499d671a95a687da92647a119f9b530efc"
+    },
+    {
+      "path": "assets/portraits/v69/wei/95-cao-zhen.png",
+      "bytes": 406079,
+      "sha256": "bb54ad093da60ef646c3404d59cdbcd6883a4ffe2a043870cb75dc715a53fae8"
+    },
+    {
+      "path": "assets/portraits/v69/wei/96-cao-zi-zheng.png",
+      "bytes": 416785,
+      "sha256": "03039f48c38919a58cdb35db334dbd25d3cf0791a1063fde5955e69623cb9207"
+    },
+    {
+      "path": "assets/portraits/v69/wei/97-cao-zuan.png",
+      "bytes": 409724,
+      "sha256": "adfa12fc302959990e5e13c1cbc5b60e056c6ab13f4b26f94053ed4dc61c15f6"
+    },
+    {
+      "path": "assets/portraits/v69/wei/98-chen-wen.png",
+      "bytes": 394473,
+      "sha256": "ce8e7eabcf89bde2bb2ec190b3b0febf0e27390879494e31735a00377dfea4fa"
+    },
+    {
+      "path": "assets/portraits/v69/wei/99-cheng-xi.png",
+      "bytes": 430356,
+      "sha256": "be01558e95fa895ffeeeb7e26eb6e0d45ca1e671f559ea3bdc34e6b87334301d"
+    },
+    {
+      "path": "assets/portraits/v69/wei/cao-huan.png",
+      "bytes": 430351,
+      "sha256": "263262cdc41cc4df000435b288a96c2c661051e86a6dc3f53ee473b06d447518"
+    },
+    {
+      "path": "assets/portraits/v69/wei/cao-pi.png",
+      "bytes": 434274,
+      "sha256": "9bab0dea5c3fa9187e054641625b83072e8fa17c1c1e0ee7c9c1cd263d40e0ae"
+    },
+    {
+      "path": "assets/portraits/v69/wei/cao-xiu.png",
+      "bytes": 443895,
+      "sha256": "b9b610dc6c3c3a419c255374f2a2fc487b856b361d53cd7a4a69e96da682ffa6"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/23-luo-shang.png",
+      "bytes": 426236,
+      "sha256": "c208b16ad95360341af89944c1448937bb68b897016eec85b649b0c22b47c013"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/27-lu-zhi.png",
+      "bytes": 440103,
+      "sha256": "ad4d8b42eae42046db39fb9b0aa6c438eea110e64901551eff540bb5bbb3f547"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/35-zheng-mao.png",
+      "bytes": 423993,
+      "sha256": "b320205e9b45600f5e54b7365ac1c43ea787ff726d04cd18c977db9a5075d309"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/55-qiao-zhou.png",
+      "bytes": 443744,
+      "sha256": "24e86971e0f0b7d08da8e140f8f7c26e7fa254ea7ad3be4e6935850dabdd6c49"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/56-si-ma-gan.png",
+      "bytes": 445538,
+      "sha256": "737c93a490335f5f8f3a6ba38fa4a6982ceb1f599d4760fd27602e69bec4021b"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/57-si-ma-jun.png",
+      "bytes": 469026,
+      "sha256": "4150a12268feb2a1630c64e7556fedb639b2c956a53e9381d0e7b119a746765e"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/58-si-ma-liang.png",
+      "bytes": 431556,
+      "sha256": "39c392d310bd4be7f37aa6d8e66abf8391724508b20fa8b0ccd4223ece46bc1e"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/59-si-ma-sui.png",
+      "bytes": 443519,
+      "sha256": "ef854cafb35a727e628b91e661969410125ca83e35779ff24784b5e97b474bdb"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/60-si-ma-xun.png",
+      "bytes": 431103,
+      "sha256": "5c2c998f506fa12b256cd0d7dab2b697b748facc5680987e25f0454d944074c0"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/61-si-ma-zhu.png",
+      "bytes": 449502,
+      "sha256": "6916dcf2a9d1670eb85fb2bfaca75def7d231f031636506c0adf0a3fca3b5e2e"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/66-wu-gai.png",
+      "bytes": 436142,
+      "sha256": "ec1388467df09d73ea672ec0c5d46711c99902cbd4206080a0aaf1746a5b3a15"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/67-xi-zheng.png",
+      "bytes": 441327,
+      "sha256": "73773414f3906a96dcd45c2528405e20e0a9360f594a2586752ce0453444e679"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/72-yang-xiu.png",
+      "bytes": 426676,
+      "sha256": "7cf9677c290645b4073783141487e09bfcf9db4459bf0cddcc9f7ac108cb2cdb"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/chen-qian.png",
+      "bytes": 434359,
+      "sha256": "5029a21c3c24c8af2384e7d47f7084b33585d2bca1c2fe9ba9e9ec069210a619"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/li-xi.png",
+      "bytes": 411999,
+      "sha256": "09b51dd5815a18aa41b551d41f447b794e88588144e28ee6026a20a8340cf242"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/li-yin.png",
+      "bytes": 422843,
+      "sha256": "eec7a4dff7e64966f7035515e5b063297ae1e9379e1afb7b2796e215fd271a48"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/shi-jian.png",
+      "bytes": 450863,
+      "sha256": "8c70ad621499b7d8a679daefe5b7db753a2bbdeae687fb2a712ee1b4413cab58"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/si-ma-zhong.png",
+      "bytes": 427610,
+      "sha256": "84aff12c7a2354aa2b89d5208f9bc7cbea58760a4a87b045a4af8568b76f1eb4"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/wang-xiang.png",
+      "bytes": 434041,
+      "sha256": "f430cea92ba0a99b0a035f6683ec3fa7115f57932432c222dde0250ce4cbcbd9"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/wei-guan.png",
+      "bytes": 447438,
+      "sha256": "5f4256a1b5073caa41e92539cd95e2c2a9758087b048f7a57e64ec780dc408bb"
+    },
+    {
+      "path": "assets/portraits/v69/wu/20-sun-ce.png",
+      "bytes": 448303,
+      "sha256": "6a043bb71e408320a2ccd797f774c0b05855d98f06531acdb00dbad991d232a1"
+    },
+    {
+      "path": "assets/portraits/v69/wu/sun-liang.png",
+      "bytes": 453744,
+      "sha256": "15f68bbd62ce806940278c1f226e871e522b6ca8cb6f99e9d87dbfd29a1626db"
+    },
+    {
+      "path": "assets/portraits/v69/wu/sun-xiu.png",
+      "bytes": 451133,
+      "sha256": "48165bbae6d5f5b6db1601f1c04dc79f2bdd173dd6909d8f3372b04d76b0b823"
+    },
+    {
       "path": "assets/portraits/wei/cheng-ji.png",
       "bytes": 18059,
       "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
@@ -1889,8 +2389,8 @@
     },
     {
       "path": "assets/ui/base.css",
-      "bytes": 101095,
-      "sha256": "d7591ff5283a81f91a39f08bf5ae23377314207c19c89f28df5296e40f322388"
+      "bytes": 101491,
+      "sha256": "8f6f93cac43c5255832cf4f20774e5077ee4a3d1ae300edc1fff3f0d47b4210c"
     },
     {
       "path": "assets/ui/components.css",
@@ -1904,8 +2404,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 67467,
-      "sha256": "ceefff186db27aa74e657bd2a996da9cdee5cd00a94475f50f2244b9e1d6beb9"
+      "bytes": 74792,
+      "sha256": "314bf7e0b242abae4c7aceea5a7cb1b9c15395dade35bbb1bd108ca2b9b7c73f"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -2129,8 +2629,8 @@
     },
     {
       "path": "data/person-v57-runtime-rules.js",
-      "bytes": 1843,
-      "sha256": "bd2c2c5cadc53dbc30e9449ec645b87b268f42a8ce11674482c5fcd6f996e3f9"
+      "bytes": 1876,
+      "sha256": "f03c7bc32e98d5b7511c600762d88d4a0a581f3d353312b362abd00cb8e16673"
     },
     {
       "path": "data/person-volume-coverage.json",
@@ -2159,13 +2659,13 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 617087,
-      "sha256": "743c0bf4d60881fc7be1afff3164b10072598c9d7e8581d7f0243e20432d3988"
+      "bytes": 827254,
+      "sha256": "53dd78c9551d8d94d2739eee2c70f3b9184dfbc306602333626edfdf0d094992"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 826808,
-      "sha256": "39d9a2e65df22587c975e9a99d4cd743b7729073569bad9863fcada1c3109429"
+      "bytes": 1113375,
+      "sha256": "aebdc3e8e59667cfde40dcb78d50439fb7c69d8557a3107c6fd1a3453155d5ba"
     },
     {
       "path": "data/portrait-pool-assignments-v52.json",
@@ -2400,42 +2900,47 @@
     {
       "path": "data/v62-portrait-catalog.js",
       "bytes": 70393,
-      "sha256": "92d7e3b3e61d6996e6f10b36edc309d15f16889a1ecbea84f79c532eba804a3d"
+      "sha256": "4e0b349141093397e3a5c70f67f26275658195fb9af1bdf221adddc2c8c7f7e9"
     },
     {
       "path": "data/v62-portrait-catalog.json",
       "bytes": 100885,
-      "sha256": "b6a1f5a53f77a05207b9bb929717c677b4eb6df4d0fcd933513d7d723d513692"
+      "sha256": "9fe94113267b62d97850be8d57840b7a2c34c873e82b320428e77477e48cded2"
+    },
+    {
+      "path": "data/v62-reader-scope.json",
+      "bytes": 187656,
+      "sha256": "2a9d5d259ed970c51798abadf333ea4dd94ed55edb1a79f2a3a196f2652a511d"
     },
     {
       "path": "data/v63-person-registry.js",
-      "bytes": 6648383,
-      "sha256": "a718aa8744c60d882a7c7b8b325b71e739a51e89c6d4bdd15eb2bf69b7d9e87b"
+      "bytes": 6843161,
+      "sha256": "decc46a9e43c010cb0d1fcfad3f434e51a30aaf5fd08bc213354e26895930bb6"
     },
     {
       "path": "data/v63-person-registry.json",
-      "bytes": 10298777,
-      "sha256": "3adf01dbbeac57b7a0edb17c9e1abba1823c14f8fb5e413f2f1bbe929fbaa8a5"
+      "bytes": 10580511,
+      "sha256": "d9649d447cb18737890395a0392af46bbdb425844f7eb2bd929e103a1b70f92c"
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 374636,
-      "sha256": "0519dc01b8508785b4334d9ba53a77cb751ca1ca8b1284f3d17fdeb600c23975"
+      "bytes": 367262,
+      "sha256": "8763c51588cd408d16b2e13dae698b7f65b4ca81f38de253ff320873cfaf6924"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 531832,
-      "sha256": "51df97316c5d330e6dd068333ba27db7833520baad16587367a02f179eb7e439"
+      "bytes": 515826,
+      "sha256": "ad5c1c83f5272045d24c97269764adc22c9727a40365a6e0ef42e7b7b3958eec"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 217763,
-      "sha256": "ef57f7d1ac3de2b41ca260bb4f45ae47b570c37ba4a27f88829c5f9d95b60002"
+      "bytes": 211798,
+      "sha256": "8c79722dbc4f97cbe384fd656fbf290450c719ce05527664f78316635e4dd25a"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 277578,
-      "sha256": "e8d3d90f3ba005958c700eb4ae2949714fb9b30be79cfb8cd427b979716cab9b"
+      "bytes": 269633,
+      "sha256": "e461b6fa7c4b3470ad219e0ee63337b41416f933aff9e3d29a4536846f263b9b"
     },
     {
       "path": "data/v65-battle-coordinate-audit.js",
@@ -2540,12 +3045,97 @@
     {
       "path": "data/v66-peerage-stages.js",
       "bytes": 868009,
-      "sha256": "d1a56d8bf0396d3371b409bcf4944339083ae2eb33e747af0e62de71b51683e6"
+      "sha256": "0800ce89935a6beb0dbffea7713cb2f1a06e4abaa355e4913590bbc115083367"
     },
     {
       "path": "data/v66-peerage-stages.json",
       "bytes": 1220633,
-      "sha256": "cfb277739b1d1e48e650bf8a858c17cc82df7a8959ace7bc8a35be8b7d1b5339"
+      "sha256": "49ef9bee568d7424c639b7243c0f481ab2b4fdb3271d9024d4c1929868261450"
+    },
+    {
+      "path": "data/v69-battle-person-links.js",
+      "bytes": 46521,
+      "sha256": "2117cfac077654b3c211d2dfbaaa2463148a055f5d7c074454f7c2bf88a3a7bb"
+    },
+    {
+      "path": "data/v69-battle-person-links.json",
+      "bytes": 57993,
+      "sha256": "eaf49048f1fd166c23518275e7177b16688905b81005a011d592c8926250f313"
+    },
+    {
+      "path": "data/v69-epigraphic-records.js",
+      "bytes": 274937,
+      "sha256": "aa8e14e6783826f82adab335dc3a30b8bcbc8d48893a8dc9cd9dbf6a73a0c6ba"
+    },
+    {
+      "path": "data/v69-epigraphic-records.json",
+      "bytes": 337523,
+      "sha256": "d23eed732bfd216b58c0534a98d9b59f1274df5494636e315bfb10b2b9785f78"
+    },
+    {
+      "path": "data/v69-epigraphy-audit.js",
+      "bytes": 448919,
+      "sha256": "f679af340a4e65c32bba1063038d2a7b1e8a0fb6818a4a9e5103851e4c48c0b6"
+    },
+    {
+      "path": "data/v69-epigraphy-audit.json",
+      "bytes": 560440,
+      "sha256": "1dacf28493e1baa1ccf4b201b4ed6a3110aea507579689cd4167bcd37b1a0f4c"
+    },
+    {
+      "path": "data/v69-epigraphy-removals.json",
+      "bytes": 942,
+      "sha256": "4b37603c3a3eb4d12c78eb4bef5b6895c1b2889a735bd760ccf70f8b79ee5e4f"
+    },
+    {
+      "path": "data/v69-epigraphy-search-cache.json",
+      "bytes": 706625,
+      "sha256": "03b00efe99c320659ceedd835be4823dcaec9eba9ca72b364fb1b0b5e9d667aa"
+    },
+    {
+      "path": "data/v69-fangzhen-reader.js",
+      "bytes": 262076,
+      "sha256": "cc8c07c027b861e82031590b73fada83ec13496fc78190e72b5b2d02f29f0f08"
+    },
+    {
+      "path": "data/v69-fangzhen-reader.json",
+      "bytes": 344139,
+      "sha256": "9bb2c86d7d2f184dc16fbc6bf87db87ac09bd32dd2c002b441c4c856c056ffe1"
+    },
+    {
+      "path": "data/v69-person-profile-audit.js",
+      "bytes": 439851,
+      "sha256": "be753242cc15578ea68730f099b31b5097a76bac3977557a1809ab5332b80a09"
+    },
+    {
+      "path": "data/v69-person-profile-audit.json",
+      "bytes": 626260,
+      "sha256": "a09a04760fabc071cd295f28669811496d843795503297ad55dd9679b76c107e"
+    },
+    {
+      "path": "data/v69-person-profiles.js",
+      "bytes": 361854,
+      "sha256": "b323a44ff4ba278a32dc75e5a70b3fa0106aaedcd1bb0cb18f036ea43607f8d2"
+    },
+    {
+      "path": "data/v69-person-profiles.json",
+      "bytes": 512901,
+      "sha256": "fbf6761f7752238316735581d3d2398cc6459580b2b7386fb907969c95fec2fd"
+    },
+    {
+      "path": "data/v69-portrait-candidates.js",
+      "bytes": 54874,
+      "sha256": "b313864a404b65d70c01027bda71e5c94f437effdc89054a6826c52b20537931"
+    },
+    {
+      "path": "data/v69-portrait-candidates.json",
+      "bytes": 79247,
+      "sha256": "3541425876443e559be1a82fbe13927c18754e3ded8e86eb1dd29e55dba0fda0"
+    },
+    {
+      "path": "data/v69-portrait-production.json",
+      "bytes": 31575,
+      "sha256": "f1da79c6488bcc4c33f65eb2c9fc06a65cd5e2fb3e938e0b4b61a5d5d68f9ca2"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
@@ -2579,8 +3169,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 761054,
-      "sha256": "880d06a69780f757a554c37fcb10ed99630cf3e0d313e90b7456997137aff6d5"
+      "bytes": 773888,
+      "sha256": "ee5e6bc3530af8998a317b9920ba7e0ab4273c8ca4565ec84f9ac8e3b6c064eb"
     },
     {
       "path": "scripts/assign-v52-portrait-pool.mjs",
@@ -2594,8 +3184,8 @@
     },
     {
       "path": "scripts/build-all.mjs",
-      "bytes": 8939,
-      "sha256": "db93ca98512f167e76ed5b63b21d4189049ff1685af7793dd380afeb12202869"
+      "bytes": 9150,
+      "sha256": "5d5b042afc8aefd25505a8c08f4106e2ee1c14fa229d7f6dbf97468d5c03156f"
     },
     {
       "path": "scripts/build-asset-manifest.mjs",
@@ -2624,8 +3214,8 @@
     },
     {
       "path": "scripts/build-reader-bundle.mjs",
-      "bytes": 64795,
-      "sha256": "c65b1c143a7f508a8f1223a00b3cc8277adb3e289b733ae5e221d35b4ca971ba"
+      "bytes": 68693,
+      "sha256": "89fd37da1f8f82ea0db9816fd9b4d910b4e0e728e9d6400556f2f921d9bafa00"
     },
     {
       "path": "scripts/build-v42-import-template.mjs",
@@ -2639,8 +3229,8 @@
     },
     {
       "path": "scripts/build-v46-portrait-manifest.mjs",
-      "bytes": 22339,
-      "sha256": "cb7a79b4c66ae2ad4bd2d4711aca902c4dec46259b9b49f81b19eb97a7c2833b"
+      "bytes": 25250,
+      "sha256": "59a09e2eae87f16e739bef0c09b71267503977f01f4e2d244706b013e01b34a4"
     },
     {
       "path": "scripts/build-v60-figma-handoff.mjs",
@@ -2689,8 +3279,8 @@
     },
     {
       "path": "scripts/build-v63-person-registry.mjs",
-      "bytes": 25548,
-      "sha256": "f60d6c6d67894166d41d0cbedf2132e491edf1ee26e22283a39e6d7e06116d52"
+      "bytes": 33166,
+      "sha256": "96025161508adcc9983388b78641f2fc607947871e9a8458386ea64cb6613a6d"
     },
     {
       "path": "scripts/build-v65-epigraphy-audit.mjs",
@@ -2719,8 +3309,13 @@
     },
     {
       "path": "scripts/build-v66-peerage-stages.mjs",
-      "bytes": 21535,
-      "sha256": "26832a8fb0714aa778c7852b64e9f4a184d44f98d40e86b9382065a01c5ccb8d"
+      "bytes": 21644,
+      "sha256": "a84e646af25118a0b407652b17b07fddd201f38de01c124960191ae75e215f8c"
+    },
+    {
+      "path": "scripts/build-v69-data.mjs",
+      "bytes": 34275,
+      "sha256": "d2679e379cdfbf6e226643f70f0502ea4b2dc9ced1cced36c8c1af3d2478f12f"
     },
     {
       "path": "scripts/download-assets.sh",
@@ -2769,8 +3364,8 @@
     },
     {
       "path": "scripts/release-check.mjs",
-      "bytes": 5445,
-      "sha256": "07c845c67e0f696ab68091e1f5df8ecc1607222745fe0e2e1b0402cf207e6555"
+      "bytes": 6314,
+      "sha256": "1466b7196c4bf700f54b6f33144775faa7f46b1307b303bb144480b065be5124"
     },
     {
       "path": "scripts/research-v61-epigraphy.mjs",
@@ -2809,8 +3404,8 @@
     },
     {
       "path": "scripts/verify-project.mjs",
-      "bytes": 36531,
-      "sha256": "7612ae4ef2c1b81a973edd775bd7c03a2ed5c21bca451e3696612760b78a6363"
+      "bytes": 36614,
+      "sha256": "dd80b60b89edfcb7e384602166bc04bdd3c51faeac50d555beaf71bad497cf65"
     },
     {
       "path": "scripts/verify-research-model.mjs",
@@ -2929,13 +3524,13 @@
     },
     {
       "path": "scripts/verify-v63.mjs",
-      "bytes": 16304,
-      "sha256": "5d2a0e16ea4a2975f3a0623156004f5af6137033b1d36ddd8e41ed4f18b4a41f"
+      "bytes": 16541,
+      "sha256": "2bb4c281f5fcfcfe7a047762fd834200734cba21263baea7c1ec733949b45f23"
     },
     {
       "path": "scripts/verify-v64.mjs",
-      "bytes": 33503,
-      "sha256": "726a8a91addf2a143de655d74d6cfcbd9bf11d6a1e873d81aa3fe3e9948858d1"
+      "bytes": 32457,
+      "sha256": "da75693053ce39d9315a40a2ad168c99fb0e43fa26cdbc56646c94947f95c049"
     },
     {
       "path": "scripts/verify-v65-battle-shihuo.mjs",
@@ -2959,8 +3554,8 @@
     },
     {
       "path": "scripts/verify-v66-han-court-ui.mjs",
-      "bytes": 7592,
-      "sha256": "6d5ebf9b80955535bdb49782ff4f9f964049fc3923bea74abb9239b2f7df729f"
+      "bytes": 7693,
+      "sha256": "af59986adf304a554fb2294ace8b8481851a694061a90336e15497d2e18bc592"
     },
     {
       "path": "scripts/verify-v66-runtime-init.mjs",
@@ -2969,13 +3564,23 @@
     },
     {
       "path": "scripts/verify-v66.mjs",
-      "bytes": 31970,
-      "sha256": "17167ea35fae68aa7d45b3dfbbd2392020fd5a01db76041a961abe009e503fc3"
+      "bytes": 32479,
+      "sha256": "7c2364a0c72c0d23c7f540967e3ef1c415ead0adfc003a473eca40f901cf7cec"
     },
     {
       "path": "scripts/verify-v67.mjs",
-      "bytes": 7919,
-      "sha256": "a730fd0342de6a707ded692efcb4dc45d0d8475389f80113c5fb79edccee7e1e"
+      "bytes": 8014,
+      "sha256": "bf4852559dc4b3984ec07234575d7aa8bc0bbfea10b9148138b25b02c61f9129"
+    },
+    {
+      "path": "scripts/verify-v68.mjs",
+      "bytes": 3248,
+      "sha256": "056612ab929621b59addf3c5ea0245ef06a8a85291a34313185803105aeabb78"
+    },
+    {
+      "path": "scripts/verify-v69.mjs",
+      "bytes": 12142,
+      "sha256": "7555792c3f6b1a41f53c2f773963dfc7a61b574130ef4becf9211be47fcdcec3"
     }
   ]
 }

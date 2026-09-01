@@ -41,9 +41,10 @@ assert(!hanTemplate.includes('游戏模式') && !hanTemplate.includes('游戏转
 assert(!hanTemplate.includes('v-html'), '后汉结构图出现数据驱动 HTML 注入');
 assert(!/<article[^>]+(?:@click|role="button")/.test(hanTemplate), '后汉结构图仍使用可点击 article 代替原生按钮');
 
-const expectedSections = ['han-court-core', 'han-court-nine', 'han-court-secretariat', 'han-court-military', 'han-court-east-palace', 'han-court-local'];
+const expectedSections = ['han-court-core', 'han-court-nine', 'han-court-secretariat', 'han-court-military', 'han-court-east-palace'];
 assert(expectedSections.every(id => html.includes(`{id:'${id}'`) && hanTemplate.includes(`id="${id}"`)), '后汉功能导航与结构分区没有一一对应');
-assert((hanTemplate.match(/v-if="hanCourtActiveSection==='han-court-/g) || []).length === 5, '专题区没有按当前选项单一展开');
+assert((hanTemplate.match(/v-if="hanCourtActiveSection==='han-court-/g) || []).length === 4, '专题区没有按当前选项单一展开');
+assert(!hanTemplate.includes('han-court-local'), '地方官位仍混入后汉朝堂主结构');
 assert(html.includes("const core=take(['太傅','太尉','司徒','司空','大将军'])"), '辅政与公位没有固定为太傅、三公和大将军');
 for (const [id, names] of [
   ['ritual', ['太常', '大鸿胪', '宗正']],
@@ -79,7 +80,7 @@ assert(hanTemplate.includes("viewportWidth<=760?'dialog':'complementary'") && ha
 assert(hanTemplate.includes('<teleport to="body" :disabled="viewportWidth>760">'), '移动详情没有脱离工作台层叠上下文，可能被顶栏遮挡');
 assert(html.includes("event.key==='Escape'") && html.includes('hanCourtDetailTrigger') && html.includes('showHanCourtDetail.value=true'), '移动详情缺少焦点恢复或 Escape 关闭');
 assert(!/function selectHanCourtNode\([^)]*\)[\s\S]{0,320}getElementById\('han-court-detail'\)/.test(html), '桌面官位点击仍强制移动到详情焦点');
-assert(hanTemplate.includes('进入州镇表') && hanTemplate.includes("switchModule('fangzhen')"), '地方行政专题缺少稳定跨模块入口');
+assert(html.includes('openFangzhenResidence') && html.includes('@click="openFangzhenResidence(fangzhenPrimaryDetail)"'), '州郡府署没有迁移到州镇表稳定入口');
 
 if (failures.length) {
   console.error(`后汉官职结构图验收失败（${failures.length} 项）：`);

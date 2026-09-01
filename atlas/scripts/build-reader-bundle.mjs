@@ -36,6 +36,8 @@ const bannedRuntimeFiles = new Set([
   'data/v65-volume-review.js',
   'data/v66-administrative-seat-periods.js',
   'data/fangzhen-seat-supplement.js',
+  'data/v69-person-profile-audit.js',
+  'data/v69-epigraphy-audit.js',
   'assets/map/data/hydronym-audit.js'
 ]);
 const bannedPayloadKeys = new Set([
@@ -114,17 +116,19 @@ const fangzhenFields = [
   'id','entityType','eraGroup','archiveScope','polity','recordType','commander','personId','title',
   'commission','relation','appointmentStatus','jurisdiction','seat','birthplace','startYear','endYear',
   'tenureText','sourceTenureText','confirmedRange','note','seatName','seatType','seatPeriodId',
-  'administrativeUnitId','seatValidFromYear','seatValidToYear'
+  'administrativeUnitId','seatValidFromYear','seatValidToYear','readerDisplayStatus','dynastyLabel','jurisdictionKind'
 ];
 const battleEventFields = ['title','battleId','id','year','era','emperor','text','sideA','sideB','result','front','provinceKeys'];
 const battleFields = ['id','name','year','a','b','result','desc','lat','lng','participants','strengthNote','provinceKeys'];
 const battlefieldFields = ['id','name','placeLabel','lat','lng','from','to','note','provinceKeys'];
 const epigraphicFields = [
   'id','entityType','name','title','displayTitle','titleAliases','variantLabel','type','materialType','year',
-  'yearText','dateText','polity','period','inscription','inscriptionStatus','inscriptionVariants',
+  'yearText','dateText','polity','dynasty','period','inscription','inscriptionStatus','inscriptionVariants',
   'transcriptionSections','people','offices','place','region','findspot','scriptStyle','form','archiveKind',
-  'media','readerSummary','note'
+  'media','readerSummary','note','readerDisplayStatus'
 ];
+const personLifeEventFields = ['eventId','personId','eventType','startYear','endYear','title','detail','relatedRecordId'];
+const battlePersonLinkFields = ['linkId','recordId','personId','name','side','role'];
 const shihuoRecordFields = ['id','year','polity','category','title','detail','recordKind','scope','readerSummary'];
 const shihuoHouseholdFields = [
   'id','recordId','year','polity','label','households','population','note','statisticalUnit','regionScope',
@@ -537,7 +541,7 @@ registerProjection('data/kaifu-policies.js', assignment('SGZ_KAIFU_POLICIES', (k
 
 const officeResidences = runtimeGlobal('data/office-residences.js', 'SGZ_OFFICE_RESIDENCES');
 registerProjection('data/office-residences.js', assignment('SGZ_OFFICE_RESIDENCES', (officeResidences || [])
-  .filter(row => row.researchStatus === '确定')
+  .filter(row => row.researchStatus === '确定' || ['residence:local:province', 'residence:local:commandery'].includes(row.id))
   .map(row => {
     const projected = pickFields(row, residenceFields);
     projected.roles = (row.roles || []).map(role => pickFields(role, residenceRoleFields));
@@ -658,6 +662,39 @@ registerProjection(
   assignment('SGZ_V66_FANGZHEN_READER', fangzhenReaderPayload, [['SGZ_V66_FANGZHEN_READER_RECORDS', 'payload.records']])
 );
 
+const v69FangzhenSource = readJson(path.join(root, 'data', 'v69-fangzhen-reader.json'));
+const v69FangzhenRecords = (v69FangzhenSource.records || []).map(row => pickFields(row, fangzhenFields));
+const v69FangzhenIds = new Set(v69FangzhenRecords.map(row => String(row.id || '')));
+if (v69FangzhenRecords.length !== 523 || v69FangzhenIds.size !== 523) {
+  fail(`V69 州镇读者投影应为 523 条唯一记录，当前 ${v69FangzhenRecords.length}/${v69FangzhenIds.size}`);
+}
+if (v69FangzhenRecords.filter(row => row.readerDisplayStatus === 'verified').length !== 45
+  || v69FangzhenRecords.filter(row => row.readerDisplayStatus === 'candidate').length !== 478) {
+  fail('V69 州镇读者投影的已核／待审闭合不为 45／478');
+}
+const v69FangzhenPayload = {
+  schemaVersion: 'V69-reader',
+  modelId: 'sgz-v69-fangzhen-reader',
+  summary: { records: 523, verified: 45, candidate: 478 },
+  records: v69FangzhenRecords
+};
+assertNoBannedPayloadKeys(v69FangzhenPayload);
+registerProjection('data/v69-fangzhen-reader.js', assignment('SGZ_V69_FANGZHEN_READER', v69FangzhenPayload));
+
+const v69PersonProfileSource = readJson(path.join(root, 'data', 'v69-person-profiles.json'));
+const v69PersonProfilePayload = {
+  schemaVersion: 'V69-reader',
+  modelId: 'sgz-v69-person-profiles',
+  summary: pickFields(v69PersonProfileSource.summary || {}, ['people','rulers','peopleWithLifeEvents','lifeEvents']),
+  profiles: (v69PersonProfileSource.profiles || []).map(profile => ({
+    ...pickFields(profile, ['personId','isRuler','templeName','posthumousTitle']),
+    ...(Array.isArray(profile.lifeEvents) ? { lifeEvents: profile.lifeEvents.map(event => pickFields(event, personLifeEventFields)) } : {})
+  }))
+};
+if (v69PersonProfilePayload.profiles.length !== 2096) fail('V69 人物档案读者投影不为 2096 人');
+assertNoBannedPayloadKeys(v69PersonProfilePayload);
+registerProjection('data/v69-person-profiles.js', assignment('SGZ_V69_PERSON_PROFILES', v69PersonProfilePayload));
+
 function readerFangzhenRows(relative, globalName) {
   return (runtimeGlobal(relative, globalName) || [])
     .filter(row => fangzhenReaderIds.has(String(row.id || '')))
@@ -699,6 +736,16 @@ registerProjection('data/battle-records.js', assignment('SGZ_BATTLE_RECORDS', {
   battlefields: (battleSource.battlefields || []).map(row => pickFields(row, battlefieldFields)),
   provinceIndex: plain(battleSource.provinceIndex || {})
 }));
+const v69BattleLinkSource = readJson(path.join(root, 'data', 'v69-battle-person-links.json'));
+const v69BattleLinkPayload = {
+  schemaVersion: 'V69-reader',
+  modelId: 'sgz-v69-battle-person-links',
+  summary: pickFields(v69BattleLinkSource.summary || {}, ['records','linkedRecords','noExplicitPersonRecords','ambiguousRecords','links']),
+  links: (v69BattleLinkSource.links || []).map(row => pickFields(row, battlePersonLinkFields))
+};
+if (Number(v69BattleLinkPayload.summary.records) !== 62) fail('V69 战事人物处置未覆盖 62 条读者战事');
+assertNoBannedPayloadKeys(v69BattleLinkPayload);
+registerProjection('data/v69-battle-person-links.js', assignment('SGZ_V69_BATTLE_PERSON_LINKS', v69BattleLinkPayload));
 
 const shihuoSource = runtimeGlobal('data/shihuo-records.js', 'SGZ_SHIHUO_DATA');
 registerProjection('data/shihuo-records.js', assignment('SGZ_SHIHUO_DATA', {
@@ -741,6 +788,20 @@ if (fs.existsSync(epigraphyReaderOverlayPath)) {
   });
   registerProjection('data/v65-epigraphy-reader-overlays.js', `(function(global){'use strict';const payload=${JSON.stringify({schemaVersion:overlay.schemaVersion,modelId:overlay.modelId,records})};const byId=Object.freeze(Object.fromEntries(payload.records.map(row=>[row.recordId,Object.freeze(row)])));global.SGZ_V65_EPIGRAPHY_READER_OVERLAYS=Object.freeze({...payload,byId});})(window);\n`);
 }
+const v69EpigraphicSource = readJson(path.join(root, 'data', 'v69-epigraphic-records.json'));
+const v69EpigraphicRecords = (v69EpigraphicSource.records || []).map(cleanEpigraphicRecord);
+if (v69EpigraphicRecords.length !== 166
+  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 44) {
+  fail('V69 金石读者投影不为 166 条／44 条有释文');
+}
+const v69EpigraphicPayload = {
+  schemaVersion: 'V69-reader',
+  modelId: 'sgz-v69-epigraphic-records',
+  summary: { records: 166, withInscription: 44, withoutInscription: 122 },
+  records: v69EpigraphicRecords
+};
+assertNoBannedPayloadKeys(v69EpigraphicPayload);
+registerProjection('data/v69-epigraphic-records.js', assignment('SGZ_V69_EPIGRAPHIC_RECORDS', v69EpigraphicPayload));
 
 const historyEvidenceSource = runtimeGlobal('data/history-evidence.js', 'SGZ_HISTORY_EVIDENCE');
 const historyEvidenceReaderScript = buildHistoryEvidenceReaderScript(historyEvidenceSource);
@@ -884,14 +945,10 @@ if (!html.includes('v63-reader-person-relations')) {
     `${peopleReaderLoader}\n      loadSgzDataScript('v63-reader-person-relations','./data/v63-reader-person-relations.js?v=66','SGZ_V63_READER_PERSON_RELATIONS'),`
   );
 }
-if (!html.includes('v66-fangzhen-reader')) {
-  const fangzhenReaderLoader = "      loadSgzDataScript('v62-jin-fangzhen','./data/v62-jin-fangzhen-reader.js','SGZ_V62_JIN_FANGZHEN_RECORDS'),";
-  if (!html.includes(fangzhenReaderLoader)) fail('无法注册 V66 州镇读者投影按需脚本：州镇数据加载锚点已变更');
-  html = html.replace(
-    fangzhenReaderLoader,
-    `      loadSgzDataScript('v66-fangzhen-reader','./data/v66-fangzhen-reader.js?v=66','SGZ_V66_FANGZHEN_READER'),\n${fangzhenReaderLoader}`
-  );
-}
+if (!html.includes('v69-fangzhen-reader')) fail('index.html 未引用 V69 州镇读者投影');
+if (!html.includes('v69-person-profiles')) fail('index.html 未引用 V69 人物档案读者投影');
+if (!html.includes('v69-battle-person-links')) fail('index.html 未引用 V69 战事人物读者投影');
+if (!html.includes('v69-epigraphic-records')) fail('index.html 未引用 V69 金石读者投影');
 const fangzhenPresetTerminator = '];\n// V28：把州镇表任期待补表合并进预置档案；原文仍保留在 sourceTenureText。';
 if (!html.includes(fangzhenPresetTerminator)) fail('无法为读者包应用 V66 州镇可见登记：预置表锚点已变更');
 const fangzhenPresetStart = 'const FANGZHEN_PRESETS = [';
@@ -910,12 +967,6 @@ html = html.slice(0, fangzhenPresetStartIndex) + fangzhenPresetBlock + html.slic
 html = html.replace(
   fangzhenPresetTerminator,
   `];\n// V28：把州镇表任期待补表合并进预置档案；原文仍保留在 sourceTenureText。`
-);
-const lazyFangzhenTerminator = '      ];\n      additions.forEach(record=>{';
-if (!html.includes(lazyFangzhenTerminator)) fail('无法为读者包应用 V66 州镇可见登记：按需数据锚点已变更');
-html = html.replace(
-  lazyFangzhenTerminator,
-  `      ];\n      additions.forEach(record=>{`
 );
 const readerBootstrap = `<script>
 (function(global){
@@ -1086,7 +1137,12 @@ const bundleManifest = {
     projectedDataFiles: [...projectedDataFiles].sort(),
     codeIdentifierExceptions: [...readerCodeIdentifierExceptions].sort(),
     thirdPartyCodePrefixes: readerThirdPartyCodePrefixes.slice(),
-    fangzhenReaderRecordCount: fangzhenReaderIds.size,
+    fangzhenReaderRecordCount: v69FangzhenIds.size,
+    fangzhenVerifiedRecordCount: v69FangzhenRecords.filter(row => row.readerDisplayStatus === 'verified').length,
+    fangzhenCandidateRecordCount: v69FangzhenRecords.filter(row => row.readerDisplayStatus === 'candidate').length,
+    personProfileCount: v69PersonProfilePayload.profiles.length,
+    battlePersonLinkCount: v69BattleLinkPayload.links.length,
+    epigraphicRecordCount: v69EpigraphicRecords.length,
     peerageNodeCount: v66PeerageNodes.length,
     peerageLinkedEventCount: v66PeerageEvents.length,
     generalTitleReaderCount: actualReaderGeneralKeys.size,
@@ -1119,6 +1175,6 @@ for (const item of bundleManifest.files) {
 
 fs.rmSync(outputPath, { recursive: true, force: true });
 fs.renameSync(stagingPath, outputPath);
-console.log(`已生成 V66 读者 Web 包：${outputPath}`);
+console.log(`已生成 V69 读者 Web 包：${outputPath}`);
 console.log(`读者包：${bundleManifest.fileCount + 1} 文件，${bundleManifest.totalBytes} 字节，${bundleManifest.personCount} 人，${bundleManifest.portraitCount} 张立绘`);
 console.log('泄露扫描：本机绝对路径0，审校运行文件0，禁止投影字段0');

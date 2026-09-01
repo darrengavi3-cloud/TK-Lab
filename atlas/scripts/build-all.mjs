@@ -161,6 +161,10 @@ run('build-v66-fangzhen-seats.mjs');
 // This makes the canonical local reader and the exported reader consume the
 // same committed, deterministic 179/535 fact payload.
 run('build-reader-bundle.mjs', ['--relations-only']);
+run('build-v69-data.mjs');
+// Register any V69 portrait rows that have both a verified local 512x512
+// asset and real Figma node IDs.  Frozen candidates remain excluded.
+run('build-v46-portrait-manifest.mjs');
 
 const currentLock = buildLock(sourceDateEpoch, existingLock);
 if (refreshLock) {
@@ -181,6 +185,6 @@ if (!skipPortable) run('build-portable-export.mjs');
 run('build-asset-manifest.mjs');
 run('build-deployment-manifest.mjs');
 
-console.log('\nV67 build-all 已完成。');
+console.log('\nV69 build-all 已完成。');
 console.log(`输入锁：${existingLock.aggregateSha256}`);
 console.log('产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单');

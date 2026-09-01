@@ -83,7 +83,7 @@ test("deploys only the field-gated reader projection", async () => {
   }
 
   const readerPeopleSource = await readFile(new URL("data/v63-reader-people.js", legacyRoot), "utf8");
-  const fangzhenReaderSource = await readFile(new URL("data/v66-fangzhen-reader.js", legacyRoot), "utf8");
+  const fangzhenReaderSource = await readFile(new URL("data/v69-fangzhen-reader.js", legacyRoot), "utf8");
   const peerageReaderSource = await readFile(new URL("data/v66-peerage-stages.js", legacyRoot), "utf8");
   const context = { window: {} };
   vm.createContext(context);
@@ -91,27 +91,27 @@ test("deploys only the field-gated reader projection", async () => {
   const readerPeople = context.window.SGZ_V63_READER_PEOPLE;
   assert.ok(readerPeople, "reader people payload is missing");
   const people = readerPeople.people || Object.values(readerPeople.byPersonId || readerPeople.peopleById || {});
-  assert.equal(people.length, 2317, `expected the unified 2317-person roster, received ${people.length}`);
+  assert.equal(people.length, 2096, `expected the V62-frozen 2096-person roster, received ${people.length}`);
   assert.ok(people.every((person) => person.personId && person.name), "reader person lacks a stable id or name");
   assert.ok(people.every((person) => !("datasets" in person)), "reader person leaked source dataset labels");
 
-  vm.runInContext(fangzhenReaderSource, context, { filename: "v66-fangzhen-reader.js" });
-  const fangzhenReader = context.window.SGZ_V66_FANGZHEN_READER;
-  assert.equal(fangzhenReader?.schemaVersion, "V66-reader");
-  assert.equal(fangzhenReader?.records?.length, 45);
+  vm.runInContext(fangzhenReaderSource, context, { filename: "v69-fangzhen-reader.js" });
+  const fangzhenReader = context.window.SGZ_V69_FANGZHEN_READER;
+  assert.equal(fangzhenReader?.schemaVersion, "V69-reader");
+  assert.equal(fangzhenReader?.records?.length, 523);
   assert.equal(fangzhenReader?.records?.length, fangzhenReader?.summary?.records);
-  assert.equal(fangzhenReader?.summary?.verifiedSeats, 27);
-  assert.equal(fangzhenReader?.verifiedSeatRecordIds?.length, 27);
+  assert.equal(fangzhenReader?.summary?.verified, 45);
+  assert.equal(fangzhenReader?.summary?.candidate, 478);
   const seatFields = ["seat", "seatName", "seatType", "seatPeriodId", "administrativeUnitId", "seatValidFromYear", "seatValidToYear"];
   assert.ok(fangzhenReader.records.every((record) => {
     const present = seatFields.filter((field) => record[field] !== undefined);
     return record.id && (present.length === 0 || present.length === seatFields.length);
   }), "reader fangzhen seat fields are not all-or-none");
-  const polityCounts = Object.groupBy(fangzhenReader.records, (record) => record.polity);
-  assert.equal(polityCounts["魏"]?.length, 1);
-  assert.equal(polityCounts["汉"]?.length, 11);
-  assert.equal(polityCounts["吴"]?.length, 1);
-  assert.equal(polityCounts["晋"]?.length, 32);
+  const polityCounts = Object.groupBy(fangzhenReader.records, (record) => record.dynastyLabel);
+  assert.equal(polityCounts["魏"]?.length, 173);
+  assert.equal(polityCounts["后汉"]?.length, 6);
+  assert.equal(polityCounts["吴"]?.length, 213);
+  assert.equal(polityCounts["西晋"]?.length, 31);
   assert.equal(fangzhenReader.records.find((record) => record.id === "fz_wei_cishi_5_0")?.seatName, undefined);
   assert.ok(fangzhenReader.records.find((record) => record.id === "fz_han_lvbu_yan")?.seatName);
   assert.doesNotMatch(fangzhenReaderSource, /治所未详|审校记录未发布|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
@@ -135,7 +135,7 @@ test("deploys only the field-gated reader projection", async () => {
   assert.doesNotMatch(html, /V60 全量人物|260 年人物纪|曹魏封爵人物|peopleDataset/);
   assert.match(html, /peoplePrimaryPeerageTimeline/);
   assert.match(html, /stage\.publicationStatus!==['"]review-only['"]/);
-  assert.match(html, /返回爵制节点/);
+  assert.match(html, /jumpPersonPeerageToCatalog/);
   assert.doesNotMatch(html, /治所未详/);
   assert.doesNotMatch(html, /battleBranchGroups|battleCampaignGroups|battlePeriodId|battleDensity|battleView/);
 });

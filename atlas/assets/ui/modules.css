@@ -140,6 +140,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-masthead-tabs small { min-width: 18px; color: inherit; font: 650 9px ui-monospace, SFMono-Regular, Menlo, monospace; text-align: center; }
 .v67-masthead-meta { display: grid; grid-template-columns: auto auto; align-items: baseline; gap: 1px 5px; margin-inline-start: auto; color: var(--sgz-dossier-masthead-muted); font-size: 9px; white-space: nowrap; }
 .v67-masthead-meta strong { color: var(--sgz-dossier-masthead-ink); font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.v67-fangzhen-state-count { grid-column: 1 / -1; color: var(--v58-muted); font-size: 9px; white-space: nowrap; }
 
 .v67-fangzhen-workbench { display: grid; grid-template-columns: minmax(142px, 176px) minmax(520px, 1fr) minmax(270px, 340px); align-items: start; gap: 10px; min-width: 0; }
 .v67-fangzhen-index,
@@ -157,6 +158,8 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-panel-heading span,
 .v67-panel-heading small,
 .v67-fangzhen-related article > header small { color: var(--v58-muted); font-size: 9.5px; }
+.v67-fangzhen-index-group-label { display: flex; align-items: center; justify-content: space-between; margin: 10px 8px 3px; padding-top: 7px; border-top: 1px solid var(--v58-line); color: var(--v58-muted); font: 700 10px/1.3 "Noto Serif SC", "Songti SC", serif; letter-spacing: .08em; }
+.v67-fangzhen-index-group-label small { color: var(--v58-muted); font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0; }
 .v67-fangzhen-index > button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 38px; padding: 7px 12px; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent); background: transparent; color: var(--v58-ink); text-align: start; cursor: pointer; }
 .v67-fangzhen-index > button:hover { background: color-mix(in srgb, var(--v58-green) 7%, transparent); }
 .v67-fangzhen-index > button.active { background: color-mix(in srgb, var(--v58-gold) 18%, transparent); color: var(--v58-accent); font-weight: 700; }
@@ -168,6 +171,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-fangzhen-table-panel .fangzhen-table-card::before { display: none; }
 .v67-fangzhen-table-panel .el-table { --el-table-current-row-bg-color: color-mix(in srgb, var(--v58-gold) 15%, var(--v58-raised)); }
 .v67-fangzhen-table-panel .el-table__row { cursor: pointer; }
+.fz-jurisdiction-kind { display: block; margin-top: 2px; color: var(--v58-muted); font-size: 9px; }
 .v67-pagination { display: flex; align-items: center; justify-content: space-between; min-height: 42px; padding: 6px 10px; border-top: 1px solid var(--v58-line); color: var(--v58-muted); font-size: 10px; }
 .v67-pagination button,
 .v67-dossier-actions button { min-height: 30px; padding: 5px 10px; border: 1px solid var(--v58-line); border-radius: 4px; background: var(--v58-raised); color: var(--v58-ink); cursor: pointer; }
@@ -255,6 +259,83 @@ body, #app, .shell { color: var(--v58-ink); }
   .v58-filter-note { order: 5; }
   .shihuo-workbench .el-table { min-width: 680px; }
   .shihuo-workbench .fangzhen-table-card { overflow-x: auto; }
+}
+
+/* V69: identity facts, unified life chronology, battle links and review state. */
+.v69-person-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--v58-line);
+  border-radius: var(--v58-radius-small);
+  background: color-mix(in srgb, var(--v58-raised) 84%, var(--v58-paper));
+}
+.v69-person-facts > div { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; padding: 7px 0; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent); }
+.v69-person-facts > div:nth-last-child(-n + 2) { border-bottom: 0; }
+.v69-person-facts dt { color: var(--v58-muted); font-size: 11px; letter-spacing: .08em; }
+.v69-person-facts dd { margin: 0; color: var(--v58-ink); font-size: 12px; line-height: 1.6; }
+
+.v69-person-life-section { margin-top: 20px; }
+.v69-person-life-timeline { position: relative; display: grid; gap: 0; padding: 4px 0 4px 8px; }
+.v69-person-life-timeline::before { content: ''; position: absolute; inset: 12px auto 12px 75px; width: 1px; background: color-mix(in srgb, var(--v58-accent) 34%, var(--v58-line)); }
+.v69-person-life-year { position: relative; display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 22px; padding: 8px 0 14px; }
+.v69-person-life-year > time { color: var(--v58-muted); font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; text-align: right; }
+.v69-person-life-year::before { content: ''; position: absolute; top: 12px; left: 63px; width: 9px; height: 9px; border: 2px solid var(--v58-raised); border-radius: 50%; background: var(--v58-accent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--v58-accent) 60%, var(--v58-line)); }
+.v69-person-life-events { display: grid; gap: 7px; }
+.v69-person-life-events button { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 3px 8px; width: 100%; min-height: 44px; padding: 9px 11px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised); color: var(--v58-ink); text-align: left; }
+.v69-person-life-events button:hover { border-color: color-mix(in srgb, var(--v58-accent) 48%, var(--v58-line)); background: color-mix(in srgb, var(--v58-accent) 4%, var(--v58-raised)); }
+.v69-person-life-events button:focus-visible { outline: 0; box-shadow: var(--v58-focus); }
+.v69-person-life-events strong { align-self: center; font-size: 12.5px; }
+.v69-person-life-events small { grid-column: 2; color: var(--v58-muted); line-height: 1.55; }
+.v69-life-type { align-self: start; padding: 2px 6px; border: 1px solid color-mix(in srgb, var(--v58-accent) 38%, var(--v58-line)); border-radius: 999px; color: var(--v58-accent); font-size: 10px; }
+.v69-person-life-timeline--drawer { margin-top: 18px; }
+
+.v69-battle-people { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 7px; }
+.v69-battle-people > span { color: var(--v58-muted); font-size: 10px; }
+.v69-battle-people button, .v69-battle-person-links button { min-height: 28px; padding: 3px 8px; border: 1px solid var(--v58-line); border-radius: 999px; background: var(--v58-raised); color: var(--v58-ink); font-size: 11px; }
+.v69-battle-people button:hover, .v69-battle-person-links button:hover { border-color: var(--v58-accent); color: var(--v58-accent); }
+.v69-battle-people small { color: var(--v58-muted); }
+.v69-battle-person-links { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--v58-line); }
+.v69-battle-person-links h4 { margin: 0 0 9px; color: var(--v58-ink); }
+.v69-battle-person-links > div { display: flex; flex-wrap: wrap; gap: 7px; }
+.v69-battle-person-links button { display: inline-flex; gap: 6px; align-items: baseline; min-height: 36px; }
+.v69-battle-person-links small { color: var(--v58-muted); }
+
+.v69-review-status { display: inline-flex; align-items: center; justify-content: center; min-height: 22px; padding: 2px 7px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px; font-style: normal; font-weight: 700; white-space: nowrap; }
+.v69-review-status.verified { color: var(--v58-green); background: color-mix(in srgb, var(--v58-green) 8%, var(--v58-raised)); }
+.v69-review-status.candidate { color: var(--v58-gold); background: color-mix(in srgb, var(--v58-gold) 10%, var(--v58-raised)); }
+.v69-fangzhen-statuses { display: grid; justify-items: end; gap: 7px; }
+
+.v69-local-residence-definition { max-width: 980px; margin: 0 auto 14px; padding: 14px 16px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius-small); background: var(--v58-raised); }
+.v69-local-residence-definition > strong { display: block; margin-bottom: 10px; color: var(--v58-ink); font-family: "Songti SC", SimSun, serif; }
+.v69-local-residence-definition > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.v69-local-residence-definition span { padding: 5px 9px; border: 1px solid color-mix(in srgb, var(--v58-gold) 38%, var(--v58-line)); border-radius: 999px; background: var(--v58-paper); color: var(--v58-ink); font-size: 12px; }
+.v69-local-residence-definition p { margin: 12px 0 0; color: var(--v58-muted); font-size: 12px; }
+
+.v69-module-loading { display: grid; place-items: center; min-height: calc(100dvh - 116px); }
+.v69-loading-frame { width: min(720px, calc(100% - 32px)); padding: 28px; border: 1px solid var(--v58-line); border-radius: var(--v58-radius); background: var(--v58-raised); }
+.v69-loading-frame span { display: block; height: 11px; margin: 0 0 11px; border-radius: 2px; background: color-mix(in srgb, var(--v58-line) 66%, var(--v58-paper)); animation: v69-loading-pulse 1.2s ease-in-out infinite alternate; }
+.v69-loading-frame span:nth-child(1) { width: 36%; }
+.v69-loading-frame span:nth-child(2) { width: 92%; }
+.v69-loading-frame span:nth-child(3) { width: 68%; }
+.v69-loading-frame strong { display: block; margin-top: 18px; color: var(--v58-muted); font-size: 12px; font-weight: 600; }
+@keyframes v69-loading-pulse { to { opacity: .45; } }
+
+@media (max-width: 760px) {
+  .v69-person-facts { grid-template-columns: minmax(0, 1fr); }
+  .v69-person-facts > div:nth-last-child(-n + 2) { border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent); }
+  .v69-person-facts > div:last-child { border-bottom: 0; }
+  .v69-person-life-timeline { padding-left: 0; }
+  .v69-person-life-timeline::before { left: 52px; }
+  .v69-person-life-year { grid-template-columns: 38px minmax(0, 1fr); gap: 22px; }
+  .v69-person-life-year::before { left: 40px; }
+  .v69-battle-people button, .v69-battle-person-links button { min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v69-loading-frame span { animation: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .v56-person-row::before, .v56-jinshi-row::before, .v56-career-row::before, .battle-timeline-item::before { transition: none; }
