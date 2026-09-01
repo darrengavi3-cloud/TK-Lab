@@ -88,9 +88,9 @@ assert(html.includes('const fangzhenPageSize = 12')&&html.includes('const epigra
 assert(html.includes('const rows=fangzhenVisibleRecords.value;')&&html.includes('const rows=fangzhenArchiveRows.value;'),'州镇异步模块计算未先登记响应式数据依赖');
 assert(html.includes('v-if="jinshiMediaAssets.length"')&&html.includes('normalizeEpigraphicMediaAssets'),'金石媒体区未按已核资产条件渲染');
 assert(!html.includes('v-html')&&!html.includes('.innerHTML'),'页面重新引入了可执行 HTML 渲染');
-const fangzhenStart=html.indexOf('<main v-if="activeModule===\'fangzhen\'"');
-const jinshiStart=html.indexOf('<main v-if="activeModule===\'jinshi\'"');
-const shihuoStart=html.indexOf('<main v-if="activeModule===\'shihuo\'"');
+const fangzhenStart=html.indexOf('<main v-if="moduleVisited.fangzhen&&moduleLoadState.fangzhen===\'ready\'"');
+const jinshiStart=html.indexOf('<main v-if="moduleVisited.jinshi&&moduleLoadState.jinshi===\'ready\'"');
+const shihuoStart=html.indexOf('<main v-if="moduleVisited.shihuo&&moduleLoadState.shihuo===\'ready\'"');
 const fangzhenMarkup=html.slice(fangzhenStart,jinshiStart);
 const jinshiMarkup=html.slice(jinshiStart,shihuoStart);
 assert(!fangzhenMarkup.includes('治所未详'),'州镇读者模板仍显示“治所未详”');

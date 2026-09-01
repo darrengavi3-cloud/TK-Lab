@@ -280,7 +280,9 @@ const events = sourceEvents.map(event => {
     eventId: event.eventId,
     sourceRecordId: event.sourceRecordId,
     recipientPersonIds: [...(event.recipientPersonIds || [])],
-    rawRecipient: event.rawRecipient,
+    rawRecipient: event.eventId === 'peerage:374'
+      ? String(event.rawRecipient || '').replace('丁中', '丁冲')
+      : event.rawRecipient,
     year: event.year,
     grantDate: event.grantDate,
     rank: event.rank,

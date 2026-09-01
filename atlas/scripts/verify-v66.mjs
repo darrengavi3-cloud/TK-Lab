@@ -106,6 +106,7 @@ function seatOf(row) {
 const html = read('index.html');
 const readerPeople = json('data/v63-reader-people.json');
 const portraitManifest = json('data/portrait-manifest.json');
+const portraitProduction = json('data/v69-portrait-production.json');
 const mapRegistry = json('data/map-period-registry.json');
 const peerage = json('data/v66-peerage-stages.json');
 const seatPeriods = json('data/v66-administrative-seat-periods.json');
@@ -115,16 +116,20 @@ const fangzhenReader = json('data/v66-fangzhen-reader.json');
 
 /* 人物与立绘稳定基线。 */
 const people = readerPeople?.people || [];
-assert(people.length === 2317, `统一人物名录不是 2317 人：${people.length}`);
+assert(people.length === 2096, `统一人物名录不是 2096 人：${people.length}`);
 assert(new Set(people.map(row => row.personId)).size === people.length, '人物读者包存在重复 personId');
-assert(hashSortedLines(people.map(row => row.personId)) === '090b9e313851e2eb54875edb057825d8af3e839c1fd64f17bf1f8cf1c853a0f4', '人物稳定 ID 集合发生变化');
+assert(hashSortedLines(people.map(row => row.personId)) === '35e6ad03687f0c49069952d8d7558b8542fdb6c05bae2d1e5c7468d59f67c533', '人物稳定 ID 集合发生变化');
 assert(people.every(row => !Object.prototype.hasOwnProperty.call(row, 'datasets')), '人物读者包仍泄露 datasets 来源标签');
 
 const portraits = Object.values(portraitManifest?.assetsById || {});
 const portraitBindings = portraits.map(row => `${row.portraitId}\0${row.personId}`);
-assert(portraits.length === 275, `生产立绘不是 275 项：${portraits.length}`);
+const expectedPortraitCount = portraitProduction?.status === 'complete' ? 375 : 275;
+const expectedPortraitBindingHash = portraitProduction?.status === 'complete'
+  ? 'af57685a58d88f88904c07475f73f38bfbf57206af81dc381d32896b6fcbeaec'
+  : 'e51441f1bd0135fd70a488742d86c0c7f29bdebd33b410bd2e90babe2fddf833';
+assert(portraits.length === expectedPortraitCount, `生产立绘不是 ${expectedPortraitCount} 项：${portraits.length}`);
 assert(new Set(portraits.map(row => row.portraitId)).size === portraits.length, '立绘 portraitId 不唯一');
-assert(hashSortedLines(portraitBindings) === 'e51441f1bd0135fd70a488742d86c0c7f29bdebd33b410bd2e90babe2fddf833', '立绘与稳定 personId 映射发生变化');
+assert(hashSortedLines(portraitBindings) === expectedPortraitBindingHash, '立绘与稳定 personId 映射发生变化');
 
 /* 16 期地图与全量地图资产冻结。 */
 const expectedMapIds = ['huangjin', 'shaodi', 'dongzhuo', 'xingping', 'jianbing', 'guandu', 'chibi', 'xiangfan', 'sanguo', 'beifa', 'guijin', 'hanwang', 'jinchu', 'taikang', 'hui_di', 'yongjia'];
@@ -294,7 +299,7 @@ const peerage431 = peerageEvents.find(row => row.eventId === 'peerage:431');
 assert(peerage431?.disposition === 'stage-misaligned' && peerage431?.publicationStatus === 'review-only' && peerage431?.peerageNodeIds?.length === 0, 'peerage:431 阶段错位仍被公开关联');
 const peerage239 = peerageEvents.find(row => row.eventId === 'peerage:239');
 assert(peerage239?.rankStages?.filter(stage => stage.publicationStatus === 'verified').map(stage => `${stage.year}:${stage.title}:${stage.rankLevel}`).join('|') === '221:齐公:公|222:平原王:王', '曹叡齐公、平原王分期未正确进入曹魏爵制');
-assert(html.includes('peoplePrimaryPeerageTimeline') && html.includes('返回爵制节点') && html.includes("stage.publicationStatus!=='review-only'"), '人物封爵时间线未按 V66 已核阶段投影或缺少爵制节点返链');
+assert(html.includes('peoplePrimaryLifeTimeline') && html.includes("event.eventType==='peerage'") && html.includes('jumpPersonPeerageToCatalog(peerage)') && html.includes("stage.publicationStatus!=='review-only'"), '人物封爵经历未按已核阶段进入统一时间线或缺少爵制节点返链');
 assert(peerageEvents.every(row => row.rankStages.every(stage => stage.peeragePhase !== 'wei-xianxi-five-rank' || stage.rankLevel !== '侯' || !stage.peerageNodeId || stage.peerageNodeId === 'peerage:wei:rank:hou')), '咸熙五等侯被错误归入列侯子类型');
 const v61Peerage = json('data/v61-person-supplements.json')?.peerageEvents?.filter(row => row.readerVisible) || [];
 assert(v61Peerage.length === 525 && v61Peerage.reduce((total, row) => total + row.recipientPersonIds.length, 0) === 542 && new Set(v61Peerage.flatMap(row => row.recipientPersonIds)).size === 374, '封爵原有 525 事件／542 人次／374 人关系发生缩水');
@@ -364,8 +369,8 @@ assert(hashSortedLines(battleReaderRows.map(row => row.id)) === '723c4d4a4a006d9
 const battleLogicStart = html.indexOf('const battleEntryList = computed');
 const battleLogicEnd = html.indexOf('function officeClassOf', battleLogicStart + 1);
 const battleLogic = battleLogicStart >= 0 && battleLogicEnd > battleLogicStart ? html.slice(battleLogicStart, battleLogicEnd) : '';
-const battleTemplateStart = html.indexOf('<main v-if="activeModule===\'battle\'"');
-const battleTemplateEnd = html.indexOf('<main v-if="activeModule===\'fangzhen\'"', battleTemplateStart + 1);
+const battleTemplateStart = html.indexOf('<main v-if="moduleVisited.battle&&moduleLoadState.battle===\'ready\'"');
+const battleTemplateEnd = html.indexOf('<main v-if="moduleVisited.fangzhen&&moduleLoadState.fangzhen===\'ready\'"', battleTemplateStart + 1);
 const battleTemplate = battleTemplateStart >= 0 && battleTemplateEnd > battleTemplateStart ? html.slice(battleTemplateStart, battleTemplateEnd) : '';
 assert(battleLogic.includes('BATTLE_ERA_ANCHORS') && battleLogic.includes('battleChronologyRows') && battleTemplate.includes('battle-chronology-list'), '战事纪 V66 单根编年导线或三个时代锚点未接入');
 assert(!/battle(?:BranchGroups|CampaignGroups|ProvinceGroups|PeriodId|Density|View|Query)/.test(battleLogic + battleTemplate), '战事纪仍保留类别／交战关系／时期／局部密度等旧控件');

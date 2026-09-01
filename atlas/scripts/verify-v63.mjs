@@ -45,6 +45,7 @@ const v61 = json('data/v61-person-supplements.json');
 const registry = json('data/v63-person-registry.json');
 const reader = json('data/v63-reader-people.json');
 const portraits = json('data/portrait-manifest.json');
+const portraitProduction = json('data/v69-portrait-production.json');
 const statusValues = new Set(['verified', 'review-only', 'suppressed']);
 
 assert(schema.controlledVocabularies?.publicationStatus?.join('|') === 'verified|review-only|suppressed', 'research-schema 发布状态词表不完整');
@@ -113,8 +114,9 @@ assert(registry.identityMigrations?.length === 9, '应补齐的 person:source/pe
 assert(registry.protectedExistingPeople?.length === 10 && registry.protectedExistingPeople.every(row => row.resolved), '10 个验收指定的既有正式人物 ID 未全部解析');
 
 const portraitAssets = Object.values(portraits.assetsById || {});
-assert(portraitAssets.length === 275, `立绘资产不是 275 项，实际 ${portraitAssets.length}`);
-assert(registry.portraitResolutions?.length === 275 && registry.summary?.unresolvedPortraits === 0, '275 项立绘未全部通过正式或兼容 ID 解析');
+const expectedPortraitAssets = portraitProduction.status === 'complete' ? 375 : 275;
+assert(portraitAssets.length === expectedPortraitAssets, `立绘资产不是 ${expectedPortraitAssets} 项，实际 ${portraitAssets.length}`);
+assert(registry.portraitResolutions?.length === expectedPortraitAssets && registry.summary?.unresolvedPortraits === 0, `${expectedPortraitAssets} 项立绘未全部通过正式或兼容 ID 解析`);
 for (const row of registry.portraitResolutions || []) assert(Boolean(registry.byPersonId[row.personId]), `${row.portraitId} 解析到不存在的人物`);
 const frozenPortraits = {
   'portrait:asset:12d23c4bb0e34a35af89': ['person:workbook:10602094ff4cb2ed', '68:18'],

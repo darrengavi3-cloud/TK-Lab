@@ -20,6 +20,7 @@ const v61 = readJson('v61-person-supplements.json');
 const sourceIndex = readJson('person-source-index.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
+const v62ReaderScope = readJson('v62-reader-scope.json');
 
 const context = { window: {} };
 context.window.window = context.window;
@@ -49,6 +50,15 @@ const protectedExistingPeople = Object.freeze({
   '袁邵': 'person:jin:yuan-shao', '石苞': 'person:jin:shi-bao', '卫瓘': 'person:jin:wei-guan', '羊祜': 'person:jin:yang-hu',
   '杜预': 'person:source:b948df238097', '刘琨': 'person:source:beb0020a5f82',
 });
+const canonicalPersonCorrections = Object.freeze({
+  'person:peerage:96a323e97ca0c2fa': {
+    name: '丁冲',
+    legacyErroneousNames: ['丁中'],
+    sourceTitle: '《三国志》卷十九裴注引《魏略》',
+    sourceLocator: '曹操表丁冲劝迎天子、为司隶校尉事',
+    sourceUrl: 'https://zh.wikisource.org/zh/三國志/卷19'
+  }
+});
 
 const legacyToCanonical = {};
 for (const [legacyId, canonicalId] of Object.entries(identityApi.legacyPersonIdMap || {})) legacyToCanonical[legacyId] = canonicalId;
@@ -68,6 +78,76 @@ function canonicalPersonId(personId) {
   return current;
 }
 for (const key of Object.keys(legacyToCanonical)) legacyToCanonical[key] = canonicalPersonId(key);
+
+// 句法/OCR 抽取会把“安西将军”“安东大将军”“喬安北将军”等官号片段
+// 误登记为人物。它们保留在 person-source-index 作为不可变溯源，但不得进入
+// 当前人物注册表或读者投影；后续重建也通过这里的显式排除保持幂等。
+const nonPersonNameExclusions = Object.freeze({
+  '安西': {
+    reason: '《晋书》正文抽取自“安西将军”，非人物姓名。',
+    sourcePersonIds: ['person:source:b46503f871dd'],
+    sourceRecordIds: [
+      'appointment:source:jinshu:060:088786c6dcfa',
+      'appointment:source:jinshu:067:592c924acd49',
+      'appointment:source:jinshu:116:edfee8f60eb2'
+    ]
+  },
+  '安东大': {
+    reason: '《晋书》正文抽取自“安东大将军”，非人物姓名。',
+    sourcePersonIds: ['person:source:caf341a26a33'],
+    sourceRecordIds: ['appointment:source:jinshu:038:46d955e484be']
+  },
+  '喬安北': {
+    reason: '《晋书》正文抽取自“喬安北将军”，非人物姓名。',
+    sourcePersonIds: ['person:source:d9e7f815aed4'],
+    sourceRecordIds: ['appointment:source:jinshu:061:e2d0d259d6c4']
+  },
+  '安南': {
+    reason: '官号/地域词（如“安南将军”），不建立人物实体。',
+    sourcePersonIds: [],
+    sourceRecordIds: []
+  }
+});
+const exclusionByNormalizedName = new Map(Object.entries(nonPersonNameExclusions).map(([name, value]) => [normalize(name), { name, ...value }]));
+const excludedSourcePersonIds = new Set(
+  Object.values(nonPersonNameExclusions).flatMap(item => item.sourcePersonIds || []).map(canonicalPersonId)
+);
+const excludedPeopleAudit = new Map();
+function registerExcludedPerson(name, personId = '', sourceRecordIds = []) {
+  const normalizedName = normalize(name);
+  const known = exclusionByNormalizedName.get(normalizedName);
+  if (!known) return;
+  const canonicalId = text(personId) ? canonicalPersonId(personId) : '';
+  const key = canonicalId || `name:${normalizedName}`;
+  const current = excludedPeopleAudit.get(key) || {
+    personId: canonicalId || undefined,
+    name: known.name,
+    reason: known.reason,
+    sourcePersonIds: new Set(),
+    sourceRecordIds: new Set(),
+    publicationStatus: 'suppressed'
+  };
+  for (const id of known.sourcePersonIds || []) current.sourcePersonIds.add(id);
+  if (personId) current.sourcePersonIds.add(text(personId));
+  for (const id of known.sourceRecordIds || []) current.sourceRecordIds.add(id);
+  for (const id of sourceRecordIds || []) if (id) current.sourceRecordIds.add(id);
+  excludedPeopleAudit.set(key, current);
+}
+for (const [name, exclusion] of Object.entries(nonPersonNameExclusions)) registerExcludedPerson(name, exclusion.sourcePersonIds?.[0] || '', exclusion.sourceRecordIds);
+for (const person of sourceIndex.people || []) {
+  if (exclusionByNormalizedName.has(normalize(person.name)) || excludedSourcePersonIds.has(canonicalPersonId(person.personId))) {
+    registerExcludedPerson(person.name, person.personId, person.sourceIds || []);
+  }
+}
+for (const appointment of sourceIndex.appointments || []) {
+  if (exclusionByNormalizedName.has(normalize(appointment.name)) || excludedSourcePersonIds.has(canonicalPersonId(appointment.personId))) {
+    registerExcludedPerson(appointment.name, appointment.personId, [appointment.id]);
+  }
+}
+function isExcludedSourceRecord(personId = '', name = '') {
+  const canonicalId = text(personId) ? canonicalPersonId(personId) : '';
+  return excludedSourcePersonIds.has(canonicalId) || exclusionByNormalizedName.has(normalize(name));
+}
 
 function snapshotSourceRows(rows) {
   const occurrences = new Map();
@@ -185,12 +265,15 @@ const entries = new Map();
 function ensure(personId, name = '') {
   const canonicalId = canonicalPersonId(personId);
   if (!canonicalId) return null;
+  const correction = canonicalPersonCorrections[canonicalId];
+  const canonicalName = correction?.name || text(name);
   if (!entries.has(canonicalId)) entries.set(canonicalId, {
-    personId: canonicalId, name: text(name), aliases: new Set(), legacyPersonIds: new Set(), sourceRecordIds: new Set(),
+    personId: canonicalId, name: canonicalName, aliases: new Set(), legacyPersonIds: new Set(), sourceRecordIds: new Set(),
     datasets: new Set(), readerDatasets: new Set(), identityStatus: 'review-only', fieldCandidates: {}, appointmentIds: new Set(), peerageEventIds: new Set(), portraitIds: new Set(),
   });
   const entry = entries.get(canonicalId);
-  if (!entry.name && name) entry.name = text(name);
+  if (correction) entry.name = correction.name;
+  else if (!entry.name && name) entry.name = text(name);
   if (personId && personId !== canonicalId) entry.legacyPersonIds.add(personId);
   return entry;
 }
@@ -214,6 +297,7 @@ for (const identity of identityApi.identities || []) {
 }
 
 for (const person of sourceIndex.people || []) {
+  if (isExcludedSourceRecord(person.personId, person.name)) continue;
   const canonicalId = canonicalPersonId(person.personId);
   const entry = ensure(canonicalId, person.name);
   entry.datasets.add('activity-source');
@@ -222,6 +306,7 @@ for (const person of sourceIndex.people || []) {
   if (/\u5df2按显式身份|\u5df2核|\u5df2消歧/.test(text(person.homonymStatus)) || (identityApi.identities || []).some(item => item.personId === canonicalId)) entry.identityStatus = 'resolved';
 }
 for (const appointment of sourceIndex.appointments || []) {
+  if (isExcludedSourceRecord(appointment.personId, appointment.name)) continue;
   const entry = ensure(canonicalPersonId(appointment.personId), appointment.name);
   entry.datasets.add('appointments');
   entry.appointmentIds.add(appointment.id);
@@ -230,6 +315,7 @@ for (const appointment of sourceIndex.appointments || []) {
 
 for (const row of v60.people || []) {
   const sourceRecordId = row.sourceRecordId || `source:v60:person:${String(row.ordinal).padStart(4, '0')}`;
+  if (isExcludedSourceRecord(row.personId, row.name)) continue;
   const entry = ensure(sourceRecordToCanonical[sourceRecordId], row.name);
   entry.datasets.add('v60-workbook');
   entry.readerDatasets.add('v60');
@@ -245,6 +331,7 @@ for (const row of v60.people || []) {
 
 for (const person of v61.people || []) {
   const canonicalId = canonicalPersonId(person.canonicalPersonId || person.personId);
+  if (isExcludedSourceRecord(canonicalId, person.name)) continue;
   const entry = ensure(canonicalId, person.name);
   entry.datasets.add('v61-supplement');
   for (const alias of person.aliases || []) entry.aliases.add(alias);
@@ -257,6 +344,7 @@ for (const person of v61.people || []) {
 }
 
 for (const { row, sourceRecordId } of snapshotRows) {
+  if (isExcludedSourceRecord(row.canonicalPersonId || row.personId, row.name || row.rawName)) continue;
   const entry = ensure(sourceRecordToCanonical[sourceRecordId], row.name || row.rawName);
   if (!entry) continue;
   entry.datasets.add('snapshot260');
@@ -274,6 +362,7 @@ for (const { row, sourceRecordId } of snapshotRows) {
 for (const event of v61.peerageEvents || []) {
   if (!event.readerVisible || event.disposition !== '采用') continue;
   for (const legacyId of event.recipientPersonIds || []) {
+    if (isExcludedSourceRecord(legacyId, event.rawRecipient)) continue;
     const entry = ensure(canonicalPersonId(legacyId), '');
     entry.datasets.add('peerage');
     entry.readerDatasets.add('peerage');
@@ -283,6 +372,7 @@ for (const event of v61.peerageEvents || []) {
 }
 
 for (const row of v62.people || []) {
+  if (isExcludedSourceRecord(row.personId, row.name)) continue;
   const entry = ensure(canonicalPersonId(row.personId), '');
   entry.datasets.add('v62-people');
   const safe = row.affiliationStatus === 'resolved' && !(row.readerTagConflicts || []).length;
@@ -292,6 +382,7 @@ for (const row of v62.people || []) {
 }
 
 for (const [name, biography] of Object.entries(biographies)) {
+  if (isExcludedSourceRecord('', name)) continue;
   const matches = [...entries.values()].filter(entry => normalize(entry.name) === normalize(name));
   const entry = matches.find(item => item.datasets.has('curated-identities')) || matches.find(item => item.datasets.has('v60-workbook')) || matches[0];
   if (!entry) continue;
@@ -307,6 +398,7 @@ const portraitResolutions = [];
 for (const asset of Object.values(portraits.assetsById || {})) {
   const legacyPersonId = text(asset.personId);
   const canonicalId = canonicalPersonId(legacyPersonId);
+  if (isExcludedSourceRecord(canonicalId, asset.name)) continue;
   const entry = ensure(canonicalId, asset.name);
   entry.datasets.add('portraits');
   entry.portraitIds.add(asset.portraitId);
@@ -314,7 +406,27 @@ for (const asset of Object.values(portraits.assetsById || {})) {
   portraitResolutions.push({ portraitId: asset.portraitId, legacyPersonId, personId: canonicalId });
 }
 
+// V62 的阅读态人物范围是本轮的回退基线。当前规范源可以继续保存更多
+// 审校候选，但只有冻结集合中的稳定 ID 才能进入人物注册表和读者包。
+const readerScopeRows = Array.isArray(v62ReaderScope.people) ? v62ReaderScope.people : [];
+const readerScopeIds = new Set(readerScopeRows.map(row => canonicalPersonId(row.personId)).filter(Boolean));
+if (readerScopeIds.size !== readerScopeRows.length || readerScopeRows.length !== 2096) {
+  throw new Error(`V62 阅读范围无效：期望 2096 个唯一 personId，当前 ${readerScopeRows.length}/${readerScopeIds.size}`);
+}
+for (const row of readerScopeRows) {
+  const canonicalId = canonicalPersonId(row.personId);
+  if (isExcludedSourceRecord(canonicalId, row.name)) continue;
+  if (!entries.has(canonicalId)) {
+    const entry = ensure(canonicalId, row.name);
+    entry.identityStatus = 'review-only';
+    entry.datasets.add('v62-reader-scope');
+    entry.readerDatasets.add('v62');
+    entry.sourceRecordIds.add(`v62-scope:${canonicalId}`);
+  }
+}
+
 for (const conflict of ziConflicts) {
+  if (isExcludedSourceRecord(conflict.personId, conflict.name) || isExcludedSourceRecord(conflict.isolatedPersonId, conflict.name)) continue;
   const primary = ensure(conflict.personId, conflict.name);
   primary.identityStatus = 'conflict';
   const isolated = ensure(conflict.isolatedPersonId, conflict.name);
@@ -323,7 +435,7 @@ for (const conflict of ziConflicts) {
 
 const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
 function chooseField(entry, field) {
-  if (field === 'name') return { status: entry.name ? 'verified' : 'suppressed', value: entry.name || undefined };
+  if (field === 'name') return { status: readerScopeIds.has(entry.personId) && entry.name ? 'verified' : 'suppressed', value: entry.name || undefined };
   if (field === 'aliases') return { status: entry.aliases.size ? 'verified' : 'suppressed', value: [...entry.aliases].sort((a, b) => a.localeCompare(b, 'zh-CN')) };
   if (field === 'appointments') {
     const status = entry.appointmentIds.size ? (entry.identityStatus === 'resolved' ? 'verified' : 'review-only') : 'suppressed';
@@ -339,7 +451,8 @@ function chooseField(entry, field) {
   return { status: 'suppressed', value: undefined };
 }
 
-const people = [...entries.values()].map(entry => {
+const registryEntries = [...entries.values()].filter(entry => !isExcludedSourceRecord(entry.personId, entry.name));
+const people = registryEntries.map(entry => {
   if (conflictPrimaryIds.has(entry.personId)) entry.identityStatus = 'conflict';
   const publicationStatus = {};
   const values = {};
@@ -360,6 +473,14 @@ const people = [...entries.values()].map(entry => {
     publicationStatus,
     values,
     reviewCandidates: Object.fromEntries(Object.entries(entry.fieldCandidates).map(([field, candidates]) => [field, candidates])),
+    ...(canonicalPersonCorrections[entry.personId] ? {
+      canonicalCorrection: {
+        legacyErroneousNames: canonicalPersonCorrections[entry.personId].legacyErroneousNames,
+        sourceTitle: canonicalPersonCorrections[entry.personId].sourceTitle,
+        sourceLocator: canonicalPersonCorrections[entry.personId].sourceLocator,
+        sourceUrl: canonicalPersonCorrections[entry.personId].sourceUrl
+      }
+    } : {}),
   };
 }).sort((a, b) => a.personId.localeCompare(b.personId));
 
@@ -380,11 +501,16 @@ const readerPeople = people.filter(person => person.publicationStatus.name === '
   }
   return output;
 });
+if (readerPeople.length !== 2096) throw new Error(`V63 阅读态人物范围应回退为 2096 人，当前 ${readerPeople.length}`);
 
 const protectedResolution = Object.entries(protectedExistingPeople).map(([name, personId]) => ({ name, personId: canonicalPersonId(personId), resolved: Boolean(byPersonId[canonicalPersonId(personId)]) }));
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
+  readerScopeVersion: v62ReaderScope.schemaVersion || 'V62',
+  readerScopePeople: readerScopeRows.length,
+  scopeExcludedPeople: excludedPeopleAudit.size,
+  nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
   legacyMappings: Object.keys(legacyToCanonical).length,
   sourceRecordMappings: Object.keys(sourceRecordToCanonical).length,
   ziConflicts: ziConflicts.length,
@@ -397,6 +523,15 @@ const summary = {
   verifiedFieldCounts: Object.fromEntries(fields.map(field => [field, people.filter(person => person.publicationStatus[field] === 'verified').length])),
 };
 
+const excludedPeople = [...excludedPeopleAudit.values()].map(item => ({
+  ...(item.personId ? { personId: item.personId } : {}),
+  name: item.name,
+  reason: item.reason,
+  sourcePersonIds: [...item.sourcePersonIds].sort(),
+  sourceRecordIds: [...item.sourceRecordIds].sort(),
+  publicationStatus: item.publicationStatus,
+})).sort((a, b) => a.name.localeCompare(b.name, 'zh-CN') || String(a.personId || '').localeCompare(String(b.personId || '')));
+
 const registry = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-person-registry',
@@ -407,7 +542,14 @@ const registry = {
     conflict: '表字、政权或其他身份信号冲突时按 sourceRecordId 隔离，禁止以唯一姓名自动合并。',
   },
   summary,
+  readerScope: {
+    schemaVersion: v62ReaderScope.schemaVersion || 'V62',
+    modelId: v62ReaderScope.modelId || 'sgz-v62-reader-scope',
+    people: readerScopeRows.length,
+    policy: v62ReaderScope.policy,
+  },
   people,
+  excludedPeople,
   byPersonId,
   legacyToCanonical: Object.fromEntries(Object.entries(legacyToCanonical).sort(([a], [b]) => a.localeCompare(b))),
   sourceRecordToCanonical: Object.fromEntries(Object.entries(sourceRecordToCanonical).sort(([a], [b]) => a.localeCompare(b))),
@@ -420,7 +562,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: v62ReaderScope.schemaVersion || 'V62' },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,

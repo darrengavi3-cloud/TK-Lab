@@ -218,8 +218,8 @@ for (const relative of codeIdentifierExceptions) {
 const readerHtml = fs.readFileSync(path.join(readerDir, 'index.html'), 'utf8');
 const readerHead = readerHtml.slice(0, readerHtml.indexOf('</head>') + 7);
 assert(!/<script\s+[^>]*src=["'][^"']*assets\/vendor\/xlsx\/xlsx\.full\.min\.js/.test(readerHead), '读者首屏仍加载 SheetJS');
-assert(!readerHead.includes('v66-fangzhen-reader.js'), '读者首屏仍提前加载州镇读者投影');
-assert(readerHtml.includes("loadSgzDataScript('v66-fangzhen-reader','./data/v66-fangzhen-reader.js?v=66','SGZ_V66_FANGZHEN_READER')"), '当前州镇读者投影未按板块延迟载入');
+assert(!readerHead.includes('v69-fangzhen-reader.js'), '读者首屏仍同步阻塞加载州镇读者投影');
+assert(readerHtml.includes("loadSgzDataScript('v69-fangzhen-reader','./data/v69-fangzhen-reader.js?v=69','SGZ_V69_FANGZHEN_READER')"), '当前州镇读者投影未接入共享按需／预取加载器');
 assert(!readerHtml.includes('v65-fangzhen-reader.js'), '读者 HTML 仍加载已被 V66 替代的旧州镇发布登记');
 assert(!/window\.SGZ_(?:V60_PERSON_WORKBOOK_IMPORT|V61_PERSON_SUPPLEMENTS|V60_RESEARCH_LEDGER|V61_EPIGRAPHY_RESEARCH|PERSON_SOURCE_INDEX)\s*=/.test(readerHtml), '读者 HTML 内嵌审校数据');
 assert(!/"(?:workbookSource|workbookSources|workbookHash|sheet|row|sourceRecordId|rowAudit|externalSearchLog|searchLog|searchState|historicalDisposition|researchDisposition|publicationStatus|sourceLocator|sourceExcerpt|evidence)"\s*:/.test(readerHtml), '读者 HTML 内嵌审校字段负载');
@@ -252,25 +252,14 @@ const actualMapPaths = readerFiles
   .sort();
 assert(JSON.stringify(actualMapPaths) === JSON.stringify((readerManifest.readerProjection?.mapRuntimeFiles || []).slice().sort()), '地图运行目录超出 reader 白名单');
 assert(fs.existsSync(path.join(readerDir, 'assets/map/data/hydronym-reader.js')), '读者包缺少古水名纯净投影');
-assert(fs.existsSync(path.join(readerDir, 'data/v65-epigraphy-reader-overlays.js')), '读者包缺少 V65 金石读者叠加层');
-const epigraphicCore = evaluateWindowFile(path.join(readerDir, 'data/epigraphic-records.js'), 'reader:data/epigraphic-records.js').SGZ_EPIGRAPHIC_RECORDS?.records || [];
-const epigraphicJin = evaluateWindowFile(path.join(readerDir, 'data/epigraphic-v46-jin.js'), 'reader:data/epigraphic-v46-jin.js').SGZ_EPIGRAPHIC_V46_JIN?.records || [];
-const epigraphyOverlay = evaluateWindowFile(path.join(readerDir, 'data/v65-epigraphy-reader-overlays.js'), 'reader:data/v65-epigraphy-reader-overlays.js').SGZ_V65_EPIGRAPHY_READER_OVERLAYS;
-const epigraphyById = new Map([...epigraphicCore, ...epigraphicJin].map(row => [String(row.id || ''), { ...row }]));
-assert(epigraphyById.size === 188, '金石读者基线应为 188 个稳定 ID');
-const baseEpigraphyInscribed = [...epigraphyById.values()].filter(row => String(row.inscription || '').trim()).length;
-const overlayIds = new Set();
-for (const overlay of epigraphyOverlay?.records || []) {
-  const recordId = String(overlay.recordId || '');
-  assert(recordId && epigraphyById.has(recordId) && !overlayIds.has(recordId), `金石读者叠加层 ID 无法回定位或重复 ${recordId}`);
-  assert(String(overlay.inscription || '').trim(), `金石读者叠加层释文为空 ${recordId}`);
-  overlayIds.add(recordId);
-  epigraphyById.set(recordId, { ...epigraphyById.get(recordId), ...overlay });
-}
-const mergedEpigraphyInscribed = [...epigraphyById.values()].filter(row => String(row.inscription || '').trim()).length;
-assert(baseEpigraphyInscribed === 46, `金石读者基线释文数应为 46，实际 ${baseEpigraphyInscribed}`);
-assert(mergedEpigraphyInscribed === 52 && epigraphyById.size - mergedEpigraphyInscribed === 136, `金石运行时实际合并应为 52 有释文 / 136 空释文，实际 ${mergedEpigraphyInscribed}/${epigraphyById.size - mergedEpigraphyInscribed}`);
-assert((readerManifest.readerProjection?.epigraphyReaderOverlayCount || 0) === overlayIds.size, '金石读者叠加层清单数与运行时不一致');
+const v69EpigraphyPath = path.join(readerDir, 'data/v69-epigraphic-records.js');
+assert(fs.existsSync(v69EpigraphyPath), '读者包缺少 V69 金石最终投影');
+const epigraphyRecords = evaluateWindowFile(v69EpigraphyPath, 'reader:data/v69-epigraphic-records.js').SGZ_V69_EPIGRAPHIC_RECORDS?.records || [];
+const epigraphyIds = new Set(epigraphyRecords.map(row => String(row.id || '')));
+const epigraphyInscribed = epigraphyRecords.filter(row => String(row.inscription || '').trim()).length;
+assert(epigraphyRecords.length === 166 && epigraphyIds.size === 166, `V69 金石读者投影应为 166 个稳定 ID，实际 ${epigraphyRecords.length}/${epigraphyIds.size}`);
+assert(epigraphyInscribed === 44 && epigraphyRecords.length - epigraphyInscribed === 122, `V69 金石读者投影应为 44 有释文 / 122 空释文，实际 ${epigraphyInscribed}/${epigraphyRecords.length - epigraphyInscribed}`);
+assert(readerManifest.readerProjection?.epigraphicRecordCount === epigraphyRecords.length, '金石读者投影数量与清单不一致');
 assert(readerManifest.readerProjection?.mapPeriodCount === 16 && readerManifest.readerProjection?.mapAuditGlobals === 0, '地图注册表读者投影不闭合');
 
 const readerMapRegistry = evaluateWindowFile(path.join(readerDir, 'data/map-period-registry.js'), 'reader:data/map-period-registry.js');
@@ -331,7 +320,7 @@ for (const person of readerJson.people || []) {
 }
 const actualAppointmentRelations = new Set((readerRelations.appointments || []).map(row => `${row.appointmentId}@${row.personId}`));
 const actualPeerageRelations = new Set((readerRelations.peerageEvents || []).map(row => `${row.eventId}@${row.personId}`));
-assert(expectedAppointmentRelations.size === 179 && expectedPeerageRelations.size === 535, `V63 读者允许关系基线应为任官 179 / 封爵 535，实际 ${expectedAppointmentRelations.size}/${expectedPeerageRelations.size}`);
+assert(expectedAppointmentRelations.size === 149 && expectedPeerageRelations.size === 535, `V63 读者允许关系基线应为任官 149 / 封爵 535，实际 ${expectedAppointmentRelations.size}/${expectedPeerageRelations.size}`);
 assert(actualAppointmentRelations.size === (readerRelations.appointments || []).length, 'V63 读者任官 personId+appointmentId 复合键不唯一');
 assert(actualPeerageRelations.size === (readerRelations.peerageEvents || []).length, 'V63 读者封爵 personId+eventId 复合键不唯一');
 assert(expectedAppointmentRelations.size === actualAppointmentRelations.size && [...expectedAppointmentRelations].every(key => actualAppointmentRelations.has(key)), 'V63 读者任官允许 ID 与关联投影不闭合');

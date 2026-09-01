@@ -70,18 +70,18 @@ test("packages the V63 field-gated full people reader projection", async () => {
   assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
-  assert.equal(people.length, 2317);
+  assert.equal(people.length, 2096);
   assert.equal(new Set(people.map((person) => person.personId)).size, people.length);
   assert.ok(people.every((person) => person.personId && person.name));
   assert.ok(people.every((person) => !("datasets" in person)));
 });
 
-test("packages all 275 production portraits and the V66 seat-gated reader records", async () => {
+test("packages all 375 production portraits and the V69 reader records", async () => {
   const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
   const [legacy, manifestRaw, fangzhenSource, jinshiSource] = await Promise.all([
     readFile(new URL("index.html", legacyRoot), "utf8"),
     readFile(new URL("data/portrait-manifest.json", legacyRoot), "utf8"),
-    readFile(new URL("data/v66-fangzhen-reader.js", legacyRoot), "utf8"),
+    readFile(new URL("data/v69-fangzhen-reader.js", legacyRoot), "utf8"),
     readFile(new URL("data/v62-jinshi-display.js", legacyRoot), "utf8"),
   ]);
 
@@ -96,12 +96,12 @@ test("packages all 275 production portraits and the V66 seat-gated reader record
   );
 
   assert.doesNotMatch(legacy, /v62-people-offices\.js/);
-  assert.match(legacy, /v66-fangzhen-reader\.js/);
+  assert.match(legacy, /v69-fangzhen-reader\.js/);
   assert.match(legacy, /v62-jinshi-display\.js\?v=62/);
-  assert.match(fangzhenSource, /SGZ_V66_FANGZHEN_READER/);
+  assert.match(fangzhenSource, /SGZ_V69_FANGZHEN_READER/);
   assert.doesNotMatch(fangzhenSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
   assert.match(jinshiSource, /SGZ_V62_JINSHI_DISPLAY/);
-  assert.equal(assets.length, 275);
+  assert.equal(assets.length, 375);
   assert.equal(v62Assets.length, 100);
   assert.deepEqual(dynastyCounts, { 后汉: 20, 魏: 20, 季汉: 20, 吴: 20, 西晋: 20 });
 

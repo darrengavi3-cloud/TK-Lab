@@ -1,0 +1,1582 @@
+{
+  "schemaVersion": "V69",
+  "modelId": "sgz-v69-battle-person-links",
+  "generatedAt": "2026-08-29T16:00:00.000Z",
+  "summary": {
+    "records": 62,
+    "linkedRecords": 49,
+    "noExplicitPersonRecords": 12,
+    "ambiguousRecords": 1,
+    "links": 106
+  },
+  "links": [
+    {
+      "linkId": "battle-person:ev_huangjin_184:person:source:779b07352932",
+      "recordId": "ev_huangjin_184",
+      "personId": "person:source:779b07352932",
+      "name": "皇甫嵩",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《后汉书》卷七十一·皇甫嵩传",
+      "sourceLocator": "《后汉书》卷七十一·皇甫嵩传；ev_huangjin_184 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_huangjin_184:person:workbook:0d601c62c3e0381c",
+      "recordId": "ev_huangjin_184",
+      "personId": "person:workbook:0d601c62c3e0381c",
+      "name": "张角",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《后汉书》卷七十一·皇甫嵩传",
+      "sourceLocator": "《后汉书》卷七十一·皇甫嵩传；ev_huangjin_184 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_liuyan_188:person:workbook:32598ca78940765f",
+      "recordId": "ev_liuyan_188",
+      "personId": "person:workbook:32598ca78940765f",
+      "name": "刘焉",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《后汉书》卷七十五·刘焉传",
+      "sourceLocator": "《后汉书》卷七十五·刘焉传；ev_liuyan_188 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_hejin_189:person:workbook:e1d0e31a7b6329cb",
+      "recordId": "ev_hejin_189",
+      "personId": "person:workbook:e1d0e31a7b6329cb",
+      "name": "董卓",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_hejin_189 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_hejin_189:person:workbook:761fd3aa03529eea",
+      "recordId": "ev_hejin_189",
+      "personId": "person:workbook:761fd3aa03529eea",
+      "name": "何进",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_hejin_189 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_taodong_190:person:workbook:e1d0e31a7b6329cb",
+      "recordId": "ev_taodong_190",
+      "personId": "person:workbook:e1d0e31a7b6329cb",
+      "name": "董卓",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_taodong_190 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_taodong_190:person:source:653eea8eb9c6",
+      "recordId": "ev_taodong_190",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_taodong_190 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jieqiao_191:person:workbook:a9af256c99ce1150",
+      "recordId": "ev_jieqiao_191",
+      "personId": "person:workbook:a9af256c99ce1150",
+      "name": "公孙瓒",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十三·公孙瓒列传",
+      "sourceLocator": "《后汉书》卷七十三·公孙瓒列传；ev_jieqiao_191 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jieqiao_191:person:source:653eea8eb9c6",
+      "recordId": "ev_jieqiao_191",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十三·公孙瓒列传",
+      "sourceLocator": "《后汉书》卷七十三·公孙瓒列传；ev_jieqiao_191 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_longcao_191:person:workbook:a9af256c99ce1150",
+      "recordId": "ev_longcao_191",
+      "personId": "person:workbook:a9af256c99ce1150",
+      "name": "公孙瓒",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十三·公孙瓒列传",
+      "sourceLocator": "《后汉书》卷七十三·公孙瓒列传；ev_longcao_191 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_longcao_191:person:source:653eea8eb9c6",
+      "recordId": "ev_longcao_191",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十三·公孙瓒列传",
+      "sourceLocator": "《后汉书》卷七十三·公孙瓒列传；ev_longcao_191 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jumashui_192:person:workbook:a9af256c99ce1150",
+      "recordId": "ev_jumashui_192",
+      "personId": "person:workbook:a9af256c99ce1150",
+      "name": "公孙瓒",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十三·公孙瓒列传",
+      "sourceLocator": "《后汉书》卷七十三·公孙瓒列传；ev_jumashui_192 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jumashui_192:person:source:653eea8eb9c6",
+      "recordId": "ev_jumashui_192",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十三·公孙瓒列传",
+      "sourceLocator": "《后汉书》卷七十三·公孙瓒列传；ev_jumashui_192 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wangyun_192:person:workbook:e1d0e31a7b6329cb",
+      "recordId": "ev_wangyun_192",
+      "personId": "person:workbook:e1d0e31a7b6329cb",
+      "name": "董卓",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_wangyun_192 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wangyun_192:person:workbook:523c12b46171de5c",
+      "recordId": "ev_wangyun_192",
+      "personId": "person:workbook:523c12b46171de5c",
+      "name": "郭汜",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_wangyun_192 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wangyun_192:person:workbook:65f5118d20de2114",
+      "recordId": "ev_wangyun_192",
+      "personId": "person:workbook:65f5118d20de2114",
+      "name": "李傕",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_wangyun_192 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wangyun_192:person:workbook:9296aad953ce0899",
+      "recordId": "ev_wangyun_192",
+      "personId": "person:workbook:9296aad953ce0899",
+      "name": "吕布",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_wangyun_192 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wangyun_192:person:workbook:270feaef9ea4faae",
+      "recordId": "ev_wangyun_192",
+      "personId": "person:workbook:270feaef9ea4faae",
+      "name": "王允",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十二·董卓列传",
+      "sourceLocator": "《后汉书》卷七十二·董卓列传；ev_wangyun_192 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_taozhou_193:person:wei:cao-cao",
+      "recordId": "ev_taozhou_193",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_taozhou_193 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_taozhou_193:person:workbook:9296aad953ce0899",
+      "recordId": "ev_taozhou_193",
+      "personId": "person:workbook:9296aad953ce0899",
+      "name": "吕布",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_taozhou_193 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_taozhou_193:person:han:tao-qian",
+      "recordId": "ev_taozhou_193",
+      "personId": "person:han:tao-qian",
+      "name": "陶谦",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_taozhou_193 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_puyang_194:person:wei:cao-cao",
+      "recordId": "ev_puyang_194",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_puyang_194 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_puyang_194:person:workbook:9296aad953ce0899",
+      "recordId": "ev_puyang_194",
+      "personId": "person:workbook:9296aad953ce0899",
+      "name": "吕布",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_puyang_194 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_sunce_jiangdong_195:person:workbook:2dfe7b6919d86a30",
+      "recordId": "ev_sunce_jiangdong_195",
+      "personId": "person:workbook:2dfe7b6919d86a30",
+      "name": "刘繇",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷四十六·孙讨逆传；ev_sunce_jiangdong_195 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_sunce_jiangdong_195:person:workbook:0ea95ef714324dbf",
+      "recordId": "ev_sunce_jiangdong_195",
+      "personId": "person:workbook:0ea95ef714324dbf",
+      "name": "孙策",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷四十六·孙讨逆传；ev_sunce_jiangdong_195 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_dadou_195:person:workbook:523c12b46171de5c",
+      "recordId": "ev_dadou_195",
+      "personId": "person:workbook:523c12b46171de5c",
+      "name": "郭汜",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷九·孝献帝纪",
+      "sourceLocator": "《后汉书》卷九·孝献帝纪；ev_dadou_195 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_dadou_195:person:workbook:65f5118d20de2114",
+      "recordId": "ev_dadou_195",
+      "personId": "person:workbook:65f5118d20de2114",
+      "name": "李傕",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷九·孝献帝纪",
+      "sourceLocator": "《后汉书》卷九·孝献帝纪；ev_dadou_195 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xuchang_196:person:wei:cao-cao",
+      "recordId": "ev_xuchang_196",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_xuchang_196 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yuanshu_197:person:wei:cao-cao",
+      "recordId": "ev_yuanshu_197",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十五·袁术列传",
+      "sourceLocator": "《后汉书》卷七十五·袁术列传；ev_yuanshu_197 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yuanshu_197:person:workbook:89859ca6be315566",
+      "recordId": "ev_yuanshu_197",
+      "personId": "person:workbook:89859ca6be315566",
+      "name": "袁术",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《后汉书》卷七十五·袁术列传",
+      "sourceLocator": "《后汉书》卷七十五·袁术列传；ev_yuanshu_197 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:xiapi:person:wei:cao-cao",
+      "recordId": "xiapi",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；xiapi 的 a 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:xiapi:person:workbook:64b1eb3149db43c3",
+      "recordId": "xiapi",
+      "personId": "person:workbook:64b1eb3149db43c3",
+      "name": "侯成",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；xiapi 的 desc 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:xiapi:person:workbook:9296aad953ce0899",
+      "recordId": "xiapi",
+      "personId": "person:workbook:9296aad953ce0899",
+      "name": "吕布",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；xiapi 的 b 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jianbing_199:person:workbook:a9af256c99ce1150",
+      "recordId": "ev_jianbing_199",
+      "personId": "person:workbook:a9af256c99ce1150",
+      "name": "公孙瓒",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传；ev_jianbing_199 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jianbing_199:person:shu:liu-bei",
+      "recordId": "ev_jianbing_199",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传；ev_jianbing_199 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jianbing_199:person:workbook:2dfe7b6919d86a30",
+      "recordId": "ev_jianbing_199",
+      "personId": "person:workbook:2dfe7b6919d86a30",
+      "name": "刘繇",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传；ev_jianbing_199 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jianbing_199:person:workbook:0ea95ef714324dbf",
+      "recordId": "ev_jianbing_199",
+      "personId": "person:workbook:0ea95ef714324dbf",
+      "name": "孙策",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传；ev_jianbing_199 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jianbing_199:person:source:653eea8eb9c6",
+      "recordId": "ev_jianbing_199",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传",
+      "sourceLocator": "《三国志》卷六·袁绍传；卷四十六·孙讨逆传；ev_jianbing_199 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_guandu_200:person:wei:cao-cao",
+      "recordId": "ev_guandu_200",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_guandu_200 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_guandu_200:person:source:653eea8eb9c6",
+      "recordId": "ev_guandu_200",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_guandu_200 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_guandu_yuan_202:person:source:653eea8eb9c6",
+      "recordId": "ev_guandu_yuan_202",
+      "personId": "person:source:653eea8eb9c6",
+      "name": "袁绍",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_guandu_yuan_202 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_ye_204:person:wei:cao-cao",
+      "recordId": "ev_ye_204",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_ye_204 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wuhuan_207:person:wei:cao-cao",
+      "recordId": "ev_wuhuan_207",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_wuhuan_207 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wuhuan_207:person:workbook:cdacf24955308ad7",
+      "recordId": "ev_wuhuan_207",
+      "personId": "person:workbook:cdacf24955308ad7",
+      "name": "蹋顿",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_wuhuan_207 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_chibi_208:person:wei:cao-cao",
+      "recordId": "ev_chibi_208",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十四·周瑜传",
+      "sourceLocator": "《三国志》卷五十四·周瑜传；ev_chibi_208 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jiangling_209:person:wei:cao-ren",
+      "recordId": "ev_jiangling_209",
+      "personId": "person:wei:cao-ren",
+      "name": "曹仁",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十四·周瑜传",
+      "sourceLocator": "《三国志》卷五十四·周瑜传；ev_jiangling_209 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jiangling_209:person:shu:liu-bei",
+      "recordId": "ev_jiangling_209",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷五十四·周瑜传",
+      "sourceLocator": "《三国志》卷五十四·周瑜传；ev_jiangling_209 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jiangling_209:person:workbook:af953fe35ee88d6e",
+      "recordId": "ev_jiangling_209",
+      "personId": "person:workbook:af953fe35ee88d6e",
+      "name": "周瑜",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十四·周瑜传",
+      "sourceLocator": "《三国志》卷五十四·周瑜传；ev_jiangling_209 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yizhou_211:person:shu:liu-bei",
+      "recordId": "ev_yizhou_211",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；ev_yizhou_211 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yizhou_211:person:han:liu-zhang",
+      "recordId": "ev_yizhou_211",
+      "personId": "person:han:liu-zhang",
+      "name": "刘璋",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；ev_yizhou_211 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_tongguan_211:person:wei:cao-cao",
+      "recordId": "ev_tongguan_211",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_tongguan_211 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_tongguan_211:person:workbook:dd9216d468e96d73",
+      "recordId": "ev_tongguan_211",
+      "personId": "person:workbook:dd9216d468e96d73",
+      "name": "韩遂",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_tongguan_211 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_tongguan_211:person:workbook:3e20a4f909441951",
+      "recordId": "ev_tongguan_211",
+      "personId": "person:workbook:3e20a4f909441951",
+      "name": "马超",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪",
+      "sourceLocator": "《三国志》卷一·武帝纪；ev_tongguan_211 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_ruxu_213:person:wei:cao-cao",
+      "recordId": "ev_ruxu_213",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十七·吴主传",
+      "sourceLocator": "《三国志》卷四十七·吴主传；ev_ruxu_213 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_ruxu_213:person:wu:sun-quan",
+      "recordId": "ev_ruxu_213",
+      "personId": "person:wu:sun-quan",
+      "name": "孙权",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十七·吴主传",
+      "sourceLocator": "《三国志》卷四十七·吴主传；ev_ruxu_213 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_hantian_215:person:wei:cao-cao",
+      "recordId": "ev_hantian_215",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷一·武帝纪；卷三十二·先主传；ev_hantian_215 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_hantian_215:person:shu:liu-bei",
+      "recordId": "ev_hantian_215",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷一·武帝纪；卷三十二·先主传；ev_hantian_215 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_hantian_215:person:han:zhang-lu",
+      "recordId": "ev_hantian_215",
+      "personId": "person:han:zhang-lu",
+      "name": "张鲁",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷一·武帝纪；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷一·武帝纪；卷三十二·先主传；ev_hantian_215 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:hefei:person:wu:sun-quan",
+      "recordId": "hefei",
+      "personId": "person:wu:sun-quan",
+      "name": "孙权",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷十七·张辽传",
+      "sourceLocator": "《三国志》卷十七·张辽传；hefei 的 b／participants 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:hefei:person:workbook:55b6201c892057df",
+      "recordId": "hefei",
+      "personId": "person:workbook:55b6201c892057df",
+      "name": "张辽",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷十七·张辽传",
+      "sourceLocator": "《三国志》卷十七·张辽传；hefei 的 a／participants 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:dingjunshan:person:wei:cao-cao",
+      "recordId": "dingjunshan",
+      "personId": "person:wei:cao-cao",
+      "name": "曹操",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；dingjunshan 的 desc 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:dingjunshan:person:source:c9065395c9a7",
+      "recordId": "dingjunshan",
+      "personId": "person:source:c9065395c9a7",
+      "name": "黄忠",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；dingjunshan 的 desc 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:dingjunshan:person:shu:liu-bei",
+      "recordId": "dingjunshan",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；dingjunshan 的 a 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:dingjunshan:person:workbook:1ec32f310bd7bb5b",
+      "recordId": "dingjunshan",
+      "personId": "person:workbook:1ec32f310bd7bb5b",
+      "name": "夏侯渊",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；dingjunshan 的 b 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xiangfan_219:person:wei:cao-ren",
+      "recordId": "ev_xiangfan_219",
+      "personId": "person:wei:cao-ren",
+      "name": "曹仁",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十六·关羽传；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十六·关羽传；卷三十二·先主传；ev_xiangfan_219 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xiangfan_219:person:workbook:cca9ea93fcb4b79f",
+      "recordId": "ev_xiangfan_219",
+      "personId": "person:workbook:cca9ea93fcb4b79f",
+      "name": "关羽",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十六·关羽传；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十六·关羽传；卷三十二·先主传；ev_xiangfan_219 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xiangfan_219:person:shu:liu-bei",
+      "recordId": "ev_xiangfan_219",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷三十六·关羽传；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十六·关羽传；卷三十二·先主传；ev_xiangfan_219 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xiangfan_219:person:workbook:3efd0606e6263df4",
+      "recordId": "ev_xiangfan_219",
+      "personId": "person:workbook:3efd0606e6263df4",
+      "name": "吕蒙",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十六·关羽传；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十六·关羽传；卷三十二·先主传；ev_xiangfan_219 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xiangfan_219:person:workbook:c4b235583c8d7e07",
+      "recordId": "ev_xiangfan_219",
+      "personId": "person:workbook:c4b235583c8d7e07",
+      "name": "于禁",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十六·关羽传；卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十六·关羽传；卷三十二·先主传；ev_xiangfan_219 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_caopi_220:person:wei:cao-pi",
+      "recordId": "ev_caopi_220",
+      "personId": "person:wei:cao-pi",
+      "name": "曹丕",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二·文帝纪",
+      "sourceLocator": "《三国志》卷二·文帝纪；ev_caopi_220 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_liubei_221:person:shu:liu-bei",
+      "recordId": "ev_liubei_221",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十二·先主传",
+      "sourceLocator": "《三国志》卷三十二·先主传；ev_liubei_221 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yiling_222:person:shu:liu-bei",
+      "recordId": "ev_yiling_222",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十八·陆逊传",
+      "sourceLocator": "《三国志》卷五十八·陆逊传；ev_yiling_222 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yiling_222:person:wu:lu-xun",
+      "recordId": "ev_yiling_222",
+      "personId": "person:wu:lu-xun",
+      "name": "陆逊",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十八·陆逊传",
+      "sourceLocator": "《三国志》卷五十八·陆逊传；ev_yiling_222 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_baidi_223:person:shu:liu-bei",
+      "recordId": "ev_baidi_223",
+      "personId": "person:shu:liu-bei",
+      "name": "刘备",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷三十二·先主传；卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十二·先主传；卷三十五·诸葛亮传；ev_baidi_223 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_baidi_223:person:shu:zhuge-liang",
+      "recordId": "ev_baidi_223",
+      "personId": "person:shu:zhuge-liang",
+      "name": "诸葛亮",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷三十二·先主传；卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十二·先主传；卷三十五·诸葛亮传；ev_baidi_223 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_nanzheng_225:person:workbook:a39a16bda55e3099",
+      "recordId": "ev_nanzheng_225",
+      "personId": "person:workbook:a39a16bda55e3099",
+      "name": "孟获",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十五·诸葛亮传；ev_nanzheng_225 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_nanzheng_225:person:shu:zhuge-liang",
+      "recordId": "ev_nanzheng_225",
+      "personId": "person:shu:zhuge-liang",
+      "name": "诸葛亮",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十五·诸葛亮传；ev_nanzheng_225 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jieting_228:person:workbook:b0cffc968e8d04dd",
+      "recordId": "ev_jieting_228",
+      "personId": "person:workbook:b0cffc968e8d04dd",
+      "name": "张郃",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十五·诸葛亮传；ev_jieting_228 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jieting_228:person:shu:zhuge-liang",
+      "recordId": "ev_jieting_228",
+      "personId": "person:shu:zhuge-liang",
+      "name": "诸葛亮",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十五·诸葛亮传；ev_jieting_228 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shiting_228:person:source:2f17731f8af3",
+      "recordId": "ev_shiting_228",
+      "personId": "person:source:2f17731f8af3",
+      "name": "曹休",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十六·朱桓传",
+      "sourceLocator": "《三国志》卷五十六·朱桓传；ev_shiting_228 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shiting_228:person:wu:lu-xun",
+      "recordId": "ev_shiting_228",
+      "personId": "person:wu:lu-xun",
+      "name": "陆逊",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十六·朱桓传",
+      "sourceLocator": "《三国志》卷五十六·朱桓传；ev_shiting_228 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_sunquan_229:person:wu:sun-quan",
+      "recordId": "ev_sunquan_229",
+      "personId": "person:wu:sun-quan",
+      "name": "孙权",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十七·吴主传",
+      "sourceLocator": "《三国志》卷四十七·吴主传；ev_sunquan_229 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_yizhou_expedition_230:person:wu:sun-quan",
+      "recordId": "ev_yizhou_expedition_230",
+      "personId": "person:wu:sun-quan",
+      "name": "孙权",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷四十七·吴主传",
+      "sourceLocator": "《三国志》卷四十七·吴主传；ev_yizhou_expedition_230 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wuzhang_234:person:wei:sima-yi",
+      "recordId": "ev_wuzhang_234",
+      "personId": "person:wei:sima-yi",
+      "name": "司马懿",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十五·诸葛亮传；ev_wuzhang_234 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_wuzhang_234:person:shu:zhuge-liang",
+      "recordId": "ev_wuzhang_234",
+      "personId": "person:shu:zhuge-liang",
+      "name": "诸葛亮",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷三十五·诸葛亮传",
+      "sourceLocator": "《三国志》卷三十五·诸葛亮传；ev_wuzhang_234 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_liaodong_238:person:source:5da0dd364783",
+      "recordId": "ev_liaodong_238",
+      "personId": "person:source:5da0dd364783",
+      "name": "公孙渊",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·公孙渊传；《晋书》卷一·宣帝纪",
+      "sourceLocator": "《三国志》卷二十八·公孙渊传；《晋书》卷一·宣帝纪；ev_liaodong_238 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_liaodong_238:person:wei:sima-yi",
+      "recordId": "ev_liaodong_238",
+      "personId": "person:wei:sima-yi",
+      "name": "司马懿",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·公孙渊传；《晋书》卷一·宣帝纪",
+      "sourceLocator": "《三国志》卷二十八·公孙渊传；《晋书》卷一·宣帝纪；ev_liaodong_238 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xingshi_244:person:wei:cao-shuang",
+      "recordId": "ev_xingshi_244",
+      "personId": "person:wei:cao-shuang",
+      "name": "曹爽",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十三·王平传；卷四十四·费祎传",
+      "sourceLocator": "《三国志》卷四十三·王平传；卷四十四·费祎传；ev_xingshi_244 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xingshi_244:person:shu:fei-yi",
+      "recordId": "ev_xingshi_244",
+      "personId": "person:shu:fei-yi",
+      "name": "费祎",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十三·王平传；卷四十四·费祎传",
+      "sourceLocator": "《三国志》卷四十三·王平传；卷四十四·费祎传；ev_xingshi_244 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_xingshi_244:person:workbook:957381792af51e59",
+      "recordId": "ev_xingshi_244",
+      "personId": "person:workbook:957381792af51e59",
+      "name": "王平",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四十三·王平传；卷四十四·费祎传",
+      "sourceLocator": "《三国志》卷四十三·王平传；卷四十四·费祎传；ev_xingshi_244 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_gaoping_249:person:wei:cao-shuang",
+      "recordId": "ev_gaoping_249",
+      "personId": "person:wei:cao-shuang",
+      "name": "曹爽",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《晋书》卷一·宣帝纪",
+      "sourceLocator": "《晋书》卷一·宣帝纪；ev_gaoping_249 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_gaoping_249:person:wei:sima-yi",
+      "recordId": "ev_gaoping_249",
+      "personId": "person:wei:sima-yi",
+      "name": "司马懿",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《晋书》卷一·宣帝纪",
+      "sourceLocator": "《晋书》卷一·宣帝纪；ev_gaoping_249 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shouchun_251:person:workbook:f2cb323f3457c6b0",
+      "recordId": "ev_shouchun_251",
+      "personId": "person:workbook:f2cb323f3457c6b0",
+      "name": "曹彪",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷二十八·王凌传",
+      "sourceLocator": "《三国志》卷二十八·王凌传；ev_shouchun_251 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shouchun_251:person:wei:18418w8",
+      "recordId": "ev_shouchun_251",
+      "personId": "person:wei:18418w8",
+      "name": "令狐愚",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《三国志》卷二十八·王凌传",
+      "sourceLocator": "《三国志》卷二十八·王凌传；ev_shouchun_251 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shouchun_251:person:workbook:eeacf29bfe436dd4",
+      "recordId": "ev_shouchun_251",
+      "personId": "person:workbook:eeacf29bfe436dd4",
+      "name": "王凌",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·王凌传",
+      "sourceLocator": "《三国志》卷二十八·王凌传；ev_shouchun_251 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_dongxing_252:person:workbook:52107cd52f541ec4",
+      "recordId": "ev_dongxing_252",
+      "personId": "person:workbook:52107cd52f541ec4",
+      "name": "丁奉",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十五·丁奉传",
+      "sourceLocator": "《三国志》卷五十五·丁奉传；ev_dongxing_252 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_dongxing_252:person:workbook:1eddacb9a6aa34cc",
+      "recordId": "ev_dongxing_252",
+      "personId": "person:workbook:1eddacb9a6aa34cc",
+      "name": "诸葛诞",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷五十五·丁奉传",
+      "sourceLocator": "《三国志》卷五十五·丁奉传；ev_dongxing_252 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shouchun_257:person:workbook:d40ea13e6aeb4ac3",
+      "recordId": "ev_shouchun_257",
+      "personId": "person:workbook:d40ea13e6aeb4ac3",
+      "name": "司马昭",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·诸葛诞传",
+      "sourceLocator": "《三国志》卷二十八·诸葛诞传；ev_shouchun_257 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_shouchun_257:person:workbook:1eddacb9a6aa34cc",
+      "recordId": "ev_shouchun_257",
+      "personId": "person:workbook:1eddacb9a6aa34cc",
+      "name": "诸葛诞",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·诸葛诞传",
+      "sourceLocator": "《三国志》卷二十八·诸葛诞传；ev_shouchun_257 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_caomao_260:person:workbook:7590bd760efbfdc3",
+      "recordId": "ev_caomao_260",
+      "personId": "person:workbook:7590bd760efbfdc3",
+      "name": "曹髦",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四·三少帝纪",
+      "sourceLocator": "《三国志》卷四·三少帝纪；ev_caomao_260 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_caomao_260:person:workbook:d40ea13e6aeb4ac3",
+      "recordId": "ev_caomao_260",
+      "personId": "person:workbook:d40ea13e6aeb4ac3",
+      "name": "司马昭",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷四·三少帝纪",
+      "sourceLocator": "《三国志》卷四·三少帝纪；ev_caomao_260 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_weifa_263:person:source:4f57385c8b1c",
+      "recordId": "ev_weifa_263",
+      "personId": "person:source:4f57385c8b1c",
+      "name": "邓艾",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·邓艾传",
+      "sourceLocator": "《三国志》卷二十八·邓艾传；ev_weifa_263 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_weifa_263:person:shu:liu-shan",
+      "recordId": "ev_weifa_263",
+      "personId": "person:shu:liu-shan",
+      "name": "刘禅",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《三国志》卷二十八·邓艾传",
+      "sourceLocator": "《三国志》卷二十八·邓艾传；ev_weifa_263 的 sideB 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_jinchuan_266:person:jin:sima-yan",
+      "recordId": "ev_jinchuan_266",
+      "personId": "person:jin:sima-yan",
+      "name": "司马炎",
+      "side": "明确具名交战方",
+      "role": "交战方",
+      "sourceTitle": "《晋书》卷三·武帝纪",
+      "sourceLocator": "《晋书》卷三·武帝纪；ev_jinchuan_266 的 sideA 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_miewu_280:person:wu:sun-hao",
+      "recordId": "ev_miewu_280",
+      "personId": "person:wu:sun-hao",
+      "name": "孙皓",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《晋书》卷三·武帝纪",
+      "sourceLocator": "《晋书》卷三·武帝纪；ev_miewu_280 的 text 字段",
+      "publicationStatus": "verified"
+    },
+    {
+      "linkId": "battle-person:ev_miewu_280:person:workbook:4ca6a0b48b2aefbf",
+      "recordId": "ev_miewu_280",
+      "personId": "person:workbook:4ca6a0b48b2aefbf",
+      "name": "王濬",
+      "side": "",
+      "role": "事件人物",
+      "sourceTitle": "《晋书》卷三·武帝纪",
+      "sourceLocator": "《晋书》卷三·武帝纪；ev_miewu_280 的 text 字段",
+      "publicationStatus": "verified"
+    }
+  ],
+  "dispositions": [
+    {
+      "recordId": "ev_lingdi_168",
+      "disposition": "歧义保留",
+      "linkCount": 0,
+      "ambiguous": [
+        {
+          "name": "窦武",
+          "field": "text",
+          "candidatePersonIds": []
+        },
+        {
+          "name": "陈蕃",
+          "field": "text",
+          "candidatePersonIds": []
+        }
+      ]
+    },
+    {
+      "recordId": "ev_huangjin_184",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": [
+        {
+          "name": "朱儁",
+          "field": "text",
+          "candidatePersonIds": []
+        }
+      ]
+    },
+    {
+      "recordId": "ev_liuyan_188",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_hejin_189",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_taodong_190",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_jieqiao_191",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_longcao_191",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_jumashui_192",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_wangyun_192",
+      "disposition": "已关联",
+      "linkCount": 5,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_taozhou_193",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_puyang_194",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_sunce_jiangdong_195",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_dadou_195",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_xuchang_196",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_yuanshu_197",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "xiapi",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_jianbing_199",
+      "disposition": "已关联",
+      "linkCount": 5,
+      "ambiguous": []
+    },
+    {
+      "recordId": "guandu-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_guandu_200",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_guandu_yuan_202",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_ye_204",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_wuhuan_207",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "chibi-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_chibi_208",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "hefei-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ruxu-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "xiangfan-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_jiangling_209",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_yizhou_211",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "tongguan-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_tongguan_211",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "dongxing-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_ruxu_213",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_hantian_215",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "hefei",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "dingjunshan",
+      "disposition": "已关联",
+      "linkCount": 4,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_xiangfan_219",
+      "disposition": "已关联",
+      "linkCount": 5,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_caopi_220",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "yiling-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_liubei_221",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_yiling_222",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_baidi_223",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_nanzheng_225",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "jieting-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_jieting_228",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "qishan-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_shiting_228",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "wuzhang-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_sunquan_229",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_yizhou_expedition_230",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": [
+        {
+          "name": "卫温",
+          "field": "text",
+          "candidatePersonIds": []
+        },
+        {
+          "name": "诸葛直",
+          "field": "text",
+          "candidatePersonIds": []
+        }
+      ]
+    },
+    {
+      "recordId": "ev_wuzhang_234",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_liaodong_238",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_xingshi_244",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_gaoping_249",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "shouchun-field",
+      "disposition": "无明确人物",
+      "linkCount": 0,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_shouchun_251",
+      "disposition": "已关联",
+      "linkCount": 3,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_dongxing_252",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_shouchun_257",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_caomao_260",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_weifa_263",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_jinchuan_266",
+      "disposition": "已关联",
+      "linkCount": 1,
+      "ambiguous": []
+    },
+    {
+      "recordId": "ev_miewu_280",
+      "disposition": "已关联",
+      "linkCount": 2,
+      "ambiguous": []
+    }
+  ]
+}

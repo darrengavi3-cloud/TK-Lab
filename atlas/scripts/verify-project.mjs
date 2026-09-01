@@ -97,7 +97,7 @@ assert(html.includes('官品秩俸三轨对照') && html.includes('HAN_RANK_FAMI
 assert(html.includes('官署模板库') && html.includes('OFFICE_TEMPLATE_LIBRARY'), '官署模板库未接入');
 assert(html.includes('子节点晚于父节点存续') && html.includes('设立年早于势力存续'), '审计中心扩展未接入');
 assert(html.includes("name:'西晋官制'"), '晋模块必须明确为西晋核心范围');
-assert(html.includes('东晋扩展档案'), '317 年后资料必须保留在东晋扩展档案');
+assert(html.includes("{key:'eastjin',label:'东晋'") && html.includes("archiveScope:'东晋扩展'"), '317 年后资料必须以前台“东晋”标签保留独立扩展边界');
 assert(html.includes('const CATEGORY_RANK9_MAP = {};'), '官品按类别自动推定功能仍未停用');
 assert(!html.includes("names:['吏部尚书','度支尚书','左民尚书','客曹尚书','五兵尚书','刑部尚书']"), '批量模板仍含时代错置的刑部尚书');
 assert(
