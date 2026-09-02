@@ -21,6 +21,9 @@ const sourceIndex = readJson('person-source-index.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
+const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
+  ? readJson('v70-portrait-candidates.json')
+  : { records: [] };
 
 const context = { window: {} };
 context.window.window = context.window;
@@ -57,6 +60,13 @@ const canonicalPersonCorrections = Object.freeze({
     sourceTitle: '《三国志》卷十九裴注引《魏略》',
     sourceLocator: '曹操表丁冲劝迎天子、为司隶校尉事',
     sourceUrl: 'https://zh.wikisource.org/zh/三國志/卷19'
+  },
+  'person:workbook:7eba7742ef741dc7': {
+    name: '刘宠',
+    legacyErroneousNames: ['陈王刘宠'],
+    sourceTitle: '《后汉书·孝献帝纪》卷九',
+    sourceLocator: '陈王刘宠（封爵“陈王”与姓名“刘宠”拆分）',
+    sourceUrl: 'https://zh.wikisource.org/wiki/後漢書/卷9'
   }
 });
 
@@ -394,6 +404,21 @@ for (const [name, biography] of Object.entries(biographies)) {
   addCandidate(entry, 'bio', biography.bio, 'verified', `biography:${normalize(name)}`, '确定');
 }
 
+// 读者态小传使用已核字段编排成简短文言句，不从未核候选或推测材料补写。
+// 这是展示层文本，原始现代语体 bio 仍保留在来源与审校数据中。
+function buildClassicalBiography(entry, values, publicationStatus) {
+  const clauses = [];
+  if (publicationStatus.zi === 'verified' && values.zi) clauses.push(`字${values.zi}`);
+  if (publicationStatus.dynastyTags === 'verified' && Array.isArray(values.dynastyTags) && values.dynastyTags.length) {
+    clauses.push(`${values.dynastyTags.join('、')}人`);
+  }
+  if (publicationStatus.birthplace === 'verified' && values.birthplace) clauses.push(`籍${values.birthplace}`);
+  if (publicationStatus.birthYear === 'verified' && values.birthYear != null) clauses.push(`生于${values.birthYear}`);
+  if (publicationStatus.deathYear === 'verified' && values.deathYear != null) clauses.push(`卒于${values.deathYear}`);
+  if (!clauses.length) return '';
+  return `${entry.name}，${clauses.join('，')}。`;
+}
+
 const portraitResolutions = [];
 for (const asset of Object.values(portraits.assetsById || {})) {
   const legacyPersonId = text(asset.personId);
@@ -404,6 +429,28 @@ for (const asset of Object.values(portraits.assetsById || {})) {
   entry.portraitIds.add(asset.portraitId);
   if (legacyPersonId !== canonicalId) entry.legacyPersonIds.add(legacyPersonId);
   portraitResolutions.push({ portraitId: asset.portraitId, legacyPersonId, personId: canonicalId });
+}
+
+// The manifest is rebuilt after this registry in the normal pipeline.  Read
+// the V70 ledger here as well so a newly accepted local asset is associated
+// with the reader person in the same rebuild, without waiting for a second
+// pass.  Unverified or missing files never enter the reader projection.
+function isReadyPortraitAsset(assetPath) {
+  const fullPath = path.join(root, String(assetPath || '').replace(/^\.\//, ''));
+  if (!fs.existsSync(fullPath)) return false;
+  const bytes = fs.readFileSync(fullPath);
+  return bytes.length >= 24 && bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))
+    && bytes.readUInt32BE(16) === 512 && bytes.readUInt32BE(20) === 512;
+}
+for (const row of Array.isArray(v70PortraitCandidates.records) ? v70PortraitCandidates.records : []) {
+  const canonicalId = canonicalPersonId(row.personId);
+  const portraitId = `portrait:v70:${String(row.order).padStart(2, '0')}`;
+  if (!canonicalId || !row.name || !isReadyPortraitAsset(row.assetPath)) continue;
+  const entry = ensure(canonicalId, row.name);
+  if (!entry || entry.portraitIds.has(portraitId)) continue;
+  entry.datasets.add('portraits');
+  entry.portraitIds.add(portraitId);
+  portraitResolutions.push({ portraitId, legacyPersonId: canonicalId, personId: canonicalId });
 }
 
 // V62 的阅读态人物范围是本轮的回退基线。当前规范源可以继续保存更多
@@ -433,7 +480,7 @@ for (const conflict of ziConflicts) {
   isolated.identityStatus = 'conflict';
 }
 
-const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
+const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'bioClassical', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
 function chooseField(entry, field) {
   if (field === 'name') return { status: readerScopeIds.has(entry.personId) && entry.name ? 'verified' : 'suppressed', value: entry.name || undefined };
   if (field === 'aliases') return { status: entry.aliases.size ? 'verified' : 'suppressed', value: [...entry.aliases].sort((a, b) => a.localeCompare(b, 'zh-CN')) };
@@ -460,6 +507,11 @@ const people = registryEntries.map(entry => {
     const selected = chooseField(entry, field);
     publicationStatus[field] = selected.status;
     if (selected.value !== undefined && selected.status === 'verified') values[field] = selected.value;
+  }
+  const bioClassical = buildClassicalBiography(entry, values, publicationStatus);
+  if (bioClassical) {
+    values.bioClassical = bioClassical;
+    publicationStatus.bioClassical = 'verified';
   }
   return {
     personId: entry.personId,
@@ -495,7 +547,7 @@ for (const key of Object.keys(legacyToCanonical)) legacyToCanonical[key] = canon
 
 const readerPeople = people.filter(person => person.publicationStatus.name === 'verified').map(person => {
   const output = { personId: person.personId, name: person.name };
-  const valueKeys = { aliases: 'aliases', zi: 'zi', birthplace: 'birthplace', birthYear: 'birthYear', deathYear: 'deathYear', bio: 'bio', dynastyTags: 'dynastyTags', historicalAffiliations: 'historicalAffiliations', appointments: 'appointmentIds', peerage: 'peerageEventIds', portraits: 'portraitIds' };
+  const valueKeys = { aliases: 'aliases', zi: 'zi', birthplace: 'birthplace', birthYear: 'birthYear', deathYear: 'deathYear', bio: 'bio', bioClassical: 'bioClassical', dynastyTags: 'dynastyTags', historicalAffiliations: 'historicalAffiliations', appointments: 'appointmentIds', peerage: 'peerageEventIds', portraits: 'portraitIds' };
   for (const [statusKey, valueKey] of Object.entries(valueKeys)) {
     if (person.publicationStatus[statusKey] === 'verified' && person.values[statusKey] !== undefined) output[valueKey] = person.values[statusKey];
   }

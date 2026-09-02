@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
-import { classifyFangzhenDynasty, classifyFangzhenJurisdiction } from '../assets/app/fangzhen.js';
+import { classifyFangzhenDynasty, classifyFangzhenJurisdiction, normalizeFangzhenOfficeTitle } from '../assets/app/fangzhen.js';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
@@ -448,8 +448,8 @@ function projectFangzhen(row, readerDisplayStatus, auditRow = null) {
   for (const field of fangzhenReaderFields) if (row[field] !== undefined && row[field] !== '') projected[field] = row[field];
   projected.id = text(row.id);
   projected.commander = text(row.commander || row.name || auditRow?.commander);
-  projected.title = text(row.title || row.commission || auditRow?.title);
-  projected.commission = text(row.commission || row.title || auditRow?.title);
+  projected.title = normalizeFangzhenOfficeTitle(text(row.title || row.commission || auditRow?.title));
+  projected.commission = normalizeFangzhenOfficeTitle(text(row.commission || row.title || auditRow?.title));
   projected.jurisdiction = text(row.jurisdiction || row.region || auditRow?.jurisdiction);
   projected.startYear = Number.isInteger(row.startYear) ? row.startYear : (Number.isInteger(auditRow?.startYear) ? auditRow.startYear : null);
   projected.endYear = Number.isInteger(row.endYear) ? row.endYear : (Number.isInteger(auditRow?.endYear) ? auditRow.endYear : null);
@@ -484,6 +484,7 @@ const v69FangzhenRecords = [...verifiedFangzhen, ...candidateFangzhen].sort((a, 
 const fangzhenCounts = Object.fromEntries(['后汉', '季汉', '魏', '吴', '西晋', '东晋'].map(label => [label, v69FangzhenRecords.filter(row => row.dynastyLabel === label).length]));
 assert(v69FangzhenRecords.length === 523 && new Set(v69FangzhenRecords.map(row => row.id)).size === 523, '州镇并表不是 523 条唯一记录');
 assert(JSON.stringify(fangzhenCounts) === JSON.stringify({ 后汉: 6, 季汉: 99, 魏: 173, 吴: 213, 西晋: 31, 东晋: 1 }), `州镇朝代计数异常：${JSON.stringify(fangzhenCounts)}`);
+assert(v69FangzhenRecords.every(row => !/(?:郡太守)/.test(`${row.title || ''} ${row.commission || ''}`)), '州镇读者职任标题仍含辖区前缀“郡太守”');
 assert(candidateFangzhen.every(row => !('seat' in row) && !('seatName' in row)), '待审州镇错误携带治所字段');
 const fangzhenPayload = {
   schemaVersion: 'V69-reader', modelId: 'sgz-v69-fangzhen-reader', generatedAt,

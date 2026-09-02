@@ -23,15 +23,40 @@ export function createAdministrativeSearchCache(){
   };
 }
 
+/**
+ * 州镇表读者态的职任标题统一使用官名本身。辖区已由 jurisdiction 字段
+ * 单独承载，因此“某郡太守”中的辖区前缀不应再次混入职任标题。
+ * 仅规范标题字段，不改原始记录或史料正文。
+ */
+export function normalizeFangzhenOfficeTitle(value){
+  const raw=String(value==null?'':value).trim();
+  if(!raw)return '';
+  return raw.replace(/(?:[\u4e00-\u9fff]{1,8})?郡太守/g,'太守');
+}
+
+export function normalizeFangzhenRecord(record){
+  const value=record&&typeof record==='object'?record:{};
+  const title=normalizeFangzhenOfficeTitle(value.title||value.displayTitle||value.commission);
+  const commission=normalizeFangzhenOfficeTitle(value.commission||value.title||value.displayTitle);
+  return {
+    ...value,
+    ...(title?{title}:{}),
+    ...(commission?{commission}:{}),
+  };
+}
+
 export function projectFangzhenRecords(records,options={}){
   const source=Array.isArray(records)?records:[];
   const projector=options.mode==='review'?options.projectForReading:options.projectForReader;
   const projected=typeof projector==='function'?projector(source):source.map(record=>({...record}));
-  return projected.map(record=>({
-    ...record,
-    jurisdictionKind: classifyFangzhenJurisdiction(record),
-    dynastyLabel: classifyFangzhenDynasty(record)
-  }));
+  return projected.map(record=>{
+    const normalized=normalizeFangzhenRecord(record);
+    return {
+      ...normalized,
+      jurisdictionKind: classifyFangzhenJurisdiction(normalized),
+      dynastyLabel: classifyFangzhenDynasty(normalized)
+    };
+  });
 }
 
 /**

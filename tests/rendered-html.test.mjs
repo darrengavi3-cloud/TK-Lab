@@ -76,7 +76,7 @@ test("packages the V63 field-gated full people reader projection", async () => {
   assert.ok(people.every((person) => !("datasets" in person)));
 });
 
-test("packages all 375 production portraits and the V69 reader records", async () => {
+test("packages all 425 production portraits and the V70 reader records", async () => {
   const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
   const [legacy, manifestRaw, fangzhenSource, jinshiSource] = await Promise.all([
     readFile(new URL("index.html", legacyRoot), "utf8"),
@@ -101,7 +101,7 @@ test("packages all 375 production portraits and the V69 reader records", async (
   assert.match(fangzhenSource, /SGZ_V69_FANGZHEN_READER/);
   assert.doesNotMatch(fangzhenSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
   assert.match(jinshiSource, /SGZ_V62_JINSHI_DISPLAY/);
-  assert.equal(assets.length, 375);
+  assert.equal(assets.length, 425);
   assert.equal(v62Assets.length, 100);
   assert.deepEqual(dynastyCounts, { 后汉: 20, 魏: 20, 季汉: 20, 吴: 20, 西晋: 20 });
 

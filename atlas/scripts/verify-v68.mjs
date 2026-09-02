@@ -32,7 +32,7 @@ assert(!html.includes('相关历任长官'),'州镇页仍渲染重复的相关�
 assert(html.includes('v-model="fangzhenLevel"')&&html.includes('label="辖区层级"'),'州／方镇筛选未接入上下文栏');
 assert(html.includes('后汉州镇档案')&&html.includes('季汉州镇档案'),'后汉与季汉档案标签未拆分');
 assert(html.includes('东汉十三州基准')&&html.includes('曹魏十二州基准')&&html.includes('益州一州基准'),'州数基准说明未呈现');
-assert(html.includes('v67-fangzhen-index-group-label')&&html.includes("'group-'+group.kind"),'州／方镇左侧索引未分组');
+assert(!html.includes('州／郡／方镇索引')&&!html.includes('v67-fangzhen-index-group-label'),'州镇前台仍残留已移除的州／郡／方镇索引');
 assert(
   html.includes("params.set('level',fangzhenLevel.value)")
     && (html.includes("fangzhenLevel.value=['all','州','方镇']") || html.includes("fangzhenLevel.value=['all','州','郡','方镇']")),

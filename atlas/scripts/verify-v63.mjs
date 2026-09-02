@@ -114,7 +114,9 @@ assert(registry.identityMigrations?.length === 9, '应补齐的 person:source/pe
 assert(registry.protectedExistingPeople?.length === 10 && registry.protectedExistingPeople.every(row => row.resolved), '10 个验收指定的既有正式人物 ID 未全部解析');
 
 const portraitAssets = Object.values(portraits.assetsById || {});
-const expectedPortraitAssets = portraitProduction.status === 'complete' ? 375 : 275;
+const v70PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v70');
+const expectedBaselinePortraitAssets = portraitProduction.status === 'complete' ? 375 : 275;
+const expectedPortraitAssets = expectedBaselinePortraitAssets + v70PortraitAssets.length;
 assert(portraitAssets.length === expectedPortraitAssets, `立绘资产不是 ${expectedPortraitAssets} 项，实际 ${portraitAssets.length}`);
 assert(registry.portraitResolutions?.length === expectedPortraitAssets && registry.summary?.unresolvedPortraits === 0, `${expectedPortraitAssets} 项立绘未全部通过正式或兼容 ID 解析`);
 for (const row of registry.portraitResolutions || []) assert(Boolean(registry.byPersonId[row.personId]), `${row.portraitId} 解析到不存在的人物`);
@@ -133,7 +135,7 @@ const readerText = read('data/v63-reader-people.json');
 for (const token of ['workbookSource', 'workbookSources', 'sourcePath', 'sourceRecordId', 'reviewCandidates', 'externalSearchLog', 'audit-only', '/Users/', 'publicationStatus']) {
   assert(!readerText.includes(token), `V63 读者数据泄露审校字段或本机路径：${token}`);
 }
-const readerAllowedFields = new Set(['personId','name','aliases','zi','birthplace','birthYear','deathYear','bio','dynastyTags','historicalAffiliations','appointmentIds','peerageEventIds','portraitIds']);
+const readerAllowedFields = new Set(['personId','name','aliases','zi','birthplace','birthYear','deathYear','bio','bioClassical','dynastyTags','historicalAffiliations','appointmentIds','peerageEventIds','portraitIds']);
 const statusFieldForReaderField = { appointmentIds: 'appointments', peerageEventIds: 'peerage', portraitIds: 'portraits' };
 for (const person of reader.people || []) {
   assert(Object.keys(person).every(field => readerAllowedFields.has(field)), `${person.personId} 读者投影包含未允许字段`);

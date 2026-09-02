@@ -142,7 +142,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-masthead-meta strong { color: var(--sgz-dossier-masthead-ink); font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
 .v67-fangzhen-state-count { grid-column: 1 / -1; color: var(--v58-muted); font-size: 9px; white-space: nowrap; }
 
-.v67-fangzhen-workbench { display: grid; grid-template-columns: minmax(142px, 176px) minmax(520px, 1fr) minmax(270px, 340px); align-items: start; gap: 10px; min-width: 0; }
+.v67-fangzhen-workbench { display: grid; grid-template-columns: minmax(520px, 1fr) minmax(270px, 340px); align-items: start; gap: 10px; min-width: 0; }
 .v67-fangzhen-index,
 .v67-fangzhen-table-panel,
 .v67-fangzhen-dossier,
@@ -194,7 +194,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-fact-grid dt { color: var(--v58-muted); font-size: 10px; }
 .v67-fact-grid dd { margin: 0; color: var(--v58-ink); font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }
 .v67-dossier-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
-.v67-fangzhen-related { grid-column: 2 / 4; display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 10px; }
+.v67-fangzhen-related { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 10px; }
 .v67-fangzhen-related article { min-width: 0; overflow: hidden; }
 .v67-fangzhen-related table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
 .v67-fangzhen-related th,
@@ -273,6 +273,7 @@ body, #app, .shell { color: var(--v58-ink); }
   background: color-mix(in srgb, var(--v58-raised) 84%, var(--v58-paper));
 }
 .v69-person-facts > div { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; padding: 7px 0; border-bottom: 1px solid color-mix(in srgb, var(--v58-line) 72%, transparent); }
+.v69-person-facts > div.v69-person-lifespan { grid-template-columns: minmax(0, 1fr); }
 .v69-person-facts > div:nth-last-child(-n + 2) { border-bottom: 0; }
 .v69-person-facts dt { color: var(--v58-muted); font-size: 11px; letter-spacing: .08em; }
 .v69-person-facts dd { margin: 0; color: var(--v58-ink); font-size: 12px; line-height: 1.6; }
@@ -2281,7 +2282,7 @@ body, #app, .shell { color: var(--v58-ink); }
 
 @media (max-width: 1180px) {
   .v67-fangzhen-workbench {
-    grid-template-columns: minmax(130px, 155px) minmax(480px, 1fr) minmax(245px, 290px);
+    grid-template-columns: minmax(480px, 1fr) minmax(245px, 290px);
   }
 }
 
@@ -2296,7 +2297,7 @@ body, #app, .shell { color: var(--v58-ink); }
   }
 
   .v67-fangzhen-workbench {
-    grid-template-columns: minmax(130px, 160px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .v67-fangzhen-dossier,

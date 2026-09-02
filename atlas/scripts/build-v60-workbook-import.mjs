@@ -51,6 +51,16 @@ normalizationSourceChars.forEach((char, index) => tradToSimp.set(char, normaliza
 function normalizeName(value){
   return Array.from(compact(value).normalize('NFKC')).map(char => tradToSimp.get(char) || char).join('');
 }
+/* 附件中少数字段把封爵或官号拼入姓名；规范源保留 rawName 供审校，
+   但 name／normalizedName 必须使用可注册的人物姓名，避免错误值进入人物记。 */
+const personNameOverrides = new Map([
+  ['陈王刘宠', '刘宠'],
+  ['丁中', '丁冲'],
+]);
+function normalizePersonName(value){
+  const normalized = normalizeName(value);
+  return personNameOverrides.get(normalized) || normalized;
+}
 function normalizePolity(value){
   const raw = normalizeName(value);
   if (['东汉','后汉','汉','蜀汉','季汉'].includes(raw)) return ['蜀汉','季汉'].includes(raw) ? '季汉' : '汉';
@@ -150,7 +160,7 @@ for (const identity of identityApi.identities || []) {
 const sourcesByName = new Map();
 for (let index = 0; index < sourceRows.length; index += 1) {
   const row = rowObject(sourceHeaders, sourceRows[index]);
-  const name = normalizeName(row['人物']);
+  const name = normalizePersonName(row['人物']);
   const item = { sourceRecordId: indexSourceRecordIds[index], row: index + 2, rawName: compact(row['人物']), normalizedName: name, primarySource: compact(row['主要出处']) };
   const list = sourcesByName.get(name) || [];
   list.push(item);
@@ -170,7 +180,7 @@ function reviewedDuplicateIdentity(normalizedName, ordinal) {
 const people = peopleRows.map((values, index) => {
   const raw = rowObject(peopleHeaders, values);
   const rawName = compact(raw['姓名']);
-  const normalizedName = normalizeName(rawName);
+  const normalizedName = normalizePersonName(rawName);
   const existing = existingByName.get(normalizedName) || [];
   const distinctExisting = Array.from(new Map(existing.map(item => [item.personId, item])).values());
   const linkedToProject = distinctExisting.length === 1 && projectPersonIds.has(distinctExisting[0].personId);
@@ -234,7 +244,7 @@ const sourceIndex = sourceRows.map((values, index) => {
     sourceRecordId: indexSourceRecordIds[index],
     row: index + 2,
     rawName: compact(raw['人物']),
-    normalizedName: normalizeName(raw['人物']),
+    normalizedName: normalizePersonName(raw['人物']),
     primarySource: compact(raw['主要出处']),
     workbookSource: { fileName: path.basename(workbookPath), sha256: workbookHash, sheet: '来源索引', row: index + 2 },
   };

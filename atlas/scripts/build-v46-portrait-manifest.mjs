@@ -37,6 +37,9 @@ const v69PortraitProduction = fs.existsSync(path.join(dataDir, 'v69-portrait-pro
 const v69PortraitCandidates = fs.existsSync(path.join(dataDir, 'v69-portrait-candidates.json'))
   ? JSON.parse(fs.readFileSync(path.join(dataDir, 'v69-portrait-candidates.json'), 'utf8'))
   : { candidates: [] };
+const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
+  ? JSON.parse(fs.readFileSync(path.join(dataDir, 'v70-portrait-candidates.json'), 'utf8'))
+  : { records: [] };
 const fallbackSrc = './assets/portraits/generated/person-placeholder-v46.png';
 const polityColors = { 汉: '#A54136', 魏: '#376B9E', 吴: '#3F7652', 晋: '#665483' };
 
@@ -85,7 +88,9 @@ const v62PrimaryPortraitSrc = Object.freeze({
 
 const v62PersonNameOverrides = Object.freeze({
   'person:wei:le-chen': { name: '乐綝', aliases: ['乐綝', '樂綝', '乐𬘭'] },
-  'person:wei:cheng-ji': { name: '成济', aliases: ['成济'] }
+  'person:wei:cheng-ji': { name: '成济', aliases: ['成济'] },
+  // 爵号与姓名拆分：陈王为封爵，人物姓名为刘宠；旧组合值仅留兼容审校记录。
+  'person:workbook:7eba7742ef741dc7': { name: '刘宠', aliases: ['刘宠'], removedAliases: ['陈王刘宠'] }
 });
 
 const v62PortraitSlotGroups = Object.freeze([
@@ -293,7 +298,10 @@ function v62BuildManifest() {
     const legacyNameAliases = Object.entries(byName)
       .filter(([, namedItem]) => namedItem === item || (namedItem?.src && namedItem.src === item.src))
       .map(([name]) => name);
-    const aliases = new Set([...(item.aliases || []), ...legacyNameAliases, item.name, nameOverride?.name, ...(nameOverride?.aliases || [])].filter(Boolean));
+    const removedAliases = new Set(nameOverride?.removedAliases || []);
+    const aliases = new Set([...(item.aliases || []), ...legacyNameAliases, item.name, nameOverride?.name, ...(nameOverride?.aliases || [])]
+      .filter(Boolean)
+      .filter(alias => !removedAliases.has(alias)));
     const portraitId = v62PortraitId(personId, item.src);
     const asset = {
       ...item,
@@ -439,6 +447,46 @@ function v62BuildManifest() {
     portraitsByCanonicalPersonId.set(personId, [asset]);
   }
 
+  // V70 本地生产资源：图片验收后即可进入读者清单；Figma 节点保持 pending，
+  // 直到取得编辑席位并写入真实节点，不用空值冒充已推送。
+  const v70Colors = { '魏': '#376B9E' };
+  const v70Rows = Array.isArray(v70PortraitCandidates.records) ? v70PortraitCandidates.records : [];
+  for (const row of v70Rows) {
+    const personId = v62CanonicalPersonId(row.personId);
+    if (!personId || !row.name || !v62PngIsReady(row.assetPath)) continue;
+    if (portraitsByCanonicalPersonId.has(personId)) continue;
+    const portraitId = `portrait:v70:${String(row.order).padStart(2, '0')}`;
+    if (assetsById[portraitId]) continue;
+    const asset = {
+      portraitId,
+      personId,
+      name: String(row.name).trim(),
+      aliases: [String(row.name).trim()],
+      zi: String(row.zi || '').trim(),
+      src: row.assetPath,
+      assetPath: row.assetPath,
+      polity: row.dynasty || '魏',
+      color: v70Colors[row.dynasty] || '#376B9E',
+      sourceTitle: 'V70 界面识别立绘（非史实肖像）',
+      sourceUrl: '',
+      portraitKind: 'ui-illustration-v70',
+      status: 'ready',
+      designStatus: 'pending-figma-upload',
+      designRef: {
+        fileKey: 'gvWRC5GHHSgd8QX9b2VJgo',
+        version: 'V70',
+        pageName: 'V70 / Portraits',
+        nodeId: null,
+        componentId: null
+      },
+      interfaceOnly: true,
+      catalogOrder: Object.keys(assetsById).length + 1,
+      legacyPersonIds: []
+    };
+    assetsById[portraitId] = asset;
+    portraitsByCanonicalPersonId.set(personId, [asset]);
+  }
+
   const canonicalByPersonId = {};
   const canonicalByName = {};
   portraitsByCanonicalPersonId.forEach((assets, personId) => {
@@ -492,6 +540,7 @@ function v62BuildManifest() {
       figmaBoardMapped: (board.records || []).filter(item => canonicalByPersonId[v62CanonicalPersonId(personIdFor(item.name, sourcePersonFor(item.name)))]).length,
       v58PortraitRecords: v58Board.records?.length || 0,
       v58PortraitMapped: (v58Board.records || []).filter(item => canonicalByPersonId[v62CanonicalPersonId(item.personId)]).length,
+      v70PortraitRecords: assets.filter(item => item.portraitKind === 'ui-illustration-v70').length,
       dengAiSrc: canonicalByName['邓艾']?.src || ''
     }
   };
@@ -499,7 +548,7 @@ function v62BuildManifest() {
   const catalog = {
     schemaVersion: 1,
     generatedAt,
-    scope: 'V62 新增 100 个立绘的确定性资源槽与候选状态；图片生成、尺寸验证和 Figma 节点写入前不得标记 ready。',
+    scope: 'V62 资源槽与 V70 本地立绘候选均使用稳定 personId；V70 图片验收后可标记 ready，Figma 节点写入前保持 pending。',
     selectionStatus: existingCatalog?.selectionStatus && existingCatalog.selectionStatus !== 'awaiting-dynasty-audit'
       ? existingCatalog.selectionStatus
       : (fs.existsSync(path.join(dataDir, 'v62-people-offices.json')) ? 'candidate-selection-pending' : 'awaiting-dynasty-audit'),

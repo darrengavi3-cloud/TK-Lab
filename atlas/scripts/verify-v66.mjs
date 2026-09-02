@@ -122,14 +122,17 @@ assert(hashSortedLines(people.map(row => row.personId)) === '35e6ad03687f0c49069
 assert(people.every(row => !Object.prototype.hasOwnProperty.call(row, 'datasets')), '人物读者包仍泄露 datasets 来源标签');
 
 const portraits = Object.values(portraitManifest?.assetsById || {});
-const portraitBindings = portraits.map(row => `${row.portraitId}\0${row.personId}`);
-const expectedPortraitCount = portraitProduction?.status === 'complete' ? 375 : 275;
+const v70Portraits = portraits.filter(row => row.portraitKind === 'ui-illustration-v70');
+const baselinePortraits = portraits.filter(row => row.portraitKind !== 'ui-illustration-v70');
+const portraitBindings = baselinePortraits.map(row => `${row.portraitId}\0${row.personId}`);
+const expectedBaselinePortraitCount = portraitProduction?.status === 'complete' ? 375 : 275;
+const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length;
 const expectedPortraitBindingHash = portraitProduction?.status === 'complete'
   ? 'af57685a58d88f88904c07475f73f38bfbf57206af81dc381d32896b6fcbeaec'
   : 'e51441f1bd0135fd70a488742d86c0c7f29bdebd33b410bd2e90babe2fddf833';
 assert(portraits.length === expectedPortraitCount, `生产立绘不是 ${expectedPortraitCount} 项：${portraits.length}`);
 assert(new Set(portraits.map(row => row.portraitId)).size === portraits.length, '立绘 portraitId 不唯一');
-assert(hashSortedLines(portraitBindings) === expectedPortraitBindingHash, '立绘与稳定 personId 映射发生变化');
+assert(hashSortedLines(portraitBindings) === expectedPortraitBindingHash, 'V62/V69 基线立绘与稳定 personId 映射发生变化');
 
 /* 16 期地图与全量地图资产冻结。 */
 const expectedMapIds = ['huangjin', 'shaodi', 'dongzhuo', 'xingping', 'jianbing', 'guandu', 'chibi', 'xiangfan', 'sanguo', 'beifa', 'guijin', 'hanwang', 'jinchu', 'taikang', 'hui_di', 'yongjia'];

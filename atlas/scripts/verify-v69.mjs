@@ -71,7 +71,8 @@ assert(candidateRows.every(row=>{
 }),'立绘候选与实际 Figma 生产映射不一致');
 assert(productionRows.every(row=>row.status==='ready'&&/^\d+:\d+$/.test(String(row.nodeId||''))&&/^\d+:\d+$/.test(String(row.componentId||''))),'Figma 生产台账存在无效节点或未完成记录');
 assert(candidates.figma?.seat==='Full'&&candidates.figma?.status===production.status,'候选摘要未同步当前 Figma 生产状态');
-const expectedPublishedPortraits=production.status==='complete' ? 375 : 275;
+const v70PortraitCount=Object.values(portraits.assetsById||{}).filter(asset=>asset.portraitKind==='ui-illustration-v70').length;
+const expectedPublishedPortraits=(production.status==='complete' ? 375 : 275)+v70PortraitCount;
 assert(portraits.summary?.assetRecords===expectedPublishedPortraits&&candidates.summary?.expectedAfterProduction===375,'读者立绘数量与当前生产阶段不一致');
 
 const dispositions=battleLinks.dispositions||[];
@@ -123,5 +124,5 @@ if(failures.length){
   console.error(JSON.stringify({ok:false,failures},null,2));
   process.exitCode=1;
 }else{
-  console.log(JSON.stringify({ok:true,people:2096,lifeEvents:profiles.summary.lifeEvents,portraitCandidates:100,portraitCompleted:productionRows.length,battleLinks:publicLinks.length,fangzhen:{records:523,verified:45,candidate:478,dynasties:dynastyCounts},epigraphy:{records:166,withInscription:44,withoutInscription:122,dynasties:epigraphicDynasties},figma:production.status},null,2));
+  console.log(JSON.stringify({ok:true,people:2096,lifeEvents:profiles.summary.lifeEvents,portraitCandidates:100,portraitCompleted:productionRows.length,portraitAdditionsV70:v70PortraitCount,battleLinks:publicLinks.length,fangzhen:{records:523,verified:45,candidate:478,dynasties:dynastyCounts},epigraphy:{records:166,withInscription:44,withoutInscription:122,dynasties:epigraphicDynasties},figma:production.status},null,2));
 }

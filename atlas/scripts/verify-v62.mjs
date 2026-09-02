@@ -250,11 +250,16 @@ assert(html.includes('v-for="(fragment,index) in epigraphicHighlight(section.tex
 const portraitContext = loadScripts(['data/portrait-manifest.js']);
 const portraitManifest = portraitContext.SGZ_PERSON_PORTRAIT_MANIFEST;
 const portraitAssets = Object.values(portraitManifest?.assetsById || {});
-const legacyPortraitAssets = portraitAssets.filter(row => row.portraitKind !== 'ui-illustration-v62');
-const v62PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v62');
+/* V62 的 275 项基线被冻结；后续版本可追加资源，但不得改变基线映射。 */
+const v69PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v69');
+const v70PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v70');
+const baselinePortraitAssets = portraitAssets.filter(row => row.portraitKind !== 'ui-illustration-v69' && row.portraitKind !== 'ui-illustration-v70');
+const legacyPortraitAssets = baselinePortraitAssets.filter(row => row.portraitKind !== 'ui-illustration-v62');
+const v62PortraitAssets = baselinePortraitAssets.filter(row => row.portraitKind === 'ui-illustration-v62');
 assert(portraitManifest?.schemaVersion === 3, '立绘 manifest 尚未升级到 schemaVersion 3');
 assert(legacyPortraitAssets.length === 175, `既有 175 个立绘发生丢失或重复，实际 ${legacyPortraitAssets.length}`);
-assert(v62PortraitAssets.length === 100 && portraitAssets.length === 275, `最终立绘清单不是 175＋100，实际 ${legacyPortraitAssets.length}＋${v62PortraitAssets.length}`);
+assert(v62PortraitAssets.length === 100 && baselinePortraitAssets.length === 275, `V62 基线立绘清单不是 175＋100，实际 ${legacyPortraitAssets.length}＋${v62PortraitAssets.length}`);
+assert(portraitAssets.length === 275 + v69PortraitAssets.length + v70PortraitAssets.length, `后续追加立绘未保持 V62 基线，实际总数 ${portraitAssets.length}`);
 assert(portraitManifest?.defaultPersonIds?.length === 123, '默认精选人物不再是 123 人');
 assert(portraitCatalog?.plannedTotal === 100 && portraitCatalog?.reservedSlots?.length === 100, 'V62 立绘资源槽不是 100 个');
 assert(portraitCatalog?.assignedTotal === 100 && portraitCatalog?.readyTotal === 100, `V62 立绘未完成 100 项，assigned=${portraitCatalog?.assignedTotal || 0}，ready=${portraitCatalog?.readyTotal || 0}`);
@@ -328,7 +333,7 @@ if (figmaMapping) {
     if (!variantIds.length || !variantIds.every(figmaNodeId)) figmaProblems.push(`组件:${component.componentKey || component.name}:variantIds`);
   }
   if (mappedPortraitRows.length !== 275 || mappedPortraitById.size !== 275) figmaProblems.push(`立绘数量:${mappedPortraitById.size}/275`);
-  for (const asset of portraitAssets) {
+  for (const asset of baselinePortraitAssets) {
     const mapping = mappedPortraitById.get(asset.portraitId);
     if (mapping?.personId !== asset.personId) figmaProblems.push(`立绘:${asset.portraitId}:personId`);
     if (!figmaNodeId(mapping?.nodeId)) figmaProblems.push(`立绘:${asset.portraitId}:nodeId`);
@@ -355,7 +360,7 @@ if (failures.length) {
     peerage: { total: 590, readerVisible: 525 },
     jinFangzhen: jinFangzhen.summary,
     epigraphy: { records: normalizedJinshi.length, withInscription, withoutInscription: normalizedJinshi.length - withInscription },
-    portraits: { existing: legacyPortraitAssets.length, added: v62PortraitAssets.length, figmaMapped: mappedPortraitById.size },
+    portraits: { existing: legacyPortraitAssets.length, added: v62PortraitAssets.length, v69Added: v69PortraitAssets.length, v70Added: v70PortraitAssets.length, figmaMapped: mappedPortraitById.size },
     figma: { pages: requiredFigmaPages.length, components: componentRows.length, status: figmaMapping.status },
     mapFrozen: true,
   }, null, 2));
