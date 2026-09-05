@@ -927,3 +927,16 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 .v69-loading-frame.is-error { min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px; }
 .v69-loading-frame.is-error p { margin:0;text-align:center;color:var(--sgz-muted);font-size:14px;line-height:1.8; }
 .v69-loading-frame .el-button { min-height:44px;padding-inline:24px; }
+.reader-inscription-apparatus { margin-block:var(--sgz-space-section);border-top:1px solid var(--sgz-rule);padding-top:18px; }
+.reader-inscription-apparatus h3 { margin:0 0 12px;font:600 17px/1.5 var(--sgz-font-heading); }
+.reader-inscription-apparatus p,.reader-inscription-apparatus li > span { color:var(--sgz-muted);font:13px/1.8 var(--sgz-font-body); }
+.reader-inscription-apparatus details { border-block:1px solid var(--sgz-rule); }
+.reader-inscription-apparatus details + details { border-top:0; }
+.reader-inscription-apparatus summary { display:flex;align-items:center;gap:12px;min-height:48px;cursor:pointer;color:var(--sgz-ink);font-size:14px;list-style:none; }
+.reader-inscription-apparatus summary::before { content:'＋';color:var(--sgz-accent); }
+.reader-inscription-apparatus details[open] summary::before { content:'−'; }
+.reader-inscription-apparatus pre { margin:0 0 18px;font:16px/2 var(--sgz-font-heading);white-space:pre-wrap;overflow-wrap:anywhere; }
+.reader-inscription-apparatus ul { padding:0;list-style:none; }
+.reader-inscription-apparatus li { margin-block:12px; }
+.reader-inscription-apparatus a { display:inline-flex;align-items:center;min-height:44px;color:var(--sgz-accent);font-size:14px;text-underline-offset:4px; }
+.reader-inscription-apparatus li > span { display:block; }

@@ -28,12 +28,19 @@ test('identity resolution cannot publish an unreviewed appointment; source edits
 test('all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild', () => {
   assert.equal(review.records.length, 149);
   const published = new Map(relations.appointments.map(row => [row.appointmentId, row]));
-  assert.equal(published.size, 93);
+  assert.equal(published.size, 97);
   const row = suffix => published.get(`appointment:source:${suffix}`);
   assert.equal(row('sgz:22:dc35da5cf8f9').personId, 'person:workbook:13d66149e45735fd');
   assert.equal(row('sgz:22:dc35da5cf8f9').nodeName, '从事祭酒');
   assert.equal(row('sgz:38:829deeeb0689').personId, 'person:workbook:2cbac2c953caf4a3');
   assert.equal(row('jinshu:024:b8d36c4d1199').nodeName, '太子太保');
+  assert.equal(row('jinshu:092:fb598d513c5b').personId, 'person:workbook:820719bf57950697');
+  assert.equal(row('jinshu:092:fb598d513c5b').nodeName, '太傅长史');
+  assert.ok(row('jinshu:090:d98e5b408f46').citations.some(citation => citation.quote.includes('上不從')));
+  assert.equal(row('jinshu:024:bc1019f07d24').startYear, null, 'Do not infer a tenure from the eight-minister narrative');
+  for (const suffix of ['jinshu:003:4b5d9e2c1811','sgz:49:208a42091504','sgz:60:2286bb4d9b3e']) {
+    assert.equal(row(suffix), undefined, 'An appointment order alone does not establish actual tenure');
+  }
   for (const suffix of ['sgz:33:37976c389d0c', 'sgz:04:c0283bf31d40', 'sgz:04:eb02abb80150', 'sgz:48:69bd8dd84fa3', 'jinshu:107:6c58ebee08e9']) {
     assert.equal(row(suffix), undefined, `Refuted, unrealized or wrong-person assertion published: ${suffix}`);
   }
@@ -135,7 +142,36 @@ test('canonical, portable scripts and shared reader templates compile', () => {
 
 test('all existing inscriptions, sections and variants are preserved verbatim', () => {
   const payload = json('v69-epigraphic-records');
-  const originals = payload.records.map(row => [row.id, row.inscription || '', row.transcriptionSections || [], row.inscriptionVariants || []]);
+  const restored = new Set(json('v65-epigraphy-reader-overlays').records.map(row => row.recordId));
+  const originals = payload.records.filter(row => row.inscription && !restored.has(row.id))
+    .map(row => [row.id, row.inscription, row.transcriptionSections || [], row.inscriptionVariants || []]);
+  assert.equal(originals.length, 44);
   const digest = crypto.createHash('sha256').update(JSON.stringify(originals)).digest('hex');
-  assert.equal(digest, 'b29e9a9dc2d0961665ee3fa6c6ebe8bc06332802ec52ffa0ba17a9cbdf1a1938');
+  assert.equal(digest, '1702c9de1279c4550949599c673b0686ae2f85026bc91a2d65d78cc9bb1313c3');
+});
+
+test('the final reader retains all six reviewed transcriptions and variants without legacy overlays', () => {
+  const payload = json('v69-epigraphic-records');
+  const context = { window: {} };
+  vm.runInNewContext(read('exports/观史台-读者版/data/v69-epigraphic-records.js'), context);
+  const reader = JSON.parse(JSON.stringify(context.window.SGZ_V69_EPIGRAPHIC_RECORDS));
+  const overlays = json('v65-epigraphy-reader-overlays').records;
+  assert.equal(overlays.length, 6);
+  assert.equal(payload.summary.withInscription, 50);
+  assert.equal(reader.summary.withoutInscription, 116);
+  for (const overlay of overlays) {
+    for (const rows of [payload.records, reader.records]) {
+      const record = rows.find(row => row.id === overlay.recordId);
+      assert.equal(record.inscription, overlay.inscription, overlay.recordId);
+      assert.deepEqual(record.inscriptionVariants, overlay.inscriptionVariants);
+      assert.ok(record.transcriptionReferences.length);
+      assert.ok(record.transcriptionReferences.every(reference => reference.title && /^https:\/\//.test(reference.url)));
+    }
+  }
+  const canonicalHtml = read('index.html');
+  const readerHtml = read('exports/观史台-读者版/index.html');
+  for (const html of [canonicalHtml, readerHtml]) {
+    assert.ok(html.includes('<inscription-apparatus :record="jinshiPrimaryDetail" />'));
+    assert.ok(html.includes('<inscription-apparatus :record="activeEpigraphicDetail" />'));
+  }
 });

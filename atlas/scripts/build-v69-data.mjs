@@ -528,6 +528,11 @@ const displayModel = json('data/v62-jinshi-display.json');
 const overlayModel = json('data/v65-epigraphy-reader-overlays.json');
 const displayById = new Map((displayModel.records || []).map(row => [row.id, row]));
 const overlayById = new Map((overlayModel.records || []).map(row => [row.recordId, row]));
+const transcriptionEvidenceById = new Map([
+  ...(json('data/v61-epigraphy-research.json').epigraphy || []),
+  ...(json('data/v65-epigraphy-audit.json').records || [])
+].filter(row => /^已核/.test(row.sourceVerification?.status || ''))
+  .map(row => [row.recordId || row.id, row.sourceVerification]));
 const allEpigraphicRecords = [...(epigraphicBase.records || []), ...(epigraphicJin.records || [])];
 assert(allEpigraphicRecords.length === 188 && new Set(allEpigraphicRecords.map(row => row.id)).size === 188, '金石规范源不是 188 条唯一记录');
 assert(removedEpigraphicIds.every(id => allEpigraphicRecords.some(row => row.id === id)), '砖铭删除清单包含不存在的活动 ID');
@@ -549,8 +554,24 @@ const activeEpigraphicRecords = allEpigraphicRecords.filter(row => !removalSet.h
     materialType: raw.materialType || raw.type,
     dynasty: epigraphicDynasty(raw)
   };
+  // The final V69 runtime bypasses legacy overlays. Carry the already reviewed
+  // transcriptions into this projection, preserving their exact text/variants.
+  const transcription = overlayById.get(raw.id);
+  if (transcription) {
+    for (const field of ['inscription', 'inscriptionStatus', 'inscriptionVariants', 'transcriptionSections']) {
+      if (Object.hasOwn(transcription, field)) record[field] = structuredClone(transcription[field]);
+    }
+    const provenance = transcriptionEvidenceById.get(raw.id);
+    assert(provenance, `已核补文缺少著录依据：${raw.id}`);
+    record.transcriptionNote = provenance.result;
+    record.transcriptionReferences = provenance.sources.map(source => ({
+      title: source.title,
+      url: source.url,
+      note: [source.role, source.locator].filter(Boolean).join(' · ')
+    }));
+  }
   record.displayTitle = text(record.displayTitle || record.name || record.title);
-  record.inscription = text(record.inscription);
+  record.inscription = transcription ? String(record.inscription || '') : text(record.inscription);
   record.inscriptionStatus = text(record.inscriptionStatus) || (record.inscription ? '已录入' : '源文未见');
   record.readerDisplayStatus = record.polity === '汉' && !seasonHanKnownIds.has(record.id) ? 'candidate-dynasty' : 'verified';
   return record;
@@ -559,12 +580,12 @@ const epigraphicDynastyCounts = Object.fromEntries(['后汉', '季汉', '魏', '
 const withInscription = activeEpigraphicRecords.filter(row => text(row.inscription)).length;
 assert(activeEpigraphicRecords.length === 166 && new Set(activeEpigraphicRecords.map(row => row.id)).size === 166, '金石活动投影不是 166 条唯一记录');
 assert(JSON.stringify(epigraphicDynastyCounts) === JSON.stringify({ 后汉: 6, 季汉: 8, 魏: 20, 吴: 15, 西晋: 56, 东晋: 61 }), `金石朝代计数异常：${JSON.stringify(epigraphicDynastyCounts)}`);
-assert(withInscription === 44 && activeEpigraphicRecords.length - withInscription === 122, `金石释文计数应为 44／122，当前 ${withInscription}／${activeEpigraphicRecords.length - withInscription}`);
+assert(withInscription === 50 && activeEpigraphicRecords.length - withInscription === 116, `金石释文计数应为 50／116，当前 ${withInscription}／${activeEpigraphicRecords.length - withInscription}`);
 const duJun = activeEpigraphicRecords.find(row => row.id === 'jinshi-v55-fb4c0609f27c6b19');
 assert(duJun && text(duJun.inscription).startsWith('释文\n'), '杜君碑规范释文未保留原始“释文”行');
 const epigraphicPayload = {
   schemaVersion: 'V69-reader', modelId: 'sgz-v69-epigraphic-records', generatedAt,
-  summary: { records: 166, withInscription: 44, withoutInscription: 122, dynasties: epigraphicDynastyCounts },
+  summary: { records: activeEpigraphicRecords.length, withInscription, withoutInscription: activeEpigraphicRecords.length - withInscription, dynasties: epigraphicDynastyCounts },
   records: activeEpigraphicRecords
 };
 writePayload('v69-epigraphic-records', epigraphicPayload, 'SGZ_V69_EPIGRAPHIC_RECORDS');

@@ -34,7 +34,7 @@
       "bioClassical": 0,
       "dynastyTags": 1742,
       "historicalAffiliations": 46,
-      "appointments": 58,
+      "appointments": 59,
       "peerage": 371,
       "portraits": 423
     }
@@ -1062,7 +1062,8 @@
           "appointment:source:jinshu:003:74a64f3507a7",
           "appointment:source:jinshu:003:982354497ac8",
           "appointment:source:jinshu:003:c1fb9cf0902f",
-          "appointment:source:jinshu:003:e53817659adc"
+          "appointment:source:jinshu:003:e53817659adc",
+          "appointment:source:jinshu:024:1586f7cea46b"
         ],
         "peerage": [
           "peerage:313"
@@ -3521,6 +3522,7 @@
           "西晋"
         ],
         "appointments": [
+          "appointment:source:jinshu:024:bc1019f07d24",
           "appointment:source:sgz:04:23c21653b615",
           "appointment:source:sgz:04:6452b258bbd4"
         ],
@@ -4912,7 +4914,8 @@
           "西晋"
         ],
         "appointments": [
-          "appointment:source:jinshu:003:429e2d8233c3"
+          "appointment:source:jinshu:003:429e2d8233c3",
+          "appointment:source:jinshu:090:d98e5b408f46"
         ],
         "peerage": [
           "peerage:337"
@@ -124193,10 +124196,12 @@
         "person:workbook:8ae0e346dd92b368"
       ],
       "sourceRecordIds": [
+        "appointment:source:jinshu:092:fb598d513c5b",
         "source:v60:person:0928",
         "source:v61:snapshot260:ddeeadddba077a0e"
       ],
       "datasets": [
+        "appointments",
         "snapshot260",
         "v60-workbook",
         "v61-supplement",
@@ -124218,7 +124223,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "suppressed"
       },
@@ -124227,6 +124232,9 @@
         "dynastyTags": [
           "魏",
           "西晋"
+        ],
+        "appointments": [
+          "appointment:source:jinshu:092:fb598d513c5b"
         ]
       },
       "reviewCandidates": {
@@ -171995,7 +172003,8 @@
           "appointment:source:jinshu:003:74a64f3507a7",
           "appointment:source:jinshu:003:982354497ac8",
           "appointment:source:jinshu:003:c1fb9cf0902f",
-          "appointment:source:jinshu:003:e53817659adc"
+          "appointment:source:jinshu:003:e53817659adc",
+          "appointment:source:jinshu:024:1586f7cea46b"
         ],
         "peerage": [
           "peerage:313"
@@ -174454,6 +174463,7 @@
           "西晋"
         ],
         "appointments": [
+          "appointment:source:jinshu:024:bc1019f07d24",
           "appointment:source:sgz:04:23c21653b615",
           "appointment:source:sgz:04:6452b258bbd4"
         ],
@@ -175845,7 +175855,8 @@
           "西晋"
         ],
         "appointments": [
-          "appointment:source:jinshu:003:429e2d8233c3"
+          "appointment:source:jinshu:003:429e2d8233c3",
+          "appointment:source:jinshu:090:d98e5b408f46"
         ],
         "peerage": [
           "peerage:337"
@@ -295126,10 +295137,12 @@
         "person:workbook:8ae0e346dd92b368"
       ],
       "sourceRecordIds": [
+        "appointment:source:jinshu:092:fb598d513c5b",
         "source:v60:person:0928",
         "source:v61:snapshot260:ddeeadddba077a0e"
       ],
       "datasets": [
+        "appointments",
         "snapshot260",
         "v60-workbook",
         "v61-supplement",
@@ -295151,7 +295164,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "suppressed"
       },
@@ -295160,6 +295173,9 @@
         "dynastyTags": [
           "魏",
           "西晋"
+        ],
+        "appointments": [
+          "appointment:source:jinshu:092:fb598d513c5b"
         ]
       },
       "reviewCandidates": {
@@ -372588,7 +372604,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "suppressed"
     },

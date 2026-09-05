@@ -25,6 +25,30 @@
         <div v-if="person.posthumousTitle"><dt>谥号</dt><dd>{{person.posthumousTitle}}</dd></div>
       </dl>`
     },
+    InscriptionApparatus: {
+      props: ['record'],
+      computed: {
+        variants() {
+          return (this.record.inscriptionVariants || []).filter(item =>
+            item.note || (item.text || item.raw) && String(item.text || item.raw) !== this.record.inscription);
+        },
+        references() { return this.record.transcriptionReferences || []; }
+      },
+      template: `<section v-if="variants.length || references.length" class="reader-inscription-apparatus" aria-label="异文与著录">
+        <h3>异文与著录</h3>
+        <p v-if="record.transcriptionNote">{{record.transcriptionNote}}</p>
+        <details v-for="(variant,index) in variants" :key="variant.type+'-'+index">
+          <summary>{{variant.label || variant.type}}</summary>
+          <p v-if="variant.note">{{variant.note}}</p>
+          <pre v-if="variant.text || variant.raw">{{variant.text || variant.raw}}</pre>
+          <p v-if="variant.source">{{variant.source}}</p>
+        </details>
+        <ul v-if="references.length"><li v-for="(reference,index) in references" :key="reference.url+'-'+index">
+          <a :href="reference.url" target="_blank" rel="noopener noreferrer">{{reference.title}} ↗</a>
+          <span v-if="reference.note">{{reference.note}}</span>
+        </li></ul>
+      </section>`
+    },
     InscriptionAvailability: {
       props: ['record'],
       template: `<section v-if="!record.inscription" class="reader-availability" aria-label="释文收录状态">

@@ -5,8 +5,8 @@
   "summary": {
     "people": 2096,
     "rulers": 16,
-    "peopleWithLifeEvents": 458,
-    "lifeEvents": 777
+    "peopleWithLifeEvents": 459,
+    "lifeEvents": 781
   },
   "profiles": [
     {
@@ -300,6 +300,30 @@
             }
           ],
           "relatedRecordId": "appointment:source:jinshu:003:e53817659adc"
+        },
+        {
+          "eventId": "life:appointment:appointment:source:jinshu:024:1586f7cea46b",
+          "personId": "person:jin:he-zeng",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "司徒",
+          "detail": "任官",
+          "citations": [
+            {
+              "title": "《晋书》卷24·正文",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+              "quote": "魏禅，因其制，以安平王孚为太宰，郑冲为太傅。王祥为太保，義阳王望为太尉，何曾为司徒，荀顗为司空，石苞为大司马，陈骞为大将军，凡八公同时并置，唯無丞相焉。自義阳王望为大司马之后，定",
+              "note": "本条仅说明曾任司徒；魏咸熙初拜司徒、晋初拜太尉和后领司徒须分阶段理解，不据八公叙事推定任期。"
+            },
+            {
+              "title": "《晋书》卷33·何曾传",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+              "quote": "咸熙初，拜司徒，改封郎陵侯。",
+              "note": "本传另记武帝践阼拜太尉，后以太保领司徒并视事；职官志八公并置叙事不可直接据为晋初任期。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:jinshu:024:1586f7cea46b"
         }
       ]
     },
@@ -982,6 +1006,30 @@
           "relatedRecordId": "peerage:318"
         },
         {
+          "eventId": "life:appointment:appointment:source:jinshu:024:bc1019f07d24",
+          "personId": "person:jin:sima-wang",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "太尉",
+          "detail": "任官",
+          "citations": [
+            {
+              "title": "《晋书》卷24·正文",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+              "quote": "無忝舊章。世祖武皇帝即位之初，以安平王孚为太宰，郑冲为太傅，王祥为太保，司马望为太尉，何曾为司徒，荀顗为司空，石苞为大司马，陈骞为大将军，世所謂八公同辰，攀雲附翼者也。若乃成乎棟宇",
+              "note": "本传系进位太尉于泰始三年；职官志八公同辰为概括叙事。本条不据该概括填造起讫年。"
+            },
+            {
+              "title": "《晋书》卷37·义阳成王望传",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷037",
+              "quote": "其進位太尉，中領軍如故。",
+              "note": "该诏置于泰始三年条下。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:jinshu:024:bc1019f07d24"
+        },
+        {
           "eventId": "life:appointment:appointment:source:sgz:04:23c21653b615",
           "personId": "person:jin:sima-wang",
           "eventType": "appointment",
@@ -1312,6 +1360,36 @@
             }
           ],
           "relatedRecordId": "appointment:source:jinshu:003:429e2d8233c3"
+        },
+        {
+          "eventId": "life:appointment:appointment:source:jinshu:090:d98e5b408f46",
+          "personId": "person:jin:yang-hu",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "车骑将军",
+          "detail": "任官",
+          "citations": [
+            {
+              "title": "《晋书》卷90·正文",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷090",
+              "quote": "懸车，告老逊位，章表十餘上，于是征为光禄大夫，位特進，給吏卒，门施行马。羊祜为车骑将军，乃以位讓芝，曰：「光禄大夫鲁芝潔身寡欲，和而不同，服事华髮，以礼終始，未蒙此選，臣更越之，何以",
+              "note": "羊祜曾请让位鲁芝，皇帝未准；不能仅因截录中的让字判为未任。"
+            },
+            {
+              "title": "《晋书》卷90·鲁芝传",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷090",
+              "quote": "上不從。其為人所重如是。",
+              "note": "紧接羊祜请让车骑将军于鲁芝之语。"
+            },
+            {
+              "title": "《晋书》卷34·羊祜传",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷034",
+              "quote": "後加車騎將軍，開府如三司之儀。祜上表固讓曰：",
+              "note": "表后明载不听。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:jinshu:090:d98e5b408f46"
         }
       ]
     },
@@ -13353,7 +13431,33 @@
     },
     {
       "personId": "person:workbook:820719bf57950697",
-      "isRuler": false
+      "isRuler": false,
+      "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:jinshu:092:fb598d513c5b",
+          "personId": "person:workbook:820719bf57950697",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "太傅长史",
+          "detail": "任官",
+          "citations": [
+            {
+              "title": "《晋书》卷92·正文",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷092",
+              "quote": "中郎，深为羊祜所器重。入为太子中庶子。太康中，拜散骑常侍，出補渤海太守，转太傅杨骏长史，迁侍中。骏誅，以僚佐免官。尋起为散骑常侍、国子祭酒，转少府。元康末卒，所著詩及論事議二十五首",
+              "note": "受任者为邹湛；杨骏是太傅府主。"
+            },
+            {
+              "title": "《晋书》卷92·邹湛传",
+              "url": "https://zh.wikisource.org/wiki/晉書/卷092",
+              "quote": "鄒湛，字潤甫，南陽新野人也。",
+              "note": "下文明载转太傅杨骏长史，迁侍中；骏诛，以僚佐免官。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:jinshu:092:fb598d513c5b"
+        }
+      ]
     },
     {
       "personId": "person:workbook:829fd1cf97af026c",

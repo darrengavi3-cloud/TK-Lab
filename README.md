@@ -19,13 +19,14 @@ npm run release:check
 
 1. 在规范源执行确定性全量构建和当前不变量验证；
 2. 按 `reader-bundle.json` 同步纯净读者包；
-3. 执行站点静态检查；
+3. 执行 TypeScript 型别检查与站点静态检查；
 4. 构建、剪枝并校验最终部署清单。
 
 常用的分步命令：
 
 ```bash
 npm run sync:reader
+npm run typecheck
 npm run lint
 npm test
 ```
@@ -46,3 +47,7 @@ npm test
 V71 的任官审定表为 `atlas/data/v71-appointment-review.json`；修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。阅读与交互变更见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md` 的 V71 条目。
 
 要求 Node.js `>=22.13.0`。
+
+Cloudflare runtime 型别由锁定版本 Wrangler / workerd 根据实际构建配置生成并提交。完成构建后可运行 `npm run types:generate` 刷新；`npm run typecheck` 不需要连接 Cloudflare。D1 保持可选绑定，并保留缺少绑定时的运行时检查。
+
+V71 续修恢复六条早期已核、但未接入最终投影的金石释文，当前为 50 条有释文、116 条缺文。异文与著录也进入读者详情和手机抽屉。当前 97 条任官通过发布审定，4 条待核人物身份，48 条保留在审校层。

@@ -14,7 +14,8 @@
       "appointmentId": "appointment:source:sgz:21:6d1821578978",
       "sourceSha256": "e2a7de9183551e7dd049bcc7d417f21f53fe2f130c190184cfdf219e7b4cf9f8",
       "status": "review-only",
-      "reason": "刘表为辟召者；受任者为刘廙之兄刘望之，现有读者人物尚无可核身份。"
+      "reason": "刘表为辟召者；受任者为刘廙之兄刘望之，现有读者人物尚无可核身份。",
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
@@ -32,7 +33,8 @@
       "appointmentId": "appointment:source:sgz:38:15db8d9b680e",
       "sourceSha256": "eb841f6f3e26da9dc8e9d26af82258be7ae6c11ca0386982eff050f12472c611",
       "status": "review-only",
-      "reason": "刘璋为辟召者；此条受任者王商的身份须另行建立。"
+      "reason": "刘璋为辟召者；此条受任者王商的身份须另行建立。",
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
@@ -135,14 +137,34 @@
     {
       "appointmentId": "appointment:source:jinshu:024:1586f7cea46b",
       "sourceSha256": "118504a57795f0feb988813cd3521756392faa3dbd53df8201fcf8c5adea5bed",
-      "status": "review-only",
-      "reason": "职官志八公叙事与武帝纪何曾任太尉的纪年关系未清，不发布为新任事件。"
+      "status": "verified",
+      "reason": "何曾曾任司徒的事实由本传互证；职官志的晋初阶段与纪传有差异，仅发布官职事实，不填起讫年。",
+      "readerNote": "本条仅说明曾任司徒；魏咸熙初拜司徒、晋初拜太尉和后领司徒须分阶段理解，不据八公叙事推定任期。",
+      "citations": [
+        {
+          "title": "《晋书》卷33·何曾传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "咸熙初，拜司徒，改封郎陵侯。",
+          "note": "本传另记武帝践阼拜太尉，后以太保领司徒并视事；职官志八公并置叙事不可直接据为晋初任期。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:024:7166b0f37a95",
       "sourceSha256": "eeef3d4ebbbe987cbc4bae5a7e2b586190c9ab1dccdb839480d376086c3a26b1",
-      "status": "review-only",
-      "reason": "同卷重复八公叙事，且何曾司徒的阶段尚需核定。"
+      "status": "suppressed",
+      "reason": "与同卷 1586f7cea46b 重复的八公叙事；不再新增一条司徒任官。",
+      "duplicateOf": "appointment:source:jinshu:024:1586f7cea46b",
+      "citations": [
+        {
+          "title": "《晋书》卷33·何曾传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "咸熙初，拜司徒，改封郎陵侯。",
+          "note": "本传另记武帝践阼拜太尉，后以太保领司徒并视事；职官志八公并置叙事不可直接据为晋初任期。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:037:8e2684cdae7a",
@@ -153,8 +175,17 @@
     {
       "appointmentId": "appointment:source:jinshu:003:4b5d9e2c1811",
       "sourceSha256": "263b6a59d08f84b6201ca0798aedc3b2861f1bb3b41683c2337bac638841d021",
-      "status": "review-only",
-      "reason": "贾充外任秦凉而未赴任的经过须结合本传核定，不能据诏命推断实际任期。"
+      "status": "suppressed",
+      "reason": "卷40贾充传载皇储当婚而不西行，诏居本职；诏命确实存在，但不能作为秦凉实际任期。",
+      "appointmentNature": "受命未赴",
+      "citations": [
+        {
+          "title": "《晋书》卷40·贾充传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷040",
+          "quote": "會京師大雪，平地二尺，軍不得發。既而皇儲當婚，遂不西行。詔充居本職。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:003:64e5457caa8b",
@@ -248,7 +279,21 @@
       "appointmentId": "appointment:source:jinshu:088:c7f32e2a604a",
       "sourceSha256": "95f61d1eb0facc76a449d12e8f12a8745cf91f5c595c878bdc78964887382772",
       "status": "review-only",
-      "reason": "罗尚是辟召者；上下文受任者为兴，截取段落未完整说明身份。"
+      "reason": "全文确认受任者为李密之子李兴（字雋石），罗尚为辟召者；现有读者范围无此人物，不挂入罗尚履历。",
+      "candidateIdentity": {
+        "name": "李兴",
+        "zi": "雋石",
+        "father": "李密"
+      },
+      "citations": [
+        {
+          "title": "《晋书》卷88·李密传附李兴",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷088",
+          "quote": "後卒於家。二子：賜、興。",
+          "note": "同段下文：兴字雋石，刺史罗尚辟别驾；须建立独立人物身份后接入。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:120:0623f307009c",
@@ -363,8 +408,18 @@
     {
       "appointmentId": "appointment:source:jinshu:024:bc1019f07d24",
       "sourceSha256": "a2a75718e3c1ceb787207a8afd19fe3a7776bea6e60f84a5d494f6df9d385e97",
-      "status": "review-only",
-      "reason": "八公阶段与晋初纪年未清，不把职官志制度叙事另建精确履历。"
+      "status": "verified",
+      "reason": "卷37明确载泰始三年由司徒进位太尉，确认任官事实；不采用职官志所谓即位之初推定纪年。",
+      "readerNote": "本传系进位太尉于泰始三年；职官志八公同辰为概括叙事。本条不据该概括填造起讫年。",
+      "citations": [
+        {
+          "title": "《晋书》卷37·义阳成王望传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷037",
+          "quote": "其進位太尉，中領軍如故。",
+          "note": "该诏置于泰始三年条下。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:04:23c21653b615",
@@ -407,7 +462,21 @@
       "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
       "sourceSha256": "4b8ac20349d1ccdc107af58f47110c7c78ddf24490bded44c8c65e04be52518e",
       "status": "review-only",
-      "reason": "卫瓘为辟召者，受任者为刘沈；与现有同名身份缺乏独立核对。"
+      "reason": "全文确认受任者刘沈字道真、燕国蓟人；现有同名人物仅来自260年快照且归属标为魏，须先独立复核该身份范围，不直接合并。",
+      "candidateIdentity": {
+        "name": "刘沈",
+        "zi": "道真",
+        "birthplace": "燕国蓟",
+        "candidatePersonId": "person:snapshot260:9fbd9f0edab3ad59"
+      },
+      "citations": [
+        {
+          "title": "《晋书》卷89·刘沈传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷089",
+          "quote": "劉沈，字道真，燕國薊人也。世為北州名族。少仕州郡，博學好古。太保衛瓘辟為掾，領本邑大中正。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:003:eb7cbd5e06a0",
@@ -418,14 +487,34 @@
     {
       "appointmentId": "appointment:source:jinshu:024:1ab39cf24965",
       "sourceSha256": "ab8291d2981cb0a39937613f5e497253ac6434cc707435dc1ac3f1b8382cdf85",
-      "status": "review-only",
-      "reason": "职官志八公制度叙事不另作荀顗新任事件，保留魏元帝纪明确任命。"
+      "status": "suppressed",
+      "reason": "八公叙事不构成独立的新任事件；已有魏元帝纪的明确司空任命。本传记咸熙中迁司空、晋受禅后进司徒，保留异文而不重复计数。",
+      "appointmentNature": "重复叙事",
+      "citations": [
+        {
+          "title": "《晋书》卷39·荀顗传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "咸熙中，遷司空，進爵鄉侯。",
+          "note": "本传受禅后另有由司空进司徒诏。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:024:68a22a581543",
       "sourceSha256": "5d9d21342684692fb59dcf9ca45386b2e1139eaa3b5308d2e2d3d09801130165",
-      "status": "review-only",
-      "reason": "同卷八公叙事重复，不另作新任事件。"
+      "status": "suppressed",
+      "reason": "八公叙事不构成独立的新任事件；已有魏元帝纪的明确司空任命。本传记咸熙中迁司空、晋受禅后进司徒，保留异文而不重复计数。",
+      "appointmentNature": "重复叙事",
+      "citations": [
+        {
+          "title": "《晋书》卷39·荀顗传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "咸熙中，遷司空，進爵鄉侯。",
+          "note": "本传受禅后另有由司空进司徒诏。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:04:fc90786b5792",
@@ -445,8 +534,24 @@
     {
       "appointmentId": "appointment:source:jinshu:090:d98e5b408f46",
       "sourceSha256": "8092a530469e4012c268bc96f6862e40de90df676eeec8fc526cad29df9ce292",
-      "status": "review-only",
-      "reason": "原段羊祜让位鲁芝，须核对实际受任和辞让经过，暂不作在任事实。"
+      "status": "verified",
+      "reason": "鲁芝传让位段的下文为上不从；羊祜本传亦载加车骑、固让而不听，武帝纪西陵救援仍称车骑将军羊祜，故确认羊祜任官。",
+      "readerNote": "羊祜曾请让位鲁芝，皇帝未准；不能仅因截录中的让字判为未任。",
+      "citations": [
+        {
+          "title": "《晋书》卷90·鲁芝传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷090",
+          "quote": "上不從。其為人所重如是。",
+          "note": "紧接羊祜请让车骑将军于鲁芝之语。"
+        },
+        {
+          "title": "《晋书》卷34·羊祜传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷034",
+          "quote": "後加車騎將軍，開府如三司之儀。祜上表固讓曰：",
+          "note": "表后明载不听。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:003:48978b7a125c",
@@ -481,8 +586,23 @@
     {
       "appointmentId": "appointment:source:jinshu:092:fb598d513c5b",
       "sourceSha256": "a6ed6d4fa12131c0db3f7dbe7053af0ca52cd4d3e2e1155915384599f7db7368",
-      "status": "review-only",
-      "reason": "太傅杨骏为府主，长史的受任者不是杨骏，且官名抽取被截为长。"
+      "status": "verified",
+      "reason": "卷92邹湛传明确记转太傅杨骏长史；现有邹湛人物的字润甫、籍贯南阳新野均与本传吻合，修正受任者及截断官名。",
+      "correction": {
+        "personId": "person:workbook:820719bf57950697",
+        "name": "邹湛",
+        "officeName": "太傅长史"
+      },
+      "readerNote": "受任者为邹湛；杨骏是太傅府主。",
+      "citations": [
+        {
+          "title": "《晋书》卷92·邹湛传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷092",
+          "quote": "鄒湛，字潤甫，南陽新野人也。",
+          "note": "下文明载转太傅杨骏长史，迁侍中；骏诛，以僚佐免官。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:jinshu:003:db978e64500d",
@@ -772,20 +892,68 @@
     {
       "appointmentId": "appointment:source:jinshu:015:7454a5ebeab1",
       "sourceSha256": "61292a38392fb0663235a97c56703ec66573b2b9f3e172f416e12a0065e2ca74",
-      "status": "review-only",
-      "reason": "戴良受命交州刺史而不得入，需另建未赴任性质，不能作实任。"
+      "status": "suppressed",
+      "reason": "戴良受命后在合浦被阻，后来随吕岱俱进；平乱后复并交广。任命与入境有据，独立视事任期未见，不作为实际任期发布。保留卷49、60辖区异文。",
+      "appointmentNature": "受命受阻，后随军入境；视事未见",
+      "citations": [
+        {
+          "title": "《三国志》卷49·士燮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "良留合浦。",
+          "note": "前文记士徽发兵拒良；后文记吕岱过合浦，与良俱前。"
+        },
+        {
+          "title": "《三国志》卷60·吕岱传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "前文记戴良受命后遭拒，继而随吕岱俱进；没有戴良视事任期，且随后复并交广。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:49:208a42091504",
       "sourceSha256": "c14de61cc290fc5aa037bfffd26435eedeaf3a7a8ccdd112f42e0cdbb60e7224",
-      "status": "review-only",
-      "reason": "戴良受命但士徽拒命阻入，需核定任命与实任的区别。"
+      "status": "suppressed",
+      "reason": "戴良受命后在合浦被阻，后来随吕岱俱进；平乱后复并交广。任命与入境有据，独立视事任期未见，不作为实际任期发布。保留卷49、60辖区异文。",
+      "appointmentNature": "受命受阻，后随军入境；视事未见",
+      "citations": [
+        {
+          "title": "《三国志》卷49·士燮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "良留合浦。",
+          "note": "前文记士徽发兵拒良；后文记吕岱过合浦，与良俱前。"
+        },
+        {
+          "title": "《三国志》卷60·吕岱传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "前文记戴良受命后遭拒，继而随吕岱俱进；没有戴良视事任期，且随后复并交广。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:60:2286bb4d9b3e",
       "sourceSha256": "a3d27b0b09ed709ff4afd55677d76670db0472516e5985c46df5c09813d75b65",
-      "status": "review-only",
-      "reason": "同一戴良事件的异文，待并校任命、辖区与未赴任经过。"
+      "status": "suppressed",
+      "reason": "戴良受命后在合浦被阻，后来随吕岱俱进；平乱后复并交广。任命与入境有据，独立视事任期未见，不作为实际任期发布。保留卷49、60辖区异文。",
+      "appointmentNature": "受命受阻，后随军入境；视事未见",
+      "citations": [
+        {
+          "title": "《三国志》卷49·士燮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "良留合浦。",
+          "note": "前文记士徽发兵拒良；后文记吕岱过合浦，与良俱前。"
+        },
+        {
+          "title": "《三国志》卷60·吕岱传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "前文记戴良受命后遭拒，继而随吕岱俱进；没有戴良视事任期，且随后复并交广。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
     },
     {
       "appointmentId": "appointment:source:sgz:48:74022d223b66",
@@ -949,5 +1117,12 @@
       "status": "verified",
       "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
     }
-  ]
+  ],
+  "followupSummary": {
+    "reviewed": 15,
+    "newlyVerified": 4,
+    "newlySuppressed": 7,
+    "identityReviewRemaining": 4,
+    "note": "明确史事与入读者范围分开；未建立人物或身份范围仍有冲突时，保留候选不强制合并。"
+  }
 }

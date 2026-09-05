@@ -126,7 +126,7 @@ const battlefieldFields = ['id','name','placeLabel','lat','lng','from','to','not
 const epigraphicFields = [
   'id','entityType','name','title','displayTitle','titleAliases','variantLabel','type','materialType','year',
   'yearText','dateText','polity','dynasty','period','inscription','inscriptionStatus','inscriptionVariants',
-  'transcriptionSections','people','offices','place','region','findspot','scriptStyle','form','archiveKind',
+  'transcriptionSections','transcriptionReferences','transcriptionNote','people','offices','place','region','findspot','scriptStyle','form','archiveKind',
   'media','mediaAssets','bibliography','readerSummary','note','readerDisplayStatus'
 ];
 const personLifeEventFields = ['eventId','personId','eventType','startYear','endYear','title','detail','relatedRecordId','citations'];
@@ -190,7 +190,7 @@ function plain(value) {
 }
 
 function cleanTranscriptionVariants(rows) {
-  return (rows || []).map(row => pickFields(row, ['type','label','text','raw']));
+  return (rows || []).map(row => pickFields(row, ['type','label','text','raw','note','source','textRef']));
 }
 
 function cleanTranscriptionSections(rows) {
@@ -201,6 +201,7 @@ function cleanEpigraphicRecord(row) {
   const record = pickFields(row, epigraphicFields);
   if (Array.isArray(record.inscriptionVariants)) record.inscriptionVariants = cleanTranscriptionVariants(record.inscriptionVariants);
   if (Array.isArray(record.transcriptionSections)) record.transcriptionSections = cleanTranscriptionSections(record.transcriptionSections);
+  if (Array.isArray(record.transcriptionReferences)) record.transcriptionReferences = record.transcriptionReferences.map(item => pickFields(item, ['title','url','note']));
   if (Array.isArray(record.media)) record.media = record.media.map(item => pickFields(item, ['type','src','alt','label']));
   if (Array.isArray(record.mediaAssets)) record.mediaAssets = record.mediaAssets.map(item => pickFields(item, ['assetId','localPath','altText','width','height','sourceTitle','sourceUrl','rightsStatus']));
   return record;
@@ -797,13 +798,13 @@ if (fs.existsSync(epigraphyReaderOverlayPath)) {
 const v69EpigraphicSource = readJson(path.join(root, 'data', 'v69-epigraphic-records.json'));
 const v69EpigraphicRecords = (v69EpigraphicSource.records || []).map(cleanEpigraphicRecord);
 if (v69EpigraphicRecords.length !== 166
-  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 44) {
-  fail('V69 金石读者投影不为 166 条／44 条有释文');
+  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 50) {
+  fail('金石读者投影不为 166 条／50 条有释文（含六条已核补文）');
 }
 const v69EpigraphicPayload = {
   schemaVersion: 'V69-reader',
   modelId: 'sgz-v69-epigraphic-records',
-  summary: { records: 166, withInscription: 44, withoutInscription: 122 },
+  summary: { records: 166, withInscription: 50, withoutInscription: 116 },
   records: v69EpigraphicRecords
 };
 assertNoBannedPayloadKeys(v69EpigraphicPayload);

@@ -9636,6 +9636,7 @@ const app = createApp({
                 </section>
               </div>
             </section>
+            <inscription-apparatus :record="jinshiPrimaryDetail" />
             <section v-if="workspaceMode==='review'&&jinshiPrimaryDetail.sourceVerification" class="v61-jinshi-research review-only">
               <h3>V61 检索与释文分层</h3>
               <p>{{jinshiPrimaryDetail.sourceVerification.result}}</p>
@@ -9892,6 +9893,7 @@ const app = createApp({
             </section>
           </div>
         </section>
+        <inscription-apparatus :record="activeEpigraphicDetail" />
         <div v-if="activeEpigraphicDetail.people||activeEpigraphicDetail.offices" class="jinshi-related"><button v-for="nm in (activeEpigraphicDetail.people||'').split(/[、，,]/).filter(Boolean)" :key="nm" @click="openEpigraphicPerson(nm)">{{nm}}</button><span v-if="activeEpigraphicDetail.offices">{{activeEpigraphicDetail.offices}}</span></div>
         <div v-if="activeEpigraphicDetail.contentSummary||activeEpigraphicDetail.readerDescription" class="epigraphic-dispute"><b>内容摘要</b><span>{{activeEpigraphicDetail.contentSummary||activeEpigraphicDetail.readerDescription}}</span></div>
         <div v-if="workspaceMode==='review'&&(activeEpigraphicDetail.note||activeEpigraphicDetail.disputeNote)" class="epigraphic-dispute review-only"><b>释读说明</b><span>{{activeEpigraphicDetail.disputeNote||activeEpigraphicDetail.note}}</span></div>

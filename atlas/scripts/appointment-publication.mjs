@@ -30,7 +30,15 @@ export function reviewedAppointments(sourceRows, review, canonicalPersonId = val
         url: source.sourceUrl,
         quote: source.sourceExcerpt,
         ...(decision.readerNote ? { note: decision.readerNote } : {})
-      }]
+      }, ...(decision.citations || []).map(citation => {
+        if (!citation.title || !citation.quote || !/^https:\/\//.test(citation.url)) {
+          throw new Error(`Incomplete supporting citation: ${decision.appointmentId}`);
+        }
+        return {
+          title: citation.title, url: citation.url, quote: citation.quote,
+          ...(citation.note ? { note: citation.note } : {})
+        };
+      })]
     });
   }
   return result;
