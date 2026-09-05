@@ -5,7 +5,7 @@
   "policy": {
     "ruler": "仅由项目已登记的分期君主姓名与唯一 personId 对应；不按爵号或姓名推断君主身份。",
     "templeAndPosthumous": "庙号、谥号须有独立可定位资料才发布；当前未建立可靠结构化字段者保持 suppressed。",
-    "timeline": "只合并已发布任官、封爵和明确战事人物链接；不自动生成小传史实。"
+    "timeline": "只合并已核任官、州镇、封爵和明确战事人物链接；不自动生成小传史实。"
   },
   "records": [
     {
@@ -25,10 +25,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 2
+      "lifeEventCount": 0
     },
     {
       "personId": "person:han:liu-zhang",
@@ -39,7 +39,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 2
     },
     {
       "personId": "person:han:tao-qian",
@@ -83,7 +83,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 5
+      "lifeEventCount": 4
     },
     {
       "personId": "person:jin:he-zeng",
@@ -94,7 +94,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 9
+      "lifeEventCount": 6
     },
     {
       "personId": "person:jin:hu-lie",
@@ -116,7 +116,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 11
+      "lifeEventCount": 8
     },
     {
       "personId": "person:jin:li-xi",
@@ -182,7 +182,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 2
+      "lifeEventCount": 3
     },
     {
       "personId": "person:jin:pei-wei",
@@ -193,7 +193,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 2
+      "lifeEventCount": 1
     },
     {
       "personId": "person:jin:pei-xiu",
@@ -204,7 +204,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 5
+      "lifeEventCount": 4
     },
     {
       "personId": "person:jin:shi-bao",
@@ -215,7 +215,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 5
+      "lifeEventCount": 2
     },
     {
       "personId": "person:jin:shi-jian",
@@ -226,7 +226,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 2
     },
     {
       "personId": "person:jin:sima-fu",
@@ -259,7 +259,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 3
     },
     {
       "personId": "person:jin:sima-yan",
@@ -303,7 +303,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 5
+      "lifeEventCount": 4
     },
     {
       "personId": "person:jin:wei-guan",
@@ -314,7 +314,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 3
     },
     {
       "personId": "person:jin:xun-xu",
@@ -336,7 +336,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 8
+      "lifeEventCount": 6
     },
     {
       "personId": "person:jin:yang-hu",
@@ -358,7 +358,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 5
+      "lifeEventCount": 2
     },
     {
       "personId": "person:jin:yang-xiu",
@@ -391,7 +391,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 7
+      "lifeEventCount": 5
     },
     {
       "personId": "person:peerage:02ead3aca9899969",
@@ -2489,10 +2489,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:shu:dong-jue",
@@ -2511,10 +2511,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:shu:fa-zheng",
@@ -2522,10 +2522,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:shu:fei-yi",
@@ -2536,7 +2536,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 3
+      "lifeEventCount": 2
     },
     {
       "personId": "person:shu:jiang-wan",
@@ -2547,7 +2547,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 3
     },
     {
       "personId": "person:shu:jiang-wei",
@@ -2558,7 +2558,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 5
     },
     {
       "personId": "person:shu:lai-min",
@@ -2635,7 +2635,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": true,
-      "lifeEventCount": 2
+      "lifeEventCount": 1
     },
     {
       "personId": "person:shu:liu-yin",
@@ -2701,7 +2701,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 6
+      "lifeEventCount": 5
     },
     {
       "personId": "person:snapshot260:000e86657b9cbfd0",
@@ -4040,10 +4040,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 2
     },
     {
       "personId": "person:snapshot260:33a3c2ba9a217dee",
@@ -6592,10 +6592,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:snapshot260:9fe7dc2885b5e4b5",
@@ -8407,10 +8407,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:snapshot260:e59043e09e46a9a8",
@@ -8979,10 +8979,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:source:057d4375544c",
@@ -9070,7 +9070,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 2
     },
     {
       "personId": "person:source:1cfba8ff9f76",
@@ -9485,10 +9485,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 2
     },
     {
       "personId": "person:source:6f24577154e3",
@@ -9991,10 +9991,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 2
     },
     {
       "personId": "person:source:dc344a37e17e",
@@ -10211,10 +10211,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:source:fce5078fab12",
@@ -10233,10 +10233,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:unresolved:02w9vik",
@@ -10489,7 +10489,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 17
+      "lifeEventCount": 18
     },
     {
       "personId": "person:wei:cao-man",
@@ -10497,10 +10497,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:wei:cao-pi",
@@ -10544,7 +10544,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 5
+      "lifeEventCount": 4
     },
     {
       "personId": "person:wei:cui-lin",
@@ -10585,10 +10585,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:wei:liu-fang",
@@ -10654,7 +10654,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 2
+      "lifeEventCount": 1
     },
     {
       "personId": "person:wei:xu-miao",
@@ -10665,7 +10665,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 3
+      "lifeEventCount": 2
     },
     {
       "personId": "person:wei:zhong-yao",
@@ -10687,7 +10687,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 2
     },
     {
       "personId": "person:workbook:00220381566bc841",
@@ -10786,7 +10786,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 2
     },
     {
       "personId": "person:workbook:01f379501896fb4e",
@@ -11611,7 +11611,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 2
     },
     {
       "personId": "person:workbook:13d67596ded2f122",
@@ -11817,10 +11817,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:182be3d9bdbc4f2a",
@@ -12774,10 +12774,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:2cc9720bc2e37b78",
@@ -13063,7 +13063,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 2
     },
     {
       "personId": "person:workbook:3274380f77304cff",
@@ -14174,7 +14174,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 2
     },
     {
       "personId": "person:workbook:4ce78f578e6adcba",
@@ -14292,10 +14292,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:50dd2cd5f410a8da",
@@ -15282,10 +15282,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:66e2d9c0f1aa3b1e",
@@ -15854,10 +15854,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:71f1c722b9177929",
@@ -16437,10 +16437,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:816a2a01313777f8",
@@ -16514,10 +16514,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:83a6e6fbf9e8578d",
@@ -17042,10 +17042,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:91a47d7ec348118f",
@@ -17089,7 +17089,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 5
     },
     {
       "personId": "person:workbook:92d3afcbfe27ee5e",
@@ -17581,10 +17581,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:9d6e93f4a9cd8152",
@@ -17592,10 +17592,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:9d9c988cad9fd1df",
@@ -17988,10 +17988,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:a4565c58b459187d",
@@ -18076,10 +18076,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:a64fce4f85c3e479",
@@ -19011,10 +19011,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:bbf7dcdd0edaa4d4",
@@ -19209,10 +19209,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:c196a4d68f19848c",
@@ -20859,10 +20859,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:e22532bd1bb71dab",
@@ -21046,10 +21046,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:e5a7e0997c492f21",
@@ -21090,10 +21090,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 2
     },
     {
       "personId": "person:workbook:e64fbbba15b7a82e",
@@ -21684,10 +21684,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "suppressed"
+        "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 0
+      "lifeEventCount": 1
     },
     {
       "personId": "person:workbook:f40ae922669e163d",
@@ -22894,10 +22894,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 3
+      "lifeEventCount": 0
     },
     {
       "personId": "person:wu:he-zhi",
@@ -22982,10 +22982,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:wu:sun-hao",
@@ -22996,7 +22996,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": true,
-      "lifeEventCount": 3
+      "lifeEventCount": 1
     },
     {
       "personId": "person:wu:sun-he",
@@ -23018,7 +23018,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": true,
-      "lifeEventCount": 11
+      "lifeEventCount": 5
     },
     {
       "personId": "person:wu:sun-shao",
@@ -23026,10 +23026,10 @@
         "isRuler": "suppressed",
         "templeName": "suppressed",
         "posthumousTitle": "suppressed",
-        "lifeEvents": "verified"
+        "lifeEvents": "suppressed"
       },
       "isRuler": false,
-      "lifeEventCount": 1
+      "lifeEventCount": 0
     },
     {
       "personId": "person:wu:teng-yin",
@@ -23040,7 +23040,7 @@
         "lifeEvents": "verified"
       },
       "isRuler": false,
-      "lifeEventCount": 4
+      "lifeEventCount": 1
     },
     {
       "personId": "person:wu:zhang-ti",

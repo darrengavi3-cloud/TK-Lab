@@ -538,8 +538,16 @@ function scriptSafe(source) {
 }
 
 function classicUiModule(moduleName, source) {
+  // Resolve explicit re-exports before converting modules for the single HTML.
+  const reexportNames = [];
+  source = String(source).replace(/export\s+\{([^}]+)\}\s+from\s+['"](\.[^'"]+)['"];?/g, (_match, names, relative) => {
+    reexportNames.push(...names.split(',').map(name => name.trim()));
+    const dependency = path.resolve(root, 'assets/app', relative);
+    if (!dependency.startsWith(path.join(root, 'assets/app') + path.sep)) throw new Error('UI dependency escapes app directory');
+    return fs.readFileSync(dependency, 'utf8').replace(/\bexport\s+(?=(?:const|function)\b)/g, '');
+  });
   const exportNames = Array.from(new Set(
-    [...String(source).matchAll(/\bexport\s+(?:const|function)\s+([A-Za-z_$][\w$]*)/g)].map(match => match[1])
+    [...reexportNames, ...[...String(source).matchAll(/\bexport\s+(?:const|function)\s+([A-Za-z_$][\w$]*)/g)].map(match => match[1])]
   ));
   if (!exportNames.length) throw new Error(`轻量单 HTML 无法识别界面模块导出：${moduleName}`);
   const body = String(source).replace(/\bexport\s+(?=(?:const|function)\b)/g, '');

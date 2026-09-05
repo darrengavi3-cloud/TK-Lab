@@ -238,6 +238,7 @@ for (const relation of readerRelations.appointments || []) {
     endYear: Number.isInteger(relation.endYear) ? relation.endYear : null,
     title: text(relation.nodeName),
     detail: [relation.polity, relation.jurisdiction, relation.appointmentNature].filter(Boolean).join(' · '),
+    citations: relation.citations,
     relatedRecordId: relation.appointmentId
   });
 }
@@ -266,6 +267,20 @@ for (const link of battleLinks) {
     relatedRecordId: link.recordId
   });
 }
+// Verified administrative tenures share the person timeline. The canonical
+// person mapping must resolve unambiguously; candidates never enter this index.
+for (const record of json('data/v66-fangzhen-reader.json').records || []) {
+  const personId = record.personId || uniquePersonIdForName(record.commander);
+  if (!personId || !peopleById.has(personId)) continue;
+  addLifeEvent(personId, {
+    eventId: `life:fangzhen:${record.id}`, personId, eventType: 'fangzhen',
+    startYear: Number.isInteger(record.startYear) ? record.startYear : null,
+    endYear: Number.isInteger(record.endYear) ? record.endYear : null,
+    title: normalizeFangzhenOfficeTitle(record.title),
+    detail: [record.polity, record.jurisdiction, record.tenureText].filter(Boolean).join(' · '),
+    relatedRecordId: record.id
+  });
+}
 const personProfiles = readerPeople.map(person => {
   const lifeEvents = (lifeEventsByPerson.get(person.personId) || []).sort((a, b) => {
     const ay = Number.isInteger(a.startYear) ? a.startYear : Number.POSITIVE_INFINITY;
@@ -283,7 +298,7 @@ const profileAudit = {
   policy: {
     ruler: '仅由项目已登记的分期君主姓名与唯一 personId 对应；不按爵号或姓名推断君主身份。',
     templeAndPosthumous: '庙号、谥号须有独立可定位资料才发布；当前未建立可靠结构化字段者保持 suppressed。',
-    timeline: '只合并已发布任官、封爵和明确战事人物链接；不自动生成小传史实。'
+    timeline: '只合并已核任官、州镇、封爵和明确战事人物链接；不自动生成小传史实。'
   },
   records: personProfiles.map(profile => ({
     personId: profile.personId,

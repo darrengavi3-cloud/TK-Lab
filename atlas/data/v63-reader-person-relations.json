@@ -9,70 +9,30 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:21:6d1821578978",
-      "personId": "person:han:liu-biao",
-      "nodeName": "从事",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
-      "personId": "person:han:liu-biao",
-      "nodeName": "从事",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:38:15db8d9b680e",
-      "personId": "person:han:liu-zhang",
-      "nodeName": "治中",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
-      "personId": "person:han:liu-zhang",
-      "nodeName": "从事",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:43:0c13a7c81381",
-      "personId": "person:han:liu-zhang",
-      "nodeName": "主簿",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:38:829deeeb0689",
-      "personId": "person:han:tao-qian",
-      "nodeName": "别驾",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷6·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "。卓至西京，为太师，號曰尚父。乘青蓋金华车，爪畫兩轓，时人號曰竿摩车。。卓弟旻为左将军，封鄠侯；兄子璜为侍中中军校尉典兵；宗族內外并列朝廷。。公卿見卓，謁拜车下，卓不为礼。召呼三台尚"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:08:36f8390373fd",
       "personId": "person:han:zhang-lu",
-      "nodeName": "将军",
+      "nodeName": "镇南将军",
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷8·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷08",
+          "quote": "藏而去。太祖入南郑，甚嘉之。又以鲁本有善意，遣人慰喻。鲁盡将家出，太祖逆拜鲁镇南将军，待以客礼，封閬中侯，邑万戶。封鲁五子及阎圃等皆为列侯。。为子彭祖取鲁女。鲁薨，諡之曰原侯。子富"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:342ee9a2ab8c",
@@ -81,7 +41,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "生九千餘人，于是來降。八月庚辰，河东、平阳地震。己亥，以太保何曾为太傅，太尉陈骞为大司马，司空贾充为太尉，镇军大将军齐王攸为司空。有星孛于太微，九月又孛于翼。丁未，起太倉于城东，常平倉"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:df6143e80532",
@@ -90,7 +57,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "西将军、汝陰王骏討之，斬其帥乞文泥等。戊申，葬元皇后于峻阳陵。九月癸亥，以大将军陈骞为太尉。攻拔吴枳里城，獲吴立信校尉莊祐。吴将孙遵、李承帥眾寇江夏，太守嵇喜擊破之。立河橋于富平津。冬十"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:024:981cd8b31e76",
@@ -99,16 +73,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:ba5301556f9d",
-      "personId": "person:jin:chen-qian",
-      "nodeName": "大将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷24·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+          "quote": "为太傅，王祥为太保，司马望为太尉，何曾为司徒，荀顗为司空，石苞为大司马，陈骞为大将军，世所謂八公同辰，攀雲附翼者也。若乃成乎棟宇，非一枝之勢；處乎經綸，稱万夫之敵。或牽羊以葉于夢，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:23a70ff02311",
@@ -117,7 +89,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "鹿公，侍中荀勖为济北公，太保郑冲为太傅、壽光公，太尉王祥为太保、睢陵公，丞相何曾为太尉、朗陵公，御史大夫王沈为骠骑将军、博陵公，司空荀顗为臨淮公，镇北大将军卫瓘为菑阳公。其餘增封進爵"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:74a64f3507a7",
@@ -126,7 +105,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "三日。是月，长人見于襄武，长三丈，告县人王始曰：「今當太平。」九月戊午，以魏司徒何曾为丞相，镇南将军王沈为御史大夫，中护军贾充为卫将军，議郎裴秀为尚书令、光禄大夫，皆开府。十一月，初置四"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:982354497ac8",
@@ -135,7 +121,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "，罷都护将军，以其五署還光禄勋。九月甲申，詔曰：「」賜王公以下帛各有差。以太尉何曾为太保，義阳王望为太尉，司空荀顗为司徒。冬十月，聽士卒遭父母喪者，非在疆埸，皆得奔赴。十二月，徙宗聖侯"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:c1fb9cf0902f",
@@ -144,7 +137,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "，斬首四千餘級，獲生九千餘人，于是來降。八月庚辰，河东、平阳地震。己亥，以太保何曾为太傅，太尉陈骞为大司马，司空贾充为太尉，镇军大将军齐王攸为司空。有星孛于太微，九月又孛于翼。丁未，起"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:e53817659adc",
@@ -153,43 +153,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:1586f7cea46b",
-      "personId": "person:jin:he-zeng",
-      "nodeName": "司徒",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:7166b0f37a95",
-      "personId": "person:jin:he-zeng",
-      "nodeName": "司徒",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:037:8e2684cdae7a",
-      "personId": "person:jin:he-zeng",
-      "nodeName": "司徒",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:003:4b5d9e2c1811",
-      "personId": "person:jin:jia-chong",
-      "nodeName": "都督秦、涼二州诸军事",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "峻平陵。庚寅，高阳王緝薨。癸巳，范阳王綏薨。荊、扬郡国二十皆大水。九月，以太傅何曾为太宰。辛巳，以尚书令李胤为司徒。冬十月，以征北大将军卫瓘为尚书令。扬州刺史应綽伐吴皖城，斬首五千級，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:64e5457caa8b",
@@ -198,7 +169,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "。弘坐伏誅，夷三族。壬辰，大赦。丙申，詔復隴右四郡遇寇害者田租。秋七月，以车骑将军贾充为司空。九月，吴西陵督步闡來降，拜卫将军、开府仪同三司，封宜都公。吴将陆抗攻闡，遣车骑将军羊祜帥眾出江"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:76d0a69082ca",
@@ -207,7 +185,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "父弟楙为东平王。以骠骑将军石苞为大司马，封乐陵公，车骑将军陈骞为高平公，卫将军贾充为车骑将军、鲁公，尚书令裴秀为鉅鹿公，侍中荀勖为济北公，太保郑冲为太傅、壽光公，太尉王祥为太保、睢陵公，丞"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:c201e956f56e",
@@ -216,7 +201,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "降。八月庚辰，河东、平阳地震。己亥，以太保何曾为太傅，太尉陈骞为大司马，司空贾充为太尉，镇军大将军齐王攸为司空。有星孛于太微，九月又孛于翼。丁未，起太倉于城东，常平倉于东西市。閏月，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:da68fa8cedc1",
@@ -225,7 +217,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "曰：「今當太平。」九月戊午，以魏司徒何曾为丞相，镇南将军王沈为御史大夫，中护军贾充为卫将军，議郎裴秀为尚书令、光禄大夫，皆开府。十一月，初置四护军，以統城外诸军。乙未，令诸郡中正以六條举"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:024:4012928915de",
@@ -234,34 +233,31 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷24·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+          "quote": "秋七十匹。綿七十斤。，始給菜田六頃，田騶六人，立夏后不及田者，食奉一年。始贾充为尚书令，以目疾表置省事吏四人，省事蓋自此始。仆射，服秩印綬與令同。案汉本置一人，至汉獻帝，以执金吾榮郃"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:024:b8d36c4d1199",
       "personId": "person:jin:jia-chong",
-      "nodeName": "太保",
+      "nodeName": "太子太保",
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:038:58a4fdacf5a7",
-      "personId": "person:jin:jia-chong",
-      "nodeName": "司空",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:040:f4741406f7a9",
-      "personId": "person:jin:jia-chong",
-      "nodeName": "司空",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷24·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+          "quote": "事，掌宮事，二傅不復领官属。及杨珧为卫将军，领少傅，省詹事，遂崇廣傅訓，命太尉贾充领太保，司空齐王攸领太傅，所置吏属復如舊。二傅進賢兩梁冠，黑介幘，五时朝服，佩水蒼玉，食奉日三斛。，始",
+          "note": "此太保为东宫官，按上下文记作太子太保。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:a08e94e7a085",
@@ -270,7 +266,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "子。詔曰：「」三月戊寅，初令二千石得終三年喪。丁未，晝昏。罷武卫将军官。以李憙为太子太傅。太山石崩。夏四月戊午，张掖太守焦勝上言，氐池县大柳谷口有玄石一所，白畫成文，實大晉之休祥，圖之"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:4542d56c1053",
@@ -279,7 +282,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "。癸巳，范阳王綏薨。荊、扬郡国二十皆大水。九月，以太傅何曾为太宰。辛巳，以尚书令李胤为司徒。冬十月，以征北大将军卫瓘为尚书令。扬州刺史应綽伐吴皖城，斬首五千級，焚穀米百八十万斛。十一月辛"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:004:1e2827781b46",
@@ -288,7 +298,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "文辅魏故事，追復故皇太子位。丁酉，以梁王肜为太宰，左光禄大夫何劭为司徒，右光禄大夫刘寔为司空，淮南王允为骠骑将军。己亥，赵王倫矫詔害贾庶人于金墉城。五月己巳，立皇孙臧为皇太孙，尚为襄阳王。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:004:225a5c858e3d",
@@ -297,7 +314,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "」大赦，賜鰥寡高年帛三匹，大酺五日。丙辰，盜竊太廟服器。以太尉顒为太宰，太傅刘寔为太尉。六月，新作三城门。秋七月丙申朔，右卫将军陈眕以詔召百僚入殿中，因勒兵討成都王颖。戊戌，大赦，復"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:004:fc32a3021f2a",
@@ -306,7 +330,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "。皇太孙尚薨。夏四月，彗星晝見。五月乙酉，侍中、太宰、领司徒、梁王肜薨。以右光禄大夫刘寔为太傅。太尉、河間王顒遣将衙博擊李特于蜀，为特所敗。特遂陷梓潼、巴西，害廣汉太守张微，自號大将军。癸卯"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:005:ea9fcb555258",
@@ -315,16 +346,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:088:c7f32e2a604a",
-      "personId": "person:jin:luo-shang",
-      "nodeName": "别驾",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷5·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "和郁为征北将军，镇鄴。十二月戊寅，幷州人田蘭、薄盛等斬汲桑于乐陵。甲午，以前太傅刘寔为太尉。庚子，以光禄大夫、延陵公高光为尚书令。东海王越矫詔囚清河王覃于金墉城。癸卯，越自为丞相。以抚军"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:120:0623f307009c",
@@ -333,16 +362,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:003:703a944574a4",
-      "personId": "person:jin:pei-wei",
-      "nodeName": "鉅鹿公",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "爵位",
-      "treeType": "noble"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷120·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷120",
+          "quote": "殺廞长史袁治及廞所置守长，遣其牙门王角、李基詣洛阳陈廞之罪狀。先是，惠帝以梁州刺史羅尚为平西将军、领护西夷校尉、益州刺史，督牙门将王敦、上庸都尉義歆、蜀郡太守徐儉、廣汉太守辛冉等凡七千餘人入蜀"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:004:97422fbd72fa",
@@ -351,7 +378,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "言署置，聚黨數千。郡县逮捕，皆伏誅。六月戊戌，太尉、隴西王泰薨。秋八月，以尚书裴𫖮为尚书仆射。冬十一月甲子朔，日有蝕之。京师大風，發屋折木。十二月壬戌，廢皇太子遹为庶人，及其三子幽于金墉城"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:96b602cf17c6",
@@ -360,7 +394,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "月戊午，以魏司徒何曾为丞相，镇南将军王沈为御史大夫，中护军贾充为卫将军，議郎裴秀为尚书令、光禄大夫，皆开府。十一月，初置四护军，以統城外诸军。乙未，令诸郡中正以六條举淹滯：一曰忠恪匪躬"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:ce1c6cfeb84e",
@@ -369,16 +410,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:040:d3af6a86d2ad",
-      "personId": "person:jin:pei-xiu",
-      "nodeName": "尚书令",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "聖亭侯。山阳公刘康來朝。禁星氣讖緯之學。==泰始四年==四年春正月辛未，以尚书令裴秀为司空。丙戌，律令成，封爵賜帛各有差。有星孛于軫。丁亥，帝耕于藉田。戊子，詔曰：「」二月庚子，增置山阳"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:33b840f0ac05",
@@ -387,34 +426,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:16e8a0aab05f",
-      "personId": "person:jin:shi-bao",
-      "nodeName": "大司马",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:3872a18b63c8",
-      "personId": "person:jin:shi-bao",
-      "nodeName": "大司马",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:107:6c58ebee08e9",
-      "personId": "person:jin:shi-bao",
-      "nodeName": "大司马",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "为中山王，陵为北海王，斌为陈王，皇从父兄洪为河間王，皇从父弟楙为东平王。以骠骑将军石苞为大司马，封乐陵公，车骑将军陈骞为高平公，卫将军贾充为车骑将军、鲁公，尚书令裴秀为鉅鹿公，侍中荀勖为济北"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:7d69bd5395aa",
@@ -423,7 +442,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "浑为司徒，司空卫瓘为太保。二月辛丑，东夷七国朝貢。琅邪王覲薨。三月甲子，以右光禄大夫石鉴为司空。夏四月辛丑，以侍中车骑将军杨骏为太尉、都督中外诸军、录尚书事。己酉，帝崩于含章殿，时年五十五，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:004:cec210ee005e",
@@ -432,25 +458,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:037:a23aa7c69aa8",
-      "personId": "person:jin:shi-jian",
-      "nodeName": "司空",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:107:2e2d8c3e1ea1",
-      "personId": "person:jin:shi-jian",
-      "nodeName": "侍中",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "将石崇、射聲校尉胡奕、长水校尉赵俊、扬烈将军赵歡将屯兵四出。冬十月辛酉，以司空石鉴为太尉，前镇西将军、隴西王泰为司空。==元康元年==春正月乙酉朔，臨朝，不設乐。詔曰：「」又詔子弟及群"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:5a3bc449617d",
@@ -459,7 +474,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "王东征凌。五月甲寅，凌自殺。六月，彪賜死。秋七月壬戌，皇后甄氏崩。辛未，以司空司马孚为太尉。戊寅，太傅司马宣王薨，以卫将军司马景王为抚军大将军，录尚书事。乙未，葬懷甄后于太清陵。庚子，骠"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:7ab835ac703c",
@@ -468,7 +490,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "、新城太守泰攻吴，破之，降者數千口。二月，置南郡之夷陵县以居降附。三月，以尚书令司马孚为司空。四月甲申，以征南将军王昶为征南大将军。壬辰，大赦。丙午，聞太尉王凌謀廢帝，立楚王彪，太傅司马宣"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:ad9062e1c32d",
@@ -477,7 +506,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "詔曰：「」八月庚午，命大将军司马文王加號大都督，奏事不名，假黄鉞。癸酉，以太尉司马孚为太傅。九月，以司徒高柔为太尉。冬十月，以司空郑冲为司徒，尚书左仆射卢毓为司空。二年春二月，青龙見温县"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:15:54c17f28f1e1",
@@ -486,16 +522,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:bc1019f07d24",
-      "personId": "person:jin:sima-wang",
-      "nodeName": "太尉",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷15·裴松之注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷15",
+          "quote": "孚之长子。有才识，早知名。咸熙中位至司徒，入晉封義阳王，迁太尉、大司马。时孚为太宰，父子居上公位，自中代以来未之有也。洪字孔业，封河間王。}"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:23c21653b615",
@@ -504,7 +538,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "庚寅，命中抚军司马炎副貳相国事，以同鲁公拜后之義。癸巳，詔曰：「」癸卯，以卫将军司马望为骠骑将军。九月戊午，以中抚军司马炎为抚军大将军。辛未，詔曰：「」策命未至，兴为下人所殺。冬十月丁亥，詔曰"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:6452b258bbd4",
@@ -513,7 +554,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "民王始語云：「今當太平。」九月乙未，大赦。戊午，司徒何曾为晉丞相。癸亥，以骠骑将军司马望为司徒，征东大将军石苞为骠骑将军，征南大将军陈骞为车骑将军。乙亥，葬晉文王。閏月庚辰，康居、大宛獻名马"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:024:d42f14b72155",
@@ -522,16 +570,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:f9462cd64a5f",
-      "personId": "person:jin:wang-xiang",
-      "nodeName": "太保",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷24·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+          "quote": "军各自为官，位在三司上。晉受魏禅，因其制，以安平王孚为太宰，郑冲为太傅。王祥为太保，義阳王望为太尉，何曾为司徒，荀顗为司空，石苞为大司马，陈骞为大将军，凡八公同时并置，唯無丞相焉"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:638458309762",
@@ -540,7 +586,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "來降。==太熙元年==春正月辛酉朔，改元。己巳，以尚书左仆射王浑为司徒，司空卫瓘为太保。二月辛丑，东夷七国朝貢。琅邪王覲薨。三月甲子，以右光禄大夫石鉴为司空。夏四月辛丑，以侍中车骑将"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:a9113ebf3e6c",
@@ -549,16 +602,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
-      "personId": "person:jin:wei-guan",
-      "nodeName": "掾",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "，镇东大将军、琅邪王伷为抚军大将军，汝南王亮为太尉，光禄大夫山涛为司徒，尚书令卫瓘为司空。丙申，詔四方水旱甚者無出田租。==太康四年==四年春正月甲申，以尚书右仆射魏舒为尚书左仆射，下"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:eb7cbd5e06a0",
@@ -567,25 +618,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:1ab39cf24965",
-      "personId": "person:jin:xun-yi",
-      "nodeName": "司空",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:68a22a581543",
-      "personId": "person:jin:xun-yi",
-      "nodeName": "司空",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "月甲申，詔曰：「」賜王公以下帛各有差。以太尉何曾为太保，義阳王望为太尉，司空荀顗为司徒。冬十月，聽士卒遭父母喪者，非在疆埸，皆得奔赴。十二月，徙宗聖侯孔震为奉聖亭侯。山阳公刘康來朝。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:fc90786b5792",
@@ -594,25 +634,30 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "土者。庚申，葬明元郭后。三月丁丑，以司空王祥为太尉，征北将军何曾为司徒，尚书左仆射荀顗为司空。己卯，進晉公爵为王，封十郡，并前二十。。丁亥，封刘禅为安乐公。夏五月庚申，相国晉王奏復五等爵。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:429e2d8233c3",
       "personId": "person:jin:yang-hu",
-      "nodeName": "尚书",
+      "nodeName": "尚书左仆射",
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:090:d98e5b408f46",
-      "personId": "person:jin:yang-hu",
-      "nodeName": "车骑将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "吹车马各有差。罷中军将军，置北军中候官。甲寅，以东海刘儉有至行，拜为郎。以中军将军羊祜为尚书左仆射，东莞王伷为尚书右仆射。三月戊子，皇太后王氏崩。夏四月戊戌，太保、睢陵公王祥薨。己亥，祔葬"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:48978b7a125c",
@@ -621,16 +666,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:003:87e868eeaf28",
-      "personId": "person:jin:yang-jun",
-      "nodeName": "臨晉侯",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "爵位",
-      "treeType": "noble"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "东夷七国朝貢。琅邪王覲薨。三月甲子，以右光禄大夫石鉴为司空。夏四月辛丑，以侍中车骑将军杨骏为太尉、都督中外诸军、录尚书事。己酉，帝崩于含章殿，时年五十五，葬峻阳陵，廟號世祖。==史論==帝宇量"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:004:f7dffa0a5ee7",
@@ -639,25 +682,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:054:32c62500fcf5",
-      "personId": "person:jin:yang-jun",
-      "nodeName": "祭酒",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:092:fb598d513c5b",
-      "personId": "person:jin:yang-jun",
-      "nodeName": "长",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "陵。丙子，增天下位一等，預喪事者二等，復租調一年，二千石已上皆封关中侯。以太尉杨骏为太傅，辅政。秋八月壬午，立廣陵王遹为皇太子，以中书监何劭为太子太师，吏部尚书王戎为太子太傅，卫将军杨"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:003:db978e64500d",
@@ -666,25 +698,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:7216da386e84",
-      "personId": "person:jin:zheng-chong",
-      "nodeName": "太傅",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:024:7475dbef59fb",
-      "personId": "person:jin:zheng-chong",
-      "nodeName": "太傅",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "平公，卫将军贾充为车骑将军、鲁公，尚书令裴秀为鉅鹿公，侍中荀勖为济北公，太保郑冲为太傅、壽光公，太尉王祥为太保、睢陵公，丞相何曾为太尉、朗陵公，御史大夫王沈为骠骑将军、博陵公，司空荀"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:4fb7fd7b5e2c",
@@ -693,7 +714,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "功臣应饗食于太祖廟者，更以官为次，太傅司马宣王功高爵尊，最在上。十二月，以光禄勋郑冲为司空。四年春正月癸卯，以抚军大将军司马景王为大将军。二月，立皇后张氏，大赦。夏五月，魚二，見于武庫屋"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:7ed6e2ddb24d",
@@ -702,7 +730,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "艾、钟會率衆伐蜀，所至輙克。是月，蜀主刘禅詣艾降，巴蜀皆平。十二月庚戌，以司徒郑冲为太保。壬子，分益州为梁州。癸丑，特赦益州士民，復除租賦之半五年。乙卯，以征西将军邓艾为太尉，镇西将军"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:ee5fdf6f46d5",
@@ -711,34 +746,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:35:b651790ccecf",
-      "personId": "person:shu:chen-zhi",
-      "nodeName": "尚书令",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:39:9dabbb7da19e",
-      "personId": "person:shu:dong-yun",
-      "nodeName": "尚书令",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:39:8b69fbac62f6",
-      "personId": "person:shu:fa-zheng",
-      "nodeName": "尚书令",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "不名，假黄鉞。癸酉，以太尉司马孚为太傅。九月，以司徒高柔为太尉。冬十月，以司空郑冲为司徒，尚书左仆射卢毓为司空。二年春二月，青龙見温县井中。三月，司空卢毓薨。夏四月癸卯，詔曰：「」甲子"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:33:c8d63f8e20ac",
@@ -747,16 +762,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:43:6df8949d9361",
-      "personId": "person:shu:fei-yi",
-      "nodeName": "大将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷33·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "军，自汉中還屯涪县。六年冬十月，大司马蒋琬自還汉中，住涪。十一月，大赦。以尚书令费祎为大将军。七年閏月，魏大将军曹爽、夏侯玄等向汉中，镇北大将军王平拒兴勢圍，大将军费祎督诸军往赴救，魏军退"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:33:15266b19b3c3",
@@ -765,7 +778,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷33·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "敗走。斬延首，仪率诸军還成都。大赦。以左将军吴壹为车骑将军，假節督汉中。以丞相留府长史蒋琬为尚书令，總統国事。十三年春正月，中军师杨仪廢徙汉嘉郡。夏四月，進蒋琬位为大将军。十四年夏四月，后主至湔"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:33:49a9a59efb0b",
@@ -774,7 +794,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷33·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "。立子睿为太子，子瑤为安定王。冬十一月，大将军蒋琬出屯汉中。二年春三月，進蒋琬位为大司马。三年春，使越巂太守张嶷平定越巂郡。四年冬十月，尚书令费祎至汉中，與蒋琬咨論事計，歲盡還。五年春"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:33:8b22528ee416",
@@ -783,16 +810,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:44:080b6201f23d",
-      "personId": "person:shu:jiang-wan",
-      "nodeName": "尚书令",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷33·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "长史蒋琬为尚书令，總統国事。十三年春正月，中军师杨仪廢徙汉嘉郡。夏四月，進蒋琬位为大将军。十四年夏四月，后主至湔，。登观坂，看汶水之流，旬日還成都。徙武都氐王苻健及氐民四百餘戶于成都。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:33:2e6f7dd53661",
@@ -801,16 +826,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:04:7aba3a64ba8c",
-      "personId": "person:shu:liu-shan",
-      "nodeName": "安乐公",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "爵位",
-      "treeType": "noble"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷33·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "，與魏雍州剌史王經戰于洮西，大破之。經退保狄道城，維卻住钟題。十九年春，進姜維位为大将军，督戎马，與镇西将军胡济期會上邽，济失誓不至。秋八月，維为魏大将军邓艾所破于上邽。維退军還成都。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:32:a77842e8dc15",
@@ -819,7 +842,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷32·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷32",
+          "quote": "陈兵列眾，群臣陪位，讀奏訖，禦王冠于先主。先主上言汉帝曰：于是還治成都。拔魏延为都督，镇汉中。。时关羽攻曹公将曹仁，禽于禁于樊。俄而孙权襲殺羽，取荊州。二十五年，魏文帝稱尊號，改年"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:32:3b19faa637aa",
@@ -828,7 +858,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷32·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷32",
+          "quote": "即皇帝位于成都武擔之南。。为文曰：。夏四月，大赦，改年。以诸葛亮为丞相，许靖为司徒。置百官，立宗廟，祫祭高皇帝以下。。五月，立皇后吴氏，子禅为皇太子。六月，以子永为鲁王，理为梁王"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:32:7dd6cd2706c9",
@@ -837,25 +874,31 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷32·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷32",
+          "quote": "辰，上尊號。}}即皇帝位于成都武擔之南。。为文曰：。夏四月，大赦，改年。以诸葛亮为丞相，许靖为司徒。置百官，立宗廟，祫祭高皇帝以下。。五月，立皇后吴氏，子禅为皇太子。六月，以子永为鲁"
+        }
+      ]
     },
     {
-      "appointmentId": "appointment:source:sgz:33:37976c389d0c",
-      "personId": "person:shu:zhuge-liang",
-      "nodeName": "太子太傅",
+      "appointmentId": "appointment:source:sgz:43:0c13a7c81381",
+      "personId": "person:source:182106820ab7",
+      "nodeName": "主簿",
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:02:207274f69cb3",
-      "personId": "person:wei:cao-man",
-      "nodeName": "长",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷43·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷43",
+          "quote": "_FORCETOC__==黄权==黄权，字公衡，巴西閬中人也。少为郡吏，州牧刘璋召为主簿。时别驾张松建議，宜迎先主，使伐张鲁。权諫曰：「左将军有驍名，今請到，欲以部曲遇之，則不满其心，",
+          "note": "本条受任者为黄权；原文中的府主或州牧为辟召者。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:02:7c8f09c27498",
@@ -864,7 +907,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷2·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "军，封吴王，加九錫。冬十月，授杨彪光禄大夫。。以穀贵，罷五銖錢。。己卯，以大将军曹仁为大司马。十二月，行东巡。是歲築陵雲台。三年春正月丙寅朔，日有蝕之。庚午，行幸许昌宮。詔曰：「今之計考，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:02:f8ed903b7ed7",
@@ -873,7 +923,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷2·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "廣为室屋以居學者。三月，加辽东太守公孙恭为车骑将军。初復五銖錢。夏四月，以车骑将军曹仁为大将军。五月，郑甘復叛，遣曹仁討斬之。六月庚子，初祀五嶽四渎，咸秩群祀。。丁卯，夫人甄氏卒。戊辰晦，日"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:24:cefba4c41a31",
@@ -882,16 +939,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:090:a8e6a9dbcb5a",
-      "personId": "person:wei:cao-zhen",
-      "nodeName": "掾",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷24·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷24",
+          "quote": "于大石山，虎趨乘輿，礼便投鞭下马，欲奋劒斫虎，詔令礼上马。明帝臨崩之时，以曹爽为大将军，宜得良佐，于牀下受遺詔，拜礼大将军长史，加散骑常侍。礼亮直不撓，爽弗便也，以为扬州刺史，加伏波"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:025d04dd043d",
@@ -900,7 +955,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "。冬十月，清河王冏薨。十二月，以太尉钟繇为太傅，征东大将军曹休为大司马，中军大将军曹真为大将军，司徒华歆为太尉，司空王朗为司徒，镇军大将军陈群为司空，抚军大将军司马宣王为骠骑大将军。春正月，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:2fc1dcb79a87",
@@ -909,7 +971,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "，皆罷退之。」戊子，詔太傅三公：以文帝《典論》刻石，立于廟门之外。癸巳，以大将军曹真为大司马，骠骑将军司马宣王为大将军，辽东太守公孙渊为车骑将军。夏四月，太傅钟繇薨。六月戊子，太皇太后崩。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:8f67468d5bb7",
@@ -918,7 +987,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "「司马懿臨危制變，擒渊可計日待也。」卒皆如所策。壬午，以司空卫臻为司徒，司隷校尉崔林为司空。閏月，月犯心中央大星。十二月乙丑，帝寢疾不豫。辛巳，立皇后。賜天下男子爵人二級，鰥寡孤獨穀。以"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:02:ecab4b588198",
@@ -927,7 +1003,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷2·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "相、魏王。。尊王后曰王太后。改为。元年二月。壬戌，以大中大夫贾诩为太尉，御史大夫华歆为相国，大理王朗为御史大夫。置散骑常侍、侍郎各四人，其宦人为官者不得過诸署令；为金策著令，藏之石室。初"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:b8fb04ad9858",
@@ -936,7 +1019,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "二月，以太尉钟繇为太傅，征东大将军曹休为大司马，中军大将军曹真为大将军，司徒华歆为太尉，司空王朗为司徒，镇军大将军陈群为司空，抚军大将军司马宣王为骠骑大将军。春正月，郊祀武皇帝以配天"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:02:30b39a746623",
@@ -945,16 +1035,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:09:5623014c3c1a",
-      "personId": "person:wei:li-feng",
-      "nodeName": "大将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷2·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "子。。太祖崩，嗣位为丞相、魏王。。尊王后曰王太后。改为。元年二月。壬戌，以大中大夫贾诩为太尉，御史大夫华歆为相国，大理王朗为御史大夫。置散骑常侍、侍郎各四人，其宦人为官者不得過诸署令；为金"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:jinshu:024:193f898fcc80",
@@ -963,7 +1051,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷24·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷024",
+          "quote": "職也。魏武帝为魏王，置秘书令，典尚书奏事。文帝黄初初改为中书，置监、令，以秘书左丞刘放为中书监，右丞孙资为中书令；监、令蓋自此始也。及晉因之，并置員一人。中书侍郎，魏黄初初，中书既置监、令，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:02d0f8037d47",
@@ -972,7 +1067,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "，以骠骑将军赵儼为司空；夏六月，儼薨。八月丁卯，以太常高柔为司空。癸巳，以左光禄大夫刘放为骠骑将军，右光禄大夫孙资为卫将军。冬十一月，祫祭太祖廟，始祀前所論佐命臣二十一人。十二月辛亥，詔故司徒王"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:04:46970447aeb7",
@@ -981,7 +1083,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷4·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "四月乙丑，改年。丙子，太尉蒋济薨。冬十二月辛卯，以司空王凌为太尉。庚子，以司隷校尉孙礼为司空。二年夏五月，以征西将军郭淮为车骑将军。冬十月，以特進孙资为骠骑将军。十一月，司空孙礼薨。十二月"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:25:a0bc9051a96d",
@@ -990,7 +1099,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷25·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷25",
+          "quote": "之人，所任各盡其力，必能济大事者也。」长史非其好，遂去官。而端征为太仆，其子康代为刺史，辟阜为别驾。察孝廉，辟丞相府，州表留参军事。马超之戰敗渭南也，走保诸戎。太祖追至安定，而苏伯反"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:0c969e6d9d57",
@@ -999,7 +1115,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "，行還洛阳宮。己丑，大赦。六月戊申，京都地震。己亥，以尚书令陈矫为司徒，尚书右仆射卫臻为司空。丁未，分魏兴之魏阳、錫郡之安富、上庸为上庸郡。省錫郡，以錫县属魏兴郡。有司奏：武皇帝撥亂反正，"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:d78f85040aae",
@@ -1008,16 +1131,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:04:c0283bf31d40",
-      "personId": "person:wei:xiahou-xuan",
-      "nodeName": "大将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "宜詔宣王還。帝曰：「司马懿臨危制變，擒渊可計日待也。」卒皆如所策。壬午，以司空卫臻为司徒，司隷校尉崔林为司空。閏月，月犯心中央大星。十二月乙丑，帝寢疾不豫。辛巳，立皇后。賜天下男子爵人"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:09:55fe27cb3369",
@@ -1026,16 +1147,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:04:eb02abb80150",
-      "personId": "person:wei:xu-miao",
-      "nodeName": "司空",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷9·裴松之注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷09",
+          "quote": "用是被收，以其所連引者多，故得原，禁錮數歲。帝崩，曹爽辅政，勝为洛阳令。夏侯玄为征西将军，以勝为长史。玄亦宿與勝厚。駱穀之役，議从勝出，由是司马宣王不恱于勝。累迁熒阳太守、河南尹。勝前"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:01:536b5623d2b6",
@@ -1044,7 +1163,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷1·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "奴南單于呼廚泉将其名王來朝，待以客礼，遂留魏，使右賢王去卑监其国。八月，以大理钟繇为相国。。冬十月，治兵，。遂征孙权，十一月至譙。二十二年春正月，王军居巢，二月，進军屯江西郝谿。权在濡"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:02:0a224d8d3a3f",
@@ -1053,7 +1179,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷2·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "尉贾诩薨。太白晝見。是月大雨，伊、洛溢流，殺人民，壞廬宅。。秋八月丁卯，以廷尉钟繇为太尉。。辛未，校獵于熒阳，遂东巡。論征孙权功，诸将已下進爵增戶各有差。九月甲辰，行幸许昌宮。。五年春"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:03:6d98acfa027f",
@@ -1062,7 +1195,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷3·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "大将军曹休又破其别将于尋阳。論功行賞各有差。冬十月，清河王冏薨。十二月，以太尉钟繇为太傅，征东大将军曹休为大司马，中军大将军曹真为大将军，司徒华歆为太尉，司空王朗为司徒，镇军大将军陈群"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:15:27da4221ac17",
@@ -1071,7 +1211,82 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷15·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷15",
+          "quote": "王祕又殺鸞。是时不置涼州，自三辅拒西域，皆属雍州。文帝即王位，初置涼州，以安定太守邹岐为刺史。张掖张進执郡守举兵拒岐，黄华、麴演各逐故太守，举兵以应之。旣進兵为护羌校尉苏則聲勢，故則得以有"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
+      "personId": "person:workbook:13d66149e45735fd",
+      "nodeName": "从事祭酒",
+      "startYear": null,
+      "endYear": null,
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷22·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷22",
+          "quote": "悦。會绍與太祖連戰，军未得南。而表急攻羡，羡病死。城陷，階遂自匿。久之，刘表辟为从事祭酒，欲妻以妻妹蔡氏。階自陈已結婚，拒而不受，因辭疾告退。太祖定荆州，聞其为张羡謀也，異之，辟为",
+          "note": "本条受任者为桓阶；原文中的府主或州牧为辟召者。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:829deeeb0689",
+      "personId": "person:workbook:2cbac2c953caf4a3",
+      "nodeName": "别驾从事",
+      "startYear": null,
+      "endYear": null,
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷38·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷38",
+          "quote": "。。==麋竺==麋竺字子仲，东海朐人也。祖世貨殖，僮客万人，貲產鉅億。。后徐州牧陶谦辟为别驾从事。谦卒，竺奉谦遺命，迎先主于小沛。，呂布乘先主之出拒袁術，襲下邳，虜先主妻子。先主转军廣陵海",
+          "note": "本条受任者为麋竺；原文中的府主或州牧为辟召者。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
+      "personId": "person:workbook:8165e0dfebe89c40",
+      "nodeName": "从事",
+      "startYear": null,
+      "endYear": null,
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷42·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "==杜微==杜微字国辅，梓潼涪人也。少受學于廣汉任安。刘障辟为从事，以疾去官。及先主定蜀，微常稱聾，閉门不出。，丞相亮领益州牧。選迎皆妙简舊德，以秦宓为别驾，五梁",
+          "note": "本条受任者为杜微；原文中的府主或州牧为辟召者。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:054:32c62500fcf5",
+      "personId": "person:workbook:e574b4761f6490c2",
+      "nodeName": "太傅祭酒",
+      "startYear": null,
+      "endYear": null,
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《晋书》卷54·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷054",
+          "quote": "中何以敵此？」答云：「千里蓴羹，未下鹽豉。」时人稱为名對。张华薦之诸公。后太傅杨骏辟为祭酒。會骏誅，累迁太子洗马、著作郎。范阳卢志于眾中問機曰：「陆逊、陆抗于君近遠？」機曰：「如君于卢毓",
+          "note": "本条受任者为陆机；原文中的府主或州牧为辟召者。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:47:68eecca49b8f",
@@ -1080,34 +1295,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:015:7454a5ebeab1",
-      "personId": "person:wu:dai-liang",
-      "nodeName": "刺史",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:49:208a42091504",
-      "personId": "person:wu:dai-liang",
-      "nodeName": "刺史",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:60:2286bb4d9b3e",
-      "personId": "person:wu:dai-liang",
-      "nodeName": "刺史",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷47·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "军-{朱}-然-{征}-魏柤中，斬獲千餘。夏四月，武昌言甘露降。秋九月，以骠骑步骘为丞相，车骑-{朱}-然为左大司马，卫将军全琮为右大司马，镇南呂岱为上大将军，威北将军诸葛恪为大将军。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:48:74022d223b66",
@@ -1116,7 +1311,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷48·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "，兴廣州刺史，述南海太守。典攻蒼梧，族攻始兴。。八月，以军师张悌为丞相，牛渚都督何植为司徒。执金吾滕循为司空，未拜，转镇南将军，假節领廣州牧，率万人从东道討马，與族遇于始兴，未得前。马殺"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:48:f767eaa7fc4d",
@@ -1125,7 +1327,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷48·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "廬陵。。何定姦穢發聞，伏誅。皓以其惡似张布，追改定名为布。。二年春三月，以陆抗为大司马。司徒丁固卒。秋九月，改封淮阳为鲁，东平为齐，又封陈留、章陵等九王，凡十一王，王給三千兵。大赦。"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:47:217db6a989b2",
@@ -1134,7 +1343,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷47·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "，领徐州牧。備领荊州牧，屯公安。十五年，分豫章为鄱阳郡；分长沙为汉昌郡。以鲁肃为太守，屯陆口。十六年，权徙治秣陵。明年，城石頭，改秣陵为建业。聞曹公将來侵，作濡須塢。十八年正月，曹"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:47:a750f09402f4",
@@ -1143,16 +1359,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:52:af3b968b9394",
-      "personId": "person:wu:lu-xun",
-      "nodeName": "丞相",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷47·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "使獻乐人及方物。是歳，司马宣王率军入舒，诸葛恪自皖迁于柴桑。七年春正月，以上大将军陆逊为丞相。秋，宛陵言嘉禾生。是歳，步骘、-{朱}-然等各上疏-{云}-：「自蜀還者，-{咸}-言欲背盟與"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:48:dfabcc52b63a",
@@ -1161,7 +1375,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷48·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "大雨震電，水泉涌溢。乙酉，立皇后朱氏。戊子，立子为太子，大赦。。冬十月，以卫将军濮阳兴为丞相，廷尉丁密、光禄勋孟宗为左右御史大夫。休以丞相兴及左将军张布有舊恩，委之以事，布典宮省，兴关军国"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:47:82bff6ceb278",
@@ -1170,43 +1391,30 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷47·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "{征}-江夏，圍石阳，不克而還。蒼梧言鳳凰見。分三郡惡地十县置东安郡，。以全琮为太守，平討山越。冬十月，陆逊陈便宜，勸以施德緩刑，寬賦息調。又-{云}-：「忠讜之言，不能極陈，求容"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:49:002aa5f3772a",
       "personId": "person:wu:shi-kuang",
-      "nodeName": "从事",
+      "nodeName": "师友从事",
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:51:ab6ae854a2b6",
-      "personId": "person:wu:sun-ben",
-      "nodeName": "太守",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:jinshu:003:d7492d14955e",
-      "personId": "person:wu:sun-hao",
-      "nodeName": "歸命侯",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "爵位",
-      "treeType": "noble"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:48:0f51335732b6",
-      "personId": "person:wu:sun-hao",
-      "nodeName": "烏程侯",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "爵位",
-      "treeType": "noble"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷49·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "被詔誅徽，自廣州将兵晝夜馳入，過合浦，與良俱前。壹子中郎将匡與岱有舊，岱署匡师友从事，先移书交阯，告喻禍福，又遣匡見徽，說令服罪，雖失郡守，保無他憂。岱尋匡后至，徽兄祗，弟幹、頌等"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:57:c91969624c3a",
@@ -1215,7 +1423,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷57·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷57",
+          "quote": "籍，好人倫，孙皓时为選曹尚书。。==吾粲==吾粲字孔休，吴郡烏程人也。。孙河为县长，粲为小吏，河深奇之。河后为将军，得自選长吏，表粲为曲阿丞，迁为长史，治有名跡。雖起孤微，與同郡"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:47:a4dcc0e4d11b",
@@ -1224,70 +1439,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:53:1fe9fcc23c69",
-      "personId": "person:wu:sun-quan",
-      "nodeName": "骠骑将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:56:f5d45200ab20",
-      "personId": "person:wu:sun-quan",
-      "nodeName": "将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:57:dcb395661830",
-      "personId": "person:wu:sun-quan",
-      "nodeName": "车骑将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:58:3fe7dd3a48dc",
-      "personId": "person:wu:sun-quan",
-      "nodeName": "将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:60:4a9f82dbf09f",
-      "personId": "person:wu:sun-quan",
-      "nodeName": "车骑将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:64:734283af7654",
-      "personId": "person:wu:sun-quan",
-      "nodeName": "车骑将军",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:52:f1817114c7a9",
-      "personId": "person:wu:sun-shao",
-      "nodeName": "丞相",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷47·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "马忠獲羽及其子平、都督赵累等于章鄉，遂定荊州。是歳大疫，盡除荊州民租稅。曹公表权为骠骑将军，假節领荊州牧，封南昌侯。权遣校尉梁寓奉貢于汉。及令王惇市马，又遣-{朱}-光等歸。。二十五年春"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:48:5ad9f1ac2fad",
@@ -1296,34 +1455,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:48:69bd8dd84fa3",
-      "personId": "person:wu:teng-yin",
-      "nodeName": "丞相",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:50:e8c52be648aa",
-      "personId": "person:wu:teng-yin",
-      "nodeName": "太常",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
-    },
-    {
-      "appointmentId": "appointment:source:sgz:64:e80a2885daeb",
-      "personId": "person:wu:teng-yin",
-      "nodeName": "丞相",
-      "startYear": null,
-      "endYear": null,
-      "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷48·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "以全氏为妃。夏，亮母潘氏立为皇后。冬，权寢疾，征大将军诸葛恪为太子太傅，會稽太守滕胤为太常，并受詔辅太子。明年四月，权薨，太子即尊號，大赦，改。是歲，于魏也。閏月，以恪为帝太傅，胤为卫将"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:48:72b92c980e0c",
@@ -1332,7 +1471,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷48·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "州诸军事、安南将军，兴廣州刺史，述南海太守。典攻蒼梧，族攻始兴。。八月，以军师张悌为丞相，牛渚都督何植为司徒。执金吾滕循为司空，未拜，转镇南将军，假節领廣州牧，率万人从东道討马，與族遇"
+        }
+      ]
     },
     {
       "appointmentId": "appointment:source:sgz:47:5decd7b4c471",
@@ -1341,7 +1487,14 @@
       "startYear": null,
       "endYear": null,
       "appointmentNature": "任官",
-      "treeType": "source"
+      "treeType": "source",
+      "citations": [
+        {
+          "title": "《三国志》卷47·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "，车骑-{朱}-然为左大司马，卫将军全琮为右大司马，镇南呂岱为上大将军，威北将军诸葛恪为大将军。。十年春正月，右大司马全琮卒。。二月，权適南宮。三月，改作太初宮，诸将及州郡皆義作。。夏五月，"
+        }
+      ]
     }
   ],
   "peerageEvents": [

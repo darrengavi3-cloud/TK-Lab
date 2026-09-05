@@ -5,7 +5,7 @@
 ## 发布边界
 
 - 站点复用既有 owner-only Site，不新建站点、不扩大访问范围。
-- 线上包只能包含读者投影；工作簿行号、检索日志、审校状态、来源摘录和本机路径不得进入部署产物。
+- 线上包只能包含读者投影；工作簿行号、检索日志、审校字段和本机路径不得进入部署产物。V71 的公开原典引文仅允许 `citations` 中的 title/url/quote/note，独立于研究台账。
 - 图片剪枝和缩放完成后重新生成 `dist/deployment-manifest.json`，清单逐项记录最终字节数和 SHA-256。
 - 形势图的 16 期、几何、图层与稳定 ID 由规范源验证锁定。
 
@@ -41,5 +41,8 @@ npm test
 - `release-metadata/`：随 Git 版本保存规范输入锁、读者清单与最终部署清单；不保存第二份站点文件。
 - `tests/reader-boundary.test.mjs`：读者／审校数据隔离和首屏预算。
 - `tests/deployment-integrity.test.mjs`：最终部署文件的尺寸与哈希闭合。
+- `tests/reader-semantics.test.mjs`：任官主体与否定句、年代快照、跨模块跳转、网址同步和释文全文不变。
+
+V71 的任官审定表为 `atlas/data/v71-appointment-review.json`；修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。阅读与交互变更见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md` 的 V71 条目。
 
 要求 Node.js `>=22.13.0`。

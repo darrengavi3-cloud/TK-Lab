@@ -320,7 +320,10 @@ for (const person of readerJson.people || []) {
 }
 const actualAppointmentRelations = new Set((readerRelations.appointments || []).map(row => `${row.appointmentId}@${row.personId}`));
 const actualPeerageRelations = new Set((readerRelations.peerageEvents || []).map(row => `${row.eventId}@${row.personId}`));
-assert(expectedAppointmentRelations.size === 149 && expectedPeerageRelations.size === 535, `V63 读者允许关系基线应为任官 149 / 封爵 535，实际 ${expectedAppointmentRelations.size}/${expectedPeerageRelations.size}`);
+const appointmentReview = readJson('data/v71-appointment-review.json');
+const reviewedAppointmentIds = new Set(appointmentReview.records.filter(row => row.status === 'verified').map(row => row.appointmentId));
+assert(expectedAppointmentRelations.size === reviewedAppointmentIds.size && expectedPeerageRelations.size === 535, 'V71 任官发布门槛与读者关系不闭合');
+assert((readerRelations.appointments || []).every(row => reviewedAppointmentIds.has(row.appointmentId)), '未核任官进入读者关系');
 assert(actualAppointmentRelations.size === (readerRelations.appointments || []).length, 'V63 读者任官 personId+appointmentId 复合键不唯一');
 assert(actualPeerageRelations.size === (readerRelations.peerageEvents || []).length, 'V63 读者封爵 personId+eventId 复合键不唯一');
 assert(expectedAppointmentRelations.size === actualAppointmentRelations.size && [...expectedAppointmentRelations].every(key => actualAppointmentRelations.has(key)), 'V63 读者任官允许 ID 与关联投影不闭合');

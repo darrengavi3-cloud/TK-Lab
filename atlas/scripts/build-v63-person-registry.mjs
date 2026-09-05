@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
+import { reviewedAppointments } from './appointment-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -18,6 +19,7 @@ const statusValues = new Set(['verified', 'review-only', 'suppressed']);
 const v60 = readJson('v60-person-workbook-import.json');
 const v61 = readJson('v61-person-supplements.json');
 const sourceIndex = readJson('person-source-index.json');
+const appointmentReview = readJson('v71-appointment-review.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
@@ -315,7 +317,7 @@ for (const person of sourceIndex.people || []) {
   for (const sourceId of person.sourceIds || []) entry.sourceRecordIds.add(sourceId);
   if (/\u5df2按显式身份|\u5df2核|\u5df2消歧/.test(text(person.homonymStatus)) || (identityApi.identities || []).some(item => item.personId === canonicalId)) entry.identityStatus = 'resolved';
 }
-for (const appointment of sourceIndex.appointments || []) {
+for (const appointment of reviewedAppointments(sourceIndex.appointments || [], appointmentReview, canonicalPersonId)) {
   if (isExcludedSourceRecord(appointment.personId, appointment.name)) continue;
   const entry = ensure(canonicalPersonId(appointment.personId), appointment.name);
   entry.datasets.add('appointments');
@@ -404,21 +406,6 @@ for (const [name, biography] of Object.entries(biographies)) {
   addCandidate(entry, 'bio', biography.bio, 'verified', `biography:${normalize(name)}`, '确定');
 }
 
-// 读者态小传使用已核字段编排成简短文言句，不从未核候选或推测材料补写。
-// 这是展示层文本，原始现代语体 bio 仍保留在来源与审校数据中。
-function buildClassicalBiography(entry, values, publicationStatus) {
-  const clauses = [];
-  if (publicationStatus.zi === 'verified' && values.zi) clauses.push(`字${values.zi}`);
-  if (publicationStatus.dynastyTags === 'verified' && Array.isArray(values.dynastyTags) && values.dynastyTags.length) {
-    clauses.push(`${values.dynastyTags.join('、')}人`);
-  }
-  if (publicationStatus.birthplace === 'verified' && values.birthplace) clauses.push(`籍${values.birthplace}`);
-  if (publicationStatus.birthYear === 'verified' && values.birthYear != null) clauses.push(`生于${values.birthYear}`);
-  if (publicationStatus.deathYear === 'verified' && values.deathYear != null) clauses.push(`卒于${values.deathYear}`);
-  if (!clauses.length) return '';
-  return `${entry.name}，${clauses.join('，')}。`;
-}
-
 const portraitResolutions = [];
 for (const asset of Object.values(portraits.assetsById || {})) {
   const legacyPersonId = text(asset.personId);
@@ -485,7 +472,7 @@ function chooseField(entry, field) {
   if (field === 'name') return { status: readerScopeIds.has(entry.personId) && entry.name ? 'verified' : 'suppressed', value: entry.name || undefined };
   if (field === 'aliases') return { status: entry.aliases.size ? 'verified' : 'suppressed', value: [...entry.aliases].sort((a, b) => a.localeCompare(b, 'zh-CN')) };
   if (field === 'appointments') {
-    const status = entry.appointmentIds.size ? (entry.identityStatus === 'resolved' ? 'verified' : 'review-only') : 'suppressed';
+    const status = entry.appointmentIds.size ? (entry.identityStatus !== 'conflict' ? 'verified' : 'review-only') : 'suppressed';
     return { status, value: [...entry.appointmentIds].sort() };
   }
   if (field === 'peerage') return { status: entry.peerageEventIds.size ? (entry.identityStatus === 'conflict' ? 'review-only' : 'verified') : 'suppressed', value: [...entry.peerageEventIds].sort() };
@@ -507,11 +494,6 @@ const people = registryEntries.map(entry => {
     const selected = chooseField(entry, field);
     publicationStatus[field] = selected.status;
     if (selected.value !== undefined && selected.status === 'verified') values[field] = selected.value;
-  }
-  const bioClassical = buildClassicalBiography(entry, values, publicationStatus);
-  if (bioClassical) {
-    values.bioClassical = bioClassical;
-    publicationStatus.bioClassical = 'verified';
   }
   return {
     personId: entry.personId,

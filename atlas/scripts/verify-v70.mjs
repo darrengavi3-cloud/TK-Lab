@@ -72,8 +72,8 @@ for (const excluded of ['安西', '安南', '安东大', '喬安北', '丁中', 
 }
 assert(!html.includes('所历朝代：'), '人物界面仍显示“所历朝代”重复叙述');
 assert(!html.includes('生卒：') && !html.includes('生年：') && !html.includes('卒年：'), '人物界面仍显示生卒字段标签');
-assert(html.includes('personLifespanLabel') && html.includes('v69-person-lifespan'), '人物界面未使用统一寿命显示');
-assert(html.includes('bioClassical') && html.includes('人物小传'), '人物界面未接入文言小传');
+assert(html.includes('personLifespanLabel') && fs.readFileSync(path.join(root,'assets/app/reader-components.js'),'utf8').includes('v69-person-lifespan'), '人物界面未使用统一寿命显示');
+assert(html.includes('<p>{{peoplePrimaryDetail.bio}}</p>') && html.includes('<p>{{activePeopleDetail.bio}}</p>'), '人物小传必须显示正文，不能被身份拼接句替代');
 
 /* 州镇职任字段统一归一；来源叙述可保留原文，但标题和委任字段不得回到“郡太守”。 */
 for (const row of fangzhen.records || []) {

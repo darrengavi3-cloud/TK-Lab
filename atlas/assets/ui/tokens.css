@@ -14,4 +14,14 @@
   --sgz-dossier-masthead-ink: #f3ead5;
   --sgz-dossier-masthead-muted: #bdb5a2;
   --sgz-dossier-gold: var(--v56-gold, #9b7a3b);
+  --sgz-font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --sgz-font-heading: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --sgz-text-body: 15px;
+  --sgz-text-meta: 12px;
+  --sgz-text-title: clamp(24px, 2.2vw, 32px);
+  --sgz-space-section: 28px;
+  --sgz-space-panel: clamp(18px, 2vw, 32px);
+  --sgz-space-row: 14px;
+  --sgz-radius: 8px;
+  --sgz-selected: color-mix(in srgb, var(--sgz-accent) 7%, var(--sgz-surface));
 }
