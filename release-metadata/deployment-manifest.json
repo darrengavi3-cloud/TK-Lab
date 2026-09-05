@@ -2554,23 +2554,23 @@
     },
     {
       "path": "client/legacy/data/v63-reader-people.js",
-      "bytes": 373220,
-      "sha256": "59dd3b128cda01f960cc1b35601f225e06243135f689705a5c21504574de19a2"
+      "bytes": 373810,
+      "sha256": "eef78c9e893ce716e29e5f4c0db55d5effd21841ac59b8b0040efbfbcc0d11fd"
     },
     {
       "path": "client/legacy/data/v63-reader-people.json",
-      "bytes": 524102,
-      "sha256": "ee00a4d7353c18ea0bcb3a4a70cb7b3d791de6170ed4ca17e409ba52d8c93335"
+      "bytes": 524978,
+      "sha256": "c678b7b7eb477e53b427fd8f4df6552dc01de9f0ed6ca56a81f47458bc98a65a"
     },
     {
       "path": "client/legacy/data/v63-reader-person-relations.js",
-      "bytes": 241851,
-      "sha256": "5db94eb7227396ef8bf79e4e6d449c2daa31dbf401e1495263849c0336f18cfb"
+      "bytes": 246561,
+      "sha256": "5f7f9db9e432e3a65c4f1fa6b25b22caa8de164f7c4b357eae76b59bb25d388d"
     },
     {
       "path": "client/legacy/data/v63-reader-person-relations.json",
-      "bytes": 303397,
-      "sha256": "8dd0db95bd0849d92da37784a4842da486078d62eea356702fb56949fd278d94"
+      "bytes": 308975,
+      "sha256": "75c492ddfb63d37c201ac9aeb0ea7765fa8ce498b1db723d2525fa2b161096dc"
     },
     {
       "path": "client/legacy/data/v66-peerage-stages.js",
@@ -2594,8 +2594,8 @@
     },
     {
       "path": "client/legacy/data/v69-person-profiles.js",
-      "bytes": 399921,
-      "sha256": "073860815c05521f4d81cb56eb5965e03a12d7a3e13202632cde824e760cf8cb"
+      "bytes": 404980,
+      "sha256": "822fb6b1419489183b6680cbd48156905f34cf45225b32cf75d7108c1a8708bb"
     },
     {
       "path": "client/legacy/index.html",
@@ -2604,8 +2604,8 @@
     },
     {
       "path": "client/legacy/reader-bundle.json",
-      "bytes": 93151,
-      "sha256": "30c4d9549f444137bc5a68e98bc97f499ac5795af8acfd7284b9a57fc6ac4263"
+      "bytes": 93153,
+      "sha256": "2f4bdbb1625201ccddf4657d53b9ae5a831a3a8675c62007b4ae563e018cc29e"
     },
     {
       "path": "client/window.svg",
@@ -2635,7 +2635,7 @@
     {
       "path": "server/index.js",
       "bytes": 645021,
-      "sha256": "227819c836b3911154d1720b13f87bdb6e88828bbb93567c1e4d64155081256a"
+      "sha256": "e484e7dd3f239fa7c46524cb963bf7fb197614d55c46bea08aad0aeec47da5a3"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
@@ -2665,7 +2665,7 @@
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "b3eabd7862b9c83bb11b2e0787676f3425f92855c6fd7c42e57108dbc2e3f86b"
+      "sha256": "977c573c7680ac3a87aeae6131f24acc1f48a5908870432aa250d460118f1ec6"
     },
     {
       "path": "server/vinext-externals.json",
@@ -2675,7 +2675,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "b3eabd7862b9c83bb11b2e0787676f3425f92855c6fd7c42e57108dbc2e3f86b"
+      "sha256": "977c573c7680ac3a87aeae6131f24acc1f48a5908870432aa250d460118f1ec6"
     },
     {
       "path": "server/wrangler.json",
@@ -2683,9 +2683,9 @@
       "sha256": "f4adf351b2136969e2cc51a435cd8d6c2a6f73f29a0293805df28b51f0b21d27"
     }
   ],
-  "aggregateSha256": "f02b7592d60701aa7ce3d940a6d27598739571fe252441d38b6acf8672c745a7",
+  "aggregateSha256": "4238ee3a234c0c206729660a9e0ed29c3b08c6172d3d39dddf6a7f639b57d7ac",
   "summary": {
     "fileCount": 536,
-    "totalBytes": 43571856
+    "totalBytes": 43588671
   }
 }

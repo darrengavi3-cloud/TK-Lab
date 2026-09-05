@@ -1,8 +1,10 @@
+import { reviewedReaderScope } from './person-identity-publication.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
 const fullPath = relative => path.join(root, relative);
@@ -66,7 +68,7 @@ assert(candidateIds.size === 50 && candidateNames.size === 50, 'V70 候选唯一
 assert(v70Assets.every(asset => candidateIds.has(asset.personId)), 'manifest 含未登记的 V70 人物');
 
 /* V70 人物界面回归：非人物词条不可重新进入读者包，寿命与标签不重复显示。 */
-assert(reader.people?.length === 2096, `读者人物数量应保持 2096，实际 ${reader.people?.length || 0}`);
+assert(reader.people?.length === expectedReaderCount, `读者人物数量应覆盖审定范围，实际 ${reader.people?.length || 0}`);
 for (const excluded of ['安西', '安南', '安东大', '喬安北', '丁中', '陈王刘宠']) {
   assert(!reader.people.some(row => row.name === excluded || (row.aliases || []).includes(excluded)), `错误人物值仍在读者包：${excluded}`);
 }

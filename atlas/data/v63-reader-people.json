@@ -2,10 +2,10 @@
   "schemaVersion": "V63",
   "modelId": "sgz-v63-reader-people",
   "summary": {
-    "people": 2096,
+    "people": 2099,
     "legacyMappings": 1140,
     "portraitAssets": 425,
-    "readerScopeVersion": "V62"
+    "readerScopeVersion": "V71"
   },
   "people": [
     {
@@ -46,6 +46,16 @@
       ]
     },
     {
+      "personId": "person:han:liu-wangzhi",
+      "name": "刘望之",
+      "dynastyTags": [
+        "后汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:21:6d1821578978"
+      ]
+    },
+    {
       "personId": "person:han:liu-zhang",
       "name": "刘璋",
       "aliases": [
@@ -83,6 +93,18 @@
       ],
       "portraitIds": [
         "portrait:asset:db0a1c99a5fa6f658082"
+      ]
+    },
+    {
+      "personId": "person:han:wang-shang-wenbiao",
+      "name": "王商",
+      "zi": "文表",
+      "birthplace": "广汉",
+      "dynastyTags": [
+        "后汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:38:15db8d9b680e"
       ]
     },
     {
@@ -227,6 +249,17 @@
       ],
       "portraitIds": [
         "portrait:v69:13"
+      ]
+    },
+    {
+      "personId": "person:jin:li-xing-junshi",
+      "name": "李兴",
+      "zi": "雋石",
+      "dynastyTags": [
+        "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:088:c7f32e2a604a"
       ]
     },
     {
@@ -5073,8 +5106,13 @@
     {
       "personId": "person:snapshot260:9fbd9f0edab3ad59",
       "name": "刘沈",
+      "zi": "道真",
+      "birthplace": "燕国蓟",
       "dynastyTags": [
-        "魏"
+        "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:089:3445b21e2bfd"
       ]
     },
     {

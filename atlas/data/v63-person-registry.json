@@ -8,10 +8,10 @@
     "conflict": "表字、政权或其他身份信号冲突时按 sourceRecordId 隔离，禁止以唯一姓名自动合并。"
   },
   "summary": {
-    "people": 2437,
-    "readerPeople": 2096,
-    "readerScopeVersion": "V62",
-    "readerScopePeople": 2096,
+    "people": 2440,
+    "readerPeople": 2099,
+    "readerScopeVersion": "V71",
+    "readerScopePeople": 2099,
     "scopeExcludedPeople": 4,
     "nonPersonExclusions": 4,
     "legacyMappings": 1140,
@@ -24,26 +24,27 @@
     "portraitPersonIds": 423,
     "unresolvedPortraits": 0,
     "verifiedFieldCounts": {
-      "name": 2096,
+      "name": 2099,
       "aliases": 524,
-      "zi": 118,
-      "birthplace": 67,
+      "zi": 121,
+      "birthplace": 69,
       "birthYear": 38,
       "deathYear": 59,
       "bio": 70,
       "bioClassical": 0,
-      "dynastyTags": 1742,
+      "dynastyTags": 1745,
       "historicalAffiliations": 46,
-      "appointments": 59,
+      "appointments": 63,
       "peerage": 371,
       "portraits": 423
     }
   },
   "readerScope": {
-    "schemaVersion": "V62",
-    "modelId": "sgz-v62-reader-scope",
-    "people": 2096,
-    "policy": "上一版 V62 阅读态人物注册范围冻结；来源行及审校数据仍由当前规范源保留。"
+    "schemaVersion": "V71",
+    "modelId": "sgz-v71-reviewed-reader-scope",
+    "people": 2099,
+    "baselinePeople": 2096,
+    "policy": "保留 V62 名册；只按具名、经独立原典核对的身份清单增补或更正，不从任官抽取自动扩展人物。"
   },
   "people": [
     {
@@ -338,6 +339,58 @@
       }
     },
     {
+      "personId": "person:han:liu-wangzhi",
+      "name": "刘望之",
+      "aliases": [],
+      "legacyPersonIds": [],
+      "sourceRecordIds": [
+        "appointment:source:sgz:21:6d1821578978",
+        "identity:v71:person:han:liu-wangzhi"
+      ],
+      "datasets": [
+        "appointments",
+        "v71-identity-review"
+      ],
+      "readerDatasets": [],
+      "identityStatus": "resolved",
+      "publicationStatus": {
+        "name": "verified",
+        "aliases": "suppressed",
+        "zi": "suppressed",
+        "birthplace": "suppressed",
+        "birthYear": "suppressed",
+        "deathYear": "suppressed",
+        "bio": "suppressed",
+        "bioClassical": "suppressed",
+        "dynastyTags": "verified",
+        "historicalAffiliations": "suppressed",
+        "appointments": "verified",
+        "peerage": "suppressed",
+        "portraits": "suppressed"
+      },
+      "values": {
+        "name": "刘望之",
+        "dynastyTags": [
+          "后汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:21:6d1821578978"
+        ]
+      },
+      "reviewCandidates": {
+        "dynastyTags": [
+          {
+            "value": [
+              "后汉"
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:liu-wangzhi"
+          }
+        ]
+      }
+    },
+    {
       "personId": "person:han:liu-zhang",
       "name": "刘璋",
       "aliases": [
@@ -613,6 +666,76 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:han:tao-qian"
+          }
+        ]
+      }
+    },
+    {
+      "personId": "person:han:wang-shang-wenbiao",
+      "name": "王商",
+      "aliases": [],
+      "legacyPersonIds": [],
+      "sourceRecordIds": [
+        "appointment:source:sgz:38:15db8d9b680e",
+        "identity:v71:person:han:wang-shang-wenbiao"
+      ],
+      "datasets": [
+        "appointments",
+        "v71-identity-review"
+      ],
+      "readerDatasets": [],
+      "identityStatus": "resolved",
+      "publicationStatus": {
+        "name": "verified",
+        "aliases": "suppressed",
+        "zi": "verified",
+        "birthplace": "verified",
+        "birthYear": "suppressed",
+        "deathYear": "suppressed",
+        "bio": "suppressed",
+        "bioClassical": "suppressed",
+        "dynastyTags": "verified",
+        "historicalAffiliations": "suppressed",
+        "appointments": "verified",
+        "peerage": "suppressed",
+        "portraits": "suppressed"
+      },
+      "values": {
+        "name": "王商",
+        "zi": "文表",
+        "birthplace": "广汉",
+        "dynastyTags": [
+          "后汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:38:15db8d9b680e"
+        ]
+      },
+      "reviewCandidates": {
+        "zi": [
+          {
+            "value": "文表",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:wang-shang-wenbiao"
+          }
+        ],
+        "birthplace": [
+          {
+            "value": "广汉",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:wang-shang-wenbiao"
+          }
+        ],
+        "dynastyTags": [
+          {
+            "value": [
+              "后汉"
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:wang-shang-wenbiao"
           }
         ]
       }
@@ -1725,6 +1848,67 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:jin:li-xi"
+          }
+        ]
+      }
+    },
+    {
+      "personId": "person:jin:li-xing-junshi",
+      "name": "李兴",
+      "aliases": [],
+      "legacyPersonIds": [],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:088:c7f32e2a604a",
+        "identity:v71:person:jin:li-xing-junshi"
+      ],
+      "datasets": [
+        "appointments",
+        "v71-identity-review"
+      ],
+      "readerDatasets": [],
+      "identityStatus": "resolved",
+      "publicationStatus": {
+        "name": "verified",
+        "aliases": "suppressed",
+        "zi": "verified",
+        "birthplace": "suppressed",
+        "birthYear": "suppressed",
+        "deathYear": "suppressed",
+        "bio": "suppressed",
+        "bioClassical": "suppressed",
+        "dynastyTags": "verified",
+        "historicalAffiliations": "suppressed",
+        "appointments": "verified",
+        "peerage": "suppressed",
+        "portraits": "suppressed"
+      },
+      "values": {
+        "name": "李兴",
+        "zi": "雋石",
+        "dynastyTags": [
+          "西晋"
+        ],
+        "appointments": [
+          "appointment:source:jinshu:088:c7f32e2a604a"
+        ]
+      },
+      "reviewCandidates": {
+        "zi": [
+          {
+            "value": "雋石",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:jin:li-xing-junshi"
+          }
+        ],
+        "dynastyTags": [
+          {
+            "value": [
+              "西晋"
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:jin:li-xing-junshi"
           }
         ]
       }
@@ -40562,36 +40746,45 @@
       "aliases": [],
       "legacyPersonIds": [],
       "sourceRecordIds": [
+        "appointment:source:jinshu:089:3445b21e2bfd",
+        "identity:v71:person:snapshot260:9fbd9f0edab3ad59",
         "source:v61:snapshot260:15382153bad7a010"
       ],
       "datasets": [
+        "appointments",
         "snapshot260",
         "v61-supplement",
-        "v62-people"
+        "v62-people",
+        "v71-identity-review"
       ],
       "readerDatasets": [
         "snapshot260"
       ],
-      "identityStatus": "review-only",
+      "identityStatus": "resolved",
       "publicationStatus": {
         "name": "verified",
         "aliases": "suppressed",
-        "zi": "review-only",
-        "birthplace": "suppressed",
+        "zi": "verified",
+        "birthplace": "verified",
         "birthYear": "suppressed",
         "deathYear": "suppressed",
         "bio": "suppressed",
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "suppressed"
       },
       "values": {
         "name": "刘沈",
+        "zi": "道真",
+        "birthplace": "燕国蓟",
         "dynastyTags": [
-          "魏"
+          "西晋"
+        ],
+        "appointments": [
+          "appointment:source:jinshu:089:3445b21e2bfd"
         ]
       },
       "reviewCandidates": {
@@ -40601,6 +40794,12 @@
             "publicationStatus": "review-only",
             "historicalDisposition": "存疑",
             "sourceRecordId": "source:v61:snapshot260:15382153bad7a010"
+          },
+          {
+            "value": "道真",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
           }
         ],
         "dynastyTags": [
@@ -40616,9 +40815,26 @@
             "value": [
               "魏"
             ],
+            "publicationStatus": "review-only",
+            "historicalDisposition": "存疑",
+            "sourceRecordId": "v62:person:snapshot260:9fbd9f0edab3ad59",
+            "supersededBy": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
+          },
+          {
+            "value": [
+              "西晋"
+            ],
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
-            "sourceRecordId": "v62:person:snapshot260:9fbd9f0edab3ad59"
+            "sourceRecordId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
+          }
+        ],
+        "birthplace": [
+          {
+            "value": "燕国蓟",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
           }
         ]
       }
@@ -171278,6 +171494,58 @@
         ]
       }
     },
+    "person:han:liu-wangzhi": {
+      "personId": "person:han:liu-wangzhi",
+      "name": "刘望之",
+      "aliases": [],
+      "legacyPersonIds": [],
+      "sourceRecordIds": [
+        "appointment:source:sgz:21:6d1821578978",
+        "identity:v71:person:han:liu-wangzhi"
+      ],
+      "datasets": [
+        "appointments",
+        "v71-identity-review"
+      ],
+      "readerDatasets": [],
+      "identityStatus": "resolved",
+      "publicationStatus": {
+        "name": "verified",
+        "aliases": "suppressed",
+        "zi": "suppressed",
+        "birthplace": "suppressed",
+        "birthYear": "suppressed",
+        "deathYear": "suppressed",
+        "bio": "suppressed",
+        "bioClassical": "suppressed",
+        "dynastyTags": "verified",
+        "historicalAffiliations": "suppressed",
+        "appointments": "verified",
+        "peerage": "suppressed",
+        "portraits": "suppressed"
+      },
+      "values": {
+        "name": "刘望之",
+        "dynastyTags": [
+          "后汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:21:6d1821578978"
+        ]
+      },
+      "reviewCandidates": {
+        "dynastyTags": [
+          {
+            "value": [
+              "后汉"
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:liu-wangzhi"
+          }
+        ]
+      }
+    },
     "person:han:liu-zhang": {
       "personId": "person:han:liu-zhang",
       "name": "刘璋",
@@ -171554,6 +171822,76 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:han:tao-qian"
+          }
+        ]
+      }
+    },
+    "person:han:wang-shang-wenbiao": {
+      "personId": "person:han:wang-shang-wenbiao",
+      "name": "王商",
+      "aliases": [],
+      "legacyPersonIds": [],
+      "sourceRecordIds": [
+        "appointment:source:sgz:38:15db8d9b680e",
+        "identity:v71:person:han:wang-shang-wenbiao"
+      ],
+      "datasets": [
+        "appointments",
+        "v71-identity-review"
+      ],
+      "readerDatasets": [],
+      "identityStatus": "resolved",
+      "publicationStatus": {
+        "name": "verified",
+        "aliases": "suppressed",
+        "zi": "verified",
+        "birthplace": "verified",
+        "birthYear": "suppressed",
+        "deathYear": "suppressed",
+        "bio": "suppressed",
+        "bioClassical": "suppressed",
+        "dynastyTags": "verified",
+        "historicalAffiliations": "suppressed",
+        "appointments": "verified",
+        "peerage": "suppressed",
+        "portraits": "suppressed"
+      },
+      "values": {
+        "name": "王商",
+        "zi": "文表",
+        "birthplace": "广汉",
+        "dynastyTags": [
+          "后汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:38:15db8d9b680e"
+        ]
+      },
+      "reviewCandidates": {
+        "zi": [
+          {
+            "value": "文表",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:wang-shang-wenbiao"
+          }
+        ],
+        "birthplace": [
+          {
+            "value": "广汉",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:wang-shang-wenbiao"
+          }
+        ],
+        "dynastyTags": [
+          {
+            "value": [
+              "后汉"
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:han:wang-shang-wenbiao"
           }
         ]
       }
@@ -172666,6 +173004,67 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:jin:li-xi"
+          }
+        ]
+      }
+    },
+    "person:jin:li-xing-junshi": {
+      "personId": "person:jin:li-xing-junshi",
+      "name": "李兴",
+      "aliases": [],
+      "legacyPersonIds": [],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:088:c7f32e2a604a",
+        "identity:v71:person:jin:li-xing-junshi"
+      ],
+      "datasets": [
+        "appointments",
+        "v71-identity-review"
+      ],
+      "readerDatasets": [],
+      "identityStatus": "resolved",
+      "publicationStatus": {
+        "name": "verified",
+        "aliases": "suppressed",
+        "zi": "verified",
+        "birthplace": "suppressed",
+        "birthYear": "suppressed",
+        "deathYear": "suppressed",
+        "bio": "suppressed",
+        "bioClassical": "suppressed",
+        "dynastyTags": "verified",
+        "historicalAffiliations": "suppressed",
+        "appointments": "verified",
+        "peerage": "suppressed",
+        "portraits": "suppressed"
+      },
+      "values": {
+        "name": "李兴",
+        "zi": "雋石",
+        "dynastyTags": [
+          "西晋"
+        ],
+        "appointments": [
+          "appointment:source:jinshu:088:c7f32e2a604a"
+        ]
+      },
+      "reviewCandidates": {
+        "zi": [
+          {
+            "value": "雋石",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:jin:li-xing-junshi"
+          }
+        ],
+        "dynastyTags": [
+          {
+            "value": [
+              "西晋"
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:jin:li-xing-junshi"
           }
         ]
       }
@@ -211503,36 +211902,45 @@
       "aliases": [],
       "legacyPersonIds": [],
       "sourceRecordIds": [
+        "appointment:source:jinshu:089:3445b21e2bfd",
+        "identity:v71:person:snapshot260:9fbd9f0edab3ad59",
         "source:v61:snapshot260:15382153bad7a010"
       ],
       "datasets": [
+        "appointments",
         "snapshot260",
         "v61-supplement",
-        "v62-people"
+        "v62-people",
+        "v71-identity-review"
       ],
       "readerDatasets": [
         "snapshot260"
       ],
-      "identityStatus": "review-only",
+      "identityStatus": "resolved",
       "publicationStatus": {
         "name": "verified",
         "aliases": "suppressed",
-        "zi": "review-only",
-        "birthplace": "suppressed",
+        "zi": "verified",
+        "birthplace": "verified",
         "birthYear": "suppressed",
         "deathYear": "suppressed",
         "bio": "suppressed",
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "suppressed"
       },
       "values": {
         "name": "刘沈",
+        "zi": "道真",
+        "birthplace": "燕国蓟",
         "dynastyTags": [
-          "魏"
+          "西晋"
+        ],
+        "appointments": [
+          "appointment:source:jinshu:089:3445b21e2bfd"
         ]
       },
       "reviewCandidates": {
@@ -211542,6 +211950,12 @@
             "publicationStatus": "review-only",
             "historicalDisposition": "存疑",
             "sourceRecordId": "source:v61:snapshot260:15382153bad7a010"
+          },
+          {
+            "value": "道真",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
           }
         ],
         "dynastyTags": [
@@ -211557,9 +211971,26 @@
             "value": [
               "魏"
             ],
+            "publicationStatus": "review-only",
+            "historicalDisposition": "存疑",
+            "sourceRecordId": "v62:person:snapshot260:9fbd9f0edab3ad59",
+            "supersededBy": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
+          },
+          {
+            "value": [
+              "西晋"
+            ],
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
-            "sourceRecordId": "v62:person:snapshot260:9fbd9f0edab3ad59"
+            "sourceRecordId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
+          }
+        ],
+        "birthplace": [
+          {
+            "value": "燕国蓟",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59"
           }
         ]
       }
@@ -345083,6 +345514,21 @@
       "peerage": "suppressed",
       "portraits": "verified"
     },
+    "person:han:liu-wangzhi": {
+      "name": "verified",
+      "aliases": "suppressed",
+      "zi": "suppressed",
+      "birthplace": "suppressed",
+      "birthYear": "suppressed",
+      "deathYear": "suppressed",
+      "bio": "suppressed",
+      "bioClassical": "suppressed",
+      "dynastyTags": "verified",
+      "historicalAffiliations": "suppressed",
+      "appointments": "verified",
+      "peerage": "suppressed",
+      "portraits": "suppressed"
+    },
     "person:han:liu-zhang": {
       "name": "verified",
       "aliases": "verified",
@@ -345112,6 +345558,21 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "verified"
+    },
+    "person:han:wang-shang-wenbiao": {
+      "name": "verified",
+      "aliases": "suppressed",
+      "zi": "verified",
+      "birthplace": "verified",
+      "birthYear": "suppressed",
+      "deathYear": "suppressed",
+      "bio": "suppressed",
+      "bioClassical": "suppressed",
+      "dynastyTags": "verified",
+      "historicalAffiliations": "suppressed",
+      "appointments": "verified",
+      "peerage": "suppressed",
+      "portraits": "suppressed"
     },
     "person:han:zhang-lu": {
       "name": "verified",
@@ -345247,6 +345708,21 @@
       "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
+    },
+    "person:jin:li-xing-junshi": {
+      "name": "verified",
+      "aliases": "suppressed",
+      "zi": "verified",
+      "birthplace": "suppressed",
+      "birthYear": "suppressed",
+      "deathYear": "suppressed",
+      "bio": "suppressed",
+      "bioClassical": "suppressed",
+      "dynastyTags": "verified",
+      "historicalAffiliations": "suppressed",
+      "appointments": "verified",
+      "peerage": "suppressed",
+      "portraits": "suppressed"
     },
     "person:jin:li-yin": {
       "name": "verified",
@@ -354281,15 +354757,15 @@
     "person:snapshot260:9fbd9f0edab3ad59": {
       "name": "verified",
       "aliases": "suppressed",
-      "zi": "review-only",
-      "birthplace": "suppressed",
+      "zi": "verified",
+      "birthplace": "verified",
       "birthYear": "suppressed",
       "deathYear": "suppressed",
       "bio": "suppressed",
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "suppressed"
     },

@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import crypto from 'node:crypto';
 import test from 'node:test';
 import { reviewedAppointments, sourceDigest } from '../atlas/scripts/appointment-publication.mjs';
+import { reviewedReaderScope, validateIdentitySources } from '../atlas/scripts/person-identity-publication.mjs';
 import { fangzhenValidAtYear, classifyFangzhenDynasty } from '../atlas/assets/app/fangzhen.js';
 import { createPersonNavigator } from '../atlas/assets/app/navigation.js';
 import { acceptedRouteMessage, validRouteHash } from '../atlas/assets/app/route-contract.js';
@@ -15,6 +16,36 @@ const json = name => JSON.parse(read(`data/${name}.json`));
 const source = json('person-source-index');
 const review = json('v71-appointment-review');
 const relations = json('v63-reader-person-relations');
+
+test('reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate', () => {
+  const base = json('v62-reader-scope');
+  const identityReview = json('v71-person-identity-review');
+  const roster = json('v63-reader-people').people;
+  const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
+  assert.deepEqual(new Set(roster.map(row => row.personId)), new Set([...base.people.map(row => row.personId), ...additions]));
+  assert.equal(reviewedReaderScope(base, identityReview).length, 2099);
+  const liu = roster.find(row => row.personId === 'person:snapshot260:9fbd9f0edab3ad59');
+  assert.equal(liu.zi, '道真');
+  assert.equal(liu.birthplace, '燕国蓟');
+  assert.deepEqual(liu.dynastyTags, ['西晋']);
+  const candidates = json('v63-person-registry').byPersonId[liu.personId].reviewCandidates.dynastyTags;
+  assert.ok(candidates.some(row => row.value.includes('魏')));
+  assert.ok(candidates.filter(row => row.value.includes('魏')).every(row => row.publicationStatus === 'review-only'));
+  for (const row of identityReview.records) {
+    const person = roster.find(person => person.personId === row.personId);
+    assert.ok(person.appointmentIds.length);
+    for (const id of person.appointmentIds) {
+      const appointment = relations.appointments.find(fact => fact.appointmentId === id);
+      assert.equal(appointment.personId, person.personId);
+      assert.equal(appointment.startYear, null);
+      assert.equal(appointment.endYear, null);
+      assert.ok(appointment.citations.some(citation => citation.quote === row.citations[0].quote));
+    }
+  }
+  assert.throws(() => reviewedReaderScope({ ...base, people: base.people.slice(1) }, identityReview), /baseline changed/);
+  assert.throws(() => reviewedReaderScope(base, { ...identityReview, records: [...identityReview.records, identityReview.records[0]] }), /Duplicate/);
+  assert.throws(() => validateIdentitySources(identityReview, { appointments: [] }), /Identity source changed/);
+});
 
 test('identity resolution cannot publish an unreviewed appointment; source edits invalidate review', () => {
   const row = source.appointments.find(row => row.id === review.records[0].appointmentId);
@@ -28,7 +59,7 @@ test('identity resolution cannot publish an unreviewed appointment; source edits
 test('all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild', () => {
   assert.equal(review.records.length, 149);
   const published = new Map(relations.appointments.map(row => [row.appointmentId, row]));
-  assert.equal(published.size, 97);
+  assert.equal(published.size, 101);
   const row = suffix => published.get(`appointment:source:${suffix}`);
   assert.equal(row('sgz:22:dc35da5cf8f9').personId, 'person:workbook:13d66149e45735fd');
   assert.equal(row('sgz:22:dc35da5cf8f9').nodeName, '从事祭酒');

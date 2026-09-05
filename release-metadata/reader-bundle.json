@@ -3,7 +3,7 @@
   "build": "reader",
   "sourceRegistryModelId": "sgz-v63-person-registry",
   "sourceReaderModelId": "sgz-v63-reader-people",
-  "personCount": 2096,
+  "personCount": 2099,
   "portraitCount": 425,
   "readerProjection": {
     "mapRuntimeFiles": [
@@ -81,7 +81,7 @@
     "fangzhenReaderRecordCount": 523,
     "fangzhenVerifiedRecordCount": 45,
     "fangzhenCandidateRecordCount": 478,
-    "personProfileCount": 2096,
+    "personProfileCount": 2099,
     "battlePersonLinkCount": 106,
     "epigraphicRecordCount": 166,
     "peerageNodeCount": 13,
@@ -89,8 +89,8 @@
     "generalTitleReaderCount": 248,
     "generalTitleLegacyVerifiedCount": 159,
     "generalTitleV65VerifiedCount": 89,
-    "personAppointmentReferenceCount": 97,
-    "personAppointmentRelationCount": 97,
+    "personAppointmentReferenceCount": 101,
+    "personAppointmentRelationCount": 101,
     "personPeerageReferenceCount": 535,
     "personPeerageRelationCount": 535,
     "personPeerageUniqueEventCount": 518,
@@ -109,8 +109,8 @@
     "explicitCodeIdentifierExceptions": 3
   },
   "fileCount": 506,
-  "totalBytes": 188910655,
-  "aggregateSha256": "45ccf717f127f2ab572f30a0410b4598256d271952fe56eb871b5063fe83c335",
+  "totalBytes": 188927468,
+  "aggregateSha256": "3a5c1328cbc4af18d44c49d5ed970b4b70b5a07e145fb7d11be8335bf9b914c3",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -2594,23 +2594,23 @@
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 373220,
-      "sha256": "59dd3b128cda01f960cc1b35601f225e06243135f689705a5c21504574de19a2"
+      "bytes": 373810,
+      "sha256": "eef78c9e893ce716e29e5f4c0db55d5effd21841ac59b8b0040efbfbcc0d11fd"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 524102,
-      "sha256": "ee00a4d7353c18ea0bcb3a4a70cb7b3d791de6170ed4ca17e409ba52d8c93335"
+      "bytes": 524978,
+      "sha256": "c678b7b7eb477e53b427fd8f4df6552dc01de9f0ed6ca56a81f47458bc98a65a"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 241851,
-      "sha256": "5db94eb7227396ef8bf79e4e6d449c2daa31dbf401e1495263849c0336f18cfb"
+      "bytes": 246561,
+      "sha256": "5f7f9db9e432e3a65c4f1fa6b25b22caa8de164f7c4b357eae76b59bb25d388d"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 303397,
-      "sha256": "8dd0db95bd0849d92da37784a4842da486078d62eea356702fb56949fd278d94"
+      "bytes": 308975,
+      "sha256": "75c492ddfb63d37c201ac9aeb0ea7765fa8ce498b1db723d2525fa2b161096dc"
     },
     {
       "path": "data/v66-peerage-stages.js",
@@ -2634,8 +2634,8 @@
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 399921,
-      "sha256": "073860815c05521f4d81cb56eb5965e03a12d7a3e13202632cde824e760cf8cb"
+      "bytes": 404980,
+      "sha256": "822fb6b1419489183b6680cbd48156905f34cf45225b32cf75d7108c1a8708bb"
     },
     {
       "path": "index.html",

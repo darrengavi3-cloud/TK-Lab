@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { reviewedReaderScope } from './person-identity-publication.mjs';
 
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -9,6 +10,7 @@ import { classifyFangzhenDynasty, classifyFangzhenJurisdiction, normalizeFangzhe
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const dataDir = path.join(root, 'data');
 const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
 const json = relative => JSON.parse(read(relative));
@@ -87,7 +89,7 @@ const uniquePersonIdForName = name => {
   return ids.length === 1 ? ids[0] : '';
 };
 
-assert(readerPeople.length === 2096, `人物注册表应为 2096 人，当前 ${readerPeople.length}`);
+assert(readerPeople.length === expectedReaderCount, `人物注册表应覆盖审定范围，当前 ${readerPeople.length}`);
 assert(peopleById.get('person:peerage:96a323e97ca0c2fa')?.name === '丁冲', '丁冲规范姓名未进入读者注册表');
 assert(!readerPeople.some(person => person.name === '丁中' || (person.aliases || []).includes('丁中')), '旧错误值“丁中”仍进入读者人物检索字段');
 

@@ -1,8 +1,10 @@
+import { reviewedReaderScope } from './person-identity-publication.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const readJson=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const failures=[];
@@ -30,7 +32,7 @@ const readerScope=readJson('data/v62-reader-scope.json');
 const people=readerPeople.people||[];
 const peopleIds=new Set(people.map(person=>person.personId));
 const dingId='person:peerage:96a323e97ca0c2fa';
-assert(people.length===2096&&peopleIds.size===2096,'人物读者注册表不为 2096 个唯一 personId');
+assert(people.length===expectedReaderCount&&peopleIds.size===expectedReaderCount,'人物读者注册表未覆盖唯一审定 personId');
 assert(readerScope.summary?.people===2096&&readerScope.people?.length===2096,'V62 回退阅读范围未冻结为 2096 人');
 assert(people.find(person=>person.personId===dingId)?.name==='丁冲','丁冲稳定 ID 的规范姓名未修正');
 assert(!people.some(person=>person.name==='丁中'||(person.aliases||[]).includes('丁中')),'旧错误值丁中仍进入读者人物检索');
@@ -39,7 +41,7 @@ assert(['安西','安东大','喬安北','安南'].every(name=>(registry.exclude
 assert((registry.people||[]).find(person=>person.personId===dingId)?.name==='丁冲','审校注册表中的丁冲规范姓名异常');
 
 const profileRows=profiles.profiles||[];
-assert(profileRows.length===2096&&new Set(profileRows.map(row=>row.personId)).size===2096,'V69 人物档案未覆盖全部人物');
+assert(profileRows.length===expectedReaderCount&&new Set(profileRows.map(row=>row.personId)).size===expectedReaderCount,'V69 人物档案未覆盖全部人物');
 assert(profileRows.every(row=>!row.templeName||row.isRuler===true),'非君主人物出现庙号');
 assert((profiles.summary?.lifeEvents||0)===(profileRows.flatMap(row=>row.lifeEvents||[]).length),'人物经历汇总与明细不闭合');
 
@@ -124,5 +126,5 @@ if(failures.length){
   console.error(JSON.stringify({ok:false,failures},null,2));
   process.exitCode=1;
 }else{
-  console.log(JSON.stringify({ok:true,people:2096,lifeEvents:profiles.summary.lifeEvents,portraitCandidates:100,portraitCompleted:productionRows.length,portraitAdditionsV70:v70PortraitCount,battleLinks:publicLinks.length,fangzhen:{records:523,verified:45,candidate:478,dynasties:dynastyCounts},epigraphy:{records:166,withInscription:50,withoutInscription:116,dynasties:epigraphicDynasties},figma:production.status},null,2));
+  console.log(JSON.stringify({ok:true,people:expectedReaderCount,lifeEvents:profiles.summary.lifeEvents,portraitCandidates:100,portraitCompleted:productionRows.length,portraitAdditionsV70:v70PortraitCount,battleLinks:publicLinks.length,fangzhen:{records:523,verified:45,candidate:478,dynasties:dynastyCounts},epigraphy:{records:166,withInscription:50,withoutInscription:116,dynasties:epigraphicDynasties},figma:production.status},null,2));
 }

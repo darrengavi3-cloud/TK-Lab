@@ -70,7 +70,7 @@ test("packages the V63 field-gated full people reader projection", async () => {
   assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
-  assert.equal(people.length, 2096);
+  assert.equal(people.length, 2099);
   assert.equal(new Set(people.map((person) => person.personId)).size, people.length);
   assert.ok(people.every((person) => person.personId && person.name));
   assert.ok(people.every((person) => !("datasets" in person)));

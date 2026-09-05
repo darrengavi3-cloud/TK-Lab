@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "V71",
+  "baseScopeSha256": "19922673633e332304c80a99de31b533cef375828c57e041a8cabb4b7802a9a1",
+  "policy": "保留 V62 名册；只按具名、经独立原典核对的身份清单增补或更正，不从任官抽取自动扩展人物。",
+  "records": [
+    {
+      "reviewId": "identity:v71:person:han:liu-wangzhi",
+      "personId": "person:han:liu-wangzhi",
+      "name": "刘望之",
+      "action": "add",
+      "status": "verified",
+      "reviewedAt": "2026-09-05",
+      "reason": "刘廙之兄；原文明确受辟并任从事，刘表是辟召者。未以弟之籍贯补填本人字段。",
+      "verifiedFields": {
+        "dynastyTags": [
+          "后汉"
+        ]
+      },
+      "replaceFields": [],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:21:6d1821578978",
+          "sha256": "e2a7de9183551e7dd049bcc7d417f21f53fe2f130c190184cfdf219e7b4cf9f8"
+        }
+      ],
+      "citations": [
+        {
+          "title": "《三国志》卷21·刘廙传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷21",
+          "quote": "廙兄望之，有名於世，荊州牧劉表辟爲從事。而其友二人，皆以讒毀，爲表所誅。望之又以正諫不合，投傳告歸。"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity:v71:person:han:wang-shang-wenbiao",
+      "personId": "person:han:wang-shang-wenbiao",
+      "name": "王商",
+      "action": "add",
+      "status": "verified",
+      "reviewedAt": "2026-09-05",
+      "reason": "姓名、表字、籍贯、刘璋州府任职互相定位；与前汉同名王商分开登记。",
+      "verifiedFields": {
+        "zi": "文表",
+        "birthplace": "广汉",
+        "dynastyTags": [
+          "后汉"
+        ]
+      },
+      "replaceFields": [],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:38:15db8d9b680e",
+          "sha256": "eb841f6f3e26da9dc8e9d26af82258be7ae6c11ca0386982eff050f12472c611"
+        }
+      ],
+      "citations": [
+        {
+          "title": "《三国志》卷38·许靖传裴注引《益州耆旧传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷38",
+          "quote": "南陽宋仲子于荊州與蜀郡太守王商書曰︰「文休倜儻瑰瑋，有當世之具，足下當以為指南。」\n益州耆舊傳曰：商字文表，廣漢人，以才學稱，聲問著於州里。劉璋辟為治中從事。"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity:v71:person:jin:li-xing-junshi",
+      "personId": "person:jin:li-xing-junshi",
+      "name": "李兴",
+      "action": "add",
+      "status": "verified",
+      "reviewedAt": "2026-09-05",
+      "reason": "李密之子、字雋石；与兄李赐（字宗石，未行而终）分开。罗尚是辟召者，李兴有实际从职与奉使叙事。",
+      "verifiedFields": {
+        "zi": "雋石",
+        "dynastyTags": [
+          "西晋"
+        ]
+      },
+      "replaceFields": [],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:088:c7f32e2a604a",
+          "sha256": "95f61d1eb0facc76a449d12e8f12a8745cf91f5c595c878bdc78964887382772"
+        }
+      ],
+      "citations": [
+        {
+          "title": "《晋书》卷88·李密传附李兴",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷088",
+          "quote": "後卒於家。二子：賜、興。\n賜字宗石，少能屬文，嘗為《玄鳥賦》，詞甚美。州辟別駕，舉秀才，未行而終。\n興字雋石，亦有文才，刺史羅尚辟別駕。尚為李雄所攻，使興詣鎮南將軍劉弘求救，興因願留，為弘參軍而不還。尚白弘，弘即奪其手版而遣之。興之在弘府，弘立諸葛孔明、羊叔子碣，使興俱為之文，甚有辭理。"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59",
+      "personId": "person:snapshot260:9fbd9f0edab3ad59",
+      "name": "刘沈",
+      "action": "correct",
+      "status": "verified",
+      "reviewedAt": "2026-09-05",
+      "reason": "既有快照姓名与表字均吻合；魏标签只来自工作表 explicit-polity/review-risk，缺少魏任官佐证。按《晋书》独立核定西晋身份，保留原 ID 和魏候选值，不把工作表年份当作任期。",
+      "verifiedFields": {
+        "zi": "道真",
+        "birthplace": "燕国蓟",
+        "dynastyTags": [
+          "西晋"
+        ]
+      },
+      "replaceFields": [
+        "dynastyTags"
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:089:3445b21e2bfd",
+          "sha256": "4b8ac20349d1ccdc107af58f47110c7c78ddf24490bded44c8c65e04be52518e"
+        },
+        {
+          "dataset": "snapshot260",
+          "idField": "personId",
+          "id": "person:snapshot260:9fbd9f0edab3ad59",
+          "sha256": "77219d0be1a6feb678d353064fb1f864ee2b3be2d2f5189c8f52408b1accce7f"
+        },
+        {
+          "dataset": "v62",
+          "idField": "personId",
+          "id": "person:snapshot260:9fbd9f0edab3ad59",
+          "sha256": "8b14569567af41ad7379807851e4a4e0d3201f47d4ae1421037d1309f9ccad28"
+        }
+      ],
+      "citations": [
+        {
+          "title": "《晋书》卷89·刘沈传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷089",
+          "quote": "劉沈，字道真，燕國薊人也。世為北州名族。少仕州郡，博學好古。太保衛瓘辟為掾，領本邑大中正。敦儒道，愛賢能，進霍原為二品，及申理張華，皆辭旨明峻，為當時所稱。齊王冏輔政，引為左長史，遷侍中。"
+        }
+      ]
+    }
+  ]
+}

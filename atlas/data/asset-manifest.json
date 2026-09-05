@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 686,
-  "totalBytes": 313475128,
-  "aggregateSha256": "18d2c2c89fb35b754f7792392f276d914080071c549f4f510f313b6d19e05033",
+  "fileCount": 687,
+  "totalBytes": 313532157,
+  "aggregateSha256": "68453f1d0cf325157101285e497cc91018fb9d5a6d5f9da061cbf3b1d60a0ab2",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -3188,33 +3188,33 @@
     },
     {
       "path": "data/v63-person-registry.js",
-      "bytes": 7037393,
-      "sha256": "5841464bcad3e2f944fb994749441e9bc6ede9a60843bbd74853735e499fd007"
+      "bytes": 7046680,
+      "sha256": "2ac069ded9fc0b220aaf259b2c89c85015125ae5a0c61d49ee047f54e8fc986d"
     },
     {
       "path": "data/v63-person-registry.json",
-      "bytes": 10838411,
-      "sha256": "0a2814ca5fd87f00958e5022a0ae7d465c482eca0d63e008dc3b3fded4bf59a3"
+      "bytes": 10852420,
+      "sha256": "41c990b47f006e064688c18e9d7621d8f61a9a0a883987c2d7377d6c4a2a30e7"
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 373220,
-      "sha256": "59dd3b128cda01f960cc1b35601f225e06243135f689705a5c21504574de19a2"
+      "bytes": 373810,
+      "sha256": "eef78c9e893ce716e29e5f4c0db55d5effd21841ac59b8b0040efbfbcc0d11fd"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 524102,
-      "sha256": "ee00a4d7353c18ea0bcb3a4a70cb7b3d791de6170ed4ca17e409ba52d8c93335"
+      "bytes": 524978,
+      "sha256": "c678b7b7eb477e53b427fd8f4df6552dc01de9f0ed6ca56a81f47458bc98a65a"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 241851,
-      "sha256": "5db94eb7227396ef8bf79e4e6d449c2daa31dbf401e1495263849c0336f18cfb"
+      "bytes": 246561,
+      "sha256": "5f7f9db9e432e3a65c4f1fa6b25b22caa8de164f7c4b357eae76b59bb25d388d"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 303397,
-      "sha256": "8dd0db95bd0849d92da37784a4842da486078d62eea356702fb56949fd278d94"
+      "bytes": 308975,
+      "sha256": "75c492ddfb63d37c201ac9aeb0ea7765fa8ce498b1db723d2525fa2b161096dc"
     },
     {
       "path": "data/v65-battle-coordinate-audit.js",
@@ -3378,23 +3378,23 @@
     },
     {
       "path": "data/v69-person-profile-audit.js",
-      "bytes": 439819,
-      "sha256": "cfb6e6515a9cd5c27fc775c39225e318430b56f86ecfc5f5c64b2325a05953d6"
+      "bytes": 440426,
+      "sha256": "38ec5d779821705adc121514dff4f0d2bfacc0085a3b38a3394f3908c75ed173"
     },
     {
       "path": "data/v69-person-profile-audit.json",
-      "bytes": 626228,
-      "sha256": "a4ef332ce31c66c9dc7d49ac10c415fb11a0ebc39a44846dc0d508b6e553720e"
+      "bytes": 627102,
+      "sha256": "56f2a1278e01a86daa9fa9ae3e5891032afeef08a5d84020940b06e23d9fdfda"
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 400026,
-      "sha256": "4ac6ff16bd301dbacc8d06b13977844e49cf10c8e1a92ad35f70a7c00160b7e1"
+      "bytes": 405085,
+      "sha256": "f1a949ba9628f0bce6edfb6c84c9120ba47ad8dae92adad5760a47d7e57a9239"
     },
     {
       "path": "data/v69-person-profiles.json",
-      "bytes": 560336,
-      "sha256": "2ac961230d20585324d2aadb77a683dbccdf244a3a41e9756a8768d314adcc29"
+      "bytes": 566722,
+      "sha256": "7464b61e217ef155e6f779dcb4c5180cdf44f79ce3faf09a34d083910b3404a2"
     },
     {
       "path": "data/v69-portrait-candidates.js",
@@ -3418,8 +3418,13 @@
     },
     {
       "path": "data/v71-appointment-review.json",
-      "bytes": 58305,
-      "sha256": "4ce16f1a807ea6f5548ae613c13bdf019c64feb968e25e5aa91b053464584b61"
+      "bytes": 61441,
+      "sha256": "adc80b5127a15f2ebc161d48363d5a856e27ce8d3f9ecc4390dbb37c997f1438"
+    },
+    {
+      "path": "data/v71-person-identity-review.json",
+      "bytes": 5917,
+      "sha256": "634fe6d9776c0fd12216a8ac595d42dbf09cebdb779e5877c83bb036ff5c45ce"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

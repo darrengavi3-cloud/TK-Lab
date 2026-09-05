@@ -13,9 +13,26 @@
     {
       "appointmentId": "appointment:source:sgz:21:6d1821578978",
       "sourceSha256": "e2a7de9183551e7dd049bcc7d417f21f53fe2f130c190184cfdf219e7b4cf9f8",
-      "status": "review-only",
-      "reason": "刘表为辟召者；受任者为刘廙之兄刘望之，现有读者人物尚无可核身份。",
-      "followupReviewedAt": "2026-09-05"
+      "status": "verified",
+      "reason": "刘廙之兄；原文明确受辟并任从事，刘表是辟召者。未以弟之籍贯补填本人字段。",
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:han:liu-wangzhi",
+      "correction": {
+        "personId": "person:han:liu-wangzhi",
+        "name": "刘望之",
+        "officeName": "从事",
+        "polity": "后汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷21·刘廙传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷21",
+          "quote": "廙兄望之，有名於世，荊州牧劉表辟爲從事。而其友二人，皆以讒毀，爲表所誅。望之又以正諫不合，投傳告歸。"
+        }
+      ],
+      "readerNote": "刘廙之兄；原文明确受辟并任从事，刘表是辟召者。未以弟之籍贯补填本人字段。"
     },
     {
       "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
@@ -32,9 +49,26 @@
     {
       "appointmentId": "appointment:source:sgz:38:15db8d9b680e",
       "sourceSha256": "eb841f6f3e26da9dc8e9d26af82258be7ae6c11ca0386982eff050f12472c611",
-      "status": "review-only",
-      "reason": "刘璋为辟召者；此条受任者王商的身份须另行建立。",
-      "followupReviewedAt": "2026-09-05"
+      "status": "verified",
+      "reason": "姓名、表字、籍贯、刘璋州府任职互相定位；与前汉同名王商分开登记。",
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:han:wang-shang-wenbiao",
+      "correction": {
+        "personId": "person:han:wang-shang-wenbiao",
+        "name": "王商",
+        "officeName": "治中从事",
+        "polity": "后汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷38·许靖传裴注引《益州耆旧传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷38",
+          "quote": "南陽宋仲子于荊州與蜀郡太守王商書曰︰「文休倜儻瑰瑋，有當世之具，足下當以為指南。」\n益州耆舊傳曰：商字文表，廣漢人，以才學稱，聲問著於州里。劉璋辟為治中從事。"
+        }
+      ],
+      "readerNote": "姓名、表字、籍贯、刘璋州府任职互相定位；与前汉同名王商分开登记。"
     },
     {
       "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
@@ -278,22 +312,26 @@
     {
       "appointmentId": "appointment:source:jinshu:088:c7f32e2a604a",
       "sourceSha256": "95f61d1eb0facc76a449d12e8f12a8745cf91f5c595c878bdc78964887382772",
-      "status": "review-only",
-      "reason": "全文确认受任者为李密之子李兴（字雋石），罗尚为辟召者；现有读者范围无此人物，不挂入罗尚履历。",
-      "candidateIdentity": {
-        "name": "李兴",
-        "zi": "雋石",
-        "father": "李密"
-      },
+      "status": "verified",
+      "reason": "李密之子、字雋石；与兄李赐（字宗石，未行而终）分开。罗尚是辟召者，李兴有实际从职与奉使叙事。",
       "citations": [
         {
           "title": "《晋书》卷88·李密传附李兴",
           "url": "https://zh.wikisource.org/wiki/晉書/卷088",
-          "quote": "後卒於家。二子：賜、興。",
-          "note": "同段下文：兴字雋石，刺史罗尚辟别驾；须建立独立人物身份后接入。"
+          "quote": "後卒於家。二子：賜、興。\n賜字宗石，少能屬文，嘗為《玄鳥賦》，詞甚美。州辟別駕，舉秀才，未行而終。\n興字雋石，亦有文才，刺史羅尚辟別駕。尚為李雄所攻，使興詣鎮南將軍劉弘求救，興因願留，為弘參軍而不還。尚白弘，弘即奪其手版而遣之。興之在弘府，弘立諸葛孔明、羊叔子碣，使興俱為之文，甚有辭理。"
         }
       ],
-      "followupReviewedAt": "2026-09-05"
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:jin:li-xing-junshi",
+      "correction": {
+        "personId": "person:jin:li-xing-junshi",
+        "name": "李兴",
+        "officeName": "别驾",
+        "polity": "西晋",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "李密之子、字雋石；与兄李赐（字宗石，未行而终）分开。罗尚是辟召者，李兴有实际从职与奉使叙事。"
     },
     {
       "appointmentId": "appointment:source:jinshu:120:0623f307009c",
@@ -461,22 +499,26 @@
     {
       "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
       "sourceSha256": "4b8ac20349d1ccdc107af58f47110c7c78ddf24490bded44c8c65e04be52518e",
-      "status": "review-only",
-      "reason": "全文确认受任者刘沈字道真、燕国蓟人；现有同名人物仅来自260年快照且归属标为魏，须先独立复核该身份范围，不直接合并。",
-      "candidateIdentity": {
-        "name": "刘沈",
-        "zi": "道真",
-        "birthplace": "燕国蓟",
-        "candidatePersonId": "person:snapshot260:9fbd9f0edab3ad59"
-      },
+      "status": "verified",
+      "reason": "既有快照姓名与表字均吻合；魏标签只来自工作表 explicit-polity/review-risk，缺少魏任官佐证。按《晋书》独立核定西晋身份，保留原 ID 和魏候选值，不把工作表年份当作任期。",
       "citations": [
         {
           "title": "《晋书》卷89·刘沈传",
           "url": "https://zh.wikisource.org/wiki/晉書/卷089",
-          "quote": "劉沈，字道真，燕國薊人也。世為北州名族。少仕州郡，博學好古。太保衛瓘辟為掾，領本邑大中正。"
+          "quote": "劉沈，字道真，燕國薊人也。世為北州名族。少仕州郡，博學好古。太保衛瓘辟為掾，領本邑大中正。敦儒道，愛賢能，進霍原為二品，及申理張華，皆辭旨明峻，為當時所稱。齊王冏輔政，引為左長史，遷侍中。"
         }
       ],
-      "followupReviewedAt": "2026-09-05"
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59",
+      "correction": {
+        "personId": "person:snapshot260:9fbd9f0edab3ad59",
+        "name": "刘沈",
+        "officeName": "太保掾",
+        "polity": "西晋",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "既有快照姓名与表字均吻合；魏标签只来自工作表 explicit-polity/review-risk，缺少魏任官佐证。按《晋书》独立核定西晋身份，保留原 ID 和魏候选值，不把工作表年份当作任期。"
     },
     {
       "appointmentId": "appointment:source:jinshu:003:eb7cbd5e06a0",
@@ -1122,7 +1164,15 @@
     "reviewed": 15,
     "newlyVerified": 4,
     "newlySuppressed": 7,
-    "identityReviewRemaining": 4,
+    "identityReviewRemaining": 0,
     "note": "明确史事与入读者范围分开；未建立人物或身份范围仍有冲突时，保留候选不强制合并。"
+  },
+  "identityCompletionSummary": {
+    "newPeople": 3,
+    "correctedPeople": 1,
+    "newlyVerifiedAppointments": 4,
+    "verifiedAppointments": 101,
+    "suppressedAppointments": 48,
+    "note": "V62 基线不改写；V71 显式原典身份增补与更正另有审定清单。"
   }
 }

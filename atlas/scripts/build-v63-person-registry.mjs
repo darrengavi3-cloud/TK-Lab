@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
+import { reviewedReaderScope, validateIdentitySources } from './person-identity-publication.mjs';
 import { reviewedAppointments } from './appointment-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
@@ -23,6 +24,10 @@ const appointmentReview = readJson('v71-appointment-review.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
+const identityReview = readJson('v71-person-identity-review.json');
+validateIdentitySources(identityReview, {
+  appointments: sourceIndex.appointments, snapshot260: v61.snapshots260, v62: v62.people
+});
 const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
   ? readJson('v70-portrait-candidates.json')
   : { records: [] };
@@ -442,10 +447,30 @@ for (const row of Array.isArray(v70PortraitCandidates.records) ? v70PortraitCand
 
 // V62 的阅读态人物范围是本轮的回退基线。当前规范源可以继续保存更多
 // 审校候选，但只有冻结集合中的稳定 ID 才能进入人物注册表和读者包。
-const readerScopeRows = Array.isArray(v62ReaderScope.people) ? v62ReaderScope.people : [];
+for (const review of identityReview.records.filter(row => row.status === 'verified')) {
+  const entry = ensure(review.personId, review.name);
+  if (entry.name !== review.name) throw new Error(`Identity name changed: ${review.personId}`);
+  entry.identityStatus = 'resolved';
+  entry.datasets.add('v71-identity-review');
+  entry.sourceRecordIds.add(review.reviewId);
+  for (const field of review.replaceFields || []) {
+    for (const candidate of entry.fieldCandidates[field] || []) {
+      if (candidate.publicationStatus !== 'verified') continue;
+      candidate.publicationStatus = 'review-only';
+      candidate.historicalDisposition = '存疑';
+      candidate.supersededBy = review.reviewId;
+    }
+  }
+  for (const [field, value] of Object.entries(review.verifiedFields)) {
+    if (!['zi', 'birthplace', 'dynastyTags'].includes(field)) throw new Error(`Unsupported identity field: ${field}`);
+    addCandidate(entry, field, value, 'verified', review.reviewId, '确定');
+  }
+}
+
+const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview);
 const readerScopeIds = new Set(readerScopeRows.map(row => canonicalPersonId(row.personId)).filter(Boolean));
-if (readerScopeIds.size !== readerScopeRows.length || readerScopeRows.length !== 2096) {
-  throw new Error(`V62 阅读范围无效：期望 2096 个唯一 personId，当前 ${readerScopeRows.length}/${readerScopeIds.size}`);
+if (readerScopeIds.size !== readerScopeRows.length) {
+  throw new Error(`阅读范围存在重复 personId：${readerScopeRows.length}/${readerScopeIds.size}`);
 }
 for (const row of readerScopeRows) {
   const canonicalId = canonicalPersonId(row.personId);
@@ -535,13 +560,13 @@ const readerPeople = people.filter(person => person.publicationStatus.name === '
   }
   return output;
 });
-if (readerPeople.length !== 2096) throw new Error(`V63 阅读态人物范围应回退为 2096 人，当前 ${readerPeople.length}`);
+if (readerPeople.length !== readerScopeRows.length) throw new Error(`阅读态人物未覆盖审定范围：${readerPeople.length}/${readerScopeRows.length}`);
 
 const protectedResolution = Object.entries(protectedExistingPeople).map(([name, personId]) => ({ name, personId: canonicalPersonId(personId), resolved: Boolean(byPersonId[canonicalPersonId(personId)]) }));
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
-  readerScopeVersion: v62ReaderScope.schemaVersion || 'V62',
+  readerScopeVersion: 'V71',
   readerScopePeople: readerScopeRows.length,
   scopeExcludedPeople: excludedPeopleAudit.size,
   nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
@@ -577,10 +602,11 @@ const registry = {
   },
   summary,
   readerScope: {
-    schemaVersion: v62ReaderScope.schemaVersion || 'V62',
-    modelId: v62ReaderScope.modelId || 'sgz-v62-reader-scope',
+    schemaVersion: 'V71',
+    modelId: 'sgz-v71-reviewed-reader-scope',
     people: readerScopeRows.length,
-    policy: v62ReaderScope.policy,
+    baselinePeople: v62ReaderScope.people.length,
+    policy: identityReview.policy,
   },
   people,
   excludedPeople,
@@ -596,7 +622,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: v62ReaderScope.schemaVersion || 'V62' },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V71' },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,

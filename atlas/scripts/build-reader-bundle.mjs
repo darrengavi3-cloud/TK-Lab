@@ -1,3 +1,4 @@
+import { reviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -7,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const sourceHtmlPath = path.join(root, 'index.html');
 const registryJsonPath = path.join(root, 'data', 'v63-person-registry.json');
 const registryJsPath = path.join(root, 'data', 'v63-person-registry.js');
@@ -19,6 +21,7 @@ const relationsOnly = process.argv.includes('--relations-only');
 const bannedRuntimeFiles = new Set([
   'data/person-source-index.js',
   'data/v71-appointment-review.json',
+  'data/v71-person-identity-review.json',
   'data/person-zi-supplement.js',
   'data/v60-person-workbook-import.js',
   'data/v61-person-supplements.js',
@@ -698,7 +701,7 @@ const v69PersonProfilePayload = {
     ...(Array.isArray(profile.lifeEvents) ? { lifeEvents: profile.lifeEvents.map(event => pickFields(event, personLifeEventFields)) } : {})
   }))
 };
-if (v69PersonProfilePayload.profiles.length !== 2096) fail('V69 人物档案读者投影不为 2096 人');
+if (v69PersonProfilePayload.profiles.length !== expectedReaderCount) fail('人物档案读者投影未覆盖审定范围');
 assertNoBannedPayloadKeys(v69PersonProfilePayload);
 registerProjection('data/v69-person-profiles.js', assignment('SGZ_V69_PERSON_PROFILES', v69PersonProfilePayload));
 
