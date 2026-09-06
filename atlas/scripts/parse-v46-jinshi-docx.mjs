@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { JIN_TAISHI_FIRST_YEAR } from './epigraphy-year-publication.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -64,7 +65,7 @@ const strikeParagraphs=paragraphs.filter(item=>item.strike);
 const deletedParagraphs=paragraphs.filter(item=>item.deletedText);
 const lines=paragraphs.filter(item=>item.lineText).map((item,index)=>({...item,lineIndex:index}));
 
-const eras=[['泰始',266],['咸宁',275],['太康',280],['元康',291],['永康',300],['永宁',301],['太安',302],['永兴',304],['光熙',306],['永嘉',307],['建兴',313],['建武',317],['太兴',318],['永昌',322],['太宁',323],['咸和',326],['咸康',335],['建元',343],['永和',345],['升平',357],['隆和',362],['兴宁',363],['太和',366],['咸安',371],['宁康',373],['太元',376],['隆安',397],['元兴',402],['义熙',405],['元熙',419]];
+const eras=[['泰始',JIN_TAISHI_FIRST_YEAR],['咸宁',275],['太康',280],['元康',291],['永康',300],['永宁',301],['太安',302],['永兴',304],['光熙',306],['永嘉',307],['建兴',313],['建武',317],['太兴',318],['永昌',322],['太宁',323],['咸和',326],['咸康',335],['建元',343],['永和',345],['升平',357],['隆和',362],['兴宁',363],['太和',366],['咸安',371],['宁康',373],['太元',376],['隆安',397],['元兴',402],['义熙',405],['元熙',419]];
 const eraNames=eras.map(([name])=>name).join('|');
 function chineseNumber(value){
   const raw=String(value||'');

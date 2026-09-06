@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 779,
-  "totalBytes": 331267876,
-  "aggregateSha256": "50555ba62895ad7df6aedc50844094e8e0931a1b76e8f3ba4a2c78421ba4c63f",
+  "fileCount": 781,
+  "totalBytes": 331295486,
+  "aggregateSha256": "ffd915613e5bd8ddd22fef4f8e6a2605d90e1b3dcbb29c2a522de26f8c4cd412",
   "files": [
     {
       "path": "DESIGN.md",
@@ -14,8 +14,8 @@
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 25397,
-      "sha256": "727d62c4d7ed42b6a8511c06bc42390ef1cf0ecdff69d6ffbf127638a751f02b"
+      "bytes": 26264,
+      "sha256": "335b6d8d51362a72435c9e6d31fef715280c705db5ffb136f5cf8c78c1b02080"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -3329,13 +3329,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 320597,
-      "sha256": "95ee7cbb51fc98b77a269e42f9d6d77c909cf5b80d4bb5985b546ea95055421b"
+      "bytes": 328401,
+      "sha256": "8d47921231991bd1f6a86abde8c25cab7513050927e9509f651a736cc23d2be2"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 384980,
-      "sha256": "bc269d11d92d37490e2a4e61b921c1ea4447fb877bd5b6c5f8ea0cd442fd1626"
+      "bytes": 393630,
+      "sha256": "1b2a94e5de870f0f3c7a6c328bd9d64548ab3e7f1fcb75a914e0db31373368a2"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -3414,8 +3414,8 @@
     },
     {
       "path": "data/v71-epigraphy-transcription-review.json",
-      "bytes": 17960,
-      "sha256": "cde075e3d3ae36b8e006816b80ade5816bb64c7ea6922c1ec84aed1762685e8a"
+      "bytes": 24269,
+      "sha256": "ad5a60082a4ab4699c767941fdad82d89d97d94274a9da69a3ff22e404358128"
     },
     {
       "path": "data/v71-person-biography-review.json",
@@ -3426,6 +3426,11 @@
       "path": "data/v71-person-identity-review.json",
       "bytes": 5917,
       "sha256": "634fe6d9776c0fd12216a8ac595d42dbf09cebdb779e5877c83bb036ff5c45ce"
+    },
+    {
+      "path": "data/v72-epigraphy-year-review.json",
+      "bytes": 2095,
+      "sha256": "8fa89ea329a6f4fb3b7f618ab63ce1a18fc4e69508c9c88d14b3538b008f9a53"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
@@ -3515,7 +3520,7 @@
     {
       "path": "scripts/build-reader-bundle.mjs",
       "bytes": 70514,
-      "sha256": "060211897960a2ce9fa5b80b3a1aefd7ecb7070aa9647f6e880716bef592afe1"
+      "sha256": "056b4b09a5f976ba2961036cb961fe8224c9ccb5316b807d8c607aafbc7894b7"
     },
     {
       "path": "scripts/build-v42-import-template.mjs",
@@ -3614,8 +3619,8 @@
     },
     {
       "path": "scripts/build-v69-data.mjs",
-      "bytes": 37610,
-      "sha256": "95e073f2c8f606a9361383b39aa569385ea965e952423499a58015cce0ff9645"
+      "bytes": 38101,
+      "sha256": "bd097f7a0c287d5065b74d9164d7c5df655357bd15db721cf048781a15ed3ba6"
     },
     {
       "path": "scripts/download-assets.sh",
@@ -3626,6 +3631,11 @@
       "path": "scripts/epigraphy-publication.mjs",
       "bytes": 1648,
       "sha256": "faa1ffb62d2eb422746a7bc5c0d7d25409184f680895287c8539eb3f0f246de6"
+    },
+    {
+      "path": "scripts/epigraphy-year-publication.mjs",
+      "bytes": 1302,
+      "sha256": "35e2f7ab69da6f0112cb3754fccd562c18a270cae673d1fabbd982ebb83b94ba"
     },
     {
       "path": "scripts/extract-v55-shihuo.mjs",
@@ -3649,8 +3659,8 @@
     },
     {
       "path": "scripts/parse-v46-jinshi-docx.mjs",
-      "bytes": 15699,
-      "sha256": "6d402c6c663f7cf515eb38dbcd5963d511701ca9b84f9526501d1fd94a2d82d6"
+      "bytes": 15791,
+      "sha256": "933285d2dbf18f995ec061a0aa09989b2a1253df73f55c204fdb67997b17bbfd"
     },
     {
       "path": "scripts/person-identity-publication.mjs",
@@ -3840,7 +3850,7 @@
     {
       "path": "scripts/verify-v64.mjs",
       "bytes": 32741,
-      "sha256": "faed2b74299c33923badd0e8f41d0b177451630c0352d4ef063bebad51ff184c"
+      "sha256": "3b6d761f79e0092a32b4346a5e416f14d46aecf6150ac058a76a5b74884b6852"
     },
     {
       "path": "scripts/verify-v65-battle-shihuo.mjs",
@@ -3890,7 +3900,7 @@
     {
       "path": "scripts/verify-v69.mjs",
       "bytes": 12677,
-      "sha256": "14e12350d60d7082dfc8f1cc643de4b97d6e641e7c8054e10bc157b6ce4f832b"
+      "sha256": "f1ae6a99beb3838acc7cf5e58390c2ae1ffe8fd55707bbe1b669a0352eba8e08"
     },
     {
       "path": "scripts/verify-v70.mjs",

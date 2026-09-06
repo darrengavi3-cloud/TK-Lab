@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 689,
-  "totalBytes": 314186738,
-  "aggregateSha256": "9f1f98ee0ae94b8712e0515abd96adb852ff0a82b9beb90fa4fc880ad49b67a7",
+  "fileCount": 690,
+  "totalBytes": 314211596,
+  "aggregateSha256": "c9dd41d152cc3c71d7b8eab3dee38ba9b2f0e1ec384d3d5e4afc6edd3ec1b681",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -3338,13 +3338,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 320597,
-      "sha256": "95ee7cbb51fc98b77a269e42f9d6d77c909cf5b80d4bb5985b546ea95055421b"
+      "bytes": 328401,
+      "sha256": "8d47921231991bd1f6a86abde8c25cab7513050927e9509f651a736cc23d2be2"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 384980,
-      "sha256": "bc269d11d92d37490e2a4e61b921c1ea4447fb877bd5b6c5f8ea0cd442fd1626"
+      "bytes": 393630,
+      "sha256": "1b2a94e5de870f0f3c7a6c328bd9d64548ab3e7f1fcb75a914e0db31373368a2"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -3423,8 +3423,8 @@
     },
     {
       "path": "data/v71-epigraphy-transcription-review.json",
-      "bytes": 17960,
-      "sha256": "cde075e3d3ae36b8e006816b80ade5816bb64c7ea6922c1ec84aed1762685e8a"
+      "bytes": 24269,
+      "sha256": "ad5a60082a4ab4699c767941fdad82d89d97d94274a9da69a3ff22e404358128"
     },
     {
       "path": "data/v71-person-biography-review.json",
@@ -3435,6 +3435,11 @@
       "path": "data/v71-person-identity-review.json",
       "bytes": 5917,
       "sha256": "634fe6d9776c0fd12216a8ac595d42dbf09cebdb779e5877c83bb036ff5c45ce"
+    },
+    {
+      "path": "data/v72-epigraphy-year-review.json",
+      "bytes": 2095,
+      "sha256": "8fa89ea329a6f4fb3b7f618ab63ce1a18fc4e69508c9c88d14b3538b008f9a53"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

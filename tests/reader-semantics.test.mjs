@@ -1,3 +1,4 @@
+import { reviewedEpigraphicYears, taishiChronologicalYear } from '../atlas/scripts/epigraphy-year-publication.mjs';
 import { reviewedBiographies } from '../atlas/scripts/biography-publication.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -191,8 +192,8 @@ test('the final reader retains all six reviewed transcriptions and variants with
   const reader = JSON.parse(JSON.stringify(context.window.SGZ_V69_EPIGRAPHIC_RECORDS));
   const overlays = json('v65-epigraphy-reader-overlays').records;
   assert.equal(overlays.length, 6);
-  assert.equal(payload.summary.withInscription, 56);
-  assert.equal(reader.summary.withoutInscription, 110);
+  assert.equal(payload.summary.withInscription, 59);
+  assert.equal(reader.summary.withoutInscription, 107);
   for (const overlay of overlays) {
     for (const rows of [payload.records, reader.records]) {
       const record = rows.find(row => row.id === overlay.recordId);
@@ -215,14 +216,16 @@ test('reviewed Wei texts reach the final reader with lacunae and provenance inta
   const c = { window: {} };
   vm.runInNewContext(read('exports/观史台-读者版/data/v69-epigraphic-records.js'), c);
   const rows = c.window.SGZ_V69_EPIGRAPHIC_RECORDS.records;
-  assert.deepEqual(review.records.map(r => r.recordId).sort(), ['wei-daxiang-yan_kang', 'wei-henghai-lu-lang', 'wei-laozi-temple-edict', 'wei-liubiao-stele', 'wei-luoyang-north-boundary', 'wei-wangji-stele']);
+  assert.deepEqual(review.records.filter(r => r.recordId.startsWith('wei-')).map(r => r.recordId).sort(), ['wei-daxiang-yan_kang', 'wei-henghai-lu-lang', 'wei-laozi-temple-edict', 'wei-liubiao-stele', 'wei-luoyang-north-boundary', 'wei-wangji-stele']);
   for (const r of review.records) {
     const actual = rows.find(row => row.id === r.recordId);
     assert.equal(actual.inscription, r.inscription);
     assert.equal(crypto.createHash('sha256').update(actual.inscription).digest('hex'), r.transcriptionDigest);
     assert.equal(actual.transcriptionNote, r.transcriptionNote);
     if (r.inscriptionVariants) assert.deepEqual(JSON.parse(JSON.stringify(actual.inscriptionVariants)), r.inscriptionVariants);
-    assert.deepEqual(JSON.parse(JSON.stringify(actual.transcriptionReferences)), r.transcriptionReferences);
+    const yearReview = json('v72-epigraphy-year-review');
+    const expectedRefs = yearReview.records.some(row => row.recordId === r.recordId) ? [...r.transcriptionReferences, yearReview.source] : r.transcriptionReferences;
+    assert.deepEqual(JSON.parse(JSON.stringify(actual.transcriptionReferences)), expectedRefs);
   }
   assert.equal(rows.find(r => r.id === 'wei-henghai-lu-lang').people, '');
   assert.ok(rows.find(r => r.id === 'wei-henghai-lu-lang').inscription.startsWith('君諱□□□□，□□博望人也。'));
@@ -266,8 +269,8 @@ test('epigraphy dates do not coerce unknown years into the Han period', () => {
 test('the inscription filter includes transmitted and fragmentary texts without rewriting their status', () => {
   const rows = json('v69-epigraphic-records').records;
   const recorded = rows.filter(row => matchesEpigraphicInscriptionStatus(row, '已录入'));
-  assert.equal(recorded.length, 56);
-  assert.equal(rows.filter(row => matchesEpigraphicInscriptionStatus(row, '源文未见')).length, 110);
+  assert.equal(recorded.length, 59);
+  assert.equal(rows.filter(row => matchesEpigraphicInscriptionStatus(row, '源文未见')).length, 107);
   for (const row of json('v71-epigraphy-transcription-review').records) {
     assert.ok(matchesEpigraphicInscriptionStatus(row, '已录入'));
     assert.ok(matchesEpigraphicInscriptionStatus(row, epigraphicInscriptionState(row)));
@@ -318,4 +321,53 @@ test('reviewed biographies pin identities and evidence without replacing existin
   altered.records[0] = { ...review.records[0], citations: [] };
   assert.throws(() => reviewedBiographies(scope, altered), /Incomplete/);
   assert.throws(() => reviewedBiographies(scope, review, new Map([[approved[0].personId, true]])), /overwrite/);
+});
+
+
+test('Tai Shi corrections preserve source years and reject stale or ambiguous reviews', () => {
+  const c = { window: {} };
+  vm.runInNewContext(read('data/epigraphic-v46-jin.js'), c);
+  const raw = c.window.SGZ_EPIGRAPHIC_V46_JIN.records;
+  const review = json('v72-epigraphy-year-review');
+  const corrected = reviewedEpigraphicYears(raw, review);
+  const published = {window:{}};
+  vm.runInNewContext(read('exports/观史台-读者版/data/v69-epigraphic-records.js'), published);
+  for (const row of review.records) {
+    const actual = published.window.SGZ_V69_EPIGRAPHIC_RECORDS.records.find(r => r.id === row.recordId);
+    assert.equal(actual.year, row.year);
+    assert.equal(actual.yearText, row.yearText);
+  }
+  assert.equal(corrected.size, 7);
+  for (const [text, year] of [['泰始元年',265],['泰始六年',270],['泰始九年',273],['泰始十年',274]]) {
+    assert.equal(taishiChronologicalYear(text), year);
+  }
+  for (const text of ['', '泰始十一年', '泰始元年十二月', '太始元年', '咸宁元年']) assert.equal(taishiChronologicalYear(text), null);
+  const altered = structuredClone(review);
+  altered.records[0].year += 1;
+  assert.throws(() => reviewedEpigraphicYears(raw, altered), /换算不符/);
+  altered.records[0] = {...review.records[0], sourceDigest: 'changed'};
+  assert.throws(() => reviewedEpigraphicYears(raw, altered), /须重新审校/);
+  const rows = json('v69-epigraphic-records').records;
+  for (const row of review.records) {
+    const actual = rows.find(r => r.id === row.recordId);
+    assert.equal(actual.year, row.year);
+    assert.equal(actual.yearText, row.yearText);
+    assert.equal(raw.find(r => r.id === row.recordId).year, row.previousYear);
+    assert.deepEqual(actual.transcriptionReferences.at(-1), review.source);
+  }
+  const unchanged = rows.filter(r => !corrected.has(r.id)).map(r => [r.id,r.year ?? null,r.yearText || '']).sort((a,b) => a[0].localeCompare(b[0]));
+  assert.equal(sourceDigest(unchanged), '6210bbcf3a6feca66394a04b5bc20867383f642c4637b16ce66bc045d6885b0c');
+});
+
+test('the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate', () => {
+  const additions = ['jinshi-v55-1dea8afedc3a27b9','jinshi-v55-2d74fd631f41de58','jinshi-v55-bad19cd9f016b00a'];
+  const rows = json('v69-epigraphic-records').records;
+  const originals = rows.filter(r => r.inscription && !additions.includes(r.id))
+    .map(r => [r.id,r.inscription,r.transcriptionSections || [],r.inscriptionVariants || [],r.transcriptionNote || '']).sort((a,b) => a[0].localeCompare(b[0]));
+  assert.equal(originals.length, 56);
+  assert.equal(sourceDigest(originals), 'a4af410799a43b856606693756ff5b586e2c39240e6809311c71405cd0e33fbd');
+  const yang = rows.find(r => r.id === additions[1]);
+  assert.ok(yang.inscription.startsWith('肇字秀初'));
+  assert.ok(yang.inscriptionVariants[0].text.startsWith('肇宇季初'));
+  assert.ok(yang.inscription.includes('又略见《怀旧赋》注。'));
 });
