@@ -1,0 +1,2120 @@
+{
+  "schemaVersion": "V73",
+  "modelId": "sgz-v73-portrait-candidates",
+  "scope": "人物记新增 100 项界面识别立绘；优先诸葛亮丞相府属，不代表史实肖像。",
+  "selection": {
+    "count": 100,
+    "chancelleryPriority": 15,
+    "rule": "读者可见、稳定 personId、无同名冲突、当前无正式立绘；前 15 项为诸葛亮府署优先。"
+  },
+  "records": [
+    {
+      "order": 1,
+      "personId": "person:workbook:2ee73864a49068e2",
+      "name": "李严",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "中都护",
+      "assetPath": "./assets/portraits/v73/shu/001.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "151:2",
+        "componentId": null
+      }
+    },
+    {
+      "order": 2,
+      "personId": "person:workbook:9f6080559773b60e",
+      "name": "尹默",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "军师祭酒",
+      "assetPath": "./assets/portraits/v73/shu/002.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:2",
+        "componentId": null
+      }
+    },
+    {
+      "order": 3,
+      "personId": "person:workbook:9091722166e8396b",
+      "name": "王连",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "长史",
+      "assetPath": "./assets/portraits/v73/shu/003.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:3",
+        "componentId": null
+      }
+    },
+    {
+      "order": 4,
+      "personId": "person:workbook:faea9e2b40476fc3",
+      "name": "向朗",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "长史",
+      "assetPath": "./assets/portraits/v73/shu/004.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:4",
+        "componentId": null
+      }
+    },
+    {
+      "order": 5,
+      "personId": "person:workbook:d8ee120eb94586a0",
+      "name": "张裔",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "长史",
+      "assetPath": "./assets/portraits/v73/shu/005.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:5",
+        "componentId": null
+      }
+    },
+    {
+      "order": 6,
+      "personId": "person:workbook:fc1eb106ad029d47",
+      "name": "李邈",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "参军",
+      "assetPath": "./assets/portraits/v73/shu/006.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:6",
+        "componentId": null
+      }
+    },
+    {
+      "order": 7,
+      "personId": "person:workbook:8fa4f35dd3a3844f",
+      "name": "姚伷",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "参军",
+      "assetPath": "./assets/portraits/v73/shu/007.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:7",
+        "componentId": null
+      }
+    },
+    {
+      "order": 8,
+      "personId": "person:snapshot260:5932a18b4b12a926",
+      "name": "胡济",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "参军／主簿",
+      "assetPath": "./assets/portraits/v73/shu/008.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:8",
+        "componentId": null
+      }
+    },
+    {
+      "order": 9,
+      "personId": "person:workbook:6442c61bae078717",
+      "name": "李邵",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "西曹掾",
+      "assetPath": "./assets/portraits/v73/shu/009.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:9",
+        "componentId": null
+      }
+    },
+    {
+      "order": 10,
+      "personId": "person:workbook:1ff633a1dc01d786",
+      "name": "李朝",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "西曹掾",
+      "assetPath": "./assets/portraits/v73/shu/010.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:10",
+        "componentId": null
+      }
+    },
+    {
+      "order": 11,
+      "personId": "person:workbook:004ae019cd06e4ac",
+      "name": "马齐",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "从事中郎",
+      "assetPath": "./assets/portraits/v73/shu/011.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:11",
+        "componentId": null
+      }
+    },
+    {
+      "order": 12,
+      "personId": "person:workbook:77074623342798ef",
+      "name": "董恢",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "属",
+      "assetPath": "./assets/portraits/v73/shu/012.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:12",
+        "componentId": null
+      }
+    },
+    {
+      "order": 13,
+      "personId": "person:workbook:215b361310051cc2",
+      "name": "杨颙",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "东曹属／主簿",
+      "assetPath": "./assets/portraits/v73/shu/013.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:13",
+        "componentId": null
+      }
+    },
+    {
+      "order": 14,
+      "personId": "person:workbook:116409e8872cd07d",
+      "name": "赖厷",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "令史",
+      "assetPath": "./assets/portraits/v73/shu/014.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:14",
+        "componentId": null
+      }
+    },
+    {
+      "order": 15,
+      "personId": "person:workbook:6f980b14074c4cb2",
+      "name": "霍弋",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "诸葛亮府署",
+      "role": "记室",
+      "assetPath": "./assets/portraits/v73/shu/015.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:15",
+        "componentId": null
+      }
+    },
+    {
+      "order": 16,
+      "personId": "person:workbook:9bfa483fb133d80a",
+      "name": "赵云",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/016.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:16",
+        "componentId": null
+      }
+    },
+    {
+      "order": 17,
+      "personId": "person:shu:liu-ba",
+      "name": "刘巴",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/017.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:17",
+        "componentId": null
+      }
+    },
+    {
+      "order": 18,
+      "personId": "person:workbook:69db4783e89ec030",
+      "name": "董和",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/018.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:18",
+        "componentId": null
+      }
+    },
+    {
+      "order": 19,
+      "personId": "person:workbook:4578f9c5222ef56a",
+      "name": "简雍",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/019.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:19",
+        "componentId": null
+      }
+    },
+    {
+      "order": 20,
+      "personId": "person:workbook:9a83458588c43694",
+      "name": "孙乾",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/020.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:20",
+        "componentId": null
+      }
+    },
+    {
+      "order": 21,
+      "personId": "person:workbook:2cbac2c953caf4a3",
+      "name": "麋竺",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/021.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:21",
+        "componentId": null
+      }
+    },
+    {
+      "order": 22,
+      "personId": "person:workbook:c9f756e79c59ce15",
+      "name": "伊籍",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/022.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:22",
+        "componentId": null
+      }
+    },
+    {
+      "order": 23,
+      "personId": "person:workbook:b9020ff25ec0e74a",
+      "name": "庞羲",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "后汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/023.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:23",
+        "componentId": null
+      }
+    },
+    {
+      "order": 24,
+      "personId": "person:workbook:c41121ccb770a0e1",
+      "name": "刘封",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/024.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:24",
+        "componentId": null
+      }
+    },
+    {
+      "order": 25,
+      "personId": "person:workbook:e184eef2cadd60bd",
+      "name": "关平",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/025.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:25",
+        "componentId": null
+      }
+    },
+    {
+      "order": 26,
+      "personId": "person:workbook:f74ef794eb78a37f",
+      "name": "关兴",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/026.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:26",
+        "componentId": null
+      }
+    },
+    {
+      "order": 27,
+      "personId": "person:workbook:41aa79dd819f0d90",
+      "name": "霍峻",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/027.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:27",
+        "componentId": null
+      }
+    },
+    {
+      "order": 28,
+      "personId": "person:workbook:4270c7e0192aa0ed",
+      "name": "吴懿",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/028.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:28",
+        "componentId": null
+      }
+    },
+    {
+      "order": 29,
+      "personId": "person:workbook:e47e18eda68bf490",
+      "name": "吴班",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/029.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:29",
+        "componentId": null
+      }
+    },
+    {
+      "order": 30,
+      "personId": "person:workbook:6918113b2c8bc27f",
+      "name": "冯习",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/030.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:30",
+        "componentId": null
+      }
+    },
+    {
+      "order": 31,
+      "personId": "person:workbook:99538681a2040ea3",
+      "name": "傅肜",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/031.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:31",
+        "componentId": null
+      }
+    },
+    {
+      "order": 32,
+      "personId": "person:workbook:6fe0e4280a1afae7",
+      "name": "辅匡",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/032.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:32",
+        "componentId": null
+      }
+    },
+    {
+      "order": 33,
+      "personId": "person:workbook:fe2a289c764dd926",
+      "name": "刘琰",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/033.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:33",
+        "componentId": null
+      }
+    },
+    {
+      "order": 34,
+      "personId": "person:workbook:8e06375b2fcd8888",
+      "name": "廖立",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/034.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:34",
+        "componentId": null
+      }
+    },
+    {
+      "order": 35,
+      "personId": "person:workbook:1805d49e11a428ac",
+      "name": "李恢",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/035.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:35",
+        "componentId": null
+      }
+    },
+    {
+      "order": 36,
+      "personId": "person:workbook:708f14a8bbb6b2fc",
+      "name": "费诗",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/036.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:36",
+        "componentId": null
+      }
+    },
+    {
+      "order": 37,
+      "personId": "person:workbook:b3f83a40b83b9b0d",
+      "name": "孟达",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "魏"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/037.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:37",
+        "componentId": null
+      }
+    },
+    {
+      "order": 38,
+      "personId": "person:workbook:8b5d3edc847a288b",
+      "name": "彭羕",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/038.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:38",
+        "componentId": null
+      }
+    },
+    {
+      "order": 39,
+      "personId": "person:workbook:0955084f4a77af81",
+      "name": "许慈",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/039.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:39",
+        "componentId": null
+      }
+    },
+    {
+      "order": 40,
+      "personId": "person:workbook:e30594d759d67db3",
+      "name": "孟光",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/040.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:40",
+        "componentId": null
+      }
+    },
+    {
+      "order": 41,
+      "personId": "person:workbook:5ad60cd7eb51741e",
+      "name": "杜琼",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/041.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:41",
+        "componentId": null
+      }
+    },
+    {
+      "order": 42,
+      "personId": "person:workbook:0f2621e028944816",
+      "name": "周群",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/042.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:42",
+        "componentId": null
+      }
+    },
+    {
+      "order": 43,
+      "personId": "person:workbook:229f837168a3ae95",
+      "name": "张裕",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/043.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:43",
+        "componentId": null
+      }
+    },
+    {
+      "order": 44,
+      "personId": "person:shu:li-zhuan",
+      "name": "李譔",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/044.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:44",
+        "componentId": null
+      }
+    },
+    {
+      "order": 45,
+      "personId": "person:workbook:8165e0dfebe89c40",
+      "name": "杜微",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/045.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:45",
+        "componentId": null
+      }
+    },
+    {
+      "order": 46,
+      "personId": "person:shu:li-fu",
+      "name": "李福",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/046.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:46",
+        "componentId": null
+      }
+    },
+    {
+      "order": 47,
+      "personId": "person:workbook:9f33420fc98b7618",
+      "name": "吕乂",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/047.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:47",
+        "componentId": null
+      }
+    },
+    {
+      "order": 48,
+      "personId": "person:workbook:f1afec4def861ef8",
+      "name": "杨洪",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/048.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:48",
+        "componentId": null
+      }
+    },
+    {
+      "order": 49,
+      "personId": "person:workbook:c1125fb54a81e688",
+      "name": "何祗",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/049.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:49",
+        "componentId": null
+      }
+    },
+    {
+      "order": 50,
+      "personId": "person:workbook:00559e94e402e96a",
+      "name": "张嶷",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/050.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:50",
+        "componentId": null
+      }
+    },
+    {
+      "order": 51,
+      "personId": "person:workbook:11565f0887dfe070",
+      "name": "句扶",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/051.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:51",
+        "componentId": null
+      }
+    },
+    {
+      "order": 52,
+      "personId": "person:workbook:5048203a2e9d77d3",
+      "name": "龚禄",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/052.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:52",
+        "componentId": null
+      }
+    },
+    {
+      "order": 53,
+      "personId": "person:workbook:a6d50d94aea14902",
+      "name": "庞统",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/053.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:53",
+        "componentId": null
+      }
+    },
+    {
+      "order": 54,
+      "personId": "person:workbook:3da80e1d09e6fc99",
+      "name": "糜芳",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "吴"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/054.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:54",
+        "componentId": null
+      }
+    },
+    {
+      "order": 55,
+      "personId": "person:workbook:3e20a4f909441951",
+      "name": "马超",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/055.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:55",
+        "componentId": null
+      }
+    },
+    {
+      "order": 56,
+      "personId": "person:workbook:fc7774b067ac3ac6",
+      "name": "马岱",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/056.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:56",
+        "componentId": null
+      }
+    },
+    {
+      "order": 57,
+      "personId": "person:workbook:a39a16bda55e3099",
+      "name": "孟获",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/057.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:57",
+        "componentId": null
+      }
+    },
+    {
+      "order": 58,
+      "personId": "person:workbook:4c1b83e3518f54b4",
+      "name": "甘夫人",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/058.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:58",
+        "componentId": null
+      }
+    },
+    {
+      "order": 59,
+      "personId": "person:workbook:346de69854dd13f9",
+      "name": "敬哀皇后",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/059.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:59",
+        "componentId": null
+      }
+    },
+    {
+      "order": 60,
+      "personId": "person:workbook:e2ecd8bb0b0af424",
+      "name": "张皇后",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/060.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:60",
+        "componentId": null
+      }
+    },
+    {
+      "order": 61,
+      "personId": "person:workbook:6bcfa1e96125238c",
+      "name": "黄皓",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/061.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:61",
+        "componentId": null
+      }
+    },
+    {
+      "order": 62,
+      "personId": "person:workbook:f8a4de7b339637e5",
+      "name": "陈寿",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/062.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:62",
+        "componentId": null
+      }
+    },
+    {
+      "order": 63,
+      "personId": "person:workbook:04af1f910ddc14d8",
+      "name": "诸葛乔",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/063.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:63",
+        "componentId": null
+      }
+    },
+    {
+      "order": 64,
+      "personId": "person:snapshot260:3394045586d7d983",
+      "name": "蒋斌",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/064.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:64",
+        "componentId": null
+      }
+    },
+    {
+      "order": 65,
+      "personId": "person:snapshot260:7644024403eed7a6",
+      "name": "蒋显",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/065.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:65",
+        "componentId": null
+      }
+    },
+    {
+      "order": 66,
+      "personId": "person:snapshot260:4355a9856ee17a6d",
+      "name": "黄崇",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/066.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:66",
+        "componentId": null
+      }
+    },
+    {
+      "order": 67,
+      "personId": "person:snapshot260:49433a1ce58f7870",
+      "name": "李球",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/067.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:67",
+        "componentId": null
+      }
+    },
+    {
+      "order": 68,
+      "personId": "person:snapshot260:1f02392be09e8f62",
+      "name": "张绍",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/068.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:68",
+        "componentId": null
+      }
+    },
+    {
+      "order": 69,
+      "personId": "person:snapshot260:d46b31d6638f7d5f",
+      "name": "樊建",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/069.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:69",
+        "componentId": null
+      }
+    },
+    {
+      "order": 70,
+      "personId": "person:workbook:3b1a9820b425533e",
+      "name": "董扶",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/070.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:70",
+        "componentId": null
+      }
+    },
+    {
+      "order": 71,
+      "personId": "person:workbook:972066386b176ace",
+      "name": "何宗",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/071.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:71",
+        "componentId": null
+      }
+    },
+    {
+      "order": 72,
+      "personId": "person:snapshot260:9066c0b38558d1ff",
+      "name": "来忠",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/072.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:72",
+        "componentId": null
+      }
+    },
+    {
+      "order": 73,
+      "personId": "person:snapshot260:2ab064ffac52e22e",
+      "name": "费承",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/073.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:73",
+        "componentId": null
+      }
+    },
+    {
+      "order": 74,
+      "personId": "person:snapshot260:1784fa1f6f928e4f",
+      "name": "费恭",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/074.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:74",
+        "componentId": null
+      }
+    },
+    {
+      "order": 75,
+      "personId": "person:snapshot260:55925c2e44c1b548",
+      "name": "费缉",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/075.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:75",
+        "componentId": null
+      }
+    },
+    {
+      "order": 76,
+      "personId": "person:snapshot260:69c0bc258545e62f",
+      "name": "常勖",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/076.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:76",
+        "componentId": null
+      }
+    },
+    {
+      "order": 77,
+      "personId": "person:snapshot260:a402620b5fa63ae8",
+      "name": "常忌",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/077.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:77",
+        "componentId": null
+      }
+    },
+    {
+      "order": 78,
+      "personId": "person:snapshot260:d8129e89f8c2bac4",
+      "name": "陈裕",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/078.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:78",
+        "componentId": null
+      }
+    },
+    {
+      "order": 79,
+      "personId": "person:snapshot260:b7359398664c5799",
+      "name": "爨熊",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/079.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:79",
+        "componentId": null
+      }
+    },
+    {
+      "order": 80,
+      "personId": "person:snapshot260:4648fda3ef373868",
+      "name": "邓良",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/080.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:80",
+        "componentId": null
+      }
+    },
+    {
+      "order": 81,
+      "personId": "person:snapshot260:2837f60cae3e323a",
+      "name": "董宏",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/081.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:81",
+        "componentId": null
+      }
+    },
+    {
+      "order": 82,
+      "personId": "person:snapshot260:672c861e34d102d4",
+      "name": "杜烈",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/082.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:82",
+        "componentId": null
+      }
+    },
+    {
+      "order": 83,
+      "personId": "person:workbook:3274380f77304cff",
+      "name": "杜轸",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/083.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:83",
+        "componentId": null
+      }
+    },
+    {
+      "order": 84,
+      "personId": "person:snapshot260:447b3103c61dafc4",
+      "name": "范贤",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/084.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:84",
+        "componentId": null
+      }
+    },
+    {
+      "order": 85,
+      "personId": "person:snapshot260:2c5d0140ae9084fa",
+      "name": "霍在",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/085.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:85",
+        "componentId": null
+      }
+    },
+    {
+      "order": 86,
+      "personId": "person:workbook:4a330f27b94067e7",
+      "name": "李密",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/086.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:86",
+        "componentId": null
+      }
+    },
+    {
+      "order": 87,
+      "personId": "person:workbook:474fa4850eb9775a",
+      "name": "何攀",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/087.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:87",
+        "componentId": null
+      }
+    },
+    {
+      "order": 88,
+      "personId": "person:workbook:c2cde8f61e115a97",
+      "name": "李毅",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/088.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:88",
+        "componentId": null
+      }
+    },
+    {
+      "order": 89,
+      "personId": "person:snapshot260:41fddd6df2eddcc2",
+      "name": "李特",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "魏"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/089.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:89",
+        "componentId": null
+      }
+    },
+    {
+      "order": 90,
+      "personId": "person:snapshot260:4c3e640ebca08bc9",
+      "name": "李庠",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "魏"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/090.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:90",
+        "componentId": null
+      }
+    },
+    {
+      "order": 91,
+      "personId": "person:workbook:561e54f68e615c4d",
+      "name": "文立",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉",
+        "西晋"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/091.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:91",
+        "componentId": null
+      }
+    },
+    {
+      "order": 92,
+      "personId": "person:snapshot260:19252a88b310d242",
+      "name": "关彝",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/092.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:92",
+        "componentId": null
+      }
+    },
+    {
+      "order": 93,
+      "personId": "person:snapshot260:2a31382e7656565c",
+      "name": "诸葛显",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/093.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:93",
+        "componentId": null
+      }
+    },
+    {
+      "order": 94,
+      "personId": "person:snapshot260:351493fbf76228ab",
+      "name": "赵广",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/094.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:94",
+        "componentId": null
+      }
+    },
+    {
+      "order": 95,
+      "personId": "person:snapshot260:8a6ea4d84fdfe24e",
+      "name": "郄正",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/095.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:95",
+        "componentId": null
+      }
+    },
+    {
+      "order": 96,
+      "personId": "person:snapshot260:7df395258b5f564d",
+      "name": "马承",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/096.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:96",
+        "componentId": null
+      }
+    },
+    {
+      "order": 97,
+      "personId": "person:snapshot260:8890fe659a921c67",
+      "name": "王崇",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/097.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:97",
+        "componentId": null
+      }
+    },
+    {
+      "order": 98,
+      "personId": "person:snapshot260:2355b23e24c1ff84",
+      "name": "寿良",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/098.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:98",
+        "componentId": null
+      }
+    },
+    {
+      "order": 99,
+      "personId": "person:snapshot260:32c99d6a431d4c9a",
+      "name": "谯贤",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/099.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:99",
+        "componentId": null
+      }
+    },
+    {
+      "order": 100,
+      "personId": "person:snapshot260:4d5314c08dd4a6fb",
+      "name": "糜威",
+      "dynasty": "季汉",
+      "dynastyTags": [
+        "季汉"
+      ],
+      "priorityGroup": "季汉人物",
+      "role": "人物记补绘",
+      "assetPath": "./assets/portraits/v73/shu/100.png",
+      "interfaceOnly": true,
+      "designStatus": "figma-design",
+      "designRef": {
+        "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+        "version": "V73",
+        "pageName": "V73 / Portraits",
+        "nodeId": "152:100",
+        "componentId": null
+      }
+    }
+  ]
+}

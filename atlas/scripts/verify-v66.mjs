@@ -6,7 +6,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const expectedReaderScope = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const expectedReaderScope = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
 const expectedReaderCount = expectedReaderScope.length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
@@ -127,12 +127,13 @@ assert(people.every(row => !Object.prototype.hasOwnProperty.call(row, 'datasets'
 
 const portraits = Object.values(portraitManifest?.assetsById || {});
 const v70Portraits = portraits.filter(row => row.portraitKind === 'ui-illustration-v70');
-const baselinePortraits = portraits.filter(row => row.portraitKind !== 'ui-illustration-v70');
+const v73Portraits = portraits.filter(row => row.portraitKind === 'ui-illustration-v73');
+const baselinePortraits = portraits.filter(row => !['ui-illustration-v70','ui-illustration-v73'].includes(row.portraitKind));
 const portraitBindings = baselinePortraits.map(row => `${row.portraitId}\0${row.personId}`);
-const expectedBaselinePortraitCount = portraitProduction?.status === 'complete' ? 375 : 275;
-const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length;
+const expectedBaselinePortraitCount = portraitProduction?.status === 'complete' ? 374 : 274;
+const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length + v73Portraits.length;
 const expectedPortraitBindingHash = portraitProduction?.status === 'complete'
-  ? 'af57685a58d88f88904c07475f73f38bfbf57206af81dc381d32896b6fcbeaec'
+  ? 'b931a3a77244b0ddfd917dfc9f085716ab43dd907c366923a2b6f744d01f283f'
   : 'e51441f1bd0135fd70a488742d86c0c7f29bdebd33b410bd2e90babe2fddf833';
 assert(portraits.length === expectedPortraitCount, `生产立绘不是 ${expectedPortraitCount} 项：${portraits.length}`);
 assert(new Set(portraits.map(row => row.portraitId)).size === portraits.length, '立绘 portraitId 不唯一');

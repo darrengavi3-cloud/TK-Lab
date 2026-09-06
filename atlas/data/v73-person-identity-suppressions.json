@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "V73",
+  "modelId": "sgz-v73-person-identity-suppressions",
+  "baseScopeSha256": "19922673633e332304c80a99de31b533cef375828c57e041a8cabb4b7802a9a1",
+  "policy": "已核定为官号、爵号或地名的误抽取人物，保留来源记录和哈希护栏，但从人物读者范围、立绘清单与统计中排除。",
+  "records": [
+    {
+      "reviewId": "identity-review:v73:an-guo-non-person",
+      "personId": "person:source:032cc177a216",
+      "name": "安国",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "“安国”出现在“安国将军”等官号中，是官号组成部分，并非人物姓名。",
+      "citations": [
+        {
+          "title": "《三国志》卷八",
+          "quote": "杨将兵至安邑，拜安国将军。",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷08"
+        },
+        {
+          "title": "《三国志》卷五十六",
+          "quote": "二年，拜安国将军。",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷56"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:08:1d44dc75097c",
+          "sha256": "d482436b05aaa8bc1ee6ddbc11b1f0e75eebad86a50311abe84d2161f04f055c"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:56:be0b05f8edb4",
+          "sha256": "2c4710d66ed997ebb6e40c7c920bc6293a68a9d5d1858d05524efd7b13bd6b05"
+        }
+      ]
+    }
+  ]
+}

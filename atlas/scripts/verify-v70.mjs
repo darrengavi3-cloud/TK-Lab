@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
 const fullPath = relative => path.join(root, relative);
@@ -40,9 +40,9 @@ assert(candidateRows.every(row => row.dynasty === '魏'), 'V70 候选混入魏�
 assert(candidateRows.every(row => /^person:(?!unresolved:)/.test(row.personId || '')), 'V70 候选含不稳定或 unresolved personId');
 assert(v70Assets.length === 50, `V70 manifest 资源应为 50 项，实际 ${v70Assets.length}`);
 assert(manifest.summary?.v70PortraitRecords === 50, 'manifest 未登记 50 项 V70 资源');
-assert(assets.length === 425, `V70 追加后总立绘应为 425 项，实际 ${assets.length}`);
-assert((registry.summary?.portraitAssets || 0) === 425, '人物注册表立绘总数未同步为 425');
-assert((registry.portraitResolutions || []).length === 425, '人物注册表立绘解析数未同步为 425');
+assert(assets.length === 524, `V73 追加后总立绘应为 524 项，实际 ${assets.length}`);
+assert((registry.summary?.portraitAssets || 0) === 524, '人物注册表立绘总数未同步为 524');
+assert((registry.portraitResolutions || []).length === 524, '人物注册表立绘解析数未同步为 524');
 
 const candidateIds = new Set();
 const candidateNames = new Set();
@@ -69,7 +69,7 @@ assert(v70Assets.every(asset => candidateIds.has(asset.personId)), 'manifest 含
 
 /* V70 人物界面回归：非人物词条不可重新进入读者包，寿命与标签不重复显示。 */
 assert(reader.people?.length === expectedReaderCount, `读者人物数量应覆盖审定范围，实际 ${reader.people?.length || 0}`);
-for (const excluded of ['安西', '安南', '安东大', '喬安北', '丁中', '陈王刘宠']) {
+for (const excluded of ['安西', '安南', '安东大', '喬安北', '安国', '丁中', '陈王刘宠']) {
   assert(!reader.people.some(row => row.name === excluded || (row.aliases || []).includes(excluded)), `错误人物值仍在读者包：${excluded}`);
 }
 assert(!html.includes('所历朝代：'), '人物界面仍显示“所历朝代”重复叙述');
@@ -92,7 +92,7 @@ if (failures.length) {
     ok: true,
     version: 'V70',
     readerPeople: reader.people.length,
-    portraits: { baseline: 375, addedV70: v70Assets.length, total: assets.length },
+    portraits: { baseline: 374, addedV70: v70Assets.length, addedV73: assets.filter(asset=>asset.portraitKind==='ui-illustration-v73').length, total: assets.length },
     v70: { dynasty: '魏', candidates: candidateRows.length, readyAssets: v70Assets.length, figma: v70Assets.every(asset => asset.designStatus === 'figma-design') ? 'complete' : 'pending-figma-upload' },
     fangzhenTitlesNormalized: true,
   }, null, 2));

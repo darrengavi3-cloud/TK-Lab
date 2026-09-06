@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "V73",
+  "modelId": "sgz-v73-review-status-ledger",
+  "generatedAt": "2026-08-29T16:00:00.000Z",
+  "policy": {
+    "independence": "人物身份通过不自动放行任官、州镇或金石事实；每个模块逐条判定。",
+    "pending": "自动抽取层的“存疑”默认解释为尚待人工补核；只有明确冲突、反证或争议信号才进入“存疑”。",
+    "statistics": "待补核、存疑和已排除记录不进入确定性统计；州镇还要求起讫年明确。"
+  },
+  "statusDefinitions": [
+    {
+      "key": "verified",
+      "label": "已核",
+      "meaning": "人物或事实已经逐项通过发布门槛，可用于默认阅读与确定性统计。"
+    },
+    {
+      "key": "pending",
+      "label": "待补核",
+      "meaning": "已有候选材料，但证据、年代、身份或原文定位尚不足；不等于错误。"
+    },
+    {
+      "key": "disputed",
+      "label": "存疑",
+      "meaning": "材料包含明确冲突、反证、遥领或未上任等争议信号，必须单独复核。"
+    },
+    {
+      "key": "suppressed",
+      "label": "已排除",
+      "meaning": "已确认不应进入该实体层，例如官号、爵号或地名被误抽取为人物。"
+    }
+  ],
+  "totals": {
+    "verified": 2275,
+    "pending": 1527,
+    "disputed": 92,
+    "suppressed": 5
+  },
+  "modules": [
+    {
+      "key": "people",
+      "label": "人物实体",
+      "total": 2444,
+      "counts": {
+        "verified": 2098,
+        "pending": 327,
+        "disputed": 14,
+        "suppressed": 5
+      },
+      "excludedFromStatistics": 346
+    },
+    {
+      "key": "appointments",
+      "label": "任官事实",
+      "total": 766,
+      "counts": {
+        "verified": 101,
+        "pending": 665,
+        "disputed": 0,
+        "suppressed": 0
+      },
+      "excludedFromStatistics": 665
+    },
+    {
+      "key": "fangzhen",
+      "label": "州镇职任",
+      "total": 523,
+      "counts": {
+        "verified": 45,
+        "pending": 408,
+        "disputed": 70,
+        "suppressed": 0
+      },
+      "excludedFromStatistics": 503
+    },
+    {
+      "key": "epigraphy",
+      "label": "金石记录",
+      "total": 166,
+      "counts": {
+        "verified": 31,
+        "pending": 127,
+        "disputed": 8,
+        "suppressed": 0
+      },
+      "excludedFromStatistics": 105
+    }
+  ]
+}

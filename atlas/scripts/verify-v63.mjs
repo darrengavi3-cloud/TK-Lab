@@ -115,8 +115,9 @@ assert(registry.protectedExistingPeople?.length === 10 && registry.protectedExis
 
 const portraitAssets = Object.values(portraits.assetsById || {});
 const v70PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v70');
-const expectedBaselinePortraitAssets = portraitProduction.status === 'complete' ? 375 : 275;
-const expectedPortraitAssets = expectedBaselinePortraitAssets + v70PortraitAssets.length;
+const v73PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v73');
+const expectedBaselinePortraitAssets = portraitProduction.status === 'complete' ? 374 : 274;
+const expectedPortraitAssets = expectedBaselinePortraitAssets + v70PortraitAssets.length + v73PortraitAssets.length;
 assert(portraitAssets.length === expectedPortraitAssets, `立绘资产不是 ${expectedPortraitAssets} 项，实际 ${portraitAssets.length}`);
 assert(registry.portraitResolutions?.length === expectedPortraitAssets && registry.summary?.unresolvedPortraits === 0, `${expectedPortraitAssets} 项立绘未全部通过正式或兼容 ID 解析`);
 for (const row of registry.portraitResolutions || []) assert(Boolean(registry.byPersonId[row.personId]), `${row.portraitId} 解析到不存在的人物`);

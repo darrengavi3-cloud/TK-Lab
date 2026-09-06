@@ -40,6 +40,11 @@ const deterministicFiles = [
   'data/v69-portrait-production.json',
   'data/v69-portrait-candidates.json',
   'data/v70-portrait-candidates.json',
+  'data/v73-portrait-candidates.json',
+  'data/v73-figma-mapping.json',
+  'data/v73-person-identity-suppressions.json',
+  'data/v73-review-status-ledger.json',
+  'data/v73-review-status-ledger.js',
   'data/portrait-manifest.json',
   'data/portrait-manifest.js',
   'data/v69-portrait-candidates.js',
@@ -124,6 +129,7 @@ const currentValidators = Array.from(new Set([
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v68(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v69(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v70(?:[-.].*)?\.mjs$/.test(fileName)).sort()
+  ,...fs.readdirSync(scriptDir).filter(fileName => /^verify-v73(?:[-.].*)?\.mjs$/.test(fileName)).sort()
 ])).filter(fileName => fs.existsSync(path.join(scriptDir, fileName)));
 for (const validator of currentValidators) run(validator);
 
@@ -145,7 +151,7 @@ if (includeHistorical) {
   }
 }
 
-console.log('\nV71 release:check 全部通过。');
+console.log('\nV73 release:check 全部通过。');
 console.log(`双重构建哈希：${second.aggregateSha256}`);
 console.log(`当前不变量验证：${currentValidators.length} 项`);
 console.log(`历史快照验证：${includeHistorical ? '已显式执行' : '未执行（使用 --include-historical 单独审计）'}`);

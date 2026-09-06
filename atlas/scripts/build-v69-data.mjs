@@ -12,7 +12,7 @@ import { classifyFangzhenDynasty, classifyFangzhenJurisdiction, normalizeFangzhe
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const dataDir = path.join(root, 'data');
 const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
 const json = relative => JSON.parse(read(relative));

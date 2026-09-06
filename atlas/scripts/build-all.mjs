@@ -34,6 +34,8 @@ const generatedInputs = new Set([
   'data/asset-manifest.json',
   'data/map-period-registry.js',
   'data/history-evidence.js',
+  'data/v73-review-status-ledger.json',
+  'data/v73-review-status-ledger.js',
   'assets/map/data/all-provinces-local.js',
   'assets/map/data/history-evidence.js'
 ]);
@@ -150,6 +152,9 @@ if (fs.existsSync(workbookInputs[1].filePath) && fs.existsSync(workbookInputs[2]
 const optionalV63Builder = ['build-v63-person-registry.mjs', 'build-v63-person-data.mjs']
   .find(fileName => fs.existsSync(path.join(scriptDir, fileName)));
 if (!optionalV63Builder) throw new Error('缺少 V63 person-registry 生成器；未登记字段不得静默放行。');
+// Portrait publication affects registry-visible people, so rebuild the manifest
+// before the registry. This keeps a clean checkout correct on its first build.
+run('build-v46-portrait-manifest.mjs');
 run(optionalV63Builder);
 // V66 derives the public Cao Wei peerage links and time-scoped administrative
 // seats before the source lock is evaluated. Both builders are deterministic,
@@ -162,10 +167,7 @@ run('build-v66-fangzhen-seats.mjs');
 // same committed, deterministic 179/535 fact payload.
 run('build-reader-bundle.mjs', ['--relations-only']);
 run('build-v69-data.mjs');
-// Register any V69 portrait rows that have both a verified local 512x512
-// asset and real Figma node IDs.  Frozen candidates remain excluded.
-run('build-v46-portrait-manifest.mjs');
-
+run('build-v73-review-status-ledger.mjs');
 const currentLock = buildLock(sourceDateEpoch, existingLock);
 if (refreshLock) {
   fs.writeFileSync(lockPath, `${JSON.stringify(currentLock, null, 2)}\n`, 'utf8');
@@ -185,6 +187,6 @@ if (!skipPortable) run('build-portable-export.mjs');
 run('build-asset-manifest.mjs');
 run('build-deployment-manifest.mjs');
 
-console.log('\nV69 build-all 已完成。');
+console.log('\nV73 build-all 已完成。');
 console.log(`输入锁：${existingLock.aggregateSha256}`);
 console.log('产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单');
