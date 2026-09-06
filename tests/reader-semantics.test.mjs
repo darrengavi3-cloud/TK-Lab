@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { applyReviewedTranscription } from '../atlas/scripts/epigraphy-publication.mjs';
 import crypto from 'node:crypto';
 import test from 'node:test';
 import { reviewedAppointments, sourceDigest } from '../atlas/scripts/appointment-publication.mjs';
@@ -173,7 +174,7 @@ test('canonical, portable scripts and shared reader templates compile', () => {
 
 test('all existing inscriptions, sections and variants are preserved verbatim', () => {
   const payload = json('v69-epigraphic-records');
-  const restored = new Set(json('v65-epigraphy-reader-overlays').records.map(row => row.recordId));
+  const restored = new Set([...json('v65-epigraphy-reader-overlays').records, ...json('v71-epigraphy-transcription-review').records].map(row => row.recordId));
   const originals = payload.records.filter(row => row.inscription && !restored.has(row.id))
     .map(row => [row.id, row.inscription, row.transcriptionSections || [], row.inscriptionVariants || []]);
   assert.equal(originals.length, 44);
@@ -188,8 +189,8 @@ test('the final reader retains all six reviewed transcriptions and variants with
   const reader = JSON.parse(JSON.stringify(context.window.SGZ_V69_EPIGRAPHIC_RECORDS));
   const overlays = json('v65-epigraphy-reader-overlays').records;
   assert.equal(overlays.length, 6);
-  assert.equal(payload.summary.withInscription, 50);
-  assert.equal(reader.summary.withoutInscription, 116);
+  assert.equal(payload.summary.withInscription, 54);
+  assert.equal(reader.summary.withoutInscription, 112);
   for (const overlay of overlays) {
     for (const rows of [payload.records, reader.records]) {
       const record = rows.find(row => row.id === overlay.recordId);
@@ -205,4 +206,35 @@ test('the final reader retains all six reviewed transcriptions and variants with
     assert.ok(html.includes('<inscription-apparatus :record="jinshiPrimaryDetail" />'));
     assert.ok(html.includes('<inscription-apparatus :record="activeEpigraphicDetail" />'));
   }
+});
+
+test('reviewed Wei texts reach the final reader with lacunae and provenance intact', () => {
+  const review = json('v71-epigraphy-transcription-review');
+  const c = { window: {} };
+  vm.runInNewContext(read('exports/观史台-读者版/data/v69-epigraphic-records.js'), c);
+  const rows = c.window.SGZ_V69_EPIGRAPHIC_RECORDS.records;
+  assert.deepEqual(review.records.map(r => r.recordId).sort(), ['wei-henghai-lu-lang', 'wei-liubiao-stele', 'wei-luoyang-north-boundary', 'wei-wangji-stele']);
+  for (const r of review.records) {
+    const actual = rows.find(row => row.id === r.recordId);
+    assert.equal(actual.inscription, r.inscription);
+    assert.equal(crypto.createHash('sha256').update(actual.inscription).digest('hex'), r.transcriptionDigest);
+    assert.equal(actual.transcriptionNote, r.transcriptionNote);
+    assert.deepEqual(JSON.parse(JSON.stringify(actual.transcriptionReferences)), r.transcriptionReferences);
+  }
+  assert.equal(rows.find(r => r.id === 'wei-henghai-lu-lang').people, '');
+  assert.ok(rows.find(r => r.id === 'wei-henghai-lu-lang').inscription.startsWith('君諱□□□□，□□博望人也。'));
+  assert.ok(rows.find(r => r.id === 'wei-liubiao-stele').inscription.includes('距邕死已三十六年'));
+  assert.ok(rows.find(r => r.id === 'wei-wangji-stele').inscription.startsWith('〈上闕。〉'));
+  assert.equal(rows.find(r => r.id === 'wei-luoyang-north-boundary').inscription, '洛陽北界');
+});
+
+test('epigraphy publication rejects changed sources, edited text and overwrites', () => {
+  const c = { window: {} };
+  vm.runInNewContext(read('data/epigraphic-records.js'), c);
+  const r = json('v71-epigraphy-transcription-review').records[0];
+  const raw = JSON.parse(JSON.stringify(c.window.SGZ_EPIGRAPHIC_RECORDS.records.find(row => row.id === r.recordId)));
+  assert.equal(applyReviewedTranscription(raw, { inscription: '' }, r).inscription, r.inscription);
+  assert.throws(() => applyReviewedTranscription({ ...raw, name: 'changed' }, {}, r), /须重新审校/);
+  assert.throws(() => applyReviewedTranscription(raw, {}, { ...r, inscription: r.inscription + '改' }), /校验失败/);
+  assert.throws(() => applyReviewedTranscription(raw, { inscription: '原文' }, r), /不得覆盖/);
 });

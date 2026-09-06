@@ -105,7 +105,7 @@ const epigraphicRows=epigraphy.records||[];
 const inscriptionCount=epigraphicRows.filter(row=>String(row.inscription||'').trim()).length;
 const epigraphicDynasties=Object.fromEntries(['后汉','季汉','魏','吴','西晋','东晋'].map(name=>[name,epigraphicRows.filter(row=>row.dynasty===name).length]));
 assert(epigraphicRows.length===166&&new Set(epigraphicRows.map(row=>row.id)).size===166,'金石活动目录不为 166 条唯一记录');
-assert(inscriptionCount===50&&epigraphicRows.length-inscriptionCount===116,'金石释文数量不为 50／116');
+assert(inscriptionCount===54&&epigraphicRows.length-inscriptionCount===112,'金石释文数量不为 54／112');
 assert(JSON.stringify(epigraphicDynasties)===JSON.stringify({后汉:6,季汉:8,魏:20,吴:15,西晋:56,东晋:61}),'金石六朝数量不符合 V69 契约');
 const removedIds=new Set(removals.removedIds||removals.removedRecordIds||removals.ids||[]);
 assert(removedIds.size===22,'砖铭删除清单不为 22 个稳定 ID');
@@ -126,5 +126,5 @@ if(failures.length){
   console.error(JSON.stringify({ok:false,failures},null,2));
   process.exitCode=1;
 }else{
-  console.log(JSON.stringify({ok:true,people:expectedReaderCount,lifeEvents:profiles.summary.lifeEvents,portraitCandidates:100,portraitCompleted:productionRows.length,portraitAdditionsV70:v70PortraitCount,battleLinks:publicLinks.length,fangzhen:{records:523,verified:45,candidate:478,dynasties:dynastyCounts},epigraphy:{records:166,withInscription:50,withoutInscription:116,dynasties:epigraphicDynasties},figma:production.status},null,2));
+  console.log(JSON.stringify({ok:true,people:expectedReaderCount,lifeEvents:profiles.summary.lifeEvents,portraitCandidates:100,portraitCompleted:productionRows.length,portraitAdditionsV70:v70PortraitCount,battleLinks:publicLinks.length,fangzhen:{records:523,verified:45,candidate:478,dynasties:dynastyCounts},epigraphy:{records:166,withInscription:54,withoutInscription:112,dynasties:epigraphicDynasties},figma:production.status},null,2));
 }

@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 687,
-  "totalBytes": 313532157,
-  "aggregateSha256": "68453f1d0cf325157101285e497cc91018fb9d5a6d5f9da061cbf3b1d60a0ab2",
+  "fileCount": 688,
+  "totalBytes": 313564564,
+  "aggregateSha256": "280c1559c44fd01a7bb0ec026a8c0e190b40ff50662a221dec67cab9d83281f2",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -3338,13 +3338,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 305699,
-      "sha256": "7198bcc7027ecf93d5e7104bec804aa4fb338194a2b616c6d97c12c7d01f5fa0"
+      "bytes": 315694,
+      "sha256": "b0d61c8864f13f972ab4c1fb18278f34ccaa25ecfc35e0d4cc2c84fab3d7fcaf"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 369539,
-      "sha256": "1423f9d7f75da914ada3d42603fb710a35503588adf9082d8ac8fe2af47e09de"
+      "bytes": 379842,
+      "sha256": "c7c9fe9ae8ac75997da8e0775390690144fb0b1f6016c1203b47a2159386e371"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -3420,6 +3420,11 @@
       "path": "data/v71-appointment-review.json",
       "bytes": 61441,
       "sha256": "adc80b5127a15f2ebc161d48363d5a856e27ce8d3f9ecc4390dbb37c997f1438"
+    },
+    {
+      "path": "data/v71-epigraphy-transcription-review.json",
+      "bytes": 12109,
+      "sha256": "359bf34e04ad5430356b150bdec136b7f34dcf0a1809f2a4c3106cf156efc863"
     },
     {
       "path": "data/v71-person-identity-review.json",

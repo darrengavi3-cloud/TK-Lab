@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 775,
-  "totalBytes": 330604795,
-  "aggregateSha256": "636b5b3fdcec568e1fa6d23afda724d89922bc2f3679d4a98e98bbbb827f98ef",
+  "fileCount": 777,
+  "totalBytes": 330639689,
+  "aggregateSha256": "fdfd276d20730e52057fd89461a13923d8e5bbd8fa054d52bb6b94ef96b85f29",
   "files": [
     {
       "path": "DESIGN.md",
@@ -14,8 +14,8 @@
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 22520,
-      "sha256": "71db691159ee2d8e7de0c55616d3a534809f6fb6c22587969582c5d505cacf0d"
+      "bytes": 23193,
+      "sha256": "a22d49308a9c5244a0fb7d5c8da76655a76e62404ba75acab2b763a2b16345bd"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -3329,13 +3329,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 305699,
-      "sha256": "7198bcc7027ecf93d5e7104bec804aa4fb338194a2b616c6d97c12c7d01f5fa0"
+      "bytes": 315694,
+      "sha256": "b0d61c8864f13f972ab4c1fb18278f34ccaa25ecfc35e0d4cc2c84fab3d7fcaf"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 369539,
-      "sha256": "1423f9d7f75da914ada3d42603fb710a35503588adf9082d8ac8fe2af47e09de"
+      "bytes": 379842,
+      "sha256": "c7c9fe9ae8ac75997da8e0775390690144fb0b1f6016c1203b47a2159386e371"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -3411,6 +3411,11 @@
       "path": "data/v71-appointment-review.json",
       "bytes": 61441,
       "sha256": "adc80b5127a15f2ebc161d48363d5a856e27ce8d3f9ecc4390dbb37c997f1438"
+    },
+    {
+      "path": "data/v71-epigraphy-transcription-review.json",
+      "bytes": 12109,
+      "sha256": "359bf34e04ad5430356b150bdec136b7f34dcf0a1809f2a4c3106cf156efc863"
     },
     {
       "path": "data/v71-person-identity-review.json",
@@ -3500,7 +3505,7 @@
     {
       "path": "scripts/build-reader-bundle.mjs",
       "bytes": 70511,
-      "sha256": "f60a40ace62b42c869864bf6e5e11bf67f780cc219bf5153865fdf000affa9fe"
+      "sha256": "df392e8fa41879e5fb89af87cda2a69d8d07ecf01a2c7c80cd2f0d83dabe8ae2"
     },
     {
       "path": "scripts/build-v42-import-template.mjs",
@@ -3599,13 +3604,18 @@
     },
     {
       "path": "scripts/build-v69-data.mjs",
-      "bytes": 36947,
-      "sha256": "6ba48e45baa3cdf63f47ef992486ea78776c05f951959863471d97952cc7caee"
+      "bytes": 37610,
+      "sha256": "84b05761518cfd0b95b9e75df415f9349369ef0aa1afa60bd45bd0ac2b4a1a5d"
     },
     {
       "path": "scripts/download-assets.sh",
       "bytes": 2507,
       "sha256": "61dc7e8aff7ff161f519b4ba73fbfdc125b27e91f8c9404bd2dc43828a106c85"
+    },
+    {
+      "path": "scripts/epigraphy-publication.mjs",
+      "bytes": 1101,
+      "sha256": "ce9bd7a77d85a58d3031e5998e58d5be05570c4331193e74887eadf3c8712540"
     },
     {
       "path": "scripts/extract-v55-shihuo.mjs",
@@ -3654,8 +3664,8 @@
     },
     {
       "path": "scripts/release-check.mjs",
-      "bytes": 6580,
-      "sha256": "3d9e3cdc34751683540095151835de65e18d86fff1522ff9cee9fc7d99c8ac3c"
+      "bytes": 6630,
+      "sha256": "b9328a8dcbe90c2fffd1ef53998ce7a69d6e5231e47870b3bc2b159c742c3c11"
     },
     {
       "path": "scripts/research-v61-epigraphy.mjs",
@@ -3820,7 +3830,7 @@
     {
       "path": "scripts/verify-v64.mjs",
       "bytes": 32741,
-      "sha256": "48955b65d34f1d7a30470c3e5d3c878c19465fdcffca5f0d3626b62bd1ca07cf"
+      "sha256": "c3c57b542a862829d4f1a2909f1c2121d1f07d9c2669362cb0cec76537820974"
     },
     {
       "path": "scripts/verify-v65-battle-shihuo.mjs",
@@ -3870,7 +3880,7 @@
     {
       "path": "scripts/verify-v69.mjs",
       "bytes": 12677,
-      "sha256": "942bf3cc4d308287f458671a27802938864bf456d58a9d4d0eacb0da448fdb84"
+      "sha256": "f72e418afa40c5edabc241e533fd0779b1384bef336b6686a203dcdf66dabcf3"
     },
     {
       "path": "scripts/verify-v70.mjs",

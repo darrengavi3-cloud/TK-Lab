@@ -24,6 +24,7 @@ const deterministicFiles = [
   'data/v62-reader-scope.json',
   'data/v63-reader-person-relations.json',
   'data/v71-appointment-review.json',
+  'data/v71-epigraphy-transcription-review.json',
   'data/v63-reader-person-relations.js',
   'data/v66-peerage-stages.json',
   'data/v66-peerage-stages.js',
