@@ -23,6 +23,8 @@ const deterministicFiles = [
   'data/v63-reader-people.js',
   'data/v62-reader-scope.json',
   'data/v63-reader-person-relations.json',
+  'data/v71-appointment-review.json',
+  'data/v71-epigraphy-transcription-review.json',
   'data/v63-reader-person-relations.js',
   'data/v66-peerage-stages.json',
   'data/v66-peerage-stages.js',
@@ -110,6 +112,7 @@ console.log(`\n✓ 连续两次构建哈希一致：${second.aggregateSha256}`);
 
 const currentValidators = Array.from(new Set([
   'verify-project.mjs',
+  'verify-v71.mjs',
   'verify-map-data.mjs',
   'verify-historical-model.mjs',
   'verify-research-model.mjs',
@@ -142,7 +145,7 @@ if (includeHistorical) {
   }
 }
 
-console.log('\nV70 release:check 全部通过。');
+console.log('\nV71 release:check 全部通过。');
 console.log(`双重构建哈希：${second.aggregateSha256}`);
 console.log(`当前不变量验证：${currentValidators.length} 项`);
 console.log(`历史快照验证：${includeHistorical ? '已显式执行' : '未执行（使用 --include-historical 单独审计）'}`);

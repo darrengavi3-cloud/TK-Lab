@@ -1,3 +1,4 @@
+import { reviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -5,6 +6,8 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const expectedReaderScope = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const expectedReaderCount = expectedReaderScope.length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
 const fullPath = relative => path.join(root, relative);
@@ -116,9 +119,10 @@ const fangzhenReader = json('data/v66-fangzhen-reader.json');
 
 /* 人物与立绘稳定基线。 */
 const people = readerPeople?.people || [];
-assert(people.length === 2096, `统一人物名录不是 2096 人：${people.length}`);
+assert(people.length === expectedReaderCount, `统一人物名录未覆盖审定范围：${people.length}`);
 assert(new Set(people.map(row => row.personId)).size === people.length, '人物读者包存在重复 personId');
-assert(hashSortedLines(people.map(row => row.personId)) === '35e6ad03687f0c49069952d8d7558b8542fdb6c05bae2d1e5c7468d59f67c533', '人物稳定 ID 集合发生变化');
+assert(hashSortedLines(json('data/v62-reader-scope.json').people.map(row => row.personId)) === '35e6ad03687f0c49069952d8d7558b8542fdb6c05bae2d1e5c7468d59f67c533', 'V62 人物稳定 ID 基线发生变化');
+assert(hashSortedLines(people.map(row => row.personId)) === hashSortedLines(expectedReaderScope.map(row => row.personId)), '人物稳定 ID 集合与显式审定范围不符');
 assert(people.every(row => !Object.prototype.hasOwnProperty.call(row, 'datasets')), '人物读者包仍泄露 datasets 来源标签');
 
 const portraits = Object.values(portraitManifest?.assetsById || {});

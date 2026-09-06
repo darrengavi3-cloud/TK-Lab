@@ -87,10 +87,25 @@ export function classifyFangzhenDynasty(record){
   const id=String(record?.id||'');
   if(/^fz_shu(?:[_-]|$)/.test(id))return '季汉';
   if(/^fz_han(?:[_-]|$)/.test(id))return '后汉';
-  const start=Number(record?.startYear),end=Number(record?.endYear);
+  const start=knownYear(record?.startYear),end=knownYear(record?.endYear);
   if(Number.isFinite(start)&&start>=221)return '季汉';
   if(Number.isFinite(end)&&end<=220)return '后汉';
   return '汉';
+}
+
+export function knownYear(value){
+  if(value===null||value===undefined||String(value).trim()===''||typeof value==='boolean')return null;
+  const year=Number(value);
+  return Number.isInteger(year)?year:null;
+}
+
+// Missing bounds are unknown, not an unbounded tenure. A snapshot asserts
+// actual service, so candidates and incomplete intervals cannot enter it.
+export function fangzhenValidAtYear(record,value){
+  const year=knownYear(value),start=knownYear(record?.startYear),end=knownYear(record?.endYear);
+  return record?.readerDisplayStatus==='verified'
+    && year!==null && start!==null && end!==null && start<=end
+    && start<=year && year<=end;
 }
 
 export function extractAdministrativeState(value,stateNames){

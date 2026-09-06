@@ -1,4 +1,6 @@
 export const MODULE_KEYS = Object.freeze(['offices','people','battle','fangzhen','jinshi','shihuo','map']);
+export { createPersonNavigator } from './navigation.js';
+export { validRouteHash, acceptedRouteMessage } from './route-contract.js';
 
 export function parseRouteHash(hash){
   const raw=String(hash||'#offices').replace(/^#/,'');

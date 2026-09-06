@@ -1,0 +1,1178 @@
+{
+  "schemaVersion": "V71",
+  "reviewedAt": "2026-09-05",
+  "scope": "V70 已发布的 149 条抽取任官；未列入本表的源记录不自动发布。",
+  "policy": "人物身份消歧不等于任官事实核定。保留原始记录、异说和否定句；仅明确受任事实进入读者履历，年代不推算。",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:06:73e564400a18",
+      "sourceSha256": "caa75e1f4b6d40c3af524e96311ce68b967b2b03cc1dda44343b6a6058e4c531",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:21:6d1821578978",
+      "sourceSha256": "e2a7de9183551e7dd049bcc7d417f21f53fe2f130c190184cfdf219e7b4cf9f8",
+      "status": "verified",
+      "reason": "刘廙之兄；原文明确受辟并任从事，刘表是辟召者。未以弟之籍贯补填本人字段。",
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:han:liu-wangzhi",
+      "correction": {
+        "personId": "person:han:liu-wangzhi",
+        "name": "刘望之",
+        "officeName": "从事",
+        "polity": "后汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷21·刘廙传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷21",
+          "quote": "廙兄望之，有名於世，荊州牧劉表辟爲從事。而其友二人，皆以讒毀，爲表所誅。望之又以正諫不合，投傳告歸。"
+        }
+      ],
+      "readerNote": "刘廙之兄；原文明确受辟并任从事，刘表是辟召者。未以弟之籍贯补填本人字段。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
+      "sourceSha256": "e044a1e641d21693848f5e83108d4c31be947e05d98a7458c8b0174d8a4b0f55",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "personId": "person:workbook:13d66149e45735fd",
+        "name": "桓阶",
+        "officeName": "从事祭酒"
+      },
+      "readerNote": "本条受任者为桓阶；原文中的府主或州牧为辟召者。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:15db8d9b680e",
+      "sourceSha256": "eb841f6f3e26da9dc8e9d26af82258be7ae6c11ca0386982eff050f12472c611",
+      "status": "verified",
+      "reason": "姓名、表字、籍贯、刘璋州府任职互相定位；与前汉同名王商分开登记。",
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:han:wang-shang-wenbiao",
+      "correction": {
+        "personId": "person:han:wang-shang-wenbiao",
+        "name": "王商",
+        "officeName": "治中从事",
+        "polity": "后汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷38·许靖传裴注引《益州耆旧传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷38",
+          "quote": "南陽宋仲子于荊州與蜀郡太守王商書曰︰「文休倜儻瑰瑋，有當世之具，足下當以為指南。」\n益州耆舊傳曰：商字文表，廣漢人，以才學稱，聲問著於州里。劉璋辟為治中從事。"
+        }
+      ],
+      "readerNote": "姓名、表字、籍贯、刘璋州府任职互相定位；与前汉同名王商分开登记。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
+      "sourceSha256": "93682eb843da330671c38cd60829fdfc7fb4df18e400cde10e6def144642c6f5",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "personId": "person:workbook:8165e0dfebe89c40",
+        "name": "杜微"
+      },
+      "readerNote": "本条受任者为杜微；原文中的府主或州牧为辟召者。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:43:0c13a7c81381",
+      "sourceSha256": "52c334d087802cf25b380a770a3b525d9e1e8516b8361d1bb74437fc5ec44fb7",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "personId": "person:source:182106820ab7",
+        "name": "黄权"
+      },
+      "readerNote": "本条受任者为黄权；原文中的府主或州牧为辟召者。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:829deeeb0689",
+      "sourceSha256": "a9adfdac3fbda255ca1516e8d583a10c584a15b3cec37f3ec8025f5bf79b704e",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "personId": "person:workbook:2cbac2c953caf4a3",
+        "name": "麋竺",
+        "officeName": "别驾从事"
+      },
+      "readerNote": "本条受任者为麋竺；原文中的府主或州牧为辟召者。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:08:36f8390373fd",
+      "sourceSha256": "a29162416c36beb50396f56a41ac4e088d7d04365a863f1b8281ecdbc3520954",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "officeName": "镇南将军"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:342ee9a2ab8c",
+      "sourceSha256": "1af1651d7fa1e273a7f1dfbdd70226cb8e7e157e2d8ca5e9f3064686586f94e6",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:df6143e80532",
+      "sourceSha256": "d7ca4caa2a643b6fbd5a4fa107c908d3d84baf71a019415873333763f1ac46b5",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:981cd8b31e76",
+      "sourceSha256": "45ccb385cf63afd703ccca64c03eb30e474cbd10a32e7364d39f28c6383c4d02",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:ba5301556f9d",
+      "sourceSha256": "f08134e8ffcc01d092bf025d1870ac04b821b73b5b0854827a0ff42c78d8d3d9",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:jinshu:024:981cd8b31e76"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:23a70ff02311",
+      "sourceSha256": "b40665928568b36f29cf31ca84db0ac20b256b6b61307eccbe6c182ed85a0e48",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:74a64f3507a7",
+      "sourceSha256": "b42d787df0e8bd3d45891a611a8aedca2bc8809eb77140b8f857cf6ac4b50f9f",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:982354497ac8",
+      "sourceSha256": "69316de5d562e0f4dad0634f934198b35aeb709f15a166d9c715a6e80b943c72",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:c1fb9cf0902f",
+      "sourceSha256": "5bfdf43af51d86a87a8e27fe5aef1a8afb9a0374b7ede248d9d6b5543f493334",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:e53817659adc",
+      "sourceSha256": "ff47df5552673a52f62eabe90dc14d58af245f588062b58400775e72fa1d02d8",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:1586f7cea46b",
+      "sourceSha256": "118504a57795f0feb988813cd3521756392faa3dbd53df8201fcf8c5adea5bed",
+      "status": "verified",
+      "reason": "何曾曾任司徒的事实由本传互证；职官志的晋初阶段与纪传有差异，仅发布官职事实，不填起讫年。",
+      "readerNote": "本条仅说明曾任司徒；魏咸熙初拜司徒、晋初拜太尉和后领司徒须分阶段理解，不据八公叙事推定任期。",
+      "citations": [
+        {
+          "title": "《晋书》卷33·何曾传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "咸熙初，拜司徒，改封郎陵侯。",
+          "note": "本传另记武帝践阼拜太尉，后以太保领司徒并视事；职官志八公并置叙事不可直接据为晋初任期。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:7166b0f37a95",
+      "sourceSha256": "eeef3d4ebbbe987cbc4bae5a7e2b586190c9ab1dccdb839480d376086c3a26b1",
+      "status": "suppressed",
+      "reason": "与同卷 1586f7cea46b 重复的八公叙事；不再新增一条司徒任官。",
+      "duplicateOf": "appointment:source:jinshu:024:1586f7cea46b",
+      "citations": [
+        {
+          "title": "《晋书》卷33·何曾传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "咸熙初，拜司徒，改封郎陵侯。",
+          "note": "本传另记武帝践阼拜太尉，后以太保领司徒并视事；职官志八公并置叙事不可直接据为晋初任期。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:037:8e2684cdae7a",
+      "sourceSha256": "d6105d5f6c035a39a49ea12a814bf14306c7bf4297f230c727c69dc31ede36a2",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为司马望；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:4b5d9e2c1811",
+      "sourceSha256": "263b6a59d08f84b6201ca0798aedc3b2861f1bb3b41683c2337bac638841d021",
+      "status": "suppressed",
+      "reason": "卷40贾充传载皇储当婚而不西行，诏居本职；诏命确实存在，但不能作为秦凉实际任期。",
+      "appointmentNature": "受命未赴",
+      "citations": [
+        {
+          "title": "《晋书》卷40·贾充传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷040",
+          "quote": "會京師大雪，平地二尺，軍不得發。既而皇儲當婚，遂不西行。詔充居本職。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:64e5457caa8b",
+      "sourceSha256": "ffc2896349d09c4b2b7fd911285c7701f760a33c3455e76b07f3576cc0de50fe",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:76d0a69082ca",
+      "sourceSha256": "5c51d1b514959cc8517c7adbe79c662c0eb8976d19dbd00d4f095b05e1dee009",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:c201e956f56e",
+      "sourceSha256": "f41eea51878e04e348739a1bc281f6d6a829861b46a953b487d252324e4e1f1d",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:da68fa8cedc1",
+      "sourceSha256": "6d22e3e7aa730f5861c708734768a1d10d89ba67093c5e4d98b919406f9ac12c",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:4012928915de",
+      "sourceSha256": "1d65f66d23a2e9814bdb2758e3dc95188f5ff380e96a8902588361cd4f2b67d1",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:b8d36c4d1199",
+      "sourceSha256": "7d4f78f91eae06acbc3ba04d8e13e6548f36bb742c6b587496d051ca5ac2d5f4",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "officeName": "太子太保"
+      },
+      "readerNote": "此太保为东宫官，按上下文记作太子太保。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:038:58a4fdacf5a7",
+      "sourceSha256": "dd9f52636125b54130c2785c3220a4ba341602aaba446850ded4c67f926890b7",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为司马攸；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:040:f4741406f7a9",
+      "sourceSha256": "0dbcd1bc99fc7b98ecbe81126f119f41e8799638a9879483cb7ed825046a7b4f",
+      "status": "suppressed",
+      "reason": "贾充是辟召者；韩寿受任司空掾，不能把司空记为贾充本次新任。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:a08e94e7a085",
+      "sourceSha256": "2b4c266f1f0a0046c35edf533452b6030b1e40759d8b86a5b3cc706d766b2bdf",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:4542d56c1053",
+      "sourceSha256": "216557c13ef42010a5ae6a9ccc46c23b59baf5da96436469a8de3f2f65109ef8",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:1e2827781b46",
+      "sourceSha256": "4e8defca5961367fd6dfe235077888e93a5a31e5c07bfadf8be3d05d57cc6e18",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:225a5c858e3d",
+      "sourceSha256": "9c02ae83422ee0e3ffb6f809c16e2c31f62e8802786c67e8756a444c5437e6e9",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:fc32a3021f2a",
+      "sourceSha256": "af72432949e1f6f974d5cdb50a0ac70c2f14711f817345e2fd6333d28f0fe3f4",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:ea9fcb555258",
+      "sourceSha256": "e3b72aa78e24cea40189a77f1ad15be5e84c04d5dd52adc72a959220e3fe026e",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:088:c7f32e2a604a",
+      "sourceSha256": "95f61d1eb0facc76a449d12e8f12a8745cf91f5c595c878bdc78964887382772",
+      "status": "verified",
+      "reason": "李密之子、字雋石；与兄李赐（字宗石，未行而终）分开。罗尚是辟召者，李兴有实际从职与奉使叙事。",
+      "citations": [
+        {
+          "title": "《晋书》卷88·李密传附李兴",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷088",
+          "quote": "後卒於家。二子：賜、興。\n賜字宗石，少能屬文，嘗為《玄鳥賦》，詞甚美。州辟別駕，舉秀才，未行而終。\n興字雋石，亦有文才，刺史羅尚辟別駕。尚為李雄所攻，使興詣鎮南將軍劉弘求救，興因願留，為弘參軍而不還。尚白弘，弘即奪其手版而遣之。興之在弘府，弘立諸葛孔明、羊叔子碣，使興俱為之文，甚有辭理。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:jin:li-xing-junshi",
+      "correction": {
+        "personId": "person:jin:li-xing-junshi",
+        "name": "李兴",
+        "officeName": "别驾",
+        "polity": "西晋",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "李密之子、字雋石；与兄李赐（字宗石，未行而终）分开。罗尚是辟召者，李兴有实际从职与奉使叙事。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:120:0623f307009c",
+      "sourceSha256": "2567a8685fd20b3dd19876ff24e4f53a2bcc9345f5629bdd13ab51c6575fb899",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:703a944574a4",
+      "sourceSha256": "cb459c1b5980f69179e371e28ced51d637806e5892034d25af78338f82a52823",
+      "status": "suppressed",
+      "reason": "封钜鹿公属于封爵，不属于任官；姓名字形还须与裴氏传互校。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:97422fbd72fa",
+      "sourceSha256": "9d627205ff84662d6717db59c7f6cfae3d8a0d6d9789e691dd8c0d6356546bbb",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:96b602cf17c6",
+      "sourceSha256": "6079cd26eaab27caacefad129ed743620ea15bd6ba9a63548babd1427810b2be",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:ce1c6cfeb84e",
+      "sourceSha256": "5eee3841c024b746459dbd59ebafc03ab6cae0bf23f0ee24d073bce5494035d5",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:040:d3af6a86d2ad",
+      "sourceSha256": "1055436f38df27534bc84102fb5d47ec94ddf3e4e3849b090759f280fa8cc19d",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为贾充；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:33b840f0ac05",
+      "sourceSha256": "89dfca6ec2b92d0de393d2c340f20bd0623cf1d725ad3c8f6252dac477d2e55e",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:16e8a0aab05f",
+      "sourceSha256": "24bcfc0c07f18bab60e3363b97311a24fcf5a4c9c52ba51404663bbcbd581151",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:jinshu:003:33b840f0ac05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:3872a18b63c8",
+      "sourceSha256": "ec8227721667318576368683901fa092915d35a466b6c55a4bd35e21ebf9d293",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:jinshu:003:33b840f0ac05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:107:6c58ebee08e9",
+      "sourceSha256": "bcdc2c2666082d18cf7e19f004a39df206fb05191330d3b4b01e899d17f5cf4f",
+      "status": "suppressed",
+      "reason": "此卷记后赵石苞，不能归入西晋石苞。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:7d69bd5395aa",
+      "sourceSha256": "64bd0d401123b1d576429c539e2ce16fe6d8b1a44af8abbe056ff9e92c71e325",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:cec210ee005e",
+      "sourceSha256": "cfcce467531ba938d7aaa4d15619ab95c39b19ea86739e45c5e85eb60f64079f",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:037:a23aa7c69aa8",
+      "sourceSha256": "fc1bba3c4f123d45890f0ad8104702e3d2e1a46da0d2c8c99b31c691d8debb88",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为司马泰；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:107:2e2d8c3e1ea1",
+      "sourceSha256": "35d118f23c8ecf347a6b3af47d41a35a23a6b149bbdd0a751f9ae46aaa1b4c37",
+      "status": "suppressed",
+      "reason": "此卷记后赵石鉴，不能归入西晋石鉴。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:5a3bc449617d",
+      "sourceSha256": "87e8a3324951a277525b78f28ff06d345f2d21063bebed99a33ec4e8cb889b3f",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7ab835ac703c",
+      "sourceSha256": "18309bccf74238cab06d4c72d56c243a31e5fea8f7abfd2325e7867a1f1ca9a4",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ad9062e1c32d",
+      "sourceSha256": "d6b9e2ec7b73c122e351c27b9dc1f027680614d94b7bfbd142e673a163b73784",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:15:54c17f28f1e1",
+      "sourceSha256": "5719d5d8a7daa3d2bd511db62160b51c7890ba4062fe7501b3e40e411fa07820",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:bc1019f07d24",
+      "sourceSha256": "a2a75718e3c1ceb787207a8afd19fe3a7776bea6e60f84a5d494f6df9d385e97",
+      "status": "verified",
+      "reason": "卷37明确载泰始三年由司徒进位太尉，确认任官事实；不采用职官志所谓即位之初推定纪年。",
+      "readerNote": "本传系进位太尉于泰始三年；职官志八公同辰为概括叙事。本条不据该概括填造起讫年。",
+      "citations": [
+        {
+          "title": "《晋书》卷37·义阳成王望传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷037",
+          "quote": "其進位太尉，中領軍如故。",
+          "note": "该诏置于泰始三年条下。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:23c21653b615",
+      "sourceSha256": "35c6c1cd7270b2de8885b1bf24e9f82dbc64491058d56239828d05769fc60fc6",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:6452b258bbd4",
+      "sourceSha256": "5c098ce2ae5eadf63a2ba1cd61b3ccd7f2aaa279e682b56872b8366670e36c0b",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:d42f14b72155",
+      "sourceSha256": "3bf66775efdbfd5c1e6165b2021eb275662b2dafee1ee5c1efc691c1c3194f17",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:f9462cd64a5f",
+      "sourceSha256": "dd28ccfc87deda10642353019c1a0a6d12e4c7dcb5ee020bf67f5d55a0baa4dd",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:jinshu:024:d42f14b72155"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:638458309762",
+      "sourceSha256": "3d2bea140337a762008310454a3c287217cf386f78615fee2d2218ceab74f253",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:a9113ebf3e6c",
+      "sourceSha256": "a18fa50dc484a6e65be46ec7abcbdc692e9451c4a62e70a3b56963d3af0e057d",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
+      "sourceSha256": "4b8ac20349d1ccdc107af58f47110c7c78ddf24490bded44c8c65e04be52518e",
+      "status": "verified",
+      "reason": "既有快照姓名与表字均吻合；魏标签只来自工作表 explicit-polity/review-risk，缺少魏任官佐证。按《晋书》独立核定西晋身份，保留原 ID 和魏候选值，不把工作表年份当作任期。",
+      "citations": [
+        {
+          "title": "《晋书》卷89·刘沈传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷089",
+          "quote": "劉沈，字道真，燕國薊人也。世為北州名族。少仕州郡，博學好古。太保衛瓘辟為掾，領本邑大中正。敦儒道，愛賢能，進霍原為二品，及申理張華，皆辭旨明峻，為當時所稱。齊王冏輔政，引為左長史，遷侍中。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05",
+      "identityReviewId": "identity:v71:person:snapshot260:9fbd9f0edab3ad59",
+      "correction": {
+        "personId": "person:snapshot260:9fbd9f0edab3ad59",
+        "name": "刘沈",
+        "officeName": "太保掾",
+        "polity": "西晋",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "既有快照姓名与表字均吻合；魏标签只来自工作表 explicit-polity/review-risk，缺少魏任官佐证。按《晋书》独立核定西晋身份，保留原 ID 和魏候选值，不把工作表年份当作任期。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:eb7cbd5e06a0",
+      "sourceSha256": "33567891cba2624d3ff207231a49859438576876dd2af052008727b136d71d6d",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:1ab39cf24965",
+      "sourceSha256": "ab8291d2981cb0a39937613f5e497253ac6434cc707435dc1ac3f1b8382cdf85",
+      "status": "suppressed",
+      "reason": "八公叙事不构成独立的新任事件；已有魏元帝纪的明确司空任命。本传记咸熙中迁司空、晋受禅后进司徒，保留异文而不重复计数。",
+      "appointmentNature": "重复叙事",
+      "citations": [
+        {
+          "title": "《晋书》卷39·荀顗传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "咸熙中，遷司空，進爵鄉侯。",
+          "note": "本传受禅后另有由司空进司徒诏。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:68a22a581543",
+      "sourceSha256": "5d9d21342684692fb59dcf9ca45386b2e1139eaa3b5308d2e2d3d09801130165",
+      "status": "suppressed",
+      "reason": "八公叙事不构成独立的新任事件；已有魏元帝纪的明确司空任命。本传记咸熙中迁司空、晋受禅后进司徒，保留异文而不重复计数。",
+      "appointmentNature": "重复叙事",
+      "citations": [
+        {
+          "title": "《晋书》卷39·荀顗传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "咸熙中，遷司空，進爵鄉侯。",
+          "note": "本传受禅后另有由司空进司徒诏。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:fc90786b5792",
+      "sourceSha256": "4f0cc171f07b4aad23c653dd3886f686fba0f2c3b86f0a796fe28b6e23baeb7b",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:429e2d8233c3",
+      "sourceSha256": "4bcec1d4ad956f4ca097da1d9d2063678022a4ac5ce8ee335f011c1c9a051a75",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "officeName": "尚书左仆射"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:090:d98e5b408f46",
+      "sourceSha256": "8092a530469e4012c268bc96f6862e40de90df676eeec8fc526cad29df9ce292",
+      "status": "verified",
+      "reason": "鲁芝传让位段的下文为上不从；羊祜本传亦载加车骑、固让而不听，武帝纪西陵救援仍称车骑将军羊祜，故确认羊祜任官。",
+      "readerNote": "羊祜曾请让位鲁芝，皇帝未准；不能仅因截录中的让字判为未任。",
+      "citations": [
+        {
+          "title": "《晋书》卷90·鲁芝传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷090",
+          "quote": "上不從。其為人所重如是。",
+          "note": "紧接羊祜请让车骑将军于鲁芝之语。"
+        },
+        {
+          "title": "《晋书》卷34·羊祜传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷034",
+          "quote": "後加車騎將軍，開府如三司之儀。祜上表固讓曰：",
+          "note": "表后明载不听。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:48978b7a125c",
+      "sourceSha256": "5bb0121cb84ef2df230a41029c1b2c3a49569bfd1d798285bc849aa0b8e25bc5",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:87e868eeaf28",
+      "sourceSha256": "f8ad7622edc5afddba085aa4a24dec06eb383d7af53fa71a2b67d1a2aba6695e",
+      "status": "suppressed",
+      "reason": "封临晋侯属于封爵，不能放入任官履历。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:f7dffa0a5ee7",
+      "sourceSha256": "5324b19a0d74bada6fa80e6b03f5bc095c17c140e77294e5b252ece00f98034b",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:054:32c62500fcf5",
+      "sourceSha256": "e25bdc8e781bd7a61ad64eceae95713421432311229620c32fb1b5732da456c3",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "personId": "person:workbook:e574b4761f6490c2",
+        "name": "陆机",
+        "officeName": "太傅祭酒"
+      },
+      "readerNote": "本条受任者为陆机；原文中的府主或州牧为辟召者。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:092:fb598d513c5b",
+      "sourceSha256": "a6ed6d4fa12131c0db3f7dbe7053af0ca52cd4d3e2e1155915384599f7db7368",
+      "status": "verified",
+      "reason": "卷92邹湛传明确记转太傅杨骏长史；现有邹湛人物的字润甫、籍贯南阳新野均与本传吻合，修正受任者及截断官名。",
+      "correction": {
+        "personId": "person:workbook:820719bf57950697",
+        "name": "邹湛",
+        "officeName": "太傅长史"
+      },
+      "readerNote": "受任者为邹湛；杨骏是太傅府主。",
+      "citations": [
+        {
+          "title": "《晋书》卷92·邹湛传",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷092",
+          "quote": "鄒湛，字潤甫，南陽新野人也。",
+          "note": "下文明载转太傅杨骏长史，迁侍中；骏诛，以僚佐免官。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:db978e64500d",
+      "sourceSha256": "df44f9c746f944a32caa8e55b1b15eefb582f4beab4939bd962e3962a0634f74",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:7216da386e84",
+      "sourceSha256": "440ae0e53758cb8380e2c2e67fdbf5887031437275dd64e98c393b1e191e9dff",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:jinshu:003:db978e64500d"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:7475dbef59fb",
+      "sourceSha256": "2ab314ff09ca23436e546d3b214bf4162f5740e45e8c8e58d518f8d88a05219f",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:jinshu:003:db978e64500d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:4fb7fd7b5e2c",
+      "sourceSha256": "5dbc4c4c2b1a9687b5220ff751d98e4de3810c0fcb358560934ca26497e28e1c",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7ed6e2ddb24d",
+      "sourceSha256": "4117b94f8dc5607081ef8dfd6e8650e2ef67f13bb2392ffd514b9c4610bad06b",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ee5fdf6f46d5",
+      "sourceSha256": "0f3e141f237581910f217b086f2e90c11944fa804b25f5876015cde3619fddca",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:35:b651790ccecf",
+      "sourceSha256": "9b81504e93fdbd6baa94a08d69bb8c26172f66c7abd9ddf1f58d4b4374e98e7a",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为董厥；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:39:9dabbb7da19e",
+      "sourceSha256": "3d9050c9e1cdea9f2dc4651e6d5375eba41fa616fd45b90182189795aeb25060",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为吕乂；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:39:8b69fbac62f6",
+      "sourceSha256": "bd5e2cb66b2a9ea2af00b2d0b67c8d250967f15c743cca71c5dfeafd1bdad4c5",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为刘巴；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:c8d63f8e20ac",
+      "sourceSha256": "b77ed971e16160b24296d2e684d604f00f1178ebb3c3dbea256a10b680076527",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:43:6df8949d9361",
+      "sourceSha256": "589a61533485c7f51ef91cfea7b18b3205936c7b192dd9946da56d0ee7a5ece3",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:sgz:33:c8d63f8e20ac"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:15266b19b3c3",
+      "sourceSha256": "63eeedd3edaeb886f9621d6600fa94cd8f870d99f1b45d89baa020915337d47f",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:49a9a59efb0b",
+      "sourceSha256": "fdc6ecd4f772008420639082f699fd257b7ef24a8ff7025958f094043e08bcf9",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:8b22528ee416",
+      "sourceSha256": "305f3c99c884d15391e4f10d48ef04e424f6e8f33361a61453fc0eae62340f10",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:44:080b6201f23d",
+      "sourceSha256": "8a276e821dc8d3842a1016d01f157939082cef42c79900aee8aa18e0f698137c",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为费祎；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:2e6f7dd53661",
+      "sourceSha256": "09f4982ae29bc5c380327ed5323ab1eff5fbb9a896b570da484b0f554f5067b0",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7aba3a64ba8c",
+      "sourceSha256": "deed8c6e563dd40d82c4a084b59ba423ac9555c360dfe762e490cf12de9296e5",
+      "status": "suppressed",
+      "reason": "安乐公属于封爵，不能放入任官履历。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:a77842e8dc15",
+      "sourceSha256": "dcd39ab9c0917b6c5ed87de47a408f5d0ccd96bbea7f6adfdf4abba4f65633b2",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:3b19faa637aa",
+      "sourceSha256": "568f509db14dfffd120b73aebe57ee3db77b1896208ec64b8c21a7bdd41e4d82",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:7dd6cd2706c9",
+      "sourceSha256": "45e40038c97d3726cf2f9c3b6041e8cf0b025c781f85da96f959d7507f3c6433",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:37976c389d0c",
+      "sourceSha256": "113ea91fcfab2b73ad4c1415661d720b8094ab31019e6cc83b297b6b4eea0a46",
+      "status": "suppressed",
+      "reason": "裴注引魏略后明确驳斥亮为太子太傅之说，不能发布被驳说法。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:207274f69cb3",
+      "sourceSha256": "4bc4a45e690e41023030cf3f5b4030b1d82ca41ea9dc441ce6ac13537723dae2",
+      "status": "suppressed",
+      "reason": "曹曼获封长乐郡公主，抽取为长属错误，且不是任官。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:7c8f09c27498",
+      "sourceSha256": "ddfc15775537b0416212701929942e3279bc960611fb7f8e42b86432c295ab88",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:f8ed903b7ed7",
+      "sourceSha256": "175481f09d5f074b0a9f0228b1d3947c8ce443b3b8c3794916882914041fee4b",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:24:cefba4c41a31",
+      "sourceSha256": "d965429e4fa3a41ea2527fe50f6dbfbfdd2174d87a0c5d7bee1bc1b2937d2cbc",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:090:a8e6a9dbcb5a",
+      "sourceSha256": "bc92402887f1f845ba47dbaff5d104a78ad22cf0ff9c33d7959d91718785193d",
+      "status": "suppressed",
+      "reason": "曹真为府主，受辟为掾者鲁芝，不是曹真任掾。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:025d04dd043d",
+      "sourceSha256": "bab0ed931eb42a66ebf1ced2ea4cb929cbd422c39dff69e4abbf4eeecd7e8095",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:2fc1dcb79a87",
+      "sourceSha256": "5c268b4b23762733dbdf6d62916af7a110a64748c3d69d25c56dfb353dcff7aa",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:8f67468d5bb7",
+      "sourceSha256": "33b08be06ae9c46fb9e8b049ce4028a7bbf1baeb73b6386186604cdab414bbf6",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:ecab4b588198",
+      "sourceSha256": "11ae1387b002f84048b2d147caf563f6ccfa3ee4310e029a5c8510f1b4a390fe",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:b8fb04ad9858",
+      "sourceSha256": "af2aca0f29f641218f4c33c2c92bd67e8b45800e5ff29e4f9b75b9c2e8527326",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:30b39a746623",
+      "sourceSha256": "be5e240e5c79830cc54d9d24b86f297fab2c46c44221294ac10af451fdd3d154",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:5623014c3c1a",
+      "sourceSha256": "6e44f990e78efeaec4b56ba67da5f78a45f42e3397f88832ed856b1aa234419b",
+      "status": "suppressed",
+      "reason": "李丰是谋议者，原文大将军指司马景王，不是李丰官职。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:193f898fcc80",
+      "sourceSha256": "b7e2a2d89de34b7d43ca8b0dfd79fa8e24e647012022d7fea9121714e0519baf",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:02d0f8037d47",
+      "sourceSha256": "c1953eb2ed270fd13b61885301c157f22e85ed7ab64d911995d4ae9e22defc28",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:46970447aeb7",
+      "sourceSha256": "daaf92442874d350442a41beaea8f89509de53c2ec47bca5abf04d17e4da953e",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:25:a0bc9051a96d",
+      "sourceSha256": "cf9cbcef7a254fd5662f775f3afb0b4765479fa17318cbf5dabd0a2b114f2703",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:0c969e6d9d57",
+      "sourceSha256": "ab865e09a5764770433ac5cab877813001a826ee7ea9433e285738e487b5d866",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:d78f85040aae",
+      "sourceSha256": "9bcd50802e3d4f985377871b59c2a49545b72bf7b81b6c43eff794f974dbfde4",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:c0283bf31d40",
+      "sourceSha256": "84a6ba3883c25a10cdef970981298cde3846237d48f94ca7166ce1dc95c951f8",
+      "status": "suppressed",
+      "reason": "谋议以夏侯玄为大将军，事觉未成，不是实际任官。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:55fe27cb3369",
+      "sourceSha256": "d0dac7eb31c24479779eb8394d7dc6110219ba8617a31c4684b77d388824284d",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:eb02abb80150",
+      "sourceSha256": "8e8a6cfa474cdad5e573bec4aa1043c1e2ac5ec257973a98e89d4f77b0fe373c",
+      "status": "suppressed",
+      "reason": "徐邈被任命司空后固辞不受，不能作实任履历。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:536b5623d2b6",
+      "sourceSha256": "7d082167058929dc0adb347d0fe30f9fa39d3ca0fd06e4d49829516d3d0f7818",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:0a224d8d3a3f",
+      "sourceSha256": "37bea9345bb093215a4f08fd9190b68d1113bc9b162c602b0007d3898fc72df3",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:6d98acfa027f",
+      "sourceSha256": "dd3fe76b400d6c32390766d03ae8a285005abea3f64610825850572f7f8c7035",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:15:27da4221ac17",
+      "sourceSha256": "51a9d8a50955358552aee42559c1ea0fcd77b7e6f464209ab5d721434d55e282",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:68eecca49b8f",
+      "sourceSha256": "abecfa4835b1bbdd194fea0cddb1ab6c1b27c1b4b0157afcba674dad81209255",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:015:7454a5ebeab1",
+      "sourceSha256": "61292a38392fb0663235a97c56703ec66573b2b9f3e172f416e12a0065e2ca74",
+      "status": "suppressed",
+      "reason": "戴良受命后在合浦被阻，后来随吕岱俱进；平乱后复并交广。任命与入境有据，独立视事任期未见，不作为实际任期发布。保留卷49、60辖区异文。",
+      "appointmentNature": "受命受阻，后随军入境；视事未见",
+      "citations": [
+        {
+          "title": "《三国志》卷49·士燮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "良留合浦。",
+          "note": "前文记士徽发兵拒良；后文记吕岱过合浦，与良俱前。"
+        },
+        {
+          "title": "《三国志》卷60·吕岱传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "前文记戴良受命后遭拒，继而随吕岱俱进；没有戴良视事任期，且随后复并交广。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:208a42091504",
+      "sourceSha256": "c14de61cc290fc5aa037bfffd26435eedeaf3a7a8ccdd112f42e0cdbb60e7224",
+      "status": "suppressed",
+      "reason": "戴良受命后在合浦被阻，后来随吕岱俱进；平乱后复并交广。任命与入境有据，独立视事任期未见，不作为实际任期发布。保留卷49、60辖区异文。",
+      "appointmentNature": "受命受阻，后随军入境；视事未见",
+      "citations": [
+        {
+          "title": "《三国志》卷49·士燮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "良留合浦。",
+          "note": "前文记士徽发兵拒良；后文记吕岱过合浦，与良俱前。"
+        },
+        {
+          "title": "《三国志》卷60·吕岱传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "前文记戴良受命后遭拒，继而随吕岱俱进；没有戴良视事任期，且随后复并交广。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:60:2286bb4d9b3e",
+      "sourceSha256": "a3d27b0b09ed709ff4afd55677d76670db0472516e5985c46df5c09813d75b65",
+      "status": "suppressed",
+      "reason": "戴良受命后在合浦被阻，后来随吕岱俱进；平乱后复并交广。任命与入境有据，独立视事任期未见，不作为实际任期发布。保留卷49、60辖区异文。",
+      "appointmentNature": "受命受阻，后随军入境；视事未见",
+      "citations": [
+        {
+          "title": "《三国志》卷49·士燮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "良留合浦。",
+          "note": "前文记士徽发兵拒良；后文记吕岱过合浦，与良俱前。"
+        },
+        {
+          "title": "《三国志》卷60·吕岱传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "前文记戴良受命后遭拒，继而随吕岱俱进；没有戴良视事任期，且随后复并交广。"
+        }
+      ],
+      "followupReviewedAt": "2026-09-05"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:74022d223b66",
+      "sourceSha256": "ca8f1f403b87bf46389b5e5426134502643a179c2e8370d4c428942c4c80b8c4",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:f767eaa7fc4d",
+      "sourceSha256": "3350d91e194d7a4e02731f62b00c8f559446bbb7b71b1288c81fe6f01bd103fc",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:217db6a989b2",
+      "sourceSha256": "918712eed7b027d1fe82340b3c05388e1b77e7d37bee6d35d963acf4b1301788",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:a750f09402f4",
+      "sourceSha256": "c2f226ce33db989744099708af3110ffc1604183776f1124671cb53dec4c3279",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:52:af3b968b9394",
+      "sourceSha256": "fd19cb282c10adb1e114aaa9660f11885400c11af76f1c400e4e3fe136ebe0e7",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为步骘；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:dfabcc52b63a",
+      "sourceSha256": "d2057ba9ea095e24b9a550a7066bae19fd716ae68db4b6025c56f7ca6c3efb89",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:82bff6ceb278",
+      "sourceSha256": "fa57dd1ccd9f2820e179336385e1921e8c6d31abdca912cc45384a0f68ef9a44",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:002aa5f3772a",
+      "sourceSha256": "1df977d875c79d37475914db61809971e21d47d0880ee1691f20e23ff7bde65d",
+      "status": "verified",
+      "reason": "已按本传语境核对受任主体及完整官名，修正原抽取；不推算起讫年。",
+      "correction": {
+        "officeName": "师友从事"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:sgz:51:ab6ae854a2b6",
+      "sourceSha256": "2a6302c6789baa77d837f847a1c7617c96a0fce64a5f3f7e064fcb917033ca30",
+      "status": "suppressed",
+      "reason": "孙贲被除九江太守而不就，不能作实任履历。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:d7492d14955e",
+      "sourceSha256": "772538e5c7474bf6b2b57cfeac2add747a0ca7922c262f65ce07e929c30c6d1e",
+      "status": "suppressed",
+      "reason": "归命侯属于封爵，不属于任官。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:0f51335732b6",
+      "sourceSha256": "d1c19aad60ab4ca6e1dc4fd67f778bb39b709b8b3e027c04eec6648d8a0f95d2",
+      "status": "suppressed",
+      "reason": "乌程侯属于封爵，不属于任官。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:57:c91969624c3a",
+      "sourceSha256": "dd89a0a862567d112d441140ff2bdd5f5ac4c6caae4c2bbedd71dda5922be6a1",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:a4dcc0e4d11b",
+      "sourceSha256": "96c48d99efa5729c0f1725e1d6aac47bec09617b2f3ae28651126cffbf17dd17",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:53:1fe9fcc23c69",
+      "sourceSha256": "3132cc12f55c0ca1be2cbd9c0b7deab0fccd8476a451c9922524a2538ade723f",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:sgz:47:a4dcc0e4d11b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:56:f5d45200ab20",
+      "sourceSha256": "bbaaeaf31a34d24ed2a705779ba5f2203f03008f6aea8227db939c557483bce8",
+      "status": "suppressed",
+      "reason": "孙权为将军是朱桓初仕的背景，官号未全，不据此另建新任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:57:dcb395661830",
+      "sourceSha256": "7930982c3d3281200962267c7e5eb38738fd1916386c35ee75ac9b8de5ee9218",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:sgz:60:4a9f82dbf09f"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:58:3fe7dd3a48dc",
+      "sourceSha256": "7c07e875841a604132af6571f3ae2ebe113f04b20c27a2b7b9fc15905d9f6999",
+      "status": "suppressed",
+      "reason": "孙权为将军是陆逊初仕的背景，官号未全，不据此另建新任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:60:4a9f82dbf09f",
+      "sourceSha256": "cebe00a390efbb37cda483dacc6a5d0a6927405c3af38dc88a47db413d6cd94a",
+      "status": "suppressed",
+      "reason": "孙权车骑将军是全柔受任长史的叙事背景，不能据此另造孙权新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:64:734283af7654",
+      "sourceSha256": "45615a90a3be751081a381bd36c00afa469d6f4c4a1cbe60c6ec566fffa7d34b",
+      "status": "suppressed",
+      "reason": "制度叙述或背景职称与既有记载重复，不作为独立任官事件。",
+      "duplicateOf": "appointment:source:sgz:60:4a9f82dbf09f"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:52:f1817114c7a9",
+      "sourceSha256": "92100a6050bf4fedbcb0a280e2acdba3e8ff80869d666a7f2079d132a1270f44",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为顾雍；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:5ad9f1ac2fad",
+      "sourceSha256": "76f81373317d875d97a144846b403288c7ab2321bec1dd96491e715c2d5c4725",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:69bd8dd84fa3",
+      "sourceSha256": "869402b803da324ba9831d30159ab2676a45e5d3ec0ecab68ac97517c550d3d0",
+      "status": "suppressed",
+      "reason": "荐滕胤为丞相而孙綝不听，实际改为大司马，不得发布丞相任官。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:50:e8c52be648aa",
+      "sourceSha256": "a3530569c66e54bc719d224fe60383c78a579b30fc50ce28f8194c75965314ed",
+      "status": "suppressed",
+      "reason": "“代某为”句中的受任者为全尚；原抽取挂在前任者名下，不能成为前任的新任事件。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:64:e80a2885daeb",
+      "sourceSha256": "8d0c59bd962bb59fa06d18f3210008048170a72ce4e4728b190c9e0cbe6cfb75",
+      "status": "suppressed",
+      "reason": "群臣表荐滕胤为丞相，未被采纳；任命为大司马，非丞相。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:72b92c980e0c",
+      "sourceSha256": "537ec450f3bdf812c7317a60dfbcf69bbb1bbf331a630428e81ef6e0d4b638e3",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:5decd7b4c471",
+      "sourceSha256": "149710452619daeb66c9f1977026029ffb967c7c870ad00244bbd8e5b20e14f1",
+      "status": "verified",
+      "reason": "逐条核对句中受任主体与官名，记载直接陈述任职；无结构化纪年时保持年代空值。"
+    }
+  ],
+  "followupSummary": {
+    "reviewed": 15,
+    "newlyVerified": 4,
+    "newlySuppressed": 7,
+    "identityReviewRemaining": 0,
+    "note": "明确史事与入读者范围分开；未建立人物或身份范围仍有冲突时，保留候选不强制合并。"
+  },
+  "identityCompletionSummary": {
+    "newPeople": 3,
+    "correctedPeople": 1,
+    "newlyVerifiedAppointments": 4,
+    "verifiedAppointments": 101,
+    "suppressedAppointments": 48,
+    "note": "V62 基线不改写；V71 显式原典身份增补与更正另有审定清单。"
+  }
+}

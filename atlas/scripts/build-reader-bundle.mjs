@@ -1,11 +1,14 @@
+import { reviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { reviewedAppointments } from './appointment-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const sourceHtmlPath = path.join(root, 'index.html');
 const registryJsonPath = path.join(root, 'data', 'v63-person-registry.json');
 const registryJsPath = path.join(root, 'data', 'v63-person-registry.js');
@@ -17,6 +20,8 @@ const relationsOnly = process.argv.includes('--relations-only');
 
 const bannedRuntimeFiles = new Set([
   'data/person-source-index.js',
+  'data/v71-appointment-review.json',
+  'data/v71-person-identity-review.json',
   'data/person-zi-supplement.js',
   'data/v60-person-workbook-import.js',
   'data/v61-person-supplements.js',
@@ -124,10 +129,10 @@ const battlefieldFields = ['id','name','placeLabel','lat','lng','from','to','not
 const epigraphicFields = [
   'id','entityType','name','title','displayTitle','titleAliases','variantLabel','type','materialType','year',
   'yearText','dateText','polity','dynasty','period','inscription','inscriptionStatus','inscriptionVariants',
-  'transcriptionSections','people','offices','place','region','findspot','scriptStyle','form','archiveKind',
-  'media','readerSummary','note','readerDisplayStatus'
+  'transcriptionSections','transcriptionReferences','transcriptionNote','people','offices','place','region','findspot','scriptStyle','form','archiveKind',
+  'media','mediaAssets','bibliography','readerSummary','note','readerDisplayStatus'
 ];
-const personLifeEventFields = ['eventId','personId','eventType','startYear','endYear','title','detail','relatedRecordId'];
+const personLifeEventFields = ['eventId','personId','eventType','startYear','endYear','title','detail','relatedRecordId','citations'];
 const battlePersonLinkFields = ['linkId','recordId','personId','name','side','role'];
 const shihuoRecordFields = ['id','year','polity','category','title','detail','recordKind','scope','readerSummary'];
 const shihuoHouseholdFields = [
@@ -167,7 +172,7 @@ const eraRosterFields = [
 ];
 const readerAppointmentFields = [
   'appointmentId','personId','nodeName','startYear','endYear','polity','jurisdiction',
-  'appointmentNature','treeType','factionName'
+  'appointmentNature','treeType','factionName','citations'
 ];
 const readerPeerageFields = [
   'relationId','eventId','personId','title','rank','year','grantDate','place','fief',
@@ -188,7 +193,7 @@ function plain(value) {
 }
 
 function cleanTranscriptionVariants(rows) {
-  return (rows || []).map(row => pickFields(row, ['type','label','text','raw']));
+  return (rows || []).map(row => pickFields(row, ['type','label','text','raw','note','source','textRef']));
 }
 
 function cleanTranscriptionSections(rows) {
@@ -199,7 +204,9 @@ function cleanEpigraphicRecord(row) {
   const record = pickFields(row, epigraphicFields);
   if (Array.isArray(record.inscriptionVariants)) record.inscriptionVariants = cleanTranscriptionVariants(record.inscriptionVariants);
   if (Array.isArray(record.transcriptionSections)) record.transcriptionSections = cleanTranscriptionSections(record.transcriptionSections);
+  if (Array.isArray(record.transcriptionReferences)) record.transcriptionReferences = record.transcriptionReferences.map(item => pickFields(item, ['title','url','note']));
   if (Array.isArray(record.media)) record.media = record.media.map(item => pickFields(item, ['type','src','alt','label']));
+  if (Array.isArray(record.mediaAssets)) record.mediaAssets = record.mediaAssets.map(item => pickFields(item, ['assetId','localPath','altText','width','height','sourceTitle','sourceUrl','rightsStatus']));
   return record;
 }
 
@@ -368,7 +375,8 @@ assertNoBannedPayloadKeys(readerPeopleJson);
 const readerPeopleRows = readerPeopleJson.people || [];
 const sourceIndexRelations = runtimeGlobal('data/person-source-index.js', 'SGZ_PERSON_SOURCE_INDEX');
 const v61RelationSource = runtimeGlobal('data/v61-person-supplements.js', 'SGZ_V61_PERSON_SUPPLEMENTS');
-const sourceAppointmentsById = new Map((sourceIndexRelations.appointments || []).map(row => [String(row.id || ''), row]));
+const reviewedRows = reviewedAppointments(sourceIndexRelations.appointments || [], readJson(path.join(root, 'data/v71-appointment-review.json')), id => registryJson.legacyToCanonical[id] || id);
+const sourceAppointmentsById = new Map(reviewedRows.map(row => [String(row.id || ''), row]));
 const sourcePeerageById = new Map((v61RelationSource.peerageEvents || []).map(row => [String(row.eventId || ''), row]));
 const appointmentRelations = [];
 const peerageRelations = [];
@@ -381,10 +389,12 @@ for (const person of readerPeopleRows) {
     const appointmentId = String(rawId || '');
     const source = sourceAppointmentsById.get(appointmentId);
     if (!source) fail(`V63 读者任官 ID 无法回定位规范源：${appointmentId}`);
+    if (source.personId !== personId) fail(`任官事实与受任人物不符：${appointmentId}`);
     appointmentRelations.push(pickFields({
       appointmentId,
       personId,
       nodeName: cleanReaderRelationText(source.officeName),
+      citations: source.citations,
       startYear: source.startYear,
       endYear: source.endYear,
       polity: cleanReaderRelationText(source.polity),
@@ -691,7 +701,7 @@ const v69PersonProfilePayload = {
     ...(Array.isArray(profile.lifeEvents) ? { lifeEvents: profile.lifeEvents.map(event => pickFields(event, personLifeEventFields)) } : {})
   }))
 };
-if (v69PersonProfilePayload.profiles.length !== 2096) fail('V69 人物档案读者投影不为 2096 人');
+if (v69PersonProfilePayload.profiles.length !== expectedReaderCount) fail('人物档案读者投影未覆盖审定范围');
 assertNoBannedPayloadKeys(v69PersonProfilePayload);
 registerProjection('data/v69-person-profiles.js', assignment('SGZ_V69_PERSON_PROFILES', v69PersonProfilePayload));
 
@@ -791,13 +801,13 @@ if (fs.existsSync(epigraphyReaderOverlayPath)) {
 const v69EpigraphicSource = readJson(path.join(root, 'data', 'v69-epigraphic-records.json'));
 const v69EpigraphicRecords = (v69EpigraphicSource.records || []).map(cleanEpigraphicRecord);
 if (v69EpigraphicRecords.length !== 166
-  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 44) {
-  fail('V69 金石读者投影不为 166 条／44 条有释文');
+  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 56) {
+  fail('金石读者投影不为 166 条／56 条有释文（含十二条已核补文）');
 }
 const v69EpigraphicPayload = {
   schemaVersion: 'V69-reader',
   modelId: 'sgz-v69-epigraphic-records',
-  summary: { records: 166, withInscription: 44, withoutInscription: 122 },
+  summary: { records: 166, withInscription: 56, withoutInscription: 110 },
   records: v69EpigraphicRecords
 };
 assertNoBannedPayloadKeys(v69EpigraphicPayload);
@@ -1034,6 +1044,15 @@ for (const match of html.matchAll(/\bloadSgzDataScript\(\s*[^,]+,\s*["']([^"']+)
   if (!reference || /^(?:https?:|data:|#)/.test(reference)) continue;
   if (bannedRuntimeFiles.has(reference)) fail(`\u8bfb\u8005 HTML \u4ecd\u5f15\u7528\u5ba1\u6821\u6570\u636e ${reference}`);
   localReferences.add(reference);
+}
+for (const relative of localReferences) {
+  if (!relative.startsWith('assets/app/') || !relative.endsWith('.js')) continue;
+  const moduleSource = fs.readFileSync(path.join(root, relative), 'utf8');
+  for (const match of moduleSource.matchAll(/(?:import|export)\s[\s\S]*?from\s*['"](\.[^'"]+)['"]/g)) {
+    const dependency = path.posix.normalize(path.posix.join(path.posix.dirname(relative), match[1]));
+    if (!dependency.startsWith('assets/app/')) fail(`Unexpected UI module dependency: ${dependency}`);
+    localReferences.add(dependency);
+  }
 }
 for (const relative of [...localReferences].sort()) {
   const projected = projectionOverrides.get(relative);

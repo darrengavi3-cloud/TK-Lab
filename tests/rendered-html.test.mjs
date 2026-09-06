@@ -29,8 +29,8 @@ test("server-renders the historical atlas shell", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>中华三国志·职官谱<\/title>/);
-  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=67"/);
+  assert.match(html, /<title>观史台 · 历史资料库<\/title>/);
+  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=71"/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
@@ -44,8 +44,8 @@ test("packages the current court, reader people, and map assets", async () => {
     readFile(new URL("../public/legacy/assets/ui/court-ink-palace.png", import.meta.url)),
   ]);
 
-  assert.match(page, /src="\/legacy\/index\.html\?v=67"/);
-  assert.match(layout, /中华三国志·职官谱/);
+  assert.match(page, /src="\/legacy\/index\.html\?v=71"/);
+  assert.match(layout, /观史台 · 历史资料库/);
   assert.match(legacy, /courtHierarchy|朝堂谱系|SGZ_V63_READER_PEOPLE/);
   assert.match(readerPeople, /曹操|诸葛亮|司马懿/);
   assert.match(periods, /huangjin|yongjia|HISTORY_MAP_REGISTRY/);
@@ -70,7 +70,7 @@ test("packages the V63 field-gated full people reader projection", async () => {
   assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
-  assert.equal(people.length, 2096);
+  assert.equal(people.length, 2099);
   assert.equal(new Set(people.map((person) => person.personId)).size, people.length);
   assert.ok(people.every((person) => person.personId && person.name));
   assert.ok(people.every((person) => !("datasets" in person)));

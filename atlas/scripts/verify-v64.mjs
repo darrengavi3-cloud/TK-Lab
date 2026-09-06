@@ -258,7 +258,7 @@ const epigraphyRecords = evaluateWindowFile(v69EpigraphyPath, 'reader:data/v69-e
 const epigraphyIds = new Set(epigraphyRecords.map(row => String(row.id || '')));
 const epigraphyInscribed = epigraphyRecords.filter(row => String(row.inscription || '').trim()).length;
 assert(epigraphyRecords.length === 166 && epigraphyIds.size === 166, `V69 金石读者投影应为 166 个稳定 ID，实际 ${epigraphyRecords.length}/${epigraphyIds.size}`);
-assert(epigraphyInscribed === 44 && epigraphyRecords.length - epigraphyInscribed === 122, `V69 金石读者投影应为 44 有释文 / 122 空释文，实际 ${epigraphyInscribed}/${epigraphyRecords.length - epigraphyInscribed}`);
+assert(epigraphyInscribed === 56 && epigraphyRecords.length - epigraphyInscribed === 110, `V69 金石读者投影应为 56 有释文 / 110 空释文，实际 ${epigraphyInscribed}/${epigraphyRecords.length - epigraphyInscribed}`);
 assert(readerManifest.readerProjection?.epigraphicRecordCount === epigraphyRecords.length, '金石读者投影数量与清单不一致');
 assert(readerManifest.readerProjection?.mapPeriodCount === 16 && readerManifest.readerProjection?.mapAuditGlobals === 0, '地图注册表读者投影不闭合');
 
@@ -320,7 +320,10 @@ for (const person of readerJson.people || []) {
 }
 const actualAppointmentRelations = new Set((readerRelations.appointments || []).map(row => `${row.appointmentId}@${row.personId}`));
 const actualPeerageRelations = new Set((readerRelations.peerageEvents || []).map(row => `${row.eventId}@${row.personId}`));
-assert(expectedAppointmentRelations.size === 149 && expectedPeerageRelations.size === 535, `V63 读者允许关系基线应为任官 149 / 封爵 535，实际 ${expectedAppointmentRelations.size}/${expectedPeerageRelations.size}`);
+const appointmentReview = readJson('data/v71-appointment-review.json');
+const reviewedAppointmentIds = new Set(appointmentReview.records.filter(row => row.status === 'verified').map(row => row.appointmentId));
+assert(expectedAppointmentRelations.size === reviewedAppointmentIds.size && expectedPeerageRelations.size === 535, 'V71 任官发布门槛与读者关系不闭合');
+assert((readerRelations.appointments || []).every(row => reviewedAppointmentIds.has(row.appointmentId)), '未核任官进入读者关系');
 assert(actualAppointmentRelations.size === (readerRelations.appointments || []).length, 'V63 读者任官 personId+appointmentId 复合键不唯一');
 assert(actualPeerageRelations.size === (readerRelations.peerageEvents || []).length, 'V63 读者封爵 personId+eventId 复合键不唯一');
 assert(expectedAppointmentRelations.size === actualAppointmentRelations.size && [...expectedAppointmentRelations].every(key => actualAppointmentRelations.has(key)), 'V63 读者任官允许 ID 与关联投影不闭合');

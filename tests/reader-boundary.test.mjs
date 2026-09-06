@@ -91,7 +91,7 @@ test("deploys only the field-gated reader projection", async () => {
   const readerPeople = context.window.SGZ_V63_READER_PEOPLE;
   assert.ok(readerPeople, "reader people payload is missing");
   const people = readerPeople.people || Object.values(readerPeople.byPersonId || readerPeople.peopleById || {});
-  assert.equal(people.length, 2096, `expected the V62-frozen 2096-person roster, received ${people.length}`);
+  assert.equal(people.length, 2099, `expected 2096 baseline people plus 3 reviewed V71 identities, received ${people.length}`);
   assert.ok(people.every((person) => person.personId && person.name), "reader person lacks a stable id or name");
   assert.ok(people.every((person) => !("datasets" in person)), "reader person leaked source dataset labels");
 

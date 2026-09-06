@@ -4,6 +4,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
+import { reviewedReaderScope, validateIdentitySources } from './person-identity-publication.mjs';
+import { reviewedAppointments } from './appointment-publication.mjs';
+import { reviewedBiographies } from './biography-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -18,9 +21,14 @@ const statusValues = new Set(['verified', 'review-only', 'suppressed']);
 const v60 = readJson('v60-person-workbook-import.json');
 const v61 = readJson('v61-person-supplements.json');
 const sourceIndex = readJson('person-source-index.json');
+const appointmentReview = readJson('v71-appointment-review.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
+const identityReview = readJson('v71-person-identity-review.json');
+validateIdentitySources(identityReview, {
+  appointments: sourceIndex.appointments, snapshot260: v61.snapshots260, v62: v62.people
+});
 const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
   ? readJson('v70-portrait-candidates.json')
   : { records: [] };
@@ -315,7 +323,7 @@ for (const person of sourceIndex.people || []) {
   for (const sourceId of person.sourceIds || []) entry.sourceRecordIds.add(sourceId);
   if (/\u5df2按显式身份|\u5df2核|\u5df2消歧/.test(text(person.homonymStatus)) || (identityApi.identities || []).some(item => item.personId === canonicalId)) entry.identityStatus = 'resolved';
 }
-for (const appointment of sourceIndex.appointments || []) {
+for (const appointment of reviewedAppointments(sourceIndex.appointments || [], appointmentReview, canonicalPersonId)) {
   if (isExcludedSourceRecord(appointment.personId, appointment.name)) continue;
   const entry = ensure(canonicalPersonId(appointment.personId), appointment.name);
   entry.datasets.add('appointments');
@@ -404,21 +412,6 @@ for (const [name, biography] of Object.entries(biographies)) {
   addCandidate(entry, 'bio', biography.bio, 'verified', `biography:${normalize(name)}`, '确定');
 }
 
-// 读者态小传使用已核字段编排成简短文言句，不从未核候选或推测材料补写。
-// 这是展示层文本，原始现代语体 bio 仍保留在来源与审校数据中。
-function buildClassicalBiography(entry, values, publicationStatus) {
-  const clauses = [];
-  if (publicationStatus.zi === 'verified' && values.zi) clauses.push(`字${values.zi}`);
-  if (publicationStatus.dynastyTags === 'verified' && Array.isArray(values.dynastyTags) && values.dynastyTags.length) {
-    clauses.push(`${values.dynastyTags.join('、')}人`);
-  }
-  if (publicationStatus.birthplace === 'verified' && values.birthplace) clauses.push(`籍${values.birthplace}`);
-  if (publicationStatus.birthYear === 'verified' && values.birthYear != null) clauses.push(`生于${values.birthYear}`);
-  if (publicationStatus.deathYear === 'verified' && values.deathYear != null) clauses.push(`卒于${values.deathYear}`);
-  if (!clauses.length) return '';
-  return `${entry.name}，${clauses.join('，')}。`;
-}
-
 const portraitResolutions = [];
 for (const asset of Object.values(portraits.assetsById || {})) {
   const legacyPersonId = text(asset.personId);
@@ -455,10 +448,30 @@ for (const row of Array.isArray(v70PortraitCandidates.records) ? v70PortraitCand
 
 // V62 的阅读态人物范围是本轮的回退基线。当前规范源可以继续保存更多
 // 审校候选，但只有冻结集合中的稳定 ID 才能进入人物注册表和读者包。
-const readerScopeRows = Array.isArray(v62ReaderScope.people) ? v62ReaderScope.people : [];
+for (const review of identityReview.records.filter(row => row.status === 'verified')) {
+  const entry = ensure(review.personId, review.name);
+  if (entry.name !== review.name) throw new Error(`Identity name changed: ${review.personId}`);
+  entry.identityStatus = 'resolved';
+  entry.datasets.add('v71-identity-review');
+  entry.sourceRecordIds.add(review.reviewId);
+  for (const field of review.replaceFields || []) {
+    for (const candidate of entry.fieldCandidates[field] || []) {
+      if (candidate.publicationStatus !== 'verified') continue;
+      candidate.publicationStatus = 'review-only';
+      candidate.historicalDisposition = '存疑';
+      candidate.supersededBy = review.reviewId;
+    }
+  }
+  for (const [field, value] of Object.entries(review.verifiedFields)) {
+    if (!['zi', 'birthplace', 'dynastyTags'].includes(field)) throw new Error(`Unsupported identity field: ${field}`);
+    addCandidate(entry, field, value, 'verified', review.reviewId, '确定');
+  }
+}
+
+const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview);
 const readerScopeIds = new Set(readerScopeRows.map(row => canonicalPersonId(row.personId)).filter(Boolean));
-if (readerScopeIds.size !== readerScopeRows.length || readerScopeRows.length !== 2096) {
-  throw new Error(`V62 阅读范围无效：期望 2096 个唯一 personId，当前 ${readerScopeRows.length}/${readerScopeIds.size}`);
+if (readerScopeIds.size !== readerScopeRows.length) {
+  throw new Error(`阅读范围存在重复 personId：${readerScopeRows.length}/${readerScopeIds.size}`);
 }
 for (const row of readerScopeRows) {
   const canonicalId = canonicalPersonId(row.personId);
@@ -472,6 +485,15 @@ for (const row of readerScopeRows) {
   }
 }
 
+const existingBiographies = new Map([...entries.values()]
+  .filter(entry => (entry.fieldCandidates.bio || []).some(row => row.publicationStatus === 'verified'))
+  .map(entry => [entry.personId, true]));
+for (const review of reviewedBiographies(readerScopeRows, readJson('v71-person-biography-review.json'), existingBiographies)) {
+  const entry = entries.get(review.personId);
+  addCandidate(entry, 'bio', review.bio, 'verified', review.reviewId, '确定');
+  addCandidate(entry, 'bioCitations', review.citations, 'verified', review.reviewId, '确定');
+}
+
 for (const conflict of ziConflicts) {
   if (isExcludedSourceRecord(conflict.personId, conflict.name) || isExcludedSourceRecord(conflict.isolatedPersonId, conflict.name)) continue;
   const primary = ensure(conflict.personId, conflict.name);
@@ -480,12 +502,12 @@ for (const conflict of ziConflicts) {
   isolated.identityStatus = 'conflict';
 }
 
-const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'bioClassical', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
+const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'bioCitations', 'bioClassical', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
 function chooseField(entry, field) {
   if (field === 'name') return { status: readerScopeIds.has(entry.personId) && entry.name ? 'verified' : 'suppressed', value: entry.name || undefined };
   if (field === 'aliases') return { status: entry.aliases.size ? 'verified' : 'suppressed', value: [...entry.aliases].sort((a, b) => a.localeCompare(b, 'zh-CN')) };
   if (field === 'appointments') {
-    const status = entry.appointmentIds.size ? (entry.identityStatus === 'resolved' ? 'verified' : 'review-only') : 'suppressed';
+    const status = entry.appointmentIds.size ? (entry.identityStatus !== 'conflict' ? 'verified' : 'review-only') : 'suppressed';
     return { status, value: [...entry.appointmentIds].sort() };
   }
   if (field === 'peerage') return { status: entry.peerageEventIds.size ? (entry.identityStatus === 'conflict' ? 'review-only' : 'verified') : 'suppressed', value: [...entry.peerageEventIds].sort() };
@@ -507,11 +529,6 @@ const people = registryEntries.map(entry => {
     const selected = chooseField(entry, field);
     publicationStatus[field] = selected.status;
     if (selected.value !== undefined && selected.status === 'verified') values[field] = selected.value;
-  }
-  const bioClassical = buildClassicalBiography(entry, values, publicationStatus);
-  if (bioClassical) {
-    values.bioClassical = bioClassical;
-    publicationStatus.bioClassical = 'verified';
   }
   return {
     personId: entry.personId,
@@ -547,19 +564,19 @@ for (const key of Object.keys(legacyToCanonical)) legacyToCanonical[key] = canon
 
 const readerPeople = people.filter(person => person.publicationStatus.name === 'verified').map(person => {
   const output = { personId: person.personId, name: person.name };
-  const valueKeys = { aliases: 'aliases', zi: 'zi', birthplace: 'birthplace', birthYear: 'birthYear', deathYear: 'deathYear', bio: 'bio', bioClassical: 'bioClassical', dynastyTags: 'dynastyTags', historicalAffiliations: 'historicalAffiliations', appointments: 'appointmentIds', peerage: 'peerageEventIds', portraits: 'portraitIds' };
+  const valueKeys = { aliases: 'aliases', zi: 'zi', birthplace: 'birthplace', birthYear: 'birthYear', deathYear: 'deathYear', bio: 'bio', bioCitations: 'bioCitations', bioClassical: 'bioClassical', dynastyTags: 'dynastyTags', historicalAffiliations: 'historicalAffiliations', appointments: 'appointmentIds', peerage: 'peerageEventIds', portraits: 'portraitIds' };
   for (const [statusKey, valueKey] of Object.entries(valueKeys)) {
     if (person.publicationStatus[statusKey] === 'verified' && person.values[statusKey] !== undefined) output[valueKey] = person.values[statusKey];
   }
   return output;
 });
-if (readerPeople.length !== 2096) throw new Error(`V63 阅读态人物范围应回退为 2096 人，当前 ${readerPeople.length}`);
+if (readerPeople.length !== readerScopeRows.length) throw new Error(`阅读态人物未覆盖审定范围：${readerPeople.length}/${readerScopeRows.length}`);
 
 const protectedResolution = Object.entries(protectedExistingPeople).map(([name, personId]) => ({ name, personId: canonicalPersonId(personId), resolved: Boolean(byPersonId[canonicalPersonId(personId)]) }));
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
-  readerScopeVersion: v62ReaderScope.schemaVersion || 'V62',
+  readerScopeVersion: 'V71',
   readerScopePeople: readerScopeRows.length,
   scopeExcludedPeople: excludedPeopleAudit.size,
   nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
@@ -595,10 +612,11 @@ const registry = {
   },
   summary,
   readerScope: {
-    schemaVersion: v62ReaderScope.schemaVersion || 'V62',
-    modelId: v62ReaderScope.modelId || 'sgz-v62-reader-scope',
+    schemaVersion: 'V71',
+    modelId: 'sgz-v71-reviewed-reader-scope',
     people: readerScopeRows.length,
-    policy: v62ReaderScope.policy,
+    baselinePeople: v62ReaderScope.people.length,
+    policy: identityReview.policy,
   },
   people,
   excludedPeople,
@@ -614,7 +632,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: v62ReaderScope.schemaVersion || 'V62' },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V71' },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,

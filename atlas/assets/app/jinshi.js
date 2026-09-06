@@ -1,3 +1,35 @@
+export function epigraphicYear(value){
+  if(typeof value!=='number'&&typeof value!=='string')return null;
+  if(String(value).trim()==='')return null;
+  const year=Number(value);
+  return Number.isInteger(year)&&year>0?year:null;
+}
+
+export function epigraphicEraKey(item){
+  const year=epigraphicYear(item?.year);
+  if(year!==null)return year<220?'后汉':year<266?'三国':'两晋';
+  const dynasty=item?.readerDisplayStatus==='candidate-dynasty'?'':item?.dynasty;
+  if(['后汉','东汉'].includes(dynasty))return '后汉';
+  if(['季汉','蜀汉','魏','吴'].includes(dynasty))return '三国';
+  if(['西晋','东晋'].includes(dynasty))return '两晋';
+  if(['魏','吴'].includes(item?.polity))return '三国';
+  if(item?.polity==='晋')return '两晋';
+  return '';
+}
+
+export function epigraphicInscriptionState(item){
+  if(!String(item?.inscription||'').trim())return '源文未见';
+  const status=String(item?.inscriptionStatus||'');
+  if(/待校/.test(status))return '待校';
+  return /残|缺/.test(status)?'残缺':'已录入';
+}
+
+export function matchesEpigraphicInscriptionStatus(item,status){
+  if(!status||status==='all')return true;
+  if(status==='已录入')return Boolean(String(item?.inscription||'').trim());
+  return epigraphicInscriptionState(item)===status;
+}
+
 export function highlightTextFragments(text,query){
   const value=String(text||'');
   const q=String(query||'').trim().toLowerCase();

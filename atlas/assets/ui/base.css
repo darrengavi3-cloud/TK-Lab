@@ -17,6 +17,10 @@
 }
 *{box-sizing:border-box;}
 html,body,#app{height:100%;margin:0;}
+html { text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body { font-size: var(--sgz-text-body); }
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 2px solid var(--sgz-accent); outline-offset: 3px; }
 body{
   font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
   background:var(--paper);
