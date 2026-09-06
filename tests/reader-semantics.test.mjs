@@ -1,3 +1,4 @@
+import { reviewedBiographies } from '../atlas/scripts/biography-publication.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -108,7 +109,7 @@ test('verified administrative tenures resolve into person timelines; candidates 
     assert.equal(record.readerDisplayStatus, 'verified');
     assert.equal(event.personId, record.personId);
   }
-  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 70);
+  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 78);
   assert.equal(json('v63-reader-people').people.filter(person => person.bioClassical).length, 0);
 });
 
@@ -290,4 +291,31 @@ test('reviewed old commentary retains its text and rejects altered apparatus', (
   altered.inscriptionVariants[0].text += '改';
   assert.throws(() => applyReviewedTranscription(raw, {}, altered), /旧注或异文校验失败/);
   assert.throws(() => applyReviewedTranscription(raw, { inscriptionVariants: [{ text: '旧注' }] }, r), /不得覆盖已有旧注或异文/);
+});
+
+
+test('reviewed biographies pin identities and evidence without replacing existing biographies', () => {
+  const review = json('v71-person-biography-review');
+  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'));
+  const approved = reviewedBiographies(scope, review);
+  const people = json('v63-reader-people').people;
+  assert.equal(approved.length, 8);
+  for (const row of approved) {
+    const published = people.find(person => person.personId === row.personId);
+    assert.equal(published.bio, row.bio);
+    assert.deepEqual(published.bioCitations, row.citations);
+  }
+  const additions = new Set(approved.map(row => row.personId));
+  const originals = people.filter(person => person.bio && !additions.has(person.personId))
+    .map(({ personId, bio }) => ({ personId, bio }));
+  assert.equal(originals.length, 70);
+  assert.equal(sourceDigest(originals), review.baselineBiographyDigest);
+  const altered = structuredClone(review);
+  altered.records[0].bio += '无据新增。';
+  assert.throws(() => reviewedBiographies(scope, altered), /content changed/);
+  altered.records[0] = { ...review.records[0], name: '刘表' };
+  assert.throws(() => reviewedBiographies(scope, altered), /identity changed/);
+  altered.records[0] = { ...review.records[0], citations: [] };
+  assert.throws(() => reviewedBiographies(scope, altered), /Incomplete/);
+  assert.throws(() => reviewedBiographies(scope, review, new Map([[approved[0].personId, true]])), /overwrite/);
 });

@@ -45,6 +45,8 @@
   .people-toolbar,.jinshi-toolbar,.battle-toolbar,.fangzhen-toolbar,.shihuo-toolbar { flex-wrap:wrap;overflow:visible; }
   .people-toolbar .v63-person-search-field { flex-basis:100%;min-width:0;width:100%; }
   .module-page .el-input__wrapper,.module-page .el-select__wrapper,.v56-segmented button { min-height:var(--sgz-touch-target); }
+  .v56-context-bar .el-select .el-input__wrapper,.v56-context-bar .el-select__wrapper { min-height:var(--sgz-touch-target); }
+  .v56-context-bar .el-input__inner,.module-page .el-input__inner { font-size:16px; }
   .v67-dossier-actions button,.v67-pagination button,.people-pagination button { min-height:44px; }
   .people-detail-head { display:block; }
   .people-detail-head .people-detail-portrait { float:right;margin:0 0 18px 18px; }

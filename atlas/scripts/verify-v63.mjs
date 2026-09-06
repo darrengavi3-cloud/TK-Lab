@@ -135,7 +135,7 @@ const readerText = read('data/v63-reader-people.json');
 for (const token of ['workbookSource', 'workbookSources', 'sourcePath', 'sourceRecordId', 'reviewCandidates', 'externalSearchLog', 'audit-only', '/Users/', 'publicationStatus']) {
   assert(!readerText.includes(token), `V63 读者数据泄露审校字段或本机路径：${token}`);
 }
-const readerAllowedFields = new Set(['personId','name','aliases','zi','birthplace','birthYear','deathYear','bio','bioClassical','dynastyTags','historicalAffiliations','appointmentIds','peerageEventIds','portraitIds']);
+const readerAllowedFields = new Set(['personId','name','aliases','zi','birthplace','birthYear','deathYear','bio','bioCitations','bioClassical','dynastyTags','historicalAffiliations','appointmentIds','peerageEventIds','portraitIds']);
 const statusFieldForReaderField = { appointmentIds: 'appointments', peerageEventIds: 'peerage', portraitIds: 'portraits' };
 for (const person of reader.people || []) {
   assert(Object.keys(person).every(field => readerAllowedFields.has(field)), `${person.personId} 读者投影包含未允许字段`);

@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { reviewedReaderScope, validateIdentitySources } from './person-identity-publication.mjs';
 import { reviewedAppointments } from './appointment-publication.mjs';
+import { reviewedBiographies } from './biography-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -484,6 +485,15 @@ for (const row of readerScopeRows) {
   }
 }
 
+const existingBiographies = new Map([...entries.values()]
+  .filter(entry => (entry.fieldCandidates.bio || []).some(row => row.publicationStatus === 'verified'))
+  .map(entry => [entry.personId, true]));
+for (const review of reviewedBiographies(readerScopeRows, readJson('v71-person-biography-review.json'), existingBiographies)) {
+  const entry = entries.get(review.personId);
+  addCandidate(entry, 'bio', review.bio, 'verified', review.reviewId, '确定');
+  addCandidate(entry, 'bioCitations', review.citations, 'verified', review.reviewId, '确定');
+}
+
 for (const conflict of ziConflicts) {
   if (isExcludedSourceRecord(conflict.personId, conflict.name) || isExcludedSourceRecord(conflict.isolatedPersonId, conflict.name)) continue;
   const primary = ensure(conflict.personId, conflict.name);
@@ -492,7 +502,7 @@ for (const conflict of ziConflicts) {
   isolated.identityStatus = 'conflict';
 }
 
-const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'bioClassical', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
+const fields = ['name', 'aliases', 'zi', 'birthplace', 'birthYear', 'deathYear', 'bio', 'bioCitations', 'bioClassical', 'dynastyTags', 'historicalAffiliations', 'appointments', 'peerage', 'portraits'];
 function chooseField(entry, field) {
   if (field === 'name') return { status: readerScopeIds.has(entry.personId) && entry.name ? 'verified' : 'suppressed', value: entry.name || undefined };
   if (field === 'aliases') return { status: entry.aliases.size ? 'verified' : 'suppressed', value: [...entry.aliases].sort((a, b) => a.localeCompare(b, 'zh-CN')) };
@@ -554,7 +564,7 @@ for (const key of Object.keys(legacyToCanonical)) legacyToCanonical[key] = canon
 
 const readerPeople = people.filter(person => person.publicationStatus.name === 'verified').map(person => {
   const output = { personId: person.personId, name: person.name };
-  const valueKeys = { aliases: 'aliases', zi: 'zi', birthplace: 'birthplace', birthYear: 'birthYear', deathYear: 'deathYear', bio: 'bio', bioClassical: 'bioClassical', dynastyTags: 'dynastyTags', historicalAffiliations: 'historicalAffiliations', appointments: 'appointmentIds', peerage: 'peerageEventIds', portraits: 'portraitIds' };
+  const valueKeys = { aliases: 'aliases', zi: 'zi', birthplace: 'birthplace', birthYear: 'birthYear', deathYear: 'deathYear', bio: 'bio', bioCitations: 'bioCitations', bioClassical: 'bioClassical', dynastyTags: 'dynastyTags', historicalAffiliations: 'historicalAffiliations', appointments: 'appointmentIds', peerage: 'peerageEventIds', portraits: 'portraitIds' };
   for (const [statusKey, valueKey] of Object.entries(valueKeys)) {
     if (person.publicationStatus[statusKey] === 'verified' && person.values[statusKey] !== undefined) output[valueKey] = person.values[statusKey];
   }

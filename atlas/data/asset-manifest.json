@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 688,
-  "totalBytes": 313582539,
-  "aggregateSha256": "896400b7d63ef58fd6f0f6edf01231e856a77e0dc3438eec6b85bab04167b4b5",
+  "fileCount": 689,
+  "totalBytes": 314186738,
+  "aggregateSha256": "9f1f98ee0ae94b8712e0515abd96adb852ff0a82b9beb90fa4fc880ad49b67a7",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -2673,8 +2673,8 @@
     },
     {
       "path": "assets/ui/responsive.css",
-      "bytes": 2995,
-      "sha256": "1ead04e56be5136bb45cec34e6d43eb333c7a7c7965fad4c11eb0e34794fceee"
+      "bytes": 3207,
+      "sha256": "7edddfd8fc9b4c6c054362c7fcd8167d7141b516249a80c49a4db98c59776c32"
     },
     {
       "path": "assets/ui/tokens.css",
@@ -3188,23 +3188,23 @@
     },
     {
       "path": "data/v63-person-registry.js",
-      "bytes": 7046680,
-      "sha256": "2ac069ded9fc0b220aaf259b2c89c85015125ae5a0c61d49ee047f54e8fc986d"
+      "bytes": 7291613,
+      "sha256": "50d3bbb64b23eb406cd8755eb538c6f8e7d5965db981ab33f757e6a5b7ab6f81"
     },
     {
       "path": "data/v63-person-registry.json",
-      "bytes": 10852420,
-      "sha256": "41c990b47f006e064688c18e9d7621d8f61a9a0a883987c2d7377d6c4a2a30e7"
+      "bytes": 11177737,
+      "sha256": "538d3681533683055b28b1c9ffda9ef5338107b71d4b756c3ca31e452077a74c"
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 373810,
-      "sha256": "eef78c9e893ce716e29e5f4c0db55d5effd21841ac59b8b0040efbfbcc0d11fd"
+      "bytes": 382983,
+      "sha256": "9a5cdb8dd290351909574bb095708ccbc57773254e2ccc8928d01b6a7bd1ebd5"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 524978,
-      "sha256": "c678b7b7eb477e53b427fd8f4df6552dc01de9f0ed6ca56a81f47458bc98a65a"
+      "bytes": 535853,
+      "sha256": "f54746c69efc242b46a5170aaae80f9693d0a694d21342590e8f27ba87a1e1c2"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -3425,6 +3425,11 @@
       "path": "data/v71-epigraphy-transcription-review.json",
       "bytes": 17960,
       "sha256": "cde075e3d3ae36b8e006816b80ade5816bb64c7ea6922c1ec84aed1762685e8a"
+    },
+    {
+      "path": "data/v71-person-biography-review.json",
+      "bytes": 13689,
+      "sha256": "d631e8d5fd15867c498cbbdcb151108d7407c21e273e80b2a07b63b51e6e9b6e"
     },
     {
       "path": "data/v71-person-identity-review.json",

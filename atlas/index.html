@@ -5946,6 +5946,7 @@ const app = createApp({
       projected.birthYear=readerHas('birthYear')?normalizeYear(reader.birthYear):null;
       projected.deathYear=readerHas('deathYear')?normalizeYear(reader.deathYear):null;
       projected.bio=readerHas('bio')?String(reader.bio||''):'';
+      projected.bioCitations=readerHas('bioCitations')?cloneJSON(reader.bioCitations):[];
       projected.bioClassical=readerHas('bioClassical')?String(reader.bioClassical||''):'';
       projected.bioSource='';projected.bioKind='';
       projected.dynastyTags=readerHas('dynastyTags')&&Array.isArray(reader.dynastyTags)?PERSON_DYNASTY_ORDER.filter(tag=>reader.dynastyTags.includes(tag)):[];
@@ -6403,6 +6404,7 @@ const app = createApp({
         e.birthYear=person.birthYear??e.birthYear;
         e.deathYear=person.deathYear??e.deathYear;
         e.bio=person.bio||e.bio;
+        e.bioCitations=person.bioCitations||[];
         e.bioClassical=person.bioClassical||e.bioClassical||'';
         e.bioKind=person.bio||person.bioClassical?'读者投影':e.bioKind;
         e.dynastyTags.push(...(person.dynastyTags||[]));
@@ -6847,7 +6849,7 @@ const app = createApp({
     }
     function personCitations(person){
       const seen=new Set();
-      return (person?.lifeEvents||[]).flatMap(event=>event.citations||[]).filter(citation=>{
+      return [...(person?.bioCitations||[]),...(person?.lifeEvents||[]).flatMap(event=>event.citations||[])].filter(citation=>{
         if(!/^https:\/\//.test(citation.url||''))return false;
         const key=citation.url+'|'+citation.quote;
         if(seen.has(key))return false;seen.add(key);return true;
