@@ -909,18 +909,20 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 .reader-citations h3 { display:flex;align-items:baseline;gap:12px;margin:18px 0;font:600 17px/1.5 var(--sgz-font-heading); }
 .reader-citations h3 small { color:var(--sgz-muted);font:400 var(--sgz-text-meta)/1.5 var(--sgz-font-body); }
 .reader-citations details { border-top:1px solid var(--sgz-rule);padding:0 0 4px; }
-.reader-citations summary { min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:var(--sgz-ink);font-size:13px;list-style:none; }
+.reader-citations summary { min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:var(--sgz-ink);font-size:var(--sgz-text-control);list-style:none; }
 .reader-citations summary::before { content:'＋';color:var(--sgz-accent); }
 .reader-citations details[open] summary::before { content:'−'; }
-.reader-citations summary span { flex:1; }
-.reader-citations summary small { color:var(--sgz-muted);font-size:12px; }
+.reader-citations summary span { flex:1;min-width:0;overflow-wrap:anywhere; }
+.reader-citations summary .reader-citation-collapse,.reader-citations details[open] .reader-citation-expand { display:none; }
+.reader-citations details[open] .reader-citation-collapse { display:inline; }
+.reader-citations summary small { color:var(--sgz-muted);font-size:12px;flex-shrink:0; }
 .reader-citations blockquote { margin:4px 0 16px;padding:12px 18px;border-left:2px solid var(--sgz-dossier-gold);background:color-mix(in srgb,var(--sgz-dossier-gold) 5%,transparent);font:16px/2 var(--sgz-font-heading);white-space:pre-wrap;overflow-wrap:anywhere; }
-.reader-citations a { display:inline-flex;align-items:center;min-height:44px;color:var(--sgz-accent);font-size:13px;text-underline-offset:4px; }
-.reader-citations p { color:var(--sgz-muted);font-size:13px;line-height:1.8; }
+.reader-citations a { display:inline-flex;align-items:center;min-height:44px;color:var(--sgz-accent);font-size:var(--sgz-text-control);text-underline-offset:4px; }
+.reader-citations p { color:var(--sgz-muted);font-size:var(--sgz-text-control);line-height:1.8; }
 .reader-availability { display:flex;gap:18px;margin-block:24px;padding:24px;border:1px dashed var(--sgz-rule);background:var(--sgz-surface);border-radius:var(--sgz-radius); }
 .reader-availability > span { flex-shrink:0;display:grid;place-items:center;width:36px;height:42px;border:1px solid var(--sgz-dossier-gold);color:var(--sgz-dossier-gold);font:20px var(--sgz-font-heading); }
 .reader-availability h3 { margin:0 0 8px;font:600 17px/1.5 var(--sgz-font-heading); }
-.reader-availability p,.reader-quiet-note { max-width:var(--sgz-reading-measure);color:var(--sgz-muted);font-size:13px;line-height:1.8; }
+.reader-availability p,.reader-quiet-note { max-width:var(--sgz-reading-measure);color:var(--sgz-muted);font-size:var(--sgz-text-control);line-height:1.8; }
 .reader-filter-summary { display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0; }
 .reader-filter-summary > span { color:var(--sgz-muted);font-size:12px;font-variant-numeric:tabular-nums; }
 .v69-loading-frame.is-error > span { display:none; }
@@ -929,7 +931,7 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 .v69-loading-frame .el-button { min-height:44px;padding-inline:24px; }
 .reader-inscription-apparatus { margin-block:var(--sgz-space-section);border-top:1px solid var(--sgz-rule);padding-top:18px; }
 .reader-inscription-apparatus h3 { margin:0 0 12px;font:600 17px/1.5 var(--sgz-font-heading); }
-.reader-inscription-apparatus p,.reader-inscription-apparatus li > span { color:var(--sgz-muted);font:13px/1.8 var(--sgz-font-body); }
+.reader-inscription-apparatus p,.reader-inscription-apparatus li > span { color:var(--sgz-muted);font:var(--sgz-text-control)/1.8 var(--sgz-font-body); }
 .reader-inscription-apparatus details { border-block:1px solid var(--sgz-rule); }
 .reader-inscription-apparatus details + details { border-top:0; }
 .reader-inscription-apparatus summary { display:flex;align-items:center;gap:12px;min-height:48px;cursor:pointer;color:var(--sgz-ink);font-size:14px;list-style:none; }
@@ -940,3 +942,5 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 .reader-inscription-apparatus li { margin-block:12px; }
 .reader-inscription-apparatus a { display:inline-flex;align-items:center;min-height:44px;color:var(--sgz-accent);font-size:14px;text-underline-offset:4px; }
 .reader-inscription-apparatus li > span { display:block; }
+
+.reader-inscription-apparatus a,.reader-citations a { max-width:100%;overflow-wrap:anywhere; }

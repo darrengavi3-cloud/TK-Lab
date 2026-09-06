@@ -13,8 +13,16 @@ export function applyReviewedTranscription(raw, record, review) {
       !review.transcriptionReferences.every(source => source.title && /^https:\/\//.test(source.url))) {
     throw new Error(`金石录文或出处校验失败：${raw.id}`);
   }
-  for (const field of ['inscription', 'inscriptionStatus', 'transcriptionNote', 'transcriptionReferences']) {
-    record[field] = structuredClone(review[field]);
+  if (Object.hasOwn(review, 'inscriptionVariants')) {
+    if (!Array.isArray(review.inscriptionVariants) ||
+        digest(JSON.stringify(review.inscriptionVariants)) !== review.apparatusDigest ||
+        !review.inscriptionVariants.every(item => item.label && item.text?.trim() && item.source)) {
+      throw new Error(`金石旧注或异文校验失败：${raw.id}`);
+    }
+    if (record.inscriptionVariants?.length) throw new Error(`不得覆盖已有旧注或异文：${raw.id}`);
+  }
+  for (const field of ['inscription', 'inscriptionStatus', 'transcriptionNote', 'transcriptionReferences', 'inscriptionVariants']) {
+    if (Object.hasOwn(review, field)) record[field] = structuredClone(review[field]);
   }
   if (review.suppressUnverifiedPersonLink === true) record.people = '';
   return record;

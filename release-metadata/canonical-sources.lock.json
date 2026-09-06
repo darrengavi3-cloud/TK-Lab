@@ -4,18 +4,18 @@
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
   "fileCount": 777,
-  "totalBytes": 330639689,
-  "aggregateSha256": "fdfd276d20730e52057fd89461a13923d8e5bbd8fa054d52bb6b94ef96b85f29",
+  "totalBytes": 330659791,
+  "aggregateSha256": "3f2b5648debd9901101aa6aae599fea7b6c7482e520b66bdb067b14ce23f0024",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 19854,
-      "sha256": "0d31dc3969402097b9b56d1206c3ee79fdc7e585b092ae243ed88de363db3d04"
+      "bytes": 20356,
+      "sha256": "d9ac98aafb11daf8cc8528c946926d1a3a64da0389db6e3894019ecf633321f1"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 23193,
-      "sha256": "a22d49308a9c5244a0fb7d5c8da76655a76e62404ba75acab2b763a2b16345bd"
+      "bytes": 24428,
+      "sha256": "ce1145642aabb2f0776e3be7c9b3ced4c24ae6680f7cdcbf09afe4667ca3995f"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -24,8 +24,8 @@
     },
     {
       "path": "assets/app/jinshi.js",
-      "bytes": 2796,
-      "sha256": "a32f32267a7e3fa29b4e7526eddca8e9c7c8d452626dc82a69c8b264a0954258"
+      "bytes": 4082,
+      "sha256": "b8e9544c310e112039d4c0905f761f781ad16a3aea7ceeb06c39f0e4ef6c968f"
     },
     {
       "path": "assets/app/navigation.js",
@@ -49,8 +49,8 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 3364,
-      "sha256": "8e1de5a231bdbdf4a66677d1e5f610cb2f7f42267fdb1234e569968e6cb06177"
+      "bytes": 3483,
+      "sha256": "26f4416774ef0007c9985a23e4497060c8c500cba91b9f33220d7073f8e02ff0"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -2659,8 +2659,8 @@
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 40887,
-      "sha256": "2982feaa6025c0e3f56ea8b982d204b32594e7b96fefcae0c7d8d8f28afb07ec"
+      "bytes": 41331,
+      "sha256": "a9e5f7e66035f79935b23bdd2cd6a244b9672a80fd695863b114e0f5e86ca76b"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -2674,13 +2674,13 @@
     },
     {
       "path": "assets/ui/responsive.css",
-      "bytes": 2789,
-      "sha256": "b99bbaaf33edb979e1464cbf90711443298ec4c2d2a47a96b27d999ae6a89d3d"
+      "bytes": 2995,
+      "sha256": "1ead04e56be5136bb45cec34e6d43eb333c7a7c7965fad4c11eb0e34794fceee"
     },
     {
       "path": "assets/ui/tokens.css",
-      "bytes": 1152,
-      "sha256": "3f56cb52f642a00436bac597747eb82a8f7b400ff33c2005cc67af236bf256ee"
+      "bytes": 1180,
+      "sha256": "26e8670c0b0c7702868363cc913fa29208f45172a259518cb05510bdce6c8fac"
     },
     {
       "path": "assets/ui/v55.css",
@@ -3329,13 +3329,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 315694,
-      "sha256": "b0d61c8864f13f972ab4c1fb18278f34ccaa25ecfc35e0d4cc2c84fab3d7fcaf"
+      "bytes": 320597,
+      "sha256": "95ee7cbb51fc98b77a269e42f9d6d77c909cf5b80d4bb5985b546ea95055421b"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 379842,
-      "sha256": "c7c9fe9ae8ac75997da8e0775390690144fb0b1f6016c1203b47a2159386e371"
+      "bytes": 384980,
+      "sha256": "bc269d11d92d37490e2a4e61b921c1ea4447fb877bd5b6c5f8ea0cd442fd1626"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -3414,8 +3414,8 @@
     },
     {
       "path": "data/v71-epigraphy-transcription-review.json",
-      "bytes": 12109,
-      "sha256": "359bf34e04ad5430356b150bdec136b7f34dcf0a1809f2a4c3106cf156efc863"
+      "bytes": 17960,
+      "sha256": "cde075e3d3ae36b8e006816b80ade5816bb64c7ea6922c1ec84aed1762685e8a"
     },
     {
       "path": "data/v71-person-identity-review.json",
@@ -3454,8 +3454,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 778959,
-      "sha256": "804c83bade5bc6ce4818dd054c5c4c18f9d8713394cfad8f61b53201cc58ab33"
+      "bytes": 778796,
+      "sha256": "36c5472c0af70b214a27e64653974ac4c871d67c2d59f737bf1d5ffae0b23a5c"
     },
     {
       "path": "scripts/appointment-publication.mjs",
@@ -3504,8 +3504,8 @@
     },
     {
       "path": "scripts/build-reader-bundle.mjs",
-      "bytes": 70511,
-      "sha256": "df392e8fa41879e5fb89af87cda2a69d8d07ecf01a2c7c80cd2f0d83dabe8ae2"
+      "bytes": 70514,
+      "sha256": "060211897960a2ce9fa5b80b3a1aefd7ecb7070aa9647f6e880716bef592afe1"
     },
     {
       "path": "scripts/build-v42-import-template.mjs",
@@ -3605,7 +3605,7 @@
     {
       "path": "scripts/build-v69-data.mjs",
       "bytes": 37610,
-      "sha256": "84b05761518cfd0b95b9e75df415f9349369ef0aa1afa60bd45bd0ac2b4a1a5d"
+      "sha256": "95e073f2c8f606a9361383b39aa569385ea965e952423499a58015cce0ff9645"
     },
     {
       "path": "scripts/download-assets.sh",
@@ -3614,8 +3614,8 @@
     },
     {
       "path": "scripts/epigraphy-publication.mjs",
-      "bytes": 1101,
-      "sha256": "ce9bd7a77d85a58d3031e5998e58d5be05570c4331193e74887eadf3c8712540"
+      "bytes": 1648,
+      "sha256": "faa1ffb62d2eb422746a7bc5c0d7d25409184f680895287c8539eb3f0f246de6"
     },
     {
       "path": "scripts/extract-v55-shihuo.mjs",
@@ -3830,7 +3830,7 @@
     {
       "path": "scripts/verify-v64.mjs",
       "bytes": 32741,
-      "sha256": "c3c57b542a862829d4f1a2909f1c2121d1f07d9c2669362cb0cec76537820974"
+      "sha256": "faed2b74299c33923badd0e8f41d0b177451630c0352d4ef063bebad51ff184c"
     },
     {
       "path": "scripts/verify-v65-battle-shihuo.mjs",
@@ -3869,8 +3869,8 @@
     },
     {
       "path": "scripts/verify-v67.mjs",
-      "bytes": 8014,
-      "sha256": "bf4852559dc4b3984ec07234575d7aa8bc0bbfea10b9148138b25b02c61f9129"
+      "bytes": 8017,
+      "sha256": "fe4ac40417977cc30fca3eeee9f06971546980ba2fb4fe9e068fb387feeef458"
     },
     {
       "path": "scripts/verify-v68.mjs",
@@ -3880,7 +3880,7 @@
     {
       "path": "scripts/verify-v69.mjs",
       "bytes": 12677,
-      "sha256": "f72e418afa40c5edabc241e533fd0779b1384bef336b6686a203dcdf66dabcf3"
+      "sha256": "14e12350d60d7082dfc8f1cc643de4b97d6e641e7c8054e10bc157b6ce4f832b"
     },
     {
       "path": "scripts/verify-v70.mjs",

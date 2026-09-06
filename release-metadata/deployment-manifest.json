@@ -79,8 +79,8 @@
     },
     {
       "path": "client/legacy/assets/app/jinshi.js",
-      "bytes": 2796,
-      "sha256": "a32f32267a7e3fa29b4e7526eddca8e9c7c8d452626dc82a69c8b264a0954258"
+      "bytes": 4082,
+      "sha256": "b8e9544c310e112039d4c0905f761f781ad16a3aea7ceeb06c39f0e4ef6c968f"
     },
     {
       "path": "client/legacy/assets/app/navigation.js",
@@ -104,8 +104,8 @@
     },
     {
       "path": "client/legacy/assets/app/reader-components.js",
-      "bytes": 3364,
-      "sha256": "8e1de5a231bdbdf4a66677d1e5f610cb2f7f42267fdb1234e569968e6cb06177"
+      "bytes": 3483,
+      "sha256": "26f4416774ef0007c9985a23e4497060c8c500cba91b9f33220d7073f8e02ff0"
     },
     {
       "path": "client/legacy/assets/app/route-contract.js",
@@ -2424,8 +2424,8 @@
     },
     {
       "path": "client/legacy/assets/ui/components.css",
-      "bytes": 40887,
-      "sha256": "2982feaa6025c0e3f56ea8b982d204b32594e7b96fefcae0c7d8d8f28afb07ec"
+      "bytes": 41331,
+      "sha256": "a9e5f7e66035f79935b23bdd2cd6a244b9672a80fd695863b114e0f5e86ca76b"
     },
     {
       "path": "client/legacy/assets/ui/court-ink-palace.png",
@@ -2439,13 +2439,13 @@
     },
     {
       "path": "client/legacy/assets/ui/responsive.css",
-      "bytes": 2789,
-      "sha256": "b99bbaaf33edb979e1464cbf90711443298ec4c2d2a47a96b27d999ae6a89d3d"
+      "bytes": 2995,
+      "sha256": "1ead04e56be5136bb45cec34e6d43eb333c7a7c7965fad4c11eb0e34794fceee"
     },
     {
       "path": "client/legacy/assets/ui/tokens.css",
-      "bytes": 1152,
-      "sha256": "3f56cb52f642a00436bac597747eb82a8f7b400ff33c2005cc67af236bf256ee"
+      "bytes": 1180,
+      "sha256": "26e8670c0b0c7702868363cc913fa29208f45172a259518cb05510bdce6c8fac"
     },
     {
       "path": "client/legacy/assets/vendor/element-plus/index.css",
@@ -2584,8 +2584,8 @@
     },
     {
       "path": "client/legacy/data/v69-epigraphic-records.js",
-      "bytes": 199154,
-      "sha256": "3c18bf8d3b0779d0dd3fe328e06289f3ec31cb5080f7e932de0fb0b90304a8e5"
+      "bytes": 204057,
+      "sha256": "0515b8c8195af564e7cfe7d7386f9bb40cd4248c64d74c9f3eba421e54cf78d5"
     },
     {
       "path": "client/legacy/data/v69-fangzhen-reader.js",
@@ -2599,13 +2599,13 @@
     },
     {
       "path": "client/legacy/index.html",
-      "bytes": 769989,
-      "sha256": "cba6ee7586794e682c11469b01c536542dcf723fe4fe78bf5b7ce0c971bc1ac1"
+      "bytes": 769826,
+      "sha256": "05a72463419c1184fc7bf3bfdef19e47d352a6637a229cca91f5fd9e674ccf93"
     },
     {
       "path": "client/legacy/reader-bundle.json",
       "bytes": 93153,
-      "sha256": "71bcacf1d1e90bc10f5335e8de5b2143848b50b8bfa3433a2ff7951d74d739c5"
+      "sha256": "2118b9bc0a22f3bf2fa6db66d31bb6aa7f1bcf254ef2b1fe062bd37368f491a2"
     },
     {
       "path": "client/window.svg",
@@ -2635,7 +2635,7 @@
     {
       "path": "server/index.js",
       "bytes": 645021,
-      "sha256": "cd62d28f636b884bd0963863ce92c4f71f958951ea8008b79a174c421448cf8c"
+      "sha256": "55723687a249c1288a2b54c9436f28a6bed2c6afd5762a9f185fef108b00da3d"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
@@ -2665,7 +2665,7 @@
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "b336666b7f19583c16540006a2aa0c019400c3b80d0f186c0eab0e74d30660ec"
+      "sha256": "affa2f9910091b4fad58a5848b1a17fbd45e80b6fb4f8194858e35bfefd1f543"
     },
     {
       "path": "server/vinext-externals.json",
@@ -2675,7 +2675,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "b336666b7f19583c16540006a2aa0c019400c3b80d0f186c0eab0e74d30660ec"
+      "sha256": "affa2f9910091b4fad58a5848b1a17fbd45e80b6fb4f8194858e35bfefd1f543"
     },
     {
       "path": "server/wrangler.json",
@@ -2683,9 +2683,9 @@
       "sha256": "f4adf351b2136969e2cc51a435cd8d6c2a6f73f29a0293805df28b51f0b21d27"
     }
   ],
-  "aggregateSha256": "73c0d16b56930887e5f2eb64a3017d75232825b8f6697196e1cf83c0153dc96e",
+  "aggregateSha256": "1509829ffea0e05a54e49373c2da320a768058ba5341470df655a51a3dbb69d8",
   "summary": {
     "fileCount": 536,
-    "totalBytes": 43598666
+    "totalBytes": 43605489
   }
 }

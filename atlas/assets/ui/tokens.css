@@ -16,7 +16,8 @@
   --sgz-dossier-gold: var(--v56-gold, #9b7a3b);
   --sgz-font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
   --sgz-font-heading: "Noto Serif SC", "Songti SC", "SimSun", serif;
-  --sgz-text-body: 15px;
+  --sgz-text-body: 16px;
+  --sgz-text-control: 14px;
   --sgz-text-meta: 12px;
   --sgz-text-title: clamp(24px, 2.2vw, 32px);
   --sgz-space-section: 28px;

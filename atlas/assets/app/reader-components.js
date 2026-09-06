@@ -6,7 +6,7 @@
       template: `<section v-if="citations.length" class="reader-citations" aria-label="原典回查">
         <h3>原典回查 <small>{{citations.length}} 条引文</small></h3>
         <details v-for="(citation,index) in citations" :key="citation.url+'|'+index">
-          <summary><span>{{citation.title}}</span><small>展开节录</small></summary>
+          <summary><span>{{citation.title}}</span><small class="reader-citation-expand">展开节录</small><small class="reader-citation-collapse">收起节录</small></summary>
           <blockquote>{{citation.quote}}</blockquote>
           <p v-if="citation.note">{{citation.note}}</p>
           <a :href="citation.url" target="_blank" rel="noopener noreferrer">阅读原典全文 ↗</a>
@@ -34,7 +34,7 @@
         },
         references() { return this.record.transcriptionReferences || []; }
       },
-      template: `<section v-if="variants.length || references.length" class="reader-inscription-apparatus" aria-label="异文与著录">
+      template: `<section v-if="variants.length || references.length || record.transcriptionNote" class="reader-inscription-apparatus" aria-label="异文与著录">
         <h3>异文与著录</h3>
         <p v-if="record.transcriptionNote">{{record.transcriptionNote}}</p>
         <details v-for="(variant,index) in variants" :key="variant.type+'-'+index">

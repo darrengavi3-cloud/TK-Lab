@@ -7,6 +7,7 @@ import test from 'node:test';
 import { reviewedAppointments, sourceDigest } from '../atlas/scripts/appointment-publication.mjs';
 import { reviewedReaderScope, validateIdentitySources } from '../atlas/scripts/person-identity-publication.mjs';
 import { fangzhenValidAtYear, classifyFangzhenDynasty } from '../atlas/assets/app/fangzhen.js';
+import { epigraphicYear, epigraphicEraKey, epigraphicInscriptionState, matchesEpigraphicInscriptionStatus } from '../atlas/assets/app/jinshi.js';
 import { createPersonNavigator } from '../atlas/assets/app/navigation.js';
 import { acceptedRouteMessage, validRouteHash } from '../atlas/assets/app/route-contract.js';
 import { parseRouteHash, serializeRouteHash } from '../atlas/assets/app/shell.js';
@@ -189,8 +190,8 @@ test('the final reader retains all six reviewed transcriptions and variants with
   const reader = JSON.parse(JSON.stringify(context.window.SGZ_V69_EPIGRAPHIC_RECORDS));
   const overlays = json('v65-epigraphy-reader-overlays').records;
   assert.equal(overlays.length, 6);
-  assert.equal(payload.summary.withInscription, 54);
-  assert.equal(reader.summary.withoutInscription, 112);
+  assert.equal(payload.summary.withInscription, 56);
+  assert.equal(reader.summary.withoutInscription, 110);
   for (const overlay of overlays) {
     for (const rows of [payload.records, reader.records]) {
       const record = rows.find(row => row.id === overlay.recordId);
@@ -213,12 +214,13 @@ test('reviewed Wei texts reach the final reader with lacunae and provenance inta
   const c = { window: {} };
   vm.runInNewContext(read('exports/观史台-读者版/data/v69-epigraphic-records.js'), c);
   const rows = c.window.SGZ_V69_EPIGRAPHIC_RECORDS.records;
-  assert.deepEqual(review.records.map(r => r.recordId).sort(), ['wei-henghai-lu-lang', 'wei-liubiao-stele', 'wei-luoyang-north-boundary', 'wei-wangji-stele']);
+  assert.deepEqual(review.records.map(r => r.recordId).sort(), ['wei-daxiang-yan_kang', 'wei-henghai-lu-lang', 'wei-laozi-temple-edict', 'wei-liubiao-stele', 'wei-luoyang-north-boundary', 'wei-wangji-stele']);
   for (const r of review.records) {
     const actual = rows.find(row => row.id === r.recordId);
     assert.equal(actual.inscription, r.inscription);
     assert.equal(crypto.createHash('sha256').update(actual.inscription).digest('hex'), r.transcriptionDigest);
     assert.equal(actual.transcriptionNote, r.transcriptionNote);
+    if (r.inscriptionVariants) assert.deepEqual(JSON.parse(JSON.stringify(actual.inscriptionVariants)), r.inscriptionVariants);
     assert.deepEqual(JSON.parse(JSON.stringify(actual.transcriptionReferences)), r.transcriptionReferences);
   }
   assert.equal(rows.find(r => r.id === 'wei-henghai-lu-lang').people, '');
@@ -237,4 +239,55 @@ test('epigraphy publication rejects changed sources, edited text and overwrites'
   assert.throws(() => applyReviewedTranscription({ ...raw, name: 'changed' }, {}, r), /须重新审校/);
   assert.throws(() => applyReviewedTranscription(raw, {}, { ...r, inscription: r.inscription + '改' }), /校验失败/);
   assert.throws(() => applyReviewedTranscription(raw, { inscription: '原文' }, r), /不得覆盖/);
+});
+
+test('epigraphy dates do not coerce unknown years into the Han period', () => {
+  for (const year of [null, undefined, '', ' ', false, true, [], 0, NaN, '未知']) {
+    assert.equal(epigraphicYear(year), null);
+    assert.equal(epigraphicEraKey({ year, polity: '魏' }), '三国');
+  }
+  assert.equal(epigraphicYear(' 220 '), 220);
+  for (const [year, era] of [[219, '后汉'], [220, '三国'], [265, '三国'], [266, '两晋']]) {
+    assert.equal(epigraphicEraKey({ year }), era);
+  }
+  assert.equal(epigraphicEraKey({ year: null, dynasty: '季汉', polity: '汉' }), '三国');
+  assert.equal(epigraphicEraKey({ year: null, dynasty: '东晋', polity: '晋' }), '两晋');
+  assert.equal(epigraphicEraKey({ year: null, polity: '汉' }), '');
+  assert.equal(epigraphicEraKey({ year: null, dynasty: '后汉', polity: '汉', readerDisplayStatus: 'candidate-dynasty' }), '');
+  const rows = json('v69-epigraphic-records').records;
+  assert.equal(epigraphicEraKey(rows.find(row => row.id === 'wei-chengzhong-stele')), '三国');
+  const ordered = [...rows].sort((a, b) => (epigraphicYear(a.year) ?? Infinity) - (epigraphicYear(b.year) ?? Infinity));
+  const firstUnknown = ordered.findIndex(row => epigraphicYear(row.year) === null);
+  assert.ok(firstUnknown > 0);
+  assert.ok(ordered.slice(firstUnknown).every(row => epigraphicYear(row.year) === null));
+});
+
+test('the inscription filter includes transmitted and fragmentary texts without rewriting their status', () => {
+  const rows = json('v69-epigraphic-records').records;
+  const recorded = rows.filter(row => matchesEpigraphicInscriptionStatus(row, '已录入'));
+  assert.equal(recorded.length, 56);
+  assert.equal(rows.filter(row => matchesEpigraphicInscriptionStatus(row, '源文未见')).length, 110);
+  for (const row of json('v71-epigraphy-transcription-review').records) {
+    assert.ok(matchesEpigraphicInscriptionStatus(row, '已录入'));
+    assert.ok(matchesEpigraphicInscriptionStatus(row, epigraphicInscriptionState(row)));
+  }
+  assert.ok(matchesEpigraphicInscriptionStatus({ inscription: '残文', inscriptionStatus: '传本录文（残缺）' }, '残缺'));
+  assert.ok(matchesEpigraphicInscriptionStatus({ inscription: '待校文字', inscriptionStatus: '待校' }, '待校'));
+  assert.equal(epigraphicInscriptionState({ inscription: '', inscriptionStatus: '已录入' }), '源文未见');
+});
+
+test('reviewed old commentary retains its text and rejects altered apparatus', () => {
+  const c = { window: {} };
+  vm.runInNewContext(read('data/epigraphic-records.js'), c);
+  const r = json('v71-epigraphy-transcription-review').records.find(row => row.recordId === 'wei-laozi-temple-edict');
+  const raw = JSON.parse(JSON.stringify(c.window.SGZ_EPIGRAPHIC_RECORDS.records.find(row => row.id === r.recordId)));
+  const published = applyReviewedTranscription(raw, {}, r);
+  assert.deepEqual(published.inscriptionVariants, r.inscriptionVariants);
+  assert.ok(published.inscription.endsWith('黄初三年十月十五日　子下'));
+  assert.ok(!published.inscription.includes('丙子'));
+  assert.ok(published.inscriptionVariants[0].text.includes('十五日為丙子日'));
+  const altered = structuredClone(r);
+  altered.inscriptionVariants[0].text += '改';
+  assert.throws(() => applyReviewedTranscription(raw, {}, altered), /旧注或异文校验失败/);
+  assert.throws(() => applyReviewedTranscription(raw, { inscriptionVariants: [{ text: '旧注' }] }, r), /不得覆盖已有旧注或异文/);
 });

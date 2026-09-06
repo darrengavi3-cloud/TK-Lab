@@ -258,7 +258,7 @@ const epigraphyRecords = evaluateWindowFile(v69EpigraphyPath, 'reader:data/v69-e
 const epigraphyIds = new Set(epigraphyRecords.map(row => String(row.id || '')));
 const epigraphyInscribed = epigraphyRecords.filter(row => String(row.inscription || '').trim()).length;
 assert(epigraphyRecords.length === 166 && epigraphyIds.size === 166, `V69 金石读者投影应为 166 个稳定 ID，实际 ${epigraphyRecords.length}/${epigraphyIds.size}`);
-assert(epigraphyInscribed === 54 && epigraphyRecords.length - epigraphyInscribed === 112, `V69 金石读者投影应为 54 有释文 / 112 空释文，实际 ${epigraphyInscribed}/${epigraphyRecords.length - epigraphyInscribed}`);
+assert(epigraphyInscribed === 56 && epigraphyRecords.length - epigraphyInscribed === 110, `V69 金石读者投影应为 56 有释文 / 110 空释文，实际 ${epigraphyInscribed}/${epigraphyRecords.length - epigraphyInscribed}`);
 assert(readerManifest.readerProjection?.epigraphicRecordCount === epigraphyRecords.length, '金石读者投影数量与清单不一致');
 assert(readerManifest.readerProjection?.mapPeriodCount === 16 && readerManifest.readerProjection?.mapAuditGlobals === 0, '地图注册表读者投影不闭合');
 

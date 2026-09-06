@@ -72,7 +72,7 @@ function loadSgzUiModule(name){
   else if(name==='persistence')request=import('./assets/app/persistence.js?v=66.2');
   else if(name==='people')request=import('./assets/app/people.js');
   else if(name==='fangzhen')request=import('./assets/app/fangzhen.js?v=67');
-  else if(name==='jinshi')request=import('./assets/app/jinshi.js?v=67');
+  else if(name==='jinshi')request=import('./assets/app/jinshi.js?v=71.1');
   else return Promise.reject(new Error('未知界面模块：'+name));
   const attempt=sgzUiModuleAttempts.get(name)||0;
   sgzUiModuleAttempts.set(name,attempt+1);
@@ -2995,7 +2995,7 @@ const app = createApp({
         const item=workspaceMode.value==='review'?projectForReading(raw):projectForReader(raw);
         const disputed=raw.researchStatus==='争议'||raw.archiveKind==='争议'||Boolean(raw.disputeNote);
         const archiveKind=['核心','扩展','争议'].includes(raw.archiveKind)?raw.archiveKind:(disputed?'争议':'核心');
-        const inscriptionState=String(raw.inscriptionStatus||'').trim()|| (String(raw.inscription||'').trim()?'已录入':'源文未见');
+        const inscriptionState=window.SGZ_UI_MODULES.jinshi.epigraphicInscriptionState(raw);
         return Object.assign({},item,{archiveKind,isDisputed:disputed,inscriptionState,displayName:item.displayTitle||item.name});
       });
       return rows.filter(item=>{
@@ -3003,22 +3003,17 @@ const app = createApp({
         if(epigraphicType.value!=='all' && item.materialType!==epigraphicType.value) return false;
         if(epigraphicPolity.value!=='all' && item.dynasty!==epigraphicPolity.value) return false;
         if(epigraphicArchive.value!=='all' && item.archiveKind!==epigraphicArchive.value) return false;
-        if(epigraphicInscriptionStatus.value!=='all' && item.inscriptionState!==epigraphicInscriptionStatus.value) return false;
+        if(!window.SGZ_UI_MODULES.jinshi.matchesEpigraphicInscriptionStatus(item,epigraphicInscriptionStatus.value)) return false;
         if(q && !['name','displayTitle','variantLabel','materialType','dateText','year','dynasty','polity','findspot','scriptStyle','form','inscription','people','offices','note'].some(key=>String(item[key]||'').toLowerCase().includes(q)) && !(item.titleAliases||[]).some(alias=>String(alias).toLowerCase().includes(q))) return false;
         return true;
       }).sort((a,b)=>{
-        const ay=Number.isFinite(Number(a.year))?Number(a.year):Infinity;
-        const by=Number.isFinite(Number(b.year))?Number(b.year):Infinity;
+        const ay=window.SGZ_UI_MODULES.jinshi.epigraphicYear(a.year)??Infinity;
+        const by=window.SGZ_UI_MODULES.jinshi.epigraphicYear(b.year)??Infinity;
         return ay-by||String(a.yearText||'').localeCompare(String(b.yearText||''),'zh-CN')||String(a.displayTitle||a.name||'').localeCompare(String(b.displayTitle||b.name||''),'zh-CN')||String(a.variantLabel||'').localeCompare(String(b.variantLabel||''),'zh-CN');
       }).map(item=>workspaceMode.value==='review'?item:projectForReader(item));
     });
     function epigraphicEraKey(item){
-      const year=Number(item?.year);
-      if(Number.isFinite(year))return year<220?'后汉':year<266?'三国':'两晋';
-      if(item?.polity==='汉')return '后汉';
-      if(['魏','吴'].includes(item?.polity))return '三国';
-      if(item?.polity==='晋')return '两晋';
-      return '';
+      return window.SGZ_UI_MODULES.jinshi.epigraphicEraKey(item);
     }
     function epigraphicConfirmedText(value){
       const text=String(value||'').trim();
@@ -8480,7 +8475,7 @@ const app = createApp({
         <el-select v-model="epigraphicType" class="v56-context-select" size="small" aria-label="材料类型"><el-option label="全部类型" value="all"/><el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type"/></el-select>
         <el-select v-model="epigraphicPolity" class="v56-context-select" size="small" aria-label="政权筛选"><el-option label="全部政权" value="all"/><el-option v-for="polity in epigraphicPolities" :key="polity" :label="polity" :value="polity"/></el-select>
         <el-select v-if="workspaceMode==='review'" v-model="epigraphicArchive" class="v56-context-select review-only" size="small" aria-label="来源范围"><el-option label="全部范围" value="all"/><el-option label="核心" value="核心"/><el-option label="扩展" value="扩展"/><el-option label="争议" value="争议"/></el-select>
-        <el-select v-if="workspaceMode==='review'" v-model="epigraphicInscriptionStatus" class="v56-context-select review-only" size="small" aria-label="释文状态"><el-option label="全部释文状态" value="all"/><el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status" :value="status"/></el-select>
+        <el-select v-if="workspaceMode==='review'" v-model="epigraphicInscriptionStatus" class="v56-context-select review-only" size="small" aria-label="释文状态"><el-option label="全部释文状态" value="all"/><el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status==='已录入'?'有释文（含残缺）':status" :value="status"/></el-select>
       </template>
       <template v-else-if="activeModule==='shihuo'">
         <el-select v-model="shihuoCategory" class="v56-context-select" size="small" aria-label="食货类别"><el-option label="全部类别" value="all"/><el-option v-for="c in shihuoCategories" :key="c" :label="c" :value="c"/></el-select>
@@ -9595,7 +9590,7 @@ const app = createApp({
           </el-select>
           <el-select v-if="workspaceMode==='review'" v-model="epigraphicInscriptionStatus" clearable style="width:120px" placeholder="释文状态">
             <el-option label="全部释文状态" value="all" />
-            <el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status" :value="status" />
+            <el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status==='已录入'?'有释文（含残缺）':status" :value="status" />
           </el-select>
           <span style="flex:1"></span>
           <span class="v67-toolbar-count">显示 {{filteredEpigraphicRecords.length}} / {{epigraphicRecords.length}} 条</span>
