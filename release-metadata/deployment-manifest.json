@@ -2584,8 +2584,8 @@
     },
     {
       "path": "client/legacy/data/v69-epigraphic-records.js",
-      "bytes": 204057,
-      "sha256": "0515b8c8195af564e7cfe7d7386f9bb40cd4248c64d74c9f3eba421e54cf78d5"
+      "bytes": 211861,
+      "sha256": "2578e3baa5ee83174f5fa4443d5fe55b1fcba3c84028a4c926d1add7b13bf2b8"
     },
     {
       "path": "client/legacy/data/v69-fangzhen-reader.js",
@@ -2605,7 +2605,7 @@
     {
       "path": "client/legacy/reader-bundle.json",
       "bytes": 93153,
-      "sha256": "6140abc2ba4dc44c40e92f825569fb0150d654d04e1879ae5b7765896179f2cb"
+      "sha256": "225ac573af533b9bf440af42710b481cf5dafbcca01d176459fa6d33d7e50552"
     },
     {
       "path": "client/window.svg",
@@ -2635,7 +2635,7 @@
     {
       "path": "server/index.js",
       "bytes": 645021,
-      "sha256": "121a155899f6a7244df0da758160c23bf99497e3b93b2da060f9aa8e11da8305"
+      "sha256": "3ad87753cbb4300f929f82b964c804bd54e6b11e0a28b113ddbaa06aaf07ae0c"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
@@ -2665,7 +2665,7 @@
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "b342e1e471c346e5eb23fb1f1be55621ce619e8a086edd84c834bf70acab420f"
+      "sha256": "314a7ac0ef31901540e8261cc3d142f00458e30f24729757e564b0129685245a"
     },
     {
       "path": "server/vinext-externals.json",
@@ -2675,7 +2675,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "b342e1e471c346e5eb23fb1f1be55621ce619e8a086edd84c834bf70acab420f"
+      "sha256": "314a7ac0ef31901540e8261cc3d142f00458e30f24729757e564b0129685245a"
     },
     {
       "path": "server/wrangler.json",
@@ -2683,9 +2683,9 @@
       "sha256": "f4adf351b2136969e2cc51a435cd8d6c2a6f73f29a0293805df28b51f0b21d27"
     }
   ],
-  "aggregateSha256": "3400406facc293e721855c8b0502e2b8808efbe0dd23a2e3ced5c135885cf7fa",
+  "aggregateSha256": "3f5a399ffc325b1266984028e43c03959d3b967f7a0b70099e79b7127a153f7e",
   "summary": {
     "fileCount": 536,
-    "totalBytes": 43625922
+    "totalBytes": 43633726
   }
 }

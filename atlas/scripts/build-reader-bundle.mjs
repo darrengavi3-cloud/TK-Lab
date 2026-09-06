@@ -801,13 +801,13 @@ if (fs.existsSync(epigraphyReaderOverlayPath)) {
 const v69EpigraphicSource = readJson(path.join(root, 'data', 'v69-epigraphic-records.json'));
 const v69EpigraphicRecords = (v69EpigraphicSource.records || []).map(cleanEpigraphicRecord);
 if (v69EpigraphicRecords.length !== 166
-  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 56) {
-  fail('金石读者投影不为 166 条／56 条有释文（含十二条已核补文）');
+  || v69EpigraphicRecords.filter(row => String(row.inscription || '').trim()).length !== 59) {
+  fail('金石读者投影不为 166 条／59 条有释文（含十五条已核补文）');
 }
 const v69EpigraphicPayload = {
   schemaVersion: 'V69-reader',
   modelId: 'sgz-v69-epigraphic-records',
-  summary: { records: 166, withInscription: 56, withoutInscription: 110 },
+  summary: { records: 166, withInscription: 59, withoutInscription: 107 },
   records: v69EpigraphicRecords
 };
 assertNoBannedPayloadKeys(v69EpigraphicPayload);
