@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const readJson=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const failures=[];
@@ -36,8 +36,8 @@ assert(people.length===expectedReaderCount&&peopleIds.size===expectedReaderCount
 assert(readerScope.summary?.people===2096&&readerScope.people?.length===2096,'V62 回退阅读范围未冻结为 2096 人');
 assert(people.find(person=>person.personId===dingId)?.name==='丁冲','丁冲稳定 ID 的规范姓名未修正');
 assert(!people.some(person=>person.name==='丁中'||(person.aliases||[]).includes('丁中')),'旧错误值丁中仍进入读者人物检索');
-for(const excludedName of ['安西','安东大','喬安北','安南']) assert(!people.some(person=>person.name===excludedName||((person.aliases||[]).includes(excludedName))),`非人物词条${excludedName}仍进入读者人物注册表`);
-assert(['安西','安东大','喬安北','安南'].every(name=>(registry.excludedPeople||[]).some(row=>row.name===name&&row.publicationStatus==='suppressed')),'非人物排除台账不完整');
+for(const excludedName of ['安西','安东大','喬安北','安南','安国']) assert(!people.some(person=>person.name===excludedName||((person.aliases||[]).includes(excludedName))),`非人物词条${excludedName}仍进入读者人物注册表`);
+assert(['安西','安东大','喬安北','安南','安国'].every(name=>(registry.excludedPeople||[]).some(row=>row.name===name&&row.publicationStatus==='suppressed')),'非人物排除台账不完整');
 assert((registry.people||[]).find(person=>person.personId===dingId)?.name==='丁冲','审校注册表中的丁冲规范姓名异常');
 
 const profileRows=profiles.profiles||[];
@@ -74,7 +74,8 @@ assert(candidateRows.every(row=>{
 assert(productionRows.every(row=>row.status==='ready'&&/^\d+:\d+$/.test(String(row.nodeId||''))&&/^\d+:\d+$/.test(String(row.componentId||''))),'Figma 生产台账存在无效节点或未完成记录');
 assert(candidates.figma?.seat==='Full'&&candidates.figma?.status===production.status,'候选摘要未同步当前 Figma 生产状态');
 const v70PortraitCount=Object.values(portraits.assetsById||{}).filter(asset=>asset.portraitKind==='ui-illustration-v70').length;
-const expectedPublishedPortraits=(production.status==='complete' ? 375 : 275)+v70PortraitCount;
+const v73PortraitCount=Object.values(portraits.assetsById||{}).filter(asset=>asset.portraitKind==='ui-illustration-v73').length;
+const expectedPublishedPortraits=(production.status==='complete' ? 374 : 274)+v70PortraitCount+v73PortraitCount;
 assert(portraits.summary?.assetRecords===expectedPublishedPortraits&&candidates.summary?.expectedAfterProduction===375,'读者立绘数量与当前生产阶段不一致');
 
 const dispositions=battleLinks.dispositions||[];
@@ -94,7 +95,7 @@ assert(fangzhenRows.filter(row=>row.readerDisplayStatus==='candidate').every(row
 assert(fangzhenRows.every(row=>['州','郡','方镇'].includes(row.jurisdictionKind))&&fangzhenRows.some(row=>row.jurisdictionKind==='郡'),'州、郡、方镇未按独立辖区类型投影');
 assert(!html.includes('相关历任长官')&&!html.includes("{id:'han-court-local',label:'地方行政'}"),'州镇重复长官区或朝堂地方行政卡片仍存在');
 assert(html.includes("{key:'eastjin',label:'东晋'")&&html.includes('fangzhenHasResidence')&&html.includes('openFangzhenResidence'),'东晋标签或州郡府署入口未完成');
-assert(html.includes("{{scope.row.readerDisplayStatus==='verified'?'已核':'待审'}}"),'州镇主表未显示已核／待审状态');
+assert(html.includes("{{scope.row.readerDisplayStatus==='verified'?'已核':'待补核'}}"),'州镇主表未显示已核／待补核状态');
 assert(html.includes("const requestedLevel=p.get('level')||'all'")&&html.includes("['all','州','郡','方镇'].includes(requestedLevel)"),'州镇无 level 参数时未稳定恢复全部辖区');
 assert(html.includes("item.id==='residence:local:province'")&&html.includes("item.id==='residence:local:commandery'"),'州郡府署按钮未以真实定义为显示门槛');
 assert(html.includes("switchModule('offices',{url:false})")&&html.includes("openCourtResidence(owner);"),'州郡府署入口未进入可见的职官府署视图');

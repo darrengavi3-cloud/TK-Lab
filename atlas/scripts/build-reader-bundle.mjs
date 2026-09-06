@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const sourceHtmlPath = path.join(root, 'index.html');
 const registryJsonPath = path.join(root, 'data', 'v63-person-registry.json');
 const registryJsPath = path.join(root, 'data', 'v63-person-registry.js');

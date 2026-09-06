@@ -21,6 +21,7 @@
 <script src="./data/han-bai-guan-zhi.js"></script>
 <script src="./data/general-titles.js"></script>
 <script src="./data/office-order-policies.js"></script>
+<script src="./data/v73-review-status-ledger.js?v=73"></script>
 <script src="./assets/app/persistence-core.js?v=66.2"></script>
 
 <script src="./assets/app/reader-components.js?v=71"></script>
@@ -2799,13 +2800,16 @@ const app = createApp({
       lazyPeopleDataRevision.value+=1;
     }
     const v60Ledger = reactive(window.SGZ_V60_RESEARCH_LEDGER||{summary:{},researchQueue:[],epigraphy:[],v59Closures:[],legacyClosures:[],volumeClosures:[]});
+    const reviewStatusLedger = reactive(window.SGZ_V73_REVIEW_STATUS_LEDGER||{statusDefinitions:[],totals:{},modules:[]});
+    const reviewStatusDefinitions = computed(()=>reviewStatusLedger.statusDefinitions||[]);
+    const reviewStatusTotals = computed(()=>reviewStatusLedger.totals||{});
     const v61Epigraphy = reactive(window.SGZ_V61_EPIGRAPHY_RESEARCH||{summary:{},epigraphy:[],adoptedIds:[]});
     let v61Supplement = window.SGZ_V61_PERSON_SUPPLEMENTS||{people:[],snapshots260:[],peerageEvents:[]};
     let v66PeerageStages = window.SGZ_V66_PEERAGE_STAGES||{summary:{},nodes:[],events:[]};
     const auditIssues = ref([]);
     const auditFilters = reactive({ severity:'all', module:'all' });
     const auditLastRun = ref('');
-    const auditSeverityMeta = { error:'错误', warn:'待核', info:'可选' };
+    const auditSeverityMeta = { error:'错误', warn:'待补核', info:'可选' };
     const zoomPct = ref(100);
     const selectedKeys = ref([]);
     const branchClipboard = ref(null);
@@ -8383,7 +8387,7 @@ const app = createApp({
       showPeopleDetail, activePeopleDetail, openPeopleDetail, polityPillClass, readableFact, personLifespanLabel,
       personPortraitFor, portraitStyleFor,
       personMetaDialog, openPersonMetaEditor, savePersonMeta, uploadPersonPortrait,
-      showAuditCenter, v60Ledger, v61Epigraphy, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
+      showAuditCenter, v60Ledger, v61Epigraphy, reviewStatusLedger, reviewStatusDefinitions, reviewStatusTotals, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
       runDataAudit, auditJump, exportAuditReport, exportAuditWorkbook,
       battleRecords, battleEntryList, battleChronologyRows, BATTLE_ERA_ANCHORS, battleMetrics, filteredBattles, battleKindLabel, battleKindClass, battlePersonLinksFor, openBattlePerson,
       showBattleDetail, activeBattleDetail, openBattleDetail, closeBattleDetail, battleDetailYear, battlePeriodForItem, jumpToBattlePeriod,
@@ -8490,7 +8494,7 @@ const app = createApp({
       <div v-if="activeModule==='offices'&&workspaceMode==='review'" class="v56-context-actions review-only">
         <el-upload :show-file-list="false" accept=".json" :before-upload="importJSON"><el-button size="small">导入 JSON</el-button></el-upload>
         <el-upload :show-file-list="false" accept=".xlsx,.xls" :before-upload="importExcel"><el-button size="small">导入表格</el-button></el-upload>
-        <el-dropdown trigger="click"><el-button size="small">工程与导出 ▾</el-button><template #dropdown><el-dropdown-menu><el-dropdown-item @click="saveLocal()">保存到本地缓存</el-dropdown-item><el-dropdown-item @click="loadLocal">从本地缓存恢复</el-dropdown-item><el-dropdown-item @click="clearLegacyCacheCopies">清理旧缓存副本</el-dropdown-item><el-dropdown-item @click="showAuditCenter=true;runDataAudit()">打开审校中心</el-dropdown-item><el-dropdown-item divided @click="exportJSON">导出完整工程 JSON</el-dropdown-item><el-dropdown-item @click="exportTable">导出表格</el-dropdown-item><el-dropdown-item @click="exportImage">导出图片</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
+        <el-dropdown trigger="click"><el-button size="small">工程与导出 ▾</el-button><template #dropdown><el-dropdown-menu><el-dropdown-item @click="saveLocal()">保存到本地缓存</el-dropdown-item><el-dropdown-item @click="loadLocal">从本地缓存恢复</el-dropdown-item><el-dropdown-item @click="clearLegacyCacheCopies">清理旧缓存副本</el-dropdown-item><el-dropdown-item @click="showAuditCenter=true;runDataAudit()">资料状态与审校</el-dropdown-item><el-dropdown-item divided @click="exportJSON">导出完整工程 JSON</el-dropdown-item><el-dropdown-item @click="exportTable">导出表格</el-dropdown-item><el-dropdown-item @click="exportImage">导出图片</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
       </div>
       <button v-if="workspaceMode==='review'" class="v56-evidence-toggle review-only" type="button" @click="toggleEvidenceRail" :aria-label="evidenceRailCollapsed?'展开证据案卷':'收起证据案卷'">{{evidenceRailCollapsed?'证据 ›':'证据 ‹'}}</button>
     </section>
@@ -9366,7 +9370,7 @@ const app = createApp({
           <el-select v-if="workspaceMode==='review'" v-model="peopleEvidence" size="small" style="width:132px;" aria-label="证据状态">
             <el-option label="全部证据状态" value="all" />
             <el-option label="确定／推定" value="confirmed" />
-            <el-option label="存疑／待复核" value="pending" />
+            <el-option label="待补核／存疑" value="pending" />
           </el-select>
           <el-select v-model="peopleServiceDomain" size="small" style="width:132px;" aria-label="文武类别">
             <el-option label="文武全部" value="all" />
@@ -9515,7 +9519,7 @@ const app = createApp({
           </nav>
           <div class="v67-masthead-meta"><strong>{{fangzhenVisibleRecords.length}}</strong><span>当前职任</span><strong>{{fangzhenMetrics.commanders}}</strong><span>人</span><small class="v67-fangzhen-state-count">{{fangzhenArchiveDef.stateCountLabel}}</small></div>
         </header>
-        <div class="reader-filter-summary"><el-checkbox v-model="fangzhenOnlyVerified">仅看已核职任</el-checkbox><span>已核 {{fangzhenArchiveRows.filter(r=>r.readerDisplayStatus==='verified').length}} · 待审 {{fangzhenArchiveRows.filter(r=>r.readerDisplayStatus==='candidate').length}}</span></div>
+        <div class="reader-filter-summary"><el-checkbox v-model="fangzhenOnlyVerified">仅看已核职任</el-checkbox><span>已核 {{fangzhenArchiveRows.filter(r=>r.readerDisplayStatus==='verified').length}} · 待补核 {{fangzhenArchiveRows.filter(r=>r.readerDisplayStatus==='candidate').length}}</span></div>
         <div v-if="fangzhenView!=='records'||workspaceMode==='review'" class="fangzhen-toolbar">
           <strong v-if="fangzhenView==='records'">{{fangzhenArchiveDef.label}}</strong><span style="flex:1"></span>
           <el-input-number v-if="fangzhenView!=='records'" v-model="fangzhenSnapshotYear" :min="168" :max="316" size="small" controls-position="right" placeholder="起始年份" style="width:130px" />
@@ -9524,7 +9528,7 @@ const app = createApp({
           <el-button v-if="workspaceMode==='review'" class="review-only" @click="exportFangzhen">导出 Excel</el-button>
         </div>
         <div v-if="fangzhenView!=='records'" class="fangzhen-snapshot-panel">
-          <p class="reader-quiet-note">仅统计已核且起讫年明确的任期。{{fangzhenSnapshotExcluded}} 条待审或年代未定资料未计入；数量反映本库已核范围。</p>
+          <p class="reader-quiet-note">仅统计已核且起讫年明确的任期。{{fangzhenSnapshotExcluded}} 条待补核或年代未定资料未计入；数量反映本库已核范围。</p>
           <div v-if="fangzhenView==='snapshot'&&fangzhenSnapshotYear" class="fangzhen-snapshot-row">
             <strong>{{fangzhenSnapshotYear}} 年任职快照</strong>
             <span>{{fangzhenSnapshotRecords.length}} 条记录</span>
@@ -9553,17 +9557,17 @@ const app = createApp({
                 <el-table-column label="治所／驻地" min-width="82" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.seat">{{scope.row.seat}}</span></template></el-table-column>
                 <el-table-column label="任期" min-width="118" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.tenureText||scope.row.confirmedRange">{{scope.row.tenureText||scope.row.confirmedRange}}</span></template></el-table-column>
                 <el-table-column label="类型" width="70"><template #default="scope"><span class="fz-type-pill">{{fangzhenTypeLabel(scope.row.recordType)}}</span></template></el-table-column>
-                <el-table-column label="状态" width="66"><template #default="scope"><span class="v69-review-status" :class="scope.row.readerDisplayStatus">{{scope.row.readerDisplayStatus==='verified'?'已核':'待审'}}</span></template></el-table-column>
+                <el-table-column label="状态" width="76"><template #default="scope"><span class="v69-review-status" :class="scope.row.readerDisplayStatus">{{scope.row.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></template></el-table-column>
                 <el-table-column v-if="workspaceMode==='review'" class-name="review-only" label="操作" width="108" fixed="right"><template #default="scope"><el-button class="review-only" size="small" text type="primary" @click.stop="openFangzhenEditor(scope.row)">编辑</el-button><el-button class="review-only" size="small" text type="danger" @click.stop="deleteFangzhenRecord(scope.row)">删除</el-button></template></el-table-column>
               </el-table>
             </div>
             <nav class="v67-pagination" aria-label="州镇表分页"><button type="button" :disabled="fangzhenPage<=1" @click="fangzhenPage-=1">上一页</button><span>{{fangzhenPagination.total||fangzhenVisibleRecords.length}} 条</span><button type="button" :disabled="fangzhenPage>=fangzhenPageCount" @click="fangzhenPage+=1">下一页</button></nav>
             <div class="fangzhen-mobile-cards">
-              <button v-for="record in fangzhenPagedRecords" :key="'mobile-'+record.id" type="button" class="fangzhen-mobile-card" @click="selectFangzhenWorkbenchRecord(record)"><span><b>{{record.commander}}</b><small>{{record.dynastyLabel||record.polity}} · {{record.jurisdictionKind}} · {{fangzhenTypeLabel(record.recordType)}}</small><i class="v69-review-status" :class="record.readerDisplayStatus">{{record.readerDisplayStatus==='verified'?'已核':'待审'}}</i></span><strong>{{record.title}}</strong><span>{{record.jurisdiction}}<template v-if="record.seat"> · {{record.seat}}</template></span><time v-if="record.tenureText||record.confirmedRange">{{record.tenureText||record.confirmedRange}}</time></button>
+              <button v-for="record in fangzhenPagedRecords" :key="'mobile-'+record.id" type="button" class="fangzhen-mobile-card" @click="selectFangzhenWorkbenchRecord(record)"><span><b>{{record.commander}}</b><small>{{record.dynastyLabel||record.polity}} · {{record.jurisdictionKind}} · {{fangzhenTypeLabel(record.recordType)}}</small><i class="v69-review-status" :class="record.readerDisplayStatus">{{record.readerDisplayStatus==='verified'?'已核':'待补核'}}</i></span><strong>{{record.title}}</strong><span>{{record.jurisdiction}}<template v-if="record.seat"> · {{record.seat}}</template></span><time v-if="record.tenureText||record.confirmedRange">{{record.tenureText||record.confirmedRange}}</time></button>
             </div>
           </section>
           <aside v-if="fangzhenPrimaryDetail" class="v67-fangzhen-dossier" aria-label="州镇记录详情">
-            <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待审'}}</span></div></header>
+            <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></div></header>
             <div class="v67-fangzhen-person"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">{{fangzhenPrimaryDetail.commander}}</button><strong>{{fangzhenPrimaryDetail.title}}</strong></div>
             <dl class="v67-fact-grid"><div v-if="fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange"><dt>任期</dt><dd>{{fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange}}</dd></div><div v-if="fangzhenPrimaryDetail.seat"><dt>{{fangzhenPrimaryDetail.seatType||'治所／驻地'}}</dt><dd>{{fangzhenPrimaryDetail.seat}}</dd></div><div v-if="fangzhenPrimaryDetail.commission"><dt>委任</dt><dd>{{fangzhenPrimaryDetail.commission}}</dd></div><div v-if="fangzhenPrimaryDetail.appointmentStatus"><dt>任职性质</dt><dd>{{fangzhenPrimaryDetail.appointmentStatus}}</dd></div></dl>
             <div class="v67-dossier-actions"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">人物履历</button><button v-if="fangzhenHasResidence(fangzhenPrimaryDetail)" type="button" @click="openFangzhenResidence(fangzhenPrimaryDetail)">府署</button><button type="button" @click="jumpFangzhenToMap(fangzhenPrimaryDetail)">形势图定位</button></div>
@@ -9861,7 +9865,7 @@ const app = createApp({
     <el-drawer v-model="showFangzhenDetail" :title="'州镇表 · '+(fangzhenPrimaryDetail?fangzhenPrimaryDetail.jurisdiction:'')" size="min(720px,100vw)" class="v67-fangzhen-drawer">
       <template v-if="fangzhenPrimaryDetail">
         <div class="v67-fangzhen-dossier v67-fangzhen-dossier-mobile">
-          <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待审'}}</span></div></header>
+          <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></div></header>
           <div class="v67-fangzhen-person"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">{{fangzhenPrimaryDetail.commander}}</button><strong>{{fangzhenPrimaryDetail.title}}</strong></div>
           <dl class="v67-fact-grid"><div v-if="fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange"><dt>任期</dt><dd>{{fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange}}</dd></div><div v-if="fangzhenPrimaryDetail.seat"><dt>{{fangzhenPrimaryDetail.seatType||'治所／驻地'}}</dt><dd>{{fangzhenPrimaryDetail.seat}}</dd></div><div v-if="fangzhenPrimaryDetail.commission"><dt>委任</dt><dd>{{fangzhenPrimaryDetail.commission}}</dd></div><div v-if="fangzhenPrimaryDetail.appointmentStatus"><dt>任职性质</dt><dd>{{fangzhenPrimaryDetail.appointmentStatus}}</dd></div></dl>
           <div class="v67-dossier-actions"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">人物履历</button><button v-if="fangzhenHasResidence(fangzhenPrimaryDetail)" type="button" @click="openFangzhenResidence(fangzhenPrimaryDetail)">府署</button><button type="button" @click="jumpFangzhenToMap(fangzhenPrimaryDetail)">形势图定位</button></div>
@@ -10280,6 +10284,17 @@ const app = createApp({
           <el-button size="small" plain @click="exportAuditWorkbook()">导出复核工作簿</el-button>
         </div>
       </div>
+      <section class="v73-status-ledger" aria-label="资料审核状态总览">
+        <div class="v73-status-ledger-head"><div><strong>资料状态总览</strong><span>四级状态统一用于人物、任官、州镇与金石</span></div><small>V73</small></div>
+        <div class="v73-status-definitions">
+          <article v-for="status in reviewStatusDefinitions" :key="status.key" :class="'status-'+status.key"><b>{{reviewStatusTotals[status.key]||0}}</b><strong>{{status.label}}</strong><p>{{status.meaning}}</p></article>
+        </div>
+        <div class="v73-status-modules">
+          <div class="v73-status-row v73-status-row-head"><b>资料模块</b><span>已核</span><span>待补核</span><span>存疑</span><span>已排除</span><span>不计入统计</span></div>
+          <div v-for="module in reviewStatusLedger.modules" :key="module.key" class="v73-status-row"><b>{{module.label}}</b><span>{{module.counts.verified}}</span><span>{{module.counts.pending}}</span><span>{{module.counts.disputed}}</span><span>{{module.counts.suppressed}}</span><span>{{module.excludedFromStatistics}}</span></div>
+        </div>
+        <p class="v73-status-note">“待补核”不是“错误”，而是已有材料尚未满足发布门槛。人物实体已核也不会自动放行任官事实；年代未定记录不会进入任何年份快照。</p>
+      </section>
       <section class="v60-audit-summary review-only">
         <div class="v60-audit-summary-head"><strong>V60 待考收口</strong><span>底层证据保留，阅读层不展示</span></div>
         <div class="v60-audit-summary-grid">

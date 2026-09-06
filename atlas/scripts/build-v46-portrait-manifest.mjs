@@ -40,8 +40,12 @@ const v69PortraitCandidates = fs.existsSync(path.join(dataDir, 'v69-portrait-can
 const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
   ? JSON.parse(fs.readFileSync(path.join(dataDir, 'v70-portrait-candidates.json'), 'utf8'))
   : { records: [] };
+const v73PortraitCandidates = fs.existsSync(path.join(dataDir, 'v73-portrait-candidates.json'))
+  ? JSON.parse(fs.readFileSync(path.join(dataDir, 'v73-portrait-candidates.json'), 'utf8'))
+  : { records: [] };
 const fallbackSrc = './assets/portraits/generated/person-placeholder-v46.png';
 const polityColors = { 汉: '#A54136', 魏: '#376B9E', 吴: '#3F7652', 晋: '#665483' };
+const suppressedNonPeople = new Set(['person:source:032cc177a216']);
 
 // V62: the old name-based pool produced 31 temporary person IDs.  Keep those
 // IDs as compatibility aliases, but store every portrait against the reviewed,
@@ -235,6 +239,11 @@ Object.keys(legacy).forEach(name => {
   byPersonId[personId] = current;
   byName[current.name] = current;
 });
+
+for (const personId of suppressedNonPeople) delete byPersonId[personId];
+for (const [name, item] of Object.entries(byName)) {
+  if (name === '安国' || suppressedNonPeople.has(item?.personId)) delete byName[name];
+}
 
 function v62CanonicalPersonId(personId) {
   const raw = String(personId || '');
@@ -487,6 +496,46 @@ function v62BuildManifest() {
     portraitsByCanonicalPersonId.set(personId, [asset]);
   }
 
+  // V73 季汉补绘：只有本地 512×512 PNG 与真实 Figma 节点同时存在时发布。
+  const v73Colors = { '季汉': '#A34738' };
+  const v73Rows = Array.isArray(v73PortraitCandidates.records) ? v73PortraitCandidates.records : [];
+  for (const row of v73Rows) {
+    const personId = v62CanonicalPersonId(row.personId);
+    const nodeId = row.designRef?.nodeId;
+    if (!personId || !row.name || !v62PngIsReady(row.assetPath) || !v62FigmaNodeId(nodeId)) continue;
+    if (suppressedNonPeople.has(personId) || portraitsByCanonicalPersonId.has(personId)) continue;
+    const portraitId = `portrait:v73:${String(row.order).padStart(3, '0')}`;
+    if (assetsById[portraitId]) continue;
+    const asset = {
+      portraitId,
+      personId,
+      name: String(row.name).trim(),
+      aliases: [String(row.name).trim()],
+      zi: String(row.zi || '').trim(),
+      src: row.assetPath,
+      assetPath: row.assetPath,
+      polity: row.dynasty || '季汉',
+      color: v73Colors[row.dynasty] || '#A34738',
+      sourceTitle: 'V73 界面识别立绘（非史实肖像）',
+      sourceUrl: '',
+      portraitKind: 'ui-illustration-v73',
+      status: 'ready',
+      designStatus: 'figma-design',
+      designRef: {
+        fileKey: 'gvWRC5GHHSgd8QX9b2VJgo',
+        version: 'V73',
+        pageName: 'V73 / Portraits',
+        nodeId,
+        componentId: null
+      },
+      interfaceOnly: true,
+      catalogOrder: Object.keys(assetsById).length + 1,
+      legacyPersonIds: []
+    };
+    assetsById[portraitId] = asset;
+    portraitsByCanonicalPersonId.set(personId, [asset]);
+  }
+
   const canonicalByPersonId = {};
   const canonicalByName = {};
   portraitsByCanonicalPersonId.forEach((assets, personId) => {
@@ -541,6 +590,7 @@ function v62BuildManifest() {
       v58PortraitRecords: v58Board.records?.length || 0,
       v58PortraitMapped: (v58Board.records || []).filter(item => canonicalByPersonId[v62CanonicalPersonId(item.personId)]).length,
       v70PortraitRecords: assets.filter(item => item.portraitKind === 'ui-illustration-v70').length,
+      v73PortraitRecords: assets.filter(item => item.portraitKind === 'ui-illustration-v73').length,
       dengAiSrc: canonicalByName['邓艾']?.src || ''
     }
   };

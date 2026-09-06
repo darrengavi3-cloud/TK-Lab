@@ -2,30 +2,39 @@ import { sourceDigest } from './appointment-publication.mjs';
 
 // The V62 roster stays immutable. Additions require an explicit identity review;
 // source extraction, a same-name match, or a workbook year cannot enlarge it.
-export function reviewedReaderScope(base, review) {
-  if (sourceDigest(base) !== review.baseScopeSha256 || base.people?.length !== 2096) {
+export function reviewedReaderScope(base, ...reviews) {
+  if (!reviews.length || base.people?.length !== 2096) {
     throw new Error('Reader scope baseline changed; identity review required');
   }
   const ids = new Set(base.people.map(row => row.personId));
   if (ids.size !== base.people.length) throw new Error('Duplicate baseline person');
   const seen = new Set();
   const additions = [];
-  for (const row of review.records) {
-    if (!row.personId || seen.has(row.personId)) throw new Error('Duplicate or missing identity review');
-    seen.add(row.personId);
-    if (row.status !== 'verified') continue;
-    if (!row.name || !row.reason || !row.citations?.length || !row.sourceGuards?.length ||
-        row.citations.some(c => !c.title || !c.quote || !/^https:\/\//.test(c.url))) {
-      throw new Error(`Incomplete identity review: ${row.personId}`);
+  for (const review of reviews) {
+    if (sourceDigest(base) !== review.baseScopeSha256) {
+      throw new Error('Reader scope baseline changed; identity review required');
     }
-    if (row.action === 'add' && !ids.has(row.personId)) {
-      additions.push({ personId: row.personId, name: row.name });
-      ids.add(row.personId);
-    } else if (row.action !== 'correct' || !ids.has(row.personId)) {
-      throw new Error(`Invalid identity scope action: ${row.personId}`);
+    for (const row of review.records || []) {
+      if (!row.personId || seen.has(row.personId)) throw new Error('Duplicate or missing identity review');
+      seen.add(row.personId);
+      if (row.status !== 'verified') continue;
+      if (!row.name || !row.reason || !row.citations?.length || !row.sourceGuards?.length ||
+          row.citations.some(c => !c.title || !c.quote || !/^https:\/\//.test(c.url))) {
+        throw new Error(`Incomplete identity review: ${row.personId}`);
+      }
+      if (row.action === 'add' && !ids.has(row.personId)) {
+        additions.push({ personId: row.personId, name: row.name });
+        ids.add(row.personId);
+      } else if (row.action === 'correct' && ids.has(row.personId)) {
+        continue;
+      } else if (row.action === 'suppress' && ids.has(row.personId)) {
+        ids.delete(row.personId);
+      } else {
+        throw new Error(`Invalid identity scope action: ${row.personId}`);
+      }
     }
   }
-  return [...base.people, ...additions];
+  return [...base.people, ...additions].filter(row => ids.has(row.personId));
 }
 
 export function validateIdentitySources(review, datasets) {

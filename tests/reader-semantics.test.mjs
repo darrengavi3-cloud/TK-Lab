@@ -24,10 +24,13 @@ const relations = json('v63-reader-person-relations');
 test('reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate', () => {
   const base = json('v62-reader-scope');
   const identityReview = json('v71-person-identity-review');
+  const identitySuppressions = json('v73-person-identity-suppressions');
   const roster = json('v63-reader-people').people;
   const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
-  assert.deepEqual(new Set(roster.map(row => row.personId)), new Set([...base.people.map(row => row.personId), ...additions]));
-  assert.equal(reviewedReaderScope(base, identityReview).length, 2099);
+  const expectedIds = new Set([...base.people.map(row => row.personId), ...additions]);
+  expectedIds.delete('person:source:032cc177a216');
+  assert.deepEqual(new Set(roster.map(row => row.personId)), expectedIds);
+  assert.equal(reviewedReaderScope(base, identityReview, identitySuppressions).length, 2098);
   const liu = roster.find(row => row.personId === 'person:snapshot260:9fbd9f0edab3ad59');
   assert.equal(liu.zi, '道真');
   assert.equal(liu.birthplace, '燕国蓟');
@@ -299,7 +302,7 @@ test('reviewed old commentary retains its text and rejects altered apparatus', (
 
 test('reviewed biographies pin identities and evidence without replacing existing biographies', () => {
   const review = json('v71-person-biography-review');
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'));
+  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'));
   const approved = reviewedBiographies(scope, review);
   const people = json('v63-reader-people').people;
   assert.equal(approved.length, 8);

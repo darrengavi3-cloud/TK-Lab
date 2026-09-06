@@ -26,9 +26,11 @@ const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
 const identityReview = readJson('v71-person-identity-review.json');
+const identitySuppressions = readJson('v73-person-identity-suppressions.json');
 validateIdentitySources(identityReview, {
   appointments: sourceIndex.appointments, snapshot260: v61.snapshots260, v62: v62.people
 });
+validateIdentitySources(identitySuppressions, { appointments: sourceIndex.appointments });
 const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
   ? readJson('v70-portrait-candidates.json')
   : { records: [] };
@@ -124,6 +126,14 @@ const nonPersonNameExclusions = Object.freeze({
     reason: '官号/地域词（如“安南将军”），不建立人物实体。',
     sourcePersonIds: [],
     sourceRecordIds: []
+  },
+  '安国': {
+    reason: '“安国”为“安国将军”等官号中的组成部分，非人物姓名。',
+    sourcePersonIds: ['person:source:032cc177a216'],
+    sourceRecordIds: [
+      'appointment:source:sgz:08:1d44dc75097c',
+      'appointment:source:sgz:56:be0b05f8edb4'
+    ]
   }
 });
 const exclusionByNormalizedName = new Map(Object.entries(nonPersonNameExclusions).map(([name, value]) => [normalize(name), { name, ...value }]));
@@ -468,7 +478,7 @@ for (const review of identityReview.records.filter(row => row.status === 'verifi
   }
 }
 
-const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview);
+const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview, identitySuppressions);
 const readerScopeIds = new Set(readerScopeRows.map(row => canonicalPersonId(row.personId)).filter(Boolean));
 if (readerScopeIds.size !== readerScopeRows.length) {
   throw new Error(`阅读范围存在重复 personId：${readerScopeRows.length}/${readerScopeIds.size}`);
@@ -576,7 +586,7 @@ const protectedResolution = Object.entries(protectedExistingPeople).map(([name, 
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
-  readerScopeVersion: 'V71',
+  readerScopeVersion: 'V73',
   readerScopePeople: readerScopeRows.length,
   scopeExcludedPeople: excludedPeopleAudit.size,
   nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
@@ -612,8 +622,8 @@ const registry = {
   },
   summary,
   readerScope: {
-    schemaVersion: 'V71',
-    modelId: 'sgz-v71-reviewed-reader-scope',
+    schemaVersion: 'V73',
+    modelId: 'sgz-v73-reviewed-reader-scope',
     people: readerScopeRows.length,
     baselinePeople: v62ReaderScope.people.length,
     policy: identityReview.policy,
@@ -632,7 +642,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V71' },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V73' },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,
