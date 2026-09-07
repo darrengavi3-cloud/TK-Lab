@@ -28,3 +28,22 @@ export function reviewedBiographies(scope, review, existing = new Map()) {
     };
   });
 }
+
+// Correcting an already published biography is a separate, source-bound review.
+// Keep both the old wording and the reason in research data, not the reader text.
+export function reviewedBiographyCorrections(scope, review, existing) {
+  const validated = reviewedBiographies(scope, review);
+  const byId = new Map(review.records.map(row => [row.personId, row]));
+  return validated.map(row => {
+    const decision = byId.get(row.personId);
+    const { correctionDigest, ...content } = decision;
+    if (decision.action !== 'replace' || !decision.reason ||
+        typeof decision.previousBio !== 'string' ||
+        sourceDigest(content) !== correctionDigest ||
+        sourceDigest(decision.previousBio) !== decision.previousBioDigest ||
+        !existing.has(row.personId) || existing.get(row.personId) !== decision.previousBio) {
+      throw new Error(`Biography replacement mismatch: ${row.personId}`);
+    }
+    return { ...row, reason: decision.reason };
+  });
+}

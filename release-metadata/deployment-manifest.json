@@ -25,7 +25,7 @@
     {
       "path": "client/.vite/manifest.json",
       "bytes": 1348,
-      "sha256": "f5ba9fc131e31b265d5b9b04305c52f0c232fb6c79718a54af9e27ffb5316f5e"
+      "sha256": "89d92970c9f8ab9efc1bb313366825147c4c841044a9c457a4ce34d4f5a63ae2"
     },
     {
       "path": "client/assets/framework-XU8gKkFC.js",
@@ -33,24 +33,24 @@
       "sha256": "b1aff339554868991407e12903b13fd8fcbc0ba5e4fe3d0872ab2fa0394765db"
     },
     {
-      "path": "client/assets/index-BnqItpsu.js",
-      "bytes": 80717,
-      "sha256": "b2c2cf87d600f02e9507229baee7a7addc69078a1fd03395590951aca803ff14"
-    },
-    {
       "path": "client/assets/index-C8kLlszx.css",
       "bytes": 12368,
       "sha256": "04c95d1db86f81b13d87ad4ff27b9887fbd76159452fb9c8f8c7edc00dd73dc4"
     },
     {
-      "path": "client/assets/layout-segment-context-BlF5EUe1.js",
-      "bytes": 288,
-      "sha256": "0b7c3dd121bf10f51e7acd4b260eb863675501c4bcbec7d4914978ad9f23d806"
+      "path": "client/assets/index-DG7u1uWE.js",
+      "bytes": 80717,
+      "sha256": "5549198bc56b1379babb1d1e31ac034ea87f173d394a73b3a2f1bed1b5e46f80"
     },
     {
-      "path": "client/assets/page-Bf75Bh1J.js",
+      "path": "client/assets/layout-segment-context-N3w0DAS5.js",
+      "bytes": 288,
+      "sha256": "7a2c008b1d35792bcdf0eb0f0096252171d02888f4e6ccea9247c4201c081d9a"
+    },
+    {
+      "path": "client/assets/page-HAC9Ol1Y.js",
       "bytes": 1546,
-      "sha256": "67161cecc412c64e150c96348ba161c431b5f2176f3435509b292fdfdf809148"
+      "sha256": "ae37323b72d12eead6c75be7067a3baf034f0d31b0fdf2543e83c0c71102a0c2"
     },
     {
       "path": "client/assets/rolldown-runtime-S-ySWqyJ.js",
@@ -3024,23 +3024,23 @@
     },
     {
       "path": "client/legacy/data/v63-reader-people.js",
-      "bytes": 419086,
-      "sha256": "c49fed77e59818e6cf74ee8c4bd9990cef0faefee699c2457fc6f6461027baa1"
+      "bytes": 426490,
+      "sha256": "2dd0b15f5ad8cce306838d5005f27ac3eb64e92c56a9bdfc091bf36c25b47694"
     },
     {
       "path": "client/legacy/data/v63-reader-people.json",
-      "bytes": 579618,
-      "sha256": "0ac367c1448161ecac617962e97cc31614c4f16117f6787968e8b9dbb90f1b18"
+      "bytes": 588148,
+      "sha256": "d2a2952a3b9fe9500cd1ef89671e65cac6d08151e8875187fd3066472f4da81d"
     },
     {
       "path": "client/legacy/data/v63-reader-person-relations.js",
-      "bytes": 309000,
-      "sha256": "a7eaee0146dc70e579e3ad8f676e824cdc621744d5dd9166222a5f7ed087bc66"
+      "bytes": 346474,
+      "sha256": "a239190adb883df7225ed3106118e7fc5f2899bb66bc0d868e1b890bf4c5c522"
     },
     {
       "path": "client/legacy/data/v63-reader-person-relations.json",
-      "bytes": 381678,
-      "sha256": "99da96815df67ac488207ff93c31a6970a11c0cc4e1e1a2cd130be99db6078bc"
+      "bytes": 426194,
+      "sha256": "4a4a7be9aec819799cadc96a4b8cab9b0eecafebcd8872e3f050f7010490d52f"
     },
     {
       "path": "client/legacy/data/v66-peerage-stages.js",
@@ -3064,13 +3064,13 @@
     },
     {
       "path": "client/legacy/data/v69-person-profiles.js",
-      "bytes": 468361,
-      "sha256": "9c3875824d3e097f3c56052718d440d011645ec15fc61c27cc72e72340bf1e93"
+      "bytes": 506215,
+      "sha256": "512d06eb4799648a15a765dc9d0c76d62c3cda8ec549bd086851bd0dc3060a86"
     },
     {
       "path": "client/legacy/data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "0f40878dc01c36550306c2eca82b460c3fba43c7326c90ea8548d2844bf339d3"
+      "sha256": "96ddd30372c824b0b6b4e2f8928a5e339e214b3ac0b5669f7c5ad4ca89b82b46"
     },
     {
       "path": "client/legacy/index.html",
@@ -3080,7 +3080,7 @@
     {
       "path": "client/legacy/reader-bundle.json",
       "bytes": 109092,
-      "sha256": "6385b00acb003d6d838f0f1548adaae609c76d5a868b98a240f21fc5d72137ae"
+      "sha256": "72e7b73e3c74e23868c7cf2342518fae61e25ecbcfa49817925201ffeb8ee61f"
     },
     {
       "path": "client/window.svg",
@@ -3090,7 +3090,7 @@
     {
       "path": "server/__vite_rsc_assets_manifest.js",
       "bytes": 1113,
-      "sha256": "c546d201b078c4f49aaae51a8f05c0a7e247a90022580d2f7b7dd79e87651608"
+      "sha256": "2f463d083fd9cc9e81a336e8d1c9a2a392b7ab703c6126161655354e92f49493"
     },
     {
       "path": "server/.vite/manifest.json",
@@ -3110,12 +3110,12 @@
     {
       "path": "server/index.js",
       "bytes": 649182,
-      "sha256": "8ee8c1d294b4ed222fdc6a6a77a3ee26d420c05aaf44ea0b8301870db883ddb7"
+      "sha256": "9a31c61a0bc8a6acd72e53bbcd297301ca5dd763c7d69c4d99f2205307c6446e"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
       "bytes": 1113,
-      "sha256": "c546d201b078c4f49aaae51a8f05c0a7e247a90022580d2f7b7dd79e87651608"
+      "sha256": "2f463d083fd9cc9e81a336e8d1c9a2a392b7ab703c6126161655354e92f49493"
     },
     {
       "path": "server/ssr/assets/error-boundary-BIJDUsm4.js",
@@ -3128,19 +3128,19 @@
       "sha256": "9487f9672e71210b67829aecdbf4cfcaabbc01cceebadb27b45c620d02a3a9d9"
     },
     {
-      "path": "server/ssr/assets/page-fXApVm_T.js",
+      "path": "server/ssr/assets/page-iU7_Rm6h.js",
       "bytes": 2431,
-      "sha256": "8909596b0317c97678d65cca1fd106f6a40f6dba003edbee28edfefeddb3056a"
+      "sha256": "10ceffe40133eb491098042893678010e33c1696d4252fb869fb1911040d2abf"
     },
     {
       "path": "server/ssr/index.js",
       "bytes": 584229,
-      "sha256": "fd17f547a33f4cbc8fe50d8c5abe42064acb4558e8564e7907f95505b411ba5e"
+      "sha256": "0c7915154f172aaf3841bd4d29e7f770ee494355502b34d723ee97e4c617bebe"
     },
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "74e7bb8b1e785947c8dc690a77e0eb2dc96dac71e2960b34c1b4b7f5fa81dd98"
+      "sha256": "a933ac9207f0eb386af6bcbacba9ed1f644b88259d2d27171e06306ce5788823"
     },
     {
       "path": "server/vinext-externals.json",
@@ -3150,7 +3150,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "74e7bb8b1e785947c8dc690a77e0eb2dc96dac71e2960b34c1b4b7f5fa81dd98"
+      "sha256": "a933ac9207f0eb386af6bcbacba9ed1f644b88259d2d27171e06306ce5788823"
     },
     {
       "path": "server/wrangler.json",
@@ -3158,9 +3158,9 @@
       "sha256": "f4adf351b2136969e2cc51a435cd8d6c2a6f73f29a0293805df28b51f0b21d27"
     }
   ],
-  "aggregateSha256": "a047261afecd77eaae4092a70ac369366e0cc67c191d19b4ce581f7c37cfd1bf",
+  "aggregateSha256": "cdc5d71ddb65178c1dc2653f30d5238cd67e650fcdd44bf8e8f6a0481932e116",
   "summary": {
     "fileCount": 631,
-    "totalBytes": 50984411
+    "totalBytes": 51120189
   }
 }

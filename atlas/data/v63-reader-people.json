@@ -5,7 +5,7 @@
     "people": 2093,
     "legacyMappings": 1140,
     "portraitAssets": 519,
-    "readerScopeVersion": "V75"
+    "readerScopeVersion": "V76"
   },
   "people": [
     {
@@ -2448,8 +2448,30 @@
         "休昭"
       ],
       "zi": "休昭",
+      "bio": "董允，字休昭，董和之子。先主立太子，选为舍人，徙洗马；后主袭位，迁黄门侍郎，后为侍中，领虎贲中郎将，统宿卫亲兵。常正色匡主，裁抑黄皓。延熙六年加辅国将军，七年以侍中守尚书令，为费祎副贰，九年卒。",
+      "bioCitations": [
+        {
+          "title": "《三国志》卷39·董允传宫省职任",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "董允字休昭，掌軍中郎將和之子也。先主立太子，允以選為捨人，徙洗馬。後主襲位，遷黃門侍郎。〔中略：北伐前托付宫省之事〕亮尋請禕為參軍，允遷為侍中，領虎賁中郎將，統宿衛親兵。"
+        },
+        {
+          "title": "《三国志》卷39·董允传后期职任及卒年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "允常上則正色匡主，下則數責於皓。皓畏允，不敢為非。終允之世，皓位不過黃門丞。〔中略：游宴、董恢事及裴注驳议〕延熙六年，加輔國將軍。七年，以侍中守尚書令，為大將軍費禕副貳。九年，卒。"
+        }
+      ],
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:v76:027",
+        "appointment:v76:028",
+        "appointment:v76:029",
+        "appointment:v76:030",
+        "appointment:v76:031",
+        "appointment:v76:032",
+        "appointment:v76:033"
       ],
       "portraitIds": [
         "portrait:asset:029ff35585d7ef216bc9"
@@ -2484,14 +2506,46 @@
       "zi": "文伟",
       "birthplace": "江夏鄳",
       "deathYear": "253",
-      "bio": "蜀汉重臣。刘备时期入仕，后历任黄门侍郎、侍中、尚书令；蒋琬卒后继任大将军、录尚书事，主持内政，延熙十六年为郭脩所刺。",
+      "bio": "费祎，字文伟，江夏鄳人。历太子舍人、庶子、黄门侍郎，以昭信校尉使吴，迁侍中，后入诸葛亮府为参军、中护军、司马。亮卒，为后军师，继蒋琬为尚书令。延熙六年迁大将军、录尚书事，其时蒋琬尚在；十六年为郭循所害，谥敬。",
+      "bioCitations": [
+        {
+          "title": "《三国志》卷44·费祎传早年及府署",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "費禕字文偉，江夏鄳人也。〔中略：早年游学及与董允交游〕先主立太子，禕與允為舍人，遷庶子。後主踐位，為黃門侍郎。丞相亮南征還，群僚於數十里逢迎，年位多在禕右，而亮特命禕同載，由是眾人莫不易觀。亮以初從南歸，以禕為昭信校尉使吳。〔中略：出使应对及赠刀〕還，遷為侍中。亮住北住漢中，請禕為參軍。以奉使稱旨，頻煩至吳。建興八年，轉為中護軍，後又為司馬。"
+        },
+        {
+          "title": "《三国志》卷44·费祎传亮卒后职任",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "亮卒，禕為後軍師。頃之，代蔣琬為尚書令。〔中略：裴注论费祎处置公务〕琬自漢中還涪，禕遷大將軍，錄尚書事。延熙七年，魏軍次於興勢，假禕節，率眾往御之。〔中略：对弈及兴势之役、裴注甲乙论〕琬固讓州職，禕復領益州刺史。"
+        },
+        {
+          "title": "《三国志》卷33·后主传延熙六年至九年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "六年冬十月，大司馬蔣琬自還漢中，住涪。十一月，大赦。以尚書令費禕為大將軍。〔中略：七年至九年行军事〕九年夏六月，費禕還成都。秋，大赦。冬十一月，大司馬蔣琬卒。"
+        },
+        {
+          "title": "《三国志》卷44·费祎传开府与卒年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "延熙十五年，命禕開府。十六年歲首大會，魏降人郭循在坐。禕歡飲沉醉，為循手刃所害，謚曰敬侯。"
+        }
+      ],
       "dynastyTags": [
         "季汉"
       ],
       "appointmentIds": [
         "appointment:source:sgz:33:c8d63f8e20ac",
         "appointment:v75:009",
-        "appointment:v75:010"
+        "appointment:v75:010",
+        "appointment:v76:004",
+        "appointment:v76:005",
+        "appointment:v76:006",
+        "appointment:v76:007",
+        "appointment:v76:008",
+        "appointment:v76:009",
+        "appointment:v76:010",
+        "appointment:v76:011",
+        "appointment:v76:012",
+        "appointment:v76:013"
       ],
       "portraitIds": [
         "portrait:asset:e89b88c9b5f75db27e42"
@@ -2508,16 +2562,45 @@
       "zi": "公琰",
       "birthplace": "零陵湘乡",
       "deathYear": "246",
-      "bio": "蜀汉重臣。诸葛亮北伐期间任尚书令，诸葛亮卒后继任大将军、录尚书事，主持国政并整顿汉中军政；后以益州刺史领州事，卒后谥恭。",
+      "bio": "蒋琬，字公琰，零陵湘乡人。建兴元年辟为丞相东曹掾，迁参军，与张裔统留府事；八年代为长史，加抚军将军，供给军食。诸葛亮卒后，建兴十二年为尚书令，十三年进大将军。延熙二年进大司马，九年卒，谥恭。",
+      "bioCitations": [
+        {
+          "title": "《三国志》卷44·蒋琬传府署及继政",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "蔣琬字公琰，零陵湘鄉人也。〔中略：早年仕宦〕建興元年，丞相亮開府，辟琬為東曹掾。舉茂才，琬固讓劉邕、陰化、龐延、廖淳，亮教答曰：「思惟背親捨德，以殄百姓，眾人既不隱於心，實又使遠近不解其義，是以君宜顯其功舉，以明此選之清重也。」遷為參軍。五年，亮住漢中，琬與長史張裔統留府事。八年，代裔為長史，加撫軍將軍。亮數外出，琬常足食足兵以相供給。〔中略：诸葛亮赞语及托付〕亮卒，以琬為尚書令，俄而加行都護、假節、領益州刺史、遷大將軍、錄尚書事、封安陽亭侯。"
+        },
+        {
+          "title": "《三国志》卷33·后主传建兴十二年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "十二年春二月，亮由斜谷出，始以流馬運。秋八月，亮卒渭濱。征西大將軍魏延與丞相長史楊儀爭權不和，舉兵相攻，延敗走。斬延首，儀率諸軍還成都。大赦。以左將軍吳壹為車騎將軍，假節督漢中。以丞相留府長史蔣琬為尚書令，總統國事。"
+        },
+        {
+          "title": "《三国志》卷33·后主传建兴十三年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "十三年春正月，中軍師楊儀廢徙漢嘉郡。夏四月，進蔣琬位為大將軍。"
+        },
+        {
+          "title": "《三国志》卷33·后主传延熙元年至二年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "延熙元年春正月，立皇后張氏。大赦，攻元。立子睿為太子，子瑤為安定王。冬十一月，大將軍蔣琬出屯漢中。二年春三月，進蔣琬位為大司馬。"
+        },
+        {
+          "title": "《三国志》卷33·后主传延熙六年至九年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "六年冬十月，大司馬蔣琬自還漢中，住涪。十一月，大赦。以尚書令費禕為大將軍。〔中略：七年至九年行军事〕九年夏六月，費禕還成都。秋，大赦。冬十一月，大司馬蔣琬卒。"
+        }
+      ],
       "dynastyTags": [
         "季汉"
       ],
       "appointmentIds": [
         "appointment:source:sgz:33:15266b19b3c3",
-        "appointment:source:sgz:33:49a9a59efb0b",
         "appointment:source:sgz:33:8b22528ee416",
         "appointment:source:sgz:44:1c106e4707ab",
-        "appointment:v75:011"
+        "appointment:v75:011",
+        "appointment:v76:001",
+        "appointment:v76:002",
+        "appointment:v76:003"
       ],
       "portraitIds": [
         "portrait:asset:0b6752a1b02a1b62b3a7"
@@ -2540,7 +2623,20 @@
       ],
       "appointmentIds": [
         "appointment:source:sgz:33:2e6f7dd53661",
-        "appointment:v75:012"
+        "appointment:v75:012",
+        "appointment:v76:014",
+        "appointment:v76:015",
+        "appointment:v76:016",
+        "appointment:v76:017",
+        "appointment:v76:018",
+        "appointment:v76:019",
+        "appointment:v76:020",
+        "appointment:v76:021",
+        "appointment:v76:022",
+        "appointment:v76:023",
+        "appointment:v76:024",
+        "appointment:v76:025",
+        "appointment:v76:026"
       ],
       "portraitIds": [
         "portrait:asset:c06cc0973cb33ed2f15d"
@@ -2623,6 +2719,9 @@
       "dynastyTags": [
         "后汉",
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:32:537f759694cc"
       ],
       "peerageEventIds": [
         "peerage:370"
@@ -7941,6 +8040,9 @@
       ],
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:33:f265fd6698b3"
       ],
       "portraitIds": [
         "portrait:asset:c287a48cd80e314b6852"
@@ -14370,8 +14472,22 @@
     {
       "personId": "person:workbook:9f33420fc98b7618",
       "name": "吕乂",
+      "bio": "吕乂，字季阳，南阳人。王连请为典曹都尉，历新都、绵竹令及巴西太守。诸葛亮出军，募兵相继，后徙汉中太守，兼领督农，以供军粮。亮卒后历广汉、蜀郡太守，入为尚书，代董允为尚书令。为政清能而持法刻深，延熙十四年卒。",
+      "bioCitations": [
+        {
+          "title": "《三国志》卷39·吕乂传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "呂乂字季陽，南陽人也。〔中略：父事及早年〕初，先主定益州，置鹽府校尉，較鹽鐵之利，後校尉王連請乂及南陽杜祺、南鄉劉幹等並為典曹都尉。乂遷新都、綿竹令，乃心隱卹，百姓稱之，為一州諸城之首。遷巴西太守。丞相諸葛亮連年出軍，調發諸郡，多不相救，乂募取兵五千人詣亮，慰喻檢制，無逃竄者。徙為漢中太守，兼領督農，供繼軍糧。亮卒，累遷廣漢、蜀郡太守。〔中略：蜀郡户籍治理〕後入為尚書，代董允為尚書令，眾事無留，門無停賓。乂歷職內外，治身儉約，謙靖少言，為政簡而不煩，號為清能；然持法刻深，好用文俗吏，故居大官，名聲損於郡縣。延熙十四年卒。"
+        }
+      ],
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:v76:034",
+        "appointment:v76:035",
+        "appointment:v76:036",
+        "appointment:v76:037"
       ],
       "portraitIds": [
         "portrait:v73:047"

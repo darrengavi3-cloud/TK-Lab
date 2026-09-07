@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 803,
-  "totalBytes": 335415429,
-  "aggregateSha256": "1906d80e8295173f4de091ec16521caaec9e45135f4c92e17032d98635dc5271",
+  "fileCount": 808,
+  "totalBytes": 335726215,
+  "aggregateSha256": "614faec20cb5c9c0125685f4def50cbe10e248ba3b84bc06e339d1aa883ff826",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -3683,33 +3683,33 @@
     },
     {
       "path": "data/v63-person-registry.js",
-      "bytes": 7391145,
-      "sha256": "7be80085be8e24d726c7c96015f03ed5a22bb831d0b899641c777276eed8b33f"
+      "bytes": 7423611,
+      "sha256": "39f1c12dcf45f01285e4b96c3f8f1350c2265c536990d1c7992bc28ecef4259e"
     },
     {
       "path": "data/v63-person-registry.json",
-      "bytes": 11301175,
-      "sha256": "e82207fbb25a9b2401506c575aedd9226a0899e77989859f2f49bbc96a34f71f"
+      "bytes": 11340821,
+      "sha256": "fac1cee73c91ada76982e96e313d7ad3166f8dd740bba0f953827818de42f391"
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 419086,
-      "sha256": "c49fed77e59818e6cf74ee8c4bd9990cef0faefee699c2457fc6f6461027baa1"
+      "bytes": 426490,
+      "sha256": "2dd0b15f5ad8cce306838d5005f27ac3eb64e92c56a9bdfc091bf36c25b47694"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 579618,
-      "sha256": "0ac367c1448161ecac617962e97cc31614c4f16117f6787968e8b9dbb90f1b18"
+      "bytes": 588148,
+      "sha256": "d2a2952a3b9fe9500cd1ef89671e65cac6d08151e8875187fd3066472f4da81d"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 309000,
-      "sha256": "a7eaee0146dc70e579e3ad8f676e824cdc621744d5dd9166222a5f7ed087bc66"
+      "bytes": 346474,
+      "sha256": "a239190adb883df7225ed3106118e7fc5f2899bb66bc0d868e1b890bf4c5c522"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 381678,
-      "sha256": "99da96815df67ac488207ff93c31a6970a11c0cc4e1e1a2cd130be99db6078bc"
+      "bytes": 426194,
+      "sha256": "4a4a7be9aec819799cadc96a4b8cab9b0eecafebcd8872e3f050f7010490d52f"
     },
     {
       "path": "data/v65-battle-coordinate-audit.js",
@@ -3873,23 +3873,23 @@
     },
     {
       "path": "data/v69-person-profile-audit.js",
-      "bytes": 439150,
-      "sha256": "c9733980debb1523fcfbb3e0f93a17443df3f2c0a77e3a1ed5173cec607a183c"
+      "bytes": 439146,
+      "sha256": "75df0030a4234a8ce7bff14f10e52b1d4f2771cbaaf49122f1aaf71331e324a0"
     },
     {
       "path": "data/v69-person-profile-audit.json",
-      "bytes": 625292,
-      "sha256": "3604c244466cf2d16a3126b024d2207a5d83bec5a0cfc358fe3e2a2cf8bb6a34"
+      "bytes": 625288,
+      "sha256": "05f27dd299410101d98c47cb39a112a6ab8aef6f042109c03a1a9fa8f4a2acc6"
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 468466,
-      "sha256": "bab3239e315e16aa5d361b0ab653ef7e933478a52aa3ef9158bc72e18a2b9fd0"
+      "bytes": 506320,
+      "sha256": "085246d96416b1a4ad5c0e9e793fd81a968c996308b38690467beb2f3bd72fc7"
     },
     {
       "path": "data/v69-person-profiles.json",
-      "bytes": 644568,
-      "sha256": "306896c3e1e33d76e36f38243f248b09bc269bf4a14ae22fe63c24e3c1f4b81b"
+      "bytes": 692145,
+      "sha256": "930f8df06392bea9d5227d7afd25e2ef368b834ae1b6709a68a031a2fd86af47"
     },
     {
       "path": "data/v69-portrait-candidates.js",
@@ -3954,12 +3954,12 @@
     {
       "path": "data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "0f40878dc01c36550306c2eca82b460c3fba43c7326c90ea8548d2844bf339d3"
+      "sha256": "96ddd30372c824b0b6b4e2f8928a5e339e214b3ac0b5669f7c5ad4ca89b82b46"
     },
     {
       "path": "data/v73-review-status-ledger.json",
       "bytes": 2378,
-      "sha256": "df6ce887a791919391ae9302e8a1d98c158e9257c553dd7835c77a58319b51bb"
+      "sha256": "27a3a52d7a2c36d98fe1edb1e610cbcd2f982b922d999abe2558bbf3b40679d3"
     },
     {
       "path": "data/v74-appointment-source-review.json",
@@ -4005,6 +4005,31 @@
       "path": "data/v75-person-identity-suppressions.json",
       "bytes": 10822,
       "sha256": "997e814f825119f9e10646b729e8ce63dbc835d7a95001031afb5411c1de07c8"
+    },
+    {
+      "path": "data/v76-appointment-source-review.json",
+      "bytes": 8195,
+      "sha256": "f564e8a7ca0b5a4ac84966289f4734d245e72700615e3a3fe716027accc338a1"
+    },
+    {
+      "path": "data/v76-appointment-supplements.json",
+      "bytes": 28256,
+      "sha256": "5570f741e5bc05cf8448798cbd5b3110b88268e6c1f23e5970e11148038123f3"
+    },
+    {
+      "path": "data/v76-chancellery-evidence.json",
+      "bytes": 8858,
+      "sha256": "22737516dd2a17f53942450962c5874b9a43bc86196b369b327b46ef2a689560"
+    },
+    {
+      "path": "data/v76-person-biography-corrections.json",
+      "bytes": 6784,
+      "sha256": "bd55fc7bd25ef07514127ce5900054d059424ff3b89678bad980ad8e139b5c56"
+    },
+    {
+      "path": "data/v76-person-biography-review.json",
+      "bytes": 3234,
+      "sha256": "ec9bdd8786f5a195077573762fb6c87ca645948ae542494765ba1cebe25bdf40"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
