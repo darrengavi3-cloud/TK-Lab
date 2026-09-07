@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
-const readerScopeRows = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const readerScopeRows = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
 const expectedReaderCount = readerScopeRows.length;
 const sourceHtmlPath = path.join(root, 'index.html');
 const registryJsonPath = path.join(root, 'data', 'v63-person-registry.json');
@@ -23,6 +23,12 @@ const bannedRuntimeFiles = new Set([
   'data/person-source-index.js',
   'data/v71-appointment-review.json',
   'data/v74-appointment-supplements.json',
+  'data/v75-chancellery-evidence.json',
+  'data/v75-appointment-source-review.json',
+  'data/v75-appointment-supplements.json',
+  'data/v75-person-identity-suppressions.json',
+  'data/v75-person-biography-review.json',
+
   'data/v74-appointment-source-review.json',
   'data/v74-chancellery-evidence.json',
   'data/v74-person-biography-review.json',

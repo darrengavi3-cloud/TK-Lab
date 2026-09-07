@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "V75",
+  "withdrawnPortraits": [
+    {
+      "portraitId": "portrait:asset:2345a1f6f6c03700a3cf",
+      "personId": "person:source:dc344a37e17e",
+      "src": "./assets/portraits/v51/person-source-dc344a37e17e.png"
+    },
+    {
+      "portraitId": "portrait:asset:f9699e3e0e3172d20bba",
+      "personId": "person:source:6225fb017a4d",
+      "src": "./assets/portraits/v51/person-source-6225fb017a4d.png"
+    },
+    {
+      "portraitId": "portrait:asset:d92ea1fbdf666b49e3c7",
+      "personId": "person:source:b9b442ab00f7",
+      "src": "./assets/portraits/v51/person-source-b9b442ab00f7.png"
+    },
+    {
+      "portraitId": "portrait:asset:e574a306125ebb86cfbb",
+      "personId": "person:source:fce5078fab12",
+      "src": "./assets/portraits/v51/person-source-fce5078fab12.png"
+    },
+    {
+      "portraitId": "portrait:asset:b06d7817f2916d286317",
+      "personId": "person:source:d7381b702ec2",
+      "src": "./assets/portraits/v51/person-source-d7381b702ec2.png"
+    }
+  ],
+  "baseScopeSha256": "19922673633e332304c80a99de31b533cef375828c57e041a8cabb4b7802a9a1",
+  "records": [
+    {
+      "reviewId": "identity-review:v75:1",
+      "personId": "person:source:dc344a37e17e",
+      "name": "司隶",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "司隶为官署名称，司隶校尉为完整官名。",
+      "citations": [
+        {
+          "title": "《三国志》卷35·诸葛亮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "亮以丞相錄尚書事，假節。張飛卒後，領司隸校尉。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:07:37032c90d297",
+          "sha256": "f9478df8102fbb24e6fdc73a9c4ba90725b3ad7f570b450f21abe3d858c706da"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:12:83ea37a79e10",
+          "sha256": "3e8a4000dc982e22e673292aea6be087281f439d60a074bfb705693a515bb652"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:18:30e868a2ccfb",
+          "sha256": "254cd6294c37d4ebd5423dae0de3097f86a8e7e173ebbe1fe0b5abdc679086ed"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:28:c2826a92b7b6",
+          "sha256": "8e1a8c844b3a3b6a8daa0e7e11a32b7824e194bc59241cca3746504d7585bff1"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:32:537f759694cc",
+          "sha256": "a80a3e2c35aa46ec4df8e1603e7370752ba4f941906106f4e0f0712ed12bfd85"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:35:03b07e76f199",
+          "sha256": "b6e51157dfaa3ecc698098138e2a460b30b55cd3e644be68eaa17e7ed289d06f"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:36:97328e141be5",
+          "sha256": "82ff94fd69980c3ed14e4544d52817d124998446df025e8e23b4ed7d57cbff24"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:019:abe628166201",
+          "sha256": "746e22a274bd0e7ad9e0b01333710eea43eb414b1427f2123051e9f92e4689dd"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:033:0c681d6d7ffb",
+          "sha256": "d4095b4311b7ea218d726e492bfbf9764f8d008aa6a426099370d88bda97b169"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:039:2f318ade00d5",
+          "sha256": "128dd545af977ca84c5525b7175fb5bd2abc23b7e9097dcfa88101634fca42fd"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:039:5dc5dd6ef5d0",
+          "sha256": "9bddf5fec9b98bb5a9f2a2ef497ac33a03a30e9c5412316b47b66808799b2db0"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:041:68a060b1ca40",
+          "sha256": "521fd9e21b2d6614152ff11bd2b5349a3e471c3ef02486eae09a6ad14e4d210e"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:044:4d8c08bf2d26",
+          "sha256": "88fa0a0a43e38dc78edbdfa6f192116a29e73f00bf59c0de09ed02f524d9bb21"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:045:19b235b69d96",
+          "sha256": "facca1df531479e2c04c8c00fcf6ee9eb984a07370ea702428a2695193f29862"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:045:150b0f0d2dc2",
+          "sha256": "796b53d4452d36deea31a91afa394fdc75eb13e0314375e08b89a8b97c7cc9aa"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:047:2fdadac0aaf6",
+          "sha256": "20624b664fdc6426eed38860cc061ba3ba9d0b080ff7dedd97f5f4bb5c43f35e"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:047:8232dfcc27ae",
+          "sha256": "9bd5673a7ff162793c3a10e1f90849a2892061af7e5d7b30521cbb09e3610e56"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:047:2ff2aa9c1474",
+          "sha256": "668cf356a3e4f9e65fee84f246258351cf369227ed60e844350cd3816fb3673e"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:061:59e99c827d0f",
+          "sha256": "1b298df393c544bbbaf06ebd448cba0c7f6c289dc4860ba143491b43a8fa123f"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:077:2d62f5b48f2d",
+          "sha256": "93e67d2946f5eb283aaa6ae3c034f550ecb2b409cba92f4d1248b2ef227afd12"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:102:ee729b49fcc2",
+          "sha256": "f2feb1302103cffa5ab716629e41261e9e65f9d3298685ce4826b8d107aa1bca"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:123:35b93537525a",
+          "sha256": "0362fcc3d5e9669b81b1c5708e75b327845b1ad65ba1eff7ad59f01862da18b6"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v75:2",
+      "personId": "person:source:b9b442ab00f7",
+      "name": "桂阳",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "桂阳是郡名，桂阳太守的受任者是赵云。",
+      "citations": [
+        {
+          "title": "《三国志》卷36·赵云传裴注引《云别传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷36",
+          "quote": "雲別傳曰：初，先主之敗，有人言雲已北去者，先主以手戟擿之曰：「子龍不棄我走也。」頃之，雲至。從平江南，以為偏將軍，領桂陽太守，代趙範。範寡嫂曰樊氏，有國色，範欲以配雲。雲辭曰：「相與同姓，卿兄猶我兄。」固辭不許。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:36:81d04c5d62da",
+          "sha256": "05d722366de5303bcd587eaa380c17f55cd4a15fa24278f5812c82bf78f2829c"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v75:3",
+      "personId": "person:source:fce5078fab12",
+      "name": "宓迎",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "选宓迎为别驾承接秦宓；宓迎不是姓名。",
+      "citations": [
+        {
+          "title": "《三国志》卷38·秦宓传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷38",
+          "quote": "益州辟宓為從事祭酒。先主既稱尊號，將東征吳，宓陳天時必無其利，坐下獄幽閉，然後貸出。建興二年，丞相亮領益州牧，選宓迎為別駕，尋拜左中郎將、長水校尉。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:38:e639915b7f70",
+          "sha256": "23702b1def589d16c0531e81886e8da4076ccd12856845d9f29bbff4a4ea2ea0"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v75:4",
+      "personId": "person:source:d7381b702ec2",
+      "name": "史主记",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "户曹史主记主簿是职任连文，承接刘巴；史主记不是姓名。",
+      "citations": [
+        {
+          "title": "《三国志》卷39·刘巴传裴注引《零陵先贤传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "劉巴字子初，零陵烝陽人也。少知名。〔中略：裴注叙祖父、父事及刘表拘巴〕年十八，郡署戶曹史主記主簿。劉先（主）欲遣週不疑就巴學，巴答曰：「昔遊荊北，時涉師門，記問之學，不足紀名，內無楊朱守靜之術，外無墨翟務時之風，猶天之南箕，虛而不用。」"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:39:2f656376b998",
+          "sha256": "d389ff1ec2521369d75f8d8b4634a3cd2d6be3fc32aff668f66a6682775fea51"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v75:5",
+      "personId": "person:source:6225fb017a4d",
+      "name": "于治戎",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "于治戎为长是对诸葛亮才能的评价；于治戎不是姓名。",
+      "citations": [
+        {
+          "title": "《三国志》卷35·陈寿上诸葛亮集表",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "然亮才，於治戎為長，奇謀為短，理民之幹，優於將略。而所與對敵，或值人傑，加眾寡不侔，攻守異體，故雖連年動眾，未能有克。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:35:dbe3292ec57a",
+          "sha256": "7e8a3dfa162b328d50de965031d58c128cc583b5e8853ee6b666a022bc6dbe0c"
+        }
+      ]
+    }
+  ]
+}

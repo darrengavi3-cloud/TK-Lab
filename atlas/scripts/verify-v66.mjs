@@ -6,7 +6,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const expectedReaderScope = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const expectedReaderScope = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
 const expectedReaderCount = expectedReaderScope.length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
@@ -130,14 +130,19 @@ const v70Portraits = portraits.filter(row => row.portraitKind === 'ui-illustrati
 const v73Portraits = portraits.filter(row => row.portraitKind === 'ui-illustration-v73');
 const baselinePortraits = portraits.filter(row => !['ui-illustration-v70','ui-illustration-v73'].includes(row.portraitKind));
 const portraitBindings = baselinePortraits.map(row => `${row.portraitId}\0${row.personId}`);
-const expectedBaselinePortraitCount = portraitProduction?.status === 'complete' ? 374 : 274;
+const identityReviewV75 = json('data/v75-person-identity-suppressions.json');
+const withdrawnPortraits = identityReviewV75.withdrawnPortraits;
+assert(withdrawnPortraits.length === 5 && new Set(withdrawnPortraits.map(row => row.personId)).size === 5, 'V75 撤下立绘必须对应五个不同伪人物');
+assert(withdrawnPortraits.every(row => identityReviewV75.records.some(record => record.personId === row.personId && record.action === 'suppress') && !portraits.some(active => active.portraitId === row.portraitId)), 'V75 撤下立绘与身份审定不符');
+const preservedPortraitBindings = [...portraitBindings, ...withdrawnPortraits.map(row => `${row.portraitId}\0${row.personId}`)];
+const expectedBaselinePortraitCount = (portraitProduction?.status === 'complete' ? 374 : 274) - withdrawnPortraits.length;
 const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length + v73Portraits.length;
 const expectedPortraitBindingHash = portraitProduction?.status === 'complete'
   ? 'b931a3a77244b0ddfd917dfc9f085716ab43dd907c366923a2b6f744d01f283f'
   : 'e51441f1bd0135fd70a488742d86c0c7f29bdebd33b410bd2e90babe2fddf833';
 assert(portraits.length === expectedPortraitCount, `生产立绘不是 ${expectedPortraitCount} 项：${portraits.length}`);
 assert(new Set(portraits.map(row => row.portraitId)).size === portraits.length, '立绘 portraitId 不唯一');
-assert(hashSortedLines(portraitBindings) === expectedPortraitBindingHash, 'V62/V69 基线立绘与稳定 personId 映射发生变化');
+assert(hashSortedLines(preservedPortraitBindings) === expectedPortraitBindingHash, 'V62/V69 基线立绘与稳定 personId 映射发生变化');
 
 /* 16 期地图与全量地图资产冻结。 */
 const expectedMapIds = ['huangjin', 'shaodi', 'dongzhuo', 'xingping', 'jianbing', 'guandu', 'chibi', 'xiangfan', 'sanguo', 'beifa', 'guijin', 'hanwang', 'jinchu', 'taikang', 'hui_di', 'yongjia'];

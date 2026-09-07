@@ -7,7 +7,8 @@ import { applyReviewedTranscription } from '../atlas/scripts/epigraphy-publicati
 import crypto from 'node:crypto';
 import test from 'node:test';
 import { reviewedAppointments, sourceDigest } from '../atlas/scripts/appointment-publication.mjs';
-import { reviewedSupplementAppointments, appointmentStatusCounts } from '../atlas/scripts/appointment-supplements.mjs';
+import { reviewedSupplementAppointments, appointmentStatusCounts, loadAppointmentPublication, mergeAppointmentEvidence } from '../atlas/scripts/appointment-supplements.mjs';
+import { fileURLToPath } from 'node:url';
 import { reviewedReaderScope, validateIdentitySources } from '../atlas/scripts/person-identity-publication.mjs';
 import { fangzhenValidAtYear, classifyFangzhenDynasty } from '../atlas/assets/app/fangzhen.js';
 import { epigraphicYear, epigraphicEraKey, epigraphicInscriptionState, matchesEpigraphicInscriptionStatus } from '../atlas/assets/app/jinshi.js';
@@ -22,8 +23,47 @@ const source = json('person-source-index');
 const review = json('v71-appointment-review');
 const relations = json('v63-reader-person-relations');
 
+test('V75 removes five false people and consolidates corroboration without losing source evidence', () => {
+  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
+  const registry = json('v63-person-registry');
+  const people = json('v63-reader-people').people;
+  const removed = json('v75-person-identity-suppressions');
+  validateIdentitySources(removed, { appointments: source.appointments });
+  for (const row of removed.records) {
+    assert.equal(people.some(person => person.personId === row.personId), false);
+    assert.ok(registry.excludedPeople.some(person => person.personId === row.personId));
+    assert.equal(relations.appointments.some(fact => fact.personId === row.personId), false);
+    assert.equal(Object.values(json('portrait-manifest').assetsById).some(asset => asset.personId === row.personId), false);
+  }
+  const publication = loadAppointmentPublication(fileURLToPath(root), scope, id => registry.legacyToCanonical[id] || id);
+  const facts = publication.published;
+  assert.equal(facts.length, 159);
+  const fact = suffix => facts.find(row => row.id === `appointment:source:${suffix}`);
+  assert.equal(fact('sgz:35:03b07e76f199').personId, 'person:shu:zhuge-liang');
+  assert.equal(fact('sgz:36:97328e141be5').personId, 'person:workbook:dbc090011a676f55');
+  assert.equal(fact('sgz:36:97328e141be5').startYear, 221);
+  assert.equal(fact('sgz:36:81d04c5d62da').personId, 'person:workbook:9bfa483fb133d80a');
+  assert.equal(fact('sgz:39:2f656376b998').personId, 'person:shu:liu-ba');
+  assert.equal(fact('sgz:35:dbe3292ec57a'), undefined);
+  assert.equal(fact('sgz:38:e639915b7f70'), undefined);
+  const qin = fact('sgz:42:a1c45d2140c4');
+  assert.ok(qin.citations.some(c => c.url.endsWith('卷38')));
+  assert.ok(qin.citations.some(c => c.url.endsWith('卷42')));
+  assert.equal(facts.filter(row => row.personId === qin.personId && row.officeName === '别驾').length, 1);
+  assert.ok(facts.find(row => row.name === '杨仪' && row.officeName === '中军师').citations[0].note.includes('无所统领'));
+  assert.ok(facts.find(row => row.name === '董厥' && row.officeName === '丞相主簿').citations[0].quote.includes('主薄'));
+  const bad = structuredClone(json('v75-appointment-source-review'));
+  bad.records.find(row => row.corroboratesAppointmentId).correction.personId = 'person:shu:zhuge-liang';
+  assert.throws(() => mergeAppointmentEvidence(facts, bad), /Invalid duplicate/);
+  const ids = new Set(facts.map(row => row.id));
+  const decisionIds = new Set(publication.review.records.map(row => row.appointmentId));
+  assert.equal(source.appointments.filter(row => /sgz:(3[5-9]|4[0-5]):/.test(row.id) && !decisionIds.has(row.id)).length, 0);
+  ids.add(source.appointments.find(row => !decisionIds.has(row.id)).id);
+  assert.throws(() => appointmentStatusCounts(publication.sourceRows, publication.review, publication.supplement, ids), /publication mismatch/);
+});
+
 test('V74 chancellery evidence preserves refutations, corrected subjects and unknown dates', () => {
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'));
+  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
   const evidence = json('v74-chancellery-evidence');
   const supplement = json('v74-appointment-supplements');
   const accepted = reviewedSupplementAppointments(scope, evidence, supplement);
@@ -42,9 +82,10 @@ test('V74 chancellery evidence preserves refutations, corrected subjects and unk
   assert.equal(office('董恢', '巴郡太守'), undefined);
   const publishedIds = new Set(relations.appointments.map(row => row.appointmentId));
   for (const row of supplement.records) assert.equal(publishedIds.has(row.id), row.status === 'verified');
-  const combined = { records: [...review.records, ...json('v74-appointment-source-review').records] };
-  const counts = appointmentStatusCounts(source.appointments, combined, supplement, publishedIds);
-  assert.deepEqual(counts, { verified: 143, pending: 609, disputed: 2, suppressed: 48 });
+  const combined = { records: [...review.records, ...json('v74-appointment-source-review').records, ...json('v75-appointment-source-review').records] };
+  const allSupplements = {records: [...supplement.records, ...json('v75-appointment-supplements').records]};
+  const counts = appointmentStatusCounts(source.appointments, combined, allSupplements, publishedIds);
+  assert.deepEqual(counts, { verified: 159, pending: 603, disputed: 2, suppressed: 50 });
   assert.deepEqual(json('v73-review-status-ledger').modules.find(row => row.key === 'appointments').counts, counts);
   const changed = structuredClone(evidence);
   changed.records.find(row => row.id === 'dong-hui').quote = '闢為丞相府屬，遷巴郡太守';
@@ -56,7 +97,7 @@ test('V74 chancellery evidence preserves refutations, corrected subjects and unk
   changedFact.records.find(row => row.name === '董恢' && row.status === 'disputed').status = 'verified';
   assert.throws(() => reviewedSupplementAppointments(scope, evidence, changedFact), /content changed/);
   const wronglyPublished = new Set(publishedIds).add(review.records.find(row => row.status === 'suppressed').appointmentId);
-  assert.throws(() => appointmentStatusCounts(source.appointments, combined, supplement, wronglyPublished), /Suppressed/);
+  assert.throws(() => appointmentStatusCounts(source.appointments, combined, allSupplements, wronglyPublished), /Suppressed/);
   const portraits = json('v73-portrait-candidates');
   assert.equal(portraits.records.length, 100);
   assert.equal(portraits.records.find(row => row.name === '李朝').priorityGroup, '刘备州府');
@@ -71,8 +112,9 @@ test('reviewed identities extend the frozen roster without losing ids or publish
   const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
   const expectedIds = new Set([...base.people.map(row => row.personId), ...additions]);
   expectedIds.delete('person:source:032cc177a216');
+  for (const row of json('v75-person-identity-suppressions').records) expectedIds.delete(row.personId);
   assert.deepEqual(new Set(roster.map(row => row.personId)), expectedIds);
-  assert.equal(reviewedReaderScope(base, identityReview, identitySuppressions).length, 2098);
+  assert.equal(reviewedReaderScope(base, identityReview, identitySuppressions, json('v75-person-identity-suppressions')).length, 2093);
   const liu = roster.find(row => row.personId === 'person:snapshot260:9fbd9f0edab3ad59');
   assert.equal(liu.zi, '道真');
   assert.equal(liu.birthplace, '燕国蓟');
@@ -108,7 +150,7 @@ test('identity resolution cannot publish an unreviewed appointment; source edits
 test('all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild', () => {
   assert.equal(review.records.length, 149);
   const published = new Map(relations.appointments.map(row => [row.appointmentId, row]));
-  assert.equal(published.size, 143);
+  assert.equal(published.size, 159);
   const row = suffix => published.get(`appointment:source:${suffix}`);
   assert.equal(row('sgz:22:dc35da5cf8f9').personId, 'person:workbook:13d66149e45735fd');
   assert.equal(row('sgz:22:dc35da5cf8f9').nodeName, '从事祭酒');
@@ -156,7 +198,7 @@ test('verified administrative tenures resolve into person timelines; candidates 
     assert.equal(record.readerDisplayStatus, 'verified');
     assert.equal(event.personId, record.personId);
   }
-  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 92);
+  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 94);
   assert.equal(json('v63-reader-people').people.filter(person => person.bioClassical).length, 0);
 });
 
@@ -345,7 +387,7 @@ test('reviewed old commentary retains its text and rejects altered apparatus', (
 
 test('reviewed biographies pin identities and evidence without replacing existing biographies', () => {
   const review = json('v71-person-biography-review');
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'));
+  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
   const approved = reviewedBiographies(scope, review);
   const people = json('v63-reader-people').people;
   assert.equal(approved.length, 8);
@@ -354,8 +396,8 @@ test('reviewed biographies pin identities and evidence without replacing existin
     assert.equal(published.bio, row.bio);
     assert.deepEqual(published.bioCitations, row.citations);
   }
-  const newer = reviewedBiographies(scope, json('v74-person-biography-review'));
-  assert.equal(newer.length, 14);
+  const newer = reviewedBiographies(scope, {records: [...json('v74-person-biography-review').records, ...json('v75-person-biography-review').records]});
+  assert.equal(newer.length, 16);
   for (const row of newer) {
     const published = people.find(person => person.personId === row.personId);
     assert.equal(published.bio, row.bio);

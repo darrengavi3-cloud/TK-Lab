@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
 const readJson=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const failures=[];
@@ -75,7 +75,7 @@ assert(productionRows.every(row=>row.status==='ready'&&/^\d+:\d+$/.test(String(r
 assert(candidates.figma?.seat==='Full'&&candidates.figma?.status===production.status,'候选摘要未同步当前 Figma 生产状态');
 const v70PortraitCount=Object.values(portraits.assetsById||{}).filter(asset=>asset.portraitKind==='ui-illustration-v70').length;
 const v73PortraitCount=Object.values(portraits.assetsById||{}).filter(asset=>asset.portraitKind==='ui-illustration-v73').length;
-const expectedPublishedPortraits=(production.status==='complete' ? 374 : 274)+v70PortraitCount+v73PortraitCount;
+const expectedPublishedPortraits=(production.status==='complete' ? 369 : 269)+v70PortraitCount+v73PortraitCount;
 assert(portraits.summary?.assetRecords===expectedPublishedPortraits&&candidates.summary?.expectedAfterProduction===375,'读者立绘数量与当前生产阶段不一致');
 
 const dispositions=battleLinks.dispositions||[];

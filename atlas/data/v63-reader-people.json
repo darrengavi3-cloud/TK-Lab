@@ -2,10 +2,10 @@
   "schemaVersion": "V63",
   "modelId": "sgz-v63-reader-people",
   "summary": {
-    "people": 2098,
+    "people": 2093,
     "legacyMappings": 1140,
-    "portraitAssets": 524,
-    "readerScopeVersion": "V73"
+    "portraitAssets": 519,
+    "readerScopeVersion": "V75"
   },
   "people": [
     {
@@ -2421,8 +2421,20 @@
     {
       "personId": "person:shu:dong-jue",
       "name": "董厥",
+      "bio": "董厥，字龚袭，义阳人。诸葛亮时为府令史，亮称其良士，言思慎宜适。徙主簿。亮卒后，稍迁尚书仆射，代陈祗为尚书令，后迁大将军，平尚书事。",
+      "bioCitations": [
+        {
+          "title": "《三国志》卷35·董厥附传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "董厥者，丞相亮時為府令史，亮稱之曰：「董令史，良士也。吾每與之言，思慎宜適。」徙為主薄。亮卒後，稍遷至尚書仆射，代陳祗為尚書令，遷大將軍，平台事，而義陽樊建代焉。〈案《晉百官表》：董厥字龔襲，亦義陽人。建字長元。〉"
+        }
+      ],
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:v75:001",
+        "appointment:v75:002"
       ],
       "portraitIds": [
         "portrait:asset:6599c517aab621e23678"
@@ -2477,7 +2489,9 @@
         "季汉"
       ],
       "appointmentIds": [
-        "appointment:source:sgz:33:c8d63f8e20ac"
+        "appointment:source:sgz:33:c8d63f8e20ac",
+        "appointment:v75:009",
+        "appointment:v75:010"
       ],
       "portraitIds": [
         "portrait:asset:e89b88c9b5f75db27e42"
@@ -2502,7 +2516,8 @@
         "appointment:source:sgz:33:15266b19b3c3",
         "appointment:source:sgz:33:49a9a59efb0b",
         "appointment:source:sgz:33:8b22528ee416",
-        "appointment:source:sgz:44:1c106e4707ab"
+        "appointment:source:sgz:44:1c106e4707ab",
+        "appointment:v75:011"
       ],
       "portraitIds": [
         "portrait:asset:0b6752a1b02a1b62b3a7"
@@ -2524,7 +2539,8 @@
         "季汉"
       ],
       "appointmentIds": [
-        "appointment:source:sgz:33:2e6f7dd53661"
+        "appointment:source:sgz:33:2e6f7dd53661",
+        "appointment:v75:012"
       ],
       "portraitIds": [
         "portrait:asset:c06cc0973cb33ed2f15d"
@@ -2583,6 +2599,9 @@
       ],
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:39:2f656376b998"
       ],
       "portraitIds": [
         "portrait:v73:017"
@@ -2688,7 +2707,9 @@
         "季汉"
       ],
       "appointmentIds": [
-        "appointment:source:sgz:32:a77842e8dc15"
+        "appointment:source:sgz:32:a77842e8dc15",
+        "appointment:v75:007",
+        "appointment:v75:008"
       ],
       "portraitIds": [
         "portrait:asset:73fbe9c36fa0ff4bf6ec"
@@ -2728,7 +2749,8 @@
         "季汉"
       ],
       "appointmentIds": [
-        "appointment:source:sgz:32:7dd6cd2706c9"
+        "appointment:source:sgz:32:7dd6cd2706c9",
+        "appointment:source:sgz:35:03b07e76f199"
       ],
       "portraitIds": [
         "portrait:asset:07986b6e9bd30dba0c37"
@@ -7249,16 +7271,6 @@
       ]
     },
     {
-      "personId": "person:source:6225fb017a4d",
-      "name": "于治戎",
-      "aliases": [
-        "于治戎"
-      ],
-      "portraitIds": [
-        "portrait:asset:f9699e3e0e3172d20bba"
-      ]
-    },
-    {
       "personId": "person:source:64911f32eff7",
       "name": "年就加",
       "aliases": [
@@ -7794,16 +7806,6 @@
       ]
     },
     {
-      "personId": "person:source:b9b442ab00f7",
-      "name": "桂阳",
-      "aliases": [
-        "桂阳"
-      ],
-      "portraitIds": [
-        "portrait:asset:d92ea1fbdf666b49e3c7"
-      ]
-    },
-    {
       "personId": "person:source:bdf065c626f6",
       "name": "孙朗",
       "aliases": [
@@ -7945,16 +7947,6 @@
       ]
     },
     {
-      "personId": "person:source:d7381b702ec2",
-      "name": "史主記",
-      "aliases": [
-        "史主記"
-      ],
-      "portraitIds": [
-        "portrait:asset:b06d7817f2916d286317"
-      ]
-    },
-    {
       "personId": "person:source:d87a40e88810",
       "name": "温羡",
       "aliases": [
@@ -7992,16 +7984,6 @@
       "zi": "士行",
       "dynastyTags": [
         "吴"
-      ]
-    },
-    {
-      "personId": "person:source:dc344a37e17e",
-      "name": "司隸",
-      "aliases": [
-        "司隸"
-      ],
-      "portraitIds": [
-        "portrait:asset:2345a1f6f6c03700a3cf"
       ]
     },
     {
@@ -8237,16 +8219,6 @@
       "dynastyTags": [
         "魏",
         "西晋"
-      ]
-    },
-    {
-      "personId": "person:source:fce5078fab12",
-      "name": "宓迎",
-      "aliases": [
-        "宓迎"
-      ],
-      "portraitIds": [
-        "portrait:asset:e574a306125ebb86cfbb"
       ]
     },
     {
@@ -14268,6 +14240,9 @@
       "dynastyTags": [
         "季汉"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:36:81d04c5d62da"
+      ],
       "portraitIds": [
         "portrait:v73:016"
       ]
@@ -14848,8 +14823,22 @@
     {
       "personId": "person:workbook:a905207ace5bd181",
       "name": "杨仪",
+      "bio": "杨仪，字威公，襄阳人。先主辟为左将军兵曹掾，后为尚书。建兴三年，诸葛亮以为参军，署府事；八年迁长史，加绥军将军。军中分部与粮谷筹度，多取办于仪。亮卒，领军还，拜中军师，无所统领。",
+      "bioCitations": [
+        {
+          "title": "《三国志》卷40·杨仪传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "楊儀字威公，襄陽人也。建安中，為荊州刺史傅群主簿，背群而詣襄陽太守關羽。羽命為功曹，遣奉使西詣先主。先主與語論軍國計策，政治得失，大悅之，因闢為左將軍兵曹掾。及先主為漢中王，拔儀為尚書。先主稱尊號，東征吳，儀與尚書令劉巴不睦，左遷遙署弘農太守。建興三年，丞相亮以為參軍，署府事，將南行。五年，隨亮漢中。八年，遷長史，加綏軍將軍。亮數出軍，儀常規畫分部，籌度糧穀，不稽思慮，斯須便了。軍戎節度，取辦於儀。亮深惜儀之才幹，憑魏延之驍勇，常恨二人之不平，不忍有所偏廢也。十二年，隨亮出屯谷口。亮卒於敵場。儀既領軍還，又誅討延，自以為功勳至大，宜當代亮秉政，呼都尉趙正以周易筮之，卦得家人，默然不悅。而亮平生密指，以儀性狷狹，意在蔣琬，琬遂為尚書令、益州刺史。儀至，拜為中軍師，無所統領，從容而已。"
+        }
+      ],
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:v75:003",
+        "appointment:v75:004",
+        "appointment:v75:005",
+        "appointment:v75:006"
       ],
       "portraitIds": [
         "portrait:asset:72b7be8550e2a383c6bf"
@@ -16601,6 +16590,9 @@
       "name": "张飞",
       "dynastyTags": [
         "季汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:36:97328e141be5"
       ]
     },
     {
@@ -19815,11 +19807,6 @@
       "personId": "person:source:b1b81e555a99"
     },
     {
-      "portraitId": "portrait:asset:2345a1f6f6c03700a3cf",
-      "legacyPersonId": "person:source:dc344a37e17e",
-      "personId": "person:source:dc344a37e17e"
-    },
-    {
       "portraitId": "portrait:asset:701bbad5b0a42d9be33b",
       "legacyPersonId": "person:source:5a26d1185d64",
       "personId": "person:source:5a26d1185d64"
@@ -19970,29 +19957,14 @@
       "personId": "person:shu:jiang-wei"
     },
     {
-      "portraitId": "portrait:asset:f9699e3e0e3172d20bba",
-      "legacyPersonId": "person:source:6225fb017a4d",
-      "personId": "person:source:6225fb017a4d"
-    },
-    {
       "portraitId": "portrait:asset:1b79188d53ec1517bd63",
       "legacyPersonId": "person:shu:chen-zhi",
       "personId": "person:shu:chen-zhi"
     },
     {
-      "portraitId": "portrait:asset:d92ea1fbdf666b49e3c7",
-      "legacyPersonId": "person:source:b9b442ab00f7",
-      "personId": "person:source:b9b442ab00f7"
-    },
-    {
       "portraitId": "portrait:asset:db0a1c99a5fa6f658082",
       "legacyPersonId": "person:han:tao-qian",
       "personId": "person:han:tao-qian"
-    },
-    {
-      "portraitId": "portrait:asset:e574a306125ebb86cfbb",
-      "legacyPersonId": "person:source:fce5078fab12",
-      "personId": "person:source:fce5078fab12"
     },
     {
       "portraitId": "portrait:asset:d15f1759fc117ef47fee",
@@ -20008,11 +19980,6 @@
       "portraitId": "portrait:asset:029ff35585d7ef216bc9",
       "legacyPersonId": "person:shu:dong-yun",
       "personId": "person:shu:dong-yun"
-    },
-    {
-      "portraitId": "portrait:asset:b06d7817f2916d286317",
-      "legacyPersonId": "person:source:d7381b702ec2",
-      "personId": "person:source:d7381b702ec2"
     },
     {
       "portraitId": "portrait:asset:7e70bd04361bf790624b",

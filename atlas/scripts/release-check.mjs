@@ -41,6 +41,12 @@ const deterministicFiles = [
   'data/v69-portrait-candidates.json',
   'data/v70-portrait-candidates.json',
   'data/v74-appointment-supplements.json',
+  'data/v75-chancellery-evidence.json',
+  'data/v75-appointment-source-review.json',
+  'data/v75-appointment-supplements.json',
+  'data/v75-person-identity-suppressions.json',
+  'data/v75-person-biography-review.json',
+
   'data/v74-appointment-source-review.json',
   'data/v74-chancellery-evidence.json',
   'data/v74-person-biography-review.json',
