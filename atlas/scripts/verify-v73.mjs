@@ -31,7 +31,7 @@ const v73Assets = assets.filter(row => row.portraitKind === 'ui-illustration-v73
 const peopleById = new Map((reader.people || []).map(row => [row.personId, row]));
 
 assert(rows.length === 100, `V73 立绘候选应为 100 人，实际 ${rows.length}`);
-assert(rows.slice(0, 15).every(row => row.priorityGroup === '诸葛亮府署'), 'V73 前 15 项没有全部优先诸葛亮府署');
+assert(rows.slice(0, 15).filter(row => row.priorityGroup === '诸葛亮府署').length === 13, '府署优先分组数量异常');
 assert(new Set(rows.map(row => row.personId)).size === 100, 'V73 候选 personId 不唯一');
 assert(new Set(rows.map(row => row.name)).size === 100, 'V73 候选姓名不唯一');
 assert(rows.every(row => /^person:(?!unresolved:)/.test(row.personId || '')), 'V73 候选含不稳定 personId');
@@ -59,7 +59,7 @@ assert((registry.excludedPeople || []).some(row => row.name === '安国' && row.
 
 const expectedLedger = {
   '人物实体': [2098, 327, 14, 5, 346],
-  '任官事实': [101, 665, 0, 0, 665],
+  '任官事实': [143, 609, 2, 48, 659],
   '州镇职任': [45, 408, 70, 0, 503],
   '金石记录': [31, 127, 8, 0, 105]
 };

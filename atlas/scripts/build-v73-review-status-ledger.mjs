@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
+import { appointmentStatusCounts } from './appointment-supplements.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -30,13 +31,8 @@ const people = {
 
 const verifiedAppointmentIds = new Set((relations.appointments || []).map(row => row.appointmentId));
 const appointmentRows = sourceIndex.appointments || [];
-const explicitAppointmentDispute = row => /争议|冲突|反证/.test(`${row.researchStatus || ''} ${row.homonymStatus || ''}`);
-const appointments = {
-  verified: appointmentRows.filter(row => verifiedAppointmentIds.has(row.id)).length,
-  pending: appointmentRows.filter(row => !verifiedAppointmentIds.has(row.id) && !explicitAppointmentDispute(row)).length,
-  disputed: appointmentRows.filter(row => !verifiedAppointmentIds.has(row.id) && explicitAppointmentDispute(row)).length,
-  suppressed: 0
-};
+const appointmentReview = { records: [...json('v71-appointment-review.json').records, ...json('v74-appointment-source-review.json').records] };
+const appointments = appointmentStatusCounts(appointmentRows, appointmentReview, json('v74-appointment-supplements.json'), verifiedAppointmentIds);
 
 const fangzhenRows = fangzhen.records || [];
 const explicitFangzhenDispute = row => ['存疑', '未上任', '遥领'].includes(row.appointmentStatus);
@@ -77,7 +73,7 @@ const totals = Object.fromEntries(statusDefinitions.map(status => [
 ]));
 
 const payload = {
-  schemaVersion: 'V73',
+  schemaVersion: 'V74',
   modelId: 'sgz-v73-review-status-ledger',
   generatedAt: new Date(Number(process.env.SOURCE_DATE_EPOCH || 1788019200) * 1000).toISOString(),
   policy: {

@@ -7,6 +7,7 @@ import { applyReviewedTranscription } from '../atlas/scripts/epigraphy-publicati
 import crypto from 'node:crypto';
 import test from 'node:test';
 import { reviewedAppointments, sourceDigest } from '../atlas/scripts/appointment-publication.mjs';
+import { reviewedSupplementAppointments, appointmentStatusCounts } from '../atlas/scripts/appointment-supplements.mjs';
 import { reviewedReaderScope, validateIdentitySources } from '../atlas/scripts/person-identity-publication.mjs';
 import { fangzhenValidAtYear, classifyFangzhenDynasty } from '../atlas/assets/app/fangzhen.js';
 import { epigraphicYear, epigraphicEraKey, epigraphicInscriptionState, matchesEpigraphicInscriptionStatus } from '../atlas/assets/app/jinshi.js';
@@ -20,6 +21,47 @@ const json = name => JSON.parse(read(`data/${name}.json`));
 const source = json('person-source-index');
 const review = json('v71-appointment-review');
 const relations = json('v63-reader-person-relations');
+
+test('V74 chancellery evidence preserves refutations, corrected subjects and unknown dates', () => {
+  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'));
+  const evidence = json('v74-chancellery-evidence');
+  const supplement = json('v74-appointment-supplements');
+  const accepted = reviewedSupplementAppointments(scope, evidence, supplement);
+  assert.equal(accepted.length, 34);
+  const office = (name, title) => accepted.find(row => row.name === name && row.officeName === title);
+  assert.ok(office('李朝', '别驾从事'));
+  assert.equal(office('李朝', '西曹掾'), undefined);
+  assert.ok(office('马齐', '丞相掾'));
+  assert.equal(office('马齐', '从事中郎'), undefined);
+  assert.ok(office('尹默', '军祭酒'));
+  assert.equal(office('胡济', '中典军').startYear, null);
+  assert.equal(office('霍弋', '黄门侍郎').startYear, null);
+  assert.equal(office('张裔', '留府长史').citations.length, 2);
+  assert.equal(office('张裔', '留府长史').startYear, 227);
+  assert.match(office('董恢', '郎中').citations[0].quote, /疑習氏之言/);
+  assert.equal(office('董恢', '巴郡太守'), undefined);
+  const publishedIds = new Set(relations.appointments.map(row => row.appointmentId));
+  for (const row of supplement.records) assert.equal(publishedIds.has(row.id), row.status === 'verified');
+  const combined = { records: [...review.records, ...json('v74-appointment-source-review').records] };
+  const counts = appointmentStatusCounts(source.appointments, combined, supplement, publishedIds);
+  assert.deepEqual(counts, { verified: 143, pending: 609, disputed: 2, suppressed: 48 });
+  assert.deepEqual(json('v73-review-status-ledger').modules.find(row => row.key === 'appointments').counts, counts);
+  const changed = structuredClone(evidence);
+  changed.records.find(row => row.id === 'dong-hui').quote = '闢為丞相府屬，遷巴郡太守';
+  assert.throws(() => reviewedSupplementAppointments(scope, changed, supplement), /evidence changed/);
+  const changedYear = structuredClone(evidence);
+  changedYear.records.find(row => row.id === 'zhang-yi-year').quote = '明年';
+  assert.throws(() => reviewedSupplementAppointments(scope, changedYear, supplement), /evidence changed/);
+  const changedFact = structuredClone(supplement);
+  changedFact.records.find(row => row.name === '董恢' && row.status === 'disputed').status = 'verified';
+  assert.throws(() => reviewedSupplementAppointments(scope, evidence, changedFact), /content changed/);
+  const wronglyPublished = new Set(publishedIds).add(review.records.find(row => row.status === 'suppressed').appointmentId);
+  assert.throws(() => appointmentStatusCounts(source.appointments, combined, supplement, wronglyPublished), /Suppressed/);
+  const portraits = json('v73-portrait-candidates');
+  assert.equal(portraits.records.length, 100);
+  assert.equal(portraits.records.find(row => row.name === '李朝').priorityGroup, '刘备州府');
+  assert.equal(portraits.records.find(row => row.name === '董恢').priorityGroup, '府署关系存疑');
+});
 
 test('reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate', () => {
   const base = json('v62-reader-scope');
@@ -66,7 +108,7 @@ test('identity resolution cannot publish an unreviewed appointment; source edits
 test('all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild', () => {
   assert.equal(review.records.length, 149);
   const published = new Map(relations.appointments.map(row => [row.appointmentId, row]));
-  assert.equal(published.size, 101);
+  assert.equal(published.size, 143);
   const row = suffix => published.get(`appointment:source:${suffix}`);
   assert.equal(row('sgz:22:dc35da5cf8f9').personId, 'person:workbook:13d66149e45735fd');
   assert.equal(row('sgz:22:dc35da5cf8f9').nodeName, '从事祭酒');
@@ -85,6 +127,7 @@ test('all 149 formerly published assertions have dispositions; corrected subject
   for (const decision of review.records) assert.equal(published.has(decision.appointmentId), decision.status === 'verified');
   for (const fact of relations.appointments) {
     const original = source.appointments.find(row => row.id === fact.appointmentId);
+    if (!original) continue;
     assert.equal(fact.citations[0].quote, original.sourceExcerpt, 'Reference excerpt was truncated or rewritten');
     assert.match(fact.citations[0].url, /^https:\/\//);
   }
@@ -113,7 +156,7 @@ test('verified administrative tenures resolve into person timelines; candidates 
     assert.equal(record.readerDisplayStatus, 'verified');
     assert.equal(event.personId, record.personId);
   }
-  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 78);
+  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 92);
   assert.equal(json('v63-reader-people').people.filter(person => person.bioClassical).length, 0);
 });
 
@@ -311,7 +354,14 @@ test('reviewed biographies pin identities and evidence without replacing existin
     assert.equal(published.bio, row.bio);
     assert.deepEqual(published.bioCitations, row.citations);
   }
-  const additions = new Set(approved.map(row => row.personId));
+  const newer = reviewedBiographies(scope, json('v74-person-biography-review'));
+  assert.equal(newer.length, 14);
+  for (const row of newer) {
+    const published = people.find(person => person.personId === row.personId);
+    assert.equal(published.bio, row.bio);
+    assert.deepEqual(published.bioCitations, row.citations);
+  }
+  const additions = new Set([...approved, ...newer].map(row => row.personId));
   const originals = people.filter(person => person.bio && !additions.has(person.personId))
     .map(({ personId, bio }) => ({ personId, bio }));
   assert.equal(originals.length, 70);

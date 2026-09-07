@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "V74",
+  "reviewedAt": "2026-09-07",
+  "scope": "8条尚未审核的自动抽取记录，逐条复核受任主体、完整官名、否定句归属及明确纪年。",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:40:01c32f6e38df",
+      "sourceSha256": "89ba96371590aed7329ba2a749f14863d565c3d01314163fbbcae35c7997af1c",
+      "status": "verified",
+      "reason": "魏兴是郡名，受任者是申仪；完整保留正文、裴注的对应关系",
+      "correction": {
+        "personId": "person:peerage:298479f24318925a",
+        "name": "申仪",
+        "officeName": "魏兴太守",
+        "polity": "魏",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "魏兴是郡名，受任者是申仪；完整保留正文、裴注的对应关系",
+      "citations": [
+        {
+          "title": "《三国志》卷40·刘封传及裴注引《魏略》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "申儀叛封，封破走還成都。申耽降魏，魏假耽懷集將軍，徙居南陽，儀魏興太守，封（真鄉侯）〔員鄉侯〕，屯洵口。〈《魏略》曰：申儀兄名耽，字義舉。初在西平、上庸間聚眾數千家，後與張魯通，又遣使詣曹公，曹公加其號為將軍，因使領上庸都尉。至建安末，為蜀所攻，以其郡西屬。黃初中，儀復來還，詔即以兄故號加儀，因拜魏興太守，封列侯。太和中，儀與孟達不和，數上言達有貳心於蜀，及達反，儀絕蜀道，使救不到。達死後，儀詣宛見司馬宣王，宣王勸使來朝。儀至京師，詔轉拜儀樓船將軍，在禮請中。〉"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:3e772c59425f",
+      "sourceSha256": "8b9bb3bfa88220a2bd128162ea7530cbd6c47978359c02f69a2153c55bcc3f6d",
+      "status": "verified",
+      "reason": "黄忠任后将军是独立陈述；不肯受拜的主体为关羽，不能移给黄忠",
+      "correction": {
+        "personId": "person:source:c9065395c9a7",
+        "name": "黄忠",
+        "officeName": "后将军",
+        "polity": "汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "黄忠任后将军是独立陈述；不肯受拜的主体为关羽，不能移给黄忠",
+      "citations": [
+        {
+          "title": "《三国志》卷41·费诗传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "先主為漢中王，遣詩拜關羽為前將軍，羽聞黃忠為後將軍，（羽）怒曰：「大丈夫終不與老兵同列！」不肯受拜。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:bb48953e14d8",
+      "sourceSha256": "38052f895d0e1fa514474cd2c565df68058737cdff3e3e646396f2ad62196b2c",
+      "status": "verified",
+      "reason": "司盐为完整官名的一部分，主体承接王连本传，不能立司盐为人",
+      "correction": {
+        "personId": "person:workbook:9091722166e8396b",
+        "name": "王连",
+        "officeName": "司盐校尉",
+        "polity": "汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "司盐为完整官名的一部分，主体承接王连本传，不能立司盐为人",
+      "citations": [
+        {
+          "title": "《三国志》卷41·王连传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "王連字文儀，南陽人也。劉璋時入蜀為梓潼令。先主起事葭萌，進軍來南，連閉城不降，先主義之，不強逼也。及成都既平，以連為什邡令，轉在廣都，所居有績。遷司鹽校尉，較鹽鐵之利，利入甚多，有裨國用，於是簡取良才以為官屬，若呂乂、杜祺、劉干，終皆至大官，自連所拔也。遷蜀郡太守、興業將軍，領鹽府如故。建興元年，拜屯騎校尉，領丞相長史，封平陽亭侯。時南方諸郡不賓，諸葛亮將自征之，連諫以為「此不毛之地，疫癘之鄉，不宜以一國之望，冒險而行」。亮慮諸將才不及己，意欲必往而連言輒懇至，故停留者久之。會連卒。子山嗣，官至江陽太守。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a1c45d2140c4",
+      "sourceSha256": "2a4ca58b16b0f920bfb1e5bcbc0ae7829ce415260b0ba02f15acfdbcc6c909b7",
+      "status": "verified",
+      "reason": "杜微传建兴二年明确以秦宓为别驾",
+      "correction": {
+        "personId": "person:source:c2d2b4c0325c",
+        "name": "秦宓",
+        "officeName": "别驾",
+        "polity": "季汉",
+        "startYear": 224,
+        "endYear": null
+      },
+      "readerNote": "杜微传建兴二年明确以秦宓为别驾",
+      "citations": [
+        {
+          "title": "《三国志》卷42·杜微传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "建興二年，丞相亮領益州牧。選迎皆妙簡舊德，以秦宓為別駕，五梁為功曹，微為主簿。微固辭，舉而致之。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:44:1c106e4707ab",
+      "sourceSha256": "280e816f3e6451b578dd1d566b90ef32d14c3632f26f720a632ea455541d7514",
+      "status": "verified",
+      "reason": "年就加不是人名，承接蒋琬；延熙元年次年为二年",
+      "correction": {
+        "personId": "person:shu:jiang-wan",
+        "name": "蒋琬",
+        "officeName": "大司马",
+        "polity": "季汉",
+        "startYear": 239,
+        "endYear": null
+      },
+      "readerNote": "年就加不是人名，承接蒋琬；延熙元年次年为二年",
+      "citations": [
+        {
+          "title": "《三国志》卷44·蒋琬传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "亮卒，以琬為尚書令，俄而加行都護、假節、領益州刺史、遷大將軍、錄尚書事、封安陽亭侯。時新喪元帥，遠近危悚。琬出類拔萃，處群僚之右，既無戚容，又無喜色，神守舉止，有如平日，由是眾望漸服。延熙元年，詔琬曰：「寇難未弭，曹睿驕凶，遼東三郡勞其暴虐，遂相糾結，與之離隔。睿大興眾役，還相攻伐。囊秦之亡，勝、廣首難，今有此變，斯乃天時。君其治嚴，總帥諸軍屯任漢中，須吳舉動，東西掎角，以乘其畔。」又命琬開府，明年就加為大司馬。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:3644ca88f34b",
+      "sourceSha256": "bbb0ed61f02dec4432b9130f87556e7c59621858f9713c69756bd7f28484323d",
+      "status": "verified",
+      "reason": "汉中王时以赖恭为太常；不与王谋继任合并",
+      "correction": {
+        "personId": "person:source:6f24577154e3",
+        "name": "赖恭",
+        "officeName": "太常",
+        "polity": "后汉",
+        "startYear": 219,
+        "endYear": null
+      },
+      "readerNote": "汉中王时以赖恭为太常；不与王谋继任合并",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:785b893711d8",
+      "sourceSha256": "8a5905a898df3e31ae209f540574a52c79fab2245b0377c22207f3b1369a53a8",
+      "status": "verified",
+      "reason": "南阳黄柱是明确受任主体",
+      "correction": {
+        "personId": "person:source:6787527ab62b",
+        "name": "黄柱",
+        "officeName": "光禄勋",
+        "polity": "后汉",
+        "startYear": 219,
+        "endYear": null
+      },
+      "readerNote": "南阳黄柱是明确受任主体",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:57c66c4fce83",
+      "sourceSha256": "ef9f88257704b29da967f976c9052bba90c46036b02a92c67c71048fe6517384",
+      "status": "verified",
+      "reason": "后代赖恭的主体仍是王谋；赖恭为被替代者，继任年不推算",
+      "correction": {
+        "personId": "person:workbook:d96b4bc25559ba14",
+        "name": "王谋",
+        "officeName": "太常",
+        "polity": "季汉",
+        "startYear": null,
+        "endYear": null
+      },
+      "readerNote": "后代赖恭的主体仍是王谋；赖恭为被替代者，继任年不推算",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。"
+        }
+      ]
+    }
+  ]
+}

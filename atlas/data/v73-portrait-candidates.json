@@ -4,8 +4,8 @@
   "scope": "人物记新增 100 项界面识别立绘；优先诸葛亮丞相府属，不代表史实肖像。",
   "selection": {
     "count": 100,
-    "chancelleryPriority": 15,
-    "rule": "读者可见、稳定 personId、无同名冲突、当前无正式立绘；前 15 项为诸葛亮府署优先。"
+    "chancelleryPriority": 13,
+    "rule": "读者可见、稳定 personId、无同名冲突、本批 100 项立绘；前 15 项中 13 人有府署依据，李朝归刘备州府，董恢府署关系存疑。"
   },
   "records": [
     {
@@ -38,7 +38,7 @@
         "季汉"
       ],
       "priorityGroup": "诸葛亮府署",
-      "role": "军师祭酒",
+      "role": "军祭酒",
       "assetPath": "./assets/portraits/v73/shu/002.png",
       "interfaceOnly": true,
       "designStatus": "figma-design",
@@ -164,7 +164,7 @@
         "季汉"
       ],
       "priorityGroup": "诸葛亮府署",
-      "role": "参军／主簿",
+      "role": "丞相主簿",
       "assetPath": "./assets/portraits/v73/shu/008.png",
       "interfaceOnly": true,
       "designStatus": "figma-design",
@@ -205,8 +205,8 @@
       "dynastyTags": [
         "季汉"
       ],
-      "priorityGroup": "诸葛亮府署",
-      "role": "西曹掾",
+      "priorityGroup": "刘备州府",
+      "role": "别驾从事",
       "assetPath": "./assets/portraits/v73/shu/010.png",
       "interfaceOnly": true,
       "designStatus": "figma-design",
@@ -227,7 +227,7 @@
         "季汉"
       ],
       "priorityGroup": "诸葛亮府署",
-      "role": "从事中郎",
+      "role": "丞相掾",
       "assetPath": "./assets/portraits/v73/shu/011.png",
       "interfaceOnly": true,
       "designStatus": "figma-design",
@@ -247,8 +247,8 @@
       "dynastyTags": [
         "季汉"
       ],
-      "priorityGroup": "诸葛亮府署",
-      "role": "属",
+      "priorityGroup": "府署关系存疑",
+      "role": "郎中",
       "assetPath": "./assets/portraits/v73/shu/012.png",
       "interfaceOnly": true,
       "designStatus": "figma-design",
@@ -290,7 +290,7 @@
         "季汉"
       ],
       "priorityGroup": "诸葛亮府署",
-      "role": "令史",
+      "role": "丞相西曹令史",
       "assetPath": "./assets/portraits/v73/shu/014.png",
       "interfaceOnly": true,
       "designStatus": "figma-design",
