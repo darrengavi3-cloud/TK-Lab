@@ -23,6 +23,8 @@
 <script src="./data/office-order-policies.js"></script>
 <script src="./data/v73-review-status-ledger.js?v=73"></script>
 <script src="./assets/app/persistence-core.js?v=66.2"></script>
+<script src="./data/reviewed-office-succession.js"></script>
+<script src="./assets/app/office-succession.js"></script>
 
 <script src="./assets/app/reader-components.js?v=71"></script>
 <link rel="stylesheet" href="./assets/ui/tokens.css" />
@@ -126,6 +128,7 @@ function prepareSgzSectionData(section,reviewMode=false){
       loadSgzDataScript('v63-reader-person-relations','./data/v63-reader-person-relations.js?v=64','SGZ_V63_READER_PERSON_RELATIONS'),
       loadSgzDataScript('v69-person-profiles','./data/v69-person-profiles.js?v=69','SGZ_V69_PERSON_PROFILES'),
       loadSgzDataScript('portrait-manifest','./data/portrait-manifest.js','SGZ_PERSON_PORTRAIT_MANIFEST'),
+      loadSgzDataScript('portrait-variants','./data/portrait-variants.js','SGZ_PORTRAIT_VARIANTS'),
       loadSgzDataScript('v66-peerage-stages','./data/v66-peerage-stages.js?v=66','SGZ_V66_PEERAGE_STAGES')
     ];
     if(reviewMode)requests.push(
@@ -1101,9 +1104,9 @@ function makeFigureRecord(source){
     note: String(raw.note || ''),
     status: String(raw.status || ''),
     confidence: String(raw.confidence || ''),
-    sourceTitle: String(raw.sourceTitle || ''),
-    sourceUrl: String(raw.sourceUrl || ''),
-    sourceExcerpt: String(raw.sourceExcerpt || ''),
+    sourceTitle: String(raw.sourceTitle || raw.citations?.map(c=>c.title).join('；') || ''),
+    sourceUrl: String(raw.sourceUrl || raw.citations?.[0]?.url || ''),
+    sourceExcerpt: String(raw.sourceExcerpt || raw.citations?.map(c=>c.quote).join('\n') || ''),
   };
 }
 
@@ -1186,6 +1189,7 @@ function O(prefix, parent, name, category, rank9, hanRank, extra){
   }, extra||{});
   // GoJS 3.x 要求根节点完全不带 parent；parent:null 会令整个 TreeModel 构建失败。
   if(parent !== null && parent !== undefined && parent !== '') node.parent = parent;
+  window.SGZ_APPLY_OFFICE_SUCCESSION?.(node, prefix === 'shu_o' ? 'shu' : '');
   return node;
 }
 function N(prefix, parent, name, nobleRank, extra){
@@ -1615,18 +1619,18 @@ function buildPresets(){
     },extra)));
     const chengxiangFuRoles = [...liubeiFuRoles, ...zhugeliangFuRoles];
     const damasi = O('shu_o', root.key, '大司马', '大将军／大司马', '', '万石', {
-      kaifu:true, jie:'使持节', figures:['蒋琬（239—246）'],
-      officeStartYear:239, officeEndYear:246, evolution:'延熙二年（239）蒋琬自大将军加大司马；延熙九年（246）琬卒。',
+      kaifu:true, jie:'使持节', figures:[],
+      officeStartYear:null, officeEndYear:null, evolution:'历任见已核任官；任官年代不等同于制度设置年代。',
       sources:'《三国志》卷四十四·蒋琬传'
     });
     const dajiangjun = O('shu_o', root.key, '大将军', '大将军／大司马', '', '万石', {
-      kaifu:true, jie:'使持节', lushangshushi:true, figures:['蒋琬（234—239）','费祎（244—253）','姜维（256—263）'],
-      officeStartYear:234, officeEndYear:263,
-      evolution:'建兴十二年（234）蒋琬拜大将军录尚书事；延熙七年（244）费祎迁大将军；延熙十九年（256）姜维拜大将军。',
+      kaifu:true, jie:'使持节', lushangshushi:true, figures:[],
+      officeStartYear:null, officeEndYear:null,
+      evolution:'历任见已核任官；任官年代不等同于制度设置年代。',
       sources:'《三国志》卷四十四'
     });
     const shangshuling = O('shu_o', root.key, '尚书令', '尚书台省', '', '千石', {
-      figures:['法正（219—220）','刘巴（220—222）','蒋琬（234—238）','费祎（238—244）','董允（244—246）','陈祗（251—258）','董厥（258—263）'],
+      figures:['法正（219—220）','刘巴（220—222）','陈祗（251—258）','董厥（258—263）'],
       officeStartYear:219, officeEndYear:263,
       evolution:'建安二十四年（219）法正为尚书令；其后刘巴、蒋琬、费祎、董允、陈祗、董厥相继任职。',
       sources:'《三国志》卷三十七·法正传；卷三十九·刘巴传、董允传；卷四十四；卷四十五'
@@ -2421,6 +2425,7 @@ function normalizeAndValidateNodes(nodes, label, factionKey){
     if(node.parent === null || node.parent === undefined || node.parent === '') delete node.parent;
     else if(!['string','number'].includes(typeof node.parent)) throw new Error('节点「'+(node.name||node.key)+'」的 parent 必须是字符串或数字');
     Object.assign(node,window.SGZResearchModel.normalizeNode(node,factionKey,node.kind==='noble'?'noble':'office'));
+    window.SGZ_APPLY_OFFICE_SUCCESSION?.(node, factionKey);
     node.figures = normalizeFigures(node.figures, factionKey);
     node.figures.forEach(person=>{ person.note=window.SGZResearchModel.readingText(person.note); });
     node.regionPath = Array.isArray(node.regionPath) ? node.regionPath.map(String) : [];
@@ -9393,7 +9398,7 @@ const app = createApp({
             <button v-for="p in pagedPeople" :key="p.personId" type="button"
                     class="v56-person-row" :class="{active:peoplePrimaryDetail&&peoplePrimaryDetail.personId===p.personId,'keyboard-active':peopleQuery&&filteredPeople[peopleKeyboardIndex]&&filteredPeople[peopleKeyboardIndex].personId===p.personId}"
                     :aria-current="peoplePrimaryDetail?.personId===p.personId?'true':undefined" :data-person-id="p.personId" :data-person-name="p.name" @click="openPeopleDetail(p.personId)">
-              <span class="person-avatar" :style="portraitStyleFor(p)"><img loading="lazy" decoding="async" v-if="p.portrait" :src="p.portrait" :alt="p.name+'立绘'"/><span v-else>{{p.name.slice(0,1)}}</span></span>
+              <span class="person-avatar" :style="portraitStyleFor(p)"><reader-portrait v-if="p.portrait" :src="p.portrait" :alt="p.name+'立绘'"/><span v-else>{{p.name.slice(0,1)}}</span></span>
               <span class="v56-person-row-copy">
                 <span class="v56-person-row-name"><strong>{{p.canonicalName||p.name}}</strong><small v-if="p.zi">字{{p.zi}}</small></span>
                 <span v-if="p.dynastyTags.length||p.appointments.length" class="v56-person-row-meta"><template v-if="p.dynastyTags.length">{{p.dynastyTags.join(' · ')}}</template><template v-if="p.appointments.length"><template v-if="p.dynastyTags.length"> · </template>{{p.appointments[0].nodeName}}</template></span>
@@ -9405,7 +9410,7 @@ const app = createApp({
           </section>
           <article v-if="peoplePrimaryDetail" class="v56-person-dossier" :data-person-id="peoplePrimaryDetail.personId">
             <header class="v56-person-dossier-head">
-              <div class="people-detail-portrait" :style="portraitStyleFor(peoplePrimaryDetail)"><img loading="lazy" decoding="async" v-if="peoplePrimaryDetail.portrait" :src="peoplePrimaryDetail.portrait" :alt="peoplePrimaryDetail.name+'立绘'"/><span v-else>{{peoplePrimaryDetail.name.slice(0,1)}}</span></div>
+              <div class="people-detail-portrait" :style="portraitStyleFor(peoplePrimaryDetail)"><reader-portrait v-if="peoplePrimaryDetail.portrait" :src="peoplePrimaryDetail.portrait" :alt="peoplePrimaryDetail.name+'立绘'" detail/><span v-else>{{peoplePrimaryDetail.name.slice(0,1)}}</span></div>
               <div>
                 <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2>
                 <div class="v56-person-dossier-meta"><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
@@ -9942,7 +9947,7 @@ const app = createApp({
     <el-drawer v-model="showPeopleDetail" :title="'人物履历 · '+(activePeopleDetail?activePeopleDetail.name:'')" size="640px">
       <template v-if="activePeopleDetail">
         <div class="people-detail-head">
-          <div class="people-detail-portrait" :style="portraitStyleFor(activePeopleDetail)"><img loading="lazy" decoding="async" v-if="activePeopleDetail.portrait" :src="activePeopleDetail.portrait" :alt="activePeopleDetail.name+'立绘'"/><span v-else>{{activePeopleDetail.name.slice(0,1)}}</span></div>
+          <div class="people-detail-portrait" :style="portraitStyleFor(activePeopleDetail)"><reader-portrait v-if="activePeopleDetail.portrait" :src="activePeopleDetail.portrait" :alt="activePeopleDetail.name+'立绘'" detail/><span v-else>{{activePeopleDetail.name.slice(0,1)}}</span></div>
           <div class="people-detail-main">
             <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}</h3>
 

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { reviewedAppointments, sourceDigest } from './appointment-publication.mjs';
+import { readReleaseConfig, loadSupplementBatches } from './release-config.mjs';
 
 // Research decisions and authored supplements share the same identity and
 // evidence gates in the registry, reader projection, and status ledger.
@@ -47,15 +48,12 @@ export function loadAppointmentPublication(root, scope, canonicalPersonId = valu
   const json = name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'));
   const sourceRows = json('person-source-index.json').appointments;
   const review = loadSourceAppointmentReviews(root);
-  const supplement = { records: [74, 75, 76].flatMap(version => json(`v${version}-appointment-supplements.json`).records) };
+  const batches = loadSupplementBatches(root);
+  const supplement = { records: batches.flatMap(batch => batch.decisions.records) };
   const sourcePublished = reviewedAppointments(sourceRows, review, canonicalPersonId);
   // Validate each evidence namespace independently: different batches may use
   // the same short locator but must never shadow one another's source.
-  const supplemented = [
-    ...reviewedSupplementAppointments(scope, json('v74-chancellery-evidence.json'), json('v74-appointment-supplements.json')),
-    ...reviewedSupplementAppointments(scope, json('v75-chancellery-evidence.json'), json('v75-appointment-supplements.json')),
-    ...reviewedSupplementAppointments(scope, json('v76-chancellery-evidence.json'), json('v76-appointment-supplements.json'))
-  ];
+  const supplemented = batches.flatMap(batch => reviewedSupplementAppointments(scope, batch.evidence, batch.decisions));
   const published = mergeAppointmentEvidence([...sourcePublished, ...supplemented], review);
   if (new Set(published.map(row => row.id)).size !== published.length) throw new Error('Appointment ID collision');
   return { published, sourceRows, review, supplement };
@@ -129,8 +127,6 @@ export function mergeSourceAppointmentReviews(...batches) {
 }
 
 export function loadSourceAppointmentReviews(root) {
-  return mergeSourceAppointmentReviews(...[
-    'v71-appointment-review.json', 'v74-appointment-source-review.json',
-    'v75-appointment-source-review.json', 'v76-appointment-source-review.json'
-  ].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+  return mergeSourceAppointmentReviews(...readReleaseConfig(root).appointmentReviewBatches
+    .map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
 }

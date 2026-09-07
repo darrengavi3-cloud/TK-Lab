@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { readReleaseConfig } from './release-config.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
@@ -164,10 +165,12 @@ run('build-v66-peerage-stages.mjs');
 run('build-v66-fangzhen-seats.mjs');
 // Generate the public relation projection before the source lock is evaluated.
 // This makes the canonical local reader and the exported reader consume the
-// same committed, deterministic 179/535 fact payload.
+// same committed, deterministic reviewed fact payload.
 run('build-reader-bundle.mjs', ['--relations-only']);
+run('build-office-succession.mjs');
 run('build-v69-data.mjs');
 run('build-v73-review-status-ledger.mjs');
+run('build-release-summary.mjs');
 const currentLock = buildLock(sourceDateEpoch, existingLock);
 if (refreshLock) {
   fs.writeFileSync(lockPath, `${JSON.stringify(currentLock, null, 2)}\n`, 'utf8');
@@ -187,6 +190,6 @@ if (!skipPortable) run('build-portable-export.mjs');
 run('build-asset-manifest.mjs');
 run('build-deployment-manifest.mjs');
 
-console.log('\nV73 build-all 已完成。');
+console.log(`\n${readReleaseConfig(root).version} build-all 已完成。`);
 console.log(`输入锁：${existingLock.aggregateSha256}`);
 console.log('产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单');

@@ -108,9 +108,9 @@
     "firstScreenSheetJs": 0,
     "explicitCodeIdentifierExceptions": 3
   },
-  "fileCount": 601,
-  "totalBytes": 207905730,
-  "aggregateSha256": "9402614ef1cb7c0930eb4238115809713c082d05d2ba91dd058bd5ba67e8080d",
+  "fileCount": 604,
+  "totalBytes": 207919524,
+  "aggregateSha256": "4d2e01ad6842a76659e7d046ca7b25f578bf2efebe2f5c166859b784247a3fca",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -126,6 +126,11 @@
       "path": "assets/app/navigation.js",
       "bytes": 587,
       "sha256": "444f69c1709aab9092154ab5b1e416a01da03a0f7d0e1fc6926b2c14b17cf285"
+    },
+    {
+      "path": "assets/app/office-succession.js",
+      "bytes": 1810,
+      "sha256": "ddf0bd14e1418c5d16f99504e9e53e0bfea9b304988b73f4e047670e5bdd5e37"
     },
     {
       "path": "assets/app/people.js",
@@ -144,8 +149,8 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 3483,
-      "sha256": "26f4416774ef0007c9985a23e4497060c8c500cba91b9f33220d7073f8e02ff0"
+      "bytes": 4072,
+      "sha256": "2c376631c73a567d8e200202c2055b86f3dfc67c23f8cd00060dbb8a9bc6afd5"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -3048,9 +3053,19 @@
       "sha256": "78835f06ccba83d42f39430733b73ae33ad4048e82792830e296097c94ad5931"
     },
     {
+      "path": "data/portrait-variants.js",
+      "bytes": 217,
+      "sha256": "224028f14aa54021bea576b0f40279efbe2604d26dd2c3a0ef08bb49a7b231ec"
+    },
+    {
       "path": "data/research-model.js",
       "bytes": 43327,
       "sha256": "69e7456adf728587fe4f33b1dcaa3d13a69514b305a446c7e305dec2f22b6e9c"
+    },
+    {
+      "path": "data/reviewed-office-succession.js",
+      "bytes": 11000,
+      "sha256": "5fa8a402ab3d8df2b49ec82823506f10500e24c6fbebcbf9f1549bb5e3146ae4"
     },
     {
       "path": "data/shihuo-records.js",
@@ -3110,12 +3125,12 @@
     {
       "path": "data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "96ddd30372c824b0b6b4e2f8928a5e339e214b3ac0b5669f7c5ad4ca89b82b46"
+      "sha256": "fc0ace9ae7abd86c9cf5dce02d3bd321ad0921eae8e5dae6974d46ba99735861"
     },
     {
       "path": "index.html",
-      "bytes": 771817,
-      "sha256": "9c46be8a54e791f90cafbaca9c594e362d2955318147a90afcfcaa874f59ef02"
+      "bytes": 771995,
+      "sha256": "db01d004f9ef0a3595ae824dacaada9fb1d402bd28a6b9d8f20e0b19c46cac3d"
     }
   ]
 }

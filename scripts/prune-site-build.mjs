@@ -104,6 +104,7 @@ if (missingAfterPrune.length) {
 
 let optimizedPortraits = 0;
 let optimizedBytes = 0;
+const portraitVariants = { schemaVersion: 1, bySrc: {} };
 for (const relativePath of runtimePortraits) {
   const filePath = path.join(legacyRoot, relativePath);
   const extension = path.extname(filePath).toLowerCase();
@@ -113,6 +114,20 @@ for (const relativePath of runtimePortraits) {
 
   const input = fs.readFileSync(filePath);
   const metadata = await sharp(input, { failOn: 'error' }).metadata();
+  const variants = [];
+  for (const width of [...new Set([96, 192, 384].map(width => Math.min(width, metadata.width)))]) {
+    const variantPath = relativePath.replace(/\.png$/i, `.w${width}.webp`);
+    const { data, info } = await sharp(input, { failOn: 'error' })
+      .resize({ width, withoutEnlargement: true }).webp({ quality: 85 })
+      .toBuffer({ resolveWithObject: true });
+    fs.writeFileSync(path.join(legacyRoot, variantPath), data);
+    variants.push({ src: './' + variantPath.split(path.sep).join('/'), width: info.width, height: info.height,
+      bytes: data.length, sha256: createHash('sha256').update(data).digest('hex') });
+  }
+  portraitVariants.bySrc['./' + relativePath.split(path.sep).join('/')] = {
+    sourceSha256: createHash('sha256').update(input).digest('hex'),
+    srcset: variants.map(row => `${row.src} ${row.width}w`).join(', '), variants
+  };
   const maxDimension = Math.max(metadata.width || 0, metadata.height || 0);
   if (maxDimension <= 192) continue;
 
@@ -124,6 +139,8 @@ for (const relativePath of runtimePortraits) {
   optimizedPortraits += 1;
   optimizedBytes += Math.max(0, input.length - output.length);
 }
+fs.writeFileSync(path.join(legacyRoot, 'data/portrait-variants.js'),
+  `window.SGZ_PORTRAIT_VARIANTS=${JSON.stringify(portraitVariants)};\n`);
 
 const deploymentRoot = path.join(projectRoot, 'dist');
 const deploymentManifestPath = path.join(deploymentRoot, 'deployment-manifest.json');

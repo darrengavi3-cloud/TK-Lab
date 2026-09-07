@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 808,
-  "totalBytes": 335726215,
-  "aggregateSha256": "614faec20cb5c9c0125685f4def50cbe10e248ba3b84bc06e339d1aa883ff826",
+  "fileCount": 814,
+  "totalBytes": 335754320,
+  "aggregateSha256": "c76fce374cbd137a829577a3a42d1ed5f238a1a63213ac41cb2c6b10439c4551",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -20,6 +20,11 @@
       "path": "assets/app/navigation.js",
       "bytes": 587,
       "sha256": "444f69c1709aab9092154ab5b1e416a01da03a0f7d0e1fc6926b2c14b17cf285"
+    },
+    {
+      "path": "assets/app/office-succession.js",
+      "bytes": 1810,
+      "sha256": "ddf0bd14e1418c5d16f99504e9e53e0bfea9b304988b73f4e047670e5bdd5e37"
     },
     {
       "path": "assets/app/people.js",
@@ -38,8 +43,13 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 3483,
-      "sha256": "26f4416774ef0007c9985a23e4497060c8c500cba91b9f33220d7073f8e02ff0"
+      "bytes": 4072,
+      "sha256": "2c376631c73a567d8e200202c2055b86f3dfc67c23f8cd00060dbb8a9bc6afd5"
+    },
+    {
+      "path": "assets/app/release-version.js",
+      "bytes": 38,
+      "sha256": "6c4c2dc5ca05a4c2f6705e0a4fe30707c090d93f564eee8032060b94d418d7fa"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -3452,9 +3462,19 @@
       "sha256": "8e8253aa516c959d36f014c92e136b60e639a8636a91b6221a900b3011928336"
     },
     {
+      "path": "data/portrait-variants.js",
+      "bytes": 217,
+      "sha256": "224028f14aa54021bea576b0f40279efbe2604d26dd2c3a0ef08bb49a7b231ec"
+    },
+    {
       "path": "data/public-vector-audit.json",
       "bytes": 4612,
       "sha256": "ad80100426a432dba1ed3627f40958940f857f4aa14f1d35391f1fb59f281433"
+    },
+    {
+      "path": "data/release-config.json",
+      "bytes": 643,
+      "sha256": "40ecf6e76b6389394678efab788ec2744b6435c1a7521968d3ad550c2a3fecae"
     },
     {
       "path": "data/research-candidates.js",
@@ -3470,6 +3490,16 @@
       "path": "data/research-schema.json",
       "bytes": 5802,
       "sha256": "98b8d9f2a7003237a994e7132760a7859a00f864296ba5757173d94dd4179df2"
+    },
+    {
+      "path": "data/reviewed-office-succession.js",
+      "bytes": 11000,
+      "sha256": "5fa8a402ab3d8df2b49ec82823506f10500e24c6fbebcbf9f1549bb5e3146ae4"
+    },
+    {
+      "path": "data/reviewed-office-succession.json",
+      "bytes": 13808,
+      "sha256": "fdffc58609e986623453c1f6d9ffd8577852ac8d08ef6a23c4e9e7202a55909e"
     },
     {
       "path": "data/shihuo-records.js",
@@ -3954,12 +3984,12 @@
     {
       "path": "data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "96ddd30372c824b0b6b4e2f8928a5e339e214b3ac0b5669f7c5ad4ca89b82b46"
+      "sha256": "fc0ace9ae7abd86c9cf5dce02d3bd321ad0921eae8e5dae6974d46ba99735861"
     },
     {
       "path": "data/v73-review-status-ledger.json",
       "bytes": 2378,
-      "sha256": "27a3a52d7a2c36d98fe1edb1e610cbcd2f982b922d999abe2558bbf3b40679d3"
+      "sha256": "50d9c059241c4f1eb26c8c4d7498c7ec20361ce324e85cbd10b027870becb9ec"
     },
     {
       "path": "data/v74-appointment-source-review.json",

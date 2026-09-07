@@ -1,6 +1,16 @@
 (function (global) {
   'use strict';
   global.SGZ_READER_COMPONENTS = Object.freeze({
+    ReaderPortrait: {
+      props: { src: String, alt: String, detail: Boolean },
+      data() { return { failedVariant: false }; },
+      watch: { src() { this.failedVariant = false; } },
+      computed: {
+        srcset() { return this.failedVariant ? undefined : global.SGZ_PORTRAIT_VARIANTS?.bySrc?.[this.src]?.srcset; },
+        sizes() { return this.detail ? '(max-width: 760px) 80px, 100px' : '48px'; }
+      },
+      template: `<img :src="src" :srcset="srcset" :sizes="srcset ? sizes : undefined" :alt="alt" loading="lazy" decoding="async" @error="failedVariant = true" />`
+    },
     ReaderCitations: {
       props: { citations: { type: Array, default: () => [] } },
       template: `<section v-if="citations.length" class="reader-citations" aria-label="原典回查">

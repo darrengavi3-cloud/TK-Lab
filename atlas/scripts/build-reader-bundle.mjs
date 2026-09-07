@@ -20,6 +20,7 @@ const stagingPath = path.join(root, 'exports', `.观史台-读者版.tmp-${proce
 const relationsOnly = process.argv.includes('--relations-only');
 
 const bannedRuntimeFiles = new Set([
+  'data/release-config.json',
   'data/person-source-index.js',
   'data/v71-appointment-review.json',
   'data/v74-appointment-supplements.json',

@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import { appointmentStatusCounts, loadSourceAppointmentReviews } from './appointment-supplements.mjs';
+import { loadSupplementDecisions, readReleaseConfig } from './release-config.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -32,7 +33,7 @@ const people = {
 const verifiedAppointmentIds = new Set((relations.appointments || []).map(row => row.appointmentId));
 const appointmentRows = sourceIndex.appointments || [];
 const appointmentReview = loadSourceAppointmentReviews(root);
-const appointments = appointmentStatusCounts(appointmentRows, appointmentReview, { records: [74,75,76].flatMap(version => json(`v${version}-appointment-supplements.json`).records) }, verifiedAppointmentIds);
+const appointments = appointmentStatusCounts(appointmentRows, appointmentReview, loadSupplementDecisions(root), verifiedAppointmentIds);
 
 
 const fangzhenRows = fangzhen.records || [];
@@ -74,7 +75,7 @@ const totals = Object.fromEntries(statusDefinitions.map(status => [
 ]));
 
 const payload = {
-  schemaVersion: 'V76',
+  schemaVersion: readReleaseConfig(root).version,
   modelId: 'sgz-v73-review-status-ledger',
   generatedAt: new Date(Number(process.env.SOURCE_DATE_EPOCH || 1788019200) * 1000).toISOString(),
   policy: {

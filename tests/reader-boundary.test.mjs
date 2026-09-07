@@ -37,6 +37,8 @@ test("deploys only the field-gated reader projection", async () => {
   assert.match(html, /v63-reader-people\.js/);
 
   const bannedFiles = [
+    "data/release-config.json",
+    "research/v77-iteration/appointment-triage.json",
     "data/person-source-index.js",
     "data/v60-person-workbook-import.js",
     "data/v61-person-supplements.js",
