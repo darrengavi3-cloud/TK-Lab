@@ -3,10 +3,10 @@
   "modelId": "sgz-v69-reader-person-profiles",
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "summary": {
-    "people": 2093,
+    "people": 2086,
     "rulers": 16,
-    "peopleWithLifeEvents": 494,
-    "lifeEvents": 909
+    "peopleWithLifeEvents": 499,
+    "lifeEvents": 922
   },
   "profiles": [
     {
@@ -8585,10 +8585,6 @@
       ]
     },
     {
-      "personId": "person:source:1208f55849a5",
-      "isRuler": false
-    },
-    {
       "personId": "person:source:13850e2cf763",
       "isRuler": false
     },
@@ -8813,10 +8809,6 @@
       ]
     },
     {
-      "personId": "person:source:30f8afe4c18c",
-      "isRuler": false
-    },
-    {
       "personId": "person:source:3615e33dea42",
       "isRuler": false,
       "lifeEvents": [
@@ -8915,6 +8907,60 @@
             }
           ],
           "relatedRecordId": "appointment:source:sgz:09:525296c06bb9"
+        },
+        {
+          "eventId": "life:appointment:appointment:source:sgz:23:09786cd25961",
+          "personId": "person:source:4e121ec2c327",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "扬州治中",
+          "detail": "汉 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷23·裴松之注",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷23",
+              "quote": "少清白，为人疾惡。建安中，入丞相府。出为壽春令，令行風靡。扬州治在其县，时蒋济为治中。苗以初至往謁济，济素嗜酒，適會其醉，不能見苗。苗恚恨還，刻木为人，署曰「酒徒蒋济」，置之牆下，",
+              "note": "时苗任寿春令事独立记蒋济为扬州治中，足证曾任；不能判定与温恢还州之事的先后关系，不据此新造第二任或填写任期。"
+            },
+            {
+              "title": "《三國志》卷23·常林传附时苗·裴注引魏略清介传",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷23",
+              "quote": "建安中，入丞相府。出爲壽春令，令行風靡。揚州治在其縣，時蔣濟爲治中。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:23:09786cd25961"
+        },
+        {
+          "eventId": "life:appointment:appointment:source:sgz:27:7fd8ce071d4c",
+          "personId": "person:source:4e121ec2c327",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "扬州别驾",
+          "detail": "汉 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷27·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷27",
+              "quote": "質==胡質字文德，楚国壽春人也。少與蒋济、朱績俱知名于江、淮間，仕州郡。蒋济为别驾，使見太祖。太祖問曰：「胡通達，长者也，寧有子孙不？」济曰：「有子曰質，規模大略不及于父，至于精",
+              "note": "胡质传明确蒋济任别驾，州别驾又见蒋济本传；确切任期及与其他别驾记载的对应暂不补定。"
+            },
+            {
+              "title": "《三國志》卷27·胡质传·太祖召质",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷27",
+              "quote": "蔣濟爲別駕，使見太祖。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷14·蒋济传·早年仕履",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷14",
+              "quote": "蔣濟字子通，楚國平阿人也。仕郡計吏、州別駕。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:27:7fd8ce071d4c"
         },
         {
           "eventId": "life:peerage:peerage:523@person:source:4e121ec2c327",
@@ -9053,10 +9099,6 @@
       ]
     },
     {
-      "personId": "person:source:5a26d1185d64",
-      "isRuler": false
-    },
-    {
       "personId": "person:source:5da0dd364783",
       "isRuler": false,
       "lifeEvents": [
@@ -9126,7 +9168,39 @@
     },
     {
       "personId": "person:source:64b99027de6f",
-      "isRuler": false
+      "isRuler": false,
+      "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:sgz:47:aa5f9775cb83",
+          "personId": "person:source:64b99027de6f",
+          "eventType": "appointment",
+          "startYear": 225,
+          "endYear": null,
+          "title": "太常",
+          "detail": "吴 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷47·裴松之注",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+              "quote": "吴书曰：以尚书令陈化为太常。化字元耀，汝南人，博覽眾书，氣幹剛毅，长七尺九寸，雅有威容。为郎中令使魏，魏文帝因酒酣，嘲問曰",
+              "note": "黄武四年六月顾雍转丞相条下裴注以陈化为太常，本注又载迁太常兼尚书令。授年据所附年条，终年未详。"
+            },
+            {
+              "title": "《三國志》卷47·吴主传·黄武四年六月裴注引吴书",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+              "quote": "以尚書令陳化爲太常。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷47·同注陈化仕履",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+              "quote": "頃之，遷太常，兼尚書令。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:47:aa5f9775cb83"
+        }
+      ]
     },
     {
       "personId": "person:source:653eea8eb9c6",
@@ -9274,6 +9348,36 @@
           "title": "关内侯",
           "detail": "关内侯 · 后进东武亭侯",
           "relatedRecordId": "peerage:157"
+        },
+        {
+          "eventId": "life:appointment:appointment:source:sgz:25:34394445c97c",
+          "personId": "person:source:6bea1ab8f79e",
+          "eventType": "appointment",
+          "startYear": 262,
+          "endYear": null,
+          "title": "镇西将军",
+          "detail": "魏 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷25·裴松之注",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷25",
+              "quote": "已。』敞遂出。宣王果誅爽。事定之后，敞歎曰：『吾不謀于姊，幾不獲于義。』逮钟會为镇西将军，憲英謂从子羊祜曰：『钟士季何故西出？』祜曰：『将为滅蜀也。』憲英曰：『會在事縱恣，非持乆處下之",
+              "note": "据本传景元三年冬授镇西将军定始年262；后来司徒是否实任另待核，不以未决转任截断本职终年。"
+            },
+            {
+              "title": "《三國志》卷25·辛毗传附辛宪英",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷25",
+              "quote": "逮鍾會爲鎮西將軍，憲英謂從子羊祜曰：",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷28·钟会传·景元三年冬",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+              "quote": "景元三年冬，以會為鎮西將軍、假節都督關中諸軍事。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:25:34394445c97c"
         },
         {
           "eventId": "life:peerage:peerage:500@person:source:6bea1ab8f79e",
@@ -9592,11 +9696,39 @@
     },
     {
       "personId": "person:source:8a094c46b36a",
-      "isRuler": false
-    },
-    {
-      "personId": "person:source:8b8bba6b3bd1",
-      "isRuler": false
+      "isRuler": false,
+      "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:sgz:48:0aea879bc3a6",
+          "personId": "person:source:8a094c46b36a",
+          "eventType": "appointment",
+          "startYear": 271,
+          "endYear": null,
+          "title": "太尉",
+          "detail": "吴 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷48·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "置守将，九真、日南皆還属。。大赦，分交阯为新昌郡。诸将破扶严，置武平郡。以武昌督范慎为太尉。右大司马丁奉、司空孟仁卒。。西苑言鳳皇集，改明年元。秋八月，征西陵督步闡。闡不应，據城降晉。遣",
+              "note": "建衡三年以武昌督范慎为太尉，始年271；次条改明年元，不移作272，终年未详。"
+            },
+            {
+              "title": "《三國志》卷48·孙皓传·建衡三年",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "以武昌督范慎爲太尉。右大司馬丁奉、司空孟仁卒。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷48·同年改元条",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "西苑言鳳皇集，改明年元。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:48:0aea879bc3a6"
+        }
+      ]
     },
     {
       "personId": "person:source:8bc6a827daea",
@@ -9756,6 +9888,42 @@
       "personId": "person:source:ab031a3e252f",
       "isRuler": false,
       "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:sgz:30:1c50eddd1b78",
+          "personId": "person:source:ab031a3e252f",
+          "eventType": "appointment",
+          "startYear": 188,
+          "endYear": null,
+          "title": "幽州牧",
+          "detail": "汉 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷30·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷30",
+              "quote": "號彌天安定王，为三郡烏丸元帥，寇略青、徐、幽、冀四州，殺略吏民。靈帝末，以刘虞为州牧，募胡斬純首，北州乃定。后丘力居死，子樓班年小，从子蹋頓有武略，代立，總攝三王部，衆皆从其教令。",
+              "note": "据后汉书本传中平四年张纯举兵、明年复拜幽州牧定始年188；与早年幽州刺史有别。升太尉、大司马后仍治幽部，不以升公官截断州牧任期，终年暂不填。"
+            },
+            {
+              "title": "《三國志》卷30·乌丸传·灵帝末",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷30",
+              "quote": "靈帝末，以劉虞爲州牧，募胡斬純首，北州乃定。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《後漢書》卷73·刘虞传·中平四年张纯起兵后",
+              "url": "https://zh.wikisource.org/wiki/後漢書/卷73",
+              "quote": "朝廷以虞威信素著，恩積北方，明年，復拜幽州牧。虞到薊，罷省屯兵，務廣恩信。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《後漢書》卷73·刘虞传·授大司马及征太傅后",
+              "url": "https://zh.wikisource.org/wiki/後漢書/卷73",
+              "quote": "虞雖為上公，天性節約，敝衣繩履，食無兼肉，遠近豪俊夙僭奢者，莫不改操而歸心焉。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:30:1c50eddd1b78"
+        },
         {
           "eventId": "life:appointment:appointment:source:sgz:08:1e74a1462c0a",
           "personId": "person:source:ab031a3e252f",
@@ -10250,6 +10418,36 @@
           "relatedRecordId": "peerage:156"
         },
         {
+          "eventId": "life:appointment:appointment:source:sgz:21:439ddd7ffb2a",
+          "personId": "person:source:da1e6572be53",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "司空掾",
+          "detail": "魏 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷21·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷21",
+              "quote": "石，北地泥阳人，傅介子之后也。伯父巽，黄初中为侍中尚书。。嘏弱冠知名，。司空陈群辟为掾。时散骑常侍刘劭作考課法，事下三府。嘏難劭論曰：「蓋聞帝制宏深，聖道奧遠，苟非其才，則道不虛行，",
+              "note": "司空陈群为辟主，受辟者是傅嘏；补全府属为司空掾，始终年未详。"
+            },
+            {
+              "title": "《三國志》卷21·傅嘏传·弱冠知名及辟署",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷21",
+              "quote": "傅嘏字蘭石，北地泥陽人，傅介子之後也。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷21·傅嘏传·辟署",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷21",
+              "quote": "司空陳羣辟爲掾。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:21:439ddd7ffb2a"
+        },
+        {
           "eventId": "life:peerage:peerage:518@person:source:da1e6572be53",
           "personId": "person:source:da1e6572be53",
           "eventType": "peerage",
@@ -10392,14 +10590,6 @@
       "isRuler": false
     },
     {
-      "personId": "person:source:e753fd0f66cd",
-      "isRuler": false
-    },
-    {
-      "personId": "person:source:e77c1970c9ac",
-      "isRuler": false
-    },
-    {
       "personId": "person:source:ee6c75cc5e60",
       "isRuler": false
     },
@@ -10493,7 +10683,39 @@
     },
     {
       "personId": "person:source:f64651d5146e",
-      "isRuler": false
+      "isRuler": false,
+      "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:sgz:47:ee6a3162eccb",
+          "personId": "person:source:f64651d5146e",
+          "eventType": "appointment",
+          "startYear": 225,
+          "endYear": 243,
+          "title": "丞相",
+          "detail": "吴 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷47·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+              "quote": "大江，曰「彼有人焉，未可圖也」，乃還。。四年夏五月，丞相孙邵卒。。六月，以太常顾雍为丞相。。皖口言木連理。冬十二月，鄱阳賊彭綺自稱将军，攻沒诸县，眾數万人。是歳地連震。。五年春，令曰：",
+              "note": "黄武四年六月由太常转丞相，赤乌六年冬十一月以丞相卒，任期为225—243。"
+            },
+            {
+              "title": "《三國志》卷47·吴主传·黄武四年六月",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+              "quote": "六月，以太常顧雍爲丞相。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷47·吴主传·赤乌六年",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+              "quote": "冬十一月，丞相顧雍卒。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:47:ee6a3162eccb"
+        }
+      ]
     },
     {
       "personId": "person:source:f70e8bb46940",
@@ -10560,10 +10782,6 @@
           "relatedRecordId": "appointment:source:sgz:03:e4ed72cd03b9"
         }
       ]
-    },
-    {
-      "personId": "person:source:f741747b83c4",
-      "isRuler": false
     },
     {
       "personId": "person:source:f799c2308083",
@@ -14624,6 +14842,36 @@
       "isRuler": false,
       "lifeEvents": [
         {
+          "eventId": "life:appointment:appointment:source:sgz:18:d37724fc7668",
+          "personId": "person:workbook:61c8839fc76b3c02",
+          "eventType": "appointment",
+          "startYear": 220,
+          "endYear": null,
+          "title": "武卫将军",
+          "detail": "魏 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷18·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷18",
+              "quote": "祖聞，愈愛待之，迁中堅将军。太祖崩，褚號泣歐血。文帝踐阼，進封万歲亭侯，迁武卫将军，都督中军宿卫禁兵，甚親近焉。初，褚所将为虎士者从征伐，太祖以为皆壯士也，同日拜为将，其后以功为",
+              "note": "文帝践阼迁武卫将军；武卫为官号，受任者是许褚。始年据践阼为220，明帝即位仅进爵，终年未详。"
+            },
+            {
+              "title": "《三國志》卷18·许褚传·文帝践阼",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷18",
+              "quote": "文帝踐阼，進封萬歲亭侯，遷武衛將軍，都督中軍宿衛禁兵，甚親近焉。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷18·许褚传·明帝即位后",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷18",
+              "quote": "明帝即位，進牟鄉侯，邑七百戶，賜子爵一人關內侯。褚薨，謚曰壯侯。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:18:d37724fc7668"
+        },
+        {
           "eventId": "life:peerage:peerage:384@person:workbook:61c8839fc76b3c02",
           "personId": "person:workbook:61c8839fc76b3c02",
           "eventType": "peerage",
@@ -14652,6 +14900,36 @@
           "title": "牟乡侯",
           "detail": "乡侯 · 牟乡 · 万岁亭侯→牟乡侯",
           "relatedRecordId": "peerage:582"
+        },
+        {
+          "eventId": "life:appointment:appointment:source:sgz:18:ea85641e12c0",
+          "personId": "person:workbook:61c8839fc76b3c02",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "武卫中郎将",
+          "detail": "汉 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷18·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷18",
+              "quote": "顾指褚，褚瞋目盼之。超不敢動，乃各罷。后數日會戰，大破超等，褚身斬首級，迁武卫中郎将。武卫之號，自此始也。军中以褚力如虎而痴，故號曰虎痴；是以超問虎侯，至今天下稱焉，皆謂其姓名也。",
+              "note": "许褚破马超后迁武卫中郎将，后来另迁中坚将军。本次未交叉定授年，不填起讫年，更不连续延至文帝践阼。"
+            },
+            {
+              "title": "《三國志》卷18·许褚传·潼关战后",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷18",
+              "quote": "後數日會戰，大破超等，褚身斬首級，遷武衛中郎將。武衛之號，自此始也。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷18·许褚传·曹仁来朝后",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷18",
+              "quote": "太祖聞，愈愛待之，遷中堅將軍。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:18:ea85641e12c0"
         },
         {
           "eventId": "life:peerage:peerage:580@person:workbook:61c8839fc76b3c02",
@@ -14894,7 +15172,45 @@
     },
     {
       "personId": "person:workbook:6748437cee9445b8",
-      "isRuler": false
+      "isRuler": false,
+      "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:sgz:48:17b160b6cab5",
+          "personId": "person:workbook:6748437cee9445b8",
+          "eventType": "appointment",
+          "startYear": 268,
+          "endYear": 271,
+          "title": "司空",
+          "detail": "吴 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷48·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "居之。是歲，分豫章、廬陵、长沙为安成郡。三年春二月，以左右御史大夫丁固、孟仁为司徒、司空。。秋九月，皓出东关，丁奉至合肥。是歲，遣交州刺史刘俊、前部督脩則等入擊交阯，为晉将毛炅等",
+              "note": "丁固为司徒、孟仁为司空；裴注明言仁本名宗，避孙皓字改名，任官归孟宗既有身份。宝鼎三年授、建衡三年以本官卒（268—271）；孟仁别名与孟宗为同一人。"
+            },
+            {
+              "title": "《三國志》卷48·孙皓传·宝鼎三年春二月",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "三年春二月，以左右御史大夫丁固、孟仁爲司徒、司空。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷48·孙皓传·建衡三年卒官及裴注引吴录",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "右大司馬丁奉、司空孟仁卒。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷48·孟仁裴注引吴录·本名",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+              "quote": "仁字恭武，江夏人也，本名宗，避皓字，易焉。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:48:17b160b6cab5"
+        }
+      ]
     },
     {
       "personId": "person:workbook:675d1bdf0c54298d",
@@ -16077,6 +16393,30 @@
           "relatedRecordId": "peerage:153"
         },
         {
+          "eventId": "life:appointment:appointment:source:sgz:24:92099c7248fc",
+          "personId": "person:workbook:9000bbf83b1ae7fd",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "太尉从事中郎",
+          "detail": "魏 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷24·正文",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷24",
+              "quote": "明帝幸许昌，召观为治书侍御史，典行台獄。时多有倉卒喜怒，而观不阿意順指。太尉司马宣王請观为从事中郎，迁为尚书，出为河南尹，徙少府。大将军曹爽使材官张達斫家屋材，及诸私用之物，观聞知，皆录奪以沒官",
+              "note": "司马宣王为辟主，受任者是王观；“王请观”不是姓名，任太尉府从事中郎，始终年未详。"
+            },
+            {
+              "title": "《三國志》卷24·王观传·明帝幸许昌后",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷24",
+              "quote": "太尉司馬宣王請觀為從事中郎，遷為尚書，出為河南尹，徙少府。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:24:92099c7248fc"
+        },
+        {
           "eventId": "life:peerage:peerage:505@person:workbook:9000bbf83b1ae7fd",
           "personId": "person:workbook:9000bbf83b1ae7fd",
           "eventType": "peerage",
@@ -16982,7 +17322,39 @@
     },
     {
       "personId": "person:workbook:a1c733efa599f7f0",
-      "isRuler": false
+      "isRuler": false,
+      "lifeEvents": [
+        {
+          "eventId": "life:appointment:appointment:source:sgz:23:88777917d94a",
+          "personId": "person:workbook:a1c733efa599f7f0",
+          "eventType": "appointment",
+          "startYear": null,
+          "endYear": null,
+          "title": "弘农太守",
+          "detail": "汉 · 任官",
+          "citations": [
+            {
+              "title": "《三国志》卷23·裴松之注",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷23",
+              "quote": "州所請，詔拜議郎，還参州事。會以建策捕高幹，又追录前討郭援功，封武鄉侯，迁弘农太守。及马超反，幹郡近超，民人分散。超破，为汉阳太守。迁益州刺史，以道不通，黄初中，转为五官中郎将。",
+              "note": "弘农为郡名，受任者是严干（原典作嚴幹）；授于马超反前、后转汉阳太守，确切起讫年暂不填。"
+            },
+            {
+              "title": "《三國志》卷23·裴潜传附严干·裴注引魏略",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷23",
+              "quote": "嚴幹字公仲，李義字孝懿，皆馮翊東縣人也。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            },
+            {
+              "title": "《三國志》卷23·严干·参州至迁郡段",
+              "url": "https://zh.wikisource.org/wiki/三國志/卷23",
+              "quote": "爲州所請，詔拜議郎，還參州事。會以建策捕高幹，又追錄前討郭援功，封武鄉侯，遷弘農太守。及馬超反，幹郡近超，民人分散。超破，爲漢陽太守。",
+              "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+            }
+          ],
+          "relatedRecordId": "appointment:source:sgz:23:88777917d94a"
+        }
+      ]
     },
     {
       "personId": "person:workbook:a1f2604df9bf11bd",

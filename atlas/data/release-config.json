@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "V79",
+  "version": "V80",
   "reviewBaseline": "V76",
   "audience": "owner-only",
   "appointmentReviewBatches": [
@@ -9,7 +9,8 @@
     "v75-appointment-source-review.json",
     "v76-appointment-source-review.json",
     "v78-appointment-source-review.json",
-    "v79-appointment-source-review.json"
+    "v79-appointment-source-review.json",
+    "v80-appointment-source-review.json"
   ],
   "appointmentSupplementBatches": [
     {
@@ -24,5 +25,11 @@
       "evidence": "v76-chancellery-evidence.json",
       "decisions": "v76-appointment-supplements.json"
     }
+  ],
+  "identityReviewBatches": [
+    "v71-person-identity-review.json",
+    "v73-person-identity-suppressions.json",
+    "v75-person-identity-suppressions.json",
+    "v80-person-identity-suppressions.json"
   ]
 }

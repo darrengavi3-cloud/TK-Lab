@@ -139,3 +139,40 @@ test('second batch fixes subjects, preserves qualifications and refuses ambiguou
   assert.equal(facts.some(f => f.personId === 'person:workbook:55d46dfb6301bfdd' && f.nodeName === '伊阙都尉'), false);
   assert.equal(facts.some(f => f.personId === 'person:source:ab031a3e252f' && f.nodeName === '太傅'), false);
 });
+
+test('third source-review batch freezes 20 decisions and preserves all 225 previously published facts', () => {
+  const progress = work('appointment-batch-03-review');
+  const decisions = read('atlas/data/v80-appointment-source-review.json').records;
+  const triage = work('appointment-triage').records.slice(40, 60);
+  const facts = new Map(read('atlas/data/v63-reader-person-relations.json').appointments.map(r => [r.appointmentId, r]));
+  assert.equal(progress.previousPublished.length, 225);
+  for (const old of progress.previousPublished) assert.equal(hash(JSON.stringify(facts.get(old.appointmentId))), old.sha256, old.appointmentId);
+  assert.deepEqual(progress.counts, { reviewed: 20, verified: 13, suppressed: 5, pending: 2, remainingUnreviewedInQueue: 40 });
+  assert.deepEqual(decisions.map(r => r.appointmentId), triage.map(r => r.recordId));
+  for (const [status, count] of [['verified', 13], ['suppressed', 5], ['review-only', 2]]) assert.equal(decisions.filter(r => r.status === status).length, count);
+  decisions.forEach((decision, i) => {
+    assert.equal(hash(JSON.stringify(decision)), progress.records[i].decisionSha256);
+    assert.equal(decision.sourceSha256, triage[i].sourceSnapshotSha256);
+    const fact = facts.get(decision.appointmentId);
+    assert.equal(Boolean(fact), decision.status === 'verified');
+    if (fact) assert.equal(fact.citations[0].quote, triage[i].sourceSnapshot.sourceExcerpt);
+  });
+  const get = suffix => facts.get('appointment:source:' + suffix);
+  for (const [suffix, personId, title, start, end] of [
+    ['sgz:18:d37724fc7668', 'person:workbook:61c8839fc76b3c02', '武卫将军', 220, null],
+    ['sgz:18:ea85641e12c0', 'person:workbook:61c8839fc76b3c02', '武卫中郎将', null, null],
+    ['sgz:21:439ddd7ffb2a', 'person:source:da1e6572be53', '司空掾', null, null],
+    ['sgz:23:09786cd25961', 'person:source:4e121ec2c327', '扬州治中', null, null],
+    ['sgz:23:88777917d94a', 'person:workbook:a1c733efa599f7f0', '弘农太守', null, null],
+    ['sgz:24:92099c7248fc', 'person:workbook:9000bbf83b1ae7fd', '太尉从事中郎', null, null],
+    ['sgz:25:34394445c97c', 'person:source:6bea1ab8f79e', '镇西将军', 262, null],
+    ['sgz:27:7fd8ce071d4c', 'person:source:4e121ec2c327', '扬州别驾', null, null],
+    ['sgz:30:1c50eddd1b78', 'person:source:ab031a3e252f', '幽州牧', 188, null],
+    ['sgz:47:aa5f9775cb83', 'person:source:64b99027de6f', '太常', 225, null],
+    ['sgz:47:ee6a3162eccb', 'person:source:f64651d5146e', '丞相', 225, 243],
+    ['sgz:48:0aea879bc3a6', 'person:source:8a094c46b36a', '太尉', 271, null],
+    ['sgz:48:17b160b6cab5', 'person:workbook:6748437cee9445b8', '司空', 268, 271]
+  ]) assert.deepEqual([get(suffix)?.personId, get(suffix)?.nodeName, get(suffix)?.startYear, get(suffix)?.endYear], [personId, title, start, end]);
+  assert.ok(get('sgz:48:17b160b6cab5').citations.some(c => c.quote.includes('本名宗')));
+  assert.equal(get('sgz:64:37eb3d6f4cf6'), undefined, 'identity review cannot approve another appointment');
+});

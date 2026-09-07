@@ -2,13 +2,15 @@
 
 本仓库同时保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 是历史数据、读者投影和资源清单的唯一规范输入；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
-## 本分支：V79 任官续核第二批
+## 本分支：V80 任官续核第三批与身份撤回
 
-以 V76 审定结果为基线，修复季汉大将军、大司马、尚书令的跨模块历任投影；批准批次、当前版本和统计分别由 `release-config.json` 与生成的[当前发布摘要](release-metadata/current-release.json)统一维护。代表人物回归覆盖 20 人。
+`release-config.json` 集中声明源码版本、任官及人物身份批准批次；README 当前统计由规范源自动生成。研究层初检不会因新增文件或人物消歧而自动发布。V77 的外层主题同步、动态视口高度及96／192／384宽度WebP立绘（保留PNG回退）继续有效。
 
-保留 V77 的外层主题同步、动态视口高度及 96／192／384 宽度立绘 WebP 变体（不放大原图，保留 PNG 回退）。V78 首批 20 条任官批准 16 条、排除 3 条、待补核 1 条；本次续核第 21—40 条，批准 12 条、排除 6 条（含 1 条重复证据合并）、待补核 2 条。累计完成 40 条证据包复核；新批准事实经显式批次清单进入读者履历，原有 213 条已核不改写。其余 60 条任官初检、24 人小传事实骨架、州镇待核清单及金石来源调查继续保留在研究层，不自动放行。
+V78、V79两批共复核40条；本次续核第41—60条，批准13、排除5、待补核2。累计复核60／100，原225条已核履历保持不变，余40条初检及24人小传、州镇与金石待办继续留在研究层。
 
-本分支不能据源码或测试推定已合并、已部署或已完成视觉验收。V79 是本次源码版本，不表示整个内容轮或阅读验收轮已完成。逐条结果见 [V79-REVIEW.md](V79-REVIEW.md)，首批结果见 [V78-REVIEW.md](V78-REVIEW.md)，前批实施范围及仍待完成的阅读矩阵见 [V77-ITERATION.md](V77-ITERATION.md)。误抽任官更正不等于旧人物卡已清理；具羽与张承（公先）的身份建档、7 个疑似误抽人物的全源复核另列研究待办。
+上一批留下的7个误抽人物已核清全部10条关联源任官，撤回人物卡与7项立绘引用，原图和源记录保留。当前人物2086、立绘512，下降原因及逐条审定见 [V80-REVIEW.md](V80-REVIEW.md)。人物撤回采用单条与完整关联集合双重摘要校验；其他新发现的身份合并与建档问题仍独立待审。
+
+本分支不能据源码或本地测试推定已合并、已部署或已完成视觉验收。V80仅为本次源码版本，不表示整个计划或州镇地理轮已完成。实际CI与私密部署回执见 [PR #11](https://github.com/darrengavi3-cloud/TK-Lab/pull/11)；待完成阅读矩阵见 [V77-ITERATION.md](V77-ITERATION.md)，前批结果保留于 [V78-REVIEW.md](V78-REVIEW.md)、[V79-REVIEW.md](V79-REVIEW.md)。
 
 ## 已合并审定基线：V76
 
@@ -19,16 +21,16 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 <!-- current-reviewed-counts:start -->
 | 项目 | 当前审定数量 |
 | --- | ---: |
-| 读者人物 | 2093 人 |
-| 任官已核 | 225 条 |
-| 任官待补核 | 564 条 |
+| 读者人物 | 2086 人 |
+| 任官已核 | 238 条 |
+| 任官待补核 | 546 条 |
 | 任官存疑 | 2 条 |
-| 任官排除 | 60 条 |
+| 任官排除 | 65 条 |
 | 实质小传 | 96 篇 |
-| 正式立绘 | 519 项 |
+| 正式立绘 | 512 项 |
 <!-- current-reviewed-counts:end -->
 
-统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V79 审阅说明](V79-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
+统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V80 审阅说明](V80-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
 
 ## V76 更新摘要
 
@@ -101,7 +103,7 @@ npm run release:offline
 - `tests/deployment-integrity.test.mjs`：最终部署文件的尺寸与哈希闭合。
 - `tests/reader-semantics.test.mjs`：任官主体与否定句、年代快照、跨模块跳转、网址同步和释文全文不变。
 
-任官审定以 `atlas/data/v71-appointment-review.json` 为基础，续接 V74、V75、V76、V78、V79 的 `appointment-source-review`，以及 V74—V76 的 `appointment-supplements`；批准清单以 `release-config.json` 为准。原典依据保存在各批次的 `citations` 或 `chancellery-evidence`。修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。V76 小传新增与更正分别保存于 `atlas/data/v76-person-biography-review.json`、`atlas/data/v76-person-biography-corrections.json`。阅读与交互规范见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md`。
+任官审定以 `atlas/data/v71-appointment-review.json` 为基础，续接 V74、V75、V76、V78、V79、V80 的 `appointment-source-review`，以及 V74—V76 的 `appointment-supplements`；批准清单以 `release-config.json` 为准。人物身份批准批次同样由该清单显式声明；撤回前核清全部关联，新增关联须重新审核。原典依据保存在各批次的 `citations` 或 `chancellery-evidence`。修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。V76 小传新增与更正分别保存于 `atlas/data/v76-person-biography-review.json`、`atlas/data/v76-person-biography-corrections.json`。阅读与交互规范见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md`。
 
 要求 Node.js `>=22.13.0`。
 

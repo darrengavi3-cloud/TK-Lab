@@ -8,7 +8,10 @@ import { readReleaseConfig } from './release-config.mjs';
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
 const includeHistorical = process.argv.includes('--include-historical');
-const deterministicFiles = [
+const config = readReleaseConfig(root);
+const approvedReviewFiles = [...config.identityReviewBatches, ...config.appointmentReviewBatches,
+  ...config.appointmentSupplementBatches.flatMap(batch => [batch.evidence, batch.decisions])].map(name => `data/${name}`);
+const deterministicFiles = [...new Set([...approvedReviewFiles,
   '../README.md',
   '../release-metadata/current-release.json',
   'assets/app/release-version.js',
@@ -85,7 +88,7 @@ const deterministicFiles = [
   'exports/观史台-轻量单文件版.html',
   'exports/观史台-离线版.zip',
   'exports/deployment-manifest.json'
-];
+])];
 const compareText = (left, right) => left < right ? -1 : left > right ? 1 : 0;
 
 function sha256(value) {

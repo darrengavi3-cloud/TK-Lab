@@ -37,8 +37,8 @@ assert(new Set(rows.map(row => row.name)).size === 100, 'V73 候选姓名不唯�
 assert(rows.every(row => /^person:(?!unresolved:)/.test(row.personId || '')), 'V73 候选含不稳定 personId');
 assert(mapping.records?.length === 100 && new Set(mapping.records.map(row => row.nodeId)).size === 100, 'V73 Figma 映射不是 100 个唯一节点');
 assert(v73Assets.length === 100 && manifest.summary?.v73PortraitRecords === 100, 'manifest 未登记 100 项 V73 资源');
-assert(assets.length === 519, `V73 总立绘应为 519 项，实际 ${assets.length}`);
-assert(registry.summary?.portraitAssets === 519 && registry.portraitResolutions?.length === 519, '人物注册表立绘总数未同步为 519');
+assert(assets.length === 512, `当前审定总立绘应为 512 项，实际 ${assets.length}`);
+assert(registry.summary?.portraitAssets === 512 && registry.portraitResolutions?.length === 512, '人物注册表立绘总数未同步为 512');
 
 for (const row of rows) {
   const portraitId = `portrait:v73:${String(row.order).padStart(3, '0')}`;
@@ -51,15 +51,15 @@ for (const row of rows) {
   assert(peopleById.get(row.personId)?.portraitIds?.includes(portraitId), `${portraitId} 未进入人物记读者投影`);
 }
 
-assert(reader.people?.length === 2093, `V73 读者人物应为 2093，实际 ${reader.people?.length || 0}`);
+assert(reader.people?.length === 2086, `当前审定读者人物应为 2086，实际 ${reader.people?.length || 0}`);
 assert(!reader.people.some(row => row.name === '安国' || row.personId === 'person:source:032cc177a216'), '官号误抽取人物安国仍在读者人物表');
 assert(!manifest.byName?.['安国'] && !manifest.byPersonId?.['person:source:032cc177a216'], '安国仍在立绘 manifest');
 assert(!fs.existsSync(path.join(root, 'assets/portraits/v51/person-source-032cc177a216.png')), '安国旧立绘文件仍存在');
 assert((registry.excludedPeople || []).some(row => row.name === '安国' && row.publicationStatus === 'suppressed'), '安国未进入已排除台账');
 
 const expectedLedger = {
-  '人物实体': [2093, 327, 14, 10, 351],
-  '任官事实': [225, 564, 2, 60, 626],
+  '人物实体': [2086, 327, 14, 17, 358],
+  '任官事实': [238, 546, 2, 65, 613],
   '州镇职任': [45, 408, 70, 0, 503],
   '金石记录': [31, 127, 8, 0, 105]
 };
@@ -76,5 +76,5 @@ if (failures.length) {
   console.error(JSON.stringify({ ok: false, version: 'V73', failures }, null, 2));
   process.exitCode = 1;
 } else {
-  console.log(JSON.stringify({ ok: true, version: 'V73', readerPeople: 2093, portraits: { added: 100, total: 519 }, figma: { page: 'V73 / Portraits', nodes: 100 }, reviewModules: 4, removedNonPerson: '安国' }, null, 2));
+  console.log(JSON.stringify({ ok: true, version: 'V73', readerPeople: 2086, portraits: { added: 100, total: 512 }, figma: { page: 'V73 / Portraits', nodes: 100 }, reviewModules: 4, removedNonPerson: '安国' }, null, 2));
 }

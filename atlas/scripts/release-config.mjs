@@ -7,7 +7,10 @@ export function readReleaseConfig(root = path.resolve(path.dirname(fileURLToPath
   if (config.schemaVersion !== 1 || !/^V\d+$/.test(config.version) || config.audience !== 'owner-only') {
     throw new Error('Invalid release identity or audience');
   }
-  const names = [...config.appointmentReviewBatches,
+  if (!Array.isArray(config.identityReviewBatches) || !config.identityReviewBatches.length) {
+    throw new Error('Missing approved identity review batches');
+  }
+  const names = [...config.identityReviewBatches, ...config.appointmentReviewBatches,
     ...config.appointmentSupplementBatches.flatMap(row => [row.evidence, row.decisions])];
   if (!config.appointmentReviewBatches.length || new Set(names).size !== names.length ||
       names.some(name => typeof name !== 'string' || !/^v\d+-[a-z-]+\.json$/.test(name))) {
@@ -17,6 +20,11 @@ export function readReleaseConfig(root = path.resolve(path.dirname(fileURLToPath
     throw new Error(`Approved review batch missing: ${name}`);
   }
   return config;
+}
+
+export function loadIdentityReviewBatches(root) {
+  return readReleaseConfig(root).identityReviewBatches.map(name =>
+    JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')));
 }
 
 export function loadSupplementBatches(root) {

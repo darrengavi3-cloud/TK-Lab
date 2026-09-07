@@ -1,10 +1,10 @@
-import { reviewedReaderScope } from './person-identity-publication.mjs';
+import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const expectedReaderCount = loadReviewedReaderScope(root).length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
 const fullPath = relative => path.join(root, relative);
@@ -40,9 +40,9 @@ assert(candidateRows.every(row => row.dynasty === '魏'), 'V70 候选混入魏�
 assert(candidateRows.every(row => /^person:(?!unresolved:)/.test(row.personId || '')), 'V70 候选含不稳定或 unresolved personId');
 assert(v70Assets.length === 50, `V70 manifest 资源应为 50 项，实际 ${v70Assets.length}`);
 assert(manifest.summary?.v70PortraitRecords === 50, 'manifest 未登记 50 项 V70 资源');
-assert(assets.length === 519, `V73 追加后总立绘应为 519 项，实际 ${assets.length}`);
-assert((registry.summary?.portraitAssets || 0) === 519, '人物注册表立绘总数未同步为 519');
-assert((registry.portraitResolutions || []).length === 519, '人物注册表立绘解析数未同步为 519');
+assert(assets.length === 512, `当前审定总立绘应为 512 项，实际 ${assets.length}`);
+assert((registry.summary?.portraitAssets || 0) === 512, '人物注册表立绘总数未同步为 512');
+assert((registry.portraitResolutions || []).length === 512, '人物注册表立绘解析数未同步为 512');
 
 const candidateIds = new Set();
 const candidateNames = new Set();
@@ -92,7 +92,7 @@ if (failures.length) {
     ok: true,
     version: 'V70',
     readerPeople: reader.people.length,
-    portraits: { baseline: 369, addedV70: v70Assets.length, addedV73: assets.filter(asset=>asset.portraitKind==='ui-illustration-v73').length, total: assets.length },
+    portraits: { baseline: assets.filter(asset=>!['ui-illustration-v70','ui-illustration-v73'].includes(asset.portraitKind)).length, addedV70: v70Assets.length, addedV73: assets.filter(asset=>asset.portraitKind==='ui-illustration-v73').length, total: assets.length },
     v70: { dynasty: '魏', candidates: candidateRows.length, readyAssets: v70Assets.length, figma: v70Assets.every(asset => asset.designStatus === 'figma-design') ? 'complete' : 'pending-figma-upload' },
     fangzhenTitlesNormalized: true,
   }, null, 2));

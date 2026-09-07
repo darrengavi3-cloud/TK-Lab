@@ -93,7 +93,7 @@ test("deploys only the field-gated reader projection", async () => {
   const readerPeople = context.window.SGZ_V63_READER_PEOPLE;
   assert.ok(readerPeople, "reader people payload is missing");
   const people = readerPeople.people || Object.values(readerPeople.byPersonId || readerPeople.peopleById || {});
-  assert.equal(people.length, 2093, `expected the reviewed V73 scope with 安国 suppressed, received ${people.length}`);
+  assert.equal(people.length, 2086, `expected the reviewed approved scope including V80 identity withdrawals, received ${people.length}`);
   assert.ok(!people.some((person) => person.name === "安国" || person.personId === "person:source:032cc177a216"), "官号误抽取人物安国仍进入读者包");
   assert.ok(people.every((person) => person.personId && person.name), "reader person lacks a stable id or name");
   assert.ok(people.every((person) => !("datasets" in person)), "reader person leaked source dataset labels");

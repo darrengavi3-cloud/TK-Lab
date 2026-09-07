@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { validateIdentitySources } from './person-identity-publication.mjs';
+import { loadIdentityReviewBatches } from './release-config.mjs';
 import crypto from 'node:crypto';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -46,9 +47,12 @@ const v73PortraitCandidates = fs.existsSync(path.join(dataDir, 'v73-portrait-can
   : { records: [] };
 const fallbackSrc = './assets/portraits/generated/person-placeholder-v46.png';
 const polityColors = { 汉: '#A54136', 魏: '#376B9E', 吴: '#3F7652', 晋: '#665483' };
-const identitySuppressions = ['v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(dataDir, name), 'utf8')));
-const sourceAppointments = JSON.parse(fs.readFileSync(path.join(dataDir, 'person-source-index.json'), 'utf8')).appointments;
-for (const review of identitySuppressions) validateIdentitySources(review, { appointments: sourceAppointments });
+const identitySuppressions = loadIdentityReviewBatches(root).map(review => ({ ...review,
+  records: review.records.filter(row => row.action === 'suppress') }));
+const sourceIndex = JSON.parse(fs.readFileSync(path.join(dataDir, 'person-source-index.json'), 'utf8'));
+for (const review of identitySuppressions) validateIdentitySources(review, {
+  appointments: sourceIndex.appointments, sourcePeople: sourceIndex.people
+});
 const suppressedNonPeople = new Set(identitySuppressions.flatMap(review => review.records.filter(row => row.status === 'verified' && row.action === 'suppress').map(row => row.personId)));
 
 // V62: the old name-based pool produced 31 temporary person IDs.  Keep those

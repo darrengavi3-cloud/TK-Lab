@@ -12,7 +12,7 @@
   "policy": "读者可见且姓名唯一；排除已有立绘；依君主、中央公卿、跨模块关联与已核任官数排序。",
   "summary": {
     "candidates": 100,
-    "existingPortraitAssets": 519,
+    "existingPortraitAssets": 512,
     "expectedAfterProduction": 375
   },
   "candidates": [
@@ -824,12 +824,12 @@
       "signals": {
         "isRuler": false,
         "centralOfficeCount": 0,
-        "appointmentCount": 0,
+        "appointmentCount": 2,
         "peerageCount": 4,
         "battleCount": 0,
-        "crossModuleCount": 1
+        "crossModuleCount": 2
       },
-      "score": 1040,
+      "score": 2240,
       "interfaceOnly": true,
       "productionStatus": "ready",
       "assetPath": "./assets/portraits/v69/wei/28-xu-chu.png",
@@ -1255,16 +1255,16 @@
       "dynastyTags": [
         "魏"
       ],
-      "priorityClass": "cross-module-person",
+      "priorityClass": "central-minister",
       "signals": {
         "isRuler": false,
-        "centralOfficeCount": 0,
-        "appointmentCount": 0,
+        "centralOfficeCount": 1,
+        "appointmentCount": 1,
         "peerageCount": 2,
         "battleCount": 0,
-        "crossModuleCount": 1
+        "crossModuleCount": 2
       },
-      "score": 1020,
+      "score": 12120,
       "interfaceOnly": true,
       "productionStatus": "ready",
       "assetPath": "./assets/portraits/v69/wei/43-fu-gu.png",
@@ -1839,16 +1839,16 @@
       "dynastyTags": [
         "魏"
       ],
-      "priorityClass": "cross-module-person",
+      "priorityClass": "central-minister",
       "signals": {
         "isRuler": false,
-        "centralOfficeCount": 0,
-        "appointmentCount": 0,
+        "centralOfficeCount": 1,
+        "appointmentCount": 1,
         "peerageCount": 2,
         "battleCount": 0,
-        "crossModuleCount": 1
+        "crossModuleCount": 2
       },
-      "score": 1020,
+      "score": 12120,
       "interfaceOnly": true,
       "productionStatus": "ready",
       "assetPath": "./assets/portraits/v69/wei/63-wang-guan.png",
