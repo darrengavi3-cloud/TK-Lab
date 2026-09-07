@@ -89,8 +89,8 @@
     "generalTitleReaderCount": 248,
     "generalTitleLegacyVerifiedCount": 159,
     "generalTitleV65VerifiedCount": 89,
-    "personAppointmentReferenceCount": 213,
-    "personAppointmentRelationCount": 213,
+    "personAppointmentReferenceCount": 225,
+    "personAppointmentRelationCount": 225,
     "personPeerageReferenceCount": 535,
     "personPeerageRelationCount": 535,
     "personPeerageUniqueEventCount": 518,
@@ -109,8 +109,8 @@
     "explicitCodeIdentifierExceptions": 3
   },
   "fileCount": 604,
-  "totalBytes": 207982041,
-  "aggregateSha256": "3c86ce703dc60e222ea56e4c61ab805fd5304931dddd00378bda896f30562903",
+  "totalBytes": 208053063,
+  "aggregateSha256": "f4a06bf1bbb74a01ade719ab1d6e85fa660df13d5c0fb67430ec0d8faa6d92a7",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -3079,23 +3079,23 @@
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 427431,
-      "sha256": "2a63446a79828a862e6728dd8a82c04703373b5df65857416bef0881e3c826c0"
+      "bytes": 428094,
+      "sha256": "035ed96c0cf163510cd424a2df1233ab8396cbffcfeab8f2a9be23b2554cbcdd"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 589458,
-      "sha256": "837c1e0d9ab1b091cea0d564100a20de8b8b88aed1af6759ca1fae0e56b03035"
+      "bytes": 590364,
+      "sha256": "bb73a2a91bf8aa9bebf6b7d821b496468c5fb6348b4266745b06d1dd457e5636"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 364969,
-      "sha256": "ddf2baf0686c73e21bda6d97f3d6ddd738d2767437f7fe29d370388023f8cd9c"
+      "bytes": 386592,
+      "sha256": "65ebe2e6456aab33fa9e9761c4d719b5ca65eba70736f2bd7f31894fe3e9caa4"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 448881,
-      "sha256": "67d91e6b019a3bf41416c8e033f1951f3ad25ec01d205cab218fe4ffa2d5e601"
+      "bytes": 474638,
+      "sha256": "5e0b5f161516f78cd8bb24ee91f9229931cd6a717795e5cdcff475054503f574"
     },
     {
       "path": "data/v66-peerage-stages.js",
@@ -3119,13 +3119,13 @@
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 525299,
-      "sha256": "137dd689c7c5a01a3f0ee52c51d963a96aa7119066cc178c5306c71bb5684888"
+      "bytes": 547372,
+      "sha256": "640708600a916e61120d49af1582108a30aefddc155267fddfe053e9b194e56b"
     },
     {
       "path": "data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "c87fa13c833a649ba14e3391c24089b84b21fc8f9680cdda624706aed0f9649a"
+      "sha256": "6b3eff603e38bb85f2054fd1617a07f59d6e9d4300083b78526a0d4b64abb7bb"
     },
     {
       "path": "index.html",

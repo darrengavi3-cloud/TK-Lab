@@ -1,0 +1,571 @@
+{
+  "schemaVersion": "V79",
+  "reviewedAt": "2026-09-07",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:04:ca285f4afbbd",
+      "sourceSha256": "c8407cda3e9bb2c0c656eed353baf5cfc72a56cb8b97bc87d17056028be931b5",
+      "status": "verified",
+      "reason": "正始六年八月授司空，九年四月转司徒；同句拒受者为徐邈。",
+      "correction": {
+        "personId": "person:source:c9646b99be7a",
+        "name": "高柔",
+        "officeName": "司空",
+        "startYear": 245,
+        "endYear": 248,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷04 齊王紀·正始六年（245），前段五年、后段七年连续排列",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "六年春二月丁卯，南安郡地震。丙子，以驃騎將軍趙儼為司空；夏六月，儼薨。八月丁卯，以太常高柔為司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷04 齊王紀·正始九年（248）四月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "九年春二月，衞將軍中書令孫資，癸巳，驃騎將軍中書監劉放，三月甲午，司徒衞臻，各遜位，以侯就第，位特進。四月，以司空高柔為司徒；光祿大夫徐邈為司空，固辭不受。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "正始六年八月授司空，九年四月转司徒；同句拒受者为徐邈。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:fd5f5aa2a419",
+      "sourceSha256": "0455c102497045397c7b6fc87b58e0caeb94b7bf1f0d2a2136a69869a32d2a29",
+      "status": "verified",
+      "reason": "景初三年冬十月授车骑将军，正始元年四月以本官薨；不把授年错置为正始元年。",
+      "correction": {
+        "personId": "person:source:182106820ab7",
+        "name": "黄权",
+        "officeName": "车骑将军",
+        "startYear": 239,
+        "endYear": 240,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷04 齊王紀·景初三年（239）冬十月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "秋七月，上始親臨朝，聽公卿奏事。八月，大赦。冬十月，以鎮南將軍黃權為車騎將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷04 齊王紀·景初三年十二月，尚未进入正始元年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "十二月，詔曰：「烈祖明皇帝以正月棄背天下，臣子永惟忌日之哀，其復用夏正；雖違先帝通三統之義，斯亦禮制所由變改也。又夏正於數為得天正，其以建寅之月為正始元年正月，以建丑月為後十二月。」",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷04 齊王紀·正始元年（240），在元年春二月段之后、二年段之前",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "夏四月，車騎將軍黃權薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "景初三年冬十月授车骑将军，正始元年四月以本官薨；不把授年错置为正始元年。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:05:efb18232fd22",
+      "sourceSha256": "e2649f1d4de905d5b9d0fa893d2e082fb9267fa6b24587ca11209feee9db18e8",
+      "status": "suppressed",
+      "reason": "县公为封爵，不列任官；不自动新增批准封爵事实。",
+      "citations": [
+        {
+          "title": "《三国志》卷05·裴注引晋诸公赞爵位段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷05",
+          "quote": "甄溫字仲舒，與郭建及德等皆后族，以事宜見寵。咸熙初，封郭建為臨渭縣公，德廣安縣公，邑皆千八百戶。溫本國侯，進為輔國大將軍，加侍中，領射聲校尉，德鎮軍大將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》四库全书本魏志卷05·晋诸公赞爵位段",
+          "url": "https://zh.wikisource.org/wiki/三國志_(四庫全書本)/魏志/卷05",
+          "quote": "甄温字仲舒與郭建及悳等皆后族以事宜見寵咸熙初封郭建為臨渭縣公悳廣安縣公邑皆千八百户",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 此电子文本本来无句读，保留悳、温、户等字形；仅作为异本电子录文核验。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:26e0f88d68b9",
+      "sourceSha256": "26969704e9860ce1ab3f0401093db484606ee5f6b922b15ff9c78ba0800c2d0b",
+      "status": "suppressed",
+      "reason": "原候选把苏代误系于“长”；华容长的主体是具羽，另待身份审核，不改造成苏代长沙太守新事实。",
+      "citations": [
+        {
+          "title": "《三國志 裴注引司馬彪戰略》卷06 劉表傳·刘表初为荆州，袁术屯鲁阳",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "劉表之初爲荊州也，江南宗賊盛，袁術屯魯陽，盡有南陽之衆。吳人蘇代領長沙太守，具羽爲華容長，各阻兵作亂。表初到，單馬入宜城，而延中廬人蒯良、蒯越、襄陽人蔡瑁與謀。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:933d5cb670f7",
+      "sourceSha256": "40208a9b94e8dbe7985a06da865878d53764a192c7548d0c54631bcc3504722a",
+      "status": "verified",
+      "reason": "濮阳为地名，受任者是袁绍；弱冠除授而无确年，不以推测生年倒算。",
+      "correction": {
+        "personId": "person:source:653eea8eb9c6",
+        "name": "袁绍",
+        "officeName": "濮阳长",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志 裴注引英雄記》卷06 袁紹傳·袁绍早年、应大将军辟命以前，无确年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "紹生而父死，二公愛之。幼使爲郎，弱冠除濮陽長，有清名。遭母喪，服竟，又追行父服，凡在冢廬六年。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "濮阳为地名，受任者是袁绍；弱冠除授而无确年，不以推测生年倒算。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:9b1ccfe3d1da",
+      "sourceSha256": "605cbd5b09054ecb8e3351f3a439085744de8597e894cda4e115d41a99a57c61",
+      "status": "verified",
+      "reason": "据《后汉书》本传中平五年复拜左将军、初平元年征为城门校尉定年；同书灵帝纪作右将军，异称未决，保留原字，不另造调任。",
+      "correction": {
+        "personId": "person:source:779b07352932",
+        "name": "皇甫嵩",
+        "officeName": "左将军",
+        "startYear": 188,
+        "endYear": 190,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志 裴注引山陽公載記》卷06 董卓傳·董卓为太师、皇甫嵩为御史中丞时追叙旧事",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "初卓爲前將軍，皇甫嵩爲左將軍，俱征韓遂，各不相下。後卓徵爲少府并州牧，兵當屬嵩，卓大怒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志 裴注引靈帝紀》卷06 董卓傳·中平五年（188）",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "中平五年，徵卓爲少府，勑以營吏士屬左將軍皇甫嵩，詣行在所。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷71 皇甫嵩列傳·中平五年（188）",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷71",
+          "quote": "五年，梁州賊王國圍陳倉，復拜嵩為左將軍，督前將軍董卓，各率二萬人拒之。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 录正文；网页在梁字后夹注‘一作「涼」’，此异文在此单列。"
+        },
+        {
+          "title": "《後漢書》卷71 皇甫嵩列傳·初平元年（190）",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷71",
+          "quote": "及後秉政，初平元年，乃徵嵩為城門校尉，因欲殺之。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷8 孝靈帝紀·中平五年十一月（188）",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷8",
+          "quote": "十一月，涼州賊王國圍陳倉，右將軍皇甫嵩救之。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 官号异称，须保留；不径改引文右字为左"
+        }
+      ],
+      "readerNote": "据《后汉书》本传中平五年复拜左将军、初平元年征为城门校尉定年；同书灵帝纪作右将军，异称未决，保留原字，不另造调任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:c87d3944bc1a",
+      "sourceSha256": "6cdbd5b071fe4dea427388fb49235e20f2ec1bcc0cfdaee6912b391e258de46b",
+      "status": "verified",
+      "reason": "袁隗为辟主，受辟者是董卓；据所属府补全司徒掾，不细分曹属，始终年未详。",
+      "correction": {
+        "personId": "person:workbook:e1d0e31a7b6329cb",
+        "name": "董卓",
+        "officeName": "司徒掾",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志 裴注引吳書》卷06 董卓傳开头·董卓早年，无明确授年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "郡召卓爲吏，使監領盜賊。胡甞出鈔，多虜民人，涼州刺史成就辟卓爲從事，使領兵騎討捕，大破之，斬獲千計。并州刺史段熲薦卓公府，司徒袁隗辟爲掾。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "袁隗为辟主，受辟者是董卓；据所属府补全司徒掾，不细分曹属，始终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:f8244e4b759d",
+      "sourceSha256": "d97e8af6cd55b0c00fb67229325abd97dab879ffec2be8ec09dc5a8ebbc8de07",
+      "status": "verified",
+      "reason": "中平元年王允辟孔融为从事；保留辟署性质，豫州据王允当时职任补足，终年未详。",
+      "correction": {
+        "personId": "person:source:c9b3bc9bb023",
+        "name": "孔融",
+        "officeName": "豫州从事",
+        "startYear": 184,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志 裴注引張璠漢紀》卷06 董卓傳王允附叙·初平三年王允被害后追叙早年，授年另据后汉书",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "quote": "允字子師，太原祁人也。少有大節，郭泰見而奇之，曰：「王生一日千里，王佐之才也。」泰雖先達，遂與定交。三公並辟，歷豫州刺史，辟荀爽、孔融爲從事，遷河南尹、尚書令。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷66 王允列傳·中平元年（184）",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷66",
+          "quote": "允少好大節，有志於立功，常習誦經傳，朝夕試馳射。三公並辟，以司徒高第為侍御史。中平元年，黃巾賊起，特選拜豫州刺史。辟荀爽、孔融等為從事，上除禁黨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "中平元年王允辟孔融为从事；保留辟署性质，豫州据王允当时职任补足，终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:08:1e74a1462c0a",
+      "sourceSha256": "e132d219691e7b42c246ceaa76d8a689ffce0f0b7f3df6fb907a985afab5081b",
+      "status": "verified",
+      "reason": "原文“虞大司马”指刘虞任大司马；中平六年授，初平四年以本官被杀；太傅信命未至，不作实转或据此截断任期。",
+      "correction": {
+        "personId": "person:source:ab031a3e252f",
+        "name": "刘虞",
+        "officeName": "大司马",
+        "startYear": 189,
+        "endYear": 193,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷08 公孫瓚傳附劉虞·董卓至洛阳；下句关东义兵起与迁都长安",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷08",
+          "quote": "會董卓至洛陽，遷虞大司馬，瓚奮武將軍，封薊侯。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 前文明确‘乃以劉虞為幽州牧’，因此虞为刘虞简称，大属于大司马官名。"
+        },
+        {
+          "title": "《三國志》卷08 公孫瓚傳附劉虞·关东义兵起、董卓劫帝西迁（190）",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷08",
+          "quote": "關東義兵起，卓遂劫帝西遷，徵虞為太傅，道路隔塞，信命不得至。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷9 孝獻帝紀·中平六年（189）九月，改昭宁为永汉之后",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷9",
+          "quote": "乙酉，以太尉劉虞爲大司馬。董卓自爲太尉，加鈇鉞、虎賁。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷9 孝獻帝紀·初平四年（193）冬十月段，十二月段之前",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷9",
+          "quote": "司空楊彪免，太常趙溫爲司空。公孫瓉殺大司馬劉虞。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷73 劉虞列傳·董卓秉政至初平元年",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷73",
+          "quote": "及董卓秉政，遣使者授虞大司馬，進封襄賁侯。初平元年，復征代袁隗為太傅。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 确认大司马为授任；后句征太傅须结合三国志信命不得至判定"
+        }
+      ],
+      "readerNote": "原文“虞大司马”指刘虞任大司马；中平六年授，初平四年以本官被杀；太傅信命未至，不作实转或据此截断任期。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:08:9f402aec33e4",
+      "sourceSha256": "cc17823ac107727e4861f4189cc791eeb98bd91980f07a58cac14811ea69998b",
+      "status": "review-only",
+      "reason": "《吴书》所述早期征羌的征西将军尚待核；初平三年（192）另有实授明文，不能用后期任职倒填或放行本源事件。",
+      "citations": [
+        {
+          "title": "《三國志 裴注引吳書》卷08 陶謙傳·陶谦参张温军事的注中，先述西羌寇边，再述‘后边章韩遂为乱’",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷08",
+          "quote": "會西羌寇邊，皇甫嵩爲征西將軍，表請武將。召拜謙楊武都尉，與嵩征羌，大破之。後邊章、韓遂爲亂，司空張溫銜命征討；又請謙爲參軍事，接遇甚厚，而謙輕其行事，心懷不服。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 所读《三国志》电子正文作‘楊武都尉’，保留原字；不把候选摘要中的‘扬’倒写进引文。"
+        },
+        {
+          "title": "《後漢書》卷8 孝靈帝紀·中平二年（185）三月段",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷8",
+          "quote": "北宮伯玉等寇三輔，遣左車騎將軍皇甫嵩討之，不剋。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷8 孝靈帝紀·中平二年（185）秋七月后、八月",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷8",
+          "quote": "左車騎將軍皇甫嵩免。八月，以司空張溫爲車騎將軍，討北宮伯玉。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷71 皇甫嵩列傳·董卓被诛后；同年秋拜太尉，即初平三年192",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷71",
+          "quote": "及卓被誅，以嵩為征西將軍，又遷車騎將軍。其年秋，拜太尉，冬，以流星策免。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 另一时期独立实任，不能倒填入吴书早期源"
+        },
+        {
+          "title": "《後漢書》卷9 孝獻帝紀·初平三年（192）五月",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷9",
+          "quote": "五月丁酉，大赦天下。丁未，征西將軍皇甫嵩爲車騎將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。 确认192年五月前已经为征西，五月转任结束"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:525296c06bb9",
+      "sourceSha256": "54b69f5fcbe56540572a30d8584e8471a90df9a912d4f4d1294ffe99fe10d34f",
+      "status": "verified",
+      "reason": "正始三年七月授太尉，嘉平元年四月以本官薨；会社下为交往追叙，不据此定授任年。",
+      "correction": {
+        "personId": "person:source:4e121ec2c327",
+        "name": "蒋济",
+        "officeName": "太尉",
+        "startYear": 242,
+        "endYear": 249,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷九《曹真傳》附曹爽，裴注引《魏略》桓範事·桓範撰世要論、會社下段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷09",
+          "quote": "蔣濟爲太尉，嘗與範會社下，羣卿列坐有數人，範懷其所撰，欲以示濟，謂濟當虛心觀之。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷四《齊王紀》·正始三年秋七月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "三年春正月，東平王徽薨。三月，太尉滿寵薨。秋七月甲申，南安郡地震。乙酉，以領軍將軍蔣濟為太尉。冬十二月，魏郡地震。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷四《齊王紀》·嘉平元年夏四月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "夏四月乙丑，改年。丙子，太尉蔣濟薨。冬十二月辛卯，以司空王淩為太尉。庚子，以司隷校尉孫禮為司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷十四《蔣濟傳》·誅曹爽、辭增封段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷14",
+          "quote": "是歲薨，諡曰景侯。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "正始三年七月授太尉，嘉平元年四月以本官薨；会社下为交往追叙，不据此定授任年。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:59206beeba4b",
+      "sourceSha256": "18f4b2d480d5373971bbaa7d58fbc86f1cf150cb00778cb4c17fee3f9e209808",
+      "status": "verified",
+      "reason": "武卫为官号，主体是曹爽。始年未详；景初二年十二月甲申转大将军，公元终年须另核历日换算，本条暂不填值。",
+      "correction": {
+        "personId": "person:wei:cao-shuang",
+        "name": "曹爽",
+        "officeName": "武卫将军",
+        "startYear": null,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷九《曹真傳》附曹爽·曹爽传开篇",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷09",
+          "quote": "爽字昭伯，少以宗室謹重，明帝在東宮，甚親愛之。及即位，爲散騎侍郎，累遷城門校尉，加散騎常侍，轉武衞將軍，寵待有殊。帝寢疾，乃引爽入臥內，拜大將軍，假節鉞，都督中外諸軍事，錄尚書事，與太尉司馬宣王並受遺詔輔少主。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷三《明帝紀》·景初二年十二月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "十二月乙丑，帝寢疾不豫。辛巳，立皇后。賜天下男子爵人二級，鰥寡孤獨穀。以燕王宇爲大將軍，甲申免，以武衞將軍曹爽代之。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "武卫为官号，主体是曹爽。始年未详；景初二年十二月甲申转大将军，公元终年须另核历日换算，本条暂不填值。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:e51ee43f1b35",
+      "sourceSha256": "e440325fa1454697cadbc80a344511a5c531f4c0824c59a5aa9a45f3fe3d4186",
+      "status": "verified",
+      "reason": "主体为曹洪，完整官名厉锋将军；原典“厉鋒”字形保留于引文，始终年未详，不以都许年倒填。",
+      "correction": {
+        "personId": "person:workbook:725ae36bb5bd06f2",
+        "name": "曹洪",
+        "officeName": "厉锋将军",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷九《曹洪傳》·曹洪传天子都许至都护将军段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷09",
+          "quote": "天子都许，拜洪諫議大夫。别征劉表，破表别將於舞陽、陰葉、堵陽、博望，有功，遷厉鋒將軍，封國明亭侯。累從征伐，拜都護將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "主体为曹洪，完整官名厉锋将军；原典“厉鋒”字形保留于引文，始终年未详，不以都许年倒填。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:10:b72a5b3a36df",
+      "sourceSha256": "6fb7d7cead638cb74ebd95efd53da437a9975d4d8e64b74270c9b7c84d40fb52",
+      "status": "verified",
+      "reason": "建安元年守尚书令，十七年转以侍中光禄大夫持节；保留“守”，不补造去守就正。卷十三华歆代任为同一事实的补充证据。",
+      "correction": {
+        "personId": "person:source:035be51454ba",
+        "name": "荀彧",
+        "officeName": "尚书令",
+        "startYear": 196,
+        "endYear": 212,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷十《荀攸傳》，裴注引《漢末名士錄》何顒事·何顒附事末",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷10",
+          "quote": "後荀彧爲尚書令，遣人迎叔父司空爽喪，使并置顒尸，而葬之於爽冢傍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷十《荀彧傳》·建安元年奉迎天子段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷10",
+          "quote": "太祖遂至洛陽，奉迎天子都許。天子拜太祖大將軍，進彧爲漢侍中，守尚書令。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷十《荀彧傳》·建安十七年董昭建议魏公、荀彧劳军段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷10",
+          "quote": "會征孫權，表請彧勞軍于譙，因輒留彧，以侍中光祿大夫持節，參丞相軍事。太祖軍至濡須，彧疾留壽春，以憂薨，時年五十。諡曰敬侯。明年，太祖遂爲魏公矣。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "建安元年守尚书令，十七年转以侍中光禄大夫持节；保留“守”，不补造去守就正。卷十三华歆代任为同一事实的补充证据。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:10:e4e682d44c25",
+      "sourceSha256": "a4b06a3f6e7302217b9c461da2fe78d7432a4fdfe5938ae1c36de9b40493de44",
+      "status": "verified",
+      "reason": "裴注否定的是同访太子的姓名与时位配对，不是否定和嶠曾任侍中；《晋书》亦载转侍中，始终确年未详。",
+      "correction": {
+        "personId": "person:source:3615e33dea42",
+        "name": "和嶠",
+        "officeName": "侍中",
+        "startYear": null,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷十《荀彧傳》附荀霬子荀愷，裴注·干宝晋纪、孙盛与裴案并列段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷10",
+          "quote": "干寶《晉紀》曰：武帝使侍中荀顗、和嶠倶至東宮，觀察太子。顗還稱太子德識進茂，而嶠云聖質如初。孫盛曰「遣荀勗」，其餘語則同。臣松之案和嶠爲侍中，荀顗亡沒久矣。荀勗位亞台司，不與嶠同班，無縁方稱侍中。二書所云，皆爲非也。考其時位，愷寔當之。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷四十五《和嶠傳》·吴平、转侍中段",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷045",
+          "quote": "吳平，以參謀議功，賜弟郁爵汝南亭侯。嶠轉侍中，愈被親禮，與任愷、張華相善。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷四十五《和嶠傳》·太康末转尚书句",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷045",
+          "quote": "太康末，為尚書，以母憂去職。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "裴注否定的是同访太子的姓名与时位配对，不是否定和嶠曾任侍中；《晋书》亦载转侍中，始终确年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:11:7c0afd2160cf",
+      "sourceSha256": "45914a8c547af375ef5ebe8b44e2b062f4137f2720dcea088f0ba70ab4d163aa",
+      "status": "suppressed",
+      "reason": "伊阙为地名，真实受任者是张范弟张承（公先）；尚需独立身份审核，不能挂到现有吴国张承（仲嗣）名下。",
+      "citations": [
+        {
+          "title": "《三國志》卷十一《張範傳》附弟承·张范传首，弟承拜议郎及伊阙都尉",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷11",
+          "quote": "張範，字公儀，河內脩武人也。祖父歆，為漢司徒。父延，為太尉。太傅袁隗欲以女妻範，範辭不受。性恬靜樂道，忽於榮利，徵命無所就。弟承，字公先，亦知名，以方正徵，拜議郎，遷伊闕都尉。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷十一《張範傳》附弟承·董卓作乱，张昭劝阻，承解印绶",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷11",
+          "quote": "承然之，乃解印綬間行歸家，與範避地揚州。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:11:da32e34d0275",
+      "sourceSha256": "54d5b4166f577223d2347ec06d58687d89180cc90a5bc592fb74eee5abac9a6e",
+      "status": "suppressed",
+      "reason": "师友为官号一部分；朱淵被署师友祭酒而“不受署”，不列实任，爰津拒署决疑祭酒是另一事。",
+      "citations": [
+        {
+          "title": "《三國志》卷十一《袁渙傳》，裴注引王沈《魏書》·袁涣为梁相，谷熟长吕岐杀朱淵爰津故事",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷11",
+          "quote": "穀熟長呂岐善朱淵、爰津，遣使行學還，召用之，與相見，出署淵師友祭酒，津決疑祭酒。淵等因各歸家，不受署。岐大怒，將吏民收淵等，皆杖殺之，議者多非焉。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:12:bc5eeabffa36",
+      "sourceSha256": "d231530348e76e555d39943b7056972afdabbf1bd398af8920c0a4393e6d2fbb",
+      "status": "review-only",
+      "reason": "“遣吏成弘领校尉，长广县丞等”有兼领官职与率领使团两种句读可能；未得消歧依据，不能核准成弘任校尉。",
+      "citations": [
+        {
+          "title": "《三國志》卷十二《何夔傳》·何夔为长广太守，遣黄珍说降管承，继遣成弘郊迎",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷12",
+          "quote": "乃遣郡丞黄珍往，爲陳成敗，承等皆请服。夔遣吏成弘領校尉，長广縣丞等郊迎奉牛酒，诣郡。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷十二《何夔傳》全文，识典古籍数字文本·遣成弘段",
+          "url": "https://www.shidianguji.com/zh/book/LS0004/chapter/1j7fnuu7m38l3_56",
+          "quote": "夔遣吏成弘領校尉，長廣縣丞等郊迎奉牛酒，詣郡。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:13:27807e9f3fe2",
+      "sourceSha256": "e52d14b85974a6ae4158c4b9935c784d8d629c1645679d77422f19599ef89b97",
+      "status": "suppressed",
+      "reason": "华歆代荀彧为尚书令证明荀彧旧职，与卷十审定合并为一条事实；保留原始记录及补充证据，不重复计任。",
+      "correction": {
+        "personId": "person:source:035be51454ba",
+        "name": "荀彧",
+        "officeName": "尚书令",
+        "startYear": 196,
+        "endYear": 212,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三國志》卷十三《華歆傳》·华歆被征到朝后历任段",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷13",
+          "quote": "歆至，拜議郎，參司空軍事，入爲尚書，轉侍中，代荀彧爲尚書令。太祖征孫權，表歆爲軍師。魏國旣建，爲御史大夫。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "corroboratesAppointmentId": "appointment:source:sgz:10:b72a5b3a36df"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:14:a95f2afc1fc8",
+      "sourceSha256": "0dc2684c066135bb9f07a43bdcbcc1ff63f012ac65d14f66d7099e7ca26a6a24",
+      "status": "suppressed",
+      "reason": "“兼光禄勋少府”为诏书使者官衔串，禄勋不是姓名；未载使者姓名，不能移接为孙资任少府。",
+      "citations": [
+        {
+          "title": "《三國志》卷十四《劉放傳》附孙资，裴注引《資別傳》·正始九年二月诏孙资养疾于第",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷14",
+          "quote": "天地以大順成德，君子以善恕成仁，重以職事，違奪君志；今聽所執，賜錢百萬，使兼光祿勳少府親策詔君養疾於第。君其勉進醫藥，頤神和氣，以永無疆之祚。置舍人官騎，加以日秩餚酒之膳焉。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷四《齊王紀》·正始九年退位记事",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "九年春二月，衞將軍中書令孫資，癸巳，驃騎將軍中書監劉放，三月甲午，司徒衞臻，各遜位，以侯就第，位特進。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    }
+  ]
+}

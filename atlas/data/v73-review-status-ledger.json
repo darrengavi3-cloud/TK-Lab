@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "V78",
+  "schemaVersion": "V79",
   "modelId": "sgz-v73-review-status-ledger",
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "policy": {
@@ -30,10 +30,10 @@
     }
   ],
   "totals": {
-    "verified": 2382,
-    "pending": 1444,
+    "verified": 2394,
+    "pending": 1426,
     "disputed": 94,
-    "suppressed": 64
+    "suppressed": 70
   },
   "modules": [
     {
@@ -53,12 +53,12 @@
       "label": "任官事实",
       "total": 851,
       "counts": {
-        "verified": 213,
-        "pending": 582,
+        "verified": 225,
+        "pending": 564,
         "disputed": 2,
-        "suppressed": 54
+        "suppressed": 60
       },
-      "excludedFromStatistics": 638
+      "excludedFromStatistics": 626
     },
     {
       "key": "fangzhen",

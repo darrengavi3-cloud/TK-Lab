@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "version": "V79",
+  "checkedAt": "2026-09-07T19:59:59.529815+00:00",
+  "command": "npm run release:check",
+  "exitCode": 0,
+  "logCaptureNote": "Original command completed with exit code 0 but its redirected output was incomplete. The saved log captures a verification rerun on unchanged source and the completed deployment build.",
+  "capturedCommands": [
+    "node atlas/scripts/release-check.mjs",
+    "npm run typecheck",
+    "npm run lint",
+    "npm run test:built",
+    "npm run release:access"
+  ],
+  "deterministicBuilds": 2,
+  "deterministicOutputSha256": "84e63179018724a03b9b5bd8a8e4598470cadf9057b2ca9eee3e4f16ce2b187d",
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 45,
+    "failed": 0
+  },
+  "freshAccessGate": "passed",
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingGeneratedTypeWarnings": 3
+  },
+  "sourceLockSha256": "bac821d79abc6ecf2b95d6ebbd8190da3843fb4b3d0d95cc6494238c2197a8e2",
+  "deploymentAggregateSha256": "547d3594d5dc534fffe4454213898143396b5a81c1ce7255ef71c91d92e969f9",
+  "releaseLogSha256": "eee8164344b215b11838981f998682fd6c5841a7efd99377207757011649e353",
+  "appointments": {
+    "verified": 225,
+    "pending": 564,
+    "disputed": 2,
+    "suppressed": 60
+  },
+  "preservation": {
+    "previousPublishedAppointments": 213,
+    "exactInscriptions": 59
+  },
+  "queue": {
+    "reviewed": 40,
+    "total": 100,
+    "verified": 28,
+    "suppressed": 9,
+    "pending": 3,
+    "remainingUnreviewed": 60
+  },
+  "continuousIntegration": {
+    "workflow": ".github/workflows/reader-validation.yml",
+    "remoteExecution": "not-yet-observed-at-source-commit",
+    "access": "contents: read; no Sites credentials"
+  },
+  "browserVisualAcceptance": {
+    "status": "not-run",
+    "reason": "Earlier Sites preview failed to become ready in both permitted attempts; no recovery or visual acceptance observed in this batch."
+  },
+  "realIPhoneAcceptance": "not-run",
+  "performanceMetrics": "not-measured",
+  "rollbackDrill": "not-run",
+  "publicationNote": "Source/build receipt only. GitHub workflow execution and Sites deployment require independent remote receipts."
+}
