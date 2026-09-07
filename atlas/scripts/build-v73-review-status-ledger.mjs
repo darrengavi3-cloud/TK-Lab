@@ -31,8 +31,8 @@ const people = {
 
 const verifiedAppointmentIds = new Set((relations.appointments || []).map(row => row.appointmentId));
 const appointmentRows = sourceIndex.appointments || [];
-const appointmentReview = { records: [...json('v71-appointment-review.json').records, ...json('v74-appointment-source-review.json').records] };
-const appointments = appointmentStatusCounts(appointmentRows, appointmentReview, json('v74-appointment-supplements.json'), verifiedAppointmentIds);
+const appointmentReview = { records: [...json('v71-appointment-review.json').records, ...json('v74-appointment-source-review.json').records, ...json('v75-appointment-source-review.json').records] };
+const appointments = appointmentStatusCounts(appointmentRows, appointmentReview, { records: [...json('v74-appointment-supplements.json').records, ...json('v75-appointment-supplements.json').records] }, verifiedAppointmentIds);
 
 const fangzhenRows = fangzhen.records || [];
 const explicitFangzhenDispute = row => ['存疑', '未上任', '遥领'].includes(row.appointmentStatus);
@@ -73,7 +73,7 @@ const totals = Object.fromEntries(statusDefinitions.map(status => [
 ]));
 
 const payload = {
-  schemaVersion: 'V74',
+  schemaVersion: 'V75',
   modelId: 'sgz-v73-review-status-ledger',
   generatedAt: new Date(Number(process.env.SOURCE_DATE_EPOCH || 1788019200) * 1000).toISOString(),
   policy: {

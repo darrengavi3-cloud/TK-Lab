@@ -3,8 +3,8 @@
   "build": "reader",
   "sourceRegistryModelId": "sgz-v63-person-registry",
   "sourceReaderModelId": "sgz-v63-reader-people",
-  "personCount": 2098,
-  "portraitCount": 524,
+  "personCount": 2093,
+  "portraitCount": 519,
   "readerProjection": {
     "mapRuntimeFiles": [
       "assets/map/css/style.css",
@@ -81,7 +81,7 @@
     "fangzhenReaderRecordCount": 523,
     "fangzhenVerifiedRecordCount": 45,
     "fangzhenCandidateRecordCount": 478,
-    "personProfileCount": 2098,
+    "personProfileCount": 2093,
     "battlePersonLinkCount": 106,
     "epigraphicRecordCount": 166,
     "peerageNodeCount": 13,
@@ -89,8 +89,8 @@
     "generalTitleReaderCount": 248,
     "generalTitleLegacyVerifiedCount": 159,
     "generalTitleV65VerifiedCount": 89,
-    "personAppointmentReferenceCount": 143,
-    "personAppointmentRelationCount": 143,
+    "personAppointmentReferenceCount": 159,
+    "personAppointmentRelationCount": 159,
     "personPeerageReferenceCount": 535,
     "personPeerageRelationCount": 535,
     "personPeerageUniqueEventCount": 518,
@@ -108,9 +108,9 @@
     "firstScreenSheetJs": 0,
     "explicitCodeIdentifierExceptions": 3
   },
-  "fileCount": 606,
-  "totalBytes": 209474791,
-  "aggregateSha256": "ec67662e43546f7b9182d23001a713462ab61caa5c8d69dbfdfc42737a9ac430",
+  "fileCount": 601,
+  "totalBytes": 207769952,
+  "aggregateSha256": "445cefab70463c3d0ee08a21551bfd2a6223fa51bccc72ce5b1f36fcf0a3a7c9",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -688,11 +688,6 @@
       "sha256": "fa9d9c944e43e94ab043eb3cfdebd32b728afeaa512e964837233a695977425e"
     },
     {
-      "path": "assets/portraits/v51/person-source-6225fb017a4d.png",
-      "bytes": 278663,
-      "sha256": "a231376e083ff08fd86114342f8e6219ba608eb1cf6da6077f08708b404de080"
-    },
-    {
       "path": "assets/portraits/v51/person-source-64713c14be03.png",
       "bytes": 399330,
       "sha256": "f34d2563f2fed029f7b7d3e071b78743876df21382ade3c3608602a92e2d1786"
@@ -878,11 +873,6 @@
       "sha256": "935baa889a528bfc4dd8cd85763013fa3496910dd34c3aa1bcc2340380467f12"
     },
     {
-      "path": "assets/portraits/v51/person-source-b9b442ab00f7.png",
-      "bytes": 315014,
-      "sha256": "3a3fd5473f609f82826a5945c64e7ca1d56da3e254fff62bbaa83217c999d91c"
-    },
-    {
       "path": "assets/portraits/v51/person-source-bdf065c626f6.png",
       "bytes": 389118,
       "sha256": "e3c652afcd847bbe2fe3806bc5cd3b52d3590a0d526dc6eef7d56f512b3ce328"
@@ -951,16 +941,6 @@
       "path": "assets/portraits/v51/person-source-d66a7f3fda55.png",
       "bytes": 431200,
       "sha256": "c26a0af46307145794bab6c9f8d87823aaa2700172400d433251e9ab04996bd8"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-d7381b702ec2.png",
-      "bytes": 325017,
-      "sha256": "4f18fcedcd946dc5d86e58730cce5eabadea2f9a3c8e0df509090962af4a0b90"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-dc344a37e17e.png",
-      "bytes": 384478,
-      "sha256": "02f9f2c457b60ae84743905f7322b37b720413cd706fb81705c6da5def1ecc71"
     },
     {
       "path": "assets/portraits/v51/person-source-dd8a51414ff5.png",
@@ -1036,11 +1016,6 @@
       "path": "assets/portraits/v51/person-source-f88e20a568d0.png",
       "bytes": 298074,
       "sha256": "f8f3acffd49f6623b78da0f168472d3cbdb4f7deb90bf784720cfbc3631b07b9"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-fce5078fab12.png",
-      "bytes": 437093,
-      "sha256": "d46917a697984bb8b2bcc622e452caec0a370f827208d5553c46afeae505008b"
     },
     {
       "path": "assets/portraits/v51/person-wei-cao-shuang.png",
@@ -3064,13 +3039,13 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 674328,
-      "sha256": "a55b1ba5e0b5cc412e8934b8476b17d2eee8037ee772063b72a704ef382f3ceb"
+      "bytes": 667341,
+      "sha256": "c25930ac065944cc1b25f61d57e6110f7c6cd28ac372e4643da87bef4b6ab6ed"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 924874,
-      "sha256": "531d986cd23275784e403969511b918ba8e00859c22d4d763a9cccbd97047015"
+      "bytes": 915522,
+      "sha256": "78835f06ccba83d42f39430733b73ae33ad4048e82792830e296097c94ad5931"
     },
     {
       "path": "data/research-model.js",
@@ -3089,23 +3064,23 @@
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 417839,
-      "sha256": "79c7b8f3336aebd6542c64a9f39b9e8fe3b875001302196bb405593d91e69617"
+      "bytes": 419086,
+      "sha256": "c49fed77e59818e6cf74ee8c4bd9990cef0faefee699c2457fc6f6461027baa1"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 578538,
-      "sha256": "c1282d9ff6802b9191efbfd05bad0a86f707a0ab39eabf8b5692af1992ec1512"
+      "bytes": 579618,
+      "sha256": "0ac367c1448161ecac617962e97cc31614c4f16117f6787968e8b9dbb90f1b18"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 293500,
-      "sha256": "197076e4cb3420969f140db60ac49bf2de95b372e73193bb07172ccb456ef721"
+      "bytes": 309000,
+      "sha256": "a7eaee0146dc70e579e3ad8f676e824cdc621744d5dd9166222a5f7ed087bc66"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 363300,
-      "sha256": "7a06d28942c008bf65a0fe7ee0511aaef9ad384043c54a09ab807d9852549a9e"
+      "bytes": 381678,
+      "sha256": "99da96815df67ac488207ff93c31a6970a11c0cc4e1e1a2cd130be99db6078bc"
     },
     {
       "path": "data/v66-peerage-stages.js",
@@ -3129,13 +3104,13 @@
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 452802,
-      "sha256": "b51c844e14722992804cac0c7889015ae8854f9e28f1042d2ee51d83d5a368a6"
+      "bytes": 468361,
+      "sha256": "9c3875824d3e097f3c56052718d440d011645ec15fc61c27cc72e72340bf1e93"
     },
     {
       "path": "data/v73-review-status-ledger.js",
-      "bytes": 1807,
-      "sha256": "ac700e60f87fb16f62d970bf95813df880be39b2f326202ddee562e998daf6fd"
+      "bytes": 1808,
+      "sha256": "0f40878dc01c36550306c2eca82b460c3fba43c7326c90ea8548d2844bf339d3"
     },
     {
       "path": "index.html",

@@ -36,7 +36,7 @@ export default function Home() {
       <iframe
         className="legacy-frame"
         ref={frame}
-        src="/legacy/index.html?v=74"
+        src="/legacy/index.html?v=75"
         title="观史台 · 历史资料库"
       />
     </main>

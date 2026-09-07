@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 798,
-  "totalBytes": 335338225,
-  "aggregateSha256": "eaf0970271ff1c6dd0c531ff1bf2e4e8323e8a9a86295dd3b985a401ed966b99",
+  "fileCount": 803,
+  "totalBytes": 335415429,
+  "aggregateSha256": "1906d80e8295173f4de091ec16521caaec9e45135f4c92e17032d98635dc5271",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -3428,13 +3428,13 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 1133693,
-      "sha256": "f7cc592dd276b394b650d9d3f8bf5b8fb1e59fd121184c953dfc45dc10610fed"
+      "bytes": 1122275,
+      "sha256": "288102ea5ecc0a8a36efff0409174122a8d6182be89d77bb065be569de4835ca"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 1533692,
-      "sha256": "4673e40413e4e2ff2a7b9032cab60eb63f7320d57497774b6319a38e879a301e"
+      "bytes": 1518604,
+      "sha256": "dd6e18d45a2e825504235374d571ec853c54ccb152953c6abb2fac71bf33f5e9"
     },
     {
       "path": "data/portrait-pool-assignments-v52.json",
@@ -3683,33 +3683,33 @@
     },
     {
       "path": "data/v63-person-registry.js",
-      "bytes": 7389847,
-      "sha256": "8e98e5b44a9ba68c2b313499e88aefc2a19b879ad5a972531dbd535e8f25a134"
+      "bytes": 7391145,
+      "sha256": "7be80085be8e24d726c7c96015f03ed5a22bb831d0b899641c777276eed8b33f"
     },
     {
       "path": "data/v63-person-registry.json",
-      "bytes": 11301830,
-      "sha256": "c195ee087e323ab5f45dfe066a63f396de233cb104a5f358a5c5a1cbd4f17e53"
+      "bytes": 11301175,
+      "sha256": "e82207fbb25a9b2401506c575aedd9226a0899e77989859f2f49bbc96a34f71f"
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 417839,
-      "sha256": "79c7b8f3336aebd6542c64a9f39b9e8fe3b875001302196bb405593d91e69617"
+      "bytes": 419086,
+      "sha256": "c49fed77e59818e6cf74ee8c4bd9990cef0faefee699c2457fc6f6461027baa1"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 578538,
-      "sha256": "c1282d9ff6802b9191efbfd05bad0a86f707a0ab39eabf8b5692af1992ec1512"
+      "bytes": 579618,
+      "sha256": "0ac367c1448161ecac617962e97cc31614c4f16117f6787968e8b9dbb90f1b18"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 293500,
-      "sha256": "197076e4cb3420969f140db60ac49bf2de95b372e73193bb07172ccb456ef721"
+      "bytes": 309000,
+      "sha256": "a7eaee0146dc70e579e3ad8f676e824cdc621744d5dd9166222a5f7ed087bc66"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 363300,
-      "sha256": "7a06d28942c008bf65a0fe7ee0511aaef9ad384043c54a09ab807d9852549a9e"
+      "bytes": 381678,
+      "sha256": "99da96815df67ac488207ff93c31a6970a11c0cc4e1e1a2cd130be99db6078bc"
     },
     {
       "path": "data/v65-battle-coordinate-audit.js",
@@ -3873,33 +3873,33 @@
     },
     {
       "path": "data/v69-person-profile-audit.js",
-      "bytes": 440185,
-      "sha256": "e385466fc5f69153ce2d94d7053f0b88247b54bd5e558323ed73b333fff1ad1a"
+      "bytes": 439150,
+      "sha256": "c9733980debb1523fcfbb3e0f93a17443df3f2c0a77e3a1ed5173cec607a183c"
     },
     {
       "path": "data/v69-person-profile-audit.json",
-      "bytes": 626772,
-      "sha256": "4a3ed47eab33ccb66fe92047190009e18d4bb243e9894e0a5a3fbc38b3fddf95"
+      "bytes": 625292,
+      "sha256": "3604c244466cf2d16a3126b024d2207a5d83bec5a0cfc358fe3e2a2cf8bb6a34"
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 452907,
-      "sha256": "cc61cd418c7234e1ebadb2cac4dd562dfb36c6ad943153c2e78361c5bb4133d1"
+      "bytes": 468466,
+      "sha256": "bab3239e315e16aa5d361b0ab653ef7e933478a52aa3ef9158bc72e18a2b9fd0"
     },
     {
       "path": "data/v69-person-profiles.json",
-      "bytes": 625062,
-      "sha256": "dca2a5eb05f943267b51444a0799f44eb4aae21cd5d969a67434ab8ac108f0e9"
+      "bytes": 644568,
+      "sha256": "306896c3e1e33d76e36f38243f248b09bc269bf4a14ae22fe63c24e3c1f4b81b"
     },
     {
       "path": "data/v69-portrait-candidates.js",
       "bytes": 54874,
-      "sha256": "523aeb0a8b3fbfa8b68a817e74d842083d431ad64d0654763f92e12a26f73df2"
+      "sha256": "0ab5fab732fc9366127002260d3faeb4679585fe567b4075c491cfaef2eae5b1"
     },
     {
       "path": "data/v69-portrait-candidates.json",
       "bytes": 79247,
-      "sha256": "278fc3f27440a2202f93d73a2ef1d681c48793a81c80f1552a599dbafc5c1d5d"
+      "sha256": "20d7986f8bb4062b52710709bdb61154a1d9d94801026dd7745cba5cbd48656f"
     },
     {
       "path": "data/v69-portrait-production.json",
@@ -3953,13 +3953,13 @@
     },
     {
       "path": "data/v73-review-status-ledger.js",
-      "bytes": 1807,
-      "sha256": "ac700e60f87fb16f62d970bf95813df880be39b2f326202ddee562e998daf6fd"
+      "bytes": 1808,
+      "sha256": "0f40878dc01c36550306c2eca82b460c3fba43c7326c90ea8548d2844bf339d3"
     },
     {
       "path": "data/v73-review-status-ledger.json",
-      "bytes": 2377,
-      "sha256": "ffa5b3f7d59d132e9fc06230692763dca9ba2678fa1e7e3e80452d866274bc83"
+      "bytes": 2378,
+      "sha256": "df6ce887a791919391ae9302e8a1d98c158e9257c553dd7835c77a58319b51bb"
     },
     {
       "path": "data/v74-appointment-source-review.json",
@@ -3980,6 +3980,31 @@
       "path": "data/v74-person-biography-review.json",
       "bytes": 22989,
       "sha256": "351de434d56f429e2804aa4deeca9679268041edde16cce46939aab1f6ce6778"
+    },
+    {
+      "path": "data/v75-appointment-source-review.json",
+      "bytes": 5952,
+      "sha256": "0bf02dc005acda2902167ad187b1bb318b34b726a095f58d6c18f0eb297bc42e"
+    },
+    {
+      "path": "data/v75-appointment-supplements.json",
+      "bytes": 9006,
+      "sha256": "ac309bd1bded56eca5de652e7549e7af4b9b5261dc35c66ef2a2087de30473de"
+    },
+    {
+      "path": "data/v75-chancellery-evidence.json",
+      "bytes": 5583,
+      "sha256": "6f744f43ddc6668596bc1965da11aefe6a914a08fd9a0a0b64c1815c247f86de"
+    },
+    {
+      "path": "data/v75-person-biography-review.json",
+      "bytes": 2947,
+      "sha256": "d687e443b97e1786e265d37a5c061bd08fc1d06070853ee298d73754f9cca57e"
+    },
+    {
+      "path": "data/v75-person-identity-suppressions.json",
+      "bytes": 10822,
+      "sha256": "997e814f825119f9e10646b729e8ce63dbc835d7a95001031afb5411c1de07c8"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",

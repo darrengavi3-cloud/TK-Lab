@@ -25,7 +25,7 @@ const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
 const identityReview = readJson('v71-person-identity-review.json');
-const identitySuppressions = readJson('v73-person-identity-suppressions.json');
+const identitySuppressions = { ...readJson('v75-person-identity-suppressions.json'), records: [...readJson('v73-person-identity-suppressions.json').records, ...readJson('v75-person-identity-suppressions.json').records] };
 const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview, identitySuppressions);
 validateIdentitySources(identityReview, {
   appointments: sourceIndex.appointments, snapshot260: v61.snapshots260, v62: v62.people
@@ -103,6 +103,7 @@ for (const key of Object.keys(legacyToCanonical)) legacyToCanonical[key] = canon
 // 误登记为人物。它们保留在 person-source-index 作为不可变溯源，但不得进入
 // 当前人物注册表或读者投影；后续重建也通过这里的显式排除保持幂等。
 const nonPersonNameExclusions = Object.freeze({
+  ...Object.fromEntries(identitySuppressions.records.map(row => [row.name, { reason: row.reason, sourcePersonIds: [row.personId], sourceRecordIds: row.sourceGuards.map(guard => guard.id) }])),
   '安西': {
     reason: '《晋书》正文抽取自“安西将军”，非人物姓名。',
     sourcePersonIds: ['person:source:b46503f871dd'],
@@ -497,7 +498,7 @@ for (const row of readerScopeRows) {
 const existingBiographies = new Map([...entries.values()]
   .filter(entry => (entry.fieldCandidates.bio || []).some(row => row.publicationStatus === 'verified'))
   .map(entry => [entry.personId, true]));
-for (const review of reviewedBiographies(readerScopeRows, { records: [...readJson('v71-person-biography-review.json').records, ...readJson('v74-person-biography-review.json').records] }, existingBiographies)) {
+for (const review of reviewedBiographies(readerScopeRows, { records: [...readJson('v71-person-biography-review.json').records, ...readJson('v74-person-biography-review.json').records, ...readJson('v75-person-biography-review.json').records] }, existingBiographies)) {
   const entry = entries.get(review.personId);
   addCandidate(entry, 'bio', review.bio, 'verified', review.reviewId, '确定');
   addCandidate(entry, 'bioCitations', review.citations, 'verified', review.reviewId, '确定');
@@ -585,7 +586,7 @@ const protectedResolution = Object.entries(protectedExistingPeople).map(([name, 
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
-  readerScopeVersion: 'V73',
+  readerScopeVersion: 'V75',
   readerScopePeople: readerScopeRows.length,
   scopeExcludedPeople: excludedPeopleAudit.size,
   nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
@@ -641,7 +642,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V73' },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V75' },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,

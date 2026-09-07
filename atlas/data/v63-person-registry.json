@@ -8,42 +8,42 @@
     "conflict": "表字、政权或其他身份信号冲突时按 sourceRecordId 隔离，禁止以唯一姓名自动合并。"
   },
   "summary": {
-    "people": 2439,
-    "readerPeople": 2098,
-    "readerScopeVersion": "V73",
-    "readerScopePeople": 2098,
-    "scopeExcludedPeople": 5,
-    "nonPersonExclusions": 5,
+    "people": 2434,
+    "readerPeople": 2093,
+    "readerScopeVersion": "V75",
+    "readerScopePeople": 2093,
+    "scopeExcludedPeople": 10,
+    "nonPersonExclusions": 10,
     "legacyMappings": 1140,
     "sourceRecordMappings": 2013,
     "ziConflicts": 17,
     "isolatedSnapshotRecords": 18,
     "addedJinLegacyMappings": 9,
     "protectedExistingPeople": 10,
-    "portraitAssets": 524,
-    "portraitPersonIds": 522,
+    "portraitAssets": 519,
+    "portraitPersonIds": 517,
     "unresolvedPortraits": 0,
     "verifiedFieldCounts": {
-      "name": 2098,
-      "aliases": 523,
+      "name": 2093,
+      "aliases": 518,
       "zi": 121,
       "birthplace": 69,
       "birthYear": 38,
       "deathYear": 59,
-      "bio": 92,
-      "bioCitations": 22,
+      "bio": 94,
+      "bioCitations": 24,
       "bioClassical": 0,
       "dynastyTags": 1745,
       "historicalAffiliations": 46,
-      "appointments": 84,
+      "appointments": 89,
       "peerage": 371,
-      "portraits": 522
+      "portraits": 517
     }
   },
   "readerScope": {
     "schemaVersion": "V73",
     "modelId": "sgz-v73-reviewed-reader-scope",
-    "people": 2098,
+    "people": 2093,
     "baselinePeople": 2096,
     "policy": "保留 V62 名册；只按具名、经独立原典核对的身份清单增补或更正，不从任官抽取自动扩展人物。"
   },
@@ -16496,10 +16496,13 @@
       "aliases": [],
       "legacyPersonIds": [],
       "sourceRecordIds": [
+        "appointment:v75:001",
+        "appointment:v75:002",
         "source:v60:person:0417",
         "source:v61:snapshot260:b3f6ce743e595322"
       ],
       "datasets": [
+        "appointments",
         "curated-identities",
         "portraits",
         "snapshot260",
@@ -16519,19 +16522,31 @@
         "birthplace": "suppressed",
         "birthYear": "suppressed",
         "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
+        "bio": "verified",
+        "bioCitations": "verified",
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
       "values": {
         "name": "董厥",
+        "bio": "董厥，字龚袭，义阳人。诸葛亮时为府令史，亮称其良士，言思慎宜适。徙主簿。亮卒后，稍迁尚书仆射，代陈祗为尚书令，后迁大将军，平尚书事。",
+        "bioCitations": [
+          {
+            "title": "《三国志》卷35·董厥附传",
+            "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+            "quote": "董厥者，丞相亮時為府令史，亮稱之曰：「董令史，良士也。吾每與之言，思慎宜適。」徙為主薄。亮卒後，稍遷至尚書仆射，代陳祗為尚書令，遷大將軍，平台事，而義陽樊建代焉。〈案《晉百官表》：董厥字龔襲，亦義陽人。建字長元。〉"
+          }
+        ],
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:v75:001",
+          "appointment:v75:002"
         ],
         "portraits": [
           "portrait:asset:6599c517aab621e23678"
@@ -16576,6 +16591,28 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:shu:dong-jue"
+          }
+        ],
+        "bio": [
+          {
+            "value": "董厥，字龚袭，义阳人。诸葛亮时为府令史，亮称其良士，言思慎宜适。徙主簿。亮卒后，稍迁尚书仆射，代陈祗为尚书令，后迁大将军，平尚书事。",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-1"
+          }
+        ],
+        "bioCitations": [
+          {
+            "value": [
+              {
+                "title": "《三国志》卷35·董厥附传",
+                "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+                "quote": "董厥者，丞相亮時為府令史，亮稱之曰：「董令史，良士也。吾每與之言，思慎宜適。」徙為主薄。亮卒後，稍遷至尚書仆射，代陳祗為尚書令，遷大將軍，平台事，而義陽樊建代焉。〈案《晉百官表》：董厥字龔襲，亦義陽人。建字長元。〉"
+              }
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-1"
           }
         ]
       }
@@ -16834,6 +16871,8 @@
       "sourceRecordIds": [
         "appointment:source:sgz:33:c8d63f8e20ac",
         "appointment:source:sgz:43:6df8949d9361",
+        "appointment:v75:009",
+        "appointment:v75:010",
         "source:v60:person:0180"
       ],
       "datasets": [
@@ -16883,7 +16922,9 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:33:c8d63f8e20ac"
+          "appointment:source:sgz:33:c8d63f8e20ac",
+          "appointment:v75:009",
+          "appointment:v75:010"
         ],
         "portraits": [
           "portrait:asset:e89b88c9b5f75db27e42"
@@ -16989,6 +17030,7 @@
         "appointment:source:sgz:33:8b22528ee416",
         "appointment:source:sgz:44:080b6201f23d",
         "appointment:source:sgz:44:1c106e4707ab",
+        "appointment:v75:011",
         "source:v60:person:0179"
       ],
       "datasets": [
@@ -17038,7 +17080,8 @@
           "appointment:source:sgz:33:15266b19b3c3",
           "appointment:source:sgz:33:49a9a59efb0b",
           "appointment:source:sgz:33:8b22528ee416",
-          "appointment:source:sgz:44:1c106e4707ab"
+          "appointment:source:sgz:44:1c106e4707ab",
+          "appointment:v75:011"
         ],
         "portraits": [
           "portrait:asset:0b6752a1b02a1b62b3a7"
@@ -17137,6 +17180,7 @@
       "legacyPersonIds": [],
       "sourceRecordIds": [
         "appointment:source:sgz:33:2e6f7dd53661",
+        "appointment:v75:012",
         "source:v60:person:0181",
         "source:v61:snapshot260:eeb23423d187948b"
       ],
@@ -17187,7 +17231,8 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:33:2e6f7dd53661"
+          "appointment:source:sgz:33:2e6f7dd53661",
+          "appointment:v75:012"
         ],
         "portraits": [
           "portrait:asset:c06cc0973cb33ed2f15d"
@@ -17604,9 +17649,11 @@
       ],
       "legacyPersonIds": [],
       "sourceRecordIds": [
+        "appointment:source:sgz:39:2f656376b998",
         "source:v60:person:0166"
       ],
       "datasets": [
+        "appointments",
         "curated-identities",
         "portraits",
         "v60-workbook",
@@ -17628,7 +17675,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -17639,6 +17686,9 @@
         ],
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:39:2f656376b998"
         ],
         "portraits": [
           "portrait:v73:017"
@@ -18403,6 +18453,8 @@
       ],
       "sourceRecordIds": [
         "appointment:source:sgz:32:a77842e8dc15",
+        "appointment:v75:007",
+        "appointment:v75:008",
         "source:v60:person:0182"
       ],
       "datasets": [
@@ -18442,7 +18494,9 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:32:a77842e8dc15"
+          "appointment:source:sgz:32:a77842e8dc15",
+          "appointment:v75:007",
+          "appointment:v75:008"
         ],
         "portraits": [
           "portrait:asset:73fbe9c36fa0ff4bf6ec"
@@ -18602,6 +18656,7 @@
       "sourceRecordIds": [
         "appointment:source:sgz:32:7dd6cd2706c9",
         "appointment:source:sgz:33:37976c389d0c",
+        "appointment:source:sgz:35:03b07e76f199",
         "source:v60:person:0157"
       ],
       "datasets": [
@@ -18649,7 +18704,8 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:32:7dd6cd2706c9"
+          "appointment:source:sgz:32:7dd6cd2706c9",
+          "appointment:source:sgz:35:03b07e76f199"
         ],
         "portraits": [
           "portrait:asset:07986b6e9bd30dba0c37"
@@ -63814,50 +63870,6 @@
       }
     },
     {
-      "personId": "person:source:6225fb017a4d",
-      "name": "于治戎",
-      "aliases": [
-        "于治戎"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:35:dbe3292ec57a"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "于治戎",
-        "aliases": [
-          "于治戎"
-        ],
-        "portraits": [
-          "portrait:asset:f9699e3e0e3172d20bba"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:629fc31f3638",
       "name": "弘代",
       "aliases": [
@@ -72450,50 +72462,6 @@
       }
     },
     {
-      "personId": "person:source:b9b442ab00f7",
-      "name": "桂阳",
-      "aliases": [
-        "桂阳"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:36:81d04c5d62da"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "桂阳",
-        "aliases": [
-          "桂阳"
-        ],
-        "portraits": [
-          "portrait:asset:d92ea1fbdf666b49e3c7"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:ba01682dfb69",
       "name": "仲子襄",
       "aliases": [
@@ -74922,50 +74890,6 @@
       "reviewCandidates": {}
     },
     {
-      "personId": "person:source:d7381b702ec2",
-      "name": "史主記",
-      "aliases": [
-        "史主記"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:39:2f656376b998"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "史主記",
-        "aliases": [
-          "史主記"
-        ],
-        "portraits": [
-          "portrait:asset:b06d7817f2916d286317"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:d7974c8836d5",
       "name": "唐邑",
       "aliases": [
@@ -75474,71 +75398,6 @@
       "values": {
         "aliases": [
           "刘尚"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
-      "personId": "person:source:dc344a37e17e",
-      "name": "司隸",
-      "aliases": [
-        "司隸"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:019:abe628166201",
-        "appointment:source:jinshu:033:0c681d6d7ffb",
-        "appointment:source:jinshu:039:2f318ade00d5",
-        "appointment:source:jinshu:039:5dc5dd6ef5d0",
-        "appointment:source:jinshu:041:68a060b1ca40",
-        "appointment:source:jinshu:044:4d8c08bf2d26",
-        "appointment:source:jinshu:045:150b0f0d2dc2",
-        "appointment:source:jinshu:045:19b235b69d96",
-        "appointment:source:jinshu:047:2fdadac0aaf6",
-        "appointment:source:jinshu:047:2ff2aa9c1474",
-        "appointment:source:jinshu:047:8232dfcc27ae",
-        "appointment:source:jinshu:061:59e99c827d0f",
-        "appointment:source:jinshu:077:2d62f5b48f2d",
-        "appointment:source:jinshu:102:ee729b49fcc2",
-        "appointment:source:jinshu:123:35b93537525a",
-        "appointment:source:sgz:07:37032c90d297",
-        "appointment:source:sgz:12:83ea37a79e10",
-        "appointment:source:sgz:18:30e868a2ccfb",
-        "appointment:source:sgz:28:c2826a92b7b6",
-        "appointment:source:sgz:32:537f759694cc",
-        "appointment:source:sgz:35:03b07e76f199",
-        "appointment:source:sgz:36:97328e141be5"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "司隸",
-        "aliases": [
-          "司隸"
-        ],
-        "portraits": [
-          "portrait:asset:2345a1f6f6c03700a3cf"
         ]
       },
       "reviewCandidates": {}
@@ -78310,50 +78169,6 @@
       "values": {
         "aliases": [
           "竇冲"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
-      "personId": "person:source:fce5078fab12",
-      "name": "宓迎",
-      "aliases": [
-        "宓迎"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:38:e639915b7f70"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "宓迎",
-        "aliases": [
-          "宓迎"
-        ],
-        "portraits": [
-          "portrait:asset:e574a306125ebb86cfbb"
         ]
       },
       "reviewCandidates": {}
@@ -135015,9 +134830,11 @@
         "person:workbook:8c188aebe4ae2851"
       ],
       "sourceRecordIds": [
+        "appointment:source:sgz:36:81d04c5d62da",
         "source:v60:person:0155"
       ],
       "datasets": [
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -135038,7 +134855,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -135046,6 +134863,9 @@
         "name": "赵云",
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:36:81d04c5d62da"
         ],
         "portraits": [
           "portrait:v73:016"
@@ -140643,9 +140463,14 @@
         "person:workbook:687411e6d76f9ca4"
       ],
       "sourceRecordIds": [
+        "appointment:v75:003",
+        "appointment:v75:004",
+        "appointment:v75:005",
+        "appointment:v75:006",
         "source:v60:person:0406"
       ],
       "datasets": [
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -140661,19 +140486,33 @@
         "birthplace": "review-only",
         "birthYear": "suppressed",
         "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
+        "bio": "verified",
+        "bioCitations": "verified",
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
       "values": {
         "name": "杨仪",
+        "bio": "杨仪，字威公，襄阳人。先主辟为左将军兵曹掾，后为尚书。建兴三年，诸葛亮以为参军，署府事；八年迁长史，加绥军将军。军中分部与粮谷筹度，多取办于仪。亮卒，领军还，拜中军师，无所统领。",
+        "bioCitations": [
+          {
+            "title": "《三国志》卷40·杨仪传",
+            "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+            "quote": "楊儀字威公，襄陽人也。建安中，為荊州刺史傅群主簿，背群而詣襄陽太守關羽。羽命為功曹，遣奉使西詣先主。先主與語論軍國計策，政治得失，大悅之，因闢為左將軍兵曹掾。及先主為漢中王，拔儀為尚書。先主稱尊號，東征吳，儀與尚書令劉巴不睦，左遷遙署弘農太守。建興三年，丞相亮以為參軍，署府事，將南行。五年，隨亮漢中。八年，遷長史，加綏軍將軍。亮數出軍，儀常規畫分部，籌度糧穀，不稽思慮，斯須便了。軍戎節度，取辦於儀。亮深惜儀之才幹，憑魏延之驍勇，常恨二人之不平，不忍有所偏廢也。十二年，隨亮出屯谷口。亮卒於敵場。儀既領軍還，又誅討延，自以為功勳至大，宜當代亮秉政，呼都尉趙正以周易筮之，卦得家人，默然不悅。而亮平生密指，以儀性狷狹，意在蔣琬，琬遂為尚書令、益州刺史。儀至，拜為中軍師，無所統領，從容而已。"
+          }
+        ],
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:v75:003",
+          "appointment:v75:004",
+          "appointment:v75:005",
+          "appointment:v75:006"
         ],
         "portraits": [
           "portrait:asset:72b7be8550e2a383c6bf"
@@ -140712,6 +140551,28 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:workbook:a905207ace5bd181"
+          }
+        ],
+        "bio": [
+          {
+            "value": "杨仪，字威公，襄阳人。先主辟为左将军兵曹掾，后为尚书。建兴三年，诸葛亮以为参军，署府事；八年迁长史，加绥军将军。军中分部与粮谷筹度，多取办于仪。亮卒，领军还，拜中军师，无所统领。",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-2"
+          }
+        ],
+        "bioCitations": [
+          {
+            "value": [
+              {
+                "title": "《三国志》卷40·杨仪传",
+                "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+                "quote": "楊儀字威公，襄陽人也。建安中，為荊州刺史傅群主簿，背群而詣襄陽太守關羽。羽命為功曹，遣奉使西詣先主。先主與語論軍國計策，政治得失，大悅之，因闢為左將軍兵曹掾。及先主為漢中王，拔儀為尚書。先主稱尊號，東征吳，儀與尚書令劉巴不睦，左遷遙署弘農太守。建興三年，丞相亮以為參軍，署府事，將南行。五年，隨亮漢中。八年，遷長史，加綏軍將軍。亮數出軍，儀常規畫分部，籌度糧穀，不稽思慮，斯須便了。軍戎節度，取辦於儀。亮深惜儀之才幹，憑魏延之驍勇，常恨二人之不平，不忍有所偏廢也。十二年，隨亮出屯谷口。亮卒於敵場。儀既領軍還，又誅討延，自以為功勳至大，宜當代亮秉政，呼都尉趙正以周易筮之，卦得家人，默然不悅。而亮平生密指，以儀性狷狹，意在蔣琬，琬遂為尚書令、益州刺史。儀至，拜為中軍師，無所統領，從容而已。"
+              }
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-2"
           }
         ]
       }
@@ -157706,9 +157567,11 @@
         "person:workbook:f88977f667442163"
       ],
       "sourceRecordIds": [
+        "appointment:source:sgz:36:97328e141be5",
         "source:v60:person:0154"
       ],
       "datasets": [
+        "appointments",
         "v60-workbook",
         "v62-people"
       ],
@@ -157728,7 +157591,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "suppressed"
       },
@@ -157736,6 +157599,9 @@
         "name": "张飞",
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:36:97328e141be5"
         ]
       },
       "reviewCandidates": {
@@ -175062,6 +174928,30 @@
       "publicationStatus": "suppressed"
     },
     {
+      "personId": "person:source:b9b442ab00f7",
+      "name": "桂阳",
+      "reason": "桂阳是郡名，桂阳太守的受任者是赵云。",
+      "sourcePersonIds": [
+        "person:source:b9b442ab00f7"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:36:81d04c5d62da"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:fce5078fab12",
+      "name": "宓迎",
+      "reason": "选宓迎为别驾承接秦宓；宓迎不是姓名。",
+      "sourcePersonIds": [
+        "person:source:fce5078fab12"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:38:e639915b7f70"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
       "personId": "person:source:d9e7f815aed4",
       "name": "喬安北",
       "reason": "《晋书》正文抽取自“喬安北将军”，非人物姓名。",
@@ -175070,6 +174960,63 @@
       ],
       "sourceRecordIds": [
         "appointment:source:jinshu:061:e2d0d259d6c4"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:d7381b702ec2",
+      "name": "史主记",
+      "reason": "户曹史主记主簿是职任连文，承接刘巴；史主记不是姓名。",
+      "sourcePersonIds": [
+        "person:source:d7381b702ec2"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:39:2f656376b998"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:dc344a37e17e",
+      "name": "司隶",
+      "reason": "司隶为官署名称，司隶校尉为完整官名。",
+      "sourcePersonIds": [
+        "person:source:dc344a37e17e"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:019:abe628166201",
+        "appointment:source:jinshu:033:0c681d6d7ffb",
+        "appointment:source:jinshu:039:2f318ade00d5",
+        "appointment:source:jinshu:039:5dc5dd6ef5d0",
+        "appointment:source:jinshu:041:68a060b1ca40",
+        "appointment:source:jinshu:044:4d8c08bf2d26",
+        "appointment:source:jinshu:045:150b0f0d2dc2",
+        "appointment:source:jinshu:045:19b235b69d96",
+        "appointment:source:jinshu:047:2fdadac0aaf6",
+        "appointment:source:jinshu:047:2ff2aa9c1474",
+        "appointment:source:jinshu:047:8232dfcc27ae",
+        "appointment:source:jinshu:061:59e99c827d0f",
+        "appointment:source:jinshu:077:2d62f5b48f2d",
+        "appointment:source:jinshu:102:ee729b49fcc2",
+        "appointment:source:jinshu:123:35b93537525a",
+        "appointment:source:sgz:07:37032c90d297",
+        "appointment:source:sgz:12:83ea37a79e10",
+        "appointment:source:sgz:18:30e868a2ccfb",
+        "appointment:source:sgz:28:c2826a92b7b6",
+        "appointment:source:sgz:32:537f759694cc",
+        "appointment:source:sgz:35:03b07e76f199",
+        "appointment:source:sgz:36:97328e141be5"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:6225fb017a4d",
+      "name": "于治戎",
+      "reason": "于治戎为长是对诸葛亮才能的评价；于治戎不是姓名。",
+      "sourcePersonIds": [
+        "person:source:6225fb017a4d"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:35:dbe3292ec57a"
       ],
       "publicationStatus": "suppressed"
     }
@@ -191523,10 +191470,13 @@
       "aliases": [],
       "legacyPersonIds": [],
       "sourceRecordIds": [
+        "appointment:v75:001",
+        "appointment:v75:002",
         "source:v60:person:0417",
         "source:v61:snapshot260:b3f6ce743e595322"
       ],
       "datasets": [
+        "appointments",
         "curated-identities",
         "portraits",
         "snapshot260",
@@ -191546,19 +191496,31 @@
         "birthplace": "suppressed",
         "birthYear": "suppressed",
         "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
+        "bio": "verified",
+        "bioCitations": "verified",
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
       "values": {
         "name": "董厥",
+        "bio": "董厥，字龚袭，义阳人。诸葛亮时为府令史，亮称其良士，言思慎宜适。徙主簿。亮卒后，稍迁尚书仆射，代陈祗为尚书令，后迁大将军，平尚书事。",
+        "bioCitations": [
+          {
+            "title": "《三国志》卷35·董厥附传",
+            "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+            "quote": "董厥者，丞相亮時為府令史，亮稱之曰：「董令史，良士也。吾每與之言，思慎宜適。」徙為主薄。亮卒後，稍遷至尚書仆射，代陳祗為尚書令，遷大將軍，平台事，而義陽樊建代焉。〈案《晉百官表》：董厥字龔襲，亦義陽人。建字長元。〉"
+          }
+        ],
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:v75:001",
+          "appointment:v75:002"
         ],
         "portraits": [
           "portrait:asset:6599c517aab621e23678"
@@ -191603,6 +191565,28 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:shu:dong-jue"
+          }
+        ],
+        "bio": [
+          {
+            "value": "董厥，字龚袭，义阳人。诸葛亮时为府令史，亮称其良士，言思慎宜适。徙主簿。亮卒后，稍迁尚书仆射，代陈祗为尚书令，后迁大将军，平尚书事。",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-1"
+          }
+        ],
+        "bioCitations": [
+          {
+            "value": [
+              {
+                "title": "《三国志》卷35·董厥附传",
+                "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+                "quote": "董厥者，丞相亮時為府令史，亮稱之曰：「董令史，良士也。吾每與之言，思慎宜適。」徙為主薄。亮卒後，稍遷至尚書仆射，代陳祗為尚書令，遷大將軍，平台事，而義陽樊建代焉。〈案《晉百官表》：董厥字龔襲，亦義陽人。建字長元。〉"
+              }
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-1"
           }
         ]
       }
@@ -191861,6 +191845,8 @@
       "sourceRecordIds": [
         "appointment:source:sgz:33:c8d63f8e20ac",
         "appointment:source:sgz:43:6df8949d9361",
+        "appointment:v75:009",
+        "appointment:v75:010",
         "source:v60:person:0180"
       ],
       "datasets": [
@@ -191910,7 +191896,9 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:33:c8d63f8e20ac"
+          "appointment:source:sgz:33:c8d63f8e20ac",
+          "appointment:v75:009",
+          "appointment:v75:010"
         ],
         "portraits": [
           "portrait:asset:e89b88c9b5f75db27e42"
@@ -192016,6 +192004,7 @@
         "appointment:source:sgz:33:8b22528ee416",
         "appointment:source:sgz:44:080b6201f23d",
         "appointment:source:sgz:44:1c106e4707ab",
+        "appointment:v75:011",
         "source:v60:person:0179"
       ],
       "datasets": [
@@ -192065,7 +192054,8 @@
           "appointment:source:sgz:33:15266b19b3c3",
           "appointment:source:sgz:33:49a9a59efb0b",
           "appointment:source:sgz:33:8b22528ee416",
-          "appointment:source:sgz:44:1c106e4707ab"
+          "appointment:source:sgz:44:1c106e4707ab",
+          "appointment:v75:011"
         ],
         "portraits": [
           "portrait:asset:0b6752a1b02a1b62b3a7"
@@ -192164,6 +192154,7 @@
       "legacyPersonIds": [],
       "sourceRecordIds": [
         "appointment:source:sgz:33:2e6f7dd53661",
+        "appointment:v75:012",
         "source:v60:person:0181",
         "source:v61:snapshot260:eeb23423d187948b"
       ],
@@ -192214,7 +192205,8 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:33:2e6f7dd53661"
+          "appointment:source:sgz:33:2e6f7dd53661",
+          "appointment:v75:012"
         ],
         "portraits": [
           "portrait:asset:c06cc0973cb33ed2f15d"
@@ -192631,9 +192623,11 @@
       ],
       "legacyPersonIds": [],
       "sourceRecordIds": [
+        "appointment:source:sgz:39:2f656376b998",
         "source:v60:person:0166"
       ],
       "datasets": [
+        "appointments",
         "curated-identities",
         "portraits",
         "v60-workbook",
@@ -192655,7 +192649,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -192666,6 +192660,9 @@
         ],
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:39:2f656376b998"
         ],
         "portraits": [
           "portrait:v73:017"
@@ -193430,6 +193427,8 @@
       ],
       "sourceRecordIds": [
         "appointment:source:sgz:32:a77842e8dc15",
+        "appointment:v75:007",
+        "appointment:v75:008",
         "source:v60:person:0182"
       ],
       "datasets": [
@@ -193469,7 +193468,9 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:32:a77842e8dc15"
+          "appointment:source:sgz:32:a77842e8dc15",
+          "appointment:v75:007",
+          "appointment:v75:008"
         ],
         "portraits": [
           "portrait:asset:73fbe9c36fa0ff4bf6ec"
@@ -193629,6 +193630,7 @@
       "sourceRecordIds": [
         "appointment:source:sgz:32:7dd6cd2706c9",
         "appointment:source:sgz:33:37976c389d0c",
+        "appointment:source:sgz:35:03b07e76f199",
         "source:v60:person:0157"
       ],
       "datasets": [
@@ -193676,7 +193678,8 @@
           "季汉"
         ],
         "appointments": [
-          "appointment:source:sgz:32:7dd6cd2706c9"
+          "appointment:source:sgz:32:7dd6cd2706c9",
+          "appointment:source:sgz:35:03b07e76f199"
         ],
         "portraits": [
           "portrait:asset:07986b6e9bd30dba0c37"
@@ -238840,50 +238843,6 @@
         ]
       }
     },
-    "person:source:6225fb017a4d": {
-      "personId": "person:source:6225fb017a4d",
-      "name": "于治戎",
-      "aliases": [
-        "于治戎"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:35:dbe3292ec57a"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "于治戎",
-        "aliases": [
-          "于治戎"
-        ],
-        "portraits": [
-          "portrait:asset:f9699e3e0e3172d20bba"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:629fc31f3638": {
       "personId": "person:source:629fc31f3638",
       "name": "弘代",
@@ -247476,50 +247435,6 @@
         ]
       }
     },
-    "person:source:b9b442ab00f7": {
-      "personId": "person:source:b9b442ab00f7",
-      "name": "桂阳",
-      "aliases": [
-        "桂阳"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:36:81d04c5d62da"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "桂阳",
-        "aliases": [
-          "桂阳"
-        ],
-        "portraits": [
-          "portrait:asset:d92ea1fbdf666b49e3c7"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:ba01682dfb69": {
       "personId": "person:source:ba01682dfb69",
       "name": "仲子襄",
@@ -249948,50 +249863,6 @@
       },
       "reviewCandidates": {}
     },
-    "person:source:d7381b702ec2": {
-      "personId": "person:source:d7381b702ec2",
-      "name": "史主記",
-      "aliases": [
-        "史主記"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:39:2f656376b998"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "史主記",
-        "aliases": [
-          "史主記"
-        ],
-        "portraits": [
-          "portrait:asset:b06d7817f2916d286317"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:d7974c8836d5": {
       "personId": "person:source:d7974c8836d5",
       "name": "唐邑",
@@ -250501,71 +250372,6 @@
       "values": {
         "aliases": [
           "刘尚"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    "person:source:dc344a37e17e": {
-      "personId": "person:source:dc344a37e17e",
-      "name": "司隸",
-      "aliases": [
-        "司隸"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:019:abe628166201",
-        "appointment:source:jinshu:033:0c681d6d7ffb",
-        "appointment:source:jinshu:039:2f318ade00d5",
-        "appointment:source:jinshu:039:5dc5dd6ef5d0",
-        "appointment:source:jinshu:041:68a060b1ca40",
-        "appointment:source:jinshu:044:4d8c08bf2d26",
-        "appointment:source:jinshu:045:150b0f0d2dc2",
-        "appointment:source:jinshu:045:19b235b69d96",
-        "appointment:source:jinshu:047:2fdadac0aaf6",
-        "appointment:source:jinshu:047:2ff2aa9c1474",
-        "appointment:source:jinshu:047:8232dfcc27ae",
-        "appointment:source:jinshu:061:59e99c827d0f",
-        "appointment:source:jinshu:077:2d62f5b48f2d",
-        "appointment:source:jinshu:102:ee729b49fcc2",
-        "appointment:source:jinshu:123:35b93537525a",
-        "appointment:source:sgz:07:37032c90d297",
-        "appointment:source:sgz:12:83ea37a79e10",
-        "appointment:source:sgz:18:30e868a2ccfb",
-        "appointment:source:sgz:28:c2826a92b7b6",
-        "appointment:source:sgz:32:537f759694cc",
-        "appointment:source:sgz:35:03b07e76f199",
-        "appointment:source:sgz:36:97328e141be5"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "司隸",
-        "aliases": [
-          "司隸"
-        ],
-        "portraits": [
-          "portrait:asset:2345a1f6f6c03700a3cf"
         ]
       },
       "reviewCandidates": {}
@@ -253337,50 +253143,6 @@
       "values": {
         "aliases": [
           "竇冲"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    "person:source:fce5078fab12": {
-      "personId": "person:source:fce5078fab12",
-      "name": "宓迎",
-      "aliases": [
-        "宓迎"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:38:e639915b7f70"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "宓迎",
-        "aliases": [
-          "宓迎"
-        ],
-        "portraits": [
-          "portrait:asset:e574a306125ebb86cfbb"
         ]
       },
       "reviewCandidates": {}
@@ -310042,9 +309804,11 @@
         "person:workbook:8c188aebe4ae2851"
       ],
       "sourceRecordIds": [
+        "appointment:source:sgz:36:81d04c5d62da",
         "source:v60:person:0155"
       ],
       "datasets": [
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -310065,7 +309829,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -310073,6 +309837,9 @@
         "name": "赵云",
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:36:81d04c5d62da"
         ],
         "portraits": [
           "portrait:v73:016"
@@ -315670,9 +315437,14 @@
         "person:workbook:687411e6d76f9ca4"
       ],
       "sourceRecordIds": [
+        "appointment:v75:003",
+        "appointment:v75:004",
+        "appointment:v75:005",
+        "appointment:v75:006",
         "source:v60:person:0406"
       ],
       "datasets": [
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -315688,19 +315460,33 @@
         "birthplace": "review-only",
         "birthYear": "suppressed",
         "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
+        "bio": "verified",
+        "bioCitations": "verified",
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
       "values": {
         "name": "杨仪",
+        "bio": "杨仪，字威公，襄阳人。先主辟为左将军兵曹掾，后为尚书。建兴三年，诸葛亮以为参军，署府事；八年迁长史，加绥军将军。军中分部与粮谷筹度，多取办于仪。亮卒，领军还，拜中军师，无所统领。",
+        "bioCitations": [
+          {
+            "title": "《三国志》卷40·杨仪传",
+            "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+            "quote": "楊儀字威公，襄陽人也。建安中，為荊州刺史傅群主簿，背群而詣襄陽太守關羽。羽命為功曹，遣奉使西詣先主。先主與語論軍國計策，政治得失，大悅之，因闢為左將軍兵曹掾。及先主為漢中王，拔儀為尚書。先主稱尊號，東征吳，儀與尚書令劉巴不睦，左遷遙署弘農太守。建興三年，丞相亮以為參軍，署府事，將南行。五年，隨亮漢中。八年，遷長史，加綏軍將軍。亮數出軍，儀常規畫分部，籌度糧穀，不稽思慮，斯須便了。軍戎節度，取辦於儀。亮深惜儀之才幹，憑魏延之驍勇，常恨二人之不平，不忍有所偏廢也。十二年，隨亮出屯谷口。亮卒於敵場。儀既領軍還，又誅討延，自以為功勳至大，宜當代亮秉政，呼都尉趙正以周易筮之，卦得家人，默然不悅。而亮平生密指，以儀性狷狹，意在蔣琬，琬遂為尚書令、益州刺史。儀至，拜為中軍師，無所統領，從容而已。"
+          }
+        ],
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:v75:003",
+          "appointment:v75:004",
+          "appointment:v75:005",
+          "appointment:v75:006"
         ],
         "portraits": [
           "portrait:asset:72b7be8550e2a383c6bf"
@@ -315739,6 +315525,28 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "v62:person:workbook:a905207ace5bd181"
+          }
+        ],
+        "bio": [
+          {
+            "value": "杨仪，字威公，襄阳人。先主辟为左将军兵曹掾，后为尚书。建兴三年，诸葛亮以为参军，署府事；八年迁长史，加绥军将军。军中分部与粮谷筹度，多取办于仪。亮卒，领军还，拜中军师，无所统领。",
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-2"
+          }
+        ],
+        "bioCitations": [
+          {
+            "value": [
+              {
+                "title": "《三国志》卷40·杨仪传",
+                "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+                "quote": "楊儀字威公，襄陽人也。建安中，為荊州刺史傅群主簿，背群而詣襄陽太守關羽。羽命為功曹，遣奉使西詣先主。先主與語論軍國計策，政治得失，大悅之，因闢為左將軍兵曹掾。及先主為漢中王，拔儀為尚書。先主稱尊號，東征吳，儀與尚書令劉巴不睦，左遷遙署弘農太守。建興三年，丞相亮以為參軍，署府事，將南行。五年，隨亮漢中。八年，遷長史，加綏軍將軍。亮數出軍，儀常規畫分部，籌度糧穀，不稽思慮，斯須便了。軍戎節度，取辦於儀。亮深惜儀之才幹，憑魏延之驍勇，常恨二人之不平，不忍有所偏廢也。十二年，隨亮出屯谷口。亮卒於敵場。儀既領軍還，又誅討延，自以為功勳至大，宜當代亮秉政，呼都尉趙正以周易筮之，卦得家人，默然不悅。而亮平生密指，以儀性狷狹，意在蔣琬，琬遂為尚書令、益州刺史。儀至，拜為中軍師，無所統領，從容而已。"
+              }
+            ],
+            "publicationStatus": "verified",
+            "historicalDisposition": "确定",
+            "sourceRecordId": "v75-bio-2"
           }
         ]
       }
@@ -332733,9 +332541,11 @@
         "person:workbook:f88977f667442163"
       ],
       "sourceRecordIds": [
+        "appointment:source:sgz:36:97328e141be5",
         "source:v60:person:0154"
       ],
       "datasets": [
+        "appointments",
         "v60-workbook",
         "v62-people"
       ],
@@ -332755,7 +332565,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "suppressed"
       },
@@ -332763,6 +332573,9 @@
         "name": "张飞",
         "dynastyTags": [
           "季汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:36:97328e141be5"
         ]
       },
       "reviewCandidates": {
@@ -357014,12 +356827,12 @@
       "birthplace": "suppressed",
       "birthYear": "suppressed",
       "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
+      "bio": "verified",
+      "bioCitations": "verified",
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -357179,7 +356992,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -369103,22 +368916,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:6225fb017a4d": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:629fc31f3638": {
       "name": "suppressed",
       "aliases": "verified",
@@ -371695,22 +371492,6 @@
       "peerage": "verified",
       "portraits": "verified"
     },
-    "person:source:b9b442ab00f7": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:ba01682dfb69": {
       "name": "suppressed",
       "aliases": "verified",
@@ -372447,22 +372228,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:d7381b702ec2": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:d7974c8836d5": {
       "name": "suppressed",
       "aliases": "verified",
@@ -372590,22 +372355,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:dc344a37e17e": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:dcc1ebf5a7a6": {
       "name": "suppressed",
@@ -373422,22 +373171,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:fce5078fab12": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:fde2f3946be2": {
       "name": "suppressed",
@@ -384107,7 +383840,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -385174,12 +384907,12 @@
       "birthplace": "review-only",
       "birthYear": "suppressed",
       "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
+      "bio": "verified",
+      "bioCitations": "verified",
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -388459,7 +388192,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
@@ -392964,11 +392697,6 @@
       "personId": "person:source:b1b81e555a99"
     },
     {
-      "portraitId": "portrait:asset:2345a1f6f6c03700a3cf",
-      "legacyPersonId": "person:source:dc344a37e17e",
-      "personId": "person:source:dc344a37e17e"
-    },
-    {
       "portraitId": "portrait:asset:701bbad5b0a42d9be33b",
       "legacyPersonId": "person:source:5a26d1185d64",
       "personId": "person:source:5a26d1185d64"
@@ -393119,29 +392847,14 @@
       "personId": "person:shu:jiang-wei"
     },
     {
-      "portraitId": "portrait:asset:f9699e3e0e3172d20bba",
-      "legacyPersonId": "person:source:6225fb017a4d",
-      "personId": "person:source:6225fb017a4d"
-    },
-    {
       "portraitId": "portrait:asset:1b79188d53ec1517bd63",
       "legacyPersonId": "person:shu:chen-zhi",
       "personId": "person:shu:chen-zhi"
     },
     {
-      "portraitId": "portrait:asset:d92ea1fbdf666b49e3c7",
-      "legacyPersonId": "person:source:b9b442ab00f7",
-      "personId": "person:source:b9b442ab00f7"
-    },
-    {
       "portraitId": "portrait:asset:db0a1c99a5fa6f658082",
       "legacyPersonId": "person:han:tao-qian",
       "personId": "person:han:tao-qian"
-    },
-    {
-      "portraitId": "portrait:asset:e574a306125ebb86cfbb",
-      "legacyPersonId": "person:source:fce5078fab12",
-      "personId": "person:source:fce5078fab12"
     },
     {
       "portraitId": "portrait:asset:d15f1759fc117ef47fee",
@@ -393157,11 +392870,6 @@
       "portraitId": "portrait:asset:029ff35585d7ef216bc9",
       "legacyPersonId": "person:shu:dong-yun",
       "personId": "person:shu:dong-yun"
-    },
-    {
-      "portraitId": "portrait:asset:b06d7817f2916d286317",
-      "legacyPersonId": "person:source:d7381b702ec2",
-      "personId": "person:source:d7381b702ec2"
     },
     {
       "portraitId": "portrait:asset:7e70bd04361bf790624b",

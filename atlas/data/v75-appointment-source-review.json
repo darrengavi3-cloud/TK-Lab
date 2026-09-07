@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "V75",
+  "reviewedAt": "2026-09-07",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:35:03b07e76f199",
+      "sourceSha256": "b6e51157dfaa3ecc698098138e2a460b30b55cd3e644be68eaa17e7ed289d06f",
+      "status": "verified",
+      "reason": "按本传上下文恢复受任主体与完整官名；不把官名、郡名或连读片段视为姓名。",
+      "correction": {
+        "personId": "person:shu:zhuge-liang",
+        "name": "诸葛亮",
+        "officeName": "司隶校尉",
+        "startYear": null,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "readerNote": "原典未明确的起讫年保留空值。",
+      "citations": [
+        {
+          "title": "《三国志》卷35·诸葛亮传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "亮以丞相錄尚書事，假節。張飛卒後，領司隸校尉。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:36:97328e141be5",
+      "sourceSha256": "82ff94fd69980c3ed14e4544d52817d124998446df025e8e23b4ed7d57cbff24",
+      "status": "verified",
+      "reason": "按本传上下文恢复受任主体与完整官名；不把官名、郡名或连读片段视为姓名。",
+      "correction": {
+        "personId": "person:workbook:dbc090011a676f55",
+        "name": "张飞",
+        "officeName": "司隶校尉",
+        "startYear": 221,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "readerNote": "原典未明确的起讫年保留空值。",
+      "citations": [
+        {
+          "title": "《三国志》卷36·张飞传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷36",
+          "quote": "先主為漢中王，拜飛為右將軍、假節。章武元年，遷車騎將軍，領司隸校尉，進封西鄉侯。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:36:81d04c5d62da",
+      "sourceSha256": "05d722366de5303bcd587eaa380c17f55cd4a15fa24278f5812c82bf78f2829c",
+      "status": "verified",
+      "reason": "按本传上下文恢复受任主体与完整官名；不把官名、郡名或连读片段视为姓名。",
+      "correction": {
+        "personId": "person:workbook:9bfa483fb133d80a",
+        "name": "赵云",
+        "officeName": "桂阳太守",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "readerNote": "原典未明确的起讫年保留空值。",
+      "citations": [
+        {
+          "title": "《三国志》卷36·赵云传裴注引《云别传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷36",
+          "quote": "雲別傳曰：初，先主之敗，有人言雲已北去者，先主以手戟擿之曰：「子龍不棄我走也。」頃之，雲至。從平江南，以為偏將軍，領桂陽太守，代趙範。範寡嫂曰樊氏，有國色，範欲以配雲。雲辭曰：「相與同姓，卿兄猶我兄。」固辭不許。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:39:2f656376b998",
+      "sourceSha256": "d389ff1ec2521369d75f8d8b4634a3cd2d6be3fc32aff668f66a6682775fea51",
+      "status": "verified",
+      "reason": "按本传上下文恢复受任主体与完整官名；不把官名、郡名或连读片段视为姓名。",
+      "correction": {
+        "personId": "person:shu:liu-ba",
+        "name": "刘巴",
+        "officeName": "郡主簿",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "readerNote": "原典十八岁不换算为公历年；户曹史、主记、主簿连文中的主簿按郡署职任展示。",
+      "citations": [
+        {
+          "title": "《三国志》卷39·刘巴传裴注引《零陵先贤传》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "劉巴字子初，零陵烝陽人也。少知名。〔中略：裴注叙祖父、父事及刘表拘巴〕年十八，郡署戶曹史主記主簿。劉先（主）欲遣週不疑就巴學，巴答曰：「昔遊荊北，時涉師門，記問之學，不足紀名，內無楊朱守靜之術，外無墨翟務時之風，猶天之南箕，虛而不用。」"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:35:dbe3292ec57a",
+      "sourceSha256": "7e8a3dfa162b328d50de965031d58c128cc583b5e8853ee6b666a022bc6dbe0c",
+      "status": "suppressed",
+      "reason": "治戎为长是评论诸葛亮的长处，不是某人被授予长这一官职。",
+      "citations": [
+        {
+          "title": "《三国志》卷35·陈寿上诸葛亮集表",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "然亮才，於治戎為長，奇謀為短，理民之幹，優於將略。而所與對敵，或值人傑，加眾寡不侔，攻守異體，故雖連年動眾，未能有克。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:e639915b7f70",
+      "sourceSha256": "23702b1def589d16c0531e81886e8da4076ccd12856845d9f29bbff4a4ea2ea0",
+      "status": "suppressed",
+      "reason": "宓迎为别驾的主语为秦宓；与卷42建兴二年任别驾是同一事实，保留为补充证据，不重复生成履历。",
+      "citations": [
+        {
+          "title": "《三国志》卷38·秦宓传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷38",
+          "quote": "益州辟宓為從事祭酒。先主既稱尊號，將東征吳，宓陳天時必無其利，坐下獄幽閉，然後貸出。建興二年，丞相亮領益州牧，選宓迎為別駕，尋拜左中郎將、長水校尉。"
+        }
+      ],
+      "corroboratesAppointmentId": "appointment:source:sgz:42:a1c45d2140c4",
+      "correction": {
+        "personId": "person:source:c2d2b4c0325c",
+        "officeName": "别驾",
+        "startYear": 224,
+        "endYear": null
+      }
+    }
+  ]
+}
