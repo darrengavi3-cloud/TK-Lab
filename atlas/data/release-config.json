@@ -1,17 +1,27 @@
 {
   "schemaVersion": 1,
-  "version": "V77",
+  "version": "V78",
   "reviewBaseline": "V76",
   "audience": "owner-only",
   "appointmentReviewBatches": [
     "v71-appointment-review.json",
     "v74-appointment-source-review.json",
     "v75-appointment-source-review.json",
-    "v76-appointment-source-review.json"
+    "v76-appointment-source-review.json",
+    "v78-appointment-source-review.json"
   ],
   "appointmentSupplementBatches": [
-    { "evidence": "v74-chancellery-evidence.json", "decisions": "v74-appointment-supplements.json" },
-    { "evidence": "v75-chancellery-evidence.json", "decisions": "v75-appointment-supplements.json" },
-    { "evidence": "v76-chancellery-evidence.json", "decisions": "v76-appointment-supplements.json" }
+    {
+      "evidence": "v74-chancellery-evidence.json",
+      "decisions": "v74-appointment-supplements.json"
+    },
+    {
+      "evidence": "v75-chancellery-evidence.json",
+      "decisions": "v75-appointment-supplements.json"
+    },
+    {
+      "evidence": "v76-chancellery-evidence.json",
+      "decisions": "v76-appointment-supplements.json"
+    }
   ]
 }

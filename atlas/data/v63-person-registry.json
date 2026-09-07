@@ -35,7 +35,7 @@
       "bioClassical": 0,
       "dynastyTags": 1745,
       "historicalAffiliations": 46,
-      "appointments": 93,
+      "appointments": 108,
       "peerage": 371,
       "portraits": 517
     }
@@ -57162,6 +57162,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -57185,7 +57186,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -57196,6 +57197,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:04:01f2b39cf9c9"
         ],
         "peerage": [
           "peerage:148",
@@ -57392,6 +57396,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -57412,7 +57417,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "review-only",
         "historicalAffiliations": "review-only",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -57420,6 +57425,9 @@
         "name": "公孙恭",
         "aliases": [
           "公孙恭"
+        ],
+        "appointments": [
+          "appointment:source:sgz:02:cf102cf5620d"
         ],
         "portraits": [
           "portrait:asset:5b0cbebc459a0b3ed80e"
@@ -59398,6 +59406,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -59421,7 +59430,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -59433,6 +59442,9 @@
         "zi": "元讓",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:02:ee9f83595474"
         ],
         "peerage": [
           "peerage:1"
@@ -63121,6 +63133,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v61-supplement",
@@ -63142,7 +63155,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -63153,6 +63166,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:a486dd8a87ab"
         ],
         "peerage": [
           "peerage:394"
@@ -63448,6 +63464,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -63468,7 +63485,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "review-only",
         "historicalAffiliations": "review-only",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -63476,6 +63493,9 @@
         "name": "公孙渊",
         "aliases": [
           "公孙渊"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:2b024fd41af3"
         ],
         "portraits": [
           "portrait:asset:1f02af1b00d2822c01e8"
@@ -65372,6 +65392,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -65395,7 +65416,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -65408,6 +65429,9 @@
         "dynastyTags": [
           "后汉",
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:e5c874a43fe4"
         ],
         "peerage": [
           "peerage:23",
@@ -66049,6 +66073,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -66072,7 +66097,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -66084,6 +66109,9 @@
         "zi": "陽士",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:f468b0bebe12"
         ],
         "peerage": [
           "peerage:34",
@@ -70233,6 +70261,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -70256,7 +70285,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -70268,6 +70297,9 @@
         "zi": "公達",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:4deaf8c12bd9"
         ],
         "peerage": [
           "peerage:14",
@@ -70894,6 +70926,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -70917,7 +70950,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -70928,6 +70961,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:f45b9ace6450"
         ],
         "peerage": [
           "peerage:380",
@@ -71866,6 +71902,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -71889,7 +71926,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -71901,6 +71938,9 @@
         "zi": "叔龍",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:5cc872d8d577"
         ],
         "peerage": [
           "peerage:393"
@@ -73877,6 +73917,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "snapshot260",
@@ -73902,7 +73943,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -73914,6 +73955,10 @@
         "zi": "文惠",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:04:5ca5736ba0f0",
+          "appointment:source:sgz:04:8d02aa0c1925"
         ],
         "peerage": [
           "peerage:103",
@@ -74494,6 +74539,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -74514,7 +74560,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -74525,6 +74571,9 @@
         ],
         "dynastyTags": [
           "后汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:ff7d5953c468"
         ],
         "portraits": [
           "portrait:asset:44f3fd03e6d293e118a7"
@@ -76083,6 +76132,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v62-people"
       ],
@@ -76100,7 +76150,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "suppressed",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -76108,6 +76158,9 @@
         "name": "毕谌",
         "aliases": [
           "毕谌"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:086025d77767"
         ],
         "portraits": [
           "portrait:asset:e5e0e72fc32b5929579a"
@@ -77249,6 +77302,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -77272,7 +77326,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -77283,6 +77337,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:04:1eba07d7f725"
         ],
         "peerage": [
           "peerage:109",
@@ -77960,6 +78017,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -77983,7 +78041,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -77994,6 +78052,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:e4ed72cd03b9"
         ],
         "peerage": [
           "peerage:385",
@@ -232422,6 +232483,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -232445,7 +232507,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -232456,6 +232518,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:04:01f2b39cf9c9"
         ],
         "peerage": [
           "peerage:148",
@@ -232652,6 +232717,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -232672,7 +232738,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "review-only",
         "historicalAffiliations": "review-only",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -232680,6 +232746,9 @@
         "name": "公孙恭",
         "aliases": [
           "公孙恭"
+        ],
+        "appointments": [
+          "appointment:source:sgz:02:cf102cf5620d"
         ],
         "portraits": [
           "portrait:asset:5b0cbebc459a0b3ed80e"
@@ -234658,6 +234727,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -234681,7 +234751,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -234693,6 +234763,9 @@
         "zi": "元讓",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:02:ee9f83595474"
         ],
         "peerage": [
           "peerage:1"
@@ -238381,6 +238454,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v61-supplement",
@@ -238402,7 +238476,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -238413,6 +238487,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:a486dd8a87ab"
         ],
         "peerage": [
           "peerage:394"
@@ -238708,6 +238785,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -238728,7 +238806,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "review-only",
         "historicalAffiliations": "review-only",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -238736,6 +238814,9 @@
         "name": "公孙渊",
         "aliases": [
           "公孙渊"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:2b024fd41af3"
         ],
         "portraits": [
           "portrait:asset:1f02af1b00d2822c01e8"
@@ -240632,6 +240713,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -240655,7 +240737,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -240668,6 +240750,9 @@
         "dynastyTags": [
           "后汉",
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:e5c874a43fe4"
         ],
         "peerage": [
           "peerage:23",
@@ -241309,6 +241394,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -241332,7 +241418,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -241344,6 +241430,9 @@
         "zi": "陽士",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:f468b0bebe12"
         ],
         "peerage": [
           "peerage:34",
@@ -245493,6 +245582,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -245516,7 +245606,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -245528,6 +245618,9 @@
         "zi": "公達",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:4deaf8c12bd9"
         ],
         "peerage": [
           "peerage:14",
@@ -246154,6 +246247,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -246177,7 +246271,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -246188,6 +246282,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:f45b9ace6450"
         ],
         "peerage": [
           "peerage:380",
@@ -247126,6 +247223,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -247149,7 +247247,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -247161,6 +247259,9 @@
         "zi": "叔龍",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:5cc872d8d577"
         ],
         "peerage": [
           "peerage:393"
@@ -249137,6 +249238,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "snapshot260",
@@ -249162,7 +249264,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -249174,6 +249276,10 @@
         "zi": "文惠",
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:04:5ca5736ba0f0",
+          "appointment:source:sgz:04:8d02aa0c1925"
         ],
         "peerage": [
           "peerage:103",
@@ -249754,6 +249860,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v60-workbook",
         "v62-people"
@@ -249774,7 +249881,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -249785,6 +249892,9 @@
         ],
         "dynastyTags": [
           "后汉"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:ff7d5953c468"
         ],
         "portraits": [
           "portrait:asset:44f3fd03e6d293e118a7"
@@ -251343,6 +251453,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "portraits",
         "v62-people"
       ],
@@ -251360,7 +251471,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "suppressed",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "suppressed",
         "portraits": "verified"
       },
@@ -251368,6 +251479,9 @@
         "name": "毕谌",
         "aliases": [
           "毕谌"
+        ],
+        "appointments": [
+          "appointment:source:sgz:01:086025d77767"
         ],
         "portraits": [
           "portrait:asset:e5e0e72fc32b5929579a"
@@ -252509,6 +252623,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -252532,7 +252647,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -252543,6 +252658,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:04:1eba07d7f725"
         ],
         "peerage": [
           "peerage:109",
@@ -253220,6 +253338,7 @@
       ],
       "datasets": [
         "activity-source",
+        "appointments",
         "peerage",
         "portraits",
         "v60-workbook",
@@ -253243,7 +253362,7 @@
         "bioClassical": "suppressed",
         "dynastyTags": "verified",
         "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
+        "appointments": "verified",
         "peerage": "verified",
         "portraits": "verified"
       },
@@ -253254,6 +253373,9 @@
         ],
         "dynastyTags": [
           "魏"
+        ],
+        "appointments": [
+          "appointment:source:sgz:03:e4ed72cd03b9"
         ],
         "peerage": [
           "peerage:385",
@@ -367372,7 +367494,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -367436,7 +367558,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "review-only",
       "historicalAffiliations": "review-only",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -368076,7 +368198,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -369212,7 +369334,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -369324,7 +369446,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "review-only",
       "historicalAffiliations": "review-only",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -369820,7 +369942,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -369996,7 +370118,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -371388,7 +371510,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -371548,7 +371670,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -371836,7 +371958,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -372428,7 +372550,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -372588,7 +372710,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -373084,7 +373206,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "suppressed",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "suppressed",
       "portraits": "verified"
     },
@@ -373420,7 +373542,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },
@@ -373628,7 +373750,7 @@
       "bioClassical": "suppressed",
       "dynastyTags": "verified",
       "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
+      "appointments": "verified",
       "peerage": "verified",
       "portraits": "verified"
     },

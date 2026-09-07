@@ -1,0 +1,520 @@
+{
+  "schemaVersion": "V78",
+  "reviewedAt": "2026-09-07",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:01:086025d77767",
+      "sourceSha256": "42f53653181fabf1607cdf10088c1c10ccf340c712ad62f0c951b0d827a8a7e1",
+      "status": "verified",
+      "reason": "本纪以“初”追叙曹操任兖州时辟毕谌为别驾，主体及官名明确；不以建安三年俘获及改任鲁相的叙事年倒填别驾始任年。",
+      "correction": {
+        "personId": "person:source:e078e67a29ef",
+        "name": "毕谌",
+        "officeName": "别驾",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷01·武帝纪毕谌追叙",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "初，公爲兖州，以東平畢諶爲別駕。張邈之叛也，邈劫諶母弟妻子；公謝遣之，曰：「卿老母在彼，可去。」諶頓首無二心，公嘉之，爲之流涕。旣出，遂亡歸。及布破，諶生得，衆爲諶懼，公曰：「夫人孝於其親者，豈不亦忠於君乎！吾所求也。」以爲魯相。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "曹操兖州府别驾；原文为追叙，始终年未详，不等同于建安三年新任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:4deaf8c12bd9",
+      "sourceSha256": "4c9b1afe968d2c0f51904b8a20618412c0ee8e93d6e01b75753fd57efe0069c0",
+      "status": "verified",
+      "reason": "核对建安十八年年首、五月魏公册命及十一月初置官属的连续上下文；裴注所引并列名单将本人明确系于本官。",
+      "correction": {
+        "personId": "person:source:9f7272bc767c",
+        "name": "荀攸",
+        "officeName": "尚书令",
+        "startYear": 213,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷01·武帝纪建安十八年十一月裴注引魏氏春秋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "十一月，初置尚書、侍中、六卿。〈《魏氏春秋》曰：以荀攸爲尚書令，涼茂爲僕射，毛玠、崔琰、常林、徐奕、何夔爲尚書，王粲、杜襲、衞覬、和洽爲侍中。〉",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "建安十八年魏公国官属，非黄初登极后任命；终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:5cc872d8d577",
+      "sourceSha256": "b931b090676ff63f50aac918ba4ed25324c7f99cfda4734af5cec6e9766a664c",
+      "status": "verified",
+      "reason": "核对建安十八年年首、五月魏公册命及十一月初置官属的连续上下文；裴注所引并列名单将本人明确系于本官。",
+      "correction": {
+        "personId": "person:source:b2dc15c2b1f2",
+        "name": "何夔",
+        "officeName": "尚书",
+        "startYear": 213,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷01·武帝纪建安十八年十一月裴注引魏氏春秋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "十一月，初置尚書、侍中、六卿。〈《魏氏春秋》曰：以荀攸爲尚書令，涼茂爲僕射，毛玠、崔琰、常林、徐奕、何夔爲尚書，王粲、杜襲、衞覬、和洽爲侍中。〉",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "建安十八年魏公国官属，非黄初登极后任命；终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:dabd13008c69",
+      "sourceSha256": "058263725efa90e88a63d0045772fdcd7abb12d087f1a130726d17f62fcdcee1",
+      "status": "suppressed",
+      "reason": "明文“不肯受”，此条为授命而拒受；从实任履历排除，保留原始授命与拒受证据，不否认曾有任命。",
+      "correction": {
+        "personId": "person:source:653eea8eb9c6",
+        "name": "袁绍",
+        "officeName": "太尉",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷01·武帝纪建安元年袁绍拒太尉",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "於是以袁紹爲太尉，紹恥班在公下，不肯受。公乃固辭，以大將軍讓紹。天子拜公司空，行車騎將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "授太尉而拒受，不列实任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:f468b0bebe12",
+      "sourceSha256": "94f7083242fb56677f5288695b2c17bb65eb3b47c831fca5b5515bc2c551d6f9",
+      "status": "verified",
+      "reason": "核对建安十八年年首、五月魏公册命及十一月初置官属的连续上下文；裴注所引并列名单将本人明确系于本官。",
+      "correction": {
+        "personId": "person:source:72237d3083d5",
+        "name": "和洽",
+        "officeName": "侍中",
+        "startYear": 213,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷01·武帝纪建安十八年十一月裴注引魏氏春秋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "十一月，初置尚書、侍中、六卿。〈《魏氏春秋》曰：以荀攸爲尚書令，涼茂爲僕射，毛玠、崔琰、常林、徐奕、何夔爲尚書，王粲、杜襲、衞覬、和洽爲侍中。〉",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "建安十八年魏公国官属，非黄初登极后任命；终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:ff7d5953c468",
+      "sourceSha256": "672adccd7f2600769ac469a682d80fff4bf267326f10b532157c932f953c9ebc",
+      "status": "verified",
+      "reason": "裴注引续汉书“代崔烈为太尉”以崔烈为被继任者，足证其曾任太尉；不是将曹嵩的授任归给崔烈，且不据此推定始终年。",
+      "correction": {
+        "personId": "person:source:cf82fa4d1264",
+        "name": "崔烈",
+        "officeName": "太尉",
+        "startYear": null,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷01·武帝纪裴注引续汉书曹嵩",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷01",
+          "quote": "嵩字巨高。質性敦慎，所在忠孝。爲司隷校尉，靈帝擢拜大司農、大鴻臚，代崔烈爲太尉。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "原典以曹嵩继任反证崔烈旧职；此条只确认曾任太尉，始终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:cf102cf5620d",
+      "sourceSha256": "d317ce9ab9afc8f41287ccb9ef292c00a3582f95c5a7867396874fb7451efaa1",
+      "status": "verified",
+      "reason": "核对黄初二年年首及三月加官语句，受任者为辽东太守公孙恭；不与公孙渊混同。",
+      "correction": {
+        "personId": "person:source:11e5afb2df97",
+        "name": "公孙恭",
+        "officeName": "车骑将军",
+        "startYear": 221,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷02·文帝纪黄初二年三月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "三月，加遼東太守公孫恭爲車騎將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "黄初二年三月加车骑将军；终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:ee9f83595474",
+      "sourceSha256": "035ebd6746b4c9ad828a33e52c1ed1796e72c78f3672c03ba91abee7151305ae",
+      "status": "verified",
+      "reason": "核对延康元年魏王即位上下文，三月授大将军，四月以本官薨；始终均在220年，不错置为黄初登极以后。",
+      "correction": {
+        "personId": "person:source:2a7e68aa7262",
+        "name": "夏侯惇",
+        "officeName": "大将军",
+        "startYear": 220,
+        "endYear": 220,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷02·文帝纪延康元年三月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "己卯，以前將軍夏侯惇爲大將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷02·文帝纪延康元年四月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "庚午，大將軍夏侯惇薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "延康元年魏王国授任，同年四月薨；非黄初登极后授官。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:2b024fd41af3",
+      "sourceSha256": "c63c03c702e2d53783592ce0122a3722fac33a8a711a8acd7c411e6894eec2dd",
+      "status": "verified",
+      "reason": "核对太和四年二月纪年及并列授官句，公孙渊所授为车骑将军；不串接曹真大司马或司马懿大将军。",
+      "correction": {
+        "personId": "person:source:5da0dd364783",
+        "name": "公孙渊",
+        "officeName": "车骑将军",
+        "startYear": 230,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷03·明帝纪太和四年二月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "癸巳，以大將軍曹真爲大司馬，驃騎將軍司馬宣王爲大將軍，遼東太守公孫淵爲車騎將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "太和四年二月授车骑将军；终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:a486dd8a87ab",
+      "sourceSha256": "f928c1b3d2c701cc1acb1b105d7abc657bb52ff76e09422ca139dae235a8ae31",
+      "status": "verified",
+      "reason": "景初二年二月授司徒、四月以司徒薨，正文直接支持同年起讫；原典韩曁字形保留于引文。",
+      "correction": {
+        "personId": "person:source:57f563d7a1ce",
+        "name": "韩暨",
+        "officeName": "司徒",
+        "startYear": 238,
+        "endYear": 238,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷03·明帝纪景初二年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "二月癸卯，以大中大夫韓曁爲司徒。癸丑，月犯心距星，又犯心中央大星。夏四月庚子，司徒韓曁薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "景初二年二月授任，四月薨。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:c6e7de8a0c32",
+      "sourceSha256": "b5e5cf02d58fc45e775721c93f07655b49f9eb9c29b4283bfde18ef6547eda3d",
+      "status": "suppressed",
+      "reason": "太和元年十二月记封皇后父毛嘉为列侯；列侯为爵，不是本批任官事实，从实任统计排除，不自动生成新的封爵事实。",
+      "correction": {
+        "personId": "person:source:272c8716cddb",
+        "name": "毛嘉",
+        "officeName": "列侯",
+        "startYear": null,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷03·明帝纪太和元年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "十二月，封后父毛嘉爲列侯。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "封爵记录，不列任官实任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:e4ed72cd03b9",
+      "sourceSha256": "23f9aaa56cb63d570276e921fe2421d29a334c4a7b81d5b80c2c002d4aa3bb14",
+      "status": "verified",
+      "reason": "核对景初元年六月己亥授司徒与秋七月丁卯薨两处，受任及终任主体一致。",
+      "correction": {
+        "personId": "person:source:f70e8bb46940",
+        "name": "陈矫",
+        "officeName": "司徒",
+        "startYear": 237,
+        "endYear": 237,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷03·明帝纪景初元年六月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "己亥，以尚書令陳矯爲司徒，尚書右僕射衞臻爲司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷03·明帝纪景初元年七月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "秋七月丁卯，司徒陳矯薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "景初元年六月授任，七月薨。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:e5c874a43fe4",
+      "sourceSha256": "44155f5004877c2695893a940d88fb0cf944e92de7620731e17a12bd621f41b6",
+      "status": "verified",
+      "reason": "太和六年七月授司徒，青龙四年五月以司徒薨；以两处明确纪年核定起讫，不借其他人物任期推算。",
+      "correction": {
+        "personId": "person:source:6d19a25fbe7e",
+        "name": "董昭",
+        "officeName": "司徒",
+        "startYear": 232,
+        "endYear": 236,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷03·明帝纪太和六年七月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "秋七月，以衞尉董昭爲司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷03·明帝纪青龙四年五月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "五月乙卯，司徒董昭薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "太和六年授任，青龙四年薨。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:f45b9ace6450",
+      "sourceSha256": "1c99a0783ee1a1bb62e476554cbaebcc2192dd294d329b5faeec54c7de32c2bd",
+      "status": "verified",
+      "reason": "曹叡即位段仍在黄初七年，十二月陈群自镇军大将军为司空；青龙四年十二月以司空薨。保留原典“陳羣”。",
+      "correction": {
+        "personId": "person:source:a80a9d39a6e9",
+        "name": "陈群",
+        "officeName": "司空",
+        "startYear": 226,
+        "endYear": 236,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷03·明帝纪黄初七年十二月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "十二月，以太尉鍾繇爲太傅，征東大將軍曹休爲大司馬，中軍大將軍曹真爲大將軍，司徒華歆爲太尉，司空王朗爲司徒，鎮軍大將軍陳羣爲司空，撫軍大將軍司馬宣王爲驃騎大將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷03·明帝纪青龙四年十二月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷03",
+          "quote": "癸巳，司空陳羣薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "黄初七年授司空；青龙四年薨，不误作太和元年起任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:01f2b39cf9c9",
+      "sourceSha256": "ab22d61e0580556b009339bab0e4b79b61e63bdb829dd8e5c32106c845b37c43",
+      "status": "verified",
+      "reason": "核对甘露元年十月卢毓授司空与二年三月以本官薨；并列句中郑冲所任为司徒。",
+      "correction": {
+        "personId": "person:source:0e535702e1a5",
+        "name": "卢毓",
+        "officeName": "司空",
+        "startYear": 256,
+        "endYear": 257,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷04·高贵乡公纪甘露元年九月至十月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "九月，以司徒高柔為太尉。冬十月，以司空鄭沖為司徒，尚書左僕射盧毓為司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷04·高贵乡公纪甘露二年三月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "三月，司空盧毓薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "甘露元年十月授任，二年三月薨。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:1d8fe3385e0b",
+      "sourceSha256": "c791e90c1cf844979e95fc03782331fba742c361b24772b80b3bb4003387f74e",
+      "status": "review-only",
+      "reason": "卷4景元四年十二月与卷28本传均确认钟会授司徒；本批尚未确认其司徒履职性质，不据授命与次月兵变续成连续的中央实任任期。现有钟會与旧范围表钟会对应同一稳定人物ID，无新增身份冲突；不据兵变断言拒受或未受任。",
+      "correction": {
+        "personId": "person:source:6bea1ab8f79e",
+        "name": "钟會",
+        "officeName": "司徒",
+        "startYear": null,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷04·陈留王纪景元四年十二月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "乙卯，以征西將軍鄧艾為太尉，鎮西將軍鍾會為司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷28·钟会传景元四年十二月诏",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "其以會為司徒，進封縣侯，增邑萬戶。封子二人亭侯，邑各千戶。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "授命有据；司徒履职性质待补核，不据授命自动生成中央实任任期。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:1eba07d7f725",
+      "sourceSha256": "745aba3ff392cea5f7d68815324feb22f93c125da1a9662d32c04f7af6988d89",
+      "status": "verified",
+      "reason": "核对嘉平二年冬十月特进孙资授骠骑将军、三年秋七月庚子以本官薨；不把正始六年孙资卫将军与刘放骠骑将军混接。",
+      "correction": {
+        "personId": "person:source:ef20cd1a60a8",
+        "name": "孙资",
+        "officeName": "骠骑将军",
+        "startYear": 250,
+        "endYear": 251,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷04·齐王芳纪嘉平二年十月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "冬十月，以特進孫資為驃騎將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷04·齐王芳纪嘉平三年七月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "庚子，驃騎將軍孫資薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "嘉平二年十月授骠骑将军，三年七月薨。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:2f585cfc34c5",
+      "sourceSha256": "e823d851919de68646bce3b1ed97d276ba8eb7bb9cb9df559900682b6779d348",
+      "status": "suppressed",
+      "reason": "正元二年四月封皇后父卞隆为列侯，与本段王昶等任官不同；此为爵位，排除任官统计，原始事实不删除。",
+      "correction": {
+        "personId": "person:source:536f3eca900e",
+        "name": "卞隆",
+        "officeName": "列侯",
+        "startYear": null,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷04·高贵乡公纪正元二年四月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "夏四月甲寅，封后父卞隆為列侯。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "封爵记录，不列任官实任。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:5ca5736ba0f0",
+      "sourceSha256": "a0d55dfe334a96b5c55297d8317941d3e095d930ddce39be91c2fbe0530c74e2",
+      "status": "verified",
+      "reason": "正始九年四月高柔自司空为司徒；“固辞不受”承光禄大夫徐邈为司空，不作用于高柔。甘露元年九月自司徒为太尉，确定本职终点。",
+      "correction": {
+        "personId": "person:source:c9646b99be7a",
+        "name": "高柔",
+        "officeName": "司徒",
+        "startYear": 248,
+        "endYear": 256,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷04·齐王芳纪正始九年四月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "四月，以司空高柔為司徒；光祿大夫徐邈為司空，固辭不受。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷04·高贵乡公纪甘露元年九月至十月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "九月，以司徒高柔為太尉。冬十月，以司空鄭沖為司徒，尚書左僕射盧毓為司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "正始九年授司徒，甘露元年转太尉；同句拒受者为徐邈。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:8d02aa0c1925",
+      "sourceSha256": "3bd43d89af5d8996a1f25e694a5160d402c2ceb7340fc55596e7046bf51ed9d4",
+      "status": "verified",
+      "reason": "甘露元年九月由司徒迁太尉，陈留王纪景元四年秋九月记太尉高柔薨，分别核定两职，不合并跨官任期。",
+      "correction": {
+        "personId": "person:source:c9646b99be7a",
+        "name": "高柔",
+        "officeName": "太尉",
+        "startYear": 256,
+        "endYear": 263,
+        "polity": "魏"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷04·高贵乡公纪甘露元年九月至十月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "九月，以司徒高柔為太尉。冬十月，以司空鄭沖為司徒，尚書左僕射盧毓為司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷04·陈留王纪景元四年九月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "秋九月，太尉高柔薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "readerNote": "甘露元年九月迁太尉，景元四年九月薨。"
+    }
+  ]
+}
