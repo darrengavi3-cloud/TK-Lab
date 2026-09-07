@@ -903,6 +903,30 @@
       ]
     },
     {
+      "appointmentId": "appointment:source:sgz:40:01c32f6e38df",
+      "personId": "person:peerage:298479f24318925a",
+      "nodeName": "魏兴太守",
+      "startYear": null,
+      "endYear": null,
+      "polity": "魏",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "魏",
+      "citations": [
+        {
+          "title": "《三国志》卷40·裴松之注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "。至建安末，为蜀所攻，以其郡西属。黄初中，仪復來還，詔即以兄故號加仪，因拜魏兴太守，封列侯。太和中，仪與孟達不和，數上言達有貳心于蜀，及達反，仪絕蜀道，使救不到。達死后，仪詣宛見",
+          "note": "魏兴是郡名，受任者是申仪；完整保留正文、裴注的对应关系"
+        },
+        {
+          "title": "《三国志》卷40·刘封传及裴注引《魏略》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "申儀叛封，封破走還成都。申耽降魏，魏假耽懷集將軍，徙居南陽，儀魏興太守，封（真鄉侯）〔員鄉侯〕，屯洵口。〈《魏略》曰：申儀兄名耽，字義舉。初在西平、上庸間聚眾數千家，後與張魯通，又遣使詣曹公，曹公加其號為將軍，因使領上庸都尉。至建安末，為蜀所攻，以其郡西屬。黃初中，儀復來還，詔即以兄故號加儀，因拜魏興太守，封列侯。太和中，儀與孟達不和，數上言達有貳心於蜀，及達反，儀絕蜀道，使救不到。達死後，儀詣宛見司馬宣王，宣王勸使來朝。儀至京師，詔轉拜儀樓船將軍，在禮請中。〉"
+        }
+      ]
+    },
+    {
       "appointmentId": "appointment:source:sgz:33:c8d63f8e20ac",
       "personId": "person:shu:fei-yi",
       "nodeName": "大将军",
@@ -963,6 +987,30 @@
           "title": "《三国志》卷33·正文",
           "url": "https://zh.wikisource.org/wiki/三國志/卷33",
           "quote": "长史蒋琬为尚书令，總統国事。十三年春正月，中军师杨仪廢徙汉嘉郡。夏四月，進蒋琬位为大将军。十四年夏四月，后主至湔，。登观坂，看汶水之流，旬日還成都。徙武都氐王苻健及氐民四百餘戶于成都。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:44:1c106e4707ab",
+      "personId": "person:shu:jiang-wan",
+      "nodeName": "大司马",
+      "startYear": 239,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷44·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "君其治严，總帥诸军屯任汉中，須吴举動，东西掎角，以乘其畔。」又命琬开府，明年就加为大司马。东曹掾杨戲索性简略，琬與言論，时不应答。或欲構戲于琬，曰：「公與戲語而不見应，戲之慢上，不亦甚",
+          "note": "年就加不是人名，承接蒋琬；延熙元年次年为二年"
+        },
+        {
+          "title": "《三国志》卷44·蒋琬传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "亮卒，以琬為尚書令，俄而加行都護、假節、領益州刺史、遷大將軍、錄尚書事、封安陽亭侯。時新喪元帥，遠近危悚。琬出類拔萃，處群僚之右，既無戚容，又無喜色，神守舉止，有如平日，由是眾望漸服。延熙元年，詔琬曰：「寇難未弭，曹睿驕凶，遼東三郡勞其暴虐，遂相糾結，與之離隔。睿大興眾役，還相攻伐。囊秦之亡，勝、廣首難，今有此變，斯乃天時。君其治嚴，總帥諸軍屯任漢中，須吳舉動，東西掎角，以乘其畔。」又命琬開府，明年就加為大司馬。"
         }
       ]
     },
@@ -1031,6 +1079,44 @@
       ]
     },
     {
+      "appointmentId": "appointment:v74:021",
+      "personId": "person:snapshot260:5932a18b4b12a926",
+      "nodeName": "丞相主簿",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷39·董和传裴注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "偉度者，姓胡，名濟，義陽人。為亮主簿，有忠藎之效，故見褒述。亮卒，為中典軍，統諸軍，封成陽亭侯，遷中監軍前將軍，督漢中，假節領兗州刺史，至右驃騎將軍。濟弟博，歷長水校尉尚書。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:022",
+      "personId": "person:snapshot260:5932a18b4b12a926",
+      "nodeName": "中典军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷39·董和传裴注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "偉度者，姓胡，名濟，義陽人。為亮主簿，有忠藎之效，故見褒述。亮卒，為中典軍，統諸軍，封成陽亭侯，遷中監軍前將軍，督漢中，假節領兗州刺史，至右驃騎將軍。濟弟博，歷長水校尉尚書。",
+          "note": "亮卒后受任，具体年份未明载；不直接推定为234年"
+        }
+      ]
+    },
+    {
       "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
       "personId": "person:snapshot260:9fbd9f0edab3ad59",
       "nodeName": "太保掾",
@@ -1068,6 +1154,102 @@
           "url": "https://zh.wikisource.org/wiki/三國志/卷43",
           "quote": "_FORCETOC__==黄权==黄权，字公衡，巴西閬中人也。少为郡吏，州牧刘璋召为主簿。时别驾张松建議，宜迎先主，使伐张鲁。权諫曰：「左将军有驍名，今請到，欲以部曲遇之，則不满其心，",
           "note": "本条受任者为黄权；原文中的府主或州牧为辟召者。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:785b893711d8",
+      "personId": "person:source:6787527ab62b",
+      "nodeName": "光禄勋",
+      "startYear": 219,
+      "endYear": null,
+      "polity": "后汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "后汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "事。先主定益州，领牧，以为别驾。先主为汉中王，用荊楚宿士零陵賴恭为太常，南阳黄柱为光禄勋，謀为少府；建兴初，賜爵关內侯，后代賴恭为太常。恭、柱、謀皆失其行事，故不为傳。恭子厷，为丞相西",
+          "note": "南阳黄柱是明确受任主体"
+        },
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:3644ca88f34b",
+      "personId": "person:source:6f24577154e3",
+      "nodeName": "太常",
+      "startYear": 219,
+      "endYear": null,
+      "polity": "后汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "后汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "，为巴郡太守，還为州治中从事。先主定益州，领牧，以为别驾。先主为汉中王，用荊楚宿士零陵賴恭为太常，南阳黄柱为光禄勋，謀为少府；建兴初，賜爵关內侯，后代賴恭为太常。恭、柱、謀皆失其行事，故不为傳",
+          "note": "汉中王时以赖恭为太常；不与王谋继任合并"
+        },
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a1c45d2140c4",
+      "personId": "person:source:c2d2b4c0325c",
+      "nodeName": "别驾",
+      "startYear": 224,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷42·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "去官。及先主定蜀，微常稱聾，閉门不出。，丞相亮领益州牧。選迎皆妙简舊德，以秦宓为别驾，五梁为功曹，微为主簿。微固辭，举而致之。既致，亮引見微，微自陈谢。亮以微不聞人語，于坐上與书曰",
+          "note": "杜微传建兴二年明确以秦宓为别驾"
+        },
+        {
+          "title": "《三国志》卷42·杜微传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "建興二年，丞相亮領益州牧。選迎皆妙簡舊德，以秦宓為別駕，五梁為功曹，微為主簿。微固辭，舉而致之。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:3e772c59425f",
+      "personId": "person:source:c9065395c9a7",
+      "nodeName": "后将军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "军从事，出为牂牁太守，還为州前部司马。先主为汉中王，遣詩拜关羽为前将军，羽聞黄忠为后将军，（羽）怒曰：「大丈夫終不與老兵同列！」不肯受拜。詩謂羽曰：「夫立王业者，所用非一。昔蕭、曹與高",
+          "note": "黄忠任后将军是独立陈述；不肯受拜的主体为关羽，不能移给黄忠"
+        },
+        {
+          "title": "《三国志》卷41·费诗传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "先主為漢中王，遣詩拜關羽為前將軍，羽聞黃忠為後將軍，（羽）怒曰：「大丈夫終不與老兵同列！」不肯受拜。"
         }
       ]
     },
@@ -1392,6 +1574,63 @@
       ]
     },
     {
+      "appointmentId": "appointment:v74:026",
+      "personId": "person:workbook:004ae019cd06e4ac",
+      "nodeName": "丞相掾",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附马勋、马齐",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "盛衡名勳，承伯名齊，皆巴西閬中人也。勳，劉璋時為州書佐，先主定蜀，闢為左將軍屬，後轉州別駕從事，卒。齊為太守張飛功曹。飛貢之先主，為尚書郎。建興中，從事丞相掾，遷廣漢太守，復為（飛）參軍。亮卒，為尚書。勳、齊皆以才幹自顯見；歸信於州黨，不如姚伷。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:027",
+      "personId": "person:workbook:004ae019cd06e4ac",
+      "nodeName": "广汉太守",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附马勋、马齐",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "盛衡名勳，承伯名齊，皆巴西閬中人也。勳，劉璋時為州書佐，先主定蜀，闢為左將軍屬，後轉州別駕從事，卒。齊為太守張飛功曹。飛貢之先主，為尚書郎。建興中，從事丞相掾，遷廣漢太守，復為（飛）參軍。亮卒，為尚書。勳、齊皆以才幹自顯見；歸信於州黨，不如姚伷。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:033",
+      "personId": "person:workbook:116409e8872cd07d",
+      "nodeName": "丞相西曹令史",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
       "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
       "personId": "person:workbook:13d66149e45735fd",
       "nodeName": "从事祭酒",
@@ -1409,6 +1648,63 @@
       ]
     },
     {
+      "appointmentId": "appointment:v74:025",
+      "personId": "person:workbook:1ff633a1dc01d786",
+      "nodeName": "别驾从事",
+      "startYear": null,
+      "endYear": null,
+      "polity": "汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附李朝及裴注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "偉南名朝，永南兄。郡功曹，舉孝廉，臨邛令，入為別駕從事。隨先主東征吳，章武二年卒於永安。〈《益部耆舊雜記》曰：朝又有一弟，早亡，各有才望，時人號之李氏三龍。《華陽國志》曰：群下上先主為漢中王；其文，朝所造也。臣松之案耆舊所記，以朝、邵及早亡者為三龍。邈之狂直，不得在此數。〉",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:031",
+      "personId": "person:workbook:215b361310051cc2",
+      "nodeName": "丞相主簿",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传裴注引《襄阳记》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "楊顒字子昭，楊儀宗人也。入蜀，為巴郡太守，丞相諸葛亮主簿。亮嘗自校簿書，顒直入諫曰：「為治有體，上下不可相侵，請為明公以作家譬之。今有人使奴執耕稼，婢典炊爨，雞主司晨，犬主吠盜，牛負重載，馬涉遠路，私業無曠，所求皆足，雍容高枕，飲食而已，忽一旦盡欲以身親其役，不復付任，勞其體力，為此碎務，形疲神困，終無一成。豈其智之不如奴婢雞狗哉？失為家主之法也。是故古人稱坐而論道謂之三公，作而行之謂之士大夫。故邴吉不問橫道死人而憂牛喘，陳平不肯知錢穀之數，云自有主者，彼誠達於位分之體也。今明公為治，乃躬自校簿書，流汗竟日，不亦勞乎！」亮謝之。後為東曹屬典選舉。顒死，亮垂泣三日。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:032",
+      "personId": "person:workbook:215b361310051cc2",
+      "nodeName": "东曹属",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传裴注引《襄阳记》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "楊顒字子昭，楊儀宗人也。入蜀，為巴郡太守，丞相諸葛亮主簿。亮嘗自校簿書，顒直入諫曰：「為治有體，上下不可相侵，請為明公以作家譬之。今有人使奴執耕稼，婢典炊爨，雞主司晨，犬主吠盜，牛負重載，馬涉遠路，私業無曠，所求皆足，雍容高枕，飲食而已，忽一旦盡欲以身親其役，不復付任，勞其體力，為此碎務，形疲神困，終無一成。豈其智之不如奴婢雞狗哉？失為家主之法也。是故古人稱坐而論道謂之三公，作而行之謂之士大夫。故邴吉不問橫道死人而憂牛喘，陳平不肯知錢穀之數，云自有主者，彼誠達於位分之體也。今明公為治，乃躬自校簿書，流汗竟日，不亦勞乎！」亮謝之。後為東曹屬典選舉。顒死，亮垂泣三日。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
       "appointmentId": "appointment:source:sgz:38:829deeeb0689",
       "personId": "person:workbook:2cbac2c953caf4a3",
       "nodeName": "别驾从事",
@@ -1422,6 +1718,182 @@
           "url": "https://zh.wikisource.org/wiki/三國志/卷38",
           "quote": "。。==麋竺==麋竺字子仲，东海朐人也。祖世貨殖，僮客万人，貲產鉅億。。后徐州牧陶谦辟为别驾从事。谦卒，竺奉谦遺命，迎先主于小沛。，呂布乘先主之出拒袁術，襲下邳，虜先主妻子。先主转军廣陵海",
           "note": "本条受任者为麋竺；原文中的府主或州牧为辟召者。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:001",
+      "personId": "person:workbook:2ee73864a49068e2",
+      "nodeName": "尚书令",
+      "startYear": 222,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷40·李严传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "章武二年，先主徵嚴詣永安宮，拜尚書令。三年，先主疾病，嚴與諸葛亮並受遺詔輔少主；以嚴為中都護，統內外軍事，留鎮永安。建興元年，封都鄉侯，假節，加光祿勳。四年，轉為前將軍。以諸葛亮欲出軍漢中，嚴當知後事，移屯江州，留護軍陳到駐永安，皆統屬嚴。",
+          "note": "章武二年明载受任；离任年未明载"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:002",
+      "personId": "person:workbook:2ee73864a49068e2",
+      "nodeName": "中都护",
+      "startYear": 223,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷40·李严传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "章武二年，先主徵嚴詣永安宮，拜尚書令。三年，先主疾病，嚴與諸葛亮並受遺詔輔少主；以嚴為中都護，統內外軍事，留鎮永安。建興元年，封都鄉侯，假節，加光祿勳。四年，轉為前將軍。以諸葛亮欲出軍漢中，嚴當知後事，移屯江州，留護軍陳到駐永安，皆統屬嚴。",
+          "note": "章武三年明载受任；离任年不由后续叙事倒推"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:003",
+      "personId": "person:workbook:2ee73864a49068e2",
+      "nodeName": "中都护（署府事）",
+      "startYear": 230,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷40·李严传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "八年，遷驃騎將軍。以曹真欲三道向漢川，亮命嚴將二萬人赴漢中。亮表嚴子豐為江州都督督軍，典嚴後事。亮以明年當出軍，命嚴以中都護署府事。嚴改名為平。",
+          "note": "建兴八年明载命以中都护署府事；与初任中都护分列职责变动"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:023",
+      "personId": "person:workbook:6442c61bae078717",
+      "nodeName": "西曹掾",
+      "startYear": 223,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附李邵",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "永南名邵，廣漢郪人也。先主定蜀後，為州書佐部從事。建興元年，丞相亮闢為西曹掾。亮南征，留邵為治中從事，是歲卒。",
+          "note": "建兴元年明载受辟；转治中从事前未另载离任年"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:024",
+      "personId": "person:workbook:6442c61bae078717",
+      "nodeName": "治中从事",
+      "startYear": 225,
+      "endYear": 225,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附李邵",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "永南名邵，廣漢郪人也。先主定蜀後，為州書佐部從事。建興元年，丞相亮闢為西曹掾。亮南征，留邵為治中從事，是歲卒。",
+          "note": "亮南征留任，且明载是岁卒，对应建兴三年"
+        },
+        {
+          "title": "《三国志》卷35·诸葛亮传纪年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "建興元年，封亮武鄉侯，開府治事。頃之，又領益州牧。政事無巨細，咸決於亮。南中諸郡，并皆叛亂，亮以新遭大喪，故未便加兵，且遣使聘吳，因結和親，遂為與國。〔中略：裴注引亮集正议〕三年春，亮率眾南征，〈詔賜亮金鈇鉞一具，曲蓋一，前後羽葆鼓吹各一部，虎賁六十人。事在亮集。〉其秋悉平。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:034",
+      "personId": "person:workbook:6f980b14074c4cb2",
+      "nodeName": "谒者",
+      "startYear": 223,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·霍峻传附霍弋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "子弋，字紹先，先主末年為太子舍人。後主踐阼，除謁者。丞相諸葛亮北駐漢中，請為記室，使與子喬共周旋游處。亮卒，為黃門侍郎。後主立太子璿，以弋為中庶子，璿好騎射，出入無度，弋援引古義，盡言規諫，甚得切磋之體。",
+          "note": "后主践阼除谒者，对应223年；终年未明载"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:035",
+      "personId": "person:workbook:6f980b14074c4cb2",
+      "nodeName": "丞相记室",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·霍峻传附霍弋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "子弋，字紹先，先主末年為太子舍人。後主踐阼，除謁者。丞相諸葛亮北駐漢中，請為記室，使與子喬共周旋游處。亮卒，為黃門侍郎。後主立太子璿，以弋為中庶子，璿好騎射，出入無度，弋援引古義，盡言規諫，甚得切磋之體。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:036",
+      "personId": "person:workbook:6f980b14074c4cb2",
+      "nodeName": "黄门侍郎",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·霍峻传附霍弋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "子弋，字紹先，先主末年為太子舍人。後主踐阼，除謁者。丞相諸葛亮北駐漢中，請為記室，使與子喬共周旋游處。亮卒，為黃門侍郎。後主立太子璿，以弋為中庶子，璿好騎射，出入無度，弋援引古義，盡言規諫，甚得切磋之體。",
+          "note": "亮卒后受任，具体年份未明载；不直接推定为234年"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:028",
+      "personId": "person:workbook:77074623342798ef",
+      "nodeName": "郎中",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷39·董允传及裴注引《襄阳记》、裴松之案语",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷39",
+          "quote": "允嘗與尚書令費禕、中典軍胡濟等共期遊宴，嚴駕已辦，而郎中襄陽董恢詣允脩敬。恢年少官微，見允停出，逡巡求去，允不許，曰：「本所以出者，欲與同好遊談也，今君已自屈，方展闊積，捨此之談，就彼之宴，非所謂也。」乃命解驂，禕等罷駕不行。其守正下士，凡此類也。〈《襄陽記》曰：董恢字休緒，襄陽人。入蜀，以宣信中郎副費禕使吳。孫權嘗大醉問禕曰：「楊儀、魏延，牧豎小人也。雖嘗有鳴吠之益於時務，然既已任之，勢不得輕，若一朝無諸葛亮，必為禍亂矣。諸君憒憒，曾不知防慮於此，豈所謂貽厥孫謀乎？」禕愕然四顧視，不能即答。恢目禕曰：「可速言儀、延之不協起於私忿耳，而無黥、韓難御之心也。今方掃除強賊，混一區夏，功以才成，業由才廣，若捨此不任，防其後患，是猶備有風波而逆廢舟楫，非長計也。」權大笑樂。諸葛亮聞之，以為知言。還未滿三日，闢為丞相府屬，遷巴郡太守。臣松之案：《漢晉春秋》亦載此語，不雲董恢所教，辭亦小異，此二書俱出習氏而不同若此。本傳雲「恢年少官微」，若已為丞相府屬，出作巴郡，則官不微矣。以此疑習氏之言為不審的也。〉",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
         }
       ]
     },
@@ -1466,6 +1938,268 @@
       ]
     },
     {
+      "appointmentId": "appointment:v74:018",
+      "personId": "person:workbook:8fa4f35dd3a3844f",
+      "nodeName": "丞相掾",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附姚伷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "伷字子緒，亦閬中人。先主定益州後，為功曹書佐。建興元年，為廣漢太守。丞相亮北駐漢中，闢為掾。並進文武之士，亮稱曰：「忠益者莫大於進人，進人者各務其所尚；今姚掾並存剛柔，以廣文武之用，可謂博雅矣，原諸掾各希此事，以屬其望。」遷為參軍。亮卒，稍遷為尚書僕射。時人服其真誠篤粹。延熙五年卒，在作讚之後。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:019",
+      "personId": "person:workbook:8fa4f35dd3a3844f",
+      "nodeName": "丞相参军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附姚伷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "伷字子緒，亦閬中人。先主定益州後，為功曹書佐。建興元年，為廣漢太守。丞相亮北駐漢中，闢為掾。並進文武之士，亮稱曰：「忠益者莫大於進人，進人者各務其所尚；今姚掾並存剛柔，以廣文武之用，可謂博雅矣，原諸掾各希此事，以屬其望。」遷為參軍。亮卒，稍遷為尚書僕射。時人服其真誠篤粹。延熙五年卒，在作讚之後。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:020",
+      "personId": "person:workbook:8fa4f35dd3a3844f",
+      "nodeName": "尚书仆射",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传附姚伷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "伷字子緒，亦閬中人。先主定益州後，為功曹書佐。建興元年，為廣漢太守。丞相亮北駐漢中，闢為掾。並進文武之士，亮稱曰：「忠益者莫大於進人，進人者各務其所尚；今姚掾並存剛柔，以廣文武之用，可謂博雅矣，原諸掾各希此事，以屬其望。」遷為參軍。亮卒，稍遷為尚書僕射。時人服其真誠篤粹。延熙五年卒，在作讚之後。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:bb48953e14d8",
+      "personId": "person:workbook:9091722166e8396b",
+      "nodeName": "司盐校尉",
+      "startYear": null,
+      "endYear": null,
+      "polity": "汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "不降，先主義之，不強逼也。及成都既平，以連为什邡令，转在廣都，所居有績。迁司鹽校尉，較鹽鐵之利，利入甚多，有裨国用，于是简取良才以为官属，若呂乂、杜祺、刘干，終皆至大官，自連所拔",
+          "note": "司盐为完整官名的一部分，主体承接王连本传，不能立司盐为人"
+        },
+        {
+          "title": "《三国志》卷41·王连传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "王連字文儀，南陽人也。劉璋時入蜀為梓潼令。先主起事葭萌，進軍來南，連閉城不降，先主義之，不強逼也。及成都既平，以連為什邡令，轉在廣都，所居有績。遷司鹽校尉，較鹽鐵之利，利入甚多，有裨國用，於是簡取良才以為官屬，若呂乂、杜祺、劉干，終皆至大官，自連所拔也。遷蜀郡太守、興業將軍，領鹽府如故。建興元年，拜屯騎校尉，領丞相長史，封平陽亭侯。時南方諸郡不賓，諸葛亮將自征之，連諫以為「此不毛之地，疫癘之鄉，不宜以一國之望，冒險而行」。亮慮諸將才不及己，意欲必往而連言輒懇至，故停留者久之。會連卒。子山嗣，官至江陽太守。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:007",
+      "personId": "person:workbook:9091722166e8396b",
+      "nodeName": "屯骑校尉",
+      "startYear": 223,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·王连传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "王連字文儀，南陽人也。劉璋時入蜀為梓潼令。先主起事葭萌，進軍來南，連閉城不降，先主義之，不強逼也。及成都既平，以連為什邡令，轉在廣都，所居有績。遷司鹽校尉，較鹽鐵之利，利入甚多，有裨國用，於是簡取良才以為官屬，若呂乂、杜祺、劉干，終皆至大官，自連所拔也。遷蜀郡太守、興業將軍，領鹽府如故。建興元年，拜屯騎校尉，領丞相長史，封平陽亭侯。時南方諸郡不賓，諸葛亮將自征之，連諫以為「此不毛之地，疫癘之鄉，不宜以一國之望，冒險而行」。亮慮諸將才不及己，意欲必往而連言輒懇至，故停留者久之。會連卒。子山嗣，官至江陽太守。",
+          "note": "建兴元年明载拜官；卒年未明载"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:008",
+      "personId": "person:workbook:9091722166e8396b",
+      "nodeName": "丞相长史",
+      "startYear": 223,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·王连传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "王連字文儀，南陽人也。劉璋時入蜀為梓潼令。先主起事葭萌，進軍來南，連閉城不降，先主義之，不強逼也。及成都既平，以連為什邡令，轉在廣都，所居有績。遷司鹽校尉，較鹽鐵之利，利入甚多，有裨國用，於是簡取良才以為官屬，若呂乂、杜祺、劉干，終皆至大官，自連所拔也。遷蜀郡太守、興業將軍，領鹽府如故。建興元年，拜屯騎校尉，領丞相長史，封平陽亭侯。時南方諸郡不賓，諸葛亮將自征之，連諫以為「此不毛之地，疫癘之鄉，不宜以一國之望，冒險而行」。亮慮諸將才不及己，意欲必往而連言輒懇至，故停留者久之。會連卒。子山嗣，官至江陽太守。",
+          "note": "建兴元年明载领职；终年未明载"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:004",
+      "personId": "person:workbook:9f6080559773b60e",
+      "nodeName": "劝学从事",
+      "startYear": null,
+      "endYear": null,
+      "polity": "汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "汉",
+      "citations": [
+        {
+          "title": "《三国志》卷42·尹默传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "尹默字思潛，梓潼涪人也。益部多貴今文而不祟章句，默知其不博。乃遠遊荊州，從司馬德操、宋仲子等受古學。皆通諸經史，又專精於《左氏春秋》，自劉歆條例，鄭眾、賈逵父子、陳元、方服虔注說，咸略誦述，不復按本。先主定益州，領牧，以為勸學從事。及立太子，以默為僕，射以《左氏傳》授後主。後主踐阼，拜諫議大夫。丞相亮住漢中，請為軍祭酒。亮卒，還成都，拜大中大夫，卒。子宗傳其業，為博士。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:005",
+      "personId": "person:workbook:9f6080559773b60e",
+      "nodeName": "谏议大夫",
+      "startYear": 223,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷42·尹默传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "尹默字思潛，梓潼涪人也。益部多貴今文而不祟章句，默知其不博。乃遠遊荊州，從司馬德操、宋仲子等受古學。皆通諸經史，又專精於《左氏春秋》，自劉歆條例，鄭眾、賈逵父子、陳元、方服虔注說，咸略誦述，不復按本。先主定益州，領牧，以為勸學從事。及立太子，以默為僕，射以《左氏傳》授後主。後主踐阼，拜諫議大夫。丞相亮住漢中，請為軍祭酒。亮卒，還成都，拜大中大夫，卒。子宗傳其業，為博士。",
+          "note": "后主践阼时拜官，对应223年；终年未载"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:006",
+      "personId": "person:workbook:9f6080559773b60e",
+      "nodeName": "军祭酒",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷42·尹默传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷42",
+          "quote": "尹默字思潛，梓潼涪人也。益部多貴今文而不祟章句，默知其不博。乃遠遊荊州，從司馬德操、宋仲子等受古學。皆通諸經史，又專精於《左氏春秋》，自劉歆條例，鄭眾、賈逵父子、陳元、方服虔注說，咸略誦述，不復按本。先主定益州，領牧，以為勸學從事。及立太子，以默為僕，射以《左氏傳》授後主。後主踐阼，拜諫議大夫。丞相亮住漢中，請為軍祭酒。亮卒，還成都，拜大中大夫，卒。子宗傳其業，為博士。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:013",
+      "personId": "person:workbook:d8ee120eb94586a0",
+      "nodeName": "丞相参军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·张裔传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "既至蜀，丞相亮以為參軍，署府事，又領益州治中從事。亮出駐漢中，裔以射聲校尉領留府長史，常稱曰：「公賞不遺遠，罰不阿近，爵不可以無功取，刑不可以貴勢免，此賢愚之所以僉忘其身者也。」其明年，北詣亮諮事，送者數百，車乘盈路，裔還書與所親曰：「近者涉道，晝夜接客，不得寧息，人自敬丞相長史，男子張君嗣附之，疲倦欲死。」其談啁流速，皆此類也。〈臣松之以为谈啁贵於机捷，书疏可容留意。今因书疏之巧，以著谈啁之速，非其理也。〉少與犍為楊恭友善，恭早死，遺孤未數歲，裔迎留，與分屋而居，事恭母如母。恭之子息長大，為之娶婦，買田宅產業，使立門戶。撫恤故舊，振贍衰宗，行義甚至。加輔漢將軍，領長史如故。建興八年卒。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:014",
+      "personId": "person:workbook:d8ee120eb94586a0",
+      "nodeName": "益州治中从事",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·张裔传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "既至蜀，丞相亮以為參軍，署府事，又領益州治中從事。亮出駐漢中，裔以射聲校尉領留府長史，常稱曰：「公賞不遺遠，罰不阿近，爵不可以無功取，刑不可以貴勢免，此賢愚之所以僉忘其身者也。」其明年，北詣亮諮事，送者數百，車乘盈路，裔還書與所親曰：「近者涉道，晝夜接客，不得寧息，人自敬丞相長史，男子張君嗣附之，疲倦欲死。」其談啁流速，皆此類也。〈臣松之以为谈啁贵於机捷，书疏可容留意。今因书疏之巧，以著谈啁之速，非其理也。〉少與犍為楊恭友善，恭早死，遺孤未數歲，裔迎留，與分屋而居，事恭母如母。恭之子息長大，為之娶婦，買田宅產業，使立門戶。撫恤故舊，振贍衰宗，行義甚至。加輔漢將軍，領長史如故。建興八年卒。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:015",
+      "personId": "person:workbook:d8ee120eb94586a0",
+      "nodeName": "留府长史",
+      "startYear": 227,
+      "endYear": 230,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·张裔传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "既至蜀，丞相亮以為參軍，署府事，又領益州治中從事。亮出駐漢中，裔以射聲校尉領留府長史，常稱曰：「公賞不遺遠，罰不阿近，爵不可以無功取，刑不可以貴勢免，此賢愚之所以僉忘其身者也。」其明年，北詣亮諮事，送者數百，車乘盈路，裔還書與所親曰：「近者涉道，晝夜接客，不得寧息，人自敬丞相長史，男子張君嗣附之，疲倦欲死。」其談啁流速，皆此類也。〈臣松之以为谈啁贵於机捷，书疏可容留意。今因书疏之巧，以著谈啁之速，非其理也。〉少與犍為楊恭友善，恭早死，遺孤未數歲，裔迎留，與分屋而居，事恭母如母。恭之子息長大，為之娶婦，買田宅產業，使立門戶。撫恤故舊，振贍衰宗，行義甚至。加輔漢將軍，領長史如故。建興八年卒。",
+          "note": "与同卷杨洪传建兴五年任留府长史互证，八年卒；射声校尉始任年不随此推算；同卷《杨洪传》明载建兴五年欲用张裔为留府长史，本传记其任职及八年卒。"
+        },
+        {
+          "title": "《三国志》卷41·杨洪传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "五年，丞相亮北住漢中，欲用張裔為留府長史，問洪何如？洪對曰：「裔天姿明察，長於治劇，才誠堪之，然性不公平，恐不可專任，不如留向朗。朗情偽差少，裔隨從目下，效其器能，於事兩善。」"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:57c66c4fce83",
+      "personId": "person:workbook:d96b4bc25559ba14",
+      "nodeName": "太常",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·正文",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "荊楚宿士零陵賴恭为太常，南阳黄柱为光禄勋，謀为少府；建兴初，賜爵关內侯，后代賴恭为太常。恭、柱、謀皆失其行事，故不为傳。恭子厷，为丞相西曹令史，隨诸葛亮于汉中，早夭，亮甚惜之，與留府",
+          "note": "后代赖恭的主体仍是王谋；赖恭为被替代者，继任年不推算"
+        },
+        {
+          "title": "《三国志》卷45·杨戏传附王谋、赖恭、赖厷",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "王元泰名謀，漢嘉人也。有容止操行。劉璋時，為巴郡太守，還為州治中從事。先主定益州，領牧，以為別駕。先主為漢中王，用荊楚宿士零陵賴恭為太常，南陽黃柱為光祿勳，謀為少府；建興初，賜爵關內侯，後代賴恭為太常。恭、柱、謀皆失其行事，故不為傳。恭子厷，為丞相西曹令史，隨諸葛亮於漢中，早夭，亮甚惜之，與留府長史參軍張裔、蔣琬書曰：「令史失賴厷，掾屬喪楊顒，為朝中損益多矣。」顒亦荊州人也。後大將軍蔣琬問張休曰：「漢嘉前輩有王元泰，今誰繼者？」休對曰：「至於元泰，州里無繼，況鄙郡乎！」其見重如此。"
+        }
+      ]
+    },
+    {
       "appointmentId": "appointment:source:jinshu:054:32c62500fcf5",
       "personId": "person:workbook:e574b4761f6490c2",
       "nodeName": "太傅祭酒",
@@ -1479,6 +2213,120 @@
           "url": "https://zh.wikisource.org/wiki/晉書/卷054",
           "quote": "中何以敵此？」答云：「千里蓴羹，未下鹽豉。」时人稱为名對。张华薦之诸公。后太傅杨骏辟为祭酒。會骏誅，累迁太子洗马、著作郎。范阳卢志于眾中問機曰：「陆逊、陆抗于君近遠？」機曰：「如君于卢毓",
           "note": "本条受任者为陆机；原文中的府主或州牧为辟召者。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:009",
+      "personId": "person:workbook:faea9e2b40476fc3",
+      "nodeName": "步兵校尉",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·向朗传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "向朗字巨達，襄陽宜城人也。后主践阼，为步兵校尉，代王连领丞相长史。丞相亮南征，朗留统后事。五年，隨亮漢中。朗素與馬謖善，謖逃亡，朗知情不舉，亮恨之，免官還成都。數年，為光祿勳，亮卒後徒左將軍，追論舊功，封顯明亭侯，位特進。初，朗少時雖涉獵文學，然不治素檢，以吏能稱。自去長史，優遊無事垂三十年，〈臣松之案：朗坐马谡免长史，则建興六年中也。朗至延熙十年卒，整二十年耳，此云“三十”，字之误也。〉",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:010",
+      "personId": "person:workbook:faea9e2b40476fc3",
+      "nodeName": "丞相长史",
+      "startYear": null,
+      "endYear": 228,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·向朗传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "向朗字巨達，襄陽宜城人也。后主践阼，为步兵校尉，代王连领丞相长史。丞相亮南征，朗留统后事。五年，隨亮漢中。朗素與馬謖善，謖逃亡，朗知情不舉，亮恨之，免官還成都。數年，為光祿勳，亮卒後徒左將軍，追論舊功，封顯明亭侯，位特進。初，朗少時雖涉獵文學，然不治素檢，以吏能稱。自去長史，優遊無事垂三十年，〈臣松之案：朗坐马谡免长史，则建興六年中也。朗至延熙十年卒，整二十年耳，此云“三十”，字之误也。〉",
+          "note": "代王连领职的具体年份不明；裴松之案语明确建兴六年免长史"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:011",
+      "personId": "person:workbook:faea9e2b40476fc3",
+      "nodeName": "光禄勋",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·向朗传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "向朗字巨達，襄陽宜城人也。后主践阼，为步兵校尉，代王连领丞相长史。丞相亮南征，朗留统后事。五年，隨亮漢中。朗素與馬謖善，謖逃亡，朗知情不舉，亮恨之，免官還成都。數年，為光祿勳，亮卒後徒左將軍，追論舊功，封顯明亭侯，位特進。初，朗少時雖涉獵文學，然不治素檢，以吏能稱。自去長史，優遊無事垂三十年，〈臣松之案：朗坐马谡免长史，则建興六年中也。朗至延熙十年卒，整二十年耳，此云“三十”，字之误也。〉",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:012",
+      "personId": "person:workbook:faea9e2b40476fc3",
+      "nodeName": "左将军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷41·向朗传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "向朗字巨達，襄陽宜城人也。后主践阼，为步兵校尉，代王连领丞相长史。丞相亮南征，朗留统后事。五年，隨亮漢中。朗素與馬謖善，謖逃亡，朗知情不舉，亮恨之，免官還成都。數年，為光祿勳，亮卒後徒左將軍，追論舊功，封顯明亭侯，位特進。初，朗少時雖涉獵文學，然不治素檢，以吏能稱。自去長史，優遊無事垂三十年，〈臣松之案：朗坐马谡免长史，则建興六年中也。朗至延熙十年卒，整二十年耳，此云“三十”，字之误也。〉",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:016",
+      "personId": "person:workbook:fc1eb106ad029d47",
+      "nodeName": "丞相参军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传裴注引《华阳国志》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "邵兄邈，字漢南，劉璋時為牛鞞長。先主領牧，為從事，正旦命行酒，得進見，讓先主曰：「振威以將軍宗室肺腑，委以討賊，元功未效，先寇而滅；邈以將軍之取鄙州，甚為不宜也。」先主曰：「知其不宜，何以不助之？」邈曰：「匪不敢也，力不足耳。」有司將殺之，諸葛亮為請，得免。久之，為犍為太守、丞相參軍、安漢將軍。建興六年，亮西征。馬謖在前敗績，亮將殺之，邈諫以「秦赦孟明，用伯西戎，楚誅子玉，二世不競」，失亮意，還蜀。十二年，亮卒，後主素服發哀三日，邈上疏曰：「呂祿、霍禹未必懷反叛之心，孝宣不好為殺臣之君，直以臣懼其偪，主畏其威，故姦萌生。亮身杖強兵，狼顧虎視，五大不在邊，臣常危之。今亮殞沒，蓋宗族得全，西戎靜息，大小為慶。」後主怒，下獄誅之。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:v74:017",
+      "personId": "person:workbook:fc1eb106ad029d47",
+      "nodeName": "安汉将军",
+      "startYear": null,
+      "endYear": null,
+      "polity": "季汉",
+      "appointmentNature": "任官",
+      "treeType": "source",
+      "factionName": "季汉",
+      "citations": [
+        {
+          "title": "《三国志》卷45·杨戏传裴注引《华阳国志》",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷45",
+          "quote": "邵兄邈，字漢南，劉璋時為牛鞞長。先主領牧，為從事，正旦命行酒，得進見，讓先主曰：「振威以將軍宗室肺腑，委以討賊，元功未效，先寇而滅；邈以將軍之取鄙州，甚為不宜也。」先主曰：「知其不宜，何以不助之？」邈曰：「匪不敢也，力不足耳。」有司將殺之，諸葛亮為請，得免。久之，為犍為太守、丞相參軍、安漢將軍。建興六年，亮西征。馬謖在前敗績，亮將殺之，邈諫以「秦赦孟明，用伯西戎，楚誅子玉，二世不競」，失亮意，還蜀。十二年，亮卒，後主素服發哀三日，邈上疏曰：「呂祿、霍禹未必懷反叛之心，孝宣不好為殺臣之君，直以臣懼其偪，主畏其威，故姦萌生。亮身杖強兵，狼顧虎視，五大不在邊，臣常危之。今亮殞沒，蓋宗族得全，西戎靜息，大小為慶。」後主怒，下獄誅之。",
+          "note": "原典未明载受任起讫年，保留空值，不由北驻汉中等事件推定连续任期"
         }
       ]
     },

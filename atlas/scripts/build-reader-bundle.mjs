@@ -3,12 +3,13 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
-import { reviewedAppointments } from './appointment-publication.mjs';
+import { loadAppointmentPublication } from './appointment-supplements.mjs';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
-const expectedReaderCount = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8')))).length;
+const readerScopeRows = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const expectedReaderCount = readerScopeRows.length;
 const sourceHtmlPath = path.join(root, 'index.html');
 const registryJsonPath = path.join(root, 'data', 'v63-person-registry.json');
 const registryJsPath = path.join(root, 'data', 'v63-person-registry.js');
@@ -21,6 +22,11 @@ const relationsOnly = process.argv.includes('--relations-only');
 const bannedRuntimeFiles = new Set([
   'data/person-source-index.js',
   'data/v71-appointment-review.json',
+  'data/v74-appointment-supplements.json',
+  'data/v74-appointment-source-review.json',
+  'data/v74-chancellery-evidence.json',
+  'data/v74-person-biography-review.json',
+
   'data/v71-person-identity-review.json',
   'data/person-zi-supplement.js',
   'data/v60-person-workbook-import.js',
@@ -373,9 +379,8 @@ assertNoBannedPayloadKeys(readerPeopleJson);
 // reader-only fact projection so those published IDs resolve without shipping
 // person-source-index or the V61 workbook/audit payload.
 const readerPeopleRows = readerPeopleJson.people || [];
-const sourceIndexRelations = runtimeGlobal('data/person-source-index.js', 'SGZ_PERSON_SOURCE_INDEX');
 const v61RelationSource = runtimeGlobal('data/v61-person-supplements.js', 'SGZ_V61_PERSON_SUPPLEMENTS');
-const reviewedRows = reviewedAppointments(sourceIndexRelations.appointments || [], readJson(path.join(root, 'data/v71-appointment-review.json')), id => registryJson.legacyToCanonical[id] || id);
+const reviewedRows = loadAppointmentPublication(root, readerScopeRows, id => registryJson.legacyToCanonical[id] || id).published;
 const sourceAppointmentsById = new Map(reviewedRows.map(row => [String(row.id || ''), row]));
 const sourcePeerageById = new Map((v61RelationSource.peerageEvents || []).map(row => [String(row.eventId || ''), row]));
 const appointmentRelations = [];

@@ -5,7 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { reviewedReaderScope, validateIdentitySources } from './person-identity-publication.mjs';
-import { reviewedAppointments } from './appointment-publication.mjs';
+import { loadAppointmentPublication } from './appointment-supplements.mjs';
 import { reviewedBiographies } from './biography-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
@@ -21,12 +21,12 @@ const statusValues = new Set(['verified', 'review-only', 'suppressed']);
 const v60 = readJson('v60-person-workbook-import.json');
 const v61 = readJson('v61-person-supplements.json');
 const sourceIndex = readJson('person-source-index.json');
-const appointmentReview = readJson('v71-appointment-review.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
 const identityReview = readJson('v71-person-identity-review.json');
 const identitySuppressions = readJson('v73-person-identity-suppressions.json');
+const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview, identitySuppressions);
 validateIdentitySources(identityReview, {
   appointments: sourceIndex.appointments, snapshot260: v61.snapshots260, v62: v62.people
 });
@@ -333,7 +333,7 @@ for (const person of sourceIndex.people || []) {
   for (const sourceId of person.sourceIds || []) entry.sourceRecordIds.add(sourceId);
   if (/\u5df2按显式身份|\u5df2核|\u5df2消歧/.test(text(person.homonymStatus)) || (identityApi.identities || []).some(item => item.personId === canonicalId)) entry.identityStatus = 'resolved';
 }
-for (const appointment of reviewedAppointments(sourceIndex.appointments || [], appointmentReview, canonicalPersonId)) {
+for (const appointment of loadAppointmentPublication(root, readerScopeRows, canonicalPersonId).published) {
   if (isExcludedSourceRecord(appointment.personId, appointment.name)) continue;
   const entry = ensure(canonicalPersonId(appointment.personId), appointment.name);
   entry.datasets.add('appointments');
@@ -478,7 +478,6 @@ for (const review of identityReview.records.filter(row => row.status === 'verifi
   }
 }
 
-const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview, identitySuppressions);
 const readerScopeIds = new Set(readerScopeRows.map(row => canonicalPersonId(row.personId)).filter(Boolean));
 if (readerScopeIds.size !== readerScopeRows.length) {
   throw new Error(`阅读范围存在重复 personId：${readerScopeRows.length}/${readerScopeIds.size}`);
@@ -498,7 +497,7 @@ for (const row of readerScopeRows) {
 const existingBiographies = new Map([...entries.values()]
   .filter(entry => (entry.fieldCandidates.bio || []).some(row => row.publicationStatus === 'verified'))
   .map(entry => [entry.personId, true]));
-for (const review of reviewedBiographies(readerScopeRows, readJson('v71-person-biography-review.json'), existingBiographies)) {
+for (const review of reviewedBiographies(readerScopeRows, { records: [...readJson('v71-person-biography-review.json').records, ...readJson('v74-person-biography-review.json').records] }, existingBiographies)) {
   const entry = entries.get(review.personId);
   addCandidate(entry, 'bio', review.bio, 'verified', review.reviewId, '确定');
   addCandidate(entry, 'bioCitations', review.citations, 'verified', review.reviewId, '确定');

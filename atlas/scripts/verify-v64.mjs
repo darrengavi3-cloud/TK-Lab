@@ -320,7 +320,7 @@ for (const person of readerJson.people || []) {
 }
 const actualAppointmentRelations = new Set((readerRelations.appointments || []).map(row => `${row.appointmentId}@${row.personId}`));
 const actualPeerageRelations = new Set((readerRelations.peerageEvents || []).map(row => `${row.eventId}@${row.personId}`));
-const appointmentReview = readJson('data/v71-appointment-review.json');
+const appointmentReview = { records: [...readJson('data/v71-appointment-review.json').records, ...readJson('data/v74-appointment-source-review.json').records, ...readJson('data/v74-appointment-supplements.json').records.map(row => ({ ...row, appointmentId: row.id }))] };
 const reviewedAppointmentIds = new Set(appointmentReview.records.filter(row => row.status === 'verified').map(row => row.appointmentId));
 assert(expectedAppointmentRelations.size === reviewedAppointmentIds.size && expectedPeerageRelations.size === 535, 'V71 任官发布门槛与读者关系不闭合');
 assert((readerRelations.appointments || []).every(row => reviewedAppointmentIds.has(row.appointmentId)), '未核任官进入读者关系');
@@ -344,8 +344,10 @@ for (const row of readerRelations.peerageEvents || []) {
   }
 }
 const relationPayloadText = JSON.stringify({
-  appointments: readerRelations.appointments || [],
-  peerageEvents: readerRelations.peerageEvents || []
+  // Original quotations and explanatory citation notes may legitimately say
+  // that a date is unknown. Keep them intact; reject placeholders in fact fields.
+  appointments: (readerRelations.appointments || []).map(({ citations, ...fact }) => fact),
+  peerageEvents: (readerRelations.peerageEvents || []).map(({ citations, ...fact }) => fact)
 });
 assert(!/(?:待考|待校|存疑|未详|不详|未载|缺载|对照表补|推算)/u.test(relationPayloadText), 'V63 读者人物关联仍包含审校状态或占位说明');
 assert(Object.keys(readerRelations.appointmentsById || {}).length === actualAppointmentRelations.size, '任官 appointmentsById 索引不闭合');

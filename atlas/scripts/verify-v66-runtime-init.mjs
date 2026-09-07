@@ -18,7 +18,7 @@ assert(html.includes("import('./assets/app/persistence.js?v=66.2')"),'持久化 
 assert(html.includes("if(!persistence?.createDirtyState||!persistence?.createPatchEngine)"),'界面启动前没有验证持久化接口');
 assert(html.indexOf("if(!persistence?.createDirtyState||!persistence?.createPatchEngine)")<html.indexOf('const app = createApp({'),'持久化接口验证晚于 Vue 初始化');
 assert(wrapperSource.includes("throw new Error('持久化核心模块未注册')"),'ESM 兼容入口会静默返回不完整模块');
-assert(pageSource.includes('/legacy/index.html?v=73'),'站点壳层没有刷新 V73 读者 iframe 缓存键');
+assert(pageSource.includes('/legacy/index.html?v=74'),'站点壳层没有刷新 V74 读者 iframe 缓存键');
 
 const context={window:{}};
 vm.runInNewContext(coreSource,context,{filename:'persistence-core.js'});
