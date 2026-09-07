@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { reviewedReaderScope, validateIdentitySources } from './person-identity-publication.mjs';
 import { loadAppointmentPublication } from './appointment-supplements.mjs';
-import { reviewedBiographies } from './biography-publication.mjs';
+import { reviewedBiographies, reviewedBiographyCorrections } from './biography-publication.mjs';
 import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -498,8 +498,27 @@ for (const row of readerScopeRows) {
 const existingBiographies = new Map([...entries.values()]
   .filter(entry => (entry.fieldCandidates.bio || []).some(row => row.publicationStatus === 'verified'))
   .map(entry => [entry.personId, true]));
-for (const review of reviewedBiographies(readerScopeRows, { records: [...readJson('v71-person-biography-review.json').records, ...readJson('v74-person-biography-review.json').records, ...readJson('v75-person-biography-review.json').records] }, existingBiographies)) {
+for (const review of reviewedBiographies(readerScopeRows, { records: [...readJson('v71-person-biography-review.json').records, ...readJson('v74-person-biography-review.json').records, ...readJson('v75-person-biography-review.json').records, ...readJson('v76-person-biography-review.json').records] }, existingBiographies)) {
   const entry = entries.get(review.personId);
+  addCandidate(entry, 'bio', review.bio, 'verified', review.reviewId, '确定');
+  addCandidate(entry, 'bioCitations', review.citations, 'verified', review.reviewId, '确定');
+}
+
+const currentBiographyValues = new Map([...entries.values()].flatMap(entry => {
+  const values = [...new Set((entry.fieldCandidates.bio || []).filter(row => row.publicationStatus === 'verified').map(row => row.value))];
+  return values.length === 1 ? [[entry.personId, values[0]]] : [];
+}));
+for (const review of reviewedBiographyCorrections(readerScopeRows, readJson('v76-person-biography-corrections.json'), currentBiographyValues)) {
+  const entry = entries.get(review.personId);
+  for (const field of ['bio', 'bioCitations']) {
+    for (const candidate of entry.fieldCandidates[field] || []) {
+      if (candidate.publicationStatus === 'verified') {
+        candidate.publicationStatus = 'suppressed';
+        candidate.supersededBy = review.reviewId;
+        candidate.supersessionReason = review.reason;
+      }
+    }
+  }
   addCandidate(entry, 'bio', review.bio, 'verified', review.reviewId, '确定');
   addCandidate(entry, 'bioCitations', review.citations, 'verified', review.reviewId, '确定');
 }
@@ -586,7 +605,7 @@ const protectedResolution = Object.entries(protectedExistingPeople).map(([name, 
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
-  readerScopeVersion: 'V75',
+  readerScopeVersion: 'V76',
   readerScopePeople: readerScopeRows.length,
   scopeExcludedPeople: excludedPeopleAudit.size,
   nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
@@ -642,7 +661,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V75' },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V76' },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,

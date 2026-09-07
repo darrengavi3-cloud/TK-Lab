@@ -1,3 +1,4 @@
+import { loadSourceAppointmentReviews } from './appointment-supplements.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -320,7 +321,7 @@ for (const person of readerJson.people || []) {
 }
 const actualAppointmentRelations = new Set((readerRelations.appointments || []).map(row => `${row.appointmentId}@${row.personId}`));
 const actualPeerageRelations = new Set((readerRelations.peerageEvents || []).map(row => `${row.eventId}@${row.personId}`));
-const appointmentReview = { records: [...readJson('data/v71-appointment-review.json').records, ...readJson('data/v74-appointment-source-review.json').records, ...readJson('data/v75-appointment-source-review.json').records, ...[...readJson('data/v74-appointment-supplements.json').records, ...readJson('data/v75-appointment-supplements.json').records].map(row => ({ ...row, appointmentId: row.id }))] };
+const appointmentReview = { records: [...loadSourceAppointmentReviews(root).records, ...[74,75,76].flatMap(version => readJson(`data/v${version}-appointment-supplements.json`).records.map(row => ({...row, appointmentId: row.id})))] };
 const reviewedAppointmentIds = new Set(appointmentReview.records.filter(row => row.status === 'verified').map(row => row.appointmentId));
 assert(expectedAppointmentRelations.size === reviewedAppointmentIds.size && expectedPeerageRelations.size === 535, 'V71 任官发布门槛与读者关系不闭合');
 assert((readerRelations.appointments || []).every(row => reviewedAppointmentIds.has(row.appointmentId)), '未核任官进入读者关系');

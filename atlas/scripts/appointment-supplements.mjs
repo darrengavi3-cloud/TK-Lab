@@ -46,18 +46,15 @@ export function reviewedSupplementAppointments(scope, evidence, review) {
 export function loadAppointmentPublication(root, scope, canonicalPersonId = value => value) {
   const json = name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'));
   const sourceRows = json('person-source-index.json').appointments;
-  const review = { records: [
-    ...json('v71-appointment-review.json').records,
-    ...json('v74-appointment-source-review.json').records,
-    ...json('v75-appointment-source-review.json').records
-  ] };
-  const supplement = { records: [...json('v74-appointment-supplements.json').records, ...json('v75-appointment-supplements.json').records] };
+  const review = loadSourceAppointmentReviews(root);
+  const supplement = { records: [74, 75, 76].flatMap(version => json(`v${version}-appointment-supplements.json`).records) };
   const sourcePublished = reviewedAppointments(sourceRows, review, canonicalPersonId);
   // Validate each evidence namespace independently: different batches may use
   // the same short locator but must never shadow one another's source.
   const supplemented = [
     ...reviewedSupplementAppointments(scope, json('v74-chancellery-evidence.json'), json('v74-appointment-supplements.json')),
-    ...reviewedSupplementAppointments(scope, json('v75-chancellery-evidence.json'), json('v75-appointment-supplements.json'))
+    ...reviewedSupplementAppointments(scope, json('v75-chancellery-evidence.json'), json('v75-appointment-supplements.json')),
+    ...reviewedSupplementAppointments(scope, json('v76-chancellery-evidence.json'), json('v76-appointment-supplements.json'))
   ];
   const published = mergeAppointmentEvidence([...sourcePublished, ...supplemented], review);
   if (new Set(published.map(row => row.id)).size !== published.length) throw new Error('Appointment ID collision');
@@ -108,4 +105,32 @@ export function appointmentStatusCounts(sourceRows, review, supplement, publishe
   }
   if ([...publishedIds].some(id => !ids.has(id))) throw new Error('Unregistered appointment was published');
   return counts;
+}
+
+// Review history is immutable. A later decision must pin the exact decision it
+// replaces; an unguarded duplicate or a replacement of a missing row is rejected.
+export function mergeSourceAppointmentReviews(...batches) {
+  const decisions = new Map();
+  for (const batch of batches) {
+    const seen = new Set();
+    for (const row of batch.records) {
+      const previous = decisions.get(row.appointmentId);
+      if (seen.has(row.appointmentId) || (previous
+        ? sourceDigest(previous) !== row.supersedesReviewDigest
+        : Object.hasOwn(row, 'supersedesReviewDigest'))) {
+        throw new Error(`Appointment review replacement mismatch: ${row.appointmentId}`);
+      }
+      seen.add(row.appointmentId);
+      if (previous && previous.sourceSha256 !== row.sourceSha256) throw new Error(`Appointment review source mismatch: ${row.appointmentId}`);
+      decisions.set(row.appointmentId, row);
+    }
+  }
+  return { records: [...decisions.values()] };
+}
+
+export function loadSourceAppointmentReviews(root) {
+  return mergeSourceAppointmentReviews(...[
+    'v71-appointment-review.json', 'v74-appointment-source-review.json',
+    'v75-appointment-source-review.json', 'v76-appointment-source-review.json'
+  ].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
 }

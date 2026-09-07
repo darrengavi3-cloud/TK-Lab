@@ -30,7 +30,7 @@ test("server-renders the historical atlas shell", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>观史台 · 历史资料库<\/title>/);
-  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=75"/);
+  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=76"/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
@@ -44,7 +44,7 @@ test("packages the current court, reader people, and map assets", async () => {
     readFile(new URL("../public/legacy/assets/ui/court-ink-palace.png", import.meta.url)),
   ]);
 
-  assert.match(page, /src="\/legacy\/index\.html\?v=75"/);
+  assert.match(page, /src="\/legacy\/index\.html\?v=76"/);
   assert.match(layout, /观史台 · 历史资料库/);
   assert.match(legacy, /courtHierarchy|朝堂谱系|SGZ_V63_READER_PEOPLE/);
   assert.match(readerPeople, /曹操|诸葛亮|司马懿/);

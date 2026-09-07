@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "V76",
+  "reviewedAt": "2026-09-07",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:32:537f759694cc",
+      "sourceSha256": "a80a3e2c35aa46ec4df8e1603e7370752ba4f941906106f4e0f0712ed12bfd85",
+      "status": "verified",
+      "reason": "核对本纪与本传受任主体、完整官名及明确纪年，未知终年保留空值。",
+      "correction": {
+        "personId": "person:shu:liu-bei",
+        "name": "刘备",
+        "officeName": "司隶校尉",
+        "startYear": 211,
+        "endYear": null,
+        "polity": "汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷32·先主传建安十六年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷32",
+          "quote": "十六年，益州牧劉璋遙聞曹公將遣鍾繇等向漢中討張魯，內懷恐懼。〔中略：迎刘备入蜀及涪城会见〕璋推先主行大司馬，領司隸校尉；先主亦推璋行鎮西大將軍，領益州牧。"
+        }
+      ],
+      "readerNote": "建安十六年刘璋推举，任官性质为推领；不等同于汉廷册授。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:f265fd6698b3",
+      "sourceSha256": "6895d43cd93d45c8286a6f39450bf57dd41713e8a11772b5d60f332463501fc2",
+      "status": "verified",
+      "reason": "核对本纪与本传受任主体、完整官名及明确纪年，未知终年保留空值。",
+      "correction": {
+        "personId": "person:source:d66a7f3fda55",
+        "name": "吴壹",
+        "officeName": "车骑将军",
+        "startYear": 234,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷33·后主传建兴十二年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "十二年春二月，亮由斜谷出，始以流馬運。秋八月，亮卒渭濱。征西大將軍魏延與丞相長史楊儀爭權不和，舉兵相攻，延敗走。斬延首，儀率諸軍還成都。大赦。以左將軍吳壹為車騎將軍，假節督漢中。以丞相留府長史蔣琬為尚書令，總統國事。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:15266b19b3c3",
+      "sourceSha256": "63eeedd3edaeb886f9621d6600fa94cd8f870d99f1b45d89baa020915337d47f",
+      "status": "verified",
+      "reason": "核对本纪与本传受任主体、完整官名及明确纪年，未知终年保留空值。",
+      "correction": {
+        "personId": "person:shu:jiang-wan",
+        "name": "蒋琬",
+        "officeName": "尚书令",
+        "startYear": 234,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷33·后主传建兴十二年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "十二年春二月，亮由斜谷出，始以流馬運。秋八月，亮卒渭濱。征西大將軍魏延與丞相長史楊儀爭權不和，舉兵相攻，延敗走。斬延首，儀率諸軍還成都。大赦。以左將軍吳壹為車騎將軍，假節督漢中。以丞相留府長史蔣琬為尚書令，總統國事。"
+        }
+      ],
+      "supersedesReviewDigest": "b892877df1db452de91b07243d4d949e2662e5dad5678a44a2e3376a15f27c22"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:8b22528ee416",
+      "sourceSha256": "305f3c99c884d15391e4f10d48ef04e424f6e8f33361a61453fc0eae62340f10",
+      "status": "verified",
+      "reason": "核对本纪与本传受任主体、完整官名及明确纪年，未知终年保留空值。",
+      "correction": {
+        "personId": "person:shu:jiang-wan",
+        "name": "蒋琬",
+        "officeName": "大将军",
+        "startYear": 235,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷33·后主传建兴十三年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "十三年春正月，中軍師楊儀廢徙漢嘉郡。夏四月，進蔣琬位為大將軍。"
+        }
+      ],
+      "supersedesReviewDigest": "9d0529cba3d9ff83fd772ceb57bf8db4b251385ff458913b7aba95c192710fc7"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:c8d63f8e20ac",
+      "sourceSha256": "b77ed971e16160b24296d2e684d604f00f1178ebb3c3dbea256a10b680076527",
+      "status": "verified",
+      "reason": "核对本纪与本传受任主体、完整官名及明确纪年，未知终年保留空值。",
+      "correction": {
+        "personId": "person:shu:fei-yi",
+        "name": "费祎",
+        "officeName": "大将军",
+        "startYear": 243,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷33·后主传延熙六年至九年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "六年冬十月，大司馬蔣琬自還漢中，住涪。十一月，大赦。以尚書令費禕為大將軍。〔中略：七年至九年行军事〕九年夏六月，費禕還成都。秋，大赦。冬十一月，大司馬蔣琬卒。"
+        }
+      ],
+      "supersedesReviewDigest": "037f685f7c98188a96bbbc0df194a4b54d775a1f0d3fe97e419efe079807f8e2"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:2e6f7dd53661",
+      "sourceSha256": "09f4982ae29bc5c380327ed5323ab1eff5fbb9a896b570da484b0f554f5067b0",
+      "status": "verified",
+      "reason": "核对本纪与本传受任主体、完整官名及明确纪年，未知终年保留空值。",
+      "correction": {
+        "personId": "person:shu:jiang-wei",
+        "name": "姜维",
+        "officeName": "大将军",
+        "startYear": 256,
+        "endYear": 256,
+        "polity": "季汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷33·后主传延熙十九年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "十九年春，進姜維位為大將軍，督戎馬，與鎮西將軍胡濟期會上邽，濟失誓不至。秋八月，維為魏大將軍鄧艾所破於上邽。維退軍還成都。"
+        },
+        {
+          "title": "《三国志》卷44·姜维传贬降与复拜",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "十九年春，就遷維為大將軍。更整勒戎馬，與鎮西大將軍胡濟期會上邽。濟失誓不至，故維為魏大將鄧艾所破於段谷，星散流離，死者甚眾。眾庶由是怨讟，而隴以西亦騷動不寧。維謝過引負，求自貶削。為後將軍，行大將軍事。〔中略：延熙二十年出兵〕景耀元年，維聞誕破敗，乃還成都。復拜大將軍。"
+        }
+      ],
+      "supersedesReviewDigest": "e5535f22893254c7730be35bfb49437861691e8fa322a20008af1ebfb025a37f",
+      "readerNote": "本次为延熙十九年初授；同年贬后将军、行大将军事，景耀元年复拜另列。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:49a9a59efb0b",
+      "sourceSha256": "fdc6ecd4f772008420639082f699fd257b7ef24a8ff7025958f094043e08bcf9",
+      "status": "suppressed",
+      "reason": "延熙二年大司马与卷44已核任官为同一事实，作为补充证据并入，不重复生成履历。",
+      "correction": {
+        "personId": "person:shu:jiang-wan",
+        "name": "蒋琬",
+        "officeName": "大司马",
+        "startYear": 239,
+        "endYear": null,
+        "polity": "季汉"
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷33·后主传延熙元年至二年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷33",
+          "quote": "延熙元年春正月，立皇后張氏。大赦，攻元。立子睿為太子，子瑤為安定王。冬十一月，大將軍蔣琬出屯漢中。二年春三月，進蔣琬位為大司馬。"
+        }
+      ],
+      "supersedesReviewDigest": "588d6a7d57b7852cbe611f375f94b979c9e4c5f6c55356269137ef61d1bc19cf",
+      "corroboratesAppointmentId": "appointment:source:sgz:44:1c106e4707ab"
+    }
+  ]
+}
