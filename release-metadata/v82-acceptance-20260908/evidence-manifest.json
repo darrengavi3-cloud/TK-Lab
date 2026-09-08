@@ -18,8 +18,8 @@
     },
     {
       "path": "V82-ACCEPTANCE.md",
-      "bytes": 7041,
-      "sha256": "17d37f10f4b62b7f1c27425be8bfc56af701c96bb1ffc8ea4f835578d767c706"
+      "bytes": 7570,
+      "sha256": "140aecdb9d5cc5beeb1d49bfa3cf3279a0a75038f80121e2517f818a8bfcf3a2"
     },
     {
       "path": "release-metadata/access-policy.json",
@@ -27,9 +27,19 @@
       "sha256": "d9f9f4e415f8ab7258bf07ac1ceceecf4cde01bfb5c4850e8906d6630a4440f3"
     },
     {
+      "path": "release-metadata/deployment-manifest.json",
+      "bytes": 408005,
+      "sha256": "3a6653ecdb2064d56dd5e2a48f4f55672e0f11e395c5c310b7da75e588a973bb"
+    },
+    {
       "path": "release-metadata/v82-acceptance-20260908/acceptance-matrix.json",
       "bytes": 43599,
       "sha256": "967b0407328c6eac8799af05f74029c4947b1aa69d273ea8bc1cb72f82efc8a1"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/build-artifact-comparison.json",
+      "bytes": 1278,
+      "sha256": "af44047f596b0d20fed15dd54b790f1cf98cde18b35ba6169f6d1409b67a241c"
     },
     {
       "path": "release-metadata/v82-acceptance-20260908/external-evidence.json",

@@ -6,7 +6,7 @@
 
 - GitHub：`darrengavi3-cloud/TK-Lab`，PR #11，分支 `codex/v77-v82-iteration`，测试基线 `c3ae8bb89c0e15d49eb993aaf5e33f392c3cfed2`。
 - Site 源码：`fba969b37936745edd956c791af6bce70f427601`。两端源码树均为 `234c06c6b371ec1593a635ecce99f84fe2b3d144`；不是以版本名称代替源码一致性检查。
-- 本次只增加验收证据并刷新权限快照，未改变应用、人物、任官、封爵或研究层／读者层投影。历史 V77—V82 审定与验证回执保留。
+- 本次只增加验收证据、保存本地构建产物清单并刷新权限快照，未改变应用、人物、任官、封爵或研究层／读者层投影。历史 V77—V82 审定与验证回执保留。
 - 原 Site 第 38 版（V82）已保存，源码仍为上述 Site 提交。本次不创建新保存版本。
 - 查询到的 V80 第 36 版历史部署为 `succeeded`。这是历史部署服务回执，不能证明当前在线页面、V82 部署或真实设备验收通过。
 - 新鲜权限读取仍为 custom、仅 1 位 owner、0 外部访问者、0 群组授权。快照六小时有效期门禁保持；未来发布必须再次核验。
@@ -47,12 +47,15 @@
 
 内部项目、版本、部署及存储资源标识和服务地址不在本次证据中重复收录；目标关联通过既有 hosting 清单、此前 PR 回执、保存版本号和源码提交核验。
 
+本地最终构建清单为 2123 个文件（不含清单自身）。与此前清单相比，3 个生成的服务端文件哈希不同，已将本次清单和差异记录保存。规范源双重构建一致不代表完整生产包逐字节可复现；本轮也未将该包部署。差异只记录哈希，不收录运行密钥值。
+
 ## 可追溯文件
 
 - [外部回执与源码身份](release-metadata/v82-acceptance-20260908/external-evidence.json)
 - [本次发布门禁终态](release-metadata/v82-acceptance-20260908/release-check.json)与[完整日志](release-metadata/v82-acceptance-20260908/release-check.log)
 - [两次预览返回信息](release-metadata/v82-acceptance-20260908/preview-attempts.log)
 - [72 项验收矩阵及真机／性能缺口](release-metadata/v82-acceptance-20260908/acceptance-matrix.json)
+- [本地产物清单差异](release-metadata/v82-acceptance-20260908/build-artifact-comparison.json)及[完整清单](release-metadata/deployment-manifest.json)
 - [V80 本地源码恢复逐文件核验](release-metadata/v82-acceptance-20260908/v80-source-restore.json)
 - [证据文件 SHA-256 清单](release-metadata/v82-acceptance-20260908/evidence-manifest.json)
 
