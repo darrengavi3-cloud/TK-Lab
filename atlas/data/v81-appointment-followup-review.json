@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-08",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:04:1d8fe3385e0b",
+      "sourceSha256": "c791e90c1cf844979e95fc03782331fba742c361b24772b80b3bb4003387f74e",
+      "supersedesReviewDigest": "790c1ea265a36e0308d8b06f2d38395c1b9b52d25ea07425e278f21777080745",
+      "status": "suppressed",
+      "reason": "V81核读钟会本传得明确反证：艾、会咸未受命而毙。将V78司徒是否实任的待补核改为排除实任；保留授命事实与旧审定，不牵动封爵。",
+      "citations": [
+        {
+          "title": "《三国志》卷04·陈留王纪景元四年十二月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷04",
+          "quote": "乙卯，以征西將軍鄧艾為太尉，鎮西將軍鍾會為司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷28·钟会传景元四年十二月诏",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "其以會為司徒，進封縣侯，增邑萬戶。封子二人亭侯，邑各千戶。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·钟会传·艾、会授公官后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "初，艾為太尉，會為司徒，皆持節、都督諸軍如故，咸未受命而斃。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:25:34394445c97c",
+      "sourceSha256": "4fddbc2bb3f4b19c5e6c8c9b03ad2ec558805b885dd80f8dc75acebcccfbcfd1",
+      "status": "verified",
+      "reason": "钟会司徒已据未受命而毙排除实任；同步更正既有镇西将军条中“司徒另待核”的过时读者注释，人物、官名和262—未知任期不变。",
+      "citations": [
+        {
+          "title": "《三國志》卷25·辛毗传附辛宪英",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷25",
+          "quote": "逮鍾會爲鎮西將軍，憲英謂從子羊祜曰：",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·钟会传·景元三年冬",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "景元三年冬，以會為鎮西將軍、假節都督關中諸軍事。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·钟会传·艾、会授公官后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "初，艾為太尉，會為司徒，皆持節、都督諸軍如故，咸未受命而斃。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:6bea1ab8f79e",
+        "name": "钟會",
+        "officeName": "镇西将军",
+        "startYear": 262,
+        "endYear": null,
+        "polity": "魏"
+      },
+      "readerNote": "景元三年冬授镇西将军，始年262；本传明确司徒之命未受，不据该授命截断镇西将军终年，终年未详。",
+      "supersedesReviewDigest": "42521784c4bf7b3ef3f7fe9687f0c1894fc2facb5fad8c3d535581697da69677"
+    }
+  ]
+}

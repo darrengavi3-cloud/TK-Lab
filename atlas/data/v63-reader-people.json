@@ -5,7 +5,7 @@
     "people": 2086,
     "legacyMappings": 1140,
     "portraitAssets": 512,
-    "readerScopeVersion": "V80"
+    "readerScopeVersion": "V81"
   },
   "people": [
     {
@@ -6910,6 +6910,9 @@
         "魏",
         "西晋"
       ],
+      "appointmentIds": [
+        "appointment:source:jinshu:003:250ddd435f4b"
+      ],
       "peerageEventIds": [
         "peerage:336"
       ]
@@ -6924,6 +6927,11 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:003:5ae8505b59b1",
+        "appointment:source:jinshu:003:b08dd742fd47",
+        "appointment:source:jinshu:003:d43e75e3890c"
       ],
       "peerageEventIds": [
         "peerage:341"
@@ -7289,6 +7297,9 @@
       "dynastyTags": [
         "后汉"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:49:58c66292ab75"
+      ],
       "portraitIds": [
         "portrait:asset:f597744de01ee7692269"
       ]
@@ -7573,6 +7584,10 @@
       "dynastyTags": [
         "吴"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:48:abe0696d1764",
+        "appointment:source:sgz:49:a9bbd5077f7b"
+      ],
       "portraitIds": [
         "portrait:asset:d29566b59bedbdb204e7",
         "portrait:asset:fc1ff7570bd97c9e5065"
@@ -7645,6 +7660,9 @@
       "dynastyTags": [
         "吴"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:48:d418b5ddda35"
+      ],
       "portraitIds": [
         "portrait:asset:570a6e18664c7c1ab068"
       ]
@@ -7697,6 +7715,9 @@
       ],
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:003:d0d222e1d428"
       ]
     },
     {
@@ -8224,6 +8245,9 @@
       ],
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:59:bea5bb48b723"
       ],
       "portraitIds": [
         "portrait:asset:7e35546afa85bc276c80"
@@ -8952,6 +8976,9 @@
       "name": "缪祎",
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:53:aecc6e086a06"
       ],
       "portraitIds": [
         "portrait:v62:wu:20"
@@ -11925,6 +11952,9 @@
       "name": "孙峻",
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:64:37eb3d6f4cf6"
       ]
     },
     {
@@ -17953,7 +17983,10 @@
     },
     {
       "personId": "person:workbook:fc4fcf08b36e1b6c",
-      "name": "士燮"
+      "name": "士燮",
+      "appointmentIds": [
+        "appointment:source:sgz:49:95665e4a700a"
+      ]
     },
     {
       "personId": "person:workbook:fc7774b067ac3ac6",

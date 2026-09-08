@@ -37,7 +37,7 @@ test('V75 removes five false people and consolidates corroboration without losin
   }
   const publication = loadAppointmentPublication(fileURLToPath(root), scope, id => registry.legacyToCanonical[id] || id);
   const facts = publication.published;
-  assert.equal(facts.length, 238);
+  assert.equal(facts.length, 251);
   const fact = suffix => facts.find(row => row.id === `appointment:source:${suffix}`);
   assert.equal(fact('sgz:35:03b07e76f199').personId, 'person:shu:zhuge-liang');
   assert.equal(fact('sgz:36:97328e141be5').personId, 'person:workbook:dbc090011a676f55');
@@ -85,7 +85,7 @@ test('V74 chancellery evidence preserves refutations, corrected subjects and unk
   const combined = loadSourceAppointmentReviews(fileURLToPath(root));
   const allSupplements = {records: [...supplement.records, ...json('v75-appointment-supplements').records, ...json('v76-appointment-supplements').records]};
   const counts = appointmentStatusCounts(source.appointments, combined, allSupplements, publishedIds);
-  assert.deepEqual(counts, { verified: 238, pending: 546, disputed: 2, suppressed: 65 });
+  assert.deepEqual(counts, { verified: 251, pending: 526, disputed: 2, suppressed: 72 });
   assert.deepEqual(json('v73-review-status-ledger').modules.find(row => row.key === 'appointments').counts, counts);
   const changed = structuredClone(evidence);
   changed.records.find(row => row.id === 'dong-hui').quote = '闢為丞相府屬，遷巴郡太守';
@@ -151,7 +151,7 @@ test('identity resolution cannot publish an unreviewed appointment; source edits
 test('all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild', () => {
   assert.equal(review.records.length, 149);
   const published = new Map(relations.appointments.map(row => [row.appointmentId, row]));
-  assert.equal(published.size, 238);
+  assert.equal(published.size, 251);
   const row = suffix => published.get(`appointment:source:${suffix}`);
   assert.equal(row('sgz:22:dc35da5cf8f9').personId, 'person:workbook:13d66149e45735fd');
   assert.equal(row('sgz:22:dc35da5cf8f9').nodeName, '从事祭酒');

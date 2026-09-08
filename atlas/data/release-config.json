@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "V80",
+  "version": "V81",
   "reviewBaseline": "V76",
   "audience": "owner-only",
   "appointmentReviewBatches": [
@@ -10,7 +10,9 @@
     "v76-appointment-source-review.json",
     "v78-appointment-source-review.json",
     "v79-appointment-source-review.json",
-    "v80-appointment-source-review.json"
+    "v80-appointment-source-review.json",
+    "v81-appointment-source-review.json",
+    "v81-appointment-followup-review.json"
   ],
   "appointmentSupplementBatches": [
     {
