@@ -1,0 +1,19 @@
+Attempt 1: sites-preview start /workspace/sites/tk-lab
+Sites preview did not become healthy before the timeout:
+
+> site-creator-vinext-starter@0.1.0 dev
+> WRANGLER_LOG_PATH=.wrangler/wrangler.log vite --host 0.0.0.0 --port 4173 --strictPort
+
+Exit code: 1. Follow-up sites-preview status: Sites preview stopped.
+
+Recovery basis: node_modules/.vite/deps_rsc and deps_ssr cache files now existed. Node v24.19.0; locked dependencies installed. Vite script forwards flags, host 0.0.0.0 and terminal.local allowedHosts already configured. CLOUDFLARE_CF_FETCH_ENABLED already defaults to false. No source configuration change.
+
+Attempt 2: sites-preview start /workspace/sites/tk-lab
+Sites preview did not become healthy before the timeout:
+
+> site-creator-vinext-starter@0.1.0 dev
+> WRANGLER_LOG_PATH=.wrangler/wrangler.log vite --host 0.0.0.0 --port 4173 --strictPort
+
+Exit code: 1. Follow-up sites-preview status: Sites preview stopped.
+
+These are returned command messages copied into this evidence record, not a timestamped server trace. No target page was opened; no screenshots or runtime timing samples were captured. Browser connection/tab discovery alone is not application acceptance. Further retries or alternate browser/server paths were not attempted.

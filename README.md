@@ -12,6 +12,8 @@ V82复核冻结清单第81—100条：批准12、排除实任4、待补核4。�
 
 本次保存源码与审定记录，不执行新部署，PR #11保持draft。第36版V80仍为此前已成功部署版本，第37版V81已保存但未部署；本次版本与CI的实际回执见 [PR #11](https://github.com/darrengavi3-cloud/TK-Lab/pull/11)。V82在此指任官续核，不表示地理轮或阅读矩阵已完成。浏览器视觉、真机iPhone、性能测量与回滚演练仍未完成；CI、构建和历史部署成功均不替代这些验收。待办矩阵见 [V77-ITERATION.md](V77-ITERATION.md)。
 
+2026-09-08 验收续办：已核对 V82 源码树、现有 CI／保存／历史部署回执和 owner-only 权限，完成 V80 本地源码恢复核验。两次预览均在页面加载前超时，72 个阅读组合、键盘／缩放、真实 iPhone、性能指标与线上回滚演练仍未验收；PR 继续保持 draft。详细结果和本次门禁终态见 [V82-ACCEPTANCE.md](V82-ACCEPTANCE.md)。
+
 ## 已合并审定基线：V76
 
 V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 2026-09-07 03:02:30 UTC 合入 `main`，合并提交为 [`23c6d8b`](https://github.com/darrengavi3-cloud/TK-Lab/commit/23c6d8b3fb2d35c1efb3f5fbc9f5d3cd9b9f2c03)。该基线任官已核 197／待补核 601／存疑 2／排除 51；本分支续核后的当前数字如下，不回写为 V76 的历史结果。

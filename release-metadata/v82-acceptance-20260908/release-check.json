@@ -1,0 +1,29 @@
+{
+  "command": "npm run release:check",
+  "startedAt": "2026-09-08T12:29:33.314636+00:00",
+  "finishedAt": "2026-09-08T12:37:40.011825+00:00",
+  "exitCode": 0,
+  "scope": "offline gates and fresh owner-only policy; no browser, device or deployment acceptance",
+  "baselineGitHubCommit": "c3ae8bb89c0e15d49eb993aaf5e33f392c3cfed2",
+  "baselineSiteCommit": "fba969b37936745edd956c791af6bce70f427601",
+  "baselineSourceTree": "234c06c6b371ec1593a635ecce99f84fe2b3d144",
+  "freshAccessEvidence": "../access-policy.json",
+  "applicationSourceChanged": false,
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 53,
+    "failed": 0
+  },
+  "freshAccessTests": {
+    "passed": 2,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 3
+  },
+  "typecheck": "passed",
+  "browserAcceptance": "not-accepted",
+  "realIPhoneAcceptance": "not-accepted",
+  "deploymentAcceptance": "not-executed"
+}
