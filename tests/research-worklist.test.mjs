@@ -269,5 +269,113 @@ test('V81 prior-review corrections pin immutable decisions and reconcile the 80-
   assert.deepEqual(counts, progress.cumulativeQueue);
   assert.deepEqual(counts, { reviewed: 80, verified: 54, suppressed: 21, pending: 5, disputed: 0 });
   assert.deepEqual(progress.nextQueue, work('appointment-triage').records.slice(80).map(r => r.recordId));
-  assert.ok(progress.nextQueue.every(id => !merged.has(id)), 'rows 81–100 remain unreviewed');
+  const v81Batches = config.appointmentReviewBatches.slice(0, config.appointmentReviewBatches.indexOf('v81-appointment-followup-review.json') + 1);
+  const reviewedAtV81 = new Set(v81Batches.flatMap(p => read('atlas/data/' + p).records).map(r => r.appointmentId));
+  assert.ok(progress.nextQueue.every(id => !reviewedAtV81.has(id)), 'rows 81–100 were unreviewed at the V81 checkpoint');
+});
+
+test('fifth batch reviews exactly frozen rows 81–100 while preserving all 251 prior facts and identity boundaries', () => {
+  const progress = work('appointment-batch-05-review');
+  const decisions = read('atlas/data/v82-appointment-source-review.json').records;
+  const frozen = work('appointment-triage').records.slice(80);
+  const relations = read('atlas/data/v63-reader-person-relations.json');
+  const current = new Map(relations.appointments.map(r => [r.appointmentId, r]));
+  assert.deepEqual(decisions.map(r => r.appointmentId), frozen.map(r => r.recordId));
+  assert.deepEqual(progress.counts, { reviewed: 20, verified: 12, suppressed: 4, pending: 4, remainingUnreviewedInQueue: 0 });
+  for (const [status, count] of [['verified', 12], ['suppressed', 4], ['review-only', 4]]) {
+    assert.equal(decisions.filter(r => r.status === status).length, count);
+  }
+  decisions.forEach((decision, i) => {
+    assert.equal(decision.sourceSha256, frozen[i].sourceSnapshotSha256);
+    assert.equal(hash(JSON.stringify(decision)), progress.records[i].decisionSha256);
+    assert.equal(progress.records[i].queuePosition, i + 81);
+    assert.equal(Boolean(current.get(decision.appointmentId)), decision.status === 'verified');
+    if (decision.status === 'verified') {
+      const fact = current.get(decision.appointmentId);
+      assert.equal(fact.personId, frozen[i].sourceSnapshot.personId, 'this batch cannot merge or add identities');
+      assert.equal(fact.citations[0].quote, frozen[i].sourceSnapshot.sourceExcerpt);
+      assert.ok(fact.citations.slice(1).length >= 2);
+      assert.doesNotMatch(fact.citations[0].note, /本批|本次|候选|冻结|发布|V8[12]/);
+    }
+  });
+  assert.equal(progress.previousPublished.length, 251);
+  for (const old of progress.previousPublished) assert.equal(hash(JSON.stringify(current.get(old.appointmentId))), old.sha256, old.appointmentId);
+  const people = read('atlas/data/v63-reader-people.json');
+  assert.equal(people.people.length, 2086);
+  assert.equal(hash(JSON.stringify(people.people.map(p => p.personId))), progress.preservedBoundaries.personIdsSha256);
+  assert.equal(hash(JSON.stringify(people.portraitResolutions)), progress.preservedBoundaries.portraitResolutionsSha256);
+  assert.equal(hash(JSON.stringify(relations.peerageEvents)), progress.preservedBoundaries.peerageEventsSha256);
+  assert.equal(relations.peerageEvents.length, 535);
+  assert.deepEqual(read('atlas/data/release-config.json').identityReviewBatches, progress.preservedBoundaries.identityReviewBatches);
+});
+
+test('fifth batch distinguishes refusal, exemption from bowing, posthumous titles and complete offices', () => {
+  const facts = read('atlas/data/v63-reader-person-relations.json').appointments;
+  const get = suffix => facts.find(r => r.appointmentId === 'appointment:source:jinshu:' + suffix);
+  for (const [suffix, office, start, end] of [
+    ['004:35bfea10f522', '司空', 296, 300],
+    ['004:690f4adb1fc7', '司徒', 300, 300],
+    ['004:7fdcaab5190e', '尚书左仆射', 297, null],
+    ['004:ad6e5a84be6e', '都督豫州诸军事', 291, null],
+    ['005:271eb89c0cb6', '征南将军', 309, 312],
+    ['005:3374cb0cc015', '尚书令', 307, 308],
+    ['005:565a6ff04152', '司徒', 306, null],
+    ['005:5ac72968c401', '大将军', 314, null],
+    ['005:8bdfa2f60653', '尚书令', 308, null],
+    ['005:d8236d5215fb', '尚书左仆射', 309, null],
+    ['005:d881f5ae4f1b', '司徒', 311, null],
+    ['005:e42c9bb5630f', '征北将军', 307, null]
+  ]) assert.deepEqual([get(suffix)?.nodeName, get(suffix)?.startYear, get(suffix)?.endYear, get(suffix)?.polity], [office, start, end, '西晋']);
+  const decisions = read('atlas/data/v82-appointment-source-review.json').records;
+  for (const position of [81, 86, 88, 89, 90, 92, 99, 100]) assert.equal(facts.some(f => f.appointmentId === decisions[position - 81].appointmentId), false);
+  assert.equal(decisions[0].status, 'review-only');
+  assert.ok(decisions[0].citations.some(c => c.quote.includes('臥加章綬')));
+  assert.equal(decisions[8].status, 'review-only');
+  assert.ok(decisions[8].citations.some(c => c.quote.includes('稱被中詔承制')));
+  for (const [position, phrase] of [[86, '軌又固辭'], [92, '未拜而洛陽陷沒'], [99, '讓司空，受都督'], [100, '未拜，薨']]) {
+    assert.equal(decisions[position - 81].status, 'suppressed');
+    assert.ok(decisions[position - 81].citations.some(c => c.quote.includes(phrase)));
+  }
+  assert.match(get('005:d881f5ae4f1b').citations[0].note, /免拜礼.*非拒任/);
+  assert.ok(get('005:d881f5ae4f1b').citations.some(c => c.quote.includes('以司徒、持節、大都督諸軍事傳檄四方')));
+  assert.match(get('005:565a6ff04152').citations[0].note, /领司徒.*未拜.*中书监/);
+  assert.match(get('005:271eb89c0cb6').citations[0].note, /高密王简.*追赠/);
+  assert.match(get('005:e42c9bb5630f').citations[0].note, /出奔.*不.*免官/);
+  for (const [position, office, start, end] of [[88, '太尉', 315, null], [90, '司空', 314, 315]]) {
+    const d = decisions[position - 81];
+    assert.equal(d.status, 'review-only');
+    assert.deepEqual([d.correction.officeName, d.correction.startYear, d.correction.endYear], [office, start, end]);
+    assert.match(d.reason, /任官史料可核.*身份.*大章／泰章/);
+  }
+  assert.equal(facts.some(f => f.personId === 'person:source:c219f41cc820'), false);
+  const registry = read('atlas/data/v63-person-registry.json');
+  const frozenConflict = work('appointment-batch-05-review').preservedIdentityConflicts[0];
+  assert.equal(hash(JSON.stringify(registry.conflicts.find(c => c.conflictId === frozenConflict.conflict.conflictId))), frozenConflict.sha256);
+  assert.equal(registry.people.find(p => p.personId === 'person:source:c219f41cc820').identityStatus, 'conflict');
+});
+
+test('V82 closes the frozen queue as 66 approved, 25 excluded and 9 pending without rewriting prior checkpoints', () => {
+  const progress = work('appointment-batch-05-review');
+  const config = read('atlas/data/release-config.json');
+  assert.deepEqual(config.appointmentReviewBatches, [...progress.baselineAppointmentReviewBatches, 'v82-appointment-source-review.json']);
+  const prior = new Map(progress.baselineAppointmentReviewBatches.flatMap(p => read('atlas/data/' + p).records).map(r => [r.appointmentId, r]));
+  const batch = read('atlas/data/v82-appointment-source-review.json').records;
+  assert.ok(batch.every(r => !prior.has(r.appointmentId)));
+  const merged = new Map([...prior, ...batch.map(r => [r.appointmentId, r])]);
+  const queue = work('appointment-triage').records;
+  const counts = { reviewed: 0, verified: 0, suppressed: 0, pending: 0, disputed: 0 };
+  for (const row of queue) {
+    const decision = merged.get(row.recordId);
+    assert.ok(decision);
+    counts.reviewed++;
+    counts[decision.status === 'review-only' ? 'pending' : decision.status]++;
+  }
+  assert.deepEqual(counts, { reviewed: 100, verified: 66, suppressed: 25, pending: 9, disputed: 0 });
+  assert.deepEqual(counts, progress.cumulativeQueue);
+  assert.deepEqual(progress.nextQueue, []);
+  const pending = queue.filter(r => merged.get(r.recordId).status === 'review-only');
+  assert.deepEqual(progress.remainingReviewQueue.map(r => r.recordId), pending.map(r => r.recordId));
+  assert.equal(progress.remainingReviewOnly.length, 9);
+  progress.remainingReviewQueue.forEach(r => assert.equal(r.decisionSha256, hash(JSON.stringify(merged.get(r.recordId)))));
+  assert.deepEqual(work('appointment-batch-04-review').cumulativeQueue, { reviewed: 80, verified: 54, suppressed: 21, pending: 5, disputed: 0 });
 });

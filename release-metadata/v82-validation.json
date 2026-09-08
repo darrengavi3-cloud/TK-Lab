@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "version": "V82",
+  "startedAt": "2026-09-08T05:47:59.910590+00:00",
+  "checkedAt": "2026-09-08T05:55:58.527430+00:00",
+  "command": "npm run release:check",
+  "exitCode": 0,
+  "logCaptureNote": "Direct combined stdout/stderr from the complete successful command. No source changes during this run; this receipt and the review-document status were added afterward without changing reader inputs.",
+  "deterministicBuilds": 2,
+  "deterministicOutputSha256": "561e2bfbaa6cdf3b84299448bc81645a4a7a2b3e3935ac0ccc9b6e73553cf903",
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 53,
+    "failed": 0
+  },
+  "freshAccessGate": {
+    "status": "passed",
+    "tests": 2,
+    "snapshotCheckedAt": "2026-09-08T05:43:57.179Z"
+  },
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingGeneratedTypeWarnings": 3
+  },
+  "sourceLockSha256": "c331f062124ac875bf212f635ee34bab313ebd68b48d6703556a0829a85f3d5c",
+  "sourceLockAggregateSha256": "2536b5431f63dec657cdec5c558864e3df05a9bda99113158ef2ed37d4bb5900",
+  "deploymentAggregateSha256": "39dd1fb7966d0945b53ab24ae5569b03294c4718bc90efe668c38fc8f032399d",
+  "releaseLogSha256": "0f96e9d027948718f111b3600695eb9ad9839f6f428ef3c044682fb483212278",
+  "counts": {
+    "people": 2086,
+    "appointments": {
+      "verified": 263,
+      "pending": 510,
+      "disputed": 2,
+      "suppressed": 76
+    },
+    "biographies": 96,
+    "portraitAssets": 512,
+    "peopleWithPortraits": 505,
+    "peopleWithEvents": 514
+  },
+  "preservation": {
+    "previousPublishedAppointments": 251,
+    "byteUnchangedAppointments": 251,
+    "guardedCitationOnlyUpdates": 0,
+    "personIdentities": 2086,
+    "peerageEvents": 535,
+    "exactInscriptions": 59,
+    "originalPortraitFiles": "unchanged",
+    "identityReviewBatches": "unchanged"
+  },
+  "queue": {
+    "reviewed": 100,
+    "total": 100,
+    "verified": 66,
+    "suppressed": 25,
+    "pending": 9,
+    "remainingUnreviewed": 0
+  },
+  "batch": {
+    "newQueueReviews": 20,
+    "verified": 12,
+    "suppressed": 4,
+    "pending": 4,
+    "pendingForIdentityConflict": 2,
+    "priorDecisionClosure": 0,
+    "priorPublishedCitationCorrection": 0
+  },
+  "continuousIntegration": {
+    "workflow": ".github/workflows/reader-validation.yml",
+    "stateAtSourceCommit": "not-yet-observed",
+    "remoteReceipt": "PR #11, tied to its exact V82 head commit",
+    "access": "contents: read; no Sites credentials"
+  },
+  "browserVisualAcceptance": {
+    "status": "not-run",
+    "reason": "This batch reviews appointment evidence and reader projections; no browser visual acceptance was performed."
+  },
+  "realIPhoneAcceptance": "not-run",
+  "performanceMetrics": "not-measured",
+  "rollbackDrill": "not-run",
+  "deployment": {
+    "thisBatch": "not-deployed",
+    "previousVerifiedVersion": 36,
+    "previousDeploymentId": "appgdep_6a9f30c8ef5c8191aad324afde278100",
+    "previousSourceVersion": "V80"
+  },
+  "publicationNote": "Local source/build receipt only. Saving V82 does not deploy it; remote CI and saved-version receipts are recorded separately on the draft PR.",
+  "identityGate": "The initial projection rejected two source-supported Xun Zu appointments while an existing zi conflict remains unresolved. Both decisions were set to review-only before the successful full check; no identity gate or prior identity record was changed."
+}

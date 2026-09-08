@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "version": "V81",
+  "version": "V82",
   "reviewBaseline": "V76",
   "audience": "owner-only",
   "counts": {
     "people": 2086,
     "appointments": {
-      "verified": 251,
-      "pending": 526,
+      "verified": 263,
+      "pending": 510,
       "disputed": 2,
-      "suppressed": 72
+      "suppressed": 76
     },
     "biographies": 96,
     "portraitAssets": 512,
     "peopleWithPortraits": 505,
-    "peopleWithEvents": 507
+    "peopleWithEvents": 514
   },
   "evidencePolicy": "Generated source summary only; deployment, access and visual acceptance require separate dated receipts."
 }

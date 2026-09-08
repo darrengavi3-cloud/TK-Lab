@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 916,
-  "totalBytes": 353314619,
-  "aggregateSha256": "e4cc3759bb53cc89685214cf35a5e56ce91c79b65667392ef2ce36f9ef5c48c8",
+  "fileCount": 917,
+  "totalBytes": 353451315,
+  "aggregateSha256": "2536b5431f63dec657cdec5c558864e3df05a9bda99113158ef2ed37d4bb5900",
   "files": [
     {
       "path": "DESIGN.md",
@@ -60,7 +60,7 @@
     {
       "path": "assets/app/release-version.js",
       "bytes": 38,
-      "sha256": "eb9b29f634826bd69c7503cfc205320168652453e0c375ad858a1b6592131a34"
+      "sha256": "32f1351461f68ddf1be018b3c63974a62ff4a66749e3765578861afe97a80945"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -3464,8 +3464,8 @@
     },
     {
       "path": "data/release-config.json",
-      "bytes": 1110,
-      "sha256": "a54c9a097d2cda0f71a5a9cc08154de375c4eccfde0d4407ca4106f925786fd9"
+      "bytes": 1152,
+      "sha256": "caf58719376b872e2b27564adf594a983e09d7e37bb840dbf5b416d36ed680ec"
     },
     {
       "path": "data/research-candidates.js",
@@ -3704,33 +3704,33 @@
     },
     {
       "path": "data/v63-person-registry.js",
-      "bytes": 7419628,
-      "sha256": "9e980abc75f3dd1a1916cb5e3e6c6437aad18eaa16a9b035626b80ddc1893da8"
+      "bytes": 7421288,
+      "sha256": "048ef6a33b5407d99eb84ef8c4859ab571d2af3d9c5e1f59ce6c829a8ca6d390"
     },
     {
       "path": "data/v63-person-registry.json",
-      "bytes": 11334814,
-      "sha256": "158d072c1ea26f7cbcc25733185eb695accddbcbdcbc51ea4c19adbebab40095"
+      "bytes": 11337298,
+      "sha256": "c1a912c285236c50f5e2543966ad7d868af0b7a24d3d776c21e9b1290f403e54"
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 427637,
-      "sha256": "0f9271d05dd4f9283306a44a574202a77fca2ee4fe110f7551c85af1bcf77389"
+      "bytes": 428367,
+      "sha256": "423db89ddb7b9e7949457cfd166ea39375b04340e15906ab9334c22cec043a0b"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 589670,
-      "sha256": "4132d9da117996c92bbc652c3221d13ee4405f66962f409d4e12e787a8713ced"
+      "bytes": 590658,
+      "sha256": "9f55b2a490da24823a614f453fb41d47f64baad7ba6f3a461e0029131598407d"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 422235,
-      "sha256": "318191d2606ff2baedee322cc967afe93cece1d421de12f28174872ed1b380a6"
+      "bytes": 442535,
+      "sha256": "83c88cb0934c414bd5c93179f16c9e1774aad94a18622fc0c6eab1a196577e69"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 518347,
-      "sha256": "a287de6e26039c13aa2385f6b330174a30eb4f8167e8d587ba3991b93a1cb919"
+      "bytes": 542847,
+      "sha256": "d1b60b580c9b77ef1c15126552b7e932f09bd3bbb7e867aa1cc56f0136b420c6"
     },
     {
       "path": "data/v65-battle-coordinate-audit.js",
@@ -3894,23 +3894,23 @@
     },
     {
       "path": "data/v69-person-profile-audit.js",
-      "bytes": 437673,
-      "sha256": "4eeec24f25862fe10eb2e5d1205ffc23010e8a9bab873e074ad991aaaee6ef14"
+      "bytes": 437659,
+      "sha256": "e29b5eb4dcc1427ea519593e6c984d6be8efda99c7611ab42a443b4dfd2b9f1c"
     },
     {
       "path": "data/v69-person-profile-audit.json",
-      "bytes": 623192,
-      "sha256": "2c785f1be7be537a8d8e22d592bbf583677d42550123e9cf0b436f43a7647de0"
+      "bytes": 623178,
+      "sha256": "3ca6cab56842b67575591f5293a71839213cd1cb9ca0fcb42fd7439f9db440c3"
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 583813,
-      "sha256": "fc4dcdc1cd120dca989fbb9f2bd41f528c6e4441602ed258de7e705ffcae4aaa"
+      "bytes": 604638,
+      "sha256": "3b7d80f8c2ebc522a4bbe3c85c5d35c0931b7b6b947ff6db81778e5082c4b73d"
     },
     {
       "path": "data/v69-person-profiles.json",
-      "bytes": 792349,
-      "sha256": "43f86ee5349c8b55263ea707e999300cde462c410bb641d7441f4368c3b93ae6"
+      "bytes": 819063,
+      "sha256": "295910d4f71f30983eca36e3e7af2b5f871d4a9b6e65ecf96b9cbdea3e954b23"
     },
     {
       "path": "data/v69-portrait-candidates.js",
@@ -4071,6 +4071,11 @@
       "path": "data/v81-appointment-source-review.json",
       "bytes": 30740,
       "sha256": "8d1aba6b342c0c0bbc64f4a2b4bfde72bb11cf4acbb7fd9813648d7895f04148"
+    },
+    {
+      "path": "data/v82-appointment-source-review.json",
+      "bytes": 38481,
+      "sha256": "45062031249310d4b4444c5dbab210293cb82577e4391f6b918e2a8182aa2bc8"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
@@ -4585,7 +4590,7 @@
     {
       "path": "scripts/verify-v73.mjs",
       "bytes": 5343,
-      "sha256": "c56ffdd0087e2c92be932c6307a5eded29cf0253902d5c48d988b93b507d0c22"
+      "sha256": "0201a3954911878440e7716ceb781969aeac4282a3c875342bdd221d1ecc3377"
     }
   ]
 }
