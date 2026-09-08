@@ -2,10 +2,10 @@
   "schemaVersion": "V63",
   "modelId": "sgz-v63-reader-people",
   "summary": {
-    "people": 2093,
+    "people": 2086,
     "legacyMappings": 1140,
-    "portraitAssets": 519,
-    "readerScopeVersion": "V76"
+    "portraitAssets": 512,
+    "readerScopeVersion": "V82"
   },
   "people": [
     {
@@ -6867,6 +6867,11 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:004:690f4adb1fc7",
+        "appointment:source:jinshu:004:7fdcaab5190e",
+        "appointment:source:jinshu:004:ad6e5a84be6e"
       ]
     },
     {
@@ -6878,6 +6883,9 @@
       "zi": "文若",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:10:b72a5b3a36df"
       ],
       "peerageEventIds": [
         "peerage:11",
@@ -6907,6 +6915,9 @@
         "魏",
         "西晋"
       ],
+      "appointmentIds": [
+        "appointment:source:jinshu:003:250ddd435f4b"
+      ],
       "peerageEventIds": [
         "peerage:336"
       ]
@@ -6922,6 +6933,11 @@
         "魏",
         "西晋"
       ],
+      "appointmentIds": [
+        "appointment:source:jinshu:003:5ae8505b59b1",
+        "appointment:source:jinshu:003:b08dd742fd47",
+        "appointment:source:jinshu:003:d43e75e3890c"
+      ],
       "peerageEventIds": [
         "peerage:341"
       ]
@@ -6934,6 +6950,9 @@
       ],
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:04:01f2b39cf9c9"
       ],
       "peerageEventIds": [
         "peerage:148",
@@ -6949,18 +6968,11 @@
       "aliases": [
         "公孙恭"
       ],
-      "portraitIds": [
-        "portrait:asset:5b0cbebc459a0b3ed80e"
-      ]
-    },
-    {
-      "personId": "person:source:1208f55849a5",
-      "name": "禄勋",
-      "aliases": [
-        "禄勋"
+      "appointmentIds": [
+        "appointment:source:sgz:02:cf102cf5620d"
       ],
       "portraitIds": [
-        "portrait:asset:062ad40c5941138b4b8c"
+        "portrait:asset:5b0cbebc459a0b3ed80e"
       ]
     },
     {
@@ -7022,6 +7034,7 @@
         "季汉"
       ],
       "appointmentIds": [
+        "appointment:source:sgz:04:fd5f5aa2a419",
         "appointment:source:sgz:43:0c13a7c81381"
       ],
       "peerageEventIds": [
@@ -7085,6 +7098,9 @@
       "zi": "元讓",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:02:ee9f83595474"
       ],
       "peerageEventIds": [
         "peerage:1"
@@ -7159,16 +7175,6 @@
       ]
     },
     {
-      "personId": "person:source:30f8afe4c18c",
-      "name": "厉鋒",
-      "aliases": [
-        "厉鋒"
-      ],
-      "portraitIds": [
-        "portrait:asset:044ab8be9109da0fe523"
-      ]
-    },
-    {
       "personId": "person:source:3615e33dea42",
       "name": "和嶠",
       "aliases": [
@@ -7177,6 +7183,9 @@
       "zi": "長輿",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:10:e4e682d44c25"
       ],
       "portraitIds": [
         "portrait:asset:c2c9a2992410b0bab743"
@@ -7220,6 +7229,11 @@
       ],
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:09:525296c06bb9",
+        "appointment:source:sgz:23:09786cd25961",
+        "appointment:source:sgz:27:7fd8ce071d4c"
       ],
       "peerageEventIds": [
         "peerage:523",
@@ -7288,6 +7302,9 @@
       "dynastyTags": [
         "后汉"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:49:58c66292ab75"
+      ],
       "portraitIds": [
         "portrait:asset:f597744de01ee7692269"
       ]
@@ -7311,6 +7328,9 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:03:a486dd8a87ab"
+      ],
       "peerageEventIds": [
         "peerage:394"
       ],
@@ -7319,20 +7339,13 @@
       ]
     },
     {
-      "personId": "person:source:5a26d1185d64",
-      "name": "虞大",
-      "aliases": [
-        "虞大"
-      ],
-      "portraitIds": [
-        "portrait:asset:701bbad5b0a42d9be33b"
-      ]
-    },
-    {
       "personId": "person:source:5da0dd364783",
       "name": "公孙渊",
       "aliases": [
         "公孙渊"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:03:2b024fd41af3"
       ],
       "portraitIds": [
         "portrait:asset:1f02af1b00d2822c01e8"
@@ -7388,6 +7401,9 @@
       "dynastyTags": [
         "吴"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:47:aa5f9775cb83"
+      ],
       "portraitIds": [
         "portrait:asset:569f194ddb53d31624b3"
       ]
@@ -7402,6 +7418,9 @@
       "birthplace": "汝南汝阳",
       "deathYear": "202",
       "bio": "东汉末军阀，出身汝南袁氏。参与诛宦官与关东讨董，后据冀、青、幽、并四州。建安五年在官渡败于曹操，建安七年病卒，诸子争立使河北势力迅速瓦解。",
+      "appointmentIds": [
+        "appointment:source:sgz:06:933d5cb670f7"
+      ],
       "portraitIds": [
         "portrait:asset:4a8d7ec65c7bdbaa672d"
       ]
@@ -7446,6 +7465,9 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:25:34394445c97c"
+      ],
       "peerageEventIds": [
         "peerage:157",
         "peerage:500",
@@ -7465,6 +7487,9 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:d8236d5215fb"
       ]
     },
     {
@@ -7488,6 +7513,9 @@
         "后汉",
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:03:e5c874a43fe4"
+      ],
       "peerageEventIds": [
         "peerage:23",
         "peerage:508"
@@ -7505,6 +7533,9 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:271eb89c0cb6"
       ]
     },
     {
@@ -7543,6 +7574,9 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:01:f468b0bebe12"
+      ],
       "peerageEventIds": [
         "peerage:34",
         "peerage:516"
@@ -7560,6 +7594,10 @@
       "zi": "定公",
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:48:abe0696d1764",
+        "appointment:source:sgz:49:a9bbd5077f7b"
       ],
       "portraitIds": [
         "portrait:asset:d29566b59bedbdb204e7",
@@ -7588,6 +7626,9 @@
       "dynastyTags": [
         "后汉"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:06:9b1ccfe3d1da"
+      ],
       "portraitIds": [
         "portrait:asset:8bb6ff5c2bc92f2365c7"
       ]
@@ -7600,6 +7641,9 @@
       ],
       "dynastyTags": [
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:8bdfa2f60653"
       ]
     },
     {
@@ -7630,6 +7674,9 @@
       "dynastyTags": [
         "吴"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:48:d418b5ddda35"
+      ],
       "portraitIds": [
         "portrait:asset:570a6e18664c7c1ab068"
       ]
@@ -7656,18 +7703,11 @@
       "dynastyTags": [
         "吴"
       ],
-      "portraitIds": [
-        "portrait:asset:aa99abba63b147896610"
-      ]
-    },
-    {
-      "personId": "person:source:8b8bba6b3bd1",
-      "name": "伊闕",
-      "aliases": [
-        "伊闕"
+      "appointmentIds": [
+        "appointment:source:sgz:48:0aea879bc3a6"
       ],
       "portraitIds": [
-        "portrait:asset:dd0f43e9596f13543788"
+        "portrait:asset:aa99abba63b147896610"
       ]
     },
     {
@@ -7689,6 +7729,9 @@
       ],
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:003:d0d222e1d428"
       ]
     },
     {
@@ -7720,6 +7763,9 @@
       "zi": "公達",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:01:4deaf8c12bd9"
       ],
       "peerageEventIds": [
         "peerage:14",
@@ -7767,6 +7813,9 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:03:f45b9ace6450"
+      ],
       "peerageEventIds": [
         "peerage:380",
         "peerage:573",
@@ -7795,6 +7844,10 @@
       ],
       "dynastyTags": [
         "后汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:08:1e74a1462c0a",
+        "appointment:source:sgz:30:1c50eddd1b78"
       ],
       "portraitIds": [
         "portrait:asset:63a6fe8d07d7c35ebf32"
@@ -7847,6 +7900,9 @@
       "zi": "叔龍",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:01:5cc872d8d577"
       ],
       "peerageEventIds": [
         "peerage:393"
@@ -7922,6 +7978,9 @@
       "name": "刘琨",
       "aliases": [
         "刘琨"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:5ac72968c401"
       ]
     },
     {
@@ -7987,6 +8046,11 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:04:5ca5736ba0f0",
+        "appointment:source:sgz:04:8d02aa0c1925",
+        "appointment:source:sgz:04:ca285f4afbbd"
+      ],
       "peerageEventIds": [
         "peerage:103",
         "peerage:50",
@@ -8005,6 +8069,9 @@
       "dynastyTags": [
         "后汉"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:06:f8244e4b759d"
+      ],
       "portraitIds": [
         "portrait:asset:72d305f5779f5c07282b"
       ]
@@ -8017,6 +8084,9 @@
       ],
       "dynastyTags": [
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:e42c9bb5630f"
       ]
     },
     {
@@ -8027,6 +8097,9 @@
       ],
       "dynastyTags": [
         "后汉"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:01:ff7d5953c468"
       ],
       "portraitIds": [
         "portrait:asset:44f3fd03e6d293e118a7"
@@ -8057,6 +8130,9 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:565a6ff04152"
       ]
     },
     {
@@ -8068,6 +8144,9 @@
       "zi": "蘭石",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:21:439ddd7ffb2a"
       ],
       "peerageEventIds": [
         "peerage:156",
@@ -8124,6 +8203,9 @@
       "aliases": [
         "毕谌"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:01:086025d77767"
+      ],
       "portraitIds": [
         "portrait:asset:e5e0e72fc32b5929579a"
       ]
@@ -8137,6 +8219,9 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:d881f5ae4f1b"
       ],
       "peerageEventIds": [
         "peerage:359"
@@ -8174,6 +8259,9 @@
         "魏",
         "西晋"
       ],
+      "appointmentIds": [
+        "appointment:source:jinshu:004:35bfea10f522"
+      ],
       "portraitIds": [
         "portrait:asset:ec9b416c75c3d12c1670"
       ]
@@ -8187,28 +8275,11 @@
       "dynastyTags": [
         "吴"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:59:bea5bb48b723"
+      ],
       "portraitIds": [
         "portrait:asset:7e35546afa85bc276c80"
-      ]
-    },
-    {
-      "personId": "person:source:e753fd0f66cd",
-      "name": "濮阳",
-      "aliases": [
-        "濮阳"
-      ],
-      "portraitIds": [
-        "portrait:asset:400694c5701a42920894"
-      ]
-    },
-    {
-      "personId": "person:source:e77c1970c9ac",
-      "name": "师友",
-      "aliases": [
-        "师友"
-      ],
-      "portraitIds": [
-        "portrait:asset:8481c6ef8987a0264ddd"
       ]
     },
     {
@@ -8229,6 +8300,9 @@
       ],
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:04:1eba07d7f725"
       ],
       "peerageEventIds": [
         "peerage:109",
@@ -8279,6 +8353,9 @@
       "dynastyTags": [
         "吴"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:47:ee6a3162eccb"
+      ],
       "portraitIds": [
         "portrait:asset:7d043ce349c0b33b87c1"
       ]
@@ -8292,6 +8369,9 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:03:e4ed72cd03b9"
+      ],
       "peerageEventIds": [
         "peerage:385",
         "peerage:583",
@@ -8299,16 +8379,6 @@
       ],
       "portraitIds": [
         "portrait:asset:0286a3b0675d19a9222e"
-      ]
-    },
-    {
-      "personId": "person:source:f741747b83c4",
-      "name": "武卫",
-      "aliases": [
-        "武卫"
-      ],
-      "portraitIds": [
-        "portrait:asset:58ab8d9a922063083ee3"
       ]
     },
     {
@@ -8321,6 +8391,9 @@
       "dynastyTags": [
         "魏",
         "西晋"
+      ],
+      "appointmentIds": [
+        "appointment:source:jinshu:005:3374cb0cc015"
       ]
     },
     {
@@ -8512,6 +8585,7 @@
         "魏"
       ],
       "appointmentIds": [
+        "appointment:source:sgz:09:59206beeba4b",
         "appointment:source:sgz:24:cefba4c41a31"
       ],
       "peerageEventIds": [
@@ -8934,6 +9008,9 @@
       "name": "缪祎",
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:53:aecc6e086a06"
       ],
       "portraitIds": [
         "portrait:v62:wu:20"
@@ -11907,6 +11984,9 @@
       "name": "孙峻",
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:64:37eb3d6f4cf6"
       ]
     },
     {
@@ -12379,6 +12459,10 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:18:d37724fc7668",
+        "appointment:source:sgz:18:ea85641e12c0"
+      ],
       "peerageEventIds": [
         "peerage:384",
         "peerage:580",
@@ -12582,6 +12666,9 @@
       "name": "孟宗",
       "dynastyTags": [
         "吴"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:48:17b160b6cab5"
       ],
       "portraitIds": [
         "portrait:v62:wu:19"
@@ -13036,6 +13123,9 @@
       "name": "曹洪",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:09:e51ee43f1b35"
       ],
       "peerageEventIds": [
         "peerage:24",
@@ -13905,6 +13995,9 @@
       "dynastyTags": [
         "魏"
       ],
+      "appointmentIds": [
+        "appointment:source:sgz:24:92099c7248fc"
+      ],
       "peerageEventIds": [
         "peerage:153",
         "peerage:505"
@@ -14650,6 +14743,9 @@
       "name": "严干",
       "dynastyTags": [
         "魏"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:23:88777917d94a"
       ]
     },
     {
@@ -16977,6 +17073,9 @@
       ],
       "historicalAffiliations": [
         "东汉·凉州集团"
+      ],
+      "appointmentIds": [
+        "appointment:source:sgz:06:c87d3944bc1a"
       ]
     },
     {
@@ -17916,7 +18015,10 @@
     },
     {
       "personId": "person:workbook:fc4fcf08b36e1b6c",
-      "name": "士燮"
+      "name": "士燮",
+      "appointmentIds": [
+        "appointment:source:sgz:49:95665e4a700a"
+      ]
     },
     {
       "personId": "person:workbook:fc7774b067ac3ac6",
@@ -19913,19 +20015,9 @@
       "personId": "person:source:c9b3bc9bb023"
     },
     {
-      "portraitId": "portrait:asset:400694c5701a42920894",
-      "legacyPersonId": "person:source:e753fd0f66cd",
-      "personId": "person:source:e753fd0f66cd"
-    },
-    {
       "portraitId": "portrait:asset:9626f32347d22414fd8a",
       "legacyPersonId": "person:source:b1b81e555a99",
       "personId": "person:source:b1b81e555a99"
-    },
-    {
-      "portraitId": "portrait:asset:701bbad5b0a42d9be33b",
-      "legacyPersonId": "person:source:5a26d1185d64",
-      "personId": "person:source:5a26d1185d64"
     },
     {
       "portraitId": "portrait:asset:6e35ca62fbccfbb7b4de",
@@ -19936,16 +20028,6 @@
       "portraitId": "portrait:asset:94cd4ddd480257a3e94f",
       "legacyPersonId": "person:wei:li-feng",
       "personId": "person:wei:li-feng"
-    },
-    {
-      "portraitId": "portrait:asset:044ab8be9109da0fe523",
-      "legacyPersonId": "person:source:30f8afe4c18c",
-      "personId": "person:source:30f8afe4c18c"
-    },
-    {
-      "portraitId": "portrait:asset:58ab8d9a922063083ee3",
-      "legacyPersonId": "person:source:f741747b83c4",
-      "personId": "person:source:f741747b83c4"
     },
     {
       "portraitId": "portrait:asset:7a785ebf895149f6f1e0",
@@ -19963,24 +20045,9 @@
       "personId": "person:source:035be51454ba"
     },
     {
-      "portraitId": "portrait:asset:dd0f43e9596f13543788",
-      "legacyPersonId": "person:source:8b8bba6b3bd1",
-      "personId": "person:source:8b8bba6b3bd1"
-    },
-    {
-      "portraitId": "portrait:asset:8481c6ef8987a0264ddd",
-      "legacyPersonId": "person:source:e77c1970c9ac",
-      "personId": "person:source:e77c1970c9ac"
-    },
-    {
       "portraitId": "portrait:asset:0a7ff1ca88a2b12c92a4",
       "legacyPersonId": "person:source:004770996fff",
       "personId": "person:source:004770996fff"
-    },
-    {
-      "portraitId": "portrait:asset:062ad40c5941138b4b8c",
-      "legacyPersonId": "person:source:1208f55849a5",
-      "personId": "person:source:1208f55849a5"
     },
     {
       "portraitId": "portrait:asset:076b318f5b67fac393c8",

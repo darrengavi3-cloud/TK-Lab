@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "version": "V77",
+  "checkedAt": "2026-09-07T16:43:46.099078+00:00",
+  "command": "npm run release:check",
+  "exitCode": 0,
+  "deterministicBuilds": 2,
+  "deterministicOutputSha256": "f158b6e3ae111c20876b5f09d6467a9646340b25829418420670dc05c6ef07bf",
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 41,
+    "failed": 0
+  },
+  "freshAccessGate": "passed",
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingGeneratedTypeWarnings": 3,
+    "changedAccessGateFiles": "targeted eslint passed"
+  },
+  "sourceLockSha256": "e9ae1f93a614545e6b065e7885c621b7c0af84ffeab56beb0be197cc9b73aec1",
+  "deploymentAggregateSha256": "e031c8fc27037f4803de091fcd83aa240cfd52a93cf72282c1e74c67ed95c435",
+  "releaseLogSha256": "bd4c827468222345ef48a88d659fc028af2d87ef89e39afe45e6a8fa2237156b",
+  "staticUiAudit": {
+    "scope": "app/ (auditor default); atlas index and shared-component additions checked manually for new anti-patterns",
+    "errors": 0,
+    "unresolved": 0
+  },
+  "browserVisualAcceptance": {
+    "status": "not-run",
+    "reason": "Sites preview did not become ready in two permitted attempts."
+  },
+  "realIPhoneAcceptance": "not-run",
+  "performanceMetrics": "not-measured",
+  "rollbackDrill": "not-run",
+  "publicationNote": "This receipt validates source and build output only; deployment success must come from the Sites deployment response."
+}

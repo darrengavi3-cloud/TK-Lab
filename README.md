@@ -2,21 +2,37 @@
 
 本仓库同时保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 是历史数据、读者投影和资源清单的唯一规范输入；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
-## 当前版本：V76
+## 本分支：V82 任官续核第五批
 
-V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 2026-09-07 03:02:30 UTC 合入 `main`，合并提交为 [`23c6d8b`](https://github.com/darrengavi3-cloud/TK-Lab/commit/23c6d8b3fb2d35c1efb3f5fbc9f5d3cd9b9f2c03)。以下为该版本的当前审定结果，取代 V71/V72 的旧批次统计。
+V82复核冻结清单第81—100条：批准12、排除实任4、待补核4。累计100／100条均已实质复核，结论为批准66、排除25、待补核9；没有尚未复核的队列条目，但不代表100条全部获准或全库851条任官已核完。
 
-| 项目 | V76 数量 |
+核准何劭、刘暾的尚书左仆射完整官名，区分山简与高密王简、荀组西晋与东晋两次太尉；保留温羡领司徒及傅祗因足疾免拜礼的性质。张轨太尉、荀藩司空、刘琨司空、荀组东晋太尉按辞受或未拜证据排除实任。山涛司徒、荀藩留台太尉及荀组两条史料已支持但身份冲突未解的任官继续待补核。详见 [V82-REVIEW.md](V82-REVIEW.md)。
+
+既有251条确定履历全部不变，人物2086、实质小传96、正式立绘512、封爵535条与59篇金石释文保持。人物身份与封爵不随任官审定增删；24人小传证据包、州镇、金石及身份待办继续留在研究层。V78—V81历史审定及V80的7个误抽身份撤回结果原样保留。
+
+本次保存源码与审定记录，不执行新部署，PR #11保持draft。第36版V80仍为此前已成功部署版本，第37版V81已保存但未部署；本次版本与CI的实际回执见 [PR #11](https://github.com/darrengavi3-cloud/TK-Lab/pull/11)。V82在此指任官续核，不表示地理轮或阅读矩阵已完成。浏览器视觉、真机iPhone、性能测量与回滚演练仍未完成；CI、构建和历史部署成功均不替代这些验收。待办矩阵见 [V77-ITERATION.md](V77-ITERATION.md)。
+
+2026-09-08 验收续办：已核对 V82 源码树、现有 CI／保存／历史部署回执和 owner-only 权限，完成 V80 本地源码恢复核验。两次预览均在页面加载前超时，72 个阅读组合、键盘／缩放、真实 iPhone、性能指标与线上回滚演练仍未验收；PR 继续保持 draft。详细结果和本次门禁终态见 [V82-ACCEPTANCE.md](V82-ACCEPTANCE.md)。
+
+## 已合并审定基线：V76
+
+V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 2026-09-07 03:02:30 UTC 合入 `main`，合并提交为 [`23c6d8b`](https://github.com/darrengavi3-cloud/TK-Lab/commit/23c6d8b3fb2d35c1efb3f5fbc9f5d3cd9b9f2c03)。该基线任官已核 197／待补核 601／存疑 2／排除 51；本分支续核后的当前数字如下，不回写为 V76 的历史结果。
+
+## 当前分支审定结果
+
+<!-- current-reviewed-counts:start -->
+| 项目 | 当前审定数量 |
 | --- | ---: |
-| 读者人物 | 2093 人 |
-| 任官已核 | 197 条 |
-| 任官待补核 | 601 条 |
+| 读者人物 | 2086 人 |
+| 任官已核 | 263 条 |
+| 任官待补核 | 510 条 |
 | 任官存疑 | 2 条 |
-| 任官排除 | 51 条 |
+| 任官排除 | 76 条 |
 | 实质小传 | 96 篇 |
-| 正式立绘 | 519 项 |
+| 正式立绘 | 512 项 |
+<!-- current-reviewed-counts:end -->
 
-统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，并与 [V76 审阅说明](V76-REVIEW.md)核对。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
+统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V82 审阅说明](V82-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
 
 ## V76 更新摘要
 
@@ -46,7 +62,8 @@ npm run release:check
 1. 在规范源执行确定性全量构建和当前不变量验证；
 2. 按 `reader-bundle.json` 同步纯净读者包；
 3. 执行 TypeScript 型别检查与站点静态检查；
-4. 构建、剪枝并校验最终部署清单，执行应用测试。
+4. 构建、剪枝并校验最终部署清单，执行应用测试；
+5. 执行发布前的新鲜 owner-only 权限快照检查。
 
 该命令不调用 Sites，也不修改站点权限；检查通过不等于实际部署或视觉／触控验收完成。
 
@@ -57,11 +74,13 @@ npm run sync:reader
 npm run typecheck
 npm run lint
 npm test
+npm run test:source
+npm run release:offline
 ```
 
-发布前还必须通过 Sites 权限检查，确认访问策略仍只允许当前所有者，并把不含个人信息的检查结果写入 `release-metadata/access-policy.json`。该记录超过 6 小时即阻断测试；权限状态不明确时停止发布。
+发布前必须通过 Sites 权限检查，确认访问策略仍只允许当前所有者，并把不含个人信息的检查结果写入 `release-metadata/access-policy.json`。`release:check` 最后执行 `release:access`，快照超过 6 小时即阻断发布检查。日常 `test:source`／`release:offline` 只验证快照结构，不宣称当前线上权限有效；权限状态不明确时停止发布。
 
-## 仓库核对与发布状态
+## V76 历史核对记录
 
 本节以 2026-09-07 的 V76 合并提交为核对基准，区分仓库记录与实际发布结果。
 
@@ -72,12 +91,13 @@ npm test
 | 实际部署 | 本次仅核对仓库，未独立核验 Sites 上 V76 的实际部署结果。PR 中的发布表述及已提交的部署清单不作为部署成功凭据。 |
 | 视觉与触控验收 | 本次未执行浏览器视觉或触控验收，不据静态检查、运行时测试或合并状态标记为已完成。 |
 
-仓库中的[权限检查记录](release-metadata/access-policy.json)检查时点为 2026-09-07 02:40:15.268 UTC，记录 `custom`、`ownerOnly: true`、1 位允许用户、0 位外部访客且无工作区全员访问。这是该时点的权限快照，发布前仍须重新确认并满足上述 6 小时有效期要求。
+[权限检查记录](release-metadata/access-policy.json)中的 `checkedAt` 是最近一次实际核对时点；时间、权限、部署与视觉验收分别记录，发布前仍须满足上述 6 小时有效期要求。
 
 ## 目录职责
 
 - `atlas/`：版本化规范源、研究台账、生成器与长期不变量验证。
 - `app/`：私密站壳层。
+- `research/v77-iteration/`：未批准研究初检、来源调查及后续证据包，不属于读者构建输入。
 - `scripts/sync-reader-bundle.mjs`：从规范源清单单向同步读者包。
 - `scripts/prune-site-build.mjs`：部署剪枝、头像优化和最终清单生成。
 - `release-metadata/`：随 Git 版本保存规范输入锁、读者清单与最终部署清单；不保存第二份站点文件。
@@ -85,7 +105,7 @@ npm test
 - `tests/deployment-integrity.test.mjs`：最终部署文件的尺寸与哈希闭合。
 - `tests/reader-semantics.test.mjs`：任官主体与否定句、年代快照、跨模块跳转、网址同步和释文全文不变。
 
-任官审定以 `atlas/data/v71-appointment-review.json` 为基础，续接 V74、V75、V76 的 `appointment-source-review` 与 `appointment-supplements`，原典依据保存在各批次的 `chancellery-evidence`。修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。V76 小传新增与更正分别保存于 `atlas/data/v76-person-biography-review.json`、`atlas/data/v76-person-biography-corrections.json`。阅读与交互规范见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md`。
+任官审定以 `atlas/data/v71-appointment-review.json` 为基础，续接 V74、V75、V76、V78、V79、V80、V81、V82 的 `appointment-source-review`、V81 的 `appointment-followup-review`，以及 V74—V76 的 `appointment-supplements`；批准清单以 `release-config.json` 为准。人物身份批准批次同样由该清单显式声明；撤回前核清全部关联，新增关联须重新审核。原典依据保存在各批次的 `citations` 或 `chancellery-evidence`。修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。V76 小传新增与更正分别保存于 `atlas/data/v76-person-biography-review.json`、`atlas/data/v76-person-biography-corrections.json`。阅读与交互规范见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md`。
 
 要求 Node.js `>=22.13.0`。
 

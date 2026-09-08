@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-08T12:31:21.734Z",
+  "baseline": {
+    "repository": "darrengavi3-cloud/TK-Lab",
+    "pr": 11,
+    "head": "c3ae8bb89c0e15d49eb993aaf5e33f392c3cfed2",
+    "base": "b2ca838fc4b2933ee7eacff2e8f6d2f9e345e934",
+    "branch": "codex/v77-v82-iteration",
+    "draft": true,
+    "siteSourceCommit": "fba969b37936745edd956c791af6bce70f427601",
+    "sourceTree": "234c06c6b371ec1593a635ecce99f84fe2b3d144"
+  },
+  "readerValidation": {
+    "conclusion": "success",
+    "event": "pull_request",
+    "headBranch": "codex/v77-v82-iteration",
+    "headSha": "c3ae8bb89c0e15d49eb993aaf5e33f392c3cfed2",
+    "htmlUrl": "https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/34192866464",
+    "id": 34192866464,
+    "name": "Reader validation",
+    "observedAt": "2026-09-08T12:30:38.980Z",
+    "runStartedAt": "2026-09-08T06:00:54Z",
+    "status": "completed",
+    "updatedAt": "2026-09-08T06:13:31Z",
+    "downloadableArtifacts": [],
+    "artifactObservation": "Workflow artifact listing returned no artifacts; existing CI outcome is verified separately from local logs committed in this acceptance record."
+  },
+  "site": {
+    "sameProjectAsExistingHostingManifest": true,
+    "access": {
+      "accessMode": "custom",
+      "allowedUserCount": 1,
+      "checkedAt": "2026-09-08T12:29:18.567Z",
+      "externalVisitorCount": 0,
+      "ownerOnly": true,
+      "schemaVersion": 1,
+      "verifiedBy": "Sites access policy API",
+      "workspaceWideAccess": false
+    },
+    "priorDeployment": {
+      "status": "succeeded",
+      "type": "publish",
+      "updated_at": "2026-09-07T21:47:44.992143+00:00"
+    },
+    "priorDeploymentVersionNumber": 36,
+    "savedVersions": [
+      {
+        "versionNumber": 38,
+        "sourceCommit": "fba969b37936745edd956c791af6bce70f427601",
+        "archive": {
+          "archive_format": "tar",
+          "content_hash": "sha256:71d63fd758dd4a30f01ab9b146f35028f1d3361f300125dfb76c8032c7d3e282",
+          "file_count": 2124,
+          "size_bytes": 67921920
+        }
+      },
+      {
+        "versionNumber": 37,
+        "sourceCommit": "046ba3a278994d2a563f67895cc6f692ff0cec0a",
+        "archive": {
+          "archive_format": "tar",
+          "content_hash": "sha256:95c9670449a7fe043021e063894a622bbab452a5d7dc9aa4e115b1dc2db0a25f",
+          "file_count": 2124,
+          "size_bytes": 67850240
+        }
+      },
+      {
+        "versionNumber": 36,
+        "sourceCommit": "6f0703b056d3cdd6622e3a7043f0c1fb13409d72",
+        "archive": {
+          "archive_format": "tar",
+          "content_hash": "sha256:021661a97c556f6f032415a48a7422609c1a4e153daf7b321bed4df97ba324f0",
+          "file_count": 2124,
+          "size_bytes": 67788800
+        }
+      }
+    ],
+    "newDeploymentExecuted": false,
+    "newVersionSaved": false,
+    "redaction": "Internal project/version/deployment/storage identifiers and service URLs omitted; exact target remains in the existing hosting manifest and previous PR receipts."
+  },
+  "preview": {
+    "status": "blocked",
+    "pageReached": false,
+    "browser": "Chrome, cloud browser; connection and tab listing only",
+    "attempts": [
+      {
+        "number": 1,
+        "result": "health-timeout",
+        "log": "preview-attempts.log",
+        "after": "Locked dependencies installed; canonical reader built and synchronized."
+      },
+      {
+        "number": 2,
+        "result": "health-timeout",
+        "log": "preview-attempts.log",
+        "after": "Vite dependency prebundle cache created by attempt 1; valid Vite dev script, host and allowedHosts confirmed."
+      }
+    ],
+    "finalServiceStatus": "stopped",
+    "sourceRepairApplied": false,
+    "thirdAttemptExecuted": false
+  },
+  "performance": {
+    "status": "not-measured",
+    "LCP": null,
+    "INP": null,
+    "CLS": null,
+    "reason": "Application preview never became healthy; no page navigation or browser timing samples. Archive bytes and build time are not runtime performance."
+  },
+  "rollback": {
+    "sourceRestore": "passed",
+    "sourceRestoreEvidence": "v80-source-restore.json",
+    "productionDrill": "not-run",
+    "reason": "Local restoration verifies source availability and file identity only. No production switch, rollback latency, serving check, or real-device check."
+  }
+}

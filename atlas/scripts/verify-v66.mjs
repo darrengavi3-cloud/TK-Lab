@@ -1,4 +1,5 @@
-import { reviewedReaderScope } from './person-identity-publication.mjs';
+import { loadIdentityReviewBatches } from './release-config.mjs';
+import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -6,7 +7,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const expectedReaderScope = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const expectedReaderScope = loadReviewedReaderScope(root);
 const expectedReaderCount = expectedReaderScope.length;
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
@@ -131,9 +132,11 @@ const v73Portraits = portraits.filter(row => row.portraitKind === 'ui-illustrati
 const baselinePortraits = portraits.filter(row => !['ui-illustration-v70','ui-illustration-v73'].includes(row.portraitKind));
 const portraitBindings = baselinePortraits.map(row => `${row.portraitId}\0${row.personId}`);
 const identityReviewV75 = json('data/v75-person-identity-suppressions.json');
-const withdrawnPortraits = identityReviewV75.withdrawnPortraits;
-assert(withdrawnPortraits.length === 5 && new Set(withdrawnPortraits.map(row => row.personId)).size === 5, 'V75 撤下立绘必须对应五个不同伪人物');
-assert(withdrawnPortraits.every(row => identityReviewV75.records.some(record => record.personId === row.personId && record.action === 'suppress') && !portraits.some(active => active.portraitId === row.portraitId)), 'V75 撤下立绘与身份审定不符');
+const identityBatches = loadIdentityReviewBatches(root);
+const withdrawnPortraits = identityBatches.flatMap(batch => batch.withdrawnPortraits || []);
+assert(identityReviewV75.withdrawnPortraits.length === 5, 'V75 历史撤回不得改写');
+assert(withdrawnPortraits.length === 12 && new Set(withdrawnPortraits.map(row => row.personId)).size === 12, '已审核撤下立绘必须对应十二个不同伪人物');
+assert(withdrawnPortraits.every(row => identityBatches.flatMap(batch => batch.records).some(record => record.personId === row.personId && record.action === 'suppress') && !portraits.some(active => active.portraitId === row.portraitId)), '撤下立绘与身份审定不符');
 const preservedPortraitBindings = [...portraitBindings, ...withdrawnPortraits.map(row => `${row.portraitId}\0${row.personId}`)];
 const expectedBaselinePortraitCount = (portraitProduction?.status === 'complete' ? 374 : 274) - withdrawnPortraits.length;
 const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length + v73Portraits.length;

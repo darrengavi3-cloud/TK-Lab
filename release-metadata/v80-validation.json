@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "version": "V80",
+  "checkedAt": "2026-09-07T21:42:40.264438+00:00",
+  "command": "npm run release:check",
+  "exitCode": 0,
+  "logCaptureNote": "Direct stdout captured from the complete successful command; no source changes during this run.",
+  "deterministicBuilds": 2,
+  "deterministicOutputSha256": "9f656c92c8e6a37a9173b7434cbad08cb2a71a6d865aba82d12fe291c27ab50a",
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 47,
+    "failed": 0
+  },
+  "freshAccessGate": "passed",
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingGeneratedTypeWarnings": 3
+  },
+  "sourceLockSha256": "99437026d97c54b1da9383b024df5e586b84d87b93e85628408ca936fd67978a",
+  "deploymentAggregateSha256": "46d83bc60cc87f820472d0ae9251de8eb4c465dc30153e550523c1fc4aa7cc74",
+  "releaseLogSha256": "5e7b9f1f41d18d82d7bde0bcb39748a4b4ef75d61753aca2401066d2ecdbeef9",
+  "counts": {
+    "people": 2086,
+    "appointments": {
+      "verified": 238,
+      "pending": 546,
+      "disputed": 2,
+      "suppressed": 65
+    },
+    "biographies": 96,
+    "portraitAssets": 512,
+    "peopleWithPortraits": 505,
+    "peopleWithEvents": 499
+  },
+  "preservation": {
+    "previousPublishedAppointments": 225,
+    "exactInscriptions": 59,
+    "originalPortraitFiles": "unchanged"
+  },
+  "identityWithdrawals": {
+    "people": 7,
+    "portraits": 7,
+    "associatedSources": 10,
+    "addedOrChangedSourceGuard": "passed"
+  },
+  "queue": {
+    "reviewed": 60,
+    "total": 100,
+    "verified": 41,
+    "suppressed": 14,
+    "pending": 5,
+    "remainingUnreviewed": 40
+  },
+  "continuousIntegration": {
+    "workflow": ".github/workflows/reader-validation.yml",
+    "remoteExecution": "not-yet-observed-at-source-commit",
+    "access": "contents: read; no Sites credentials"
+  },
+  "browserVisualAcceptance": {
+    "status": "not-run",
+    "reason": "Earlier Sites preview failed to become ready in both permitted attempts; no recovery or visual acceptance observed in this batch."
+  },
+  "realIPhoneAcceptance": "not-run",
+  "performanceMetrics": "not-measured",
+  "rollbackDrill": "not-run",
+  "publicationNote": "Source/build receipt only. GitHub workflow execution and Sites deployment require independent remote receipts."
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Local production build artifact manifest, not a deployment or runtime-performance result",
+  "aggregateSha256": "40237cc43377fb1a594f639bf242b350150e856d43010083ae0f860176f98082",
+  "summary": {
+    "fileCount": 2123,
+    "totalBytes": 65833643
+  },
+  "changedFilesComparedWithSavedBaseline": [
+    {
+      "path": "server/index.js",
+      "beforeSha256": "da9fdb2d5b41e914b9278f2d7b530c7397b0f9cf12073befeb453c4dced0ac01",
+      "afterSha256": "a18ec8b7527fd0973d439ea7a764495b5ce4df0b8b7d99a2efea884e0441ec24",
+      "bytes": 648863
+    },
+    {
+      "path": "server/ssr/vinext-server.json",
+      "beforeSha256": "4c662046bef04d193b7ed680d0365b6fff9c439165e661fbd859cbee5a3138c7",
+      "afterSha256": "f9921e886550173079402319da1f41b4d3844bbb97c9714b19a3ea40af6ccacd",
+      "bytes": 86
+    },
+    {
+      "path": "server/vinext-server.json",
+      "beforeSha256": "4c662046bef04d193b7ed680d0365b6fff9c439165e661fbd859cbee5a3138c7",
+      "afterSha256": "f9921e886550173079402319da1f41b4d3844bbb97c9714b19a3ea40af6ccacd",
+      "bytes": 86
+    }
+  ],
+  "note": "Three generated server artifacts changed hashes; no source changes. Do not infer byte-identical production output from canonical double-build determinism. No runtime secret values are recorded."
+}

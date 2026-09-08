@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
+import { readReleaseConfig } from './release-config.mjs';
+import { RELEASE_VERSION } from '../assets/app/release-version.js';
 
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(scriptDir,'..');
@@ -18,7 +20,8 @@ assert(html.includes("import('./assets/app/persistence.js?v=66.2')"),'持久化 
 assert(html.includes("if(!persistence?.createDirtyState||!persistence?.createPatchEngine)"),'界面启动前没有验证持久化接口');
 assert(html.indexOf("if(!persistence?.createDirtyState||!persistence?.createPatchEngine)")<html.indexOf('const app = createApp({'),'持久化接口验证晚于 Vue 初始化');
 assert(wrapperSource.includes("throw new Error('持久化核心模块未注册')"),'ESM 兼容入口会静默返回不完整模块');
-assert(pageSource.includes('/legacy/index.html?v=76'),'站点壳层没有刷新 V75 读者 iframe 缓存键');
+assert.equal(RELEASE_VERSION, readReleaseConfig(root).version, '站点版本与批准发布配置不一致');
+assert(pageSource.includes('import { RELEASE_VERSION }') && pageSource.includes('/legacy/index.html?v=${RELEASE_VERSION.slice(1)}'), '站点壳层没有使用当前发布版本缓存键');
 
 const context={window:{}};
 vm.runInNewContext(coreSource,context,{filename:'persistence-core.js'});

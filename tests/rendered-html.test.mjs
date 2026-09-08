@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
+import { RELEASE_VERSION } from "../atlas/assets/app/release-version.js";
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -30,7 +31,7 @@ test("server-renders the historical atlas shell", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>观史台 · 历史资料库<\/title>/);
-  assert.match(html, /<iframe[^>]+src="\/legacy\/index\.html\?v=76"/);
+  assert.ok(html.includes(`src="/legacy/index.html?v=${RELEASE_VERSION.slice(1)}"`));
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
@@ -44,7 +45,7 @@ test("packages the current court, reader people, and map assets", async () => {
     readFile(new URL("../public/legacy/assets/ui/court-ink-palace.png", import.meta.url)),
   ]);
 
-  assert.match(page, /src="\/legacy\/index\.html\?v=76"/);
+  assert.match(page, /RELEASE_VERSION\.slice\(1\)/);
   assert.match(layout, /观史台 · 历史资料库/);
   assert.match(legacy, /courtHierarchy|朝堂谱系|SGZ_V63_READER_PEOPLE/);
   assert.match(readerPeople, /曹操|诸葛亮|司马懿/);
@@ -70,13 +71,13 @@ test("packages the V63 field-gated full people reader projection", async () => {
   assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
-  assert.equal(people.length, 2093);
+  assert.equal(people.length, 2086);
   assert.equal(new Set(people.map((person) => person.personId)).size, people.length);
   assert.ok(people.every((person) => person.personId && person.name));
   assert.ok(people.every((person) => !("datasets" in person)));
 });
 
-test("packages all 519 production portraits and the V73 reader records", async () => {
+test("packages all 512 production portraits and the V73 reader records", async () => {
   const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
   const [legacy, manifestRaw, fangzhenSource, jinshiSource] = await Promise.all([
     readFile(new URL("index.html", legacyRoot), "utf8"),
@@ -101,7 +102,7 @@ test("packages all 519 production portraits and the V73 reader records", async (
   assert.match(fangzhenSource, /SGZ_V69_FANGZHEN_READER/);
   assert.doesNotMatch(fangzhenSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
   assert.match(jinshiSource, /SGZ_V62_JINSHI_DISPLAY/);
-  assert.equal(assets.length, 519);
+  assert.equal(assets.length, 512);
   assert.equal(v62Assets.length, 100);
   assert.deepEqual(dynastyCounts, { 后汉: 20, 魏: 20, 季汉: 20, 吴: 20, 西晋: 20 });
 

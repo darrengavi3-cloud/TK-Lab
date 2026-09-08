@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-08T12:38:20.779711+00:00",
+  "scope": "Evidence checksums only; not an acceptance pass flag",
+  "baselineGitHubCommit": "c3ae8bb89c0e15d49eb993aaf5e33f392c3cfed2",
+  "protectedSourceDiff": "unchanged",
+  "excludesSelf": true,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 9567,
+      "sha256": "2135cfacb2c58790c1aedf49664a138f298578981a9286b94acd9369a4f284ff"
+    },
+    {
+      "path": "V77-ITERATION.md",
+      "bytes": 4950,
+      "sha256": "8f85dcd155f4b7f6657bade836326e897f929f1c812a969cdcf45b747898f774"
+    },
+    {
+      "path": "V82-ACCEPTANCE.md",
+      "bytes": 7570,
+      "sha256": "140aecdb9d5cc5beeb1d49bfa3cf3279a0a75038f80121e2517f818a8bfcf3a2"
+    },
+    {
+      "path": "release-metadata/access-policy.json",
+      "bytes": 303,
+      "sha256": "d9f9f4e415f8ab7258bf07ac1ceceecf4cde01bfb5c4850e8906d6630a4440f3"
+    },
+    {
+      "path": "release-metadata/deployment-manifest.json",
+      "bytes": 408005,
+      "sha256": "3a6653ecdb2064d56dd5e2a48f4f55672e0f11e395c5c310b7da75e588a973bb"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/acceptance-matrix.json",
+      "bytes": 43599,
+      "sha256": "967b0407328c6eac8799af05f74029c4947b1aa69d273ea8bc1cb72f82efc8a1"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/build-artifact-comparison.json",
+      "bytes": 1278,
+      "sha256": "af44047f596b0d20fed15dd54b790f1cf98cde18b35ba6169f6d1409b67a241c"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/external-evidence.json",
+      "bytes": 4293,
+      "sha256": "13eddf7dbd2511732f06045422728ba95e71a31507e00d2c7a9fe2d306c38027"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/preview-attempts.log",
+      "bytes": 1258,
+      "sha256": "1270f2dfea6824ff17c867c92fa0ca0786b460f995435f0cc42d96f0c9bb7c63"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/release-check.json",
+      "bytes": 915,
+      "sha256": "2f15050224d3a5bd41ca5123356588eeb7271a0a904b376678286373e878ba26"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/release-check.log",
+      "bytes": 34967,
+      "sha256": "924ee92445ca0fcf8078234ddf8956f185c9d068864b02f22cfb233ac27e0e44"
+    },
+    {
+      "path": "release-metadata/v82-acceptance-20260908/v80-source-restore.json",
+      "bytes": 231111,
+      "sha256": "deba076768d5b869566a01448f440c8bc8f850d54f9caf8caf828c3df2c32797"
+    }
+  ]
+}

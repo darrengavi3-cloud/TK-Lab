@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "version": "V81",
+  "startedAt": "2026-09-08T02:04:01.592652+00:00",
+  "checkedAt": "2026-09-08T02:11:52.174746+00:00",
+  "command": "npm run release:check",
+  "exitCode": 0,
+  "logCaptureNote": "Direct combined stdout/stderr from the complete successful command. No source changes during this run; this receipt and the review-document status were added afterward without changing reader inputs.",
+  "deterministicBuilds": 2,
+  "deterministicOutputSha256": "2e72cc849bff57296ab1546a51c0a3aaca0da6542cb4d2ef089a5036988e7064",
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 50,
+    "failed": 0
+  },
+  "freshAccessGate": {
+    "status": "passed",
+    "tests": 2,
+    "snapshotCheckedAt": "2026-09-08T01:59:28.683Z"
+  },
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingGeneratedTypeWarnings": 3
+  },
+  "sourceLockSha256": "6ea0e65e6e73b2ca9d7128a96830c1defdcb8f358b0d7f71d16b94816cdba1b3",
+  "sourceLockAggregateSha256": "e4cc3759bb53cc89685214cf35a5e56ce91c79b65667392ef2ce36f9ef5c48c8",
+  "deploymentAggregateSha256": "bf7995e3eee5a6f243570deef762546d696773502dc19194f16be4c4e4a7ed29",
+  "releaseLogSha256": "782bfe298f326efb101c39696e749786debaed3c5101bcefc73516625b4da193",
+  "counts": {
+    "people": 2086,
+    "appointments": {
+      "verified": 251,
+      "pending": 526,
+      "disputed": 2,
+      "suppressed": 72
+    },
+    "biographies": 96,
+    "portraitAssets": 512,
+    "peopleWithPortraits": 505,
+    "peopleWithEvents": 507
+  },
+  "preservation": {
+    "previousPublishedAppointments": 238,
+    "byteUnchangedAppointments": 237,
+    "guardedCitationOnlyUpdates": 1,
+    "personIdentities": 2086,
+    "peerageEvents": 535,
+    "exactInscriptions": 59,
+    "originalPortraitFiles": "unchanged",
+    "identityReviewBatches": "unchanged"
+  },
+  "queue": {
+    "reviewed": 80,
+    "total": 100,
+    "verified": 54,
+    "suppressed": 21,
+    "pending": 5,
+    "remainingUnreviewed": 20
+  },
+  "batch": {
+    "newQueueReviews": 20,
+    "verified": 13,
+    "suppressed": 6,
+    "pending": 1,
+    "priorDecisionClosure": 1,
+    "priorPublishedCitationCorrection": 1
+  },
+  "continuousIntegration": {
+    "workflow": ".github/workflows/reader-validation.yml",
+    "stateAtSourceCommit": "not-yet-observed",
+    "remoteReceipt": "PR #11, tied to its exact V81 head commit",
+    "access": "contents: read; no Sites credentials"
+  },
+  "browserVisualAcceptance": {
+    "status": "not-run",
+    "reason": "This batch reviews appointment evidence and reader projections; no browser visual acceptance was performed."
+  },
+  "realIPhoneAcceptance": "not-run",
+  "performanceMetrics": "not-measured",
+  "rollbackDrill": "not-run",
+  "deployment": {
+    "thisBatch": "not-deployed",
+    "previousVerifiedVersion": 36,
+    "previousDeploymentId": "appgdep_6a9f30c8ef5c8191aad324afde278100",
+    "previousSourceVersion": "V80"
+  },
+  "publicationNote": "Local source/build receipt only. Saving V81 does not deploy it; remote CI and saved-version receipts are recorded separately on the draft PR."
+}

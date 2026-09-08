@@ -3,8 +3,8 @@
   "build": "reader",
   "sourceRegistryModelId": "sgz-v63-person-registry",
   "sourceReaderModelId": "sgz-v63-reader-people",
-  "personCount": 2093,
-  "portraitCount": 519,
+  "personCount": 2086,
+  "portraitCount": 512,
   "readerProjection": {
     "mapRuntimeFiles": [
       "assets/map/css/style.css",
@@ -81,7 +81,7 @@
     "fangzhenReaderRecordCount": 523,
     "fangzhenVerifiedRecordCount": 45,
     "fangzhenCandidateRecordCount": 478,
-    "personProfileCount": 2093,
+    "personProfileCount": 2086,
     "battlePersonLinkCount": 106,
     "epigraphicRecordCount": 166,
     "peerageNodeCount": 13,
@@ -89,8 +89,8 @@
     "generalTitleReaderCount": 248,
     "generalTitleLegacyVerifiedCount": 159,
     "generalTitleV65VerifiedCount": 89,
-    "personAppointmentReferenceCount": 197,
-    "personAppointmentRelationCount": 197,
+    "personAppointmentReferenceCount": 263,
+    "personAppointmentRelationCount": 263,
     "personPeerageReferenceCount": 535,
     "personPeerageRelationCount": 535,
     "personPeerageUniqueEventCount": 518,
@@ -108,9 +108,9 @@
     "firstScreenSheetJs": 0,
     "explicitCodeIdentifierExceptions": 3
   },
-  "fileCount": 601,
-  "totalBytes": 207905730,
-  "aggregateSha256": "9402614ef1cb7c0930eb4238115809713c082d05d2ba91dd058bd5ba67e8080d",
+  "fileCount": 597,
+  "totalBytes": 205645495,
+  "aggregateSha256": "1a398d74b43a8375bad96ad7bed31493a5e6b947a7508891153a84acce2fba6e",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -126,6 +126,11 @@
       "path": "assets/app/navigation.js",
       "bytes": 587,
       "sha256": "444f69c1709aab9092154ab5b1e416a01da03a0f7d0e1fc6926b2c14b17cf285"
+    },
+    {
+      "path": "assets/app/office-succession.js",
+      "bytes": 1810,
+      "sha256": "ddf0bd14e1418c5d16f99504e9e53e0bfea9b304988b73f4e047670e5bdd5e37"
     },
     {
       "path": "assets/app/people.js",
@@ -144,8 +149,8 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 3483,
-      "sha256": "26f4416774ef0007c9985a23e4497060c8c500cba91b9f33220d7073f8e02ff0"
+      "bytes": 4072,
+      "sha256": "2c376631c73a567d8e200202c2055b86f3dfc67c23f8cd00060dbb8a9bc6afd5"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -548,11 +553,6 @@
       "sha256": "213876e336ef9ec0323d8378c9fed347668eb8e7a935e514713d7bedf24c3172"
     },
     {
-      "path": "assets/portraits/v51/person-source-1208f55849a5.png",
-      "bytes": 424205,
-      "sha256": "0123e2afbfe7b184c99a331447f9a1e2e62ad6af0ed0b633635f9a9704f10110"
-    },
-    {
       "path": "assets/portraits/v51/person-source-121d406fe7d1.png",
       "bytes": 350282,
       "sha256": "c2c5589e1d16c99f1c12d2775848c422221fb921fed2cf23b868aa60063b0576"
@@ -628,11 +628,6 @@
       "sha256": "5083b36a12511b0551f6a45991f0d31e922fe0792108ef5b7745c69f4c97e2b2"
     },
     {
-      "path": "assets/portraits/v51/person-source-30f8afe4c18c.png",
-      "bytes": 371832,
-      "sha256": "9fe8cc8bbf15c6b699e85663f5105a2c24c187d054ca19d754ccbe303978cc92"
-    },
-    {
       "path": "assets/portraits/v51/person-source-35a5246521f7.png",
       "bytes": 433198,
       "sha256": "6f4141f4ca07522536fa972080e40b80e8e0655e6b0aabf654e8871410b196f4"
@@ -666,11 +661,6 @@
       "path": "assets/portraits/v51/person-source-57f563d7a1ce.png",
       "bytes": 328405,
       "sha256": "83885ee069f831998666e6990a2af5bd62974b8e5fd7a5c141809ce0da30f577"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-5a26d1185d64.png",
-      "bytes": 393005,
-      "sha256": "f75cde5a0fd6fbd6c7149fe7f73aac019fbe499e85476b44f03800c58a399590"
     },
     {
       "path": "assets/portraits/v51/person-source-5da0dd364783.png",
@@ -781,11 +771,6 @@
       "path": "assets/portraits/v51/person-source-8a094c46b36a.png",
       "bytes": 316573,
       "sha256": "2598e976ea9b8f9e7aeebf88111130f6fd3fa0e5a7d69fc93ab43598483ba9e4"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-8b8bba6b3bd1.png",
-      "bytes": 376762,
-      "sha256": "e78eb52f06b25628938a376ecc19e3c8a189998a061227cbba7877c1c2122af0"
     },
     {
       "path": "assets/portraits/v51/person-source-8dc0bfe19c5d.png",
@@ -963,16 +948,6 @@
       "sha256": "e3df7e902a1149eaf2254dcae5878d10defb1d236794df5cf27d986310fdc592"
     },
     {
-      "path": "assets/portraits/v51/person-source-e753fd0f66cd.png",
-      "bytes": 337333,
-      "sha256": "61f4a8a17d03c1881013171cd42b471e3d3d3e808d879845b1d94f8b88ae0737"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-e77c1970c9ac.png",
-      "bytes": 284828,
-      "sha256": "b035381ee71eebb42f1dc2f9626a8cd54833b27b3b3b15fe34afdbe9e085c1a3"
-    },
-    {
       "path": "assets/portraits/v51/person-source-e8e51760ad21.png",
       "bytes": 333603,
       "sha256": "bdf5ac46da565f689373866cb3e216ba0a6cd09c20266e54ad19ba8b5975bfb1"
@@ -1006,11 +981,6 @@
       "path": "assets/portraits/v51/person-source-f70e8bb46940.png",
       "bytes": 338792,
       "sha256": "5199e13b1f0740ce2c58906fe68e59fc606d2c3bf1019bb70383db72fdfe6534"
-    },
-    {
-      "path": "assets/portraits/v51/person-source-f741747b83c4.png",
-      "bytes": 378730,
-      "sha256": "2abcee711dfad70b974041555eea8a81a7301f4c44f9d3614eb26121a98b46e8"
     },
     {
       "path": "assets/portraits/v51/person-source-f88e20a568d0.png",
@@ -3039,18 +3009,28 @@
     },
     {
       "path": "data/portrait-manifest.js",
-      "bytes": 667341,
-      "sha256": "c25930ac065944cc1b25f61d57e6110f7c6cd28ac372e4643da87bef4b6ab6ed"
+      "bytes": 657620,
+      "sha256": "aea6135df67ba89816f47b59d56369f209be62bf4313b8af58e978d96c1aa677"
     },
     {
       "path": "data/portrait-manifest.json",
-      "bytes": 915522,
-      "sha256": "78835f06ccba83d42f39430733b73ae33ad4048e82792830e296097c94ad5931"
+      "bytes": 902490,
+      "sha256": "d35251553aaa62bd2e9207de79136b9b778b4688770c5ee8ce34a42780f26a6c"
+    },
+    {
+      "path": "data/portrait-variants.js",
+      "bytes": 217,
+      "sha256": "224028f14aa54021bea576b0f40279efbe2604d26dd2c3a0ef08bb49a7b231ec"
     },
     {
       "path": "data/research-model.js",
       "bytes": 43327,
       "sha256": "69e7456adf728587fe4f33b1dcaa3d13a69514b305a446c7e305dec2f22b6e9c"
+    },
+    {
+      "path": "data/reviewed-office-succession.js",
+      "bytes": 11000,
+      "sha256": "5fa8a402ab3d8df2b49ec82823506f10500e24c6fbebcbf9f1549bb5e3146ae4"
     },
     {
       "path": "data/shihuo-records.js",
@@ -3064,23 +3044,23 @@
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 426490,
-      "sha256": "2dd0b15f5ad8cce306838d5005f27ac3eb64e92c56a9bdfc091bf36c25b47694"
+      "bytes": 428367,
+      "sha256": "423db89ddb7b9e7949457cfd166ea39375b04340e15906ab9334c22cec043a0b"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 588148,
-      "sha256": "d2a2952a3b9fe9500cd1ef89671e65cac6d08151e8875187fd3066472f4da81d"
+      "bytes": 590658,
+      "sha256": "9f55b2a490da24823a614f453fb41d47f64baad7ba6f3a461e0029131598407d"
     },
     {
       "path": "data/v63-reader-person-relations.js",
-      "bytes": 346474,
-      "sha256": "a239190adb883df7225ed3106118e7fc5f2899bb66bc0d868e1b890bf4c5c522"
+      "bytes": 442535,
+      "sha256": "83c88cb0934c414bd5c93179f16c9e1774aad94a18622fc0c6eab1a196577e69"
     },
     {
       "path": "data/v63-reader-person-relations.json",
-      "bytes": 426194,
-      "sha256": "4a4a7be9aec819799cadc96a4b8cab9b0eecafebcd8872e3f050f7010490d52f"
+      "bytes": 542847,
+      "sha256": "d1b60b580c9b77ef1c15126552b7e932f09bd3bbb7e867aa1cc56f0136b420c6"
     },
     {
       "path": "data/v66-peerage-stages.js",
@@ -3104,18 +3084,18 @@
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 506215,
-      "sha256": "512d06eb4799648a15a765dc9d0c76d62c3cda8ec549bd086851bd0dc3060a86"
+      "bytes": 604533,
+      "sha256": "aa6896947bc8ecfddad1dca6443e85030a610c75d91615fa16cac2069f675162"
     },
     {
       "path": "data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "96ddd30372c824b0b6b4e2f8928a5e339e214b3ac0b5669f7c5ad4ca89b82b46"
+      "sha256": "306682b56a618bf40b0adce25bb35b0367faefef7c40764839655693925a4c10"
     },
     {
       "path": "index.html",
-      "bytes": 771817,
-      "sha256": "9c46be8a54e791f90cafbaca9c594e362d2955318147a90afcfcaa874f59ef02"
+      "bytes": 771995,
+      "sha256": "db01d004f9ef0a3595ae824dacaada9fb1d402bd28a6b9d8f20e0b19c46cac3d"
     }
   ]
 }

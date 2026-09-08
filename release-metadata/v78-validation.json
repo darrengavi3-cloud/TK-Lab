@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "version": "V78",
+  "checkedAt": "2026-09-07T17:20:36.947115+00:00",
+  "command": "npm run release:check",
+  "exitCode": 0,
+  "deterministicBuilds": 2,
+  "deterministicOutputSha256": "84d2070d67a46dee7dba6682a20b7a89a40e501ad27061a8d7580754f65a5515",
+  "currentInvariants": 19,
+  "applicationTests": {
+    "passed": 43,
+    "failed": 0
+  },
+  "freshAccessGate": "passed",
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingGeneratedTypeWarnings": 3
+  },
+  "sourceLockSha256": "704382d1243ae41af6109d67b5b779e65c898dfcf584e42c380c58119416f920",
+  "deploymentAggregateSha256": "8be5994219f0d1e817035fad172b5c420826466a183956d2f568e52b2be78411",
+  "releaseLogSha256": "b6f92c45e8e1c143253dd85f1606786a6010d627f4276a52e50802cc3cb3f3c5",
+  "appointments": {
+    "verified": 213,
+    "pending": 582,
+    "disputed": 2,
+    "suppressed": 54
+  },
+  "preservation": {
+    "previousPublishedAppointments": 197,
+    "exactInscriptions": 59
+  },
+  "continuousIntegration": {
+    "workflow": ".github/workflows/reader-validation.yml",
+    "yamlValidation": "passed",
+    "remoteExecution": "not-yet-observed-at-source-commit",
+    "access": "contents: read; no Sites credentials"
+  },
+  "browserVisualAcceptance": {
+    "status": "not-run",
+    "reason": "Sites preview failed to become ready in both permitted attempts; no environment recovery established."
+  },
+  "realIPhoneAcceptance": "not-run",
+  "performanceMetrics": "not-measured",
+  "rollbackDrill": "not-run",
+  "publicationNote": "Source/build receipt only. GitHub workflow execution and Sites deployment require independent remote receipts."
+}

@@ -1,0 +1,1663 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-08",
+  "batch": 5,
+  "baseline": "V81",
+  "baselineSource": {
+    "githubCommit": "2cc7b8a69c689ae6208135fbdcf70b0ee3e730b9",
+    "siteCommit": "046ba3a278994d2a563f67895cc6f692ff0cec0a",
+    "sourceTree": "4901e613cf04ca50942a89d8e76dc67d4674727c"
+  },
+  "baselineAppointmentReviewBatches": [
+    "v71-appointment-review.json",
+    "v74-appointment-source-review.json",
+    "v75-appointment-source-review.json",
+    "v76-appointment-source-review.json",
+    "v78-appointment-source-review.json",
+    "v79-appointment-source-review.json",
+    "v80-appointment-source-review.json",
+    "v81-appointment-source-review.json",
+    "v81-appointment-followup-review.json"
+  ],
+  "scope": "冻结第81—100条。核读《晋书》卷3—6、33、36、39、41、43—45、47、62、86的相关纪传段落，参读《资治通鉴》卷81；没有完成全卷校录、纸本或影印页对勘。",
+  "sourcePolicy": "冻结初检、原抽取及V78—V81旧审定原样保留；原典节引保留原字，电子文本标点与讹字不冒充校勘结论。年份按年号所属年，未作逐日历法换算。未知终任年不以转任命令、出奔或卒年推填。",
+  "counts": {
+    "reviewed": 20,
+    "verified": 12,
+    "suppressed": 4,
+    "pending": 4,
+    "remainingUnreviewedInQueue": 0
+  },
+  "cumulativeQueue": {
+    "reviewed": 100,
+    "verified": 66,
+    "suppressed": 25,
+    "pending": 9,
+    "disputed": 0
+  },
+  "previousPublished": [
+    {
+      "appointmentId": "appointment:source:sgz:06:73e564400a18",
+      "sha256": "e90e49484b464690860205a8e13338ce2a225f081b979b31f7e930dcdd60c716"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:21:6d1821578978",
+      "sha256": "c740300d61db10c627d52015f967a2e9dd47bf7e3bb4c259e07b350e2544fb6a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:15db8d9b680e",
+      "sha256": "cd5d223611d2b66c279464d919f0ebc6d24deb7d8b3ef5ac4efd6cbb68f62e00"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:08:36f8390373fd",
+      "sha256": "a6e0eda545f42b459f70d56711671f12747213cc4c835387562dfddee32a9098"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:342ee9a2ab8c",
+      "sha256": "398cdd648c18808a4c09f3ee35fd399bc893268de281dc97696b0c8d4a782214"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:df6143e80532",
+      "sha256": "fa77b51bce790e405a1e95d04d0333d33d89e90b69be9202919fc8924d503060"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:981cd8b31e76",
+      "sha256": "e8e64b97741880058bed01968e9ce53e4417f332042cb26b76bf86894385af64"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:23a70ff02311",
+      "sha256": "f86408b88c2f0a5a310da04df36744e59cadb70a63394d159285a74e6c3ff286"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:74a64f3507a7",
+      "sha256": "96cf167bbfd8e7f41c1099a843c4dad6140de8cac50eacc7af597d1f042eccf0"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:982354497ac8",
+      "sha256": "deeaf6811ccd21160a1ceb67845995f1df41d6918afe9d3869f0c523b111c746"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:c1fb9cf0902f",
+      "sha256": "be21a2ce83cfa506dbe1d0b862d465db471f6639d97b76413ac3917842db04fd"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:e53817659adc",
+      "sha256": "68b3914b4070c3b4e60e2806f919161113d4b4416b004f4ec00ea0727e00ef0b"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:1586f7cea46b",
+      "sha256": "859bca40234198569ca982f30062f8e4973da3c2f35031198cd01e907394715f"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:64e5457caa8b",
+      "sha256": "1c7176f65a3710c70addc5d4d6fb81325259e847068f319b6b5733cbecbb0b3f"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:76d0a69082ca",
+      "sha256": "962e3973acddfa5975bc9cdf78d008de76d518b7e99ec77e07087481efb2457c"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:c201e956f56e",
+      "sha256": "50ac86cc1dc667baff8d9ffd94141adc77a6ee28a2633d1a212ac1412b0a8012"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:da68fa8cedc1",
+      "sha256": "4cf91a0b480d90fc3479b96a159e3086dd84b181a10c0b17d4edc73c99a4a79b"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:4012928915de",
+      "sha256": "f7f053327b23cbc887868c057fd7231d4600dfadcee3cd1b99387c49630d0232"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:b8d36c4d1199",
+      "sha256": "6c9432cd4f56870a0806a4dda997bce426a97cd9c1ed7b9fcaf6d52f12bf526d"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:a08e94e7a085",
+      "sha256": "d40ee8e4f161f3036f8d44c1d5d9d7e838f80ae75e249504c62be9435e43d80f"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:088:c7f32e2a604a",
+      "sha256": "258765941afb376f2edf8a0d9fbbc972485c4ed69374608840a6e97da7b697ed"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:4542d56c1053",
+      "sha256": "08a29bccd3224356297c69425fc1876bb03ae43fdd4e50d6a847424e574f886c"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:1e2827781b46",
+      "sha256": "22dbd1c45b0a8131803d006477b4065531d2f2b4d024f2622c917eed68dcc8f4"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:225a5c858e3d",
+      "sha256": "df56ce6cf235b442c473919703acf26478ce9bbb87e0441d1414f3f95a13ac39"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:fc32a3021f2a",
+      "sha256": "2ef998508f735063b696e5f3ae030a0c4a19c7e5296f97b29317b20b2275a67c"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:ea9fcb555258",
+      "sha256": "3f313e1d540e0524ab47b12fc72162bf2a9284ae3269e8e1e1ace01c9aa062d6"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:120:0623f307009c",
+      "sha256": "3aa58e91708838c85283d4a577718667f74cc5d0cabbab2d4fede55ff1821909"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:97422fbd72fa",
+      "sha256": "5e7ef2f3d02f5b5713fdd071a33595726580876244f584160c226065cd2b7f89"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:96b602cf17c6",
+      "sha256": "891f43c7e8763d1a55803db89e643959e6795cbb87b62049116f7510f095b0e9"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:ce1c6cfeb84e",
+      "sha256": "eea81d73248a70c328525238073004a06cdca3ccd139073d082c525696b37fca"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:33b840f0ac05",
+      "sha256": "7b17092f0ff6715cfca16a30a011644832518c08fc6479006af3fffafe272a72"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:7d69bd5395aa",
+      "sha256": "cc07fde23ce96ec26a03f6a190512fd52b818b9f37ba47321de9a86d2bf01d43"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:cec210ee005e",
+      "sha256": "b07df6b0acf22d047e53544afb2bd2d0dfe88108a347bf352485d8b80197bcc9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:5a3bc449617d",
+      "sha256": "86ac0279e5202674ab2eb8c72ca790e4fc2b7741ece9eee5f64f852afa542fb1"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7ab835ac703c",
+      "sha256": "5a9af859da7b3cbe723b751d4ddaed45941afe286baaa90d82b9f42d91e35736"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ad9062e1c32d",
+      "sha256": "93025e0bec9aea6b2256d355c7219a94690fba9de956510c45295a62b73369cb"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:15:54c17f28f1e1",
+      "sha256": "333e073bd29974616ec38cca4c42fda25f77d13c71c7dc37d163c3c4d96805f2"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:bc1019f07d24",
+      "sha256": "40e584bf5ffdbef63cc62353a3cd964f784a40c4f2cf3ccb9bc489a7b6caec75"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:23c21653b615",
+      "sha256": "272da23f52722333f0491ed42f208adbed680a7b3fb83c4f5cf7721d6aa084bd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:6452b258bbd4",
+      "sha256": "d2480ac7b37e2230c23e69100969f23cb840b21354bc05e796a7a894f0fefa80"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:d42f14b72155",
+      "sha256": "ac606bb5c718a94c0e3894aaa7556126b268ce6ce355a3d14ee87d26b426e38a"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:638458309762",
+      "sha256": "29e2e399a38e341d84be3eb0272761688682cc5c7b799f63540d163aca766d08"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:a9113ebf3e6c",
+      "sha256": "0419e354c685426af3843f20b4cb7a1001d45e9286eacaad63679a2b2418562d"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:eb7cbd5e06a0",
+      "sha256": "ac2510f34f76debc24fb06cf0aa93013ca89e32e4d1e9f40e73b30a6eeec9bbf"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:fc90786b5792",
+      "sha256": "c303b83eba41879a7ccc3104c104eb283ef957ffc18826a9e0b40a8efdad6413"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:429e2d8233c3",
+      "sha256": "643267ff15f665264fa0c023d0aa13be234e954d9e12b1fb104a66f81d5fa2cd"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:090:d98e5b408f46",
+      "sha256": "f7a5562fc6adcc207a2d6b7a8f4b03dc484259016ce5fd4c92ae1f6186f09ea6"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:48978b7a125c",
+      "sha256": "4f327124c4ec371ea94e94e89ac020a11cafd134532a71b99f3932f7bea7ee21"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:f7dffa0a5ee7",
+      "sha256": "d220255de8ebac77505b9fc9c335f8e767a020815d2805f38731b0cfffa35aa9"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:db978e64500d",
+      "sha256": "4c3ec86a131dd390eb235752773a781ca09705daf9930fc263b5e40067147ffa"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:4fb7fd7b5e2c",
+      "sha256": "7099c50212059158a2d3a0e71c665da9eb1f66b39bf63d6d5b54a47af61eb5a4"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7ed6e2ddb24d",
+      "sha256": "920d7456b104bba7cf1eed569e0388f142c06e20b8eb95a8690381e77333b995"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ee5fdf6f46d5",
+      "sha256": "45feb21cac0627ce858c4d1d2d7705d01d5652dcefe5d011c366f8b61b5d2ed8"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:40:01c32f6e38df",
+      "sha256": "5b4c7578da981065469722b89e0db0140cd570d5a5397d4465a19366d43c7130"
+    },
+    {
+      "appointmentId": "appointment:v75:001",
+      "sha256": "4958bdef95b505a575da305b4238169e015b0ace4b64c19c2c8b1c2f59bc6509"
+    },
+    {
+      "appointmentId": "appointment:v75:002",
+      "sha256": "f3d582f2f9e85dec949dbfa5c08e5ce8113fd7c308662e301dea6927cc26c039"
+    },
+    {
+      "appointmentId": "appointment:v76:027",
+      "sha256": "2357cf881cba6fd241ee651526708cad1b33f64d9ecdb7a06398b9e3f9b865cf"
+    },
+    {
+      "appointmentId": "appointment:v76:028",
+      "sha256": "e3608928f8e6fe383749c01234f3bc739ec9306b04dbe2414f923899610d257c"
+    },
+    {
+      "appointmentId": "appointment:v76:029",
+      "sha256": "3bfe28b7e8681a586bdc97b6c2088721dde639e0dcc39e09c3cd44038d718010"
+    },
+    {
+      "appointmentId": "appointment:v76:030",
+      "sha256": "bef28c69625716b1cf7350b93fd9e6cdf3140101da3bb00fcbcc46a09e30689e"
+    },
+    {
+      "appointmentId": "appointment:v76:031",
+      "sha256": "676a2e81c1a63a4b7f7fb523b66bf831c70281712eedf078e1cac34906af54bc"
+    },
+    {
+      "appointmentId": "appointment:v76:032",
+      "sha256": "978d367673f2a8c908fd3e2449516885346ebc923bdf10e0df7e6a914047e5ac"
+    },
+    {
+      "appointmentId": "appointment:v76:033",
+      "sha256": "139c3aa4b6eb68dd80d1c5386bfb92f1db3cba23b7611ffe00a94534b160c89d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:c8d63f8e20ac",
+      "sha256": "44e8965fa1a61a9b4afb14e0dbf869219c5fbce375b09903beecd1982be0551c"
+    },
+    {
+      "appointmentId": "appointment:v75:009",
+      "sha256": "6ef416b89226ba80542037e40253feec73f5f31315e73cf0059aebb075434374"
+    },
+    {
+      "appointmentId": "appointment:v75:010",
+      "sha256": "58eb12f743d921391e2dd090e5869d167bd54adcbf7092138bdbb6d80abccc5f"
+    },
+    {
+      "appointmentId": "appointment:v76:004",
+      "sha256": "3259191548608ff527c8b4365e293f0b9c6f2e4dc17f465e20ae20eec77585ff"
+    },
+    {
+      "appointmentId": "appointment:v76:005",
+      "sha256": "f4c145b6b2823fa1d8369301bdba6156f1711db57fccf3276c7ef62d164ddb99"
+    },
+    {
+      "appointmentId": "appointment:v76:006",
+      "sha256": "94b1b9c1bc57e6258e04ec3042126f7afa46777457aa11c46c1577f4228ecd78"
+    },
+    {
+      "appointmentId": "appointment:v76:007",
+      "sha256": "8b1aaad642b42174c15a07773b300ce2f0105c8dc3e3e791769f8fa0022f48c3"
+    },
+    {
+      "appointmentId": "appointment:v76:008",
+      "sha256": "ae60cd45724ec1e286fa51b695867eea6e38dd2d1a94ae33bc56f5f94c561ff8"
+    },
+    {
+      "appointmentId": "appointment:v76:009",
+      "sha256": "10fa9e945341021962fc860ab39ad51c6931aee145d7eecc1974131742b23eec"
+    },
+    {
+      "appointmentId": "appointment:v76:010",
+      "sha256": "cfcf31eb431cfb5e933a5b861a811611b84fe99030a1b1951e88cd66cbd25071"
+    },
+    {
+      "appointmentId": "appointment:v76:011",
+      "sha256": "29c8d6e1624ab9c93ad00ae20cf339e8035b5948939a8a9076e208910b98edd6"
+    },
+    {
+      "appointmentId": "appointment:v76:012",
+      "sha256": "79ddc01432c4b5ea6604e150a9731cbfff76d3f4f4e9901c69f48a2260dcf17e"
+    },
+    {
+      "appointmentId": "appointment:v76:013",
+      "sha256": "6f1206a95bad25a517c4fc08536069827788b6f08873da4abf1a222ad5f6e8d5"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:15266b19b3c3",
+      "sha256": "7932940ec3f4728aa0a2b5b72f3b27eeaca1cee212e09a8c5f8eae6f8c179d0a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:8b22528ee416",
+      "sha256": "1bff8495c080bd2e78ed87965940a4c2af4491ff60738edfc9aaccea37f99e38"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:44:1c106e4707ab",
+      "sha256": "bdd6eb0bd21c598487bcfae1592a74907591d0c9f7cdb3b5cd6dc309158fab6b"
+    },
+    {
+      "appointmentId": "appointment:v75:011",
+      "sha256": "09047cef168cf214bde9b0290565ab0fb261e9ce39befeacf2c9b3c66f978e06"
+    },
+    {
+      "appointmentId": "appointment:v76:001",
+      "sha256": "935b91806c58cc7f4161d948885592621d77a84341422c88a18cbef0a43ca938"
+    },
+    {
+      "appointmentId": "appointment:v76:002",
+      "sha256": "075141f256553cdbadec1b6e5fdee2c235df6a75e571e8e7b16d00d29e2246e2"
+    },
+    {
+      "appointmentId": "appointment:v76:003",
+      "sha256": "bcd9778d25be1a5c6e715d8eeb50b9af00f74a6553bd70d9fa9e028bf04cd518"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:2e6f7dd53661",
+      "sha256": "cf34531f5d6cff8e5747670dc95986e4b9d822fb2c699ea111e8c0e13fdbdc21"
+    },
+    {
+      "appointmentId": "appointment:v75:012",
+      "sha256": "55b92a326782fa7f7bf3aea10b8142ef7db0c4c964a1e7cb9c2dec9f2935d8fc"
+    },
+    {
+      "appointmentId": "appointment:v76:014",
+      "sha256": "078fff5ed1b039bafa20bb3ff01f2cf7295636553510f6c3804a2a575361643b"
+    },
+    {
+      "appointmentId": "appointment:v76:015",
+      "sha256": "67fca63c0c7153ffef3814c3e164097836d20147b30f7b84c5c748ea759153d1"
+    },
+    {
+      "appointmentId": "appointment:v76:016",
+      "sha256": "82e31109afc53b0defe12952d53d52f98b6a0f4377db352090fb16ba3cf4d131"
+    },
+    {
+      "appointmentId": "appointment:v76:017",
+      "sha256": "a3d6f29a76ea42eabd02aebb667e59191a17b7ccc333a506ca78cd20123c736c"
+    },
+    {
+      "appointmentId": "appointment:v76:018",
+      "sha256": "94aa85406afa4548ae562c7bf6e66b9c8fbe4d8965cbba01e305ccd61e673f7d"
+    },
+    {
+      "appointmentId": "appointment:v76:019",
+      "sha256": "5339e7e5b8c855b7ea05e41c9283fbe4c37f5341d7acbe511dc47195418427c8"
+    },
+    {
+      "appointmentId": "appointment:v76:020",
+      "sha256": "9b48bc6f5f2d89957f335833461011f91d9dd0b5f1d18105081683855d726b10"
+    },
+    {
+      "appointmentId": "appointment:v76:021",
+      "sha256": "2f2e7ab5b8b4745aed2d3b8eb560204b01b54f9dd270f4303b888be8d3923706"
+    },
+    {
+      "appointmentId": "appointment:v76:022",
+      "sha256": "7e6e6778b3c454de51e6d9e560039b55119100d1c1887e67f4ad49cac75c032c"
+    },
+    {
+      "appointmentId": "appointment:v76:023",
+      "sha256": "93e7e2f13ecea267600f5beffe8cbc0efb3e6059d8bbe19a67389c681f800bb5"
+    },
+    {
+      "appointmentId": "appointment:v76:024",
+      "sha256": "629b0205e419c65c9af8a2480f30bc908f52a20663902f8ad55242093eb9b999"
+    },
+    {
+      "appointmentId": "appointment:v76:025",
+      "sha256": "e9a8f6c47e3814a9ce9a1ea49f803e85b3f708879b4aa3b78ea0859e8c278caf"
+    },
+    {
+      "appointmentId": "appointment:v76:026",
+      "sha256": "b35be30b006022f80566a57dd20feedb4966648466d0c1a4b06c7865af8e66cb"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:39:2f656376b998",
+      "sha256": "fd3ea92f7c9328eb2c4066fb4e37f982d06615ba183a1f60190da7725f54fbd0"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:537f759694cc",
+      "sha256": "69e996a2c752842bde54a03ef821a4a9ccc7152c9cf8d4afa3bed9f5d8e207d2"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:a77842e8dc15",
+      "sha256": "9fefd250b2280277921905676b8a07c87707942faf445568eaaef3f7d33e0f40"
+    },
+    {
+      "appointmentId": "appointment:v75:007",
+      "sha256": "de88d0eeabe3aea909dd0195c986412f3e18381e5eb303d5d47b54d0a8e4a121"
+    },
+    {
+      "appointmentId": "appointment:v75:008",
+      "sha256": "f4a79025e705990b70348209ec86967900b9d464543b39db836fd45e6632d670"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:3b19faa637aa",
+      "sha256": "60b12d2dba3950199189b8efaaec7b417474ccaae696a667dac622a6a01b8aee"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:7dd6cd2706c9",
+      "sha256": "025d97c3459edbe35791591afc43750f9aeeaa1e2fd21e08854ff907505a677d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:35:03b07e76f199",
+      "sha256": "8de609acbb7d932ee96c9d5396ecb9e7717d5b83ebbc111d0d38dbb381ceaaf9"
+    },
+    {
+      "appointmentId": "appointment:v74:021",
+      "sha256": "57845487da3e10eac76c49ce50aefd78347a90144adb7f22a5594943586deb2d"
+    },
+    {
+      "appointmentId": "appointment:v74:022",
+      "sha256": "7842696654ed4503722cbd2b81add89326fff5f8d9ea4dc15eac37aaf02011d8"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
+      "sha256": "a5de7733391f4b14dee017aed53c0982784d04dd5852d483002e2333ef17da85"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:10:b72a5b3a36df",
+      "sha256": "711d87add7fb6cddc7fb89ee3c2891a487f6601a352723a63b87f484dd48c6fd"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:250ddd435f4b",
+      "sha256": "1cf48124a4b8531be19463c64d1803342bf69957ebbb081a7905e2782072f3f4"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:5ae8505b59b1",
+      "sha256": "c62eec2d4cd10b7919e2dd99c9fa02f1e5729fb8b6846bd09e3be011be5b094b"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:b08dd742fd47",
+      "sha256": "14fe764d4bf95b6acea24d4d5dbe57788616917abb95ec37b2effda4cf5b2b27"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:d43e75e3890c",
+      "sha256": "d066560e415b32d2bd9c206cc4db94b3418170a5f38c3c0bf6588a855bcec59d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:01f2b39cf9c9",
+      "sha256": "a8a16f636c135691d556b304afacb12302489f9e7a914416c796cd3e45f4ea34"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:cf102cf5620d",
+      "sha256": "d95cd1e4ee7b6659ea79fea1a64a36a194056fa827175454a5eb48be93de0771"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:fd5f5aa2a419",
+      "sha256": "f050fd21d0044b4f8694707099605077e9af0774adaa5228d6f8c322abdc3ae0"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:43:0c13a7c81381",
+      "sha256": "32f464650b833d6209b2213f4acfe57264e7cb94374f0e4b73b8a3cb487051bd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:ee9f83595474",
+      "sha256": "5be1407f06886f4cb268473b962941ff0abeec9a02fa13e53e3032e1eaba2c12"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:10:e4e682d44c25",
+      "sha256": "a582ce31f5020b1b8db6ebe181ffc2a82a66d64fb32588c3eafa36d736fad159"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:525296c06bb9",
+      "sha256": "255cb7426d6590f0815d937ef2191a65a8f896b24ae6730bb8e5d1ce243425ce"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:23:09786cd25961",
+      "sha256": "2c82ca9e7b4d095d4f715ab48d2316e21f3da7b62a39e055a72033588362b2e9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:27:7fd8ce071d4c",
+      "sha256": "ec951644df358686408dbff42db13522148662d26f0b09866a97a3763c6ff5f1"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:58c66292ab75",
+      "sha256": "f49f10d8c0e97552f330291216cfb4a47d5e3f890280dc973a6a78be746d3e09"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:a486dd8a87ab",
+      "sha256": "05de601916ceada28b8531a2cf47137421a187dcb3c4a66ecac2bfcaaedd9257"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:2b024fd41af3",
+      "sha256": "bc396a84684f5eb9f9e83954c2705f7f13212113a2e610e74f29009540828497"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:aa5f9775cb83",
+      "sha256": "a76c6e8af3edc2068b53c714427b5d82c4b2f551fb34620d55d93a555361fd23"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:933d5cb670f7",
+      "sha256": "9243934965ead4f0f793dddfb34afab1528984a3da3f360d5b64ddfc58b6b917"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:785b893711d8",
+      "sha256": "14e4d62d136dd9a21a38f8556832c9272c37bf740ab0bb62b728044dbd666e04"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:25:34394445c97c",
+      "sha256": "ef00a940df7755c435be72af3ffa63c624afc9a3d54d1781c461c20b21f1ed15"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:e5c874a43fe4",
+      "sha256": "f50acc164789abdb1c82e823092e0082a28a4f0f8ccbfb0def0a4c313cc4a127"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:3644ca88f34b",
+      "sha256": "d3a7ed9db5c613f255a3ba89355439b144b236c0a049e05873094d54cc789190"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:f468b0bebe12",
+      "sha256": "ac19ec4295c3a2c21ec6f6cc8faa47d42f33d3426c58ef35a396b369c6be425a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:abe0696d1764",
+      "sha256": "9eb134e93916d30eb2495aebb28d10df05f7c4c4ae1ffe6bab59a384e1813711"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:a9bbd5077f7b",
+      "sha256": "b7a7112bd4eefcf02f124303f4aeb573c441ab415fed4435ce7c08e512cb6122"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:9b1ccfe3d1da",
+      "sha256": "7fce41de91b05a90f338d3abebdc88a535556a7cc878cf106290e2a904acf72e"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:d418b5ddda35",
+      "sha256": "d0e7d1de8821ff282c723e91d413125384775743ae1e7f162cd1a3b8db5b8794"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:0aea879bc3a6",
+      "sha256": "f0744de1b713a3ff65907917852f26c322bee7c406f8bd882f61d23b8391c6a6"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:d0d222e1d428",
+      "sha256": "f6012d7c554700cabc3a15732c5ae42b4d26ee74c9a929a88bc12b21395ed968"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:4deaf8c12bd9",
+      "sha256": "89a6e3a95847e40bd3278c2eb30edf087452d58f43b9fb4fde4def765de36cd3"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:f45b9ace6450",
+      "sha256": "e901365600d0c616828d985d4232572cd09b3b451b81d19c482823914cfd2e94"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:08:1e74a1462c0a",
+      "sha256": "c708f128afec18abb74cced454fe3e5086de18b7a759e63ce4b5ee132ec0615f"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:30:1c50eddd1b78",
+      "sha256": "8ea45435dae81eec3159c383b9cea88f41e06f2ab2e8cbf787c55b2ae0b62c3f"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:5cc872d8d577",
+      "sha256": "f1afad57cfed447fc57428d9c7769e2d4a5901bf1f9565bf947c234b9f94a367"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a1c45d2140c4",
+      "sha256": "ed3c97fba76112853712bee237ec21c2872c6954a07ee4afa1cd6545bb13dc68"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:3e772c59425f",
+      "sha256": "4b3c1e1568a7c85d3897314deada18e35915462a9bc548422a42704c6f22f975"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:5ca5736ba0f0",
+      "sha256": "dc21ae453e0f7e58e265b042c671db9f3ddc2d32550e460d2cbeeb02d41f5fd8"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:8d02aa0c1925",
+      "sha256": "d5d549db628e4999d57a0e83431b0ea899c589721deec9ff488c10d310c02281"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ca285f4afbbd",
+      "sha256": "d637d5bd38944467a1867cb2cb56ccb11776c99e99a2b4a1f42d3a0063a0e16d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:f8244e4b759d",
+      "sha256": "c717929c3ddfae9e7adfd98b7f8cdbe825d5d9cb22e749b29e18c7d47b4e2922"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:ff7d5953c468",
+      "sha256": "f8ec0f102b0173cd16a9d4abb026241cb3c2ecd48da2679848ee5bd9f97739a5"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:f265fd6698b3",
+      "sha256": "d9c605125e89e9e9faa92a78961af9fe04b92c45d11a697c3162ab409644df4c"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:21:439ddd7ffb2a",
+      "sha256": "a4b4fd5468d30027abec0540a42166cb384bf1be98e0e9c7cab7cc1873a43dc1"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:086025d77767",
+      "sha256": "a40d5a6144ed25561b232b17de4c110a1801f6670ad3e2cfce08276df4489cde"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:59:bea5bb48b723",
+      "sha256": "66091bee32c00aed8ffa7e212ecb2f39ce4bf4188c7877736749622de910a76d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:1eba07d7f725",
+      "sha256": "d6005a0172dde5a529074251a596979119658f2a08349fc2fed9254c8aac65bd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:ee6a3162eccb",
+      "sha256": "30ddeca926acd5b9abe9707c84eebf0849b7d227ebd8bc72577d5198c4d45891"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:e4ed72cd03b9",
+      "sha256": "01d0b0ee2b995b432be79cb074ef6951eacce2e74f04961da7b9a7524803c677"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:7c8f09c27498",
+      "sha256": "c1e314c9221da75891275c0b6b22e0519b4b5b91175b3beaea39792b60252e99"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:f8ed903b7ed7",
+      "sha256": "4e86455415b6ad4bdc33d3ad7984da1ec8d024ec95d5589faa12d9e08f97119b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:59206beeba4b",
+      "sha256": "767269b323ddaedcd93b1766a08f0afe668dbf6a14adeeae6e7288daa849680d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:24:cefba4c41a31",
+      "sha256": "c027c7d7c5d3580d66ea3c2b5b332d89fbfc6d4faf53a58cf2440f276295852b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:025d04dd043d",
+      "sha256": "88d0dd8984fcdb64b3d9598be87629445e704dc403532731883c6e3d48246dba"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:2fc1dcb79a87",
+      "sha256": "fa5815e92ad8a2cbb184834a63742390b963180811bc4a753e2b3cdba6158780"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:8f67468d5bb7",
+      "sha256": "6bbbbca61e81a26db81d9dbe5f56ebd9a5a9ace88924d5b916efa7a400b0e804"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:ecab4b588198",
+      "sha256": "5f4b4c641da72a67af60589fdc47cb15c61f7f010abe9b10201d66aaa1439b57"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:b8fb04ad9858",
+      "sha256": "32ecc159ff297307cac2601a3cdbdd44a8f73f1a8cf8a959777c2e6f3c715f19"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:30b39a746623",
+      "sha256": "2344ff0e0e9ee12b369d51708c92016159059f70e3abaf3141d1cfe21bce6ef7"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:193f898fcc80",
+      "sha256": "045ccfc0c1459f1e5e2b264052d2aef6b5c6d3c23c2ce10d700e8680d3433303"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:02d0f8037d47",
+      "sha256": "2d8974faaba49393fce18c3386c1c6680251550e671a5535052ed8a839288c30"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:46970447aeb7",
+      "sha256": "b89e719881ebc836f095e0f7e0042c5e61bfd0082075c7a1c3b3111bd0e66ab4"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:25:a0bc9051a96d",
+      "sha256": "6a64b589fd71ac5fe337ae396ad56089a5274e2e1566658c09dd09b99e7a0c94"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:0c969e6d9d57",
+      "sha256": "38cf83ebbc72eafb8611262e673a84750f6ca41b0b1fa98480896850891ec12b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:d78f85040aae",
+      "sha256": "0e0fed9e01c9c34c23863fa8e0bc8d2567fbba62b57f1b3fe2913c6c9c163256"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:55fe27cb3369",
+      "sha256": "b237fadeec2f52df0e2831f186be7968b20249ae50ddd6a0b33f235bf020a35a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:536b5623d2b6",
+      "sha256": "09b7ad9c0cfafcfa9228d1136caae17368c097cfc3950796c6e9067d483949ff"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:0a224d8d3a3f",
+      "sha256": "676ce8dc5ed50a6b5bd82ccb34dda7c94943fe532eaad6f7d57802f7cb67d218"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:6d98acfa027f",
+      "sha256": "440f2506798ec6594cbc09937b2000b4969e1a1d86a4fdfdb4f69510a1c3d58e"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:15:27da4221ac17",
+      "sha256": "f51d47e83d976c93439159e6f6603388309d6bbb29ae1f94d63831a1fc323010"
+    },
+    {
+      "appointmentId": "appointment:v74:026",
+      "sha256": "e8d502e630a28d9671190a5f1ccd5efe61d5bccbcaf369c00f3354d8b4cad112"
+    },
+    {
+      "appointmentId": "appointment:v74:027",
+      "sha256": "882420deae233d14c651f4c6ea7d678a872dbccba61af5e5b07a90ed4b7c24ba"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:53:aecc6e086a06",
+      "sha256": "f2169713647d2f0f2918079f6166da8a9ac3fe0e938e353a603f97fb2fc3d1e6"
+    },
+    {
+      "appointmentId": "appointment:v74:033",
+      "sha256": "af17fba02e4d51d684a36d2a060c60e4d7385835709badc907210b2fb8efac68"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
+      "sha256": "588c3dd8b9267953fa50e8293819f5a027888dad6de312f3b414114723fb2eea"
+    },
+    {
+      "appointmentId": "appointment:v74:025",
+      "sha256": "e568422cc0fb036215e0789d9a9e7f02ce1f615eaee660aa5ff68aa02c746ce2"
+    },
+    {
+      "appointmentId": "appointment:v74:031",
+      "sha256": "99ffeee622686b95023a690e367d414ae4ce3d714b9631f3bc32e9b6b560e4a8"
+    },
+    {
+      "appointmentId": "appointment:v74:032",
+      "sha256": "27db5e5a2cd8fa81b3eabf47e6153faa66da8c874e832681fc3da95891c70582"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:829deeeb0689",
+      "sha256": "b7204f6acbde4088ef78d573241f18734cedc7497facd3bb7d75c04a1c9a8f44"
+    },
+    {
+      "appointmentId": "appointment:v74:001",
+      "sha256": "60fe1a5f4a30aa0d2ee2c4c5d6f970cbd447b9f13c9b848e2148defa1802fd14"
+    },
+    {
+      "appointmentId": "appointment:v74:002",
+      "sha256": "afb71fe8060405f00107633fba913b1ca8fb7b5fafa5f1c7d5f3226b512d4608"
+    },
+    {
+      "appointmentId": "appointment:v74:003",
+      "sha256": "b12a954ca0d87465393694890b1910ea7dc74b35732e77c7b0ff28167002ed4c"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:64:37eb3d6f4cf6",
+      "sha256": "c903311725c558247d3ec121774fd835e201998528f2c0ca0437e318bc13b362"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:18:d37724fc7668",
+      "sha256": "9eca78327a591d35f19db8716ee0d602bd92280ce4ef283300a736c3aef06a0c"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:18:ea85641e12c0",
+      "sha256": "4da37b1c6d03df72ad551d080e7259c961c5bb2c2e3fa4a0b32fcfe81c198776"
+    },
+    {
+      "appointmentId": "appointment:v74:023",
+      "sha256": "9ddc04623ca5c64806cf7843950ab897a228d235c08b7e6e2a737d17e194c130"
+    },
+    {
+      "appointmentId": "appointment:v74:024",
+      "sha256": "8abf9a87375ebc1e3edd37ae70485687ca13792600201bcdbd5351d2bdedc935"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:17b160b6cab5",
+      "sha256": "80ce1d519586a37230566c8e7194c02fedbdcf387944f52f9b18573a5d903dae"
+    },
+    {
+      "appointmentId": "appointment:v74:034",
+      "sha256": "2df1c2fdb6f021b73c422119fdba3cdf1542b4751d8e6611bb4e7f69dd1af165"
+    },
+    {
+      "appointmentId": "appointment:v74:035",
+      "sha256": "a58d9c7dba1bb41a7393f9ede5b0a72dee204d5cf8403348ed56edf16032a192"
+    },
+    {
+      "appointmentId": "appointment:v74:036",
+      "sha256": "8449aa6e86bb5003f48fc06402f674d9d8cd31ee53a25b5a9670b15d28e303cb"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:e51ee43f1b35",
+      "sha256": "7d4d28682c4debec99031f1e21d9a968c904b05ee19d39044070d3ef54dd2dfe"
+    },
+    {
+      "appointmentId": "appointment:v74:028",
+      "sha256": "21b4b661a0961b7599e9933c004f33a1a205e98becc28bb54ad387ec6e6a5913"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
+      "sha256": "a5fec9c7341df77e9e09107f3506700c1c00d731bd102f33e7227c03e8b50c12"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:092:fb598d513c5b",
+      "sha256": "e536b3f759b6232bbd8d2f880adf525be9f97f80780d63e9857fc81147638646"
+    },
+    {
+      "appointmentId": "appointment:v74:018",
+      "sha256": "cdae8cdacf1c3ff8b7db27500263cd1d94b8ad27386eee71ed141ea38d822060"
+    },
+    {
+      "appointmentId": "appointment:v74:019",
+      "sha256": "2bb257334c009a54a918d9325489300c21386b298dfef0957d7b8a0be4fc9bf1"
+    },
+    {
+      "appointmentId": "appointment:v74:020",
+      "sha256": "aec90d8b49dc0f1cb5bc1ff6cbebaf47bc5feadd10b41e8b57dd82e9a58bf10f"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:24:92099c7248fc",
+      "sha256": "fee376b7b52a82e61bb8de80f2d8828cbc19e041a257b0593c9e51bfe1a060cf"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:bb48953e14d8",
+      "sha256": "b9deb412887a108e1c14d4fbf488d4e58952f04dbf5d263384bff5cf9364297a"
+    },
+    {
+      "appointmentId": "appointment:v74:007",
+      "sha256": "56f6dcbe7db2a9305fcf27558653ae18543cd17dfb1574c0cc055837268df542"
+    },
+    {
+      "appointmentId": "appointment:v74:008",
+      "sha256": "715de26848c8e9a86cbd1c6fc15c20dc4b4e8c1f51e3f4b1c814ac10614a6486"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:36:81d04c5d62da",
+      "sha256": "1616484230b4885b0eb3f446f9fe0a880be59e152d957a157ad33edddd487878"
+    },
+    {
+      "appointmentId": "appointment:v76:034",
+      "sha256": "fb67d82f5bfe4ed0274eeb9edfc7f50834783c70d4c825729747a4657d121735"
+    },
+    {
+      "appointmentId": "appointment:v76:035",
+      "sha256": "e248a36cadc332b6217cee76e3b154f08dba6f0e9f0592425ba85ab3facc6a87"
+    },
+    {
+      "appointmentId": "appointment:v76:036",
+      "sha256": "45c61ac8d9e568d02e93ae1c0db0c4489ae2e201eca26fd121d5b5bb49314992"
+    },
+    {
+      "appointmentId": "appointment:v76:037",
+      "sha256": "dc21e962bc8e6e0d5bc8845706ca18958ef0b4fd1d241c07bc22a31037301640"
+    },
+    {
+      "appointmentId": "appointment:v74:004",
+      "sha256": "864724f0f35095285478cb82c1bb176913388d01b0826afcafddc00442c9e529"
+    },
+    {
+      "appointmentId": "appointment:v74:005",
+      "sha256": "04a345bd96f8d28ee82b9d565fb3c03c890aaff4b1700b5e852a3a828be8b4bb"
+    },
+    {
+      "appointmentId": "appointment:v74:006",
+      "sha256": "d8a823b62038df4f92210fa823c39bfe13f7f0aeb8e94266e7872d4effc40c67"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:23:88777917d94a",
+      "sha256": "51d814ec6d6bfcbda08ca01f12696cf7053eb0ac0069a5185b2dc587d4c9b49d"
+    },
+    {
+      "appointmentId": "appointment:v75:003",
+      "sha256": "d9244595f33653f611bdce5a5e93647249cd18d1e2baebe084e1edf5ee8558e9"
+    },
+    {
+      "appointmentId": "appointment:v75:004",
+      "sha256": "e4550f77fe4708790610e630460e53a1239d189a46db14845ec0dbd328e50481"
+    },
+    {
+      "appointmentId": "appointment:v75:005",
+      "sha256": "e222ef1ab4e896644821fac1000b5a12a112d210e9cef64a76cf6cb9943a0199"
+    },
+    {
+      "appointmentId": "appointment:v75:006",
+      "sha256": "c505cb7c0fe04bb448c78f0be05f6c803e7542c5d6f0e1b2cdcffcbf7ad59aeb"
+    },
+    {
+      "appointmentId": "appointment:v74:013",
+      "sha256": "f97e30786d7b10609a15e139fcb8b53d70e4f84ec4e761b7d096f72eb49e14cf"
+    },
+    {
+      "appointmentId": "appointment:v74:014",
+      "sha256": "ec20b05b6765af42dca3192259a2824cc9b650d8159b30690b96612329be6cc2"
+    },
+    {
+      "appointmentId": "appointment:v74:015",
+      "sha256": "b5347077af9067007b8ebac8a92aa22233133c64ee81f613a7c9d39972034417"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:57c66c4fce83",
+      "sha256": "14fdef29f394c071cc49526ffd2bcaacf23bf72dc81b24fcfefff7db3abd7dbf"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:36:97328e141be5",
+      "sha256": "20a6fe505c4ce41f98f61958e61bbb68176370cfb6675f4d77af70a54446a3da"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:06:c87d3944bc1a",
+      "sha256": "3256be53f2d3a56297a3b91c24d9b276fc21c4ac2e4f684c1e2f83d153c027ed"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:054:32c62500fcf5",
+      "sha256": "615a9dbaf00bd03ed6cc60905b884d96a3120246565b8216d9f0419a0a1a53f3"
+    },
+    {
+      "appointmentId": "appointment:v74:009",
+      "sha256": "15c588dd79f3d92757cff8dc8b590001e09a25a0202416cc171bf679767d0d36"
+    },
+    {
+      "appointmentId": "appointment:v74:010",
+      "sha256": "b267b74cc0cada09acfc295d586fd392b4e106dd985c53ebbaac331a68730460"
+    },
+    {
+      "appointmentId": "appointment:v74:011",
+      "sha256": "fbe77724f12eebba91285f67166b92cf406054e7a316f58e0a4e956bc10114ad"
+    },
+    {
+      "appointmentId": "appointment:v74:012",
+      "sha256": "9078c96b8c157dd71559390139419680788061994f64ece1b7d0d63b51ef7c13"
+    },
+    {
+      "appointmentId": "appointment:v74:016",
+      "sha256": "8eff871f5dd82b83cac7cebfc82774c59f2f92d58c9f36c3352e8c72f50ca126"
+    },
+    {
+      "appointmentId": "appointment:v74:017",
+      "sha256": "8e07e72822886be3612ce49d01aa1b2a6882ed4425bdc8515d23874b999914c9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:95665e4a700a",
+      "sha256": "36aa967acfcbefe35601c6411f08b0fbb6933de31de34499817c49a1342a6902"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:68eecca49b8f",
+      "sha256": "f5e69355111cf6a07fdb2ba7221c05833965854eb8fca5f9a28bd30c06501147"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:74022d223b66",
+      "sha256": "c129b573b2d501ce2a26338cbfa82c39ad5953376d327eb7207a76efb8a3af30"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:f767eaa7fc4d",
+      "sha256": "c1eae304e40f528ca53c67408ffe75f40c6e79fd994c66f642ea4b561a475255"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:217db6a989b2",
+      "sha256": "8348cf13f48b0e899da0fa8efce1cf0fd6f8c0919072d71d86fb948f0c572134"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:a750f09402f4",
+      "sha256": "7d7f5d2fbbf4803c06691e0bb71741e2deb7d0fecc28e1df2fd33fb30abb3abd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:dfabcc52b63a",
+      "sha256": "c431e07b16797fd232186230bdbd9002a423bb8c12b0f548060828a98d48c2a9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:82bff6ceb278",
+      "sha256": "f7fca938db8d6e3428ea9386c9c53336e5e04fff99b6d889b20d529ad7c9a000"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:002aa5f3772a",
+      "sha256": "45df2c394cbd3f7c6f30a16535a47eb05af4bfc45867afcfb969c38cb348e060"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:57:c91969624c3a",
+      "sha256": "5efcf01c4dea441eee93dab136cf8917311b27e3d257a8c601308393aeca8ea1"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:a4dcc0e4d11b",
+      "sha256": "a3855b93712b967e789231fff268bbbe46923781fa8722fb9960be16a7169556"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:5ad9f1ac2fad",
+      "sha256": "508c3455b955ae3524b8e9d8024247453f9676279bbcb0bba79acc960750345c"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:72b92c980e0c",
+      "sha256": "d2a5aace321e26fb4aa2e1a65fd856ce084db3435e2e237c64005cc336c7999d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:5decd7b4c471",
+      "sha256": "b1fdf76744f3b4441c1aac11a907918bb20511eafcb41971962f9c1cdce8db95"
+    }
+  ],
+  "preservedBoundaries": {
+    "personIdsSha256": "4e0f05904b1a4d7bfa49e3c972f3c89ca96259f8668ced13af2fb1b7e8a6fbec",
+    "people": 2086,
+    "peerageEventsSha256": "c4942f2d4d6a6037a30432e00fcf6179e3b9c66225d34d444c09225fd53da311",
+    "peerageEvents": 535,
+    "identityReviewBatches": [
+      "v71-person-identity-review.json",
+      "v73-person-identity-suppressions.json",
+      "v75-person-identity-suppressions.json",
+      "v80-person-identity-suppressions.json"
+    ],
+    "portraitResolutionsSha256": "af406625038bc9283b19458dbf0ce5579370b7bfca5488b75a4c467732ab2f12"
+  },
+  "records": [
+    {
+      "queuePosition": 81,
+      "recordId": "appointment:source:jinshu:003:d8b0d8f12fdc",
+      "sourceSnapshotSha256": "09b99f985fbb113989b7a18b5786ba34b82a6a34b429f5976d793c8818e5833f",
+      "decisionSha256": "70eb4353252db1f58aa2c2890cd1f1f6306632a61a0f95774ecb81ceb8a4dd35",
+      "status": "review-only",
+      "before": {
+        "name": "山涛",
+        "personId": "person:source:5fb72bca8d0d",
+        "officeName": "司徒"
+      },
+      "after": {
+        "personId": "person:source:5fb72bca8d0d",
+        "name": "山涛",
+        "officeName": "司徒",
+        "startYear": 282,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "太康三年十二月（282）授命可核；本传记固让、使者卧加章绶、舆疾归家，未明确摄职。本纪次年卒仍称司徒，不能只凭称谓放行，也不能把受绶一律说成未受命。授任与实际摄职关系待补核，暂不发布。"
+    },
+    {
+      "queuePosition": 82,
+      "recordId": "appointment:source:jinshu:004:35bfea10f522",
+      "sourceSnapshotSha256": "21c05c81788d804792095ce07941036c256180db32edaed48f7a6d555114b7d0",
+      "decisionSha256": "265e2cc247b3f271a3c30bd710381ab729b73f19fb63b7f883c660370302ebdc",
+      "status": "verified",
+      "before": {
+        "name": "张华",
+        "personId": "person:source:e2ef6eff3eba",
+        "officeName": "司空"
+      },
+      "after": {
+        "personId": "person:source:e2ef6eff3eba",
+        "name": "张华",
+        "officeName": "司空",
+        "startYear": 296,
+        "endYear": 300,
+        "polity": "西晋"
+      },
+      "finding": "元康六年（296）正月张华代下邳王晃为司空；永康元年（300）四月以本官遇害。本传领著作是兼掌事项，不新增任官；后追复官爵亦不另造一次生前实任。"
+    },
+    {
+      "queuePosition": 83,
+      "recordId": "appointment:source:jinshu:004:690f4adb1fc7",
+      "sourceSnapshotSha256": "0915b82e726ee2cbeba9d9915afd14c6d751ba11930f5d5aeb7562a3d386bf26",
+      "decisionSha256": "aad92fae64777d366c509029863128a419d62e18310f90b114ee0cb2a466c7ec",
+      "status": "verified",
+      "before": {
+        "name": "何劭",
+        "personId": "person:source:00b40a2da98a",
+        "officeName": "司徒"
+      },
+      "after": {
+        "personId": "person:source:00b40a2da98a",
+        "name": "何劭",
+        "officeName": "司徒",
+        "startYear": 300,
+        "endYear": 300,
+        "polity": "西晋"
+      },
+      "finding": "永康元年（300）四月何劭由左光禄大夫迁司徒，本传明记永康初迁司徒。同年九月本纪改司徒为丞相、以梁王肜为之，故本次司徒止于该年；不接续为赵王伦篡位后的太宰或死后赠司徒。"
+    },
+    {
+      "queuePosition": 84,
+      "recordId": "appointment:source:jinshu:004:7fdcaab5190e",
+      "sourceSnapshotSha256": "4cee5b5dee91de9f2d17f05baf72692686a730805be565a4e4a760e31bf1e48c",
+      "decisionSha256": "8a6c390f6fa04ca3ba76c3add4f5a7a1faafcf0e1d05ea83b863df77c7c8ddcd",
+      "status": "verified",
+      "before": {
+        "name": "何劭",
+        "personId": "person:source:00b40a2da98a",
+        "officeName": "尚书"
+      },
+      "after": {
+        "personId": "person:source:00b40a2da98a",
+        "name": "何劭",
+        "officeName": "尚书左仆射",
+        "startYear": 297,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "元康七年（297）九月何劭迁尚书左仆射，原候选截短为尚书，现补全。本传累迁左仆射互证；后来迁左光禄的年份未明，终年留空，不直接延至司徒授命年。"
+    },
+    {
+      "queuePosition": 85,
+      "recordId": "appointment:source:jinshu:004:ad6e5a84be6e",
+      "sourceSnapshotSha256": "61193be1faa485741c7b1cfa9f4e9d748c0aad99780b14d794bb1ffb31df5fc2",
+      "decisionSha256": "211815509b2979a50b704b1cfff3b29f64023631df02a7492a6aff6af1ce3efa",
+      "status": "verified",
+      "before": {
+        "name": "何劭",
+        "personId": "person:source:00b40a2da98a",
+        "officeName": "都督豫州诸军事"
+      },
+      "after": {
+        "personId": "person:source:00b40a2da98a",
+        "name": "何劭",
+        "officeName": "都督豫州诸军事",
+        "startYear": 291,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "元康元年（291）八月何劭以太子太师出督豫州诸军事、镇许昌；本传可证此前东宫身份，未载本项督任，不作为独立互证。保留军事辖区，不等同豫州刺史；离任年未详。"
+    },
+    {
+      "queuePosition": 86,
+      "recordId": "appointment:source:jinshu:005:0933e58b72a4",
+      "sourceSnapshotSha256": "79f4bdd78a38f24ecb34c436467cd246093086df1da5373726a0213296a7ef76",
+      "decisionSha256": "1889491286360ff1e0c437291d474339b2126d3d4cd4df9c0d59119b98a70ab1",
+      "status": "suppressed",
+      "before": {
+        "name": "张軌",
+        "personId": "person:source:fff74b3aebad",
+        "officeName": "太尉"
+      },
+      "after": {
+        "personId": "person:source:fff74b3aebad",
+        "name": "张軌",
+        "officeName": "太尉",
+        "startYear": 314,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "建兴二年（314）本纪授太尉、卒亦沿用官称；本传紧接遣使授侍中、太尉、凉州牧、西平公后明记张轨又固辞。排除这次太尉实任，保留授命与辞受反证；封爵、凉州牧及人物身份均不随本条处理。"
+    },
+    {
+      "queuePosition": 87,
+      "recordId": "appointment:source:jinshu:005:271eb89c0cb6",
+      "sourceSnapshotSha256": "a2b495f2e36b08b00213eeaac16365cc28aa7448da6d1163068eb530495c2bb4",
+      "decisionSha256": "6e3b6b219568335e19a3db81c13b24f8c5ea562e0b730b3d8bc0d93d89de7f92",
+      "status": "verified",
+      "before": {
+        "name": "山简",
+        "personId": "person:source:6e37ce7beab2",
+        "officeName": "征南将军"
+      },
+      "after": {
+        "personId": "person:source:6e37ce7beab2",
+        "name": "山简",
+        "officeName": "征南将军",
+        "startYear": 309,
+        "endYear": 312,
+        "polity": "西晋"
+      },
+      "finding": "永嘉三年（309）三月山简出任征南将军，本传记镇襄阳及后续军事行动，永嘉六年（312）四月卒官。与同段高密王简分属两人，生前征南将军不混作高密王的征南大将军或山简死后追赠征南大将军。"
+    },
+    {
+      "queuePosition": 88,
+      "recordId": "appointment:source:jinshu:005:29f1de4f4255",
+      "sourceSnapshotSha256": "245bfe977d600cda619c5be404ede547e0c94185a4feecb02b38def868ad0ae7",
+      "decisionSha256": "077ccafcfd810c2bbc0e3302a6e75ec35eddc5715ca93fc87cb887a1c96d1d88",
+      "status": "review-only",
+      "before": {
+        "name": "荀组",
+        "personId": "person:source:c219f41cc820",
+        "officeName": "太尉"
+      },
+      "after": {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "officeName": "太尉",
+        "startYear": 315,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "任官史料可核：建兴三年（315）二月荀组由司空进太尉；本传记司空后明年进太尉、领豫州牧，互证此为西晋阶段。后来转司徒的确切终任年未在本次锁定，保留空值；与322年东晋未拜太尉分开。但现有荀组身份保留大章／泰章来源冲突，不能越过独立身份门槛。先保留校正官名及纪年候选，身份冲突另审后方可发布。"
+    },
+    {
+      "queuePosition": 89,
+      "recordId": "appointment:source:jinshu:005:2a0b0528675a",
+      "sourceSnapshotSha256": "56c301089661b32fc0c971d3e6f97c560ee0a9d0132aa4c2a78c8d698fd69353",
+      "decisionSha256": "7774ae1b711f8ebc341ed2709a3d8103d5b311bfd1da2c26dae1bcec448477bb",
+      "status": "review-only",
+      "before": {
+        "name": "荀藩",
+        "personId": "person:source:8094dd86c852",
+        "officeName": "太尉"
+      },
+      "after": {
+        "personId": "person:source:8094dd86c852",
+        "name": "荀藩",
+        "officeName": "太尉",
+        "startYear": 312,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "永嘉六年（312）王浚自称被中诏承制授荀藩太尉，本传称奉为留台太尉；授命权源必须保留。所读段落尚未明确本人受拜，次年本纪仍称司空，不能把承制授命自动改成通常朝廷实任；待补受命与留台职掌证据。"
+    },
+    {
+      "queuePosition": 90,
+      "recordId": "appointment:source:jinshu:005:2a2ff4012b65",
+      "sourceSnapshotSha256": "7f85a7d84d6ba6fb92f44952d967be1fc1d84aaaf3592e3de1c6d6fde231d734",
+      "decisionSha256": "ab8ee9a4d959b7ae9b9706c46b3c65ac1b6125addd483d16f7a704d9d63d99fa",
+      "status": "review-only",
+      "before": {
+        "name": "荀组",
+        "personId": "person:source:c219f41cc820",
+        "officeName": "司空"
+      },
+      "after": {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "officeName": "司空",
+        "startYear": 314,
+        "endYear": 315,
+        "polity": "西晋"
+      },
+      "finding": "任官史料可核：建兴二年（314）二月荀组为司空，本传有领尚书左仆射、兼司隶、行留台的实际职掌；次年二月进太尉，司空终年315。只发布本条司空，兼领职任不自动增补。但现有荀组身份保留大章／泰章来源冲突，不能越过独立身份门槛。先保留校正官名及纪年候选，身份冲突另审后方可发布。"
+    },
+    {
+      "queuePosition": 91,
+      "recordId": "appointment:source:jinshu:005:3374cb0cc015",
+      "sourceSnapshotSha256": "4043b7c9bf75377b779efd22a71e45f3cdeccbf6879029c5fef53cb7e6a3d6a6",
+      "decisionSha256": "00361b990f4d3fbca9cbd1c69c5987036ba4eb2d5cb5882a7490013c429ac1ca",
+      "status": "verified",
+      "before": {
+        "name": "高光",
+        "personId": "person:source:f799c2308083",
+        "officeName": "尚书令"
+      },
+      "after": {
+        "personId": "person:source:f799c2308083",
+        "name": "高光",
+        "officeName": "尚书令",
+        "startYear": 307,
+        "endYear": 308,
+        "polity": "西晋"
+      },
+      "finding": "高光永嘉元年（307）十二月迁尚书令，次年十一月卒；本传记为尚书令、本官如故、以疾卒。延陵公为封爵，光禄大夫为前兼官，不混入本条官名。"
+    },
+    {
+      "queuePosition": 92,
+      "recordId": "appointment:source:jinshu:005:42b91cb6c348",
+      "sourceSnapshotSha256": "62fee082dc534af45749daf391401f5b46d489e71dab7f40637a4e8a53d121c4",
+      "decisionSha256": "6a8b4bf376b9f81666cfaa115859afb344f1fe8440373c0032ec0e1cab843414",
+      "status": "suppressed",
+      "before": {
+        "name": "荀藩",
+        "personId": "person:source:8094dd86c852",
+        "officeName": "司空"
+      },
+      "after": {
+        "personId": "person:source:8094dd86c852",
+        "name": "荀藩",
+        "officeName": "司空",
+        "startYear": 311,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "永嘉五年（311）五月荀藩被授司空，但本传明记未拜而洛阳陷没。排除该次司空实任，保留本纪授命及313年卒称司空的材料；312年王浚所授留台太尉为另一条待补核事件。"
+    },
+    {
+      "queuePosition": 93,
+      "recordId": "appointment:source:jinshu:005:565a6ff04152",
+      "sourceSnapshotSha256": "c17f8f903b2aeb509da16e7dda6d1dc668e9fcd3e361b9bd7668004107129288",
+      "decisionSha256": "2491b2ea63455bbc559f1b8ac1c02b9e82a22f48c5020f658d69dc44405d3152",
+      "status": "verified",
+      "before": {
+        "name": "温羡",
+        "personId": "person:source:d87a40e88810",
+        "officeName": "司徒"
+      },
+      "after": {
+        "personId": "person:source:d87a40e88810",
+        "name": "温羡",
+        "officeName": "司徒",
+        "startYear": 306,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "温羡在光熙元年十二月受司徒；按年号纪年归306，未作公历日换算。本传明确左光禄大夫、开府、领司徒且在位未几病卒，故保留领任性质；未拜是前项中书监，不是司徒。卒年未由本次段落定出，终年空缺。"
+    },
+    {
+      "queuePosition": 94,
+      "recordId": "appointment:source:jinshu:005:5ac72968c401",
+      "sourceSnapshotSha256": "47f91f3a371ff3ea66997410d1425f45c0d87dccbddca4f4331ed45222ef0ffb",
+      "decisionSha256": "cea07ba1bf423ce0a147d337643cb0d23f1c2afbaaa9c4a3fd7bb88672f0edac",
+      "status": "verified",
+      "before": {
+        "name": "刘琨",
+        "personId": "person:source:beb0020a5f82",
+        "officeName": "大将军"
+      },
+      "after": {
+        "personId": "person:source:beb0020a5f82",
+        "name": "刘琨",
+        "officeName": "大将军",
+        "startYear": 314,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "本纪建兴二年（314）二月刘琨授大将军；本传笼统置于愍帝即位后，谢表明言冒承宠命、拜命，能证受任，但不据即位二字改成313。次年司空让而未受，不能据此截断大将军任期；终年留空。"
+    },
+    {
+      "queuePosition": 95,
+      "recordId": "appointment:source:jinshu:005:8bdfa2f60653",
+      "sourceSnapshotSha256": "42547490870e2888abe4cf56e3f0648715b6e1f92e873e661e3822ad506fe6a5",
+      "decisionSha256": "5178abf552d5e08fc923a95a1e0fbab1911d061d2f34f64ae49807947c25cf3d",
+      "status": "verified",
+      "before": {
+        "name": "荀藩",
+        "personId": "person:source:8094dd86c852",
+        "officeName": "尚书令"
+      },
+      "after": {
+        "personId": "person:source:8094dd86c852",
+        "name": "荀藩",
+        "officeName": "尚书令",
+        "startYear": 308,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "永嘉二年（308）十一月荀藩继高光为尚书令，本传累迁尚书令互证。311年转司空未拜，不能用该次未受的新命自动定出尚书令终年；终年仍空缺，不推定连续任职到卒年。"
+    },
+    {
+      "queuePosition": 96,
+      "recordId": "appointment:source:jinshu:005:d8236d5215fb",
+      "sourceSnapshotSha256": "90dd9fea8bf56ea1a6795ea2c20bd957f279014ae0a70f93601294135c8aefe6",
+      "decisionSha256": "3452f74262de2f2f2a5ebe71e22413d27e82a61312acaae174ae0c513b16a153",
+      "status": "verified",
+      "before": {
+        "name": "刘暾",
+        "personId": "person:source:6bf570d4c50b",
+        "officeName": "尚书"
+      },
+      "after": {
+        "personId": "person:source:6bf570d4c50b",
+        "name": "刘暾",
+        "officeName": "尚书左仆射",
+        "startYear": 309,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "本纪永嘉三年（309）三月明记刘暾为尚书左仆射，补全被截短的官名。本传另记寇退后迁尚书仆射、后又转右光禄大夫而夺权，未明系年；不强认所记劉曜寇京师与本纪同一战事，离任年留空。"
+    },
+    {
+      "queuePosition": 97,
+      "recordId": "appointment:source:jinshu:005:d881f5ae4f1b",
+      "sourceSnapshotSha256": "e3d4b037472abe4730a3d8d5af39e4277f8c27ff569e465ecac0045715dd850a",
+      "decisionSha256": "87ea49473efc2cd99c37e45202ad02eabfbb1d19bc465451558209ae2d33b70a",
+      "status": "verified",
+      "before": {
+        "name": "傅祗",
+        "personId": "person:source:e10ac3b3d9c0",
+        "officeName": "司徒"
+      },
+      "after": {
+        "personId": "person:source:e10ac3b3d9c0",
+        "name": "傅祗",
+        "officeName": "司徒",
+        "startYear": 311,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "永嘉五年（311）五月傅祗迁司徒，本纪续载以本官修舟，本传续载以司徒传檄行台，足证受任。本传不拜是足疾获准版舆上殿的免拜礼，非拒任；所读段落未明系卒年，终年留空。"
+    },
+    {
+      "queuePosition": 98,
+      "recordId": "appointment:source:jinshu:005:e42c9bb5630f",
+      "sourceSnapshotSha256": "d59ae87fe1be8fffc1fbae20414fae28f2a379efd424bc6af9c24be9c49992bc",
+      "decisionSha256": "60ad3cdea0907f60848e973d23fdcaa96f84675719a7964cc75a68d1ede8560f",
+      "status": "verified",
+      "before": {
+        "name": "和郁",
+        "personId": "person:source:ca6dd83b2ac0",
+        "officeName": "征北将军"
+      },
+      "after": {
+        "personId": "person:source:ca6dd83b2ac0",
+        "name": "和郁",
+        "officeName": "征北将军",
+        "startYear": 307,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "永嘉元年（307）十一月和郁授征北将军、镇邺；次年九月仍以本官出奔卫国，可证实际镇任。出奔日期不直接等于免官日期，终年留空；本传所载后来中书令、尚书令不自动加入本批。"
+    },
+    {
+      "queuePosition": 99,
+      "recordId": "appointment:source:jinshu:005:f936e6b03571",
+      "sourceSnapshotSha256": "3d0f887108ea2a0900274e4883ed5ca8122fbe4ddae9fab1466a6bca734c8a45",
+      "decisionSha256": "0a436c0229ba444d8562edbf0633b46168f59d0e66f81e416cdadddc3eb62213",
+      "status": "suppressed",
+      "before": {
+        "name": "刘琨",
+        "personId": "person:source:beb0020a5f82",
+        "officeName": "司空"
+      },
+      "after": {
+        "personId": "person:source:beb0020a5f82",
+        "name": "刘琨",
+        "officeName": "司空",
+        "startYear": 315,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "finding": "建兴三年（315）帝遣使授刘琨司空兼都督，本传明确让司空、受都督。两项辞受分别成立，排除此条司空实任；不因都督获受而放行司空，也不因此否定既有大将军。"
+    },
+    {
+      "queuePosition": 100,
+      "recordId": "appointment:source:jinshu:006:6f813086b4e7",
+      "sourceSnapshotSha256": "56dfe28ea13dd87bbead24871f1a9a62fd49a851571b05a51ef0c5c7d46eadb4",
+      "decisionSha256": "898b7cdbb14cef84cc07e5ecc13a77d5cb34613beaaeb70516354318174b676a",
+      "status": "suppressed",
+      "before": {
+        "name": "荀组",
+        "personId": "person:source:c219f41cc820",
+        "officeName": "太尉"
+      },
+      "after": {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "officeName": "太尉",
+        "startYear": 322,
+        "endYear": null,
+        "polity": "东晋"
+      },
+      "finding": "永昌元年（322）十一月本纪记荀组由司徒迁太尉及卒称；本传明确未拜而薨，排除此回实任。属于东晋阶段，与315年西晋太尉是不同授命；不合并，不以本轮扩展人物或年代收录范围。"
+    }
+  ],
+  "separateEventGroups": [
+    {
+      "person": "荀组",
+      "office": "太尉",
+      "records": [
+        "appointment:source:jinshu:005:29f1de4f4255",
+        "appointment:source:jinshu:006:6f813086b4e7"
+      ],
+      "years": [
+        315,
+        322
+      ],
+      "readerAppointmentCount": 0,
+      "reason": "西晋史料支持但身份未决，与东晋未拜分别保存，均不投影；非重复记录。"
+    }
+  ],
+  "remainingReviewOnly": [
+    "皇甫嵩早期征西事件",
+    "成弘领校尉句读",
+    "胡业集合并列的任官配对",
+    "蒋济还州治中／别驾差异",
+    "山涛左右仆射与年序差异",
+    "山涛司徒受绶与实际摄职关系",
+    "荀藩留台太尉承制授命与受任证据",
+    "荀组建兴太尉：史料可核、身份来源冲突待审",
+    "荀组建兴司空：史料可核、身份来源冲突待审"
+  ],
+  "remainingReviewQueue": [
+    {
+      "queuePosition": 30,
+      "recordId": "appointment:source:sgz:08:9f402aec33e4",
+      "decisionSha256": "de7ba8edaee14ef2d09ca1f55da7210aa17f42c0392a1da7f351c5ccaedeed7c",
+      "finding": "《吴书》所述早期征羌的征西将军尚待核；初平三年（192）另有实授明文，不能用后期任职倒填或放行本源事件。"
+    },
+    {
+      "queuePosition": 38,
+      "recordId": "appointment:source:sgz:12:bc5eeabffa36",
+      "decisionSha256": "82386ebf8e13caeba65a2f506289bf574a7c8aaf450b2831348521cb64f987df",
+      "finding": "“遣吏成弘领校尉，长广县丞等”有兼领官职与率领使团两种句读可能；未得消歧依据，不能核准成弘任校尉。"
+    },
+    {
+      "queuePosition": 41,
+      "recordId": "appointment:source:sgz:15:4aa9036b9012",
+      "decisionSha256": "2968c0d5cd400c9898659dde78c010c6d30a6d6a0090e347a5b2b9d116f2d66c",
+      "finding": "施畏、倪顗、胡业与刺史、郡守是集合并列，不能据此独定胡业为刺史；需补个体任官明文。"
+    },
+    {
+      "queuePosition": 42,
+      "recordId": "appointment:source:sgz:15:71267a636e32",
+      "decisionSha256": "434f5936eb94c7f67a49bbb02237eb4531227c7971c6b31f9c746532421b22d4",
+      "finding": "温恢传称遣蒋济还州为治中，蒋济传同一还州叙事作别驾，尚不能消除官名差异；不把两种记载擅写成先后转任。"
+    },
+    {
+      "queuePosition": 75,
+      "recordId": "appointment:source:jinshu:003:336e455f4d96",
+      "decisionSha256": "58d04c9d807e84d8dbe0c078d0dc80e0b6077038f0f6f417b453b0e954c57c84",
+      "finding": "截断的尚书应核至完整仆射官名。本纪咸宁四年278记山涛由右仆射迁左仆射；本传却记太康初迁右仆射，左右及年序不能据当前电子文本消解。保留本纪左仆射278的候选，不批准为泛称尚书或强填任期；须版本、校勘与相邻官历补核。"
+    },
+    {
+      "queuePosition": 81,
+      "recordId": "appointment:source:jinshu:003:d8b0d8f12fdc",
+      "decisionSha256": "70eb4353252db1f58aa2c2890cd1f1f6306632a61a0f95774ecb81ceb8a4dd35",
+      "finding": "太康三年十二月（282）授命可核；本传记固让、使者卧加章绶、舆疾归家，未明确摄职。本纪次年卒仍称司徒，不能只凭称谓放行，也不能把受绶一律说成未受命。授任与实际摄职关系待补核，暂不发布。"
+    },
+    {
+      "queuePosition": 88,
+      "recordId": "appointment:source:jinshu:005:29f1de4f4255",
+      "decisionSha256": "077ccafcfd810c2bbc0e3302a6e75ec35eddc5715ca93fc87cb887a1c96d1d88",
+      "finding": "任官史料可核：建兴三年（315）二月荀组由司空进太尉；本传记司空后明年进太尉、领豫州牧，互证此为西晋阶段。后来转司徒的确切终任年未在本次锁定，保留空值；与322年东晋未拜太尉分开。但现有荀组身份保留大章／泰章来源冲突，不能越过独立身份门槛。先保留校正官名及纪年候选，身份冲突另审后方可发布。"
+    },
+    {
+      "queuePosition": 89,
+      "recordId": "appointment:source:jinshu:005:2a0b0528675a",
+      "decisionSha256": "7774ae1b711f8ebc341ed2709a3d8103d5b311bfd1da2c26dae1bcec448477bb",
+      "finding": "永嘉六年（312）王浚自称被中诏承制授荀藩太尉，本传称奉为留台太尉；授命权源必须保留。所读段落尚未明确本人受拜，次年本纪仍称司空，不能把承制授命自动改成通常朝廷实任；待补受命与留台职掌证据。"
+    },
+    {
+      "queuePosition": 90,
+      "recordId": "appointment:source:jinshu:005:2a2ff4012b65",
+      "decisionSha256": "ab8ee9a4d959b7ae9b9706c46b3c65ac1b6125addd483d16f7a704d9d63d99fa",
+      "finding": "任官史料可核：建兴二年（314）二月荀组为司空，本传有领尚书左仆射、兼司隶、行留台的实际职掌；次年二月进太尉，司空终年315。只发布本条司空，兼领职任不自动增补。但现有荀组身份保留大章／泰章来源冲突，不能越过独立身份门槛。先保留校正官名及纪年候选，身份冲突另审后方可发布。"
+    }
+  ],
+  "identityFollowup": {
+    "status": "separate-source-review-required",
+    "records": [
+      {
+        "personId": "person:source:dd8a51414ff5",
+        "name": "权加燮",
+        "action": "全部关联源另审；本批仅将一条任官归士燮"
+      },
+      {
+        "personId": "person:source:13850e2cf763",
+        "name": "衡阳",
+        "action": "全部关联源另审；本批仅将一条任官归缪祎"
+      },
+      {
+        "personId": "person:source:458e5685f88a",
+        "name": "朱寓",
+        "action": "范围外人物身份另审；本批仅排除早年从事任官"
+      },
+      {
+        "personId": "person:source:54b1ec55b537",
+        "name": "全尚息",
+        "action": "全部关联源另审；不得直接更名全纪或合并全尚"
+      },
+      {
+        "name": "全纪",
+        "sourceAppointmentId": "appointment:source:sgz:64:9efb86bfe313",
+        "action": "独立身份建档、来源范围核验后重新批准黄门侍郎，当前不新增身份"
+      },
+      {
+        "personId": "person:source:9b6ac59b74f6",
+        "name": "于理",
+        "action": "全部关联源另审；本批仅排除伪任官"
+      },
+      {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "conflictId": "v63:zi-conflict:8227029aaa4bacde",
+        "action": "卷39记大章；现有快照泰章与工作簿大章冲突，原记录隔离不改，另作身份全源审定。两条建兴任官已核史料但待身份门槛。"
+      }
+    ]
+  },
+  "separateResearchFollowup": [
+    {
+      "topic": "魏舒司徒终任年",
+      "source": "https://zh.wikisource.org/wiki/資治通鑑/卷081",
+      "locator": "太康七年正月",
+      "finding": "参读见逊位记载，可供未来比勘；V81已发布条的终年本次不改，不计入9条未决任官或20条新复核。"
+    }
+  ],
+  "nextQueue": [],
+  "completionBoundary": "100/100仅表示冻结队列逐条实质复核完毕，仍9条待补核；不代表全库851条任官、全部晋书或视觉真机验收完成。",
+  "preservedIdentityConflicts": [
+    {
+      "conflict": {
+        "conflictId": "v63:zi-conflict:8227029aaa4bacde",
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "legacyPersonId": "person:source:c219f41cc820",
+        "v60Candidates": [
+          {
+            "sourceRecordId": "source:v60:person:0807",
+            "value": "大章",
+            "workbookRow": 808
+          }
+        ],
+        "snapshotCandidate": {
+          "sourceRecordId": "source:v61:snapshot260:4e7a28cb341c7d79",
+          "snapshotId": "snapshot260:1fe8aecc28d9dd0c",
+          "value": "泰章",
+          "workbookRow": 411
+        },
+        "isolatedPersonId": "person:snapshot260:1fe8aecc28d9dd0c",
+        "searchState": "completed",
+        "historicalDisposition": "存疑",
+        "publicationStatus": "review-only",
+        "reason": "同一旧 personId 下的非空表字候选不一致；V63 按来源记录隔离，未经原典核验不得合并。"
+      },
+      "sha256": "4e062053fd866798665930590f1734d5f1ae064e058a611af92d9cdaa7be2e9f",
+      "sourceSupport": [
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴三年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "司空荀組爲太尉，大將軍劉琨爲司空。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀组·建兴年间",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "明年，進位太尉，領豫州牧、假節。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀组·后转司徒",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "於是拜組為司徒。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "action": "不得凭任官核读自动合并来源快照或更正人物卡；独立身份审定后再行带摘要的任官回补。"
+    }
+  ]
+}

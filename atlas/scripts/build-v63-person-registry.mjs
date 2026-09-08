@@ -5,6 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { reviewedReaderScope, validateIdentitySources } from './person-identity-publication.mjs';
+import { loadIdentityReviewBatches, readReleaseConfig } from './release-config.mjs';
 import { loadAppointmentPublication } from './appointment-supplements.mjs';
 import { reviewedBiographies, reviewedBiographyCorrections } from './biography-publication.mjs';
 import { fileURLToPath } from 'node:url';
@@ -12,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
 const dataDir = path.join(root, 'data');
+const releaseVersion = readReleaseConfig(root).version;
 const readJson = name => JSON.parse(fs.readFileSync(path.join(dataDir, name), 'utf8'));
 const hash = value => crypto.createHash('sha256').update(String(value)).digest('hex').slice(0, 16);
 const text = value => String(value == null ? '' : value).trim();
@@ -24,13 +26,14 @@ const sourceIndex = readJson('person-source-index.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
 const v62ReaderScope = readJson('v62-reader-scope.json');
-const identityReview = readJson('v71-person-identity-review.json');
-const identitySuppressions = { ...readJson('v75-person-identity-suppressions.json'), records: [...readJson('v73-person-identity-suppressions.json').records, ...readJson('v75-person-identity-suppressions.json').records] };
-const readerScopeRows = reviewedReaderScope(v62ReaderScope, identityReview, identitySuppressions);
-validateIdentitySources(identityReview, {
-  appointments: sourceIndex.appointments, snapshot260: v61.snapshots260, v62: v62.people
+const identityBatches = loadIdentityReviewBatches(root);
+const identityReview = { ...identityBatches[0], records: identityBatches.flatMap(batch => batch.records.filter(row => row.action !== 'suppress')) };
+const identitySuppressions = { records: identityBatches.flatMap(batch => batch.records.filter(row => row.status === 'verified' && row.action === 'suppress')) };
+const readerScopeRows = reviewedReaderScope(v62ReaderScope, ...identityBatches);
+for (const review of identityBatches) validateIdentitySources(review, {
+  appointments: sourceIndex.appointments, sourcePeople: sourceIndex.people,
+  snapshot260: v61.snapshots260, v62: v62.people
 });
-validateIdentitySources(identitySuppressions, { appointments: sourceIndex.appointments });
 const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
   ? readJson('v70-portrait-candidates.json')
   : { records: [] };
@@ -605,7 +608,7 @@ const protectedResolution = Object.entries(protectedExistingPeople).map(([name, 
 const summary = {
   people: people.length,
   readerPeople: readerPeople.length,
-  readerScopeVersion: 'V76',
+  readerScopeVersion: releaseVersion,
   readerScopePeople: readerScopeRows.length,
   scopeExcludedPeople: excludedPeopleAudit.size,
   nonPersonExclusions: Object.keys(nonPersonNameExclusions).length,
@@ -661,7 +664,7 @@ const registry = {
 const reader = {
   schemaVersion: 'V63',
   modelId: 'sgz-v63-reader-people',
-  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: 'V76' },
+  summary: { people: readerPeople.length, legacyMappings: Object.keys(legacyToCanonical).length, portraitAssets: portraitResolutions.length, readerScopeVersion: releaseVersion },
   people: readerPeople,
   legacyIdMap: registry.legacyToCanonical,
   portraitResolutions,

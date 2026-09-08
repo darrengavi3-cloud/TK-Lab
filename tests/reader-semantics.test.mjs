@@ -9,7 +9,7 @@ import test from 'node:test';
 import { reviewedAppointments, sourceDigest } from '../atlas/scripts/appointment-publication.mjs';
 import { reviewedSupplementAppointments, appointmentStatusCounts, loadAppointmentPublication, mergeAppointmentEvidence, mergeSourceAppointmentReviews, loadSourceAppointmentReviews } from '../atlas/scripts/appointment-supplements.mjs';
 import { fileURLToPath } from 'node:url';
-import { reviewedReaderScope, validateIdentitySources } from '../atlas/scripts/person-identity-publication.mjs';
+import { reviewedReaderScope, loadReviewedReaderScope, validateIdentitySources } from '../atlas/scripts/person-identity-publication.mjs';
 import { fangzhenValidAtYear, classifyFangzhenDynasty } from '../atlas/assets/app/fangzhen.js';
 import { epigraphicYear, epigraphicEraKey, epigraphicInscriptionState, matchesEpigraphicInscriptionStatus } from '../atlas/assets/app/jinshi.js';
 import { createPersonNavigator } from '../atlas/assets/app/navigation.js';
@@ -24,7 +24,7 @@ const review = json('v71-appointment-review');
 const relations = json('v63-reader-person-relations');
 
 test('V75 removes five false people and consolidates corroboration without losing source evidence', () => {
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
+  const scope = loadReviewedReaderScope(fileURLToPath(root));
   const registry = json('v63-person-registry');
   const people = json('v63-reader-people').people;
   const removed = json('v75-person-identity-suppressions');
@@ -37,7 +37,7 @@ test('V75 removes five false people and consolidates corroboration without losin
   }
   const publication = loadAppointmentPublication(fileURLToPath(root), scope, id => registry.legacyToCanonical[id] || id);
   const facts = publication.published;
-  assert.equal(facts.length, 197);
+  assert.equal(facts.length, 263);
   const fact = suffix => facts.find(row => row.id === `appointment:source:${suffix}`);
   assert.equal(fact('sgz:35:03b07e76f199').personId, 'person:shu:zhuge-liang');
   assert.equal(fact('sgz:36:97328e141be5').personId, 'person:workbook:dbc090011a676f55');
@@ -63,7 +63,7 @@ test('V75 removes five false people and consolidates corroboration without losin
 });
 
 test('V74 chancellery evidence preserves refutations, corrected subjects and unknown dates', () => {
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
+  const scope = loadReviewedReaderScope(fileURLToPath(root));
   const evidence = json('v74-chancellery-evidence');
   const supplement = json('v74-appointment-supplements');
   const accepted = reviewedSupplementAppointments(scope, evidence, supplement);
@@ -85,7 +85,7 @@ test('V74 chancellery evidence preserves refutations, corrected subjects and unk
   const combined = loadSourceAppointmentReviews(fileURLToPath(root));
   const allSupplements = {records: [...supplement.records, ...json('v75-appointment-supplements').records, ...json('v76-appointment-supplements').records]};
   const counts = appointmentStatusCounts(source.appointments, combined, allSupplements, publishedIds);
-  assert.deepEqual(counts, { verified: 197, pending: 601, disputed: 2, suppressed: 51 });
+  assert.deepEqual(counts, { verified: 263, pending: 510, disputed: 2, suppressed: 76 });
   assert.deepEqual(json('v73-review-status-ledger').modules.find(row => row.key === 'appointments').counts, counts);
   const changed = structuredClone(evidence);
   changed.records.find(row => row.id === 'dong-hui').quote = '闢為丞相府屬，遷巴郡太守';
@@ -107,14 +107,15 @@ test('V74 chancellery evidence preserves refutations, corrected subjects and unk
 test('reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate', () => {
   const base = json('v62-reader-scope');
   const identityReview = json('v71-person-identity-review');
-  const identitySuppressions = json('v73-person-identity-suppressions');
   const roster = json('v63-reader-people').people;
   const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
   const expectedIds = new Set([...base.people.map(row => row.personId), ...additions]);
   expectedIds.delete('person:source:032cc177a216');
-  for (const row of json('v75-person-identity-suppressions').records) expectedIds.delete(row.personId);
+  for (const batch of ['v75-person-identity-suppressions', 'v80-person-identity-suppressions']) {
+    for (const row of json(batch).records) expectedIds.delete(row.personId);
+  }
   assert.deepEqual(new Set(roster.map(row => row.personId)), expectedIds);
-  assert.equal(reviewedReaderScope(base, identityReview, identitySuppressions, json('v75-person-identity-suppressions')).length, 2093);
+  assert.equal(loadReviewedReaderScope(fileURLToPath(root)).length, 2086);
   const liu = roster.find(row => row.personId === 'person:snapshot260:9fbd9f0edab3ad59');
   assert.equal(liu.zi, '道真');
   assert.equal(liu.birthplace, '燕国蓟');
@@ -150,7 +151,7 @@ test('identity resolution cannot publish an unreviewed appointment; source edits
 test('all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild', () => {
   assert.equal(review.records.length, 149);
   const published = new Map(relations.appointments.map(row => [row.appointmentId, row]));
-  assert.equal(published.size, 197);
+  assert.equal(published.size, 263);
   const row = suffix => published.get(`appointment:source:${suffix}`);
   assert.equal(row('sgz:22:dc35da5cf8f9').personId, 'person:workbook:13d66149e45735fd');
   assert.equal(row('sgz:22:dc35da5cf8f9').nodeName, '从事祭酒');
@@ -388,7 +389,7 @@ test('reviewed old commentary retains its text and rejects altered apparatus', (
 
 test('reviewed biographies pin identities and evidence without replacing existing biographies', () => {
   const review = json('v71-person-biography-review');
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
+  const scope = loadReviewedReaderScope(fileURLToPath(root));
   const approved = reviewedBiographies(scope, review);
   const people = json('v63-reader-people').people;
   assert.equal(approved.length, 8);
@@ -471,7 +472,7 @@ test('the next Jin texts preserve all 56 existing texts and keep the Yang Zhao v
 
 test('V76 corrects succession chronology and requires explicit guards for revised reviews', () => {
   const registry = json('v63-person-registry');
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
+  const scope = loadReviewedReaderScope(fileURLToPath(root));
   const publication = loadAppointmentPublication(fileURLToPath(root), scope, id => registry.legacyToCanonical[id] || id);
   const facts = publication.published;
   const fact = suffix => facts.find(row => row.id === `appointment:source:${suffix}`);
@@ -502,7 +503,7 @@ test('V76 corrects succession chronology and requires explicit guards for revise
 });
 
 test('V76 biography corrections preserve old wording and reject stale or unreviewed replacements', () => {
-  const scope = reviewedReaderScope(json('v62-reader-scope'), json('v71-person-identity-review'), json('v73-person-identity-suppressions'), json('v75-person-identity-suppressions'));
+  const scope = loadReviewedReaderScope(fileURLToPath(root));
   const review = json('v76-person-biography-corrections');
   const existing = new Map(review.records.map(r => [r.personId, r.previousBio]));
   const corrected = reviewedBiographyCorrections(scope, review, existing);
@@ -519,4 +520,34 @@ test('V76 biography corrections preserve old wording and reject stale or unrevie
   const changed = structuredClone(review); changed.records[0].reason = 'unreviewed';
   assert.throws(() => reviewedBiographyCorrections(scope, changed, existing), /replacement mismatch/);
   assert.throws(() => reviewedBiographyCorrections(scope, review, new Map()), /replacement mismatch/);
+});
+
+test('V80 withdraws seven false identities while freezing all ten associated sources and original portrait files', () => {
+  const review = json('v80-person-identity-suppressions');
+  const audit = JSON.parse(fs.readFileSync(new URL('../research/v77-iteration/identity-batch-03-review.json', import.meta.url), 'utf8'));
+  const people = json('v63-reader-people').people;
+  const assets = Object.values(json('portrait-manifest').assetsById);
+  const registry = json('v63-person-registry');
+  const datasets = { appointments: source.appointments, sourcePeople: source.people };
+  validateIdentitySources(review, datasets);
+  assert.equal(review.records.length, 7);
+  assert.equal(review.records.reduce((n, r) => n + r.sourceGroupGuards[0].count, 0), 10);
+  for (const row of review.records) {
+    const original = audit.records.find(r => r.personId === row.personId);
+    assert.equal(sourceDigest(row), original.decisionSha256);
+    assert.deepEqual(source.people.find(p => p.personId === row.personId), original.sourcePersonSnapshot);
+    assert.deepEqual(source.appointments.filter(p => p.personId === row.personId), original.sourceAppointments);
+    assert.equal(people.some(p => p.personId === row.personId), false);
+    assert.equal(relations.appointments.some(p => p.personId === row.personId), false);
+    assert.equal(assets.some(p => p.personId === row.personId), false);
+    assert.ok(registry.excludedPeople.some(p => p.personId === row.personId));
+    for (const asset of original.portraits) assert.ok(fs.existsSync(new URL(asset.src, root)), 'research image retained');
+  }
+  const changedSource = structuredClone(datasets);
+  changedSource.appointments.find(r => r.personId === review.records[0].personId).sourceExcerpt += 'Changed';
+  assert.throws(() => validateIdentitySources(review, changedSource), /Identity source changed/);
+  const addedAssociation = { ...source.appointments.find(r => r.personId === review.records[0].personId), id: 'new-associated-source' };
+  assert.throws(() => validateIdentitySources(review, { ...datasets, appointments: [...source.appointments, addedAssociation] }), /source group changed/);
+  const missingDataset = { sourcePeople: source.people };
+  assert.throws(() => validateIdentitySources(review, missingDataset), /Identity source changed/);
 });

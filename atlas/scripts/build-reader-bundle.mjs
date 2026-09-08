@@ -1,4 +1,5 @@
-import { reviewedReaderScope } from './person-identity-publication.mjs';
+import { readReleaseConfig } from './release-config.mjs';
+import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
-const readerScopeRows = reviewedReaderScope(...['v62-reader-scope.json', 'v71-person-identity-review.json', 'v73-person-identity-suppressions.json', 'v75-person-identity-suppressions.json'].map(name => JSON.parse(fs.readFileSync(path.join(root, 'data', name), 'utf8'))));
+const readerScopeRows = loadReviewedReaderScope(root);
 const expectedReaderCount = readerScopeRows.length;
 const sourceHtmlPath = path.join(root, 'index.html');
 const registryJsonPath = path.join(root, 'data', 'v63-person-registry.json');
@@ -19,7 +20,11 @@ const outputPath = path.join(root, 'exports', '观史台-读者版');
 const stagingPath = path.join(root, 'exports', `.观史台-读者版.tmp-${process.pid}`);
 const relationsOnly = process.argv.includes('--relations-only');
 
+const config = readReleaseConfig(root);
 const bannedRuntimeFiles = new Set([
+  ...[...config.identityReviewBatches, ...config.appointmentReviewBatches,
+    ...config.appointmentSupplementBatches.flatMap(batch => [batch.evidence, batch.decisions])].map(name => `data/${name}`),
+  'data/release-config.json',
   'data/person-source-index.js',
   'data/v71-appointment-review.json',
   'data/v74-appointment-supplements.json',

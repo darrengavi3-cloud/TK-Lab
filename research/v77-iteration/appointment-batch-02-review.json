@@ -1,0 +1,1092 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-07",
+  "batch": 2,
+  "baseline": "V78",
+  "scope": "对V77冻结清单第21—40条，核读《三国志》卷4—14并交叉《后汉书》《晋书》的相关纪传电子原典；未完成纸本、影印页或完整版本对勘。",
+  "sourcePolicy": "冻结初检与原始抽取不改；引文为保留原字的定位节引，未知年份留空；审定理由及工作进度只留研究层。",
+  "counts": {
+    "reviewed": 20,
+    "verified": 12,
+    "suppressed": 6,
+    "pending": 2,
+    "remainingUnreviewedInQueue": 60
+  },
+  "cumulativeQueue": {
+    "reviewed": 40,
+    "verified": 28,
+    "suppressed": 9,
+    "pending": 3,
+    "disputed": 0
+  },
+  "previousPublished": [
+    {
+      "appointmentId": "appointment:source:sgz:06:73e564400a18",
+      "sha256": "e90e49484b464690860205a8e13338ce2a225f081b979b31f7e930dcdd60c716"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:21:6d1821578978",
+      "sha256": "c740300d61db10c627d52015f967a2e9dd47bf7e3bb4c259e07b350e2544fb6a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:15db8d9b680e",
+      "sha256": "cd5d223611d2b66c279464d919f0ebc6d24deb7d8b3ef5ac4efd6cbb68f62e00"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:08:36f8390373fd",
+      "sha256": "a6e0eda545f42b459f70d56711671f12747213cc4c835387562dfddee32a9098"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:342ee9a2ab8c",
+      "sha256": "398cdd648c18808a4c09f3ee35fd399bc893268de281dc97696b0c8d4a782214"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:df6143e80532",
+      "sha256": "fa77b51bce790e405a1e95d04d0333d33d89e90b69be9202919fc8924d503060"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:981cd8b31e76",
+      "sha256": "e8e64b97741880058bed01968e9ce53e4417f332042cb26b76bf86894385af64"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:23a70ff02311",
+      "sha256": "f86408b88c2f0a5a310da04df36744e59cadb70a63394d159285a74e6c3ff286"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:74a64f3507a7",
+      "sha256": "96cf167bbfd8e7f41c1099a843c4dad6140de8cac50eacc7af597d1f042eccf0"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:982354497ac8",
+      "sha256": "deeaf6811ccd21160a1ceb67845995f1df41d6918afe9d3869f0c523b111c746"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:c1fb9cf0902f",
+      "sha256": "be21a2ce83cfa506dbe1d0b862d465db471f6639d97b76413ac3917842db04fd"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:e53817659adc",
+      "sha256": "68b3914b4070c3b4e60e2806f919161113d4b4416b004f4ec00ea0727e00ef0b"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:1586f7cea46b",
+      "sha256": "859bca40234198569ca982f30062f8e4973da3c2f35031198cd01e907394715f"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:64e5457caa8b",
+      "sha256": "1c7176f65a3710c70addc5d4d6fb81325259e847068f319b6b5733cbecbb0b3f"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:76d0a69082ca",
+      "sha256": "962e3973acddfa5975bc9cdf78d008de76d518b7e99ec77e07087481efb2457c"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:c201e956f56e",
+      "sha256": "50ac86cc1dc667baff8d9ffd94141adc77a6ee28a2633d1a212ac1412b0a8012"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:da68fa8cedc1",
+      "sha256": "4cf91a0b480d90fc3479b96a159e3086dd84b181a10c0b17d4edc73c99a4a79b"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:4012928915de",
+      "sha256": "f7f053327b23cbc887868c057fd7231d4600dfadcee3cd1b99387c49630d0232"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:b8d36c4d1199",
+      "sha256": "6c9432cd4f56870a0806a4dda997bce426a97cd9c1ed7b9fcaf6d52f12bf526d"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:a08e94e7a085",
+      "sha256": "d40ee8e4f161f3036f8d44c1d5d9d7e838f80ae75e249504c62be9435e43d80f"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:088:c7f32e2a604a",
+      "sha256": "258765941afb376f2edf8a0d9fbbc972485c4ed69374608840a6e97da7b697ed"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:4542d56c1053",
+      "sha256": "08a29bccd3224356297c69425fc1876bb03ae43fdd4e50d6a847424e574f886c"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:1e2827781b46",
+      "sha256": "22dbd1c45b0a8131803d006477b4065531d2f2b4d024f2622c917eed68dcc8f4"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:225a5c858e3d",
+      "sha256": "df56ce6cf235b442c473919703acf26478ce9bbb87e0441d1414f3f95a13ac39"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:fc32a3021f2a",
+      "sha256": "2ef998508f735063b696e5f3ae030a0c4a19c7e5296f97b29317b20b2275a67c"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:ea9fcb555258",
+      "sha256": "3f313e1d540e0524ab47b12fc72162bf2a9284ae3269e8e1e1ace01c9aa062d6"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:120:0623f307009c",
+      "sha256": "3aa58e91708838c85283d4a577718667f74cc5d0cabbab2d4fede55ff1821909"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:97422fbd72fa",
+      "sha256": "5e7ef2f3d02f5b5713fdd071a33595726580876244f584160c226065cd2b7f89"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:96b602cf17c6",
+      "sha256": "891f43c7e8763d1a55803db89e643959e6795cbb87b62049116f7510f095b0e9"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:ce1c6cfeb84e",
+      "sha256": "eea81d73248a70c328525238073004a06cdca3ccd139073d082c525696b37fca"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:33b840f0ac05",
+      "sha256": "7b17092f0ff6715cfca16a30a011644832518c08fc6479006af3fffafe272a72"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:7d69bd5395aa",
+      "sha256": "cc07fde23ce96ec26a03f6a190512fd52b818b9f37ba47321de9a86d2bf01d43"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:cec210ee005e",
+      "sha256": "b07df6b0acf22d047e53544afb2bd2d0dfe88108a347bf352485d8b80197bcc9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:5a3bc449617d",
+      "sha256": "86ac0279e5202674ab2eb8c72ca790e4fc2b7741ece9eee5f64f852afa542fb1"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7ab835ac703c",
+      "sha256": "5a9af859da7b3cbe723b751d4ddaed45941afe286baaa90d82b9f42d91e35736"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ad9062e1c32d",
+      "sha256": "93025e0bec9aea6b2256d355c7219a94690fba9de956510c45295a62b73369cb"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:15:54c17f28f1e1",
+      "sha256": "333e073bd29974616ec38cca4c42fda25f77d13c71c7dc37d163c3c4d96805f2"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:bc1019f07d24",
+      "sha256": "40e584bf5ffdbef63cc62353a3cd964f784a40c4f2cf3ccb9bc489a7b6caec75"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:23c21653b615",
+      "sha256": "272da23f52722333f0491ed42f208adbed680a7b3fb83c4f5cf7721d6aa084bd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:6452b258bbd4",
+      "sha256": "d2480ac7b37e2230c23e69100969f23cb840b21354bc05e796a7a894f0fefa80"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:d42f14b72155",
+      "sha256": "ac606bb5c718a94c0e3894aaa7556126b268ce6ce355a3d14ee87d26b426e38a"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:638458309762",
+      "sha256": "29e2e399a38e341d84be3eb0272761688682cc5c7b799f63540d163aca766d08"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:a9113ebf3e6c",
+      "sha256": "0419e354c685426af3843f20b4cb7a1001d45e9286eacaad63679a2b2418562d"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:eb7cbd5e06a0",
+      "sha256": "ac2510f34f76debc24fb06cf0aa93013ca89e32e4d1e9f40e73b30a6eeec9bbf"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:fc90786b5792",
+      "sha256": "c303b83eba41879a7ccc3104c104eb283ef957ffc18826a9e0b40a8efdad6413"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:429e2d8233c3",
+      "sha256": "643267ff15f665264fa0c023d0aa13be234e954d9e12b1fb104a66f81d5fa2cd"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:090:d98e5b408f46",
+      "sha256": "f7a5562fc6adcc207a2d6b7a8f4b03dc484259016ce5fd4c92ae1f6186f09ea6"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:48978b7a125c",
+      "sha256": "4f327124c4ec371ea94e94e89ac020a11cafd134532a71b99f3932f7bea7ee21"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:f7dffa0a5ee7",
+      "sha256": "d220255de8ebac77505b9fc9c335f8e767a020815d2805f38731b0cfffa35aa9"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:db978e64500d",
+      "sha256": "4c3ec86a131dd390eb235752773a781ca09705daf9930fc263b5e40067147ffa"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:4fb7fd7b5e2c",
+      "sha256": "7099c50212059158a2d3a0e71c665da9eb1f66b39bf63d6d5b54a47af61eb5a4"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:7ed6e2ddb24d",
+      "sha256": "920d7456b104bba7cf1eed569e0388f142c06e20b8eb95a8690381e77333b995"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:ee5fdf6f46d5",
+      "sha256": "45feb21cac0627ce858c4d1d2d7705d01d5652dcefe5d011c366f8b61b5d2ed8"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:40:01c32f6e38df",
+      "sha256": "5b4c7578da981065469722b89e0db0140cd570d5a5397d4465a19366d43c7130"
+    },
+    {
+      "appointmentId": "appointment:v75:001",
+      "sha256": "4958bdef95b505a575da305b4238169e015b0ace4b64c19c2c8b1c2f59bc6509"
+    },
+    {
+      "appointmentId": "appointment:v75:002",
+      "sha256": "f3d582f2f9e85dec949dbfa5c08e5ce8113fd7c308662e301dea6927cc26c039"
+    },
+    {
+      "appointmentId": "appointment:v76:027",
+      "sha256": "2357cf881cba6fd241ee651526708cad1b33f64d9ecdb7a06398b9e3f9b865cf"
+    },
+    {
+      "appointmentId": "appointment:v76:028",
+      "sha256": "e3608928f8e6fe383749c01234f3bc739ec9306b04dbe2414f923899610d257c"
+    },
+    {
+      "appointmentId": "appointment:v76:029",
+      "sha256": "3bfe28b7e8681a586bdc97b6c2088721dde639e0dcc39e09c3cd44038d718010"
+    },
+    {
+      "appointmentId": "appointment:v76:030",
+      "sha256": "bef28c69625716b1cf7350b93fd9e6cdf3140101da3bb00fcbcc46a09e30689e"
+    },
+    {
+      "appointmentId": "appointment:v76:031",
+      "sha256": "676a2e81c1a63a4b7f7fb523b66bf831c70281712eedf078e1cac34906af54bc"
+    },
+    {
+      "appointmentId": "appointment:v76:032",
+      "sha256": "978d367673f2a8c908fd3e2449516885346ebc923bdf10e0df7e6a914047e5ac"
+    },
+    {
+      "appointmentId": "appointment:v76:033",
+      "sha256": "139c3aa4b6eb68dd80d1c5386bfb92f1db3cba23b7611ffe00a94534b160c89d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:c8d63f8e20ac",
+      "sha256": "44e8965fa1a61a9b4afb14e0dbf869219c5fbce375b09903beecd1982be0551c"
+    },
+    {
+      "appointmentId": "appointment:v75:009",
+      "sha256": "6ef416b89226ba80542037e40253feec73f5f31315e73cf0059aebb075434374"
+    },
+    {
+      "appointmentId": "appointment:v75:010",
+      "sha256": "58eb12f743d921391e2dd090e5869d167bd54adcbf7092138bdbb6d80abccc5f"
+    },
+    {
+      "appointmentId": "appointment:v76:004",
+      "sha256": "3259191548608ff527c8b4365e293f0b9c6f2e4dc17f465e20ae20eec77585ff"
+    },
+    {
+      "appointmentId": "appointment:v76:005",
+      "sha256": "f4c145b6b2823fa1d8369301bdba6156f1711db57fccf3276c7ef62d164ddb99"
+    },
+    {
+      "appointmentId": "appointment:v76:006",
+      "sha256": "94b1b9c1bc57e6258e04ec3042126f7afa46777457aa11c46c1577f4228ecd78"
+    },
+    {
+      "appointmentId": "appointment:v76:007",
+      "sha256": "8b1aaad642b42174c15a07773b300ce2f0105c8dc3e3e791769f8fa0022f48c3"
+    },
+    {
+      "appointmentId": "appointment:v76:008",
+      "sha256": "ae60cd45724ec1e286fa51b695867eea6e38dd2d1a94ae33bc56f5f94c561ff8"
+    },
+    {
+      "appointmentId": "appointment:v76:009",
+      "sha256": "10fa9e945341021962fc860ab39ad51c6931aee145d7eecc1974131742b23eec"
+    },
+    {
+      "appointmentId": "appointment:v76:010",
+      "sha256": "cfcf31eb431cfb5e933a5b861a811611b84fe99030a1b1951e88cd66cbd25071"
+    },
+    {
+      "appointmentId": "appointment:v76:011",
+      "sha256": "29c8d6e1624ab9c93ad00ae20cf339e8035b5948939a8a9076e208910b98edd6"
+    },
+    {
+      "appointmentId": "appointment:v76:012",
+      "sha256": "79ddc01432c4b5ea6604e150a9731cbfff76d3f4f4e9901c69f48a2260dcf17e"
+    },
+    {
+      "appointmentId": "appointment:v76:013",
+      "sha256": "6f1206a95bad25a517c4fc08536069827788b6f08873da4abf1a222ad5f6e8d5"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:15266b19b3c3",
+      "sha256": "7932940ec3f4728aa0a2b5b72f3b27eeaca1cee212e09a8c5f8eae6f8c179d0a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:8b22528ee416",
+      "sha256": "1bff8495c080bd2e78ed87965940a4c2af4491ff60738edfc9aaccea37f99e38"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:44:1c106e4707ab",
+      "sha256": "bdd6eb0bd21c598487bcfae1592a74907591d0c9f7cdb3b5cd6dc309158fab6b"
+    },
+    {
+      "appointmentId": "appointment:v75:011",
+      "sha256": "09047cef168cf214bde9b0290565ab0fb261e9ce39befeacf2c9b3c66f978e06"
+    },
+    {
+      "appointmentId": "appointment:v76:001",
+      "sha256": "935b91806c58cc7f4161d948885592621d77a84341422c88a18cbef0a43ca938"
+    },
+    {
+      "appointmentId": "appointment:v76:002",
+      "sha256": "075141f256553cdbadec1b6e5fdee2c235df6a75e571e8e7b16d00d29e2246e2"
+    },
+    {
+      "appointmentId": "appointment:v76:003",
+      "sha256": "bcd9778d25be1a5c6e715d8eeb50b9af00f74a6553bd70d9fa9e028bf04cd518"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:2e6f7dd53661",
+      "sha256": "cf34531f5d6cff8e5747670dc95986e4b9d822fb2c699ea111e8c0e13fdbdc21"
+    },
+    {
+      "appointmentId": "appointment:v75:012",
+      "sha256": "55b92a326782fa7f7bf3aea10b8142ef7db0c4c964a1e7cb9c2dec9f2935d8fc"
+    },
+    {
+      "appointmentId": "appointment:v76:014",
+      "sha256": "078fff5ed1b039bafa20bb3ff01f2cf7295636553510f6c3804a2a575361643b"
+    },
+    {
+      "appointmentId": "appointment:v76:015",
+      "sha256": "67fca63c0c7153ffef3814c3e164097836d20147b30f7b84c5c748ea759153d1"
+    },
+    {
+      "appointmentId": "appointment:v76:016",
+      "sha256": "82e31109afc53b0defe12952d53d52f98b6a0f4377db352090fb16ba3cf4d131"
+    },
+    {
+      "appointmentId": "appointment:v76:017",
+      "sha256": "a3d6f29a76ea42eabd02aebb667e59191a17b7ccc333a506ca78cd20123c736c"
+    },
+    {
+      "appointmentId": "appointment:v76:018",
+      "sha256": "94aa85406afa4548ae562c7bf6e66b9c8fbe4d8965cbba01e305ccd61e673f7d"
+    },
+    {
+      "appointmentId": "appointment:v76:019",
+      "sha256": "5339e7e5b8c855b7ea05e41c9283fbe4c37f5341d7acbe511dc47195418427c8"
+    },
+    {
+      "appointmentId": "appointment:v76:020",
+      "sha256": "9b48bc6f5f2d89957f335833461011f91d9dd0b5f1d18105081683855d726b10"
+    },
+    {
+      "appointmentId": "appointment:v76:021",
+      "sha256": "2f2e7ab5b8b4745aed2d3b8eb560204b01b54f9dd270f4303b888be8d3923706"
+    },
+    {
+      "appointmentId": "appointment:v76:022",
+      "sha256": "7e6e6778b3c454de51e6d9e560039b55119100d1c1887e67f4ad49cac75c032c"
+    },
+    {
+      "appointmentId": "appointment:v76:023",
+      "sha256": "93e7e2f13ecea267600f5beffe8cbc0efb3e6059d8bbe19a67389c681f800bb5"
+    },
+    {
+      "appointmentId": "appointment:v76:024",
+      "sha256": "629b0205e419c65c9af8a2480f30bc908f52a20663902f8ad55242093eb9b999"
+    },
+    {
+      "appointmentId": "appointment:v76:025",
+      "sha256": "e9a8f6c47e3814a9ce9a1ea49f803e85b3f708879b4aa3b78ea0859e8c278caf"
+    },
+    {
+      "appointmentId": "appointment:v76:026",
+      "sha256": "b35be30b006022f80566a57dd20feedb4966648466d0c1a4b06c7865af8e66cb"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:39:2f656376b998",
+      "sha256": "fd3ea92f7c9328eb2c4066fb4e37f982d06615ba183a1f60190da7725f54fbd0"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:537f759694cc",
+      "sha256": "69e996a2c752842bde54a03ef821a4a9ccc7152c9cf8d4afa3bed9f5d8e207d2"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:a77842e8dc15",
+      "sha256": "9fefd250b2280277921905676b8a07c87707942faf445568eaaef3f7d33e0f40"
+    },
+    {
+      "appointmentId": "appointment:v75:007",
+      "sha256": "de88d0eeabe3aea909dd0195c986412f3e18381e5eb303d5d47b54d0a8e4a121"
+    },
+    {
+      "appointmentId": "appointment:v75:008",
+      "sha256": "f4a79025e705990b70348209ec86967900b9d464543b39db836fd45e6632d670"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:3b19faa637aa",
+      "sha256": "60b12d2dba3950199189b8efaaec7b417474ccaae696a667dac622a6a01b8aee"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:32:7dd6cd2706c9",
+      "sha256": "025d97c3459edbe35791591afc43750f9aeeaa1e2fd21e08854ff907505a677d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:35:03b07e76f199",
+      "sha256": "8de609acbb7d932ee96c9d5396ecb9e7717d5b83ebbc111d0d38dbb381ceaaf9"
+    },
+    {
+      "appointmentId": "appointment:v74:021",
+      "sha256": "57845487da3e10eac76c49ce50aefd78347a90144adb7f22a5594943586deb2d"
+    },
+    {
+      "appointmentId": "appointment:v74:022",
+      "sha256": "7842696654ed4503722cbd2b81add89326fff5f8d9ea4dc15eac37aaf02011d8"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:089:3445b21e2bfd",
+      "sha256": "a5de7733391f4b14dee017aed53c0982784d04dd5852d483002e2333ef17da85"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:01f2b39cf9c9",
+      "sha256": "a8a16f636c135691d556b304afacb12302489f9e7a914416c796cd3e45f4ea34"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:cf102cf5620d",
+      "sha256": "d95cd1e4ee7b6659ea79fea1a64a36a194056fa827175454a5eb48be93de0771"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:43:0c13a7c81381",
+      "sha256": "32f464650b833d6209b2213f4acfe57264e7cb94374f0e4b73b8a3cb487051bd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:ee9f83595474",
+      "sha256": "5be1407f06886f4cb268473b962941ff0abeec9a02fa13e53e3032e1eaba2c12"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:a486dd8a87ab",
+      "sha256": "05de601916ceada28b8531a2cf47137421a187dcb3c4a66ecac2bfcaaedd9257"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:2b024fd41af3",
+      "sha256": "bc396a84684f5eb9f9e83954c2705f7f13212113a2e610e74f29009540828497"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:785b893711d8",
+      "sha256": "14e4d62d136dd9a21a38f8556832c9272c37bf740ab0bb62b728044dbd666e04"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:e5c874a43fe4",
+      "sha256": "f50acc164789abdb1c82e823092e0082a28a4f0f8ccbfb0def0a4c313cc4a127"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:3644ca88f34b",
+      "sha256": "d3a7ed9db5c613f255a3ba89355439b144b236c0a049e05873094d54cc789190"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:f468b0bebe12",
+      "sha256": "ac19ec4295c3a2c21ec6f6cc8faa47d42f33d3426c58ef35a396b369c6be425a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:4deaf8c12bd9",
+      "sha256": "89a6e3a95847e40bd3278c2eb30edf087452d58f43b9fb4fde4def765de36cd3"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:f45b9ace6450",
+      "sha256": "e901365600d0c616828d985d4232572cd09b3b451b81d19c482823914cfd2e94"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:5cc872d8d577",
+      "sha256": "f1afad57cfed447fc57428d9c7769e2d4a5901bf1f9565bf947c234b9f94a367"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a1c45d2140c4",
+      "sha256": "ed3c97fba76112853712bee237ec21c2872c6954a07ee4afa1cd6545bb13dc68"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:3e772c59425f",
+      "sha256": "4b3c1e1568a7c85d3897314deada18e35915462a9bc548422a42704c6f22f975"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:5ca5736ba0f0",
+      "sha256": "dc21ae453e0f7e58e265b042c671db9f3ddc2d32550e460d2cbeeb02d41f5fd8"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:8d02aa0c1925",
+      "sha256": "d5d549db628e4999d57a0e83431b0ea899c589721deec9ff488c10d310c02281"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:ff7d5953c468",
+      "sha256": "f8ec0f102b0173cd16a9d4abb026241cb3c2ecd48da2679848ee5bd9f97739a5"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:33:f265fd6698b3",
+      "sha256": "d9c605125e89e9e9faa92a78961af9fe04b92c45d11a697c3162ab409644df4c"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:086025d77767",
+      "sha256": "a40d5a6144ed25561b232b17de4c110a1801f6670ad3e2cfce08276df4489cde"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:1eba07d7f725",
+      "sha256": "d6005a0172dde5a529074251a596979119658f2a08349fc2fed9254c8aac65bd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:e4ed72cd03b9",
+      "sha256": "01d0b0ee2b995b432be79cb074ef6951eacce2e74f04961da7b9a7524803c677"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:7c8f09c27498",
+      "sha256": "c1e314c9221da75891275c0b6b22e0519b4b5b91175b3beaea39792b60252e99"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:f8ed903b7ed7",
+      "sha256": "4e86455415b6ad4bdc33d3ad7984da1ec8d024ec95d5589faa12d9e08f97119b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:24:cefba4c41a31",
+      "sha256": "c027c7d7c5d3580d66ea3c2b5b332d89fbfc6d4faf53a58cf2440f276295852b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:025d04dd043d",
+      "sha256": "88d0dd8984fcdb64b3d9598be87629445e704dc403532731883c6e3d48246dba"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:2fc1dcb79a87",
+      "sha256": "fa5815e92ad8a2cbb184834a63742390b963180811bc4a753e2b3cdba6158780"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:8f67468d5bb7",
+      "sha256": "6bbbbca61e81a26db81d9dbe5f56ebd9a5a9ace88924d5b916efa7a400b0e804"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:ecab4b588198",
+      "sha256": "5f4b4c641da72a67af60589fdc47cb15c61f7f010abe9b10201d66aaa1439b57"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:b8fb04ad9858",
+      "sha256": "32ecc159ff297307cac2601a3cdbdd44a8f73f1a8cf8a959777c2e6f3c715f19"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:30b39a746623",
+      "sha256": "2344ff0e0e9ee12b369d51708c92016159059f70e3abaf3141d1cfe21bce6ef7"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:024:193f898fcc80",
+      "sha256": "045ccfc0c1459f1e5e2b264052d2aef6b5c6d3c23c2ce10d700e8680d3433303"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:02d0f8037d47",
+      "sha256": "2d8974faaba49393fce18c3386c1c6680251550e671a5535052ed8a839288c30"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:04:46970447aeb7",
+      "sha256": "b89e719881ebc836f095e0f7e0042c5e61bfd0082075c7a1c3b3111bd0e66ab4"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:25:a0bc9051a96d",
+      "sha256": "6a64b589fd71ac5fe337ae396ad56089a5274e2e1566658c09dd09b99e7a0c94"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:0c969e6d9d57",
+      "sha256": "38cf83ebbc72eafb8611262e673a84750f6ca41b0b1fa98480896850891ec12b"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:d78f85040aae",
+      "sha256": "0e0fed9e01c9c34c23863fa8e0bc8d2567fbba62b57f1b3fe2913c6c9c163256"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:09:55fe27cb3369",
+      "sha256": "b237fadeec2f52df0e2831f186be7968b20249ae50ddd6a0b33f235bf020a35a"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:01:536b5623d2b6",
+      "sha256": "09b7ad9c0cfafcfa9228d1136caae17368c097cfc3950796c6e9067d483949ff"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:02:0a224d8d3a3f",
+      "sha256": "676ce8dc5ed50a6b5bd82ccb34dda7c94943fe532eaad6f7d57802f7cb67d218"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:03:6d98acfa027f",
+      "sha256": "440f2506798ec6594cbc09937b2000b4969e1a1d86a4fdfdb4f69510a1c3d58e"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:15:27da4221ac17",
+      "sha256": "f51d47e83d976c93439159e6f6603388309d6bbb29ae1f94d63831a1fc323010"
+    },
+    {
+      "appointmentId": "appointment:v74:026",
+      "sha256": "e8d502e630a28d9671190a5f1ccd5efe61d5bccbcaf369c00f3354d8b4cad112"
+    },
+    {
+      "appointmentId": "appointment:v74:027",
+      "sha256": "882420deae233d14c651f4c6ea7d678a872dbccba61af5e5b07a90ed4b7c24ba"
+    },
+    {
+      "appointmentId": "appointment:v74:033",
+      "sha256": "af17fba02e4d51d684a36d2a060c60e4d7385835709badc907210b2fb8efac68"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:22:dc35da5cf8f9",
+      "sha256": "588c3dd8b9267953fa50e8293819f5a027888dad6de312f3b414114723fb2eea"
+    },
+    {
+      "appointmentId": "appointment:v74:025",
+      "sha256": "e568422cc0fb036215e0789d9a9e7f02ce1f615eaee660aa5ff68aa02c746ce2"
+    },
+    {
+      "appointmentId": "appointment:v74:031",
+      "sha256": "99ffeee622686b95023a690e367d414ae4ce3d714b9631f3bc32e9b6b560e4a8"
+    },
+    {
+      "appointmentId": "appointment:v74:032",
+      "sha256": "27db5e5a2cd8fa81b3eabf47e6153faa66da8c874e832681fc3da95891c70582"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:38:829deeeb0689",
+      "sha256": "b7204f6acbde4088ef78d573241f18734cedc7497facd3bb7d75c04a1c9a8f44"
+    },
+    {
+      "appointmentId": "appointment:v74:001",
+      "sha256": "60fe1a5f4a30aa0d2ee2c4c5d6f970cbd447b9f13c9b848e2148defa1802fd14"
+    },
+    {
+      "appointmentId": "appointment:v74:002",
+      "sha256": "afb71fe8060405f00107633fba913b1ca8fb7b5fafa5f1c7d5f3226b512d4608"
+    },
+    {
+      "appointmentId": "appointment:v74:003",
+      "sha256": "b12a954ca0d87465393694890b1910ea7dc74b35732e77c7b0ff28167002ed4c"
+    },
+    {
+      "appointmentId": "appointment:v74:023",
+      "sha256": "9ddc04623ca5c64806cf7843950ab897a228d235c08b7e6e2a737d17e194c130"
+    },
+    {
+      "appointmentId": "appointment:v74:024",
+      "sha256": "8abf9a87375ebc1e3edd37ae70485687ca13792600201bcdbd5351d2bdedc935"
+    },
+    {
+      "appointmentId": "appointment:v74:034",
+      "sha256": "2df1c2fdb6f021b73c422119fdba3cdf1542b4751d8e6611bb4e7f69dd1af165"
+    },
+    {
+      "appointmentId": "appointment:v74:035",
+      "sha256": "a58d9c7dba1bb41a7393f9ede5b0a72dee204d5cf8403348ed56edf16032a192"
+    },
+    {
+      "appointmentId": "appointment:v74:036",
+      "sha256": "8449aa6e86bb5003f48fc06402f674d9d8cd31ee53a25b5a9670b15d28e303cb"
+    },
+    {
+      "appointmentId": "appointment:v74:028",
+      "sha256": "21b4b661a0961b7599e9933c004f33a1a205e98becc28bb54ad387ec6e6a5913"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:42:a3523b60a7e7",
+      "sha256": "a5fec9c7341df77e9e09107f3506700c1c00d731bd102f33e7227c03e8b50c12"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:092:fb598d513c5b",
+      "sha256": "e536b3f759b6232bbd8d2f880adf525be9f97f80780d63e9857fc81147638646"
+    },
+    {
+      "appointmentId": "appointment:v74:018",
+      "sha256": "cdae8cdacf1c3ff8b7db27500263cd1d94b8ad27386eee71ed141ea38d822060"
+    },
+    {
+      "appointmentId": "appointment:v74:019",
+      "sha256": "2bb257334c009a54a918d9325489300c21386b298dfef0957d7b8a0be4fc9bf1"
+    },
+    {
+      "appointmentId": "appointment:v74:020",
+      "sha256": "aec90d8b49dc0f1cb5bc1ff6cbebaf47bc5feadd10b41e8b57dd82e9a58bf10f"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:41:bb48953e14d8",
+      "sha256": "b9deb412887a108e1c14d4fbf488d4e58952f04dbf5d263384bff5cf9364297a"
+    },
+    {
+      "appointmentId": "appointment:v74:007",
+      "sha256": "56f6dcbe7db2a9305fcf27558653ae18543cd17dfb1574c0cc055837268df542"
+    },
+    {
+      "appointmentId": "appointment:v74:008",
+      "sha256": "715de26848c8e9a86cbd1c6fc15c20dc4b4e8c1f51e3f4b1c814ac10614a6486"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:36:81d04c5d62da",
+      "sha256": "1616484230b4885b0eb3f446f9fe0a880be59e152d957a157ad33edddd487878"
+    },
+    {
+      "appointmentId": "appointment:v76:034",
+      "sha256": "fb67d82f5bfe4ed0274eeb9edfc7f50834783c70d4c825729747a4657d121735"
+    },
+    {
+      "appointmentId": "appointment:v76:035",
+      "sha256": "e248a36cadc332b6217cee76e3b154f08dba6f0e9f0592425ba85ab3facc6a87"
+    },
+    {
+      "appointmentId": "appointment:v76:036",
+      "sha256": "45c61ac8d9e568d02e93ae1c0db0c4489ae2e201eca26fd121d5b5bb49314992"
+    },
+    {
+      "appointmentId": "appointment:v76:037",
+      "sha256": "dc21e962bc8e6e0d5bc8845706ca18958ef0b4fd1d241c07bc22a31037301640"
+    },
+    {
+      "appointmentId": "appointment:v74:004",
+      "sha256": "864724f0f35095285478cb82c1bb176913388d01b0826afcafddc00442c9e529"
+    },
+    {
+      "appointmentId": "appointment:v74:005",
+      "sha256": "04a345bd96f8d28ee82b9d565fb3c03c890aaff4b1700b5e852a3a828be8b4bb"
+    },
+    {
+      "appointmentId": "appointment:v74:006",
+      "sha256": "d8a823b62038df4f92210fa823c39bfe13f7f0aeb8e94266e7872d4effc40c67"
+    },
+    {
+      "appointmentId": "appointment:v75:003",
+      "sha256": "d9244595f33653f611bdce5a5e93647249cd18d1e2baebe084e1edf5ee8558e9"
+    },
+    {
+      "appointmentId": "appointment:v75:004",
+      "sha256": "e4550f77fe4708790610e630460e53a1239d189a46db14845ec0dbd328e50481"
+    },
+    {
+      "appointmentId": "appointment:v75:005",
+      "sha256": "e222ef1ab4e896644821fac1000b5a12a112d210e9cef64a76cf6cb9943a0199"
+    },
+    {
+      "appointmentId": "appointment:v75:006",
+      "sha256": "c505cb7c0fe04bb448c78f0be05f6c803e7542c5d6f0e1b2cdcffcbf7ad59aeb"
+    },
+    {
+      "appointmentId": "appointment:v74:013",
+      "sha256": "f97e30786d7b10609a15e139fcb8b53d70e4f84ec4e761b7d096f72eb49e14cf"
+    },
+    {
+      "appointmentId": "appointment:v74:014",
+      "sha256": "ec20b05b6765af42dca3192259a2824cc9b650d8159b30690b96612329be6cc2"
+    },
+    {
+      "appointmentId": "appointment:v74:015",
+      "sha256": "b5347077af9067007b8ebac8a92aa22233133c64ee81f613a7c9d39972034417"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:45:57c66c4fce83",
+      "sha256": "14fdef29f394c071cc49526ffd2bcaacf23bf72dc81b24fcfefff7db3abd7dbf"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:36:97328e141be5",
+      "sha256": "20a6fe505c4ce41f98f61958e61bbb68176370cfb6675f4d77af70a54446a3da"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:054:32c62500fcf5",
+      "sha256": "615a9dbaf00bd03ed6cc60905b884d96a3120246565b8216d9f0419a0a1a53f3"
+    },
+    {
+      "appointmentId": "appointment:v74:009",
+      "sha256": "15c588dd79f3d92757cff8dc8b590001e09a25a0202416cc171bf679767d0d36"
+    },
+    {
+      "appointmentId": "appointment:v74:010",
+      "sha256": "b267b74cc0cada09acfc295d586fd392b4e106dd985c53ebbaac331a68730460"
+    },
+    {
+      "appointmentId": "appointment:v74:011",
+      "sha256": "fbe77724f12eebba91285f67166b92cf406054e7a316f58e0a4e956bc10114ad"
+    },
+    {
+      "appointmentId": "appointment:v74:012",
+      "sha256": "9078c96b8c157dd71559390139419680788061994f64ece1b7d0d63b51ef7c13"
+    },
+    {
+      "appointmentId": "appointment:v74:016",
+      "sha256": "8eff871f5dd82b83cac7cebfc82774c59f2f92d58c9f36c3352e8c72f50ca126"
+    },
+    {
+      "appointmentId": "appointment:v74:017",
+      "sha256": "8e07e72822886be3612ce49d01aa1b2a6882ed4425bdc8515d23874b999914c9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:68eecca49b8f",
+      "sha256": "f5e69355111cf6a07fdb2ba7221c05833965854eb8fca5f9a28bd30c06501147"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:74022d223b66",
+      "sha256": "c129b573b2d501ce2a26338cbfa82c39ad5953376d327eb7207a76efb8a3af30"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:f767eaa7fc4d",
+      "sha256": "c1eae304e40f528ca53c67408ffe75f40c6e79fd994c66f642ea4b561a475255"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:217db6a989b2",
+      "sha256": "8348cf13f48b0e899da0fa8efce1cf0fd6f8c0919072d71d86fb948f0c572134"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:a750f09402f4",
+      "sha256": "7d7f5d2fbbf4803c06691e0bb71741e2deb7d0fecc28e1df2fd33fb30abb3abd"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:dfabcc52b63a",
+      "sha256": "c431e07b16797fd232186230bdbd9002a423bb8c12b0f548060828a98d48c2a9"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:82bff6ceb278",
+      "sha256": "f7fca938db8d6e3428ea9386c9c53336e5e04fff99b6d889b20d529ad7c9a000"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:002aa5f3772a",
+      "sha256": "45df2c394cbd3f7c6f30a16535a47eb05af4bfc45867afcfb969c38cb348e060"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:57:c91969624c3a",
+      "sha256": "5efcf01c4dea441eee93dab136cf8917311b27e3d257a8c601308393aeca8ea1"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:a4dcc0e4d11b",
+      "sha256": "a3855b93712b967e789231fff268bbbe46923781fa8722fb9960be16a7169556"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:5ad9f1ac2fad",
+      "sha256": "508c3455b955ae3524b8e9d8024247453f9676279bbcb0bba79acc960750345c"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:72b92c980e0c",
+      "sha256": "d2a5aace321e26fb4aa2e1a65fd856ce084db3435e2e237c64005cc336c7999d"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:47:5decd7b4c471",
+      "sha256": "b1fdf76744f3b4441c1aac11a907918bb20511eafcb41971962f9c1cdce8db95"
+    }
+  ],
+  "records": [
+    {
+      "recordId": "appointment:source:sgz:04:ca285f4afbbd",
+      "decisionSha256": "2c177d1260eba6842c70a80aadedb329114bd2192e7b4c97ae6670bb5e235850",
+      "status": "verified",
+      "sourceSnapshotSha256": "c8407cda3e9bb2c0c656eed353baf5cfc72a56cb8b97bc87d17056028be931b5",
+      "remainingQuestions": [],
+      "scopeNote": "卷04编年原文互证起讫；未见纸本。注意徐邈固辞不受，与本条不同。"
+    },
+    {
+      "recordId": "appointment:source:sgz:04:fd5f5aa2a419",
+      "decisionSha256": "c5e91c1dd02b5850244d76b7ba53a1e37233d4136f931ffeeee7b6bfc1ee12fd",
+      "status": "verified",
+      "sourceSnapshotSha256": "0455c102497045397c7b6fc87b58e0caeb94b7bf1f0d2a2136a69869a32d2a29",
+      "remainingQuestions": [
+        "未换算农历日到公历日；本任务只填可据纪年的公元年。"
+      ],
+      "scopeNote": "核阅卷04景初三年—正始元年全文上下文；未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:05:efb18232fd22",
+      "decisionSha256": "ade5fe0a19283531737db1bc3cd2521eb6347616795c579822ed75966ce87d51",
+      "status": "suppressed",
+      "sourceSnapshotSha256": "e2649f1d4de905d5b9d0fa893d2e082fb9267fa6b24587ca11209feee9db18e8",
+      "remainingQuestions": [
+        "郭建此爵终年无确年；泰始中疾薨仅为年号范围，不能补一个确定年。"
+      ],
+      "scopeNote": "通行电子文本与四库本电子录文比较，确认封爵措辞及悳/德字形差别；未查看影印页，未作纸本对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:06:26e0f88d68b9",
+      "decisionSha256": "f8d470b64b03fdd0c01ce4a2dc2796d993b0653b1d7c86e3c324d4a4b1f95365",
+      "status": "suppressed",
+      "sourceSnapshotSha256": "26969704e9860ce1ab3f0401093db484606ee5f6b922b15ff9c78ba0800c2d0b",
+      "remainingQuestions": [
+        "苏代与具羽的受任者来源、正式授年、终年均未由本段确认。",
+        "‘領’可以确认所领职称；本条无中央任命依据，不宜描述为朝廷授官。"
+      ],
+      "scopeNote": "核阅卷06刘表传《战略》注完整叙事，分清两个并列主语与谓语；未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:06:933d5cb670f7",
+      "decisionSha256": "db3dcf4e06fede878f7cbd7a141a8e050d7a7a0b16db927f5901a7ab910cd752",
+      "status": "verified",
+      "sourceSnapshotSha256": "40208a9b94e8dbe7985a06da865878d53764a192c7548d0c54631bcc3504722a",
+      "remainingQuestions": [
+        "授、罢年均无确年。",
+        "所读裴注随后已指出《魏书》与《英雄记》在父系、追服上的差异；这些差异不能转换成精确年表。",
+        "检索曾见其他著作引《英雄记》作复阳之线索，本次未读取其原典上下文，不用其改动已读《三国志》濮阳字样。"
+      ],
+      "scopeNote": "核阅卷06本传与《英雄记》注、裴松之父系评语；未作各书濮阳/复阳字样的完整校勘，未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:06:9b1ccfe3d1da",
+      "decisionSha256": "090f659e069920a7dc0872b10d52a5960367cf16defe7b0e3b4ea10187634d8a",
+      "status": "verified",
+      "sourceSnapshotSha256": "605cbd5b09054ecb8e3351f3a439085744de8597e894cda4e115d41a99a57c61",
+      "remainingQuestions": [
+        "此次未有可靠校勘结论足以解释灵帝纪右/本传左之差；不自行断为印误，也不编造一次未载的左右将军调转。",
+        "中平五年授任具体月日未由本传受拜句定明；十一月战事不等于十一月始授。"
+      ],
+      "scopeNote": "比较《三国志》卷06两种裴注与《后汉书》卷71、卷8电子录文；不只复述旧节引。未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:06:c87d3944bc1a",
+      "decisionSha256": "41a4a5d53b8539a790a9c3693baf6366cec222919856f3ce6614acb05ec90978",
+      "status": "verified",
+      "sourceSnapshotSha256": "6cdbd5b071fe4dea427388fb49235e20f2ec1bcc0cfdaee6912b391e258de46b",
+      "remainingQuestions": [
+        "起讫年未知。",
+        "司徒掾为据所属府补全官名；原典此处具体用字是‘掾’，无证据细分东曹、西曹等。"
+      ],
+      "scopeNote": "核阅《吴书》注前后连贯董卓主语；未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:06:f8244e4b759d",
+      "decisionSha256": "88e86cf49ed1c333fd97745e9c44d95ab49898566172c9426f24591cd71170cd",
+      "status": "verified",
+      "sourceSnapshotSha256": "d97e8af6cd55b0c00fb67229325abd97dab879ffec2be8ec09dc5a8ebbc8de07",
+      "remainingQuestions": [
+        "两处明载辟署，但未进一步叙孔融在此职的具体作为或离任；事实措辞应保留‘辟’。",
+        "《后汉书》卷70孔融传早年‘州郡禮命，皆不就’之后转述入杨赐府，没有单列王允从事；该泛称在更早生平段，不能无据扩大为拒绝王允中平元年之辟。",
+        "原文只说从事；豫州是由辟主当时所任刺史补足所属，不能加成别驾、治中等。"
+      ],
+      "scopeNote": "核阅《三国志》卷06张璠《汉纪》注、《后汉书》卷66王允传及卷70孔融传早年仕历；未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:08:1e74a1462c0a",
+      "decisionSha256": "959da72d322722fd09a5a4ada17727069aa3af02d291f642e8c828dfa8e2beff",
+      "status": "verified",
+      "sourceSnapshotSha256": "e132d219691e7b42c246ceaa76d8a689ffce0f0b7f3df6fb907a985afab5081b",
+      "remainingQuestions": [
+        "不把本次大司马授任与较早太尉拒让问题混为一事。"
+      ],
+      "scopeNote": "核阅《三国志》卷08与《后汉书》卷9、卷73；同书纪、传互证死亡时仍以大司马称。未见纸本。"
+    },
+    {
+      "recordId": "appointment:source:sgz:08:9f402aec33e4",
+      "decisionSha256": "de7ba8edaee14ef2d09ca1f55da7210aa17f42c0392a1da7f351c5ccaedeed7c",
+      "status": "review-only",
+      "sourceSnapshotSha256": "cc17823ac107727e4861f4189cc791eeb98bd91980f07a58cac14811ea69998b",
+      "remainingQuestions": [
+        "《吴书》所述早期征西将军授任是否另有事件依据，或属官号/叙事差异，尚不能判定。",
+        "不能仅凭192年确有此官就把本条具有早期上下文的源事实判成无疑。",
+        "不将中平二年失败与吴书‘大破之’硬释为同一战事的前后阶段。"
+      ],
+      "scopeNote": "核阅《三国志》卷08《吴书》注及《后汉书》卷8、卷9、卷71，比较官号、战果措辞与事件顺序；未见纸本，未声称已解决异文。"
+    },
+    {
+      "recordId": "appointment:source:sgz:09:525296c06bb9",
+      "decisionSha256": "ac4812851a47793baf71d910675bd33a014baaa24a88500b230a1b63a8eb5bfd",
+      "status": "verified",
+      "sourceSnapshotSha256": "54b69f5fcbe56540572a30d8584e8471a90df9a912d4f4d1294ffe99fe10d34f",
+      "remainingQuestions": "会社下具体时间不详，不作为授任或起讫日期。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:09:59206beeba4b",
+      "decisionSha256": "1a1bcc1da922a96cb68d4781e9b66f3f710a104c304e86f4f118cf8048bb7424",
+      "status": "verified",
+      "sourceSnapshotSha256": "18f4b2d480d5373971bbaa7d58fbc86f1cf150cb00778cb4c17fee3f9e209808",
+      "remainingQuestions": "武衞将军起年不详；不能改成伪人物武卫。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:09:e51ee43f1b35",
+      "decisionSha256": "2850218087888ce0e3c1cfb1ec8e83a9f14e7d38a1eed98ec23df9c84a51dad5",
+      "status": "verified",
+      "sourceSnapshotSha256": "e440325fa1454697cadbc80a344511a5c531f4c0824c59a5aa9a45f3fe3d4186",
+      "remainingQuestions": "不可据建安元年都许或文帝即位年填本官起讫；各地征刘表之役的准确对应未完成。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:10:b72a5b3a36df",
+      "decisionSha256": "26ecbe06a0952757113d3d9c34126a7a8549390bd0c15b11d8bfff9ee865b9da",
+      "status": "verified",
+      "sourceSnapshotSha256": "6fb7d7cead638cb74ebd95efd53da437a9975d4d8e64b74270c9b7c84d40fb52",
+      "remainingQuestions": "开始时“守”须保持；是否在其后去守就正，所核文本未明，不可补造。结束月份未明。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:10:e4e682d44c25",
+      "decisionSha256": "ef715437a57714baeb4d840b3b59b062bbf618684d7c13013434800a0781c7ff",
+      "status": "verified",
+      "sourceSnapshotSha256": "a4b06a3f6e7302217b9c461da2fe78d7432a4fdfe5938ae1c36de9b40493de44",
+      "remainingQuestions": "起讫具体年均不详；不以吴平280或太康末任一单年硬填。未完成晋书与诸晋纪纸本对勘。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:11:7c0afd2160cf",
+      "decisionSha256": "365bed56077008a8306aa77ef0998535b8f22c5506756d338ea5e3fce9a7997f",
+      "status": "suppressed",
+      "sourceSnapshotSha256": "45914a8c547af375ef5ebe8b44e2b062f4137f2720dcea088f0ba70ab4d163aa",
+      "remainingQuestions": "董卓作乱只是宽泛背景，不能直接用189、190或192作授官/解印绶年。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:11:da32e34d0275",
+      "decisionSha256": "afabf68665dc6f09699079a297a3b57664b567c326be95a674a32b292a52a90a",
+      "status": "suppressed",
+      "sourceSnapshotSha256": "54d5b4166f577223d2347ec06d58687d89180cc90a5bc592fb74eee5abac9a6e",
+      "remainingQuestions": "授署、拒受、被杀皆无确年；爰津被署决疑祭酒是另一人另一拒署事件，不应混入。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:12:bc5eeabffa36",
+      "decisionSha256": "82386ebf8e13caeba65a2f506289bf574a7c8aaf450b2831348521cb64f987df",
+      "status": "review-only",
+      "sourceSnapshotSha256": "d231530348e76e555d39943b7056972afdabbf1bd398af8920c0a4393e6d2fbb",
+      "remainingQuestions": "未对读中华书局点校本、卢弼《三国志集解》及底本影像；搜索找到旧刻影像PDF线索但未实看，不声称完成影像对勘。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:13:27807e9f3fe2",
+      "decisionSha256": "3ff1e8e70d8b7c610183c778c116f24768217bfcc0bb48ce86399fafe8188a76",
+      "status": "suppressed",
+      "sourceSnapshotSha256": "e52d14b85974a6ae4158c4b9935c784d8d629c1645679d77422f19599ef89b97",
+      "remainingQuestions": "华歆代荀彧确切月份未在此注明；本条不是华歆尚书令事实的另行批准。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    },
+    {
+      "recordId": "appointment:source:sgz:14:a95f2afc1fc8",
+      "decisionSha256": "1784dbdf703354345150977b69c06571222aea097bb760812e2e00390f4f7734",
+      "status": "suppressed",
+      "sourceSnapshotSha256": "0dc2684c066135bb9f07a43bdcbcc1ff63f012ac65d14f66d7099e7ca26a6a24",
+      "remainingQuestions": "使者真实姓名及兼官句读未解决；不得把248塞进一条匿名官职任期，更不能据传主孙资倒补主体。",
+      "scopeNote": "未完成纸本与影印页对勘。"
+    }
+  ],
+  "identityFollowup": {
+    "status": "not-reviewed-for-identity-publication",
+    "note": "本批纠正任官关系，不等于完成旧人物卡清理。删除人物或撤回立绘须核对全部关联源记录，不能仅凭一条误抽任官删身份。人物数仍为2093。",
+    "candidatePersonIds": [
+      "person:source:e753fd0f66cd",
+      "person:source:5a26d1185d64",
+      "person:source:f741747b83c4",
+      "person:source:30f8afe4c18c",
+      "person:source:8b8bba6b3bd1",
+      "person:source:e77c1970c9ac",
+      "person:source:1208f55849a5"
+    ],
+    "newIdentityCandidates": [
+      {
+        "name": "具羽",
+        "officeName": "华容长",
+        "sourceAppointmentId": "appointment:source:sgz:06:26e0f88d68b9"
+      },
+      {
+        "name": "张承",
+        "zi": "公先",
+        "officeName": "伊阙都尉",
+        "sourceAppointmentId": "appointment:source:sgz:11:7c0afd2160cf",
+        "notSameAsPersonId": "person:workbook:55d46dfb6301bfdd"
+      }
+    ]
+  }
+}

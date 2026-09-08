@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import vm from 'node:vm';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { loadIdentityReviewBatches } from './release-config.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const failures = [];
@@ -116,7 +117,8 @@ assert(registry.protectedExistingPeople?.length === 10 && registry.protectedExis
 const portraitAssets = Object.values(portraits.assetsById || {});
 const v70PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v70');
 const v73PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v73');
-const expectedBaselinePortraitAssets = portraitProduction.status === 'complete' ? 369 : 269;
+const withdrawnPortraits = loadIdentityReviewBatches(root).flatMap(batch => batch.withdrawnPortraits || []);
+const expectedBaselinePortraitAssets = (portraitProduction.status === 'complete' ? 374 : 274) - withdrawnPortraits.length;
 const expectedPortraitAssets = expectedBaselinePortraitAssets + v70PortraitAssets.length + v73PortraitAssets.length;
 assert(portraitAssets.length === expectedPortraitAssets, `立绘资产不是 ${expectedPortraitAssets} 项，实际 ${portraitAssets.length}`);
 assert(registry.portraitResolutions?.length === expectedPortraitAssets && registry.summary?.unresolvedPortraits === 0, `${expectedPortraitAssets} 项立绘未全部通过正式或兼容 ID 解析`);

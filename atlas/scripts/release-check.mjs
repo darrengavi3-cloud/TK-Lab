@@ -3,11 +3,21 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { readReleaseConfig } from './release-config.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
 const includeHistorical = process.argv.includes('--include-historical');
-const deterministicFiles = [
+const config = readReleaseConfig(root);
+const approvedReviewFiles = [...config.identityReviewBatches, ...config.appointmentReviewBatches,
+  ...config.appointmentSupplementBatches.flatMap(batch => [batch.evidence, batch.decisions])].map(name => `data/${name}`);
+const deterministicFiles = [...new Set([...approvedReviewFiles,
+  '../README.md',
+  '../release-metadata/current-release.json',
+  'assets/app/release-version.js',
+  'data/release-config.json',
+  'data/reviewed-office-succession.json',
+  'data/reviewed-office-succession.js',
   'sources.lock.json',
   'data/v60-person-workbook-import.json',
   'data/v60-person-workbook-import.js',
@@ -78,7 +88,7 @@ const deterministicFiles = [
   'exports/观史台-轻量单文件版.html',
   'exports/观史台-离线版.zip',
   'exports/deployment-manifest.json'
-];
+])];
 const compareText = (left, right) => left < right ? -1 : left > right ? 1 : 0;
 
 function sha256(value) {
@@ -166,7 +176,7 @@ if (includeHistorical) {
   }
 }
 
-console.log('\nV73 release:check 全部通过。');
+console.log(`\n${readReleaseConfig(root).version} release:check 全部通过。`);
 console.log(`双重构建哈希：${second.aggregateSha256}`);
 console.log(`当前不变量验证：${currentValidators.length} 项`);
 console.log(`历史快照验证：${includeHistorical ? '已显式执行' : '未执行（使用 --include-historical 单独审计）'}`);

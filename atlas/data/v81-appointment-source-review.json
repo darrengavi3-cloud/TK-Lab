@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-08",
+  "records": [
+    {
+      "appointmentId": "appointment:source:sgz:48:abe0696d1764",
+      "sourceSha256": "2f859678978e9e82b0a405b1bd51423c9c5cd68a519f8d0502f9b2048cd7bb53",
+      "status": "verified",
+      "reason": "孙亮即位的252年闰月吕岱由上大将军转大司马；太平元年256以本官卒。",
+      "citations": [
+        {
+          "title": "《三國志》卷48·孙亮传·建兴元年闰月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "閏月，以恪爲帝太傅，胤爲衞將軍領尚書事，上大將軍呂岱爲大司馬，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷48·孙亮传·太平元年九月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "己丑，大司馬呂岱卒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷60·吕岱传·孙亮即位",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "孫亮即位，拜大司馬。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:74484c7b8050",
+        "name": "呂岱",
+        "officeName": "大司马",
+        "startYear": 252,
+        "endYear": 256,
+        "polity": "吴"
+      },
+      "readerNote": "孙亮即位的252年闰月吕岱由上大将军转大司马；太平元年256以本官卒。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:48:d418b5ddda35",
+      "sourceSha256": "0cbcb065ede1f2c474c91a840f88209038ba0518ad4c1ff6ccd98dfcee076169",
+      "status": "verified",
+      "reason": "元兴元年264八月张布受骠骑将军，同年十一月被诛；侍中为另项加官，不从本条扩增。",
+      "citations": [
+        {
+          "title": "《三國志》卷48·孙皓传·元兴元年八月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "八月，以上大將軍施績、大將軍丁奉爲左右大司馬，張布爲驃騎將軍，加侍中，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷48·孙皓传·元兴元年十一月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "十一月，誅興、布。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:85fd3c81396f",
+        "name": "张布",
+        "officeName": "骠骑将军",
+        "startYear": 264,
+        "endYear": 264,
+        "polity": "吴"
+      },
+      "readerNote": "元兴元年（264）八月授骠骑将军，同年十一月被诛。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:58c66292ab75",
+      "sourceSha256": "58e80902424dd3eee2a981c13f370a62e09d7b14117b74c2a255661fa220aff5",
+      "status": "verified",
+      "reason": "黄琬任司徒明文可核；后汉书献帝纪中平六年授司徒、同年十二月转太尉，起讫均189。冻结抽取的宫字不改写。",
+      "citations": [
+        {
+          "title": "《三國志》卷49·士燮传·士壹被辟",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "後宮為司徒，辟壹。比至，宮已免，黃琬代為司徒，甚禮遇壹。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷9·献帝纪·中平六年",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷9",
+          "quote": "甲午，豫州牧黃琬爲司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷9·献帝纪·中平六年十二月",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷9",
+          "quote": "十二月戊戌，司徒黃琬爲太尉，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:541aa70629a7",
+        "name": "黄琬",
+        "officeName": "司徒",
+        "startYear": 189,
+        "endYear": 189,
+        "polity": "汉"
+      },
+      "readerNote": "中平六年（189）授司徒，同年十二月转太尉。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:95665e4a700a",
+      "sourceSha256": "573694c69cb4bd7fdb31d30dffc017fb5bb31190df7b41cca62219a97fc5d116",
+      "status": "verified",
+      "reason": "“权加燮”是孙权加官于士燮，不是姓名。任官归士燮既有身份；步骘到交州后受授，确切始终年不据派遣年填定。",
+      "citations": [
+        {
+          "title": "《三國志》卷49·士燮传·建安十五年遣步骘后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "建安十五年，孫權遣步騭為交州刺史。騭到，燮率兄弟奉承節度。而吳巨懷異心，騭斬之。權加燮為左將軍。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:workbook:fc4fcf08b36e1b6c",
+        "name": "士燮",
+        "officeName": "左将军",
+        "startYear": null,
+        "endYear": null,
+        "polity": "吴"
+      },
+      "readerNote": "孙权加士燮左将军，始终年未详；吴在此指汉末孙权集团，不指229年后的帝号阶段。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:49:a9bbd5077f7b",
+      "sourceSha256": "cf213da6ba3ba92d24063c64ff0f2be0d17a76eaeb30e05f67cc5d4bdc4ec863",
+      "status": "verified",
+      "reason": "补全为广州刺史，不能将同句戴良的交州刺史误给吕岱。黄武五年分州，吴主纪同年明记俄复旧，故本次广州职任记226—226，不并入前后交州职任。",
+      "citations": [
+        {
+          "title": "《三國志》卷49·士燮传·黄武五年士燮卒后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "權以交阯縣遠，乃分合浦以北為廣州，呂岱為刺史；交阯以南為交州，戴良為刺史。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷47·吴主传·黄武五年岁末",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷47",
+          "quote": "是歳，分交州置廣州。俄復舊。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷60·吕岱传·平士徽后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷60",
+          "quote": "於是除廣州，復為交州如故。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:74484c7b8050",
+        "name": "呂岱",
+        "officeName": "广州刺史",
+        "startYear": 226,
+        "endYear": 226,
+        "polity": "吴"
+      },
+      "readerNote": "黄武五年（226）分交州置广州，吕岱任广州刺史；同年旋复旧制。此项职任与前后交州职任分别理解。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:53:aecc6e086a06",
+      "sourceSha256": "27989b22b49279667927e574e585649069a47a09e121e627adba5852cbc9552e",
+      "status": "verified",
+      "reason": "衡阳为郡名，受任者为缪祎（原典作繆禕），归既有身份。原文明记左迁且既拜，可核定受任；未见赴郡视事，不据此补地方治理事迹，起讫年留空。",
+      "citations": [
+        {
+          "title": "《三國志》卷53·薛综传附薛莹·孙皓召莹还后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷53",
+          "quote": "頃之，選曹尚書同郡繆禕以執意不移，為群小所疾，左遷衡陽太守。既拜，又追以職事見詰責，拜表陳謝。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷53·同段·缪祎获罪",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷53",
+          "quote": "乃收禕下獄，徙桂陽，瑩還廣州。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:workbook:01f379501896fb4e",
+        "name": "缪祎",
+        "officeName": "衡阳太守",
+        "startYear": null,
+        "endYear": null,
+        "polity": "吴"
+      },
+      "readerNote": "缪祎左迁衡阳太守，原文明记“既拜”，随后获罪下狱；赴郡视事及起讫年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:54:7dfcde31a802",
+      "sourceSha256": "b95a838e451bfb6277e634acd39189ad7b8e9104fe9c0961b130b4545d41928e",
+      "status": "suppressed",
+      "reason": "硃寓（朱寓）确为周景任豫州刺史时所辟从事，非否认史实；此在周景入朝历三公之前，早于168年，排除本项目168—316年任官。人物身份与硃／朱原字仍独立保留。",
+      "citations": [
+        {
+          "title": "《三國志》卷54·周瑜传·裴注引谢承后汉书·周景",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷54",
+          "quote": "後為豫州刺史，辟汝南陳蕃為別駕，潁川李膺、荀緄、杜密、沛國硃寓為從事，皆天下英俊之士也。稍遷至尚書令，遂登太尉。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷45·周荣传附周景·入朝以后",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷45",
+          "quote": "景後征入為將作大匠。及梁冀誅，景以故吏免官禁錮。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《後漢書》卷45·周景传·三公仕履",
+          "url": "https://zh.wikisource.org/wiki/後漢書/卷45",
+          "quote": "視事二年，以地震策免。歲餘，復代陳蕃為太尉。建寧元年薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:59:bea5bb48b723",
+      "sourceSha256": "4dfe88a04226c3235af960623d7901d4dfd2528c65d3b50b14ba9b7cd9f229b4",
+      "status": "verified",
+      "reason": "孙和立太子段的太傅为东宫太子太傅；阚泽本传明确赤乌五年拜太子太傅、六年冬卒，记242—243，不能混成帝太傅。",
+      "citations": [
+        {
+          "title": "《三國志》卷59·孙和传·赤乌五年立太子",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷59",
+          "quote": "闞澤爲太傅，薛綜爲少傅，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷53·阚泽传·赤乌五年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷53",
+          "quote": "赤烏五年，拜太子太傅，領中書如故。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷53·阚泽传·赤乌六年",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷53",
+          "quote": "六年冬卒，權痛惜感悼，食不進者數日。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:e3995aefcddc",
+        "name": "闞泽",
+        "officeName": "太子太傅",
+        "institutionType": "东宫",
+        "startYear": 242,
+        "endYear": 243,
+        "polity": "吴"
+      },
+      "readerNote": "阚泽任孙和的太子太傅，属东宫；赤乌五年（242）拜，六年（243）冬卒。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:64:37eb3d6f4cf6",
+      "sourceSha256": "23ecfa28adfbfce306ba80bc2937b0cdb98cfecf2d2dbfb62feebc56f63862f5",
+      "status": "verified",
+      "reason": "受遗辅政并领武卫将军者为孙峻；“武卫”是官名组成部分。此次凭完整任官上下文独立批准，不能以V80撤回武卫身份替代任官复核。孙权薨年252定始年，后来迁丞相大将军不据此推定武卫将军终年。",
+      "citations": [
+        {
+          "title": "《三國志》卷64·孙峻传·孙权临薨",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "quote": "權臨薨，受遺輔政，領武衛將軍，故典宿衛，封都鄉侯。既誅諸葛恪，遷丞相大將軍，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷48·孙亮传·太元元年次年四月",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷48",
+          "quote": "明年四月，權薨，太子即尊號，大赦，改。是歲，於魏嘉平四年也。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:workbook:54c1812e0533516f",
+        "name": "孙峻",
+        "officeName": "武卫将军",
+        "startYear": 252,
+        "endYear": null,
+        "polity": "吴"
+      },
+      "readerNote": "孙权临薨时，孙峻受遗辅政，领武卫将军；始年252，保留“领”的任职性质，终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:sgz:64:9efb86bfe313",
+      "sourceSha256": "1e32db1c97f9396e53d8a75d5ca64e0f975ddcebc7f070e52a6ddb3f322e63e9",
+      "status": "suppressed",
+      "reason": "“全尚息黄门侍郎纪”指全尚之子全纪；“全尚息”并非姓名，也不能归全尚本人。全纪在现库尚无独立批准身份，本条排除误系，真实黄门侍郎事实留作独立建档后复审。",
+      "citations": [
+        {
+          "title": "《三國志》卷64·孙綝传·裴注引江表传·孙亮密谋",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "quote": "亮召全尚息黃門侍郎紀密謀，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷64·同注·孙亮语全纪",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "quote": "卿父作中軍都督，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷64·同注·全纪复命",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "quote": "紀承詔，以告尚，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷64·同注·事败后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "quote": "又呼紀，紀曰：「臣父奉詔不謹，負上，無面目復見。」因自殺。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:sgz:65:e59dabddd1db",
+      "sourceSha256": "54006fe7148fe3c69073af43ef26b6fc22f9af430f8d5fb4483f9319aab8a3a4",
+      "status": "suppressed",
+      "reason": "“于理为长”是裴松之比较楼玄死因两说、认为江表传更合理的评语；于理不是人物，长不是任官。仅排除任官，误抽人物全源复核另列。",
+      "citations": [
+        {
+          "title": "《三國志》卷65·楼玄传·裴注评江表传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷65",
+          "quote": "且祸機既發，豈百拜所免？江表傳所言，於理為長。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:002:06553654d3d4",
+      "sourceSha256": "af2aa5580b90eb5c6ff7d62c4a157c1952e28c96f5962ef35cc4d7e868cd310e",
+      "status": "suppressed",
+      "reason": "晋书记表钟会为司徒，三国志亦载授命诏；但钟会本传明确艾、会咸未受命而毙，因此排除司徒实任，不否认授命。与V78所核魏纪条为同次事件，旧待补核另以摘要保护的更正闭合，不重复计本批。",
+      "citations": [
+        {
+          "title": "《晉書》卷002·文帝纪·景元四年平蜀后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷002",
+          "quote": "表鄧艾為太尉，鍾會為司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·钟会传·十二月诏",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "其以會為司徒，進封縣侯，增邑萬戶，",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·钟会传·艾、会授公官后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "初，艾為太尉，會為司徒，皆持節、都督諸軍如故，咸未受命而斃。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:002:12218b0fe323",
+      "sourceSha256": "58233dc7cd75ca94c1aabc17b667bc8ce5f30b0f5d567901b5307d6164fdb612",
+      "status": "suppressed",
+      "reason": "邓艾受太尉之命有诏文，但本传明确与钟会同为未受命而毙；排除太尉实任，不以授命或同诏封爵自动推出履任及爵位事实。",
+      "citations": [
+        {
+          "title": "《晉書》卷002·文帝纪·景元四年平蜀后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷002",
+          "quote": "表鄧艾為太尉，鍾會為司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·邓艾传·十二月诏",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "其以艾為太尉，增邑二萬戶，封子二人亭侯，各食邑千戶。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《三國志》卷28·钟会传·艾、会授公官后",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷28",
+          "quote": "初，艾為太尉，會為司徒，皆持節、都督諸軍如故，咸未受命而斃。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:250ddd435f4b",
+      "sourceSha256": "253d13f0a96117f5c99d3618e97238cb3be88bb9a5e6b6a71a7fa4f862774564",
+      "status": "verified",
+      "reason": "咸宁三年九月由左将军授都督江北诸军事，始年277。完整军事辖区官名保留，不转写为江北州或刺史，不补辖境几何；终年未详。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·咸宁三年九月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "九月戊子，以左將軍胡奮爲都督江北諸軍事。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:057d4375544c",
+        "name": "胡奋",
+        "officeName": "都督江北诸军事",
+        "startYear": 277,
+        "endYear": null,
+        "polity": "晋"
+      },
+      "readerNote": "咸宁三年（277）九月授都督江北诸军事，终年未详；江北是本条军事辖区表述。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:336e455f4d96",
+      "sourceSha256": "3079c1f2eee1ba1baf717e48c5acfa9bd52212c7af124eb896325a9dfa8220d4",
+      "status": "review-only",
+      "reason": "截断的尚书应核至完整仆射官名。本纪咸宁四年278记山涛由右仆射迁左仆射；本传却记太康初迁右仆射，左右及年序不能据当前电子文本消解。保留本纪左仆射278的候选，不批准为泛称尚书或强填任期；须版本、校勘与相邻官历补核。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·咸宁四年三月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "辛酉，以尚書右僕射山濤爲尚書左僕射。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷043·山涛传·太康初",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷043",
+          "quote": "太康初，遷右僕射，加光祿大夫，侍中、掌選如故。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:5fb72bca8d0d",
+        "name": "山涛",
+        "officeName": "尚书左仆射",
+        "startYear": 278,
+        "endYear": null,
+        "polity": "晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:5ae8505b59b1",
+      "sourceSha256": "1dd7a7d47e6018adce2d2146a0631e00ae8e7efae85afca52d146c14a5eac5eb",
+      "status": "verified",
+      "reason": "太康元年280从尚书迁尚书右仆射；太康四年283由右迁左，补全本条新官而非保留截断的尚书。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·太康元年七月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "庚寅，以尚書魏舒爲尚書右僕射。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷003·武帝纪·太康四年正月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "四年春正月甲申，以尚書右僕射魏舒爲尚書左僕射，下邳王晃爲尚書右僕射。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷041·魏舒传·太康初",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷041",
+          "quote": "太康初，拜右僕射。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:07cd999ab056",
+        "name": "魏舒",
+        "officeName": "尚书右仆射",
+        "startYear": 280,
+        "endYear": 283,
+        "polity": "晋"
+      },
+      "readerNote": "太康元年280从尚书迁尚书右仆射；太康四年283由右迁左，补全本条新官而非保留截断的尚书。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:9da24ad07a60",
+      "sourceSha256": "77b6341fe5a7303be25748ea80a39eb34a7df9f981288e45c81a719aa89cfbfe",
+      "status": "suppressed",
+      "reason": "本纪泰始七年271授司空且九年卒条沿用司空称谓；本传详记屡送印绶、固辞终于获许，以侯就第并拜仪同三司。后者不能等同司空实任，本条排除实任而保留授命。传中“终于不就”是郑袤所引徐邈先例，不错置引语主体。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·泰始七年十二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "以光祿大夫鄭袤爲司空。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷003·武帝纪·泰始九年正月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "九年春正月辛酉，司空、密陵侯鄭袤薨。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷044·郑袤传·辞司空",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷044",
+          "quote": "袤前後辭讓，遣息稱上送印綬，至於十數。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷044·郑袤传·固辞获许",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷044",
+          "quote": "固辭，久之見許，以侯就第，拜儀同三司，置舍人官騎，賜床帳簟褥、錢五十萬。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:b08dd742fd47",
+      "sourceSha256": "c7cf69bc31ec69d182f64f7f109c9cf3a2ed51cb53b7384e9937e4951ffa3e6a",
+      "status": "verified",
+      "reason": "太康四年283正月由尚书右仆射迁尚书左仆射，同年十一月转司徒；三条魏舒记录是右、左、司徒三个职任，不合成尚书重复记录。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·太康四年正月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "四年春正月甲申，以尚書右僕射魏舒爲尚書左僕射，下邳王晃爲尚書右僕射。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷003·武帝纪·太康四年十一月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "以尚書左僕射魏舒爲司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷041·魏舒传·右仆射以后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷041",
+          "quote": "以舒為左僕射，領吏部。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:07cd999ab056",
+        "name": "魏舒",
+        "officeName": "尚书左仆射",
+        "startYear": 283,
+        "endYear": 283,
+        "polity": "晋"
+      },
+      "readerNote": "太康四年283正月由尚书右仆射迁尚书左仆射，同年十一月转司徒；三条魏舒记录是右、左、司徒三个职任，不合成尚书重复记录。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:d0d222e1d428",
+      "sourceSha256": "757e6b79ac9e5b4a541ac5e7f8148d2a54224f5811bafd15482b5037f12732eb",
+      "status": "verified",
+      "reason": "太康九年288二月朱整由尚书迁尚书右仆射，十年289四月以本官卒；不与同句前任胡奋混淆，不将广兴侯混作任官。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·太康九年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "二月，尚書右僕射、陽夏侯胡奮卒，以尚書朱整爲尚書右僕射。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷003·武帝纪·太康十年四月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "丁未，尚書右僕射、廣興侯朱整卒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:8e27a94405f4",
+        "name": "朱整",
+        "officeName": "尚书右仆射",
+        "startYear": 288,
+        "endYear": 289,
+        "polity": "晋"
+      },
+      "readerNote": "太康九年（288）由尚书迁尚书右仆射，十年（289）四月以本官卒。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:003:d43e75e3890c",
+      "sourceSha256": "2b9cc5197c2585786f4782f36af9badcb8f9b2800d02f32fa30622b99956c7a9",
+      "status": "verified",
+      "reason": "本纪太康四年283十一月授司徒；本传先领后即真，足证实任。其后辞位获许，但所读本纪与本传未明系辞位年，不用290薨年或王浑授司徒年填终年；此前领司徒阶段不另造一条。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·太康四年十一月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "以尚書左僕射魏舒爲司徒。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷041·魏舒传·山涛薨后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷041",
+          "quote": "及山濤薨，以舒領司徒，有頃即真。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        },
+        {
+          "title": "《晉書》卷041·魏舒传·逊位诏",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷041",
+          "quote": "今聽其所執，以劇陽子就第，位同三司，祿賜如前。",
+          "note": "原典定位节引；完整上下文见链接，非全卷校录。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:07cd999ab056",
+        "name": "魏舒",
+        "officeName": "司徒",
+        "startYear": 283,
+        "endYear": null,
+        "polity": "晋"
+      },
+      "readerNote": "本纪太康四年（283）授司徒；本传记先领后即真。后获准逊位，确切终年未详，不以卒年补任期。"
+    }
+  ]
+}

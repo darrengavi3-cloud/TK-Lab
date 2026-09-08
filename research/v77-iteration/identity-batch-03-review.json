@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": 1,
+  "baseline": "V79",
+  "reviewedAt": "2026-09-07",
+  "scope": "V79明确留下的7个误抽身份，全部10条源任官及7套立绘绑定逐一核对。",
+  "counts": {
+    "suppressedPeople": 7,
+    "withdrawnPortraitAssets": 7,
+    "relatedSourceAppointments": 10
+  },
+  "records": [
+    {
+      "personId": "person:source:e753fd0f66cd",
+      "name": "濮阳",
+      "decisionSha256": "e17af2a8ccb61106c95c8956008892a7958d6f54ec2990cb9d026026c9529377",
+      "baselineRegistry": {
+        "personId": "person:source:e753fd0f66cd",
+        "name": "濮阳",
+        "aliases": [
+          "濮阳"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:06:933d5cb670f7"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "濮阳",
+          "aliases": [
+            "濮阳"
+          ],
+          "portraits": [
+            "portrait:asset:400694c5701a42920894"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:e753fd0f66cd",
+        "name": "濮阳",
+        "aliases": [
+          "濮阳"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:06:933d5cb670f7"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:e753fd0f66cd",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "06",
+        "evidenceLayer": "裴松之注",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:06:933d5cb670f7",
+          "personId": "person:source:e753fd0f66cd",
+          "name": "濮阳",
+          "aliases": [],
+          "officeId": "office:source:597ae23d84d4",
+          "officeName": "长",
+          "relationshipType": "任官",
+          "serviceDomain": "文官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "裴松之注",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "06",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷06",
+          "sourceLocator": "《三国志》卷6·裴松之注",
+          "sourceExcerpt": "《英雄記》曰：绍生而父死，二公愛之。幼使为郎，弱冠除濮阳长，有清名。遭母喪，服竟，又追行父服，凡在冢廬六年。礼毕，隱居洛阳，不妄通賔客，非海內知名，不得相",
+          "sourceRevision": 2132349,
+          "homonymGroupId": "person:source:e753fd0f66cd",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "濮阳",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:e753fd0f66cd",
+          "name": "濮阳",
+          "aliases": [
+            "濮阳"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-e753fd0f66cd.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "57:19"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:400694c5701a42920894",
+          "assetPath": "./assets/portraits/v51/person-source-e753fd0f66cd.png",
+          "catalogOrder": 43,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    },
+    {
+      "personId": "person:source:5a26d1185d64",
+      "name": "虞大",
+      "decisionSha256": "3b541fd600018918dff0c9514eccd0293629950b3957d686efa7426173307e10",
+      "baselineRegistry": {
+        "personId": "person:source:5a26d1185d64",
+        "name": "虞大",
+        "aliases": [
+          "虞大"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:08:1e74a1462c0a"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "虞大",
+          "aliases": [
+            "虞大"
+          ],
+          "portraits": [
+            "portrait:asset:701bbad5b0a42d9be33b"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:5a26d1185d64",
+        "name": "虞大",
+        "aliases": [
+          "虞大"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:08:1e74a1462c0a"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:5a26d1185d64",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "08",
+        "evidenceLayer": "正文",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:08:1e74a1462c0a",
+          "personId": "person:source:5a26d1185d64",
+          "name": "虞大",
+          "aliases": [],
+          "officeId": "office:source:be83ceae110e",
+          "officeName": "司马",
+          "relationshipType": "任官",
+          "serviceDomain": "武官",
+          "institutionType": "待考",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "08",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷08",
+          "sourceLocator": "《三国志》卷8·正文",
+          "sourceExcerpt": "政所殺，送首詣虞。封政为列侯。虞以功即拜太尉，封襄賁侯。。會董卓至洛阳，迁虞大司马，瓚奋武将军，封薊侯。关东義兵起，卓遂劫帝西迁，征虞为太傅，道路隔塞，信命不得至。袁绍、韩馥議，",
+          "sourceRevision": 2086403,
+          "homonymGroupId": "person:source:5a26d1185d64",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "虞大",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:5a26d1185d64",
+          "name": "虞大",
+          "aliases": [
+            "虞大"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-5a26d1185d64.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "57:22"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:701bbad5b0a42d9be33b",
+          "assetPath": "./assets/portraits/v51/person-source-5a26d1185d64.png",
+          "catalogOrder": 45,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    },
+    {
+      "personId": "person:source:f741747b83c4",
+      "name": "武卫",
+      "decisionSha256": "b23f216b019996e314ba233af6d8523e86bcedecd7161acac56af5e81f02abe3",
+      "baselineRegistry": {
+        "personId": "person:source:f741747b83c4",
+        "name": "武卫",
+        "aliases": [
+          "武卫"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:09:59206beeba4b",
+          "appointment:source:sgz:18:d37724fc7668",
+          "appointment:source:sgz:18:ea85641e12c0",
+          "appointment:source:sgz:64:37eb3d6f4cf6"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "武卫",
+          "aliases": [
+            "武卫"
+          ],
+          "portraits": [
+            "portrait:asset:58ab8d9a922063083ee3"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:f741747b83c4",
+        "name": "武卫",
+        "aliases": [
+          "武卫"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:09:59206beeba4b",
+          "appointment:source:sgz:18:ea85641e12c0",
+          "appointment:source:sgz:18:d37724fc7668",
+          "appointment:source:sgz:64:37eb3d6f4cf6"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:f741747b83c4",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "09",
+        "evidenceLayer": "正文",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:09:59206beeba4b",
+          "personId": "person:source:f741747b83c4",
+          "name": "武卫",
+          "aliases": [],
+          "officeId": "office:source:ac704ba59b6e",
+          "officeName": "将军",
+          "relationshipType": "任官",
+          "serviceDomain": "武官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "09",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷09",
+          "sourceLocator": "《三国志》卷9·正文",
+          "sourceExcerpt": "重，明帝在东宮，甚親愛之。及即位，为散骑侍郎，累迁城门校尉，加散骑常侍，转武卫将军，寵待有殊。帝寢疾，乃引爽入臥內，拜大将军，假節鉞，都督中外诸军事，录尚书事，與太尉司马宣王并受",
+          "sourceRevision": 2274283,
+          "homonymGroupId": "person:source:f741747b83c4",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "武卫",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        },
+        {
+          "id": "appointment:source:sgz:18:ea85641e12c0",
+          "personId": "person:source:f741747b83c4",
+          "name": "武卫",
+          "aliases": [],
+          "officeId": "office:source:26f4222d43ea",
+          "officeName": "中郎将",
+          "relationshipType": "任官",
+          "serviceDomain": "文官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "18",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷18",
+          "sourceLocator": "《三国志》卷18·正文",
+          "sourceExcerpt": "顾指褚，褚瞋目盼之。超不敢動，乃各罷。后數日會戰，大破超等，褚身斬首級，迁武卫中郎将。武卫之號，自此始也。军中以褚力如虎而痴，故號曰虎痴；是以超問虎侯，至今天下稱焉，皆謂其姓名也。",
+          "sourceRevision": 2579680,
+          "homonymGroupId": "person:source:f741747b83c4",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "武卫",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        },
+        {
+          "id": "appointment:source:sgz:18:d37724fc7668",
+          "personId": "person:source:f741747b83c4",
+          "name": "武卫",
+          "aliases": [],
+          "officeId": "office:source:ac704ba59b6e",
+          "officeName": "将军",
+          "relationshipType": "任官",
+          "serviceDomain": "武官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "18",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷18",
+          "sourceLocator": "《三国志》卷18·正文",
+          "sourceExcerpt": "祖聞，愈愛待之，迁中堅将军。太祖崩，褚號泣歐血。文帝踐阼，進封万歲亭侯，迁武卫将军，都督中军宿卫禁兵，甚親近焉。初，褚所将为虎士者从征伐，太祖以为皆壯士也，同日拜为将，其后以功为",
+          "sourceRevision": 2579680,
+          "homonymGroupId": "person:source:f741747b83c4",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "武卫",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        },
+        {
+          "id": "appointment:source:sgz:64:37eb3d6f4cf6",
+          "personId": "person:source:f741747b83c4",
+          "name": "武卫",
+          "aliases": [],
+          "officeId": "office:source:ac704ba59b6e",
+          "officeName": "将军",
+          "relationshipType": "任官",
+          "serviceDomain": "武官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "64",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "sourceLocator": "《三国志》卷64·正文",
+          "sourceExcerpt": "生峻。少便弓马，精果膽決。孙权末，徙武卫都尉，为侍中。权臨薨，受遺辅政，领武卫将军，故典宿卫，封都鄉侯。既誅诸葛恪，迁丞相大将军，督中外诸军事、假節，進封富春侯。滕胤以恪子竦妻父",
+          "sourceRevision": 2263487,
+          "homonymGroupId": "person:source:f741747b83c4",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "武卫",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:f741747b83c4",
+          "name": "武卫",
+          "aliases": [
+            "武卫"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-f741747b83c4.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "59:2"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:58ab8d9a922063083ee3",
+          "assetPath": "./assets/portraits/v51/person-source-f741747b83c4.png",
+          "catalogOrder": 49,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    },
+    {
+      "personId": "person:source:30f8afe4c18c",
+      "name": "厉鋒",
+      "decisionSha256": "b63c32a58ed712fe25782285548c84a28bf7973e4eef7bdc21f91617bfbb9686",
+      "baselineRegistry": {
+        "personId": "person:source:30f8afe4c18c",
+        "name": "厉鋒",
+        "aliases": [
+          "厉鋒"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:09:e51ee43f1b35"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "厉鋒",
+          "aliases": [
+            "厉鋒"
+          ],
+          "portraits": [
+            "portrait:asset:044ab8be9109da0fe523"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:30f8afe4c18c",
+        "name": "厉鋒",
+        "aliases": [
+          "厉鋒"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:09:e51ee43f1b35"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:30f8afe4c18c",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "09",
+        "evidenceLayer": "正文",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:09:e51ee43f1b35",
+          "personId": "person:source:30f8afe4c18c",
+          "name": "厉鋒",
+          "aliases": [],
+          "officeId": "office:source:ac704ba59b6e",
+          "officeName": "将军",
+          "relationshipType": "任官",
+          "serviceDomain": "武官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "09",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷09",
+          "sourceLocator": "《三国志》卷9·正文",
+          "sourceExcerpt": "子都许，拜洪諫議大夫。别征刘表，破表别将于舞阳、陰葉、堵阳、博望，有功，迁厉鋒将军，封国明亭侯。累从征伐，拜都护将军。文帝即位，为卫将军，迁骠骑将军，進封野王侯，益邑千户，并前二",
+          "sourceRevision": 2274283,
+          "homonymGroupId": "person:source:30f8afe4c18c",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "厉鋒",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:30f8afe4c18c",
+          "name": "厉鋒",
+          "aliases": [
+            "厉鋒"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-30f8afe4c18c.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "57:26"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:044ab8be9109da0fe523",
+          "assetPath": "./assets/portraits/v51/person-source-30f8afe4c18c.png",
+          "catalogOrder": 48,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    },
+    {
+      "personId": "person:source:8b8bba6b3bd1",
+      "name": "伊闕",
+      "decisionSha256": "1a7c39fb0a22d874244457204e2893201441a332f984a9fe08c4016da7e061da",
+      "baselineRegistry": {
+        "personId": "person:source:8b8bba6b3bd1",
+        "name": "伊闕",
+        "aliases": [
+          "伊闕"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:11:7c0afd2160cf"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "伊闕",
+          "aliases": [
+            "伊闕"
+          ],
+          "portraits": [
+            "portrait:asset:dd0f43e9596f13543788"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:8b8bba6b3bd1",
+        "name": "伊闕",
+        "aliases": [
+          "伊闕"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:11:7c0afd2160cf"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:8b8bba6b3bd1",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "11",
+        "evidenceLayer": "正文",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:11:7c0afd2160cf",
+          "personId": "person:source:8b8bba6b3bd1",
+          "name": "伊闕",
+          "aliases": [],
+          "officeId": "office:source:1c31cd592da8",
+          "officeName": "都尉",
+          "relationshipType": "任官",
+          "serviceDomain": "文官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "正文",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "11",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷11",
+          "sourceLocator": "《三国志》卷11·正文",
+          "sourceExcerpt": "恬靜乐道，忽于榮利，征命無所就。弟承，字公先，亦知名，以方正征，拜議郎，迁伊闕都尉。董卓作亂，承欲合徒衆與天下共誅卓。承弟昭时为議郎，適从长安來，謂承曰：「今欲誅卓，衆寡不敵，且",
+          "sourceRevision": 2373044,
+          "homonymGroupId": "person:source:8b8bba6b3bd1",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "伊闕",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:8b8bba6b3bd1",
+          "name": "伊闕",
+          "aliases": [
+            "伊闕"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-8b8bba6b3bd1.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "59:6"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:dd0f43e9596f13543788",
+          "assetPath": "./assets/portraits/v51/person-source-8b8bba6b3bd1.png",
+          "catalogOrder": 53,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    },
+    {
+      "personId": "person:source:e77c1970c9ac",
+      "name": "师友",
+      "decisionSha256": "3d9d7180ba5ec84a54a42c624cef7dec1db72d7699a910ab33aa53e06f4933d9",
+      "baselineRegistry": {
+        "personId": "person:source:e77c1970c9ac",
+        "name": "师友",
+        "aliases": [
+          "师友"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:11:da32e34d0275"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "师友",
+          "aliases": [
+            "师友"
+          ],
+          "portraits": [
+            "portrait:asset:8481c6ef8987a0264ddd"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:e77c1970c9ac",
+        "name": "师友",
+        "aliases": [
+          "师友"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:11:da32e34d0275"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:e77c1970c9ac",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "11",
+        "evidenceLayer": "裴松之注",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:11:da32e34d0275",
+          "personId": "person:source:e77c1970c9ac",
+          "name": "师友",
+          "aliases": [],
+          "officeId": "office:source:0de826280d38",
+          "officeName": "祭酒",
+          "relationshipType": "任官",
+          "serviceDomain": "文官",
+          "institutionType": "待考",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "裴松之注",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "11",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷11",
+          "sourceLocator": "《三国志》卷11·裴松之注",
+          "sourceExcerpt": "王沈《魏书》曰：穀熟长呂岐善朱渊、爰津，遣使行學還，召用之，與相見，出署渊师友祭酒，津決疑祭酒。渊等因各歸家，不受署。岐大怒，将吏民收渊等，皆杖殺之，議者多非焉。渙教勿劾，主簿孙",
+          "sourceRevision": 2373044,
+          "homonymGroupId": "person:source:e77c1970c9ac",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "师友",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:e77c1970c9ac",
+          "name": "师友",
+          "aliases": [
+            "师友"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-e77c1970c9ac.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "59:7"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:8481c6ef8987a0264ddd",
+          "assetPath": "./assets/portraits/v51/person-source-e77c1970c9ac.png",
+          "catalogOrder": 54,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    },
+    {
+      "personId": "person:source:1208f55849a5",
+      "name": "禄勋",
+      "decisionSha256": "ce06a5eb5de01c450e4d947eb0dc72a410b42b54197cab8e6c47bfa620b7c523",
+      "baselineRegistry": {
+        "personId": "person:source:1208f55849a5",
+        "name": "禄勋",
+        "aliases": [
+          "禄勋"
+        ],
+        "legacyPersonIds": [],
+        "sourceRecordIds": [
+          "appointment:source:sgz:14:a95f2afc1fc8"
+        ],
+        "datasets": [
+          "activity-source",
+          "portraits",
+          "v62-people"
+        ],
+        "readerDatasets": [],
+        "identityStatus": "review-only",
+        "publicationStatus": {
+          "name": "verified",
+          "aliases": "verified",
+          "zi": "suppressed",
+          "birthplace": "suppressed",
+          "birthYear": "suppressed",
+          "deathYear": "suppressed",
+          "bio": "suppressed",
+          "bioCitations": "suppressed",
+          "bioClassical": "suppressed",
+          "dynastyTags": "suppressed",
+          "historicalAffiliations": "suppressed",
+          "appointments": "suppressed",
+          "peerage": "suppressed",
+          "portraits": "verified"
+        },
+        "values": {
+          "name": "禄勋",
+          "aliases": [
+            "禄勋"
+          ],
+          "portraits": [
+            "portrait:asset:062ad40c5941138b4b8c"
+          ]
+        },
+        "reviewCandidates": {}
+      },
+      "sourcePersonSnapshot": {
+        "personId": "person:source:1208f55849a5",
+        "name": "禄勋",
+        "aliases": [
+          "禄勋"
+        ],
+        "sourceIds": [
+          "appointment:source:sgz:14:a95f2afc1fc8"
+        ],
+        "researchStatus": "存疑",
+        "homonymGroupId": "person:source:1208f55849a5",
+        "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+        "includeInDefault": true,
+        "sourceWork": "《三国志》",
+        "sourceVolume": "14",
+        "evidenceLayer": "裴松之注",
+        "entityType": "person",
+        "visibilityStatus": "visible",
+        "normalizationStatus": "原始候选"
+      },
+      "sourceAppointments": [
+        {
+          "id": "appointment:source:sgz:14:a95f2afc1fc8",
+          "personId": "person:source:1208f55849a5",
+          "name": "禄勋",
+          "aliases": [],
+          "officeId": "office:source:430aea039646",
+          "officeName": "少府",
+          "relationshipType": "任官",
+          "serviceDomain": "文官",
+          "institutionType": "朝廷机关",
+          "startYear": null,
+          "endYear": null,
+          "sourceTenureText": "原文未结构化纪年",
+          "polity": "",
+          "researchStatus": "存疑",
+          "evidenceLayer": "裴松之注",
+          "sourceWork": "《三国志》",
+          "sourceVolume": "14",
+          "sourceUrl": "https://zh.wikisource.org/wiki/三國志/卷14",
+          "sourceLocator": "《三国志》卷14·裴松之注",
+          "sourceExcerpt": "地以大順成德，君子以善恕成仁，重以職事，違奪君志；今聽所执，賜錢百万，使兼光禄勋少府親策詔君養疾于第。君其勉進醫藥，頤神和氣，以永無疆之祚。置舍人官骑，加以日秩餚酒之膳焉。」}",
+          "sourceRevision": 2374427,
+          "homonymGroupId": "person:source:1208f55849a5",
+          "homonymStatus": "同名待消歧：跨卷同名按姓名合并展示，需人工确认异人拆分",
+          "scopeStatus": "推定在168—316年范围",
+          "includeInDefault": true,
+          "rawName": "禄勋",
+          "entityType": "person",
+          "visibilityStatus": "visible",
+          "normalizationStatus": "原始候选"
+        }
+      ],
+      "portraits": [
+        {
+          "personId": "person:source:1208f55849a5",
+          "name": "禄勋",
+          "aliases": [
+            "禄勋"
+          ],
+          "zi": "",
+          "src": "./assets/portraits/v51/person-source-1208f55849a5.png",
+          "polity": "未详",
+          "color": "#8D948A",
+          "sourceTitle": "V51 内置生图界面识别立绘（非史实肖像）",
+          "sourceUrl": "",
+          "portraitKind": "ai-illustration-v51",
+          "status": "ready",
+          "designRef": {
+            "fileKey": "gvWRC5GHHSgd8QX9b2VJgo",
+            "version": "V58",
+            "pageName": "V58 / Portraits",
+            "nodeId": "59:9"
+          },
+          "interfaceOnly": true,
+          "portraitId": "portrait:asset:062ad40c5941138b4b8c",
+          "assetPath": "./assets/portraits/v51/person-source-1208f55849a5.png",
+          "catalogOrder": 56,
+          "legacyPersonIds": [],
+          "designStatus": "figma-design"
+        }
+      ]
+    }
+  ],
+  "policy": "只撤回读者身份与生产立绘引用；原图、初检快照、原抽取、旧审定和既有已核事实均保留。全关联集合哈希同时阻止新增关联未复核即沿用撤回。",
+  "appointmentOutsideBatch": {
+    "appointmentId": "appointment:source:sgz:64:37eb3d6f4cf6",
+    "historicalSubject": "孙峻",
+    "status": "review-only",
+    "note": "仅用于核清武卫不是人名；不计本批20条，不自动批准孙峻任官。"
+  },
+  "unrelatedNewCandidates": [
+    {
+      "personId": "person:source:6808f45cf265",
+      "name": "于策",
+      "action": "全源身份审核；本批仅排除任官"
+    },
+    {
+      "personId": "person:source:994402e8e648",
+      "name": "弘农",
+      "action": "全源身份审核；任官已更正严干"
+    },
+    {
+      "personId": "person:source:60e41f08850a",
+      "name": "王請观",
+      "action": "全源身份审核；任官已更正王观"
+    },
+    {
+      "personId": "person:source:471718b7b363",
+      "name": "邵信臣",
+      "action": "西汉范围外身份审核，保留邵／召原字"
+    },
+    {
+      "name": "邓朗",
+      "action": "独立建档；不并入孙朗",
+      "sourceAppointmentId": "appointment:source:sgz:28:674ea37a45e9"
+    },
+    {
+      "personId": "person:source:87282926790c",
+      "name": "孟仁",
+      "sameHistoricalPersonAs": "person:workbook:6748437cee9445b8",
+      "action": "任官已归孟宗；两卡全源与两套立绘绑定另审后合并，不在本批直接删卡"
+    },
+    {
+      "name": "滕循",
+      "action": "与滕脩等字形及镇南将军任职另审",
+      "sourceAppointmentId": "appointment:source:sgz:48:5d1a07e13b37"
+    }
+  ]
+}

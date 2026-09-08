@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "version": "V82",
+  "reviewBaseline": "V76",
+  "audience": "owner-only",
+  "appointmentReviewBatches": [
+    "v71-appointment-review.json",
+    "v74-appointment-source-review.json",
+    "v75-appointment-source-review.json",
+    "v76-appointment-source-review.json",
+    "v78-appointment-source-review.json",
+    "v79-appointment-source-review.json",
+    "v80-appointment-source-review.json",
+    "v81-appointment-source-review.json",
+    "v81-appointment-followup-review.json",
+    "v82-appointment-source-review.json"
+  ],
+  "appointmentSupplementBatches": [
+    {
+      "evidence": "v74-chancellery-evidence.json",
+      "decisions": "v74-appointment-supplements.json"
+    },
+    {
+      "evidence": "v75-chancellery-evidence.json",
+      "decisions": "v75-appointment-supplements.json"
+    },
+    {
+      "evidence": "v76-chancellery-evidence.json",
+      "decisions": "v76-appointment-supplements.json"
+    }
+  ],
+  "identityReviewBatches": [
+    "v71-person-identity-review.json",
+    "v73-person-identity-suppressions.json",
+    "v75-person-identity-suppressions.json",
+    "v80-person-identity-suppressions.json"
+  ]
+}

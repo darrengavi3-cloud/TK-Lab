@@ -1,0 +1,687 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-08",
+  "scope": "V77冻结清单第81—100条；授命、受任、兼领、追赠分别审定。电子原典相关段落核读，非完整版本校勘。",
+  "records": [
+    {
+      "appointmentId": "appointment:source:jinshu:003:d8b0d8f12fdc",
+      "sourceSha256": "09b99f985fbb113989b7a18b5786ba34b82a6a34b429f5976d793c8818e5833f",
+      "status": "review-only",
+      "reason": "太康三年十二月（282）授命可核；本传记固让、使者卧加章绶、舆疾归家，未明确摄职。本纪次年卒仍称司徒，不能只凭称谓放行，也不能把受绶一律说成未受命。授任与实际摄职关系待补核，暂不发布。",
+      "citations": [
+        {
+          "title": "《晉書》卷003·武帝纪·太康三年十二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "汝南王亮爲太尉，光祿大夫山濤爲司徒，尚書令衛瓘爲司空。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷003·武帝纪·太康四年正月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷003",
+          "quote": "戊午，司徒山濤薨。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷043·山涛传·拜司徒后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷043",
+          "quote": "已敕斷章表，使者乃臥加章綬。濤曰：「垂沒之人，豈可汙官府乎！」輿疾歸家。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《資治通鑑》卷081·太康三年十二月",
+          "url": "https://zh.wikisource.org/wiki/資治通鑑/卷081",
+          "quote": "光祿大夫山濤爲司徒，尚書令衞瓘爲司空。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:5fb72bca8d0d",
+        "name": "山涛",
+        "officeName": "司徒",
+        "startYear": 282,
+        "endYear": null,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:35bfea10f522",
+      "sourceSha256": "21c05c81788d804792095ce07941036c256180db32edaed48f7a6d555114b7d0",
+      "status": "verified",
+      "reason": "元康六年（296）正月张华代下邳王晃为司空；永康元年（300）四月以本官遇害。本传领著作是兼掌事项，不新增任官；后追复官爵亦不另造一次生前实任。",
+      "citations": [
+        {
+          "title": "《晉書》卷004·惠帝纪·元康六年正月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "以中書監張華爲司空，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷036·张华传·进封后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷036",
+          "quote": "數年，代下邳王晃為司空，領著作。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷004·惠帝纪·永康元年四月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "司空張華、尚書僕射裴頠皆遇害，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:e2ef6eff3eba",
+        "name": "张华",
+        "officeName": "司空",
+        "startYear": 296,
+        "endYear": 300,
+        "polity": "西晋"
+      },
+      "readerNote": "元康六年（296）正月代下邳王晃为司空；永康元年（300）四月以本官遇害。领著作为兼掌事项，死后追复官爵不算再次生前任职。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:690f4adb1fc7",
+      "sourceSha256": "0915b82e726ee2cbeba9d9915afd14c6d751ba11930f5d5aeb7562a3d386bf26",
+      "status": "verified",
+      "reason": "永康元年（300）四月何劭由左光禄大夫迁司徒，本传明记永康初迁司徒。同年九月本纪改司徒为丞相、以梁王肜为之，故本次司徒止于该年；不接续为赵王伦篡位后的太宰或死后赠司徒。",
+      "citations": [
+        {
+          "title": "《晉書》卷004·惠帝纪·永康元年四月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "丁酉，以梁王肜爲太宰，左光祿大夫何劭爲司徒，右光祿大夫劉寔爲司空，淮南王允爲驃騎將軍。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷004·惠帝纪·永康元年九月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "九月，改司徒爲丞相，以梁王肜爲之。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷033·何曾传附何劭",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "永康初，遷司徒。趙王倫篡位，以劭爲太宰。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:00b40a2da98a",
+        "name": "何劭",
+        "officeName": "司徒",
+        "startYear": 300,
+        "endYear": 300,
+        "polity": "西晋"
+      },
+      "readerNote": "永康元年（300）四月迁司徒；同年九月改司徒为丞相、由梁王肜任之。此任不接续为赵王伦篡位后的太宰或死后赠司徒。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:7fdcaab5190e",
+      "sourceSha256": "4cee5b5dee91de9f2d17f05baf72692686a730805be565a4e4a760e31bf1e48c",
+      "status": "verified",
+      "reason": "元康七年（297）九月何劭迁尚书左仆射，原候选截短为尚书，现补全。本传累迁左仆射互证；后来迁左光禄的年份未明，终年留空，不直接延至司徒授命年。",
+      "citations": [
+        {
+          "title": "《晉書》卷004·惠帝纪·元康七年九月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "九月，以尚書右僕射王戎爲司徒，太子太師何劭爲尚書左僕射。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷033·何曾传附何劭",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "後轉特進，累遷尚書左僕射。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:00b40a2da98a",
+        "name": "何劭",
+        "officeName": "尚书左仆射",
+        "startYear": 297,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "元康七年（297）九月迁尚书左仆射；后来转左光禄大夫的确切年份未详，终年空缺。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:004:ad6e5a84be6e",
+      "sourceSha256": "61193be1faa485741c7b1cfa9f4e9d748c0aad99780b14d794bb1ffb31df5fc2",
+      "status": "verified",
+      "reason": "元康元年（291）八月何劭以太子太师出督豫州诸军事、镇许昌；本传可证此前东宫身份，未载本项督任，不作为独立互证。保留军事辖区，不等同豫州刺史；离任年未详。",
+      "citations": [
+        {
+          "title": "《晉書》卷004·惠帝纪·元康元年八月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷004",
+          "quote": "太子太師何劭爲都督豫州諸軍事，鎮許昌。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷033·何曾传附何劭·惠帝即位",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷033",
+          "quote": "以劭爲太子太師，通省尚書事。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:00b40a2da98a",
+        "name": "何劭",
+        "officeName": "都督豫州诸军事",
+        "startYear": 291,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "元康元年（291）八月出督豫州诸军事、镇许昌。前官为太子太师，是否继续兼领未明；军事都督不等同豫州刺史，离任年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:0933e58b72a4",
+      "sourceSha256": "79f4bdd78a38f24ecb34c436467cd246093086df1da5373726a0213296a7ef76",
+      "status": "suppressed",
+      "reason": "建兴二年（314）本纪授太尉、卒亦沿用官称；本传紧接遣使授侍中、太尉、凉州牧、西平公后明记张轨又固辞。排除这次太尉实任，保留授命与辞受反证；封爵、凉州牧及人物身份均不随本条处理。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴二年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "涼州刺史張軌爲太尉，封西平郡公，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴二年五月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "五月壬辰，太尉、領護羌校尉、涼州刺史、西平公張軌薨。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷086·张轨传·愍帝遣使",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷086",
+          "quote": "帝遣大鴻臚辛攀拜軌侍中、太尉、涼州牧、西平公，軌又固辭。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:fff74b3aebad",
+        "name": "张軌",
+        "officeName": "太尉",
+        "startYear": 314,
+        "endYear": null,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:271eb89c0cb6",
+      "sourceSha256": "a2b495f2e36b08b00213eeaac16365cc28aa7448da6d1163068eb530495c2bb4",
+      "status": "verified",
+      "reason": "永嘉三年（309）三月山简出任征南将军，本传记镇襄阳及后续军事行动，永嘉六年（312）四月卒官。与同段高密王简分属两人，生前征南将军不混作高密王的征南大将军或山简死后追赠征南大将军。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉三年三月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "三月戊申，征南大將軍、高密王簡薨。以尚書左僕射山簡爲征南將軍、都督荊湘交廣等四州諸軍事，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷043·山涛传附山简·永嘉三年",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷043",
+          "quote": "出為征南將軍、都督荊、湘、交、廣四州諸軍事、假節，鎮襄陽。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉六年四月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "夏四月丙寅，征南將軍山簡卒。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:6e37ce7beab2",
+        "name": "山简",
+        "officeName": "征南将军",
+        "startYear": 309,
+        "endYear": 312,
+        "polity": "西晋"
+      },
+      "readerNote": "永嘉三年（309）出任征南将军、镇襄阳，永嘉六年（312）卒官。与同段高密王简分属两人，生前征南将军不混作死后追赠征南大将军。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:29f1de4f4255",
+      "sourceSha256": "245bfe977d600cda619c5be404ede547e0c94185a4feecb02b38def868ad0ae7",
+      "status": "review-only",
+      "reason": "任官史料可核：建兴三年（315）二月荀组由司空进太尉；本传记司空后明年进太尉、领豫州牧，互证此为西晋阶段。后来转司徒的确切终任年未在本次锁定，保留空值；与322年东晋未拜太尉分开。但现有荀组身份保留大章／泰章来源冲突，不能越过独立身份门槛。先保留校正官名及纪年候选，身份冲突另审后方可发布。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴三年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "司空荀組爲太尉，大將軍劉琨爲司空。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀组·建兴年间",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "明年，進位太尉，領豫州牧、假節。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀组·后转司徒",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "於是拜組為司徒。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "officeName": "太尉",
+        "startYear": 315,
+        "endYear": null,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:2a0b0528675a",
+      "sourceSha256": "56c301089661b32fc0c971d3e6f97c560ee0a9d0132aa4c2a78c8d698fd69353",
+      "status": "review-only",
+      "reason": "永嘉六年（312）王浚自称被中诏承制授荀藩太尉，本传称奉为留台太尉；授命权源必须保留。所读段落尚未明确本人受拜，次年本纪仍称司空，不能把承制授命自动改成通常朝廷实任；待补受命与留台职掌证据。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉六年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "大司馬王浚移檄天下，稱被中詔承制，以荀籓爲太尉。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀藩",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "王浚承制，奉藩為留台太尉。及愍帝為太子，委藩督攝遠近。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴元年九月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "九月，司空荀籓薨于滎陽。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:8094dd86c852",
+        "name": "荀藩",
+        "officeName": "太尉",
+        "startYear": 312,
+        "endYear": null,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:2a2ff4012b65",
+      "sourceSha256": "7f85a7d84d6ba6fb92f44952d967be1fc1d84aaaf3592e3de1c6d6fde231d734",
+      "status": "review-only",
+      "reason": "任官史料可核：建兴二年（314）二月荀组为司空，本传有领尚书左仆射、兼司隶、行留台的实际职掌；次年二月进太尉，司空终年315。只发布本条司空，兼领职任不自动增补。但现有荀组身份保留大章／泰章来源冲突，不能越过独立身份门槛。先保留校正官名及纪年候选，身份冲突另审后方可发布。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴二年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "衛將軍荀組爲司空，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀组·荀藩卒后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "帝更以組為司空，領尚書左僕射，又兼司隸，復行留台事，州征郡守皆承制行焉。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴三年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "司空荀組爲太尉，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "officeName": "司空",
+        "startYear": 314,
+        "endYear": 315,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:3374cb0cc015",
+      "sourceSha256": "4043b7c9bf75377b779efd22a71e45f3cdeccbf6879029c5fef53cb7e6a3d6a6",
+      "status": "verified",
+      "reason": "高光永嘉元年（307）十二月迁尚书令，次年十一月卒；本传记为尚书令、本官如故、以疾卒。延陵公为封爵，光禄大夫为前兼官，不混入本条官名。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉元年十二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "庚子，以光祿大夫、延陵公高光爲尚書令。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷041·高光传·怀帝即位后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷041",
+          "quote": "尋為尚書令，本官如故。以疾卒，贈司空、侍中。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉二年十一月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "十一月乙巳，尚書令高光卒；",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:f799c2308083",
+        "name": "高光",
+        "officeName": "尚书令",
+        "startYear": 307,
+        "endYear": 308,
+        "polity": "西晋"
+      },
+      "readerNote": "永嘉元年（307）十二月迁尚书令，次年十一月卒。延陵公为封爵，光禄大夫为前兼官；死后赠司空不作生前实任。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:42b91cb6c348",
+      "sourceSha256": "62fee082dc534af45749daf391401f5b46d489e71dab7f40637a4e8a53d121c4",
+      "status": "suppressed",
+      "reason": "永嘉五年（311）五月荀藩被授司空，但本传明记未拜而洛阳陷没。排除该次司空实任，保留本纪授命及313年卒称司空的材料；312年王浚所授留台太尉为另一条待补核事件。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉五年五月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "尚書令荀籓爲司空，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀藩·永嘉末",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "永嘉末，轉司空，未拜而洛陽陷沒，藩出奔密。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴元年九月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "九月，司空荀籓薨于滎陽。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:8094dd86c852",
+        "name": "荀藩",
+        "officeName": "司空",
+        "startYear": 311,
+        "endYear": null,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:565a6ff04152",
+      "sourceSha256": "c17f8f903b2aeb509da16e7dda6d1dc668e9fcd3e361b9bd7668004107129288",
+      "status": "verified",
+      "reason": "温羡在光熙元年十二月受司徒；按年号纪年归306，未作公历日换算。本传明确左光禄大夫、开府、领司徒且在位未几病卒，故保留领任性质；未拜是前项中书监，不是司徒。卒年未由本次段落定出，终年空缺。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·光熙元年十二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "辛丑，以中書監溫羨爲司徒，尚書左僕射王衍爲司空。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷044·温羡传·惠帝还洛后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷044",
+          "quote": "徵為中書監，加散騎常侍。未拜，會帝崩。懷帝即位，遷左光祿大夫、開府，領司徒。論者僉謂為速。在位未幾，病卒，贈司徒，諡曰元。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:d87a40e88810",
+        "name": "温羡",
+        "officeName": "司徒",
+        "startYear": 306,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "光熙元年十二月领司徒，按年号所属年记306，未作公历日换算；在位未几病卒，卒年未详。未拜指前项中书监，非司徒。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:5ac72968c401",
+      "sourceSha256": "47f91f3a371ff3ea66997410d1425f45c0d87dccbddca4f4331ed45222ef0ffb",
+      "status": "verified",
+      "reason": "本纪建兴二年（314）二月刘琨授大将军；本传笼统置于愍帝即位后，谢表明言冒承宠命、拜命，能证受任，但不据即位二字改成313。次年司空让而未受，不能据此截断大将军任期；终年留空。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴二年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "幷州刺史劉琨爲大將軍。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷062·刘琨传·愍帝即位后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷062",
+          "quote": "湣帝即位，拜大將軍、都督并州諸軍事，加散騎常侍、假節。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷062·刘琨谢大将军表",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷062",
+          "quote": "所以冒承寵命者，實欲沒身報國，輒死自效，要以致命寇場，盡其臣節。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷062·刘琨传·建兴三年",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷062",
+          "quote": "琨上表讓司空，受都督，克期與猗盧討劉聰。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:beb0020a5f82",
+        "name": "刘琨",
+        "officeName": "大将军",
+        "startYear": 314,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "建兴二年（314）二月授大将军，本传谢表可证受任。建兴三年司空让而未受、都督则受，不能以该次司空新命截断大将军任期；终年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:8bdfa2f60653",
+      "sourceSha256": "42547490870e2888abe4cf56e3f0648715b6e1f92e873e661e3822ad506fe6a5",
+      "status": "verified",
+      "reason": "永嘉二年（308）十一月荀藩继高光为尚书令，本传累迁尚书令互证。311年转司空未拜，不能用该次未受的新命自动定出尚书令终年；终年仍空缺，不推定连续任职到卒年。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉二年十一月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "丁卯，以太子少傅荀籓爲尚書令。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀藩",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "累遷尚書令。永嘉末，轉司空，未拜而洛陽陷沒，藩出奔密。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:8094dd86c852",
+        "name": "荀藩",
+        "officeName": "尚书令",
+        "startYear": 308,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "永嘉二年（308）十一月继高光为尚书令；311年转司空未拜，不能据该次新命推定旧职离任年。终年未详，不表示连续任职到卒年。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:d8236d5215fb",
+      "sourceSha256": "90dd9fea8bf56ea1a6795ea2c20bd957f279014ae0a70f93601294135c8aefe6",
+      "status": "verified",
+      "reason": "本纪永嘉三年（309）三月明记刘暾为尚书左仆射，补全被截短的官名。本传另记寇退后迁尚书仆射、后又转右光禄大夫而夺权，未明系年；不强认所记劉曜寇京师与本纪同一战事，离任年留空。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉三年三月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "司隸校尉劉暾爲尚書左僕射。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷045·刘毅传附刘暾·寇京师后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷045",
+          "quote": "及劉曜寇京師，以暾為撫軍將軍、假節、都督城守諸軍事。曜退，遷尚書僕射。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷045·刘暾·转右光禄大夫",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷045",
+          "quote": "越憚暾久居監司，又為眾情所歸，乃以為右光祿大夫，領太子少傅，加散騎常侍。外示崇進，實奪其權。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:6bf570d4c50b",
+        "name": "刘暾",
+        "officeName": "尚书左仆射",
+        "startYear": 309,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "永嘉三年（309）三月授尚书左仆射。本传另记迁仆射、后转右光禄大夫而夺权，具体年序未明；不强系同一场寇京师战事，离任年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:d881f5ae4f1b",
+      "sourceSha256": "e3d4b037472abe4730a3d8d5af39e4277f8c27ff569e465ecac0045715dd850a",
+      "status": "verified",
+      "reason": "永嘉五年（311）五月傅祗迁司徒，本纪续载以本官修舟，本传续载以司徒传檄行台，足证受任。本传不拜是足疾获准版舆上殿的免拜礼，非拒任；所读段落未明系卒年，终年留空。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉五年五月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "太子太傅傅祗爲司徒，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·怀帝纪·议迁都",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "乃使司徒傅祗出詣河陰，修理舟楫，爲水行之備，",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷047·傅祗传·迁司徒",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷047",
+          "quote": "遷司徒，以足疾，詔版輿上殿，不拜。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷047·傅祗传·洛阳陷没后",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷047",
+          "quote": "及洛陽陷沒，遂共建行台，推祗為盟主，以司徒、持節、大都督諸軍事傳檄四方。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:e10ac3b3d9c0",
+        "name": "傅祗",
+        "officeName": "司徒",
+        "startYear": 311,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "永嘉五年（311）五月迁司徒，后以本官修舟、传檄行台。本传不拜是足疾上殿获免拜礼，非拒任；卒年未详，终年空缺。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:e42c9bb5630f",
+      "sourceSha256": "d59ae87fe1be8fffc1fbae20414fae28f2a379efd424bc6af9c24be9c49992bc",
+      "status": "verified",
+      "reason": "永嘉元年（307）十一月和郁授征北将军、镇邺；次年九月仍以本官出奔卫国，可证实际镇任。出奔日期不直接等于免官日期，终年留空；本传所载后来中书令、尚书令不自动加入本批。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉元年十一月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "甲寅，以尚書右僕射和郁爲征北將軍，鎮鄴。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷005·怀帝纪·永嘉二年九月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "九月，石勒寇趙郡，征北將軍和郁自鄴奔于衛國。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷045·和峤传附和郁",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷045",
+          "quote": "郁字仲輿，才望不及嶠，而以清幹稱，歷尚書左右僕射、中書令、尚書令。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:ca6dd83b2ac0",
+        "name": "和郁",
+        "officeName": "征北将军",
+        "startYear": 307,
+        "endYear": null,
+        "polity": "西晋"
+      },
+      "readerNote": "永嘉元年（307）十一月授征北将军、镇邺，次年九月仍以本官出奔卫国。出奔不等于免官，离任年未详。"
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:005:f936e6b03571",
+      "sourceSha256": "3d0f887108ea2a0900274e4883ed5ca8122fbe4ddae9fab1466a6bca734c8a45",
+      "status": "suppressed",
+      "reason": "建兴三年（315）帝遣使授刘琨司空兼都督，本传明确让司空、受都督。两项辞受分别成立，排除此条司空实任；不因都督获受而放行司空，也不因此否定既有大将军。",
+      "citations": [
+        {
+          "title": "《晉書》卷005·愍帝纪·建兴三年二月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷005",
+          "quote": "大將軍劉琨爲司空。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷062·刘琨传·建兴三年",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷062",
+          "quote": "三年，帝遣兼大鴻臚趙廉持節拜琨爲司空、都督並冀幽三州諸軍事。琨上表讓司空，受都督，克期與猗盧討劉聰。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:beb0020a5f82",
+        "name": "刘琨",
+        "officeName": "司空",
+        "startYear": 315,
+        "endYear": null,
+        "polity": "西晋"
+      }
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:006:6f813086b4e7",
+      "sourceSha256": "56dfe28ea13dd87bbead24871f1a9a62fd49a851571b05a51ef0c5c7d46eadb4",
+      "status": "suppressed",
+      "reason": "永昌元年（322）十一月本纪记荀组由司徒迁太尉及卒称；本传明确未拜而薨，排除此回实任。属于东晋阶段，与315年西晋太尉是不同授命；不合并，不以本轮扩展人物或年代收录范围。",
+      "citations": [
+        {
+          "title": "《晉書》卷006·元帝纪·永昌元年十一月",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷006",
+          "quote": "十一月，以司徒荀組爲太尉。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷006·元帝纪·永昌元年十一月卒官称谓",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷006",
+          "quote": "太尉荀組薨。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        },
+        {
+          "title": "《晉書》卷039·荀勖传附荀组·永昌初",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷039",
+          "quote": "永昌初，遷太尉，領太子太保。未拜，薨，年六十五。",
+          "note": "原典电子文本定位节引；完整上下文见链接，非全卷校录，未完成影印页对勘。"
+        }
+      ],
+      "correction": {
+        "personId": "person:source:c219f41cc820",
+        "name": "荀组",
+        "officeName": "太尉",
+        "startYear": 322,
+        "endYear": null,
+        "polity": "东晋"
+      }
+    }
+  ]
+}
