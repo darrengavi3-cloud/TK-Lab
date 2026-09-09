@@ -28,6 +28,33 @@ export function createAdministrativeSearchCache(){
  * 单独承载，因此“某郡太守”中的辖区前缀不应再次混入职任标题。
  * 仅规范标题字段，不改原始记录或史料正文。
  */
+// 吴国记录的 tenureText 承载了籍贯（部分并含表字），例如
+// 「字伟平，会稽山阴人，约汉末吴初时任」。籍贯与任期是两件不同的史事主张，
+// 混在一格后读者表的「任期」栏实际显示三件事。此处只在显示层按固定串式
+// 「（字X，）<籍贯>人，<任期>」拆分呈现，不改写规范源、不新增任何断定；
+// 串式不合者整串原样保留在任期栏。
+const TENURE_ZI = /^字([\u4e00-\u9fff]{1,3})[，,。]\s*/;
+const TENURE_ORIGIN = /^([\u4e00-\u9fff]{2,10}?)人[，,。]\s*/;
+const TENURE_ORIGIN_UNKNOWN = /^籍贯不详[，,。]\s*/;
+
+export function splitTenureText(raw){
+  const source = String(raw == null ? '' : raw).trim();
+  const whole = { zi:'', origin:'', tenure: source, parsed:false };
+  if(!source) return { zi:'', origin:'', tenure:'', parsed:false };
+  let rest = source, zi = '', origin = '';
+  const ziMatch = rest.match(TENURE_ZI);
+  if(ziMatch){ zi = ziMatch[1]; rest = rest.slice(ziMatch[0].length); }
+  const unknownMatch = rest.match(TENURE_ORIGIN_UNKNOWN);
+  if(unknownMatch){ origin = '未详'; rest = rest.slice(unknownMatch[0].length); }
+  else {
+    const originMatch = rest.match(TENURE_ORIGIN);
+    if(originMatch){ origin = originMatch[1]; rest = rest.slice(originMatch[0].length); }
+  }
+  // 只抽出表字而未抽出籍贯，说明串式不合：整串还原，不做半解析。
+  if(!origin) return whole;
+  return { zi, origin, tenure: rest || '未详', parsed:true };
+}
+
 export function normalizeFangzhenOfficeTitle(value){
   const raw=String(value==null?'':value).trim();
   if(!raw)return '';

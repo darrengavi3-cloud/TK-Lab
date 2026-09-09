@@ -48,6 +48,44 @@ export function highlightTextFragments(text,query){
   return fragments;
 }
 
+// 释文中的缺字符号必须逐字保留（DESIGN.md V62／V65），此处只做切分与标注，
+// 不改写任何字符：□ 为可数缺字，■ 为残泐不可识，连续的 • 或 . 为字数不明的阙文。
+// 裸 □ 与字体缺字时的豆腐块无法分辨，专业读者会误判为渲染问题。
+const LACUNA_RUN = /(\u25A1+|\u25A0+|[\u2022\u00B7]{2,}|\.{3,})/g;
+
+export function lacunaKindOf(run){
+  const head=String(run||'')[0];
+  if(head==='\u25A1') return 'missing';
+  if(head==='\u25A0') return 'illegible';
+  return 'ellipsis';
+}
+
+export function lacunaHintOf(run){
+  const kind=lacunaKindOf(run);
+  const count=String(run||'').length;
+  if(kind==='missing') return '原石缺 '+count+' 字';
+  if(kind==='illegible') return '残泐不可识 '+count+' 字';
+  return '阙文，字数不明';
+}
+
+export function segmentLacunae(fragments){
+  const out=[];
+  for(const fragment of fragments||[]){
+    const text=String(fragment&&fragment.text||'');
+    if(!text){continue;}
+    let cursor=0;
+    LACUNA_RUN.lastIndex=0;
+    let match;
+    while((match=LACUNA_RUN.exec(text))!==null){
+      if(match.index>cursor) out.push({text:text.slice(cursor,match.index),hit:!!fragment.hit,lacuna:null,hint:''});
+      out.push({text:match[0],hit:!!fragment.hit,lacuna:lacunaKindOf(match[0]),hint:lacunaHintOf(match[0])});
+      cursor=match.index+match[0].length;
+    }
+    if(cursor<text.length) out.push({text:text.slice(cursor),hit:!!fragment.hit,lacuna:null,hint:''});
+  }
+  return out;
+}
+
 function overlayAt(source,id){
   if(source instanceof Map)return source.get(id)||{};
   return source&&typeof source==='object'?source[id]||{}:{};
