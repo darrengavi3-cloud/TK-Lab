@@ -19,6 +19,12 @@
 | P1 | 单文件导出器不支持新增的共享导入 | 去重解析导入与重导出，拒绝残留模块语法，验证单文件导航。 |
 | P1 | 远端渲染检查发现主题切换时文字与底色不同步，选中行与分页禁用文字对比不足 | 同步切换控件文字和底色，使用随主题变化的选中／悬停底色，加深禁用分页文字。 |
 
+## 商用发布前的依赖事项
+
+2026-09-09 的 `npm audit --package-lock-only --json` 报告24个存在告警的依赖包：1 critical、16 high、6 moderate、1 low。计数包含传递依赖，不代表24项可利用的生产漏洞；详见 [审计原始结果](research/v86-product/dependency-audit.json)。
+
+Next 16.2.6 命中 [Windows 服务端 RCE](https://github.com/vercel/next.js/security/advisories/GHSA-p293-qw3h-jr36) 和 [AVIF 优化 RCE](https://github.com/vercel/next.js/security/advisories/GHSA-2xp9-vwfh-vxw4)，上游修复版本为16.3.3。项目当前使用 Vinext/Cloudflare，应用源码未见 next/image 或 Server Actions；尚未完成相关端点的可达性验证，不能据此免除告警。依赖补丁兼容性验证与升级应先于商用发布；本轮没有升级框架或宣称安全告警已解决。
+
 ## 下一轮优先级
 
 1. **内容深度**：先逐项复核一致性脚本提出的59条候选疑点，再围绕已有小传补齐人物—任官—原典链路。完整输出见 [候选清单](research/v86-product/consistency-candidates.txt)。该脚本以非strict模式运行，告警不阻断构建。疑点尚未逐项确认；不得自动改写原文或把510条待补核任官直接发布。
@@ -31,6 +37,6 @@
 
 首个源码检查点已完成 `npm run release:offline`：77/77项测试、20项不变量验证通过，连续两次构建哈希一致；`test:source` 67/67通过。类型检查通过；代码检查零错误、三条既有生成类型警告。自有界面静态审计零问题；根设计入口文档零错误、一条无YAML警告。
 
-中断后从GitHub提交恢复，24个变更源文件逐字节核对一致；随后根据远端32项渲染检查中的9项失败修复具体对比度问题，重新生成V86发布清单。最终分支的完整结果以远端检查为准。验证证据见 [validation.json](research/v86-product/validation.json)。GitHub远端检查以 [PR #13](https://github.com/darrengavi3-cloud/TK-Lab/pull/13) 状态为准。本轮未部署，未执行浏览器视觉验收或真实iPhone验收。
+中断后从GitHub提交恢复，24个变更源文件逐字节核对一致；随后根据远端32项渲染检查中的9项失败修复具体对比度问题，重新生成V86发布清单。提交112961f的远端离线验证已通过：77/77测试、20项不变量、两次构建一致；源码锁与提交的生成文件一致。渲染检查达到31/32，随后补齐顶部按钮的主题切换对比修复，最终结果以PR检查为准。验证证据见 [validation.json](research/v86-product/validation.json)。GitHub远端检查以 [PR #13](https://github.com/darrengavi3-cloud/TK-Lab/pull/13) 状态为准。本轮未部署，未执行浏览器视觉验收或真实iPhone验收。
 
 历史依据：失败运行 `34364487686`，离线job `102509570880`；前一主分支 `9ddbeeea3afbe4e98cd22755ca5ab6b581fb99c6` 提供历史绑定快照。源文、任官、封爵和历史审定台账不作改写。

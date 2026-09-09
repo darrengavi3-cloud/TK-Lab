@@ -274,7 +274,7 @@ button:focus-visible,
   border-radius: 5px;
   background: var(--v56-sheet-raised);
   color: var(--v56-ink);
-  transition: border-color var(--v56-motion-fast) ease, background-color var(--v56-motion-fast) ease, color var(--v56-motion-fast) ease;
+  transition: border-color var(--v56-motion-fast) ease, box-shadow var(--v56-motion-fast) ease;
 }
 
 .global-search-trigger:hover,
@@ -927,7 +927,7 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 .global-header-tools{gap:5px;}
 .global-search-trigger,.theme-trigger,.workspace-mode-switch button{
   height:30px;border-radius:6px;font:600 12px/1 -apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;
-  letter-spacing:0;padding:0 9px;transition:background-color .18s ease,border-color .18s ease,color .18s ease;
+  letter-spacing:0;padding:0 9px;transition:border-color .18s ease,box-shadow .18s ease;
 }
 .global-search-trigger,.theme-trigger{border:1px solid var(--v57-line);background:var(--v57-surface);color:var(--v57-ink);}
 .global-search-trigger:hover,.theme-trigger:hover{transform:none;border-color:var(--v57-vermilion);background:color-mix(in srgb,var(--v56-vermilion) 8%,var(--v56-sheet));}
