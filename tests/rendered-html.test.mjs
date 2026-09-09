@@ -1,3 +1,4 @@
+import { assertReaderPeople, assertReaderPortraits } from './helpers/reviewed-boundaries.mjs';
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
@@ -71,13 +72,13 @@ test("packages the V63 field-gated full people reader projection", async () => {
   assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
-  assert.equal(people.length, 2086);
+  assertReaderPeople(people);
   assert.equal(new Set(people.map((person) => person.personId)).size, people.length);
   assert.ok(people.every((person) => person.personId && person.name));
   assert.ok(people.every((person) => !("datasets" in person)));
 });
 
-test("packages all 512 production portraits and the V73 reader records", async () => {
+test("packages all retained production portraits and the V73 reader records", async () => {
   const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
   const [legacy, manifestRaw, fangzhenSource, jinshiSource] = await Promise.all([
     readFile(new URL("index.html", legacyRoot), "utf8"),
@@ -102,7 +103,7 @@ test("packages all 512 production portraits and the V73 reader records", async (
   assert.match(fangzhenSource, /SGZ_V69_FANGZHEN_READER/);
   assert.doesNotMatch(fangzhenSource, /治所未详|sourceLocator|sourceExcerpt|sourceUrl|publicationStatus/);
   assert.match(jinshiSource, /SGZ_V62_JINSHI_DISPLAY/);
-  assert.equal(assets.length, 512);
+  assertReaderPortraits(assets);
   assert.equal(v62Assets.length, 100);
   assert.deepEqual(dynastyCounts, { 后汉: 20, 魏: 20, 季汉: 20, 吴: 20, 西晋: 20 });
 

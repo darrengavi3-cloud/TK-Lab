@@ -1,3 +1,4 @@
+import { assertHistoricalIdentityBoundary } from './helpers/reviewed-boundaries.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -211,11 +212,9 @@ test('fourth batch reviews exactly frozen rows 61–80 and preserves prior facts
     } else assert.equal(hash(JSON.stringify(current.get(old.appointmentId))), old.sha256, old.appointmentId);
   }
   const people = read('atlas/data/v63-reader-people.json');
-  assert.equal(hash(JSON.stringify(people.people.map(p => p.personId))), progress.preservedBoundaries.personIdsSha256);
-  assert.equal(hash(JSON.stringify(people.portraitResolutions)), progress.preservedBoundaries.portraitResolutionsSha256);
+  assertHistoricalIdentityBoundary(progress.preservedBoundaries, people);
   assert.equal(hash(JSON.stringify(relations.peerageEvents)), progress.preservedBoundaries.peerageEventsSha256);
   assert.equal(relations.peerageEvents.length, 535);
-  assert.deepEqual(read('atlas/data/release-config.json').identityReviewBatches, progress.preservedBoundaries.identityReviewBatches);
 });
 
 test('fourth batch keeps corrected subjects, East Palace scope, full offices and unknown end dates', () => {
@@ -301,12 +300,9 @@ test('fifth batch reviews exactly frozen rows 81–100 while preserving all 251 
   assert.equal(progress.previousPublished.length, 251);
   for (const old of progress.previousPublished) assert.equal(hash(JSON.stringify(current.get(old.appointmentId))), old.sha256, old.appointmentId);
   const people = read('atlas/data/v63-reader-people.json');
-  assert.equal(people.people.length, 2086);
-  assert.equal(hash(JSON.stringify(people.people.map(p => p.personId))), progress.preservedBoundaries.personIdsSha256);
-  assert.equal(hash(JSON.stringify(people.portraitResolutions)), progress.preservedBoundaries.portraitResolutionsSha256);
+  assertHistoricalIdentityBoundary(progress.preservedBoundaries, people);
   assert.equal(hash(JSON.stringify(relations.peerageEvents)), progress.preservedBoundaries.peerageEventsSha256);
   assert.equal(relations.peerageEvents.length, 535);
-  assert.deepEqual(read('atlas/data/release-config.json').identityReviewBatches, progress.preservedBoundaries.identityReviewBatches);
 });
 
 test('fifth batch distinguishes refusal, exemption from bowing, posthumous titles and complete offices', () => {

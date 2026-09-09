@@ -1,4 +1,5 @@
-export const MODULE_KEYS = Object.freeze(['offices','people','battle','fangzhen','jinshi','shihuo','map']);
+import { MODULE_KEYS, validRouteHash } from './route-contract.js';
+export { MODULE_KEYS };
 export { createPersonNavigator } from './navigation.js';
 export { validRouteHash, acceptedRouteMessage } from './route-contract.js';
 
@@ -32,5 +33,5 @@ export function createReadingTrail(limit=20){
   };
 }
 function validRouteHashForTrail(hash){
-  return typeof hash==='string'&&/^#(?:offices|people|battle|fangzhen|jinshi|shihuo|map)(?:\?|$)/.test(hash);
+  return validRouteHash(hash);
 }

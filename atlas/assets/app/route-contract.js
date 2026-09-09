@@ -1,6 +1,9 @@
+export const MODULE_KEYS = Object.freeze(['offices','people','battle','fangzhen','jinshi','shihuo','shiyuan','map']);
+
 export function validRouteHash(hash) {
   return typeof hash === 'string' && hash.length <= 4096
-    && /^#(?:offices|people|battle|fangzhen|jinshi|shihuo|map)(?:\?[^\r\n]*)?$/.test(hash);
+    && !/[\r\n]/.test(hash) && hash.startsWith('#')
+    && MODULE_KEYS.includes(hash.slice(1).split('?')[0]);
 }
 
 export function acceptedRouteMessage(event, source, origin, type = 'guanshitai:route') {

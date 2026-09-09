@@ -102,6 +102,10 @@ function ensureSectionModule(section){
   if(section==='fangzhen')return loadSgzUiModule('fangzhen');
   if(section==='jinshi')return loadSgzUiModule('jinshi');
   if(section==='shihuo')return loadSgzUiModule('shihuo');
+  if(section==='shiyuan')return (window.SGZ_UI_MODULES?.shiyuan?Promise.resolve():loadSgzDataScript('shiyuan-ui','./assets/app/shiyuan.js')).then(()=>{
+    if(!window.SGZ_UI_MODULES?.shiyuan)throw new Error('史源资料载入失败');
+    return window.SGZ_UI_MODULES.shiyuan;
+  });
   return Promise.resolve(null);
 }
 const sgzDataScriptPromises=new Map();
@@ -2969,6 +2973,7 @@ const app = createApp({
     const shiyuanKind = ref('all');
     const shiyuanQuery = ref('');
     const shiyuanVolumeId = ref('');
+    const shiyuanPage = ref(1);
     /* 把各模块已发布条目的引文串收成统一形状。此处只搬运，不改写任何字面。 */
     function collectShiyuanEntries(){
       const entries=[];
@@ -3012,17 +3017,21 @@ const app = createApp({
       if(shiyuanVolumeId.value&&!shiyuanIndex.value.volumes.some(volume=>volume.id===shiyuanVolumeId.value))shiyuanVolumeId.value='';
     }
     const shiyuanWorks = computed(()=>shiyuanIndex.value.works||[]);
-    const shiyuanVolumes = computed(()=>{
-      const keyword=String(shiyuanQuery.value||'').trim().toLowerCase();
-      return (shiyuanIndex.value.volumes||[]).filter(volume=>{
-        if(shiyuanWork.value!=='all'&&volume.work!==shiyuanWork.value)return false;
-        if(shiyuanKind.value!=='all'&&!volume.kinds[shiyuanKind.value])return false;
-        if(!keyword)return true;
-        if(volume.label.toLowerCase().includes(keyword))return true;
-        return volume.entries.some(entry=>String(entry.title||'').toLowerCase().includes(keyword)||String(entry.detail||'').toLowerCase().includes(keyword));
-      });
-    });
-    const shiyuanActiveVolume = computed(()=>(shiyuanIndex.value.volumes||[]).find(volume=>volume.id===shiyuanVolumeId.value)||null);
+    const shiyuanVolumes = computed(()=>window.SGZ_UI_MODULES.shiyuan.selectSourceVolumes(shiyuanIndex.value.volumes,{work:shiyuanWork.value,kind:shiyuanKind.value,query:shiyuanQuery.value}));
+    const shiyuanPagination = computed(()=>window.SGZ_UI_MODULES.shiyuan.paginateSourceVolumes(shiyuanVolumes.value,shiyuanPage.value));
+    const shiyuanActiveVolume = computed(()=>shiyuanVolumes.value.find(volume=>volume.id===shiyuanVolumeId.value)||null);
+    function selectShiyuanVolume(volume){
+      shiyuanVolumeId.value=volume.id;scheduleUrlState('push');
+      if(viewportWidth.value<=980)nextTick(()=>document.getElementById('shiyuan-detail-title')?.focus({preventScroll:false}));
+    }
+    function shiyuanEntryRoute(entry){return window.SGZ_UI_MODULES.shiyuan.sourceEntryRoute(entry,window.SGZ_V63_READER_PERSON_RELATIONS?.appointments||[]);}
+    async function openShiyuanEntry(entry){
+      const hash=shiyuanEntryRoute(entry);if(!hash)return;
+      const target=window.SGZ_UI_MODULES.shell.parseRouteHash(hash);
+      switchModule(target.module,{url:false,prepare:false});
+      window.history[window.parent===window?'pushState':'replaceState'](null,'',hash);
+      try{await applyUrlState('push');}catch{if(activeModule.value===target.module)ElementPlus.ElMessage.error('资料载入失败，请重试');}
+    }
     const shiyuanSummary = computed(()=>shiyuanIndex.value.summary||{volumes:0,entries:0,citations:0,resolvedCitations:0,unattributed:0});
     const shiyuanUnattributed = computed(()=>shiyuanIndex.value.unattributed||[]);
     function shiyuanLayerText(volume){
@@ -3090,7 +3099,9 @@ const app = createApp({
       if('requestIdleCallback' in window)window.requestIdleCallback(run,{timeout:1800});
     }
     function retryActiveModule(){
-      prepareSectionRuntimeData(activeModule.value).catch(error=>ElementPlus.ElMessage.error(error.message||'资料载入失败，请重试'));
+      const module=activeModule.value;
+      const request=parseUrlState().module===module?applyUrlState():prepareSectionRuntimeData(module);
+      request.catch(()=>{if(activeModule.value===module)ElementPlus.ElMessage.error('资料载入失败，请重试');});
     }
     const epigraphicPolities = ['后汉','季汉','魏','吴','西晋','东晋'];
     const epigraphicQuery = ref('');
@@ -8225,7 +8236,7 @@ const app = createApp({
       scheduleUrlState('replace');
     }
     function readingScrollElement(){
-      const selector={people:'.people-workbench',fangzhen:'.fangzhen-workbench',jinshi:'.jinshi-workbench',battle:'.battle-workbench',shihuo:'.shihuo-workbench',map:'.history-map-page',offices:officePresentation.value==='catalog'?'.court-scroll':'.canvas-wrap'}[activeModule.value];
+      const selector={people:'.people-workbench',fangzhen:'.fangzhen-workbench',jinshi:'.jinshi-workbench',battle:'.battle-workbench',shihuo:'.shihuo-workbench',shiyuan:'.shiyuan-workbench',map:'.history-map-page',offices:officePresentation.value==='catalog'?'.court-scroll':'.canvas-wrap'}[activeModule.value];
       return selector?document.querySelector(selector):null;
     }
     async function returnToReading(){
@@ -8245,6 +8256,7 @@ const app = createApp({
     watch(showTongdian,value=>{if(value){rankReferenceTab.value='tongdian';showRankCompare.value=true;showTongdian.value=false;}});
     function urlValue(value){return value===null||value===undefined?'':String(value);}
     function routeExtraFields(module){
+      if(module==='shiyuan')return {q:[shiyuanQuery,''],work:[shiyuanWork,'all'],kind:[shiyuanKind,'all'],volume:[shiyuanVolumeId,''],page:[shiyuanPage,1]};
       if(module==='people')return {era:[peopleEra,'all'],year:[peopleYear,null],service:[peopleServiceDomain,'all'],institution:[peopleInstitutionType,'all'],portrait:[peopleOnlyPortrait,false],content:[peopleContent,'all'],view:[peopleView,'people'],source:[peopleSource,'all'],evidence:[peopleEvidence,'all']};
       if(module==='fangzhen')return {year:[fangzhenSnapshotYear,null],compare:[fangzhenCompareYear,null],verified:[fangzhenOnlyVerified,true]};
       if(module==='offices')return {period:[currentPeriodKey,'all'],office:[catalogFocusKey,''],selected:[selectedKey,null],holders:[showOfficials,false],roster:[officialsTab,'current'],phase:[periodRosterPhase,'all'],group:[officeGroup,'all'],sub:[officeSub,'all'],sub2:[officeSub2,'all'],rank:[{get value(){return canvasFilters.rank},set value(v){canvasFilters.rank=v}},''],special:[{get value(){return canvasFilters.special},set value(v){canvasFilters.special=v}},''],q:[{get value(){return canvasFilters.query},set value(v){canvasFilters.query=v}},''],core:[{get value(){return canvasFilters.hideNonCore},set value(v){canvasFilters.hideNonCore=v}},false],at:[timelineEnabled,false],year:[timelineYear,220]};
@@ -8268,6 +8280,7 @@ const app = createApp({
     async function onHostRoute(event){
       await SGZ_UI_CORE_READY;
       if(!window.SGZ_UI_MODULES.shell.acceptedRouteMessage(event,window.parent,location.origin,'guanshitai:host-route'))return;
+      window.parent.postMessage({type:'guanshitai:ready'},location.origin);
       if(location.hash===event.data.hash)return;
       clearTimeout(urlStateTimer);pendingUrlMode='replace';
       window.history.replaceState(null,'',event.data.hash);
@@ -8341,12 +8354,13 @@ const app = createApp({
       const split=hash.indexOf('?');
       return {module:(split<0?hash:hash.slice(0,split))||'offices',params:new URLSearchParams(split<0?'':hash.slice(split+1))};
     }
-    async function applyUrlState(){
+    async function applyUrlState(historyMode='replace'){
+      historyMode=historyMode==='push'?'push':'replace';
       const generation=++urlApplyGeneration;
       urlStateApplying=true;
       try{
         const state=parseUrlState();
-        const allowed=['offices','people','battle','fangzhen','jinshi','shihuo','shiyuan','map'];
+        const allowed=window.SGZ_UI_MODULES.shell.MODULE_KEYS;
         const module=allowed.includes(state.module)?state.module:'offices';
         switchModule(module,{url:false,fromUrl:true,prepare:false});
         await prepareSectionRuntimeData(module);
@@ -8396,10 +8410,17 @@ const app = createApp({
         if(module==='jinshi')epigraphicPage.value=Math.min(page,epigraphicPageCount.value);
         if(module==='fangzhen')fangzhenPage.value=Math.min(page,fangzhenPageCount.value);
         if(module==='shihuo'){shihuoPage.value=Math.min(page,shihuoPagination.value.pages);showShihuoDetail.value=Boolean(p.get('id')&&shihuoPrimaryDetail.value?.id===p.get('id')&&viewportWidth.value<=980);}
+        if(module==='shiyuan'){
+          if(shiyuanWork.value!=='all'&&!shiyuanWorks.value.some(row=>row.work===shiyuanWork.value))shiyuanWork.value='all';
+          if(!['all','appointment','battle','shihuo','epigraphy'].includes(shiyuanKind.value))shiyuanKind.value='all';
+          const index=shiyuanVolumes.value.findIndex(volume=>volume.id===shiyuanVolumeId.value);
+          if(index<0)shiyuanVolumeId.value='';
+          shiyuanPage.value=index>=0?Math.floor(index/12)+1:shiyuanPagination.value.page;
+        }
         if(generation!==urlApplyGeneration)return;
         if(p.get('list')==='1'){const panel={people:showPeopleDetail,fangzhen:showFangzhenDetail,jinshi:showEpigraphicDetail,shihuo:showShihuoDetail}[module];if(panel)panel.value=false;}
         updateDocumentTitle();
-        notifyHostRoute();
+        notifyHostRoute(historyMode);
       }finally{if(generation===urlApplyGeneration)urlStateApplying=false;}
     }
     function updateDocumentTitle(){
@@ -8409,6 +8430,7 @@ const app = createApp({
       else if(activeModule.value==='jinshi')detail=jinshiPrimaryDetail.value?.displayTitle||jinshiPrimaryDetail.value?.name||'';
       else if(activeModule.value==='battle')detail=activeBattleDetail.value?.title||activeBattleDetail.value?.name||'';
       else if(activeModule.value==='map')detail=currentHistoryPeriod.value?.name||'';
+      else if(activeModule.value==='shiyuan')detail=shiyuanActiveVolume.value?.label||'';
       document.title=[detail,moduleLabel,'观史台'].filter(Boolean).join(' · ');
     }
     watch([epigraphicQuery,epigraphicEra,epigraphicType,epigraphicPolity,epigraphicPage,historyMapIndex,currentFaction,treeType,officePresentation,fangzhenArchiveKey,fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenView,fangzhenPage,shihuoView,shihuoPolity,shihuoScope,shihuoQuery,shihuoCategory,shihuoRecordKind,fangzhenSnapshotYear,fangzhenCompareYear,fangzhenOnlyVerified,currentPeriodKey,catalogFocusKey,selectedKey,peopleView,peopleContent,showOfficials,officialsTab,periodRosterPhase,epigraphicInscriptionStatus,shihuoSort,shihuoIncludeDiscussion,shihuoPage,activeShihuoId],()=>scheduleUrlState('replace'));
@@ -8417,6 +8439,9 @@ const app = createApp({
     watch(()=>[canvasFilters.query,canvasFilters.rank,canvasFilters.special,officeGroup.value,officeSub.value,officeSub2.value,timelineEnabled.value,timelineYear.value,peopleSource.value,peopleEvidence.value,epigraphicArchive.value],()=>scheduleUrlState('replace'));
     watch(peopleContent,()=>{if(!urlStateApplying)peoplePage.value=1;});
     watch([fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenView,fangzhenOnlyVerified],()=>{if(urlStateApplying)return;fangzhenPage.value=1;activeFangzhenRecordId.value='';});
+    watch([shiyuanWork,shiyuanKind,shiyuanQuery],()=>{if(!urlStateApplying){shiyuanPage.value=1;shiyuanVolumeId.value='';}});
+    watch(shiyuanPage,()=>{if(!urlStateApplying&&!shiyuanPagination.value.rows.some(row=>row.id===shiyuanVolumeId.value))shiyuanVolumeId.value='';});
+    watch([shiyuanWork,shiyuanKind,shiyuanQuery,shiyuanVolumeId,shiyuanPage],()=>scheduleUrlState('replace'));
     watch(workspaceMode,async()=>{
       try{await prepareSectionRuntimeData(activeModule.value);}catch(error){ElementPlus.ElMessage.error(error.message||'审校资料载入失败');}
       const personId=activePeopleDetail.value?.personId;
@@ -8582,6 +8607,7 @@ const app = createApp({
       shihuoPolities, shihuoCategories, shihuoQuery, shihuoPolity, shihuoCategory, shihuoScope, shihuoRecordKind, shihuoView,
       shiyuanIndex, shiyuanWork, shiyuanKind, shiyuanQuery, shiyuanVolumeId, shiyuanWorks, shiyuanVolumes,
       shiyuanActiveVolume, shiyuanSummary, shiyuanUnattributed, shiyuanLayerText, shiyuanKindText,
+      shiyuanPage, shiyuanPagination, selectShiyuanVolume, shiyuanEntryRoute, openShiyuanEntry,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
       shihuoEvidenceClass, shihuoEvidenceLabel, householdMiniChart,
       epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicEra, epigraphicEraOptions, epigraphicType, epigraphicPolity, epigraphicArchive, epigraphicInscriptionStatus, epigraphicInscriptionStatuses, filteredEpigraphicRecords, epigraphicMetrics, jinshiPrimaryDetail, epigraphicConfirmedText,
@@ -8592,7 +8618,7 @@ const app = createApp({
     };
   },
   template: `
-  <div class="shell" :class="['workspace-mode-'+workspaceMode,{'spine-collapsed':spineCollapsed,'evidence-collapsed':evidenceRailCollapsed}]">
+  <div class="shell" :data-active-module="activeModule" :data-module-state="moduleLoadState[activeModule]" :class="['workspace-mode-'+workspaceMode,{'spine-collapsed':spineCollapsed,'evidence-collapsed':evidenceRailCollapsed}]">
     <header class="topbar">
       <div class="seal-mark serif" aria-hidden="true">觀</div>
       <div class="brand">
@@ -8660,7 +8686,7 @@ const app = createApp({
       </template>
       <template v-else-if="activeModule==='shiyuan'">
         <el-select v-model="shiyuanWork" class="v56-context-select" size="small" aria-label="典籍筛选"><el-option label="全部典籍" value="all"/><el-option v-for="row in shiyuanWorks" :key="row.work" :label="row.work" :value="row.work"/></el-select>
-        <div class="v56-segmented shiyuan-context-kind" aria-label="条目类别"><button :class="{active:shiyuanKind==='all'}" @click="shiyuanKind='all'">全部</button><button :class="{active:shiyuanKind==='appointment'}" @click="shiyuanKind='appointment'">任官</button><button :class="{active:shiyuanKind==='battle'}" @click="shiyuanKind='battle'">战事</button><button :class="{active:shiyuanKind==='shihuo'}" @click="shiyuanKind='shihuo'">食货</button></div>
+        <div class="v56-segmented shiyuan-context-kind" aria-label="条目类别"><button :class="{active:shiyuanKind==='all'}" @click="shiyuanKind='all'">全部</button><button :class="{active:shiyuanKind==='appointment'}" @click="shiyuanKind='appointment'">任官</button><button :class="{active:shiyuanKind==='battle'}" @click="shiyuanKind='battle'">战事</button><button :class="{active:shiyuanKind==='shihuo'}" @click="shiyuanKind='shihuo'">食货</button><button :class="{active:shiyuanKind==='epigraphy'}" @click="shiyuanKind='epigraphy'">金石</button></div>
         <el-input v-model="shiyuanQuery" class="v56-context-search" size="small" clearable placeholder="检索卷次或条目" aria-label="检索卷次或条目"/>
       </template>
       <template v-else-if="activeModule==='map'">
@@ -9737,41 +9763,34 @@ const app = createApp({
 
     <main v-if="moduleVisited.shiyuan&&moduleLoadState.shiyuan==='ready'" v-show="activeModule==='shiyuan'" class="module-page shiyuan-workbench">
       <div class="module-page-inner">
-        <div class="page-heading">
-          <div>
-            <div class="page-kicker">史源表 · 卷次 · 证据层 · 引文原串</div>
-            <h1>史源表</h1>
-            <p>把本库已发布的条目按它们各自征引的典籍卷次倒排，用以查看每一卷支撑了哪些结论。此表不产生新的判断，只重排既有引文；凡引文未写明卷次者一律列入卷次未详，保留原串，不作归卷推测。</p>
-          </div>
-        </div>
+        <p class="reader-quiet-note">按典籍卷次查看引文，选择条目可继续阅读正文。</p>
         <div class="battle-metrics">
           <div class="battle-metric"><strong>{{shiyuanSummary.volumes}}</strong><span>已归卷卷次</span></div>
           <div class="battle-metric"><strong>{{shiyuanSummary.entries}}</strong><span>卷次条目</span></div>
           <div class="battle-metric"><strong>{{shiyuanSummary.resolvedCitations}} / {{shiyuanSummary.citations}}</strong><span>引文已解析</span></div>
           <div class="battle-metric"><strong>{{shiyuanSummary.unattributed}}</strong><span>卷次未详</span></div>
         </div>
-        <div class="shiyuan-work-chips">
-          <button class="palette-scope-chip" :class="{active:shiyuanWork==='all'}" @click="shiyuanWork='all'">全部典籍</button>
-          <button v-for="row in shiyuanWorks" :key="row.work" class="palette-scope-chip" :class="{active:shiyuanWork===row.work}" @click="shiyuanWork=shiyuanWork===row.work?'all':row.work">{{row.work}}<small>{{row.volumes}} 卷 · {{row.entries}} 条</small></button>
-        </div>
         <div class="v56-shiyuan-grid">
           <section class="v56-shiyuan-volumes" aria-label="卷次一览">
-            <el-table :data="shiyuanVolumes" size="small" height="560" empty-text="暂无符合条件的卷次" @row-click="volume=>shiyuanVolumeId=volume.id">
+            <p class="reader-quiet-note" role="status">{{shiyuanPagination.total}} 卷符合条件 · 第 {{shiyuanPagination.page}} / {{shiyuanPagination.pages}} 页</p>
+            <el-table :data="shiyuanPagination.rows" size="small" height="560" empty-text="暂无符合条件的卷次" @row-click="selectShiyuanVolume">
               <el-table-column prop="work" label="典籍" width="104"/>
-              <el-table-column label="卷次" width="76"><template #default="{row}">卷{{row.volume}}</template></el-table-column>
+              <el-table-column label="卷次" width="96"><template #default="{row}"><button type="button" class="shiyuan-volume-button" :aria-label="'查看'+row.label" :aria-pressed="shiyuanVolumeId===row.id" @click.stop="selectShiyuanVolume(row)">卷{{row.volume}}</button></template></el-table-column>
               <el-table-column prop="entryCount" label="条目" width="66"/>
               <el-table-column label="类别"><template #default="{row}">{{shiyuanKindText(row)}}</template></el-table-column>
               <el-table-column label="证据层" width="150"><template #default="{row}">{{shiyuanLayerText(row)}}</template></el-table-column>
             </el-table>
+            <nav class="shiyuan-pagination" aria-label="史源卷次分页"><el-button :disabled="shiyuanPagination.page===1" @click="shiyuanPage=shiyuanPagination.page-1">上一页</el-button><el-button :disabled="shiyuanPagination.page===shiyuanPagination.pages" @click="shiyuanPage=shiyuanPagination.page+1">下一页</el-button></nav>
+            <el-button v-if="!shiyuanPagination.total" @click="shiyuanWork='all';shiyuanKind='all';shiyuanQuery=''">清除检索与筛选</el-button>
           </section>
           <section class="v56-shiyuan-detail" aria-label="卷次详情">
             <template v-if="shiyuanActiveVolume">
-              <h2 class="v56-shiyuan-detail-title">{{shiyuanActiveVolume.label}}</h2>
+              <h2 id="shiyuan-detail-title" tabindex="-1" class="v56-shiyuan-detail-title">{{shiyuanActiveVolume.label}}</h2>
               <p class="v56-shiyuan-detail-meta">{{shiyuanActiveVolume.entryCount}} 条 · {{shiyuanLayerText(shiyuanActiveVolume)}}</p>
               <ul class="v56-shiyuan-entry-list">
                 <li v-for="(entry,index) in shiyuanActiveVolume.entries" :key="entry.kind+':'+entry.id+':'+index">
                   <span class="v56-shiyuan-entry-kind">{{entry.kindLabel}}</span>
-                  <strong>{{entry.title}}</strong>
+                  <a v-if="shiyuanEntryRoute(entry)" :href="shiyuanEntryRoute(entry)" @click.prevent="openShiyuanEntry(entry)">{{entry.title}}</a><strong v-else>{{entry.title}}</strong>
                   <span v-if="entry.meta" class="v56-shiyuan-entry-meta">{{entry.meta}}</span>
                   <span v-if="entry.citedWork" class="v56-shiyuan-entry-meta">裴注引《{{entry.citedWork}}》</span>
                   <span class="v56-shiyuan-entry-cite">{{entry.citation}}</span>

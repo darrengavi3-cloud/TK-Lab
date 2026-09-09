@@ -10,7 +10,9 @@ test('deployed responsive portraits preserve source identity and actual dimensio
   const context = { window: {} };
   vm.runInNewContext(await readFile(new URL('data/portrait-variants.js', root), 'utf8'), context);
   const entries = Object.entries(context.window.SGZ_PORTRAIT_VARIANTS.bySrc);
-  assert.equal(entries.length, 512);
+  const manifest = JSON.parse(await readFile(new URL('../atlas/data/portrait-manifest.json', import.meta.url), 'utf8'));
+  const expected = Object.values(manifest.assetsById).map(row => row.src || row.assetPath).sort();
+  assert.deepEqual(entries.map(([src]) => src).sort(), expected);
   for (const [src, record] of entries) {
     const original = await readFile(new URL('../atlas/' + src.slice(2), import.meta.url));
     assert.equal(createHash('sha256').update(original).digest('hex'), record.sourceSha256, src);

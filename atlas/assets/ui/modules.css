@@ -2649,6 +2649,12 @@ body, #app, .shell { color: var(--v58-ink); }
 
 .v56-shiyuan-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(300px,1fr); gap:18px; align-items:start; }
 .v56-shiyuan-volumes { min-width:0; }
+.shiyuan-volume-button { min-height:44px; min-width:44px; padding:8px; border:1px solid transparent; border-radius:2px; background:transparent; color:var(--v56-ink); cursor:pointer; font:inherit; }
+.shiyuan-volume-button:hover, .shiyuan-volume-button[aria-pressed="true"] { background:var(--v56-paper); border-color:var(--v56-rule); }
+.shiyuan-volume-button:focus-visible, .v56-shiyuan-entry-list a:focus-visible, #shiyuan-detail-title:focus { outline:2px solid var(--v56-vermilion); outline-offset:2px; }
+.shiyuan-pagination { display:flex; justify-content:space-between; gap:12px; padding-block:12px; }
+.v56-shiyuan-entry-list a { color:var(--v56-ink); font-size:16px; line-height:1.65; min-height:44px; display:flex; align-items:center; text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+.v56-shiyuan-entry-list a:hover { color:var(--v56-vermilion); }
 .v56-shiyuan-detail {
   min-width:0; max-height:560px; overflow:auto;
   border:1px solid var(--v56-rule); border-radius:2px;
@@ -2672,7 +2678,7 @@ body, #app, .shell { color: var(--v58-ink); }
   border:1px solid var(--v56-rule);
 }
 .v56-shiyuan-entry-meta { font-size:12px; color:var(--v56-muted); }
-.v56-shiyuan-entry-cite { font-size:12px; color:var(--v56-muted); }
+.v56-shiyuan-entry-cite { font-size:14px; line-height:1.75; color:var(--v56-muted); overflow-wrap:anywhere; }
 
 .v56-shiyuan-unattributed { margin-top:18px; font-size:13px; }
 .v56-shiyuan-unattributed summary { cursor:pointer; color:var(--v56-muted); padding:6px 0; }
