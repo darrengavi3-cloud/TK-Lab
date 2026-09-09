@@ -30,10 +30,10 @@
     }
   ],
   "totals": {
-    "verified": 2425,
+    "verified": 2413,
     "pending": 1372,
     "disputed": 94,
-    "suppressed": 93
+    "suppressed": 105
   },
   "modules": [
     {
@@ -41,12 +41,12 @@
       "label": "人物实体",
       "total": 2444,
       "counts": {
-        "verified": 2086,
+        "verified": 2074,
         "pending": 327,
         "disputed": 14,
-        "suppressed": 17
+        "suppressed": 29
       },
-      "excludedFromStatistics": 358
+      "excludedFromStatistics": 370
     },
     {
       "key": "appointments",

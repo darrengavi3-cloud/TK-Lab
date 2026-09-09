@@ -1,0 +1,597 @@
+{
+  "schemaVersion": "V83",
+  "reviewedAt": "2026-09-09",
+  "baseScopeSha256": "19922673633e332304c80a99de31b533cef375828c57e041a8cabb4b7802a9a1",
+  "withdrawnPortraits": [
+    {
+      "portraitId": "portrait:asset:f5b8dcb7550dad3570d2",
+      "personId": "person:source:dd8a51414ff5",
+      "src": "./assets/portraits/v51/person-source-dd8a51414ff5.png"
+    },
+    {
+      "portraitId": "portrait:asset:ec696607f490622ce35c",
+      "personId": "person:source:54b1ec55b537",
+      "src": "./assets/portraits/v51/person-source-54b1ec55b537.png"
+    },
+    {
+      "portraitId": "portrait:asset:8490b29f440bc8af0e24",
+      "personId": "person:source:ef77c1e7a8f6",
+      "src": "./assets/portraits/v51/person-source-ef77c1e7a8f6.png"
+    },
+    {
+      "portraitId": "portrait:asset:6b3904281ef4003379bb",
+      "personId": "person:source:13850e2cf763",
+      "src": "./assets/portraits/v51/person-source-13850e2cf763.png"
+    },
+    {
+      "portraitId": "portrait:asset:786ea69005769057f548",
+      "personId": "person:source:994402e8e648",
+      "src": "./assets/portraits/v51/person-source-994402e8e648.png"
+    },
+    {
+      "portraitId": "portrait:asset:7e70bd04361bf790624b",
+      "personId": "person:source:ee6c75cc5e60",
+      "src": "./assets/portraits/v51/person-source-ee6c75cc5e60.png"
+    },
+    {
+      "portraitId": "portrait:asset:d27912b0aa64eac47913",
+      "personId": "person:source:60e41f08850a",
+      "src": "./assets/portraits/v51/person-source-60e41f08850a.png"
+    },
+    {
+      "portraitId": "portrait:asset:4cdd4b5e7834620eb770",
+      "personId": "person:source:64911f32eff7",
+      "src": "./assets/portraits/v51/person-source-64911f32eff7.png"
+    },
+    {
+      "portraitId": "portrait:asset:f2bb270cf521cb9bf749",
+      "personId": "person:source:6808f45cf265",
+      "src": "./assets/portraits/v51/person-source-6808f45cf265.png"
+    },
+    {
+      "portraitId": "portrait:asset:a289cd4d6b437e5a2507",
+      "personId": "person:source:9b6ac59b74f6",
+      "src": "./assets/portraits/v51/person-source-9b6ac59b74f6.png"
+    },
+    {
+      "portraitId": "portrait:asset:f64c89e0e602b06b4c50",
+      "personId": "person:wei:cao-man",
+      "src": "./assets/portraits/v51/person-source-176c2761f312.png"
+    },
+    {
+      "portraitId": "portrait:asset:6e72e9de1bd374f4b27e",
+      "personId": "person:source:471718b7b363",
+      "src": "./assets/portraits/v51/person-source-471718b7b363.png"
+    }
+  ],
+  "records": [
+    {
+      "reviewId": "identity-review:v83:1",
+      "personId": "person:source:dd8a51414ff5",
+      "name": "权加燮",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「权加燮为左将军」是孙权加士燮为左将军，「权加燮」三字跨主语与宾语，不是人名。",
+      "citations": [
+        {
+          "title": "《三国志》卷49",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷49",
+          "quote": "。，孙权遣步骘为交州刺史。骘到，燮率兄弟奉承節度。而吴巨懷異心，骘斬之。权加燮为左将军。建安末年，燮遣子廞入質，权以为武昌太守，燮、壹诸子在南者，皆拜中郎将。燮又誘导益州豪姓雍闓等，",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:dd8a51414ff5",
+          "sha256": "90887ad197cfc4c048d29021c840055c80c00f80f82b572b0458fcef6fb0f594"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:49:95665e4a700a",
+          "sha256": "573694c69cb4bd7fdb31d30dffc017fb5bb31190df7b41cca62219a97fc5d116"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:dd8a51414ff5",
+          "idField": "id",
+          "count": 1,
+          "sha256": "76f0169ce4c24a868a2071126b42a24f09fadd4dc4669fd068ada5bbda144570"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:2",
+      "personId": "person:source:54b1ec55b537",
+      "name": "全尚息",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「亮召全尚息黄门侍郎纪密谋」中「息」为子，所指是全尚之子黄门侍郎全纪，「全尚息」不是人名。",
+      "citations": [
+        {
+          "title": "《三国志》卷64",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64",
+          "quote": "江表傳曰：亮召全尚息黄门侍郎紀密謀，曰：「孙綝專勢，輕小于孤。孤見敕之，使速上岸，为唐諮等作援，而留湖中，不上岸一步。又委罪",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:54b1ec55b537",
+          "sha256": "932015ee96f8010fea268671ed7e2be045b2d49d25f0945caa4df74fcdac6712"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:64:9efb86bfe313",
+          "sha256": "1e32db1c97f9396e53d8a75d5ca64e0f975ddcebc7f070e52a6ddb3f322e63e9"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:54b1ec55b537",
+          "idField": "id",
+          "count": 1,
+          "sha256": "2a8de2e3c04b6f20833538884fc86deb5c77a589f5b0efab3092df0e79517ca4"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:3",
+      "personId": "person:source:ef77c1e7a8f6",
+      "name": "司鹽",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "司盐为职司名称，司盐校尉、司盐都尉才是完整官名。",
+      "citations": [
+        {
+          "title": "《晋书》卷076",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷076",
+          "quote": "稽。及苏峻反，允之討賊有功，封番禺县侯，邑千六百戶，除建武将军、錢唐令，领司鹽都尉。舒卒，去職。既葬，除義兴太守，以憂哀不拜，从伯导與其书曰：「太保、安豐侯以孝聞天下，不得辭司隸",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷41",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷41",
+          "quote": "不降，先主義之，不強逼也。及成都既平，以連为什邡令，转在廣都，所居有績。迁司鹽校尉，較鹽鐵之利，利入甚多，有裨国用，于是简取良才以为官属，若呂乂、杜祺、刘干，終皆至大官，自連所拔",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:ef77c1e7a8f6",
+          "sha256": "cdf82a80f3378e66894bc99fab16125be9cc89c9d0c23b37e223aaa2a0dd2f94"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:076:bb9b8cba19e0",
+          "sha256": "607e0032daeb7dbdaf4df58fb2927c221f417aab83bf7fc3498df12d72d48e79"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:41:bb48953e14d8",
+          "sha256": "38052f895d0e1fa514474cd2c565df68058737cdff3e3e646396f2ad62196b2c"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:ef77c1e7a8f6",
+          "idField": "id",
+          "count": 2,
+          "sha256": "37732d85f259d12cda0c66f5028c1c50f3b6f03f24ff5208e3ffa55460b7660b"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:4",
+      "personId": "person:source:13850e2cf763",
+      "name": "衡阳",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "衡阳是郡名，衡阳太守为完整官名。",
+      "citations": [
+        {
+          "title": "《晋书》卷090",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷090",
+          "quote": "。===軫弟烈===軫弟烈，明政事，察孝廉，曆平康、安阳令，所居有異績，迁衡阳太守。聞軫亡，因自表兄子幼弱，求去官，詔转犍为太守，蜀土榮之。后迁湘东太守，为成都王颖郎中令，病卒。",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷53",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷53",
+          "quote": "：皓遂召瑩還，为左国史。頃之，選曹尚书同郡繆祎以执意不移，为群小所疾，左迁衡阳太守。既拜，又追以職事見詰責，拜表陈谢。因過詣瑩，復为人所白，雲祎不懼罪，多将賓客會聚瑩许，乃收祎下",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:13850e2cf763",
+          "sha256": "42985d6f82100871ffa7f02d64c57c9f219b37b567259a0abd7c6382c04f189a"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:090:7dcbfb954062",
+          "sha256": "af9ef31dc67a918e6beb73b48416b2865201d7299c7b9fb92762c9a36a317f63"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:53:aecc6e086a06",
+          "sha256": "27989b22b49279667927e574e585649069a47a09e121e627adba5852cbc9552e"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:13850e2cf763",
+          "idField": "id",
+          "count": 2,
+          "sha256": "7d4b7bfb8acda59be7496fa97508749cb28e46c90d088f966e3e60294b4b2995"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:5",
+      "personId": "person:source:994402e8e648",
+      "name": "弘农",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "弘农是郡名，弘农太守为完整官名。",
+      "citations": [
+        {
+          "title": "《晋书》卷047",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷047",
+          "quote": "與东海繆施俱以时譽選入著作，撰集《魏书》。后参安东、卫军军事，转温令，再迁弘农太守，领典农校尉。所居稱職，數上书陈便宜，多所匡正。五等建，封鶉觚男。武帝为晉王，以玄为散骑常侍。及",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷23",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷23",
+          "quote": "州所請，詔拜議郎，還参州事。會以建策捕高幹，又追录前討郭援功，封武鄉侯，迁弘农太守。及马超反，幹郡近超，民人分散。超破，为汉阳太守。迁益州刺史，以道不通，黄初中，转为五官中郎将。",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:994402e8e648",
+          "sha256": "a06555524863b56564159c606fb5c3a4e83b602a7dbba3f6188258e24d39ff94"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:047:c6325dc78225",
+          "sha256": "7035aee74623e25e9a29cc8c5c2d71bc612f68069713d5e2177b76c08d631e7a"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:23:88777917d94a",
+          "sha256": "219299a67bcdb4b5234d957cdca75e57dd5a1000cfaa8959c3395cc6ca920008"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:994402e8e648",
+          "idField": "id",
+          "count": 2,
+          "sha256": "644a0458a84f01d960a58f2bafe14167674c7cf371b5af1ba070a93238b9fcbd"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:6",
+      "personId": "person:source:ee6c75cc5e60",
+      "name": "魏兴",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "魏兴是郡名，魏兴太守为完整官名。",
+      "citations": [
+        {
+          "title": "《晋书》卷081",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷081",
+          "quote": "中将军。累迁上洛太守。私牛马在郡生駒犢者，秩满悉以付官，雲是郡中所產也。转魏兴太守。惠帝末，西南夷叛，甯州刺史李毅卒，城中百餘人奉毅女固守經年。永嘉四年，治中毛孟詣京师求刺史，不",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        },
+        {
+          "title": "《三国志》卷40",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷40",
+          "quote": "。至建安末，为蜀所攻，以其郡西属。黄初中，仪復來還，詔即以兄故號加仪，因拜魏兴太守，封列侯。太和中，仪與孟達不和，數上言達有貳心于蜀，及達反，仪絕蜀道，使救不到。達死后，仪詣宛見",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:ee6c75cc5e60",
+          "sha256": "8e7d2114ac5e913c2301807ee9f26ef5b0681630894f94c39cd00b35771602f5"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:jinshu:081:d6f6cded3531",
+          "sha256": "689c071bf3b096af20561db3e7f77c94f14bb2f9d406f453d3a594b85d9a2920"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:40:01c32f6e38df",
+          "sha256": "89ba96371590aed7329ba2a749f14863d565c3d01314163fbbcae35c7997af1c"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:ee6c75cc5e60",
+          "idField": "id",
+          "count": 2,
+          "sha256": "79f0225568260aaf722a345f6cf3b90787dd2cfffb93889460f2b7551150ae6f"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:7",
+      "personId": "person:source:60e41f08850a",
+      "name": "王請观",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「太尉司马宣王请观为从事中郎」是司马懿请王观任从事中郎，「王請观」跨「宣王」与「观」两处，不是人名。",
+      "citations": [
+        {
+          "title": "《三国志》卷24",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷24",
+          "quote": "明帝幸许昌，召观为治书侍御史，典行台獄。时多有倉卒喜怒，而观不阿意順指。太尉司马宣王請观为从事中郎，迁为尚书，出为河南尹，徙少府。大将军曹爽使材官张達斫家屋材，及诸私用之物，观聞知，皆录奪以沒官",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:60e41f08850a",
+          "sha256": "309ff749605710c84ef56f7ba8351bccdcf00a7859ba17a266b20023748270a2"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:24:92099c7248fc",
+          "sha256": "081570dd073330273f2a9a7fd72fe3272cd16e792a46fd869e044b9e3245f88a"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:60e41f08850a",
+          "idField": "id",
+          "count": 1,
+          "sha256": "48879b15aad929a29e99555ede800099d467a1ff9f2b45981125348883242f3a"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:8",
+      "personId": "person:source:64911f32eff7",
+      "name": "年就加",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「明年就加为大司马」是纪年与叙述，不是人名。",
+      "citations": [
+        {
+          "title": "《三国志》卷44",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷44",
+          "quote": "君其治严，總帥诸军屯任汉中，須吴举動，东西掎角，以乘其畔。」又命琬开府，明年就加为大司马。东曹掾杨戲索性简略，琬與言論，时不应答。或欲構戲于琬，曰：「公與戲語而不見应，戲之慢上，不亦甚",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:64911f32eff7",
+          "sha256": "4358eac4b435fd5d2e412d46c457525ebdeda720de2fe4d526b20dd5fb2b2f20"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:44:1c106e4707ab",
+          "sha256": "280e816f3e6451b578dd1d566b90ef32d14c3632f26f720a632ea455541d7514"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:64911f32eff7",
+          "idField": "id",
+          "count": 1,
+          "sha256": "5e87fb60158759ec187aec6bb5067bc5cef3cba323c8846ddefb22ab23fe883c"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:9",
+      "personId": "person:source:6808f45cf265",
+      "name": "于策",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「内威不轨，于策为长」意为在策略上是长处，「于策」是介宾词组，不是人名。",
+      "citations": [
+        {
+          "title": "《三国志》卷15",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷15",
+          "quote": "蒐狩習戰之備故也。今雖五等未可復行，可令州郡并置兵，外備四夷，内威不軌，于策为长。又以为宜復井田。往者以民各有累世之业，難中奪之，是以至今。今承大亂之后，民人分散，土业無主，皆",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:6808f45cf265",
+          "sha256": "182d4aedb49fb003624a9c5214297b1630faf0ecd80a6ea196363295d103fc52"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:15:df8b655a6690",
+          "sha256": "749eb88598255be1355f331e89e91085cd514e28aa794efdff4ed34fd29fb064"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:6808f45cf265",
+          "idField": "id",
+          "count": 1,
+          "sha256": "573872b8d194959858863c948a7d6f0f185d340229376838656ba3573a87e645"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:10",
+      "personId": "person:source:9b6ac59b74f6",
+      "name": "于理",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「江表传所言，于理为长」意为在道理上是长处，「于理」是介宾词组，不是人名。",
+      "citations": [
+        {
+          "title": "《三国志》卷65",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷65",
+          "quote": "以安危易操，无緣驟拜张奕，以虧其節。且祸機既發，豈百拜所免？江表傳所言，于理为长。}",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:9b6ac59b74f6",
+          "sha256": "24255ea60a90cbdfff34f2616cb52094bbb9f6ebfbe0f729cb6c13a241c5879f"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:65:e59dabddd1db",
+          "sha256": "54006fe7148fe3c69073af43ef26b6fc22f9af430f8d5fb4483f9319aab8a3a4"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:9b6ac59b74f6",
+          "idField": "id",
+          "count": 1,
+          "sha256": "bdaa9bf24061f6371d627b46f2a4c4117598411dbb57952ed95b118aedf08aee"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:11",
+      "personId": "person:wei:cao-man",
+      "name": "曹曼",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "「公女曼为长乐郡公主」所指是山阳公之女曼，其姓非曹，且「长」截自「长乐郡公主」，非官名。",
+      "citations": [
+        {
+          "title": "《三国志》卷02",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷02",
+          "quote": "《魏书》曰：十二月丙寅，賜山阳公夫人湯沐邑，公女曼为长乐郡公主，食邑各五百戶。是冬，甘露降芳林園。臣松之按：芳林園即今华林園，齐王芳即位，改为华林。}",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:wei:cao-man",
+          "sha256": "576353f27a67cdc7da4179512e134d4b9947f0908515da5d35e47a8eec0ca0d4"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:02:207274f69cb3",
+          "sha256": "4bc4a45e690e41023030cf3f5b4030b1d82ca41ea9dc441ce6ac13537723dae2"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:wei:cao-man",
+          "idField": "id",
+          "count": 1,
+          "sha256": "1861930e4a836ee76a57c4d22d95fac388ac840b1009bd70380bf0435001bb70"
+        }
+      ]
+    },
+    {
+      "reviewId": "identity-review:v83:12",
+      "personId": "person:source:471718b7b363",
+      "name": "邵信臣",
+      "status": "verified",
+      "action": "suppress",
+      "reason": "所引为西汉召信臣「为少府于无事之世」的旧事，是典故而非汉末人物，且本作「召」不作「邵」。",
+      "citations": [
+        {
+          "title": "《三国志》卷25",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷25",
+          "quote": "卒以亡，知天期也。今年凶民饑，宜發明詔損膳減服，技巧珍玩之物，皆可罷之。昔邵信臣为少府于無事之世，而奏罷浮食；今者军用不足，益宜節度。」帝即召诸军還。后詔大議政治之不便于民者，阜議以",
+          "note": "原典定位节引；判据即本条任官原文自身的上下文，非全卷校录。"
+        }
+      ],
+      "sourceGuards": [
+        {
+          "dataset": "sourcePeople",
+          "idField": "personId",
+          "id": "person:source:471718b7b363",
+          "sha256": "a31e5f74e3a6e9577fdbbef0ff685b3ab15da0a2f0fa672cd76f8a0ec27943be"
+        },
+        {
+          "dataset": "appointments",
+          "idField": "id",
+          "id": "appointment:source:sgz:25:39d94c72c0bd",
+          "sha256": "b0464bfd924a0fc413bc81a85006f01779c6835682d1759b37d56a447ff9868a"
+        }
+      ],
+      "sourceGroupGuards": [
+        {
+          "dataset": "appointments",
+          "matchField": "personId",
+          "matchValue": "person:source:471718b7b363",
+          "idField": "id",
+          "count": 1,
+          "sha256": "35233ff6bcbe656398a6217e6470bde3f85ab4f0deccb351b7b0e3ffcde4698f"
+        }
+      ]
+    }
+  ]
+}

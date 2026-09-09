@@ -10,7 +10,8 @@
  *   三、籍贯／表字与本库引文中的自证句互证
  *   四、金石纪年四处互证（年号文字、西元年、碑名括注、释文）与释文越界
  *   五、职名字面自我重复、辖区类别与辖区名不合
- *   六、同一来源列生成多个人物实体（带 :N 重复标记者）
+ *   六、人物名目与任官切分（伪人名、残官名、繁简别名缺口）
+ *   七、同一来源列生成多个人物实体（带 :N 重复标记者）
  *
  *   node scripts/verify-historical-consistency.mjs        列出全部发现
  *   node scripts/verify-historical-consistency.mjs --strict  有发现即失败
@@ -234,6 +235,44 @@ for (const [name, record] of Object.entries(bioMap)) {
     }
     if (record.birthplace && !record.birthplace.includes(claim.place) && !claim.place.includes(record.birthplace)) {
       report('籍贯与本库引文不合', `${name}：库作「${record.birthplace}」，引文作「${claim.place}人」`);
+    }
+  }
+}
+
+/* ---------- 五之二、人物名目与任官切分 ---------- */
+/* 任官原文的切分若落在官名当中，会同时造出一个伪人名与一个残官名。
+   v73／v75／v80 已按此清理过安国、司隶、濮阳等；本段盯的是尚未清理的。 */
+{
+  const people = loadGlobal('data/v63-reader-people.js').people || [];
+  /* 名目本身不成人名 */
+  for (const person of people) {
+    const name = String(person.name || '');
+    if (/(子[二三四五六七八九十]人|[二三四五六七八九十]人|兄弟|父子|诸子|群臣)$/.test(name)) {
+      report('人物名目是集合表述而非单一人物', `${name}｜${person.personId}`);
+    }
+    if (/[?？]|名失载|名失載/.test(name)) report('人物名目含问号或自陈名失载', `${name}｜${person.personId}`);
+    if (/[\/／]/.test(name)) report('人物名目含斜线（疑异写并列或解析残留）', `${name}｜${person.personId}`);
+  }
+  /* 官名被腰斩：单字官名几乎必然是切分落在官名当中 */
+  const indexPath = path.join(root, 'data/person-source-index.json');
+  if (fs.existsSync(indexPath)) {
+    const appointments = JSON.parse(read('data/person-source-index.json')).appointments || [];
+    const live = new Set(people.map(person => person.personId));
+    for (const appointment of appointments) {
+      const office = String(appointment.officeName || '');
+      if (office.length <= 1 && live.has(appointment.personId)) {
+        report('任官原文的官名只剩单字（疑切分落在官名当中）', `${appointment.name}·「${office}」｜${appointment.sourceWork}卷${appointment.sourceVolume}｜${appointment.id}`);
+      }
+    }
+  }
+  /* 繁体姓名而别名未收简体字面：界面是简体，检索会落空 */
+  const TRADITIONAL = { 顗: '顗', 喬: '乔', 紀: '纪', 榮: '荣', 嶠: '峤', 頌: '颂', 會: '会', 憲: '宪', 賴: '赖', 義: '义', 呂: '吕', 賀: '贺', 預: '预', 闞: '阚', 鹽: '盐', 緒: '绪', 軌: '轨', 請: '请' };
+  for (const person of people) {
+    const name = String(person.name || '');
+    if (![...name].some(character => TRADITIONAL[character] && TRADITIONAL[character] !== character)) continue;
+    const simplified = [...name].map(character => TRADITIONAL[character] || character).join('');
+    if (simplified !== name && !(person.aliases || []).includes(simplified)) {
+      report('繁体姓名而别名未收简体字面（检索会落空）', `${name}（简体作「${simplified}」）｜${person.personId}`);
     }
   }
 }

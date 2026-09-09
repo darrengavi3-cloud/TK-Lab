@@ -40,9 +40,12 @@ assert(candidateRows.every(row => row.dynasty === '魏'), 'V70 候选混入魏�
 assert(candidateRows.every(row => /^person:(?!unresolved:)/.test(row.personId || '')), 'V70 候选含不稳定或 unresolved personId');
 assert(v70Assets.length === 50, `V70 manifest 资源应为 50 项，实际 ${v70Assets.length}`);
 assert(manifest.summary?.v70PortraitRecords === 50, 'manifest 未登记 50 项 V70 资源');
-assert(assets.length === 512, `当前审定总立绘应为 512 项，实际 ${assets.length}`);
-assert((registry.summary?.portraitAssets || 0) === 512, '人物注册表立绘总数未同步为 512');
-assert((registry.portraitResolutions || []).length === 512, '人物注册表立绘解析数未同步为 512');
+  /* 2026-09 第十批：v83 身份审定批次抑制十二条由任官原文误切而成的伪人物
+     （权加燮、全尚息、司盐、衡阳、弘农、魏兴、王請观、年就加、于策、于理、
+     曹曼、邵信臣），并撤回其十二张立绘。以下计数随之更新。 */
+assert(assets.length === 500, `当前审定总立绘应为 500 项，实际 ${assets.length}`);
+assert((registry.summary?.portraitAssets || 0) === 500, '人物注册表立绘总数未同步为 500');
+assert((registry.portraitResolutions || []).length === 500, '人物注册表立绘解析数未同步为 500');
 
 const candidateIds = new Set();
 const candidateNames = new Set();
