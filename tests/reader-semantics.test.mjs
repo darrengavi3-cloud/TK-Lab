@@ -453,7 +453,11 @@ test('Tai Shi corrections preserve source years and reject stale or ambiguous re
     assert.deepEqual(actual.transcriptionReferences.at(-1), review.source);
   }
   const unchanged = rows.filter(r => !corrected.has(r.id)).map(r => [r.id,r.year ?? null,r.yearText || '']).sort((a,b) => a[0].localeCompare(b[0]));
-  assert.equal(sourceDigest(unchanged), '6210bbcf3a6feca66394a04b5bc20867383f642c4637b16ce66bc045d6885b0c');
+  /* 冻结摘要：v72 审定表以外的金石纪年不得被悄悄改动。
+     2026-09 因一处确证改正而更新：wu-dingfeng-contract 的 year 原作 269（建衡元年），
+     与其 yearText「建衡三年」不合；《三国志》卷55 丁奉传「建衡元年……三年，卒」，
+     故改为 271。除该条外本表未动。 */
+  assert.equal(sourceDigest(unchanged), '046a72dfe54796207fc70ac7b5767b5a6e9495f5435c7372286d820a8eef9717');
 });
 
 test('the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate', () => {

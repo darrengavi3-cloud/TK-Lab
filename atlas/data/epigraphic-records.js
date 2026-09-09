@@ -101,7 +101,10 @@
     record('wu-ch-wu-mirror','赤乌十四年会稽师袁宜镜铭','器物铭',251,'赤乌十四年','吴',{
       sourceDocument:sourceDoc.wu, researchStatus:'推定', confidence:'推定', place:'会稽上虞', people:'师袁宜', form:'铜镜', bibliography:'《孙吴金石录》'
     }),
-    record('wu-dingfeng-contract','丁奉墓地券','地券',269,'建衡三年','吴',{
+    /* 校记（第九批）：year 原作 269，即建衡元年；而 yearText 为建衡三年，
+       当作 271。本库语料《三国志》卷55 丁奉传自证：「建衡元年，奉复帅众治徐塘，
+       因攻晋谷阳……三年，卒。」建衡元年 269，三年即 271。 */
+    record('wu-dingfeng-contract','丁奉墓地券','地券',271,'建衡三年','吴',{
       sourceDocument:sourceDoc.wu, researchStatus:'推定', confidence:'推定', place:'丁奉墓', people:'丁奉',
       offices:'使持节、左军师、右大司马、徐州牧、左护军、无难右部都督、大将军、安丰侯', form:'墓地契券', bibliography:'《孙吴金石录》'
     }),
