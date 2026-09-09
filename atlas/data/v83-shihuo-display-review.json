@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "version": "V83",
+  "reviewedAt": "2026-09-08",
+  "sourceSha256": "392a684eb1df662a514d9ae24a5c3c71a16eece2e4859bba6b6bd6ca5ffa1ba0",
+  "policy": "仅变更读者展示；原始条目、rawRecord、研究依据完整保留。展示处置不升级其他事实审定。",
+  "records": [
+    {
+      "id": "sh_263_hukou_wu",
+      "action": "withdraw",
+      "reason": "现有V65审定明确无可定位原典；从记录、编年和户口三处读者投影一并撤回。"
+    },
+    {
+      "id": "sh_263_hukou_wei",
+      "action": "separate",
+      "readingClass": "discussion",
+      "reason": "后世合计相减所得，非魏本部独立户籍记载。",
+      "discussion": "推算所用合计数与亡国簿的时点、疆域口径不能独立核验；不计入比例图。"
+    },
+    {
+      "id": "sh_227_cangci",
+      "action": "correct",
+      "reason": "本传仅记太和中迁敦煌太守，割赋发生年未定。撤回227年确定值及未经区分的现代评价。",
+      "display": {
+        "year": null,
+        "yearText": "太和中迁任，割赋年份未详",
+        "detail": "仓慈太和中迁敦煌太守。面对大族田地有余、小民无地的情形，随口割赋，稍使偿其本直。",
+        "discussion": ""
+      },
+      "citations": [
+        {
+          "title": "《三国志》卷十六·仓慈传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷16#倉慈",
+          "quote": "太和中，迁敦煌太守。……旧大族田地有餘，而小民无立锥之土；慈皆随口割赋，稍稍使毕其本直。",
+          "note": "定位节引。太和中为迁任时段，不直接确定割赋发生年；原典未使用现代阶级评价。"
+        }
+      ]
+    },
+    {
+      "id": "sh_253_wu_bing",
+      "action": "correct",
+      "reason": "保留本传所记二十万，不将全军三十万推算及现代负担评价混入事实。",
+      "display": {
+        "detail": "建兴二年，诸葛恪违众出军，大发州郡二十万众，后围合肥新城。"
+      },
+      "discussion": "旧整理曾推计连同留守者不少于三十万；本传此处没有给出这一总数，不作为兵额事实或统计输入。",
+      "citations": [
+        {
+          "title": "《三国志》卷六十四·诸葛恪传",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷64#諸葛恪",
+          "quote": "於是違眾出軍，大發州郡二十萬眾，百姓騷動，始失人心。",
+          "note": "原典记载出征所发人数；不得自动扩成吴国全部兵额。"
+        }
+      ]
+    },
+    {
+      "id": "sh_231_shibing",
+      "action": "separate",
+      "readingClass": "discussion",
+      "reason": "郭冲五事叙事附有裴松之明确驳难；不得视作已核军额。",
+      "display": {
+        "title": "祁山兵额异说",
+        "detail": "裴注引郭冲五事有在者八万之说，裴松之随文驳难其行军、休兵等叙事。"
+      },
+      "discussion": "八万属于有争议的叙事数字；十万为旧整理推算。两者均不作为确定兵额，不进入数量比较。",
+      "citations": [
+        {
+          "title": "《三国志》卷三十五·诸葛亮传裴注",
+          "url": "https://zh.wikisource.org/wiki/三國志/卷35",
+          "quote": "亮時在祁山，旌旗利器，守在險要，十二更下，在者八萬。……難曰：臣松之案：……皆非經通之言。",
+          "note": "郭冲说与裴松之驳难一并标示；本次只作展示降级，不核准军额。"
+        }
+      ]
+    }
+  ]
+}

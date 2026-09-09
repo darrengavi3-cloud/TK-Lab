@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* The iframe owns atlas styling; scan only the React shell for utilities. */
+@import "tailwindcss" source("./");
 @import "../atlas/assets/ui/tokens.css";
 
 html,

@@ -17,3 +17,20 @@ export function serializeRouteHash(module,params){
   const query=params instanceof URLSearchParams?params.toString():new URLSearchParams(params||{}).toString();
   return '#'+safeModule+(query?'?'+query:'');
 }
+
+// Only UI state is retained, never copies of historical records.
+export function createReadingTrail(limit=20){
+  const entries=[];
+  return {
+    remember(hash,label,scrollY=0){
+      if(!validRouteHashForTrail(hash)||entries.at(-1)?.hash===hash)return;
+      entries.push({hash,label,scrollY:Math.max(0,Number(scrollY)||0)});
+      if(entries.length>limit)entries.shift();
+    },
+    peek(){return entries.at(-1)||null;},
+    take(){return entries.pop()||null;}
+  };
+}
+function validRouteHashForTrail(hash){
+  return typeof hash==='string'&&/^#(?:offices|people|battle|fangzhen|jinshi|shihuo|map)(?:\?|$)/.test(hash);
+}

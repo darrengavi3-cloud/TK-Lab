@@ -1,3 +1,4 @@
+import { loadShihuoPublication } from './shihuo-publication.mjs';
 import { readReleaseConfig } from './release-config.mjs';
 import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
@@ -25,6 +26,7 @@ const bannedRuntimeFiles = new Set([
   ...[...config.identityReviewBatches, ...config.appointmentReviewBatches,
     ...config.appointmentSupplementBatches.flatMap(batch => [batch.evidence, batch.decisions])].map(name => `data/${name}`),
   'data/release-config.json',
+  'data/v83-shihuo-display-review.json',
   'data/person-source-index.js',
   'data/v71-appointment-review.json',
   'data/v74-appointment-supplements.json',
@@ -156,10 +158,10 @@ const epigraphicFields = [
 ];
 const personLifeEventFields = ['eventId','personId','eventType','startYear','endYear','title','detail','relatedRecordId','citations'];
 const battlePersonLinkFields = ['linkId','recordId','personId','name','side','role'];
-const shihuoRecordFields = ['id','year','polity','category','title','detail','recordKind','scope','readerSummary'];
+const shihuoRecordFields = ['id','year','polity','category','title','detail','recordKind','scope','readerSummary','yearText','sourceTitle','citations','readingClass','discussion'];
 const shihuoHouseholdFields = [
   'id','recordId','year','polity','label','households','population','note','statisticalUnit','regionScope',
-  'populationDefinition','dataNature','comparability','recordKind','scope','comparable'
+  'populationDefinition','dataNature','comparability','recordKind','scope','comparable','sourceTitle','citations','readingClass','discussion'
 ];
 
 const portraitFields = [
@@ -778,7 +780,7 @@ if (Number(v69BattleLinkPayload.summary.records) !== 62) fail('V69 战事人物�
 assertNoBannedPayloadKeys(v69BattleLinkPayload);
 registerProjection('data/v69-battle-person-links.js', assignment('SGZ_V69_BATTLE_PERSON_LINKS', v69BattleLinkPayload));
 
-const shihuoSource = runtimeGlobal('data/shihuo-records.js', 'SGZ_SHIHUO_DATA');
+const shihuoSource = loadShihuoPublication(root, runtimeGlobal('data/shihuo-records.js', 'SGZ_SHIHUO_DATA'));
 registerProjection('data/shihuo-records.js', assignment('SGZ_SHIHUO_DATA', {
   schemaVersion: shihuoSource.schemaVersion,
   metricsSchemaVersion: shihuoSource.metricsSchemaVersion,

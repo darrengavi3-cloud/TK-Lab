@@ -323,7 +323,9 @@ assert(v61Peerage.length === 525 && v61Peerage.reduce((total, row) => total + ro
 /* 人物前台只保留统一名录，旧 dataset 参数自然忽略。 */
 assert(html.includes('personRegistry') && !html.includes('V60 全量人物') && !html.includes('260 年人物纪') && !html.includes('曹魏封爵人物'), '人物记仍把后台来源拆成前台专题卡');
 assert(!html.includes('peopleDataset') && !/\b(?:get|set|delete)\(['"]dataset['"]\)/.test(html), '人物记仍保留 dataset 筛选状态或 URL 契约');
-assert(/peopleView==='snapshot'[^>]*>时期官署</.test(html) && !/peopleView==='snapshot'[^>]*>快照</.test(html), '人物记的原“快照”视图未改名为“时期官署”');
+// V83: the same roster moved into office holders; preserve content and old deep links.
+const holderMarkup=html.slice(html.indexOf('<el-drawer v-model="showOfficials"'),html.indexOf('<el-drawer v-model="showStats"'));
+assert(holderMarkup.includes('213／220时期官署') && holderMarkup.includes('filteredPeriodOfficeSnapshots') && holderMarkup.includes('openPeopleDetailFromSnapshot(item)') && html.includes("await openOfficeHolders('archive')") && !/peopleView==='snapshot'[^>]*>快照</.test(html), '时期官署迁移后缺少原有名录、人物返链或旧快照链接兼容');
 
 /* 533 条州镇的分期治所处置与纯净读者投影。 */
 const seatRows = rowsOf(seatAudit);

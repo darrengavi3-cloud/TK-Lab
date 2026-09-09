@@ -108,9 +108,9 @@
     "firstScreenSheetJs": 0,
     "explicitCodeIdentifierExceptions": 3
   },
-  "fileCount": 597,
-  "totalBytes": 205645495,
-  "aggregateSha256": "1a398d74b43a8375bad96ad7bed31493a5e6b947a7508891153a84acce2fba6e",
+  "fileCount": 598,
+  "totalBytes": 205671587,
+  "aggregateSha256": "e22de0b087e211188655ec998478461942377a751a32b264073067b337832a68",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -149,8 +149,8 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 4072,
-      "sha256": "2c376631c73a567d8e200202c2055b86f3dfc67c23f8cd00060dbb8a9bc6afd5"
+      "bytes": 4892,
+      "sha256": "68e79cc1ca1a2b75bb0bcff66513b59c5b057ff7dfc4ce6d33e8de2bb5b8e037"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -159,8 +159,13 @@
     },
     {
       "path": "assets/app/shell.js",
-      "bytes": 850,
-      "sha256": "01c53c73bf508611c7fdaa3bf7c104260f5129f45e30a9edaa161c4d98e0221e"
+      "bytes": 1473,
+      "sha256": "7c1fae184b9e1c5e0af381a375104b464368b9e89aa022865a89ae85dd9c0fac"
+    },
+    {
+      "path": "assets/app/shihuo.js",
+      "bytes": 1294,
+      "sha256": "4d4171d7e24d930b9420be2f7c2cb3de652563d7fcdfa5d4c7242671fc0c79b7"
     },
     {
       "path": "assets/map/css/style.css",
@@ -2914,13 +2919,13 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 80327,
-      "sha256": "490d3a41faa7a3b7f9fc52143ceae0accdc228f82878e393df48db1df6f696a5"
+      "bytes": 85987,
+      "sha256": "402fdbf9d715fb3af564fa5ac873e283ba71cbae43d13b3bd6ce993f8bad12f7"
     },
     {
       "path": "assets/ui/responsive.css",
-      "bytes": 3207,
-      "sha256": "7edddfd8fc9b4c6c054362c7fcd8167d7141b516249a80c49a4db98c59776c32"
+      "bytes": 6590,
+      "sha256": "1fa4f18aa6165d42ad8941b7a484fef945a3d2af29e11d66b50510673f58ca44"
     },
     {
       "path": "assets/ui/tokens.css",
@@ -3034,8 +3039,8 @@
     },
     {
       "path": "data/shihuo-records.js",
-      "bytes": 39520,
-      "sha256": "00e55681a59035a6209020a54ea5686de5f7faecee0cf3b4d2fd65f5f97f80fc"
+      "bytes": 51655,
+      "sha256": "b9b7ad108495730aff80772d50a22f13822c0733189732380cddebec1c5c74f3"
     },
     {
       "path": "data/v62-jinshi-display.js",
@@ -3045,12 +3050,12 @@
     {
       "path": "data/v63-reader-people.js",
       "bytes": 428367,
-      "sha256": "423db89ddb7b9e7949457cfd166ea39375b04340e15906ab9334c22cec043a0b"
+      "sha256": "ac75fa11bca91b895a1ff182f68cce7aa73d023086b98d7cc8daf94031b03f50"
     },
     {
       "path": "data/v63-reader-people.json",
       "bytes": 590658,
-      "sha256": "9f55b2a490da24823a614f453fb41d47f64baad7ba6f3a461e0029131598407d"
+      "sha256": "847617e33ea8f0e4a504620b4ca08300a7c83fbc2a55afb1c8e5298fd168bfbf"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -3090,12 +3095,12 @@
     {
       "path": "data/v73-review-status-ledger.js",
       "bytes": 1808,
-      "sha256": "306682b56a618bf40b0adce25bb35b0367faefef7c40764839655693925a4c10"
+      "sha256": "882bd1ea2b592a6bb8b842446f8f6e0241513ceb8b7f217b2632806a53f18da3"
     },
     {
       "path": "index.html",
-      "bytes": 771995,
-      "sha256": "db01d004f9ef0a3595ae824dacaada9fb1d402bd28a6b9d8f20e0b19c46cac3d"
+      "bytes": 774172,
+      "sha256": "44abf452d05a826fba9a2b4159ee9409e362c207050b0810988bc4aca48ae1d5"
     }
   ]
 }

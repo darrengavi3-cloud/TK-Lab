@@ -1,6 +1,16 @@
 (function (global) {
   'use strict';
   global.SGZ_READER_COMPONENTS = Object.freeze({
+    ShihuoReadingDetail: {
+      props: ['record'],
+      template: `<article class="v83-food-detail">
+        <header><p>{{record.polity}} · {{record.yearText||record.year||'年代未详'}}</p><h2>{{record.title}}</h2><span>{{record.category}}</span></header>
+        <p class="v83-food-text">{{record.detail}}</p>
+        <p v-if="record.readingClass==='discussion'" class="reader-quiet-note">本条为推算或有争议的记述，不作为确定数量。</p>
+        <details v-if="record.discussion" class="v83-discussion"><summary>推算与讨论</summary><p>{{record.discussion}}</p></details>
+        <section class="v83-food-source"><h3>出处</h3><p>{{record.sourceTitle||'出处尚待补充'}}</p><reader-citations :citations="record.citations||[]"/></section>
+      </article>`
+    },
     ReaderPortrait: {
       props: { src: String, alt: String, detail: Boolean },
       data() { return { failedVariant: false }; },
@@ -17,7 +27,7 @@
         <h3>原典回查 <small>{{citations.length}} 条引文</small></h3>
         <details v-for="(citation,index) in citations" :key="citation.url+'|'+index">
           <summary><span>{{citation.title}}</span><small class="reader-citation-expand">展开节录</small><small class="reader-citation-collapse">收起节录</small></summary>
-          <blockquote>{{citation.quote}}</blockquote>
+          <blockquote v-if="citation.quote">{{citation.quote}}</blockquote>
           <p v-if="citation.note">{{citation.note}}</p>
           <a :href="citation.url" target="_blank" rel="noopener noreferrer">阅读原典全文 ↗</a>
         </details>

@@ -3,19 +3,19 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 917,
-  "totalBytes": 353451315,
-  "aggregateSha256": "2536b5431f63dec657cdec5c558864e3df05a9bda99113158ef2ed37d4bb5900",
+  "fileCount": 920,
+  "totalBytes": 353476458,
+  "aggregateSha256": "a25dcaa38711b871f1fae99043d4e85d0fe0a26b66e2ccd5d79937c165f0085c",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 20818,
-      "sha256": "648a10d3e6b052a93999745a18fffad581a6f2dc8e705a4f07682035ef02d61d"
+      "bytes": 23506,
+      "sha256": "76041fc6f5f0a40067c6dc2092a66b911c397f3a3e504d547755856d3781b87c"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 26264,
-      "sha256": "335b6d8d51362a72435c9e6d31fef715280c705db5ffb136f5cf8c78c1b02080"
+      "bytes": 28652,
+      "sha256": "1b506f5c8a00ebf8b64d0525126ed57432c50972d8852d9f73d11192d6cd641c"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -54,13 +54,13 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 4072,
-      "sha256": "2c376631c73a567d8e200202c2055b86f3dfc67c23f8cd00060dbb8a9bc6afd5"
+      "bytes": 4892,
+      "sha256": "68e79cc1ca1a2b75bb0bcff66513b59c5b057ff7dfc4ce6d33e8de2bb5b8e037"
     },
     {
       "path": "assets/app/release-version.js",
       "bytes": 38,
-      "sha256": "32f1351461f68ddf1be018b3c63974a62ff4a66749e3765578861afe97a80945"
+      "sha256": "a94827daa5f076f9c682b409c1444614abf804aea770432f2dbcbb6615068684"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -69,8 +69,13 @@
     },
     {
       "path": "assets/app/shell.js",
-      "bytes": 850,
-      "sha256": "01c53c73bf508611c7fdaa3bf7c104260f5129f45e30a9edaa161c4d98e0221e"
+      "bytes": 1473,
+      "sha256": "7c1fae184b9e1c5e0af381a375104b464368b9e89aa022865a89ae85dd9c0fac"
+    },
+    {
+      "path": "assets/app/shihuo.js",
+      "bytes": 1294,
+      "sha256": "4d4171d7e24d930b9420be2f7c2cb3de652563d7fcdfa5d4c7242671fc0c79b7"
     },
     {
       "path": "assets/map/css/style.css",
@@ -3174,13 +3179,13 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 80327,
-      "sha256": "490d3a41faa7a3b7f9fc52143ceae0accdc228f82878e393df48db1df6f696a5"
+      "bytes": 85987,
+      "sha256": "402fdbf9d715fb3af564fa5ac873e283ba71cbae43d13b3bd6ce993f8bad12f7"
     },
     {
       "path": "assets/ui/responsive.css",
-      "bytes": 3207,
-      "sha256": "7edddfd8fc9b4c6c054362c7fcd8167d7141b516249a80c49a4db98c59776c32"
+      "bytes": 6590,
+      "sha256": "1fa4f18aa6165d42ad8941b7a484fef945a3d2af29e11d66b50510673f58ca44"
     },
     {
       "path": "assets/ui/tokens.css",
@@ -3465,7 +3470,7 @@
     {
       "path": "data/release-config.json",
       "bytes": 1152,
-      "sha256": "caf58719376b872e2b27564adf594a983e09d7e37bb840dbf5b416d36ed680ec"
+      "sha256": "d031601d5834181705b517e430e6f1ce6fa4d96ab55d485ae11ae152a903f396"
     },
     {
       "path": "data/research-candidates.js",
@@ -3705,22 +3710,22 @@
     {
       "path": "data/v63-person-registry.js",
       "bytes": 7421288,
-      "sha256": "048ef6a33b5407d99eb84ef8c4859ab571d2af3d9c5e1f59ce6c829a8ca6d390"
+      "sha256": "40d263fef74790ee6bec7172ffd8a0333968a52409067a747f1d10be20b2e400"
     },
     {
       "path": "data/v63-person-registry.json",
       "bytes": 11337298,
-      "sha256": "c1a912c285236c50f5e2543966ad7d868af0b7a24d3d776c21e9b1290f403e54"
+      "sha256": "da55ede6be795703b92ad1a8e05e1a4e72d3fefb4e9200dc1d8c9aed627470a6"
     },
     {
       "path": "data/v63-reader-people.js",
       "bytes": 428367,
-      "sha256": "423db89ddb7b9e7949457cfd166ea39375b04340e15906ab9334c22cec043a0b"
+      "sha256": "ac75fa11bca91b895a1ff182f68cce7aa73d023086b98d7cc8daf94031b03f50"
     },
     {
       "path": "data/v63-reader-people.json",
       "bytes": 590658,
-      "sha256": "9f55b2a490da24823a614f453fb41d47f64baad7ba6f3a461e0029131598407d"
+      "sha256": "847617e33ea8f0e4a504620b4ca08300a7c83fbc2a55afb1c8e5298fd168bfbf"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -4078,6 +4083,11 @@
       "sha256": "45062031249310d4b4444c5dbab210293cb82577e4391f6b918e2a8182aa2bc8"
     },
     {
+      "path": "data/v83-shihuo-display-review.json",
+      "bytes": 3615,
+      "sha256": "98e2bc72f320c45093e41ca47e8f132e3a82347282d15b5018c6b1d7c05b6752"
+    },
+    {
       "path": "data/wikipedia-commandery-audit.json",
       "bytes": 3623,
       "sha256": "c67cc22336eae70d1f533295baf592298f8ea9a1d531b9c9e15dff04579aca3a"
@@ -4109,8 +4119,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 780965,
-      "sha256": "07a3d111e1b0da556094ef4fd27cc64586b914a94407c64ad37f361f2bcef0cf"
+      "bytes": 783016,
+      "sha256": "f99538652b4421dde579759f9b9e88d3915353ab078aef9916575dcc4403381a"
     },
     {
       "path": "scripts/appointment-publication.mjs",
@@ -4174,8 +4184,8 @@
     },
     {
       "path": "scripts/build-reader-bundle.mjs",
-      "bytes": 71202,
-      "sha256": "f08ded226eff091cb3fcf023e2cf967a580bb4a26491bf0ef266a82d589df5fd"
+      "bytes": 71457,
+      "sha256": "6516c6e3804d10afcd9715e9a28eeecfe8dfe7b834f159f13ac8e9e90bd167ab"
     },
     {
       "path": "scripts/build-release-summary.mjs",
@@ -4388,6 +4398,11 @@
       "sha256": "f9aed84e5717796664962039f871b6ab75bf40f714bc4da8a8502b76682948c4"
     },
     {
+      "path": "scripts/shihuo-publication.mjs",
+      "bytes": 1966,
+      "sha256": "cc5b0a2c0c22d98973ab4e26991909d81c7c34222daa95191d5635db1d2d0aaf"
+    },
+    {
       "path": "scripts/verify-historical-model.mjs",
       "bytes": 6725,
       "sha256": "74450528d9c5ea9e426898f49e7f5e22d59a1c8b9b8cec9567455d02afe25c26"
@@ -4559,8 +4574,8 @@
     },
     {
       "path": "scripts/verify-v66.mjs",
-      "bytes": 34348,
-      "sha256": "23be30a313bc738a3ee3c010b53e529d8fbd1831c6473dda5972e00408223a72"
+      "bytes": 34748,
+      "sha256": "8d11492f4fc11ca2ce74ff3ee03d2d5678d7f5c39393b65609ff7adec45574e7"
     },
     {
       "path": "scripts/verify-v67.mjs",
