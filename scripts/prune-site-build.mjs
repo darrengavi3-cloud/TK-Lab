@@ -142,6 +142,42 @@ for (const relativePath of runtimePortraits) {
 fs.writeFileSync(path.join(legacyRoot, 'data/portrait-variants.js'),
   `window.SGZ_PORTRAIT_VARIANTS=${JSON.stringify(portraitVariants)};\n`);
 
+// 界面装饰图此前不在压缩范围内：court-ink-palace.png 有 1.9 MB，却只作为
+// 低透明度题头底纹压在 78—96% 不透明的渐层之下。按其实际可见度转成 webp，
+// 并同步改写产物 CSS 中的引用；规范源保留原 PNG 不动。
+let optimizedDecorations = 0;
+let optimizedDecorationBytes = 0;
+const decorationRoot = path.join(legacyRoot, 'assets', 'ui');
+if (fs.existsSync(decorationRoot)) {
+  const decorations = fs.readdirSync(decorationRoot).filter(name => /\.png$/i.test(name));
+  const cssFiles = fs.existsSync(decorationRoot)
+    ? fs.readdirSync(decorationRoot).filter(name => /\.css$/i.test(name)).map(name => path.join(decorationRoot, name))
+    : [];
+  for (const name of decorations) {
+    const filePath = path.join(decorationRoot, name);
+    const input = fs.readFileSync(filePath);
+    const webpName = name.replace(/\.png$/i, '.webp');
+    const output = await sharp(input, { failOn: 'error' })
+      .resize({ width: 1600, withoutEnlargement: true })
+      .webp({ quality: 72 })
+      .toBuffer();
+    if (output.length >= input.length) continue;
+    fs.writeFileSync(path.join(decorationRoot, webpName), output);
+    fs.rmSync(filePath);
+    for (const cssPath of cssFiles) {
+      const before = fs.readFileSync(cssPath, 'utf8');
+      const after = before.split(name).join(webpName);
+      if (after !== before) fs.writeFileSync(cssPath, after);
+    }
+    optimizedDecorations += 1;
+    optimizedDecorationBytes += input.length - output.length;
+  }
+  const stillReferenced = cssFiles.some(cssPath => /\.png\b/i.test(fs.readFileSync(cssPath, 'utf8')));
+  if (stillReferenced) {
+    throw new Error('产物 CSS 仍引用已移除的 PNG 装饰图，检查 url() 改写。');
+  }
+}
+
 const deploymentRoot = path.join(projectRoot, 'dist');
 const deploymentManifestPath = path.join(deploymentRoot, 'deployment-manifest.json');
 const releaseMetadataRoot = path.join(projectRoot, 'release-metadata');
@@ -175,5 +211,5 @@ fs.mkdirSync(releaseMetadataRoot, { recursive: true });
 fs.copyFileSync(deploymentManifestPath, path.join(releaseMetadataRoot, 'deployment-manifest.json'));
 
 console.log(
-  `Sites build pruned: kept ${runtimePortraits.size} runtime portraits; removed ${removedFiles} files (${removedBytes} bytes); optimized ${optimizedPortraits} portraits (${optimizedBytes} bytes); deployment manifest ${deploymentFiles.length} files (${aggregateSha256}).`,
+  `Sites build pruned: kept ${runtimePortraits.size} runtime portraits; removed ${removedFiles} files (${removedBytes} bytes); optimized ${optimizedPortraits} portraits (${optimizedBytes} bytes); optimized ${optimizedDecorations} ui decorations (${optimizedDecorationBytes} bytes); deployment manifest ${deploymentFiles.length} files (${aggregateSha256}).`,
 );
