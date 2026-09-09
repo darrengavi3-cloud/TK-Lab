@@ -111,10 +111,10 @@ test('reviewed identities extend the frozen roster without losing ids or publish
   const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
   const expectedIds = new Set([...base.people.map(row => row.personId), ...additions]);
   expectedIds.delete('person:source:032cc177a216');
-  /* v83（2026-09）：抑制十二条由任官原文误切而成的伪人物——权加燮、全尚息、
+  /* v85（2026-09）：抑制十二条由任官原文误切而成的伪人物——权加燮、全尚息、
      司盐、衡阳、弘农、魏兴、王請观、年就加、于策、于理、曹曼、邵信臣。
-     判据即各该条任官原文自身的上下文，见 v83-person-identity-suppressions.json。 */
-  for (const batch of ['v75-person-identity-suppressions', 'v80-person-identity-suppressions', 'v83-person-identity-suppressions']) {
+     判据即各该条任官原文自身的上下文，见 v85-person-identity-suppressions.json。 */
+  for (const batch of ['v75-person-identity-suppressions', 'v80-person-identity-suppressions', 'v85-person-identity-suppressions']) {
     for (const row of json(batch).records) expectedIds.delete(row.personId);
   }
   assert.deepEqual(new Set(roster.map(row => row.personId)), expectedIds);
