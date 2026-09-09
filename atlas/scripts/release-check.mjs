@@ -146,6 +146,8 @@ const currentValidators = Array.from(new Set([
   'verify-map-data.mjs',
   'verify-historical-model.mjs',
   'verify-research-model.mjs',
+  /* 史实一致性：只做库内互证，不引入外部史源。非 strict，发现即列出供覆核。 */
+  'verify-historical-consistency.mjs',
   'verify-v63.mjs',
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v64(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
   ...fs.readdirSync(scriptDir).filter(fileName => /^verify-v65(?:[-.].*)?\.mjs$/.test(fileName)).sort(),
