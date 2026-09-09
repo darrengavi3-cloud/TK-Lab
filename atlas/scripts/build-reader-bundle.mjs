@@ -908,9 +908,11 @@ fs.rmSync(stagingPath, { recursive: true, force: true });
 fs.mkdirSync(stagingPath, { recursive: true });
 
 let html = fs.readFileSync(sourceHtmlPath, 'utf8');
-html = html.replace(/<script\s+src=["']([^"']+)["']\s*><\/script>/g, (tag, rawReference) => {
+/* 标签形态不再假定「<script src=…>」恰好只有一个属性：审校数据的剔除是读者包的
+   隐私边界，不该因为头部脚本多了个 defer 就整段失配。前后属性原样保留。 */
+html = html.replace(/<script\b([^>]*?)\ssrc=["']([^"']+)["']([^>]*)><\/script>/g, (tag, before, rawReference, after) => {
   const reference = normalizeLocalReference(rawReference);
-  if (reference === 'data/v62-jin-fangzhen.js') return '<script src="./data/v62-jin-fangzhen-reader.js"></script>';
+  if (reference === 'data/v62-jin-fangzhen.js') return `<script${before} src="./data/v62-jin-fangzhen-reader.js"${after}></script>`;
   if (reference === 'assets/map/data/hydronym-audit.js') return '';
   if (bannedRuntimeFiles.has(reference)) return '';
   return tag;
@@ -1009,7 +1011,7 @@ const readerBootstrap = `<script>
 </script>`;
 html = html.replace('</head>', `${readerBootstrap}\n<meta name="sgz-build" content="reader" />\n</head>`);
 html = html.replace("  if (typeof XLSX === 'undefined') missing.push('SheetJS(xlsx)');\n", '');
-html = html.replace(/<script\s+src=["']\.\/assets\/vendor\/xlsx\/xlsx\.full\.min\.js["']\s*><\/script>\s*/g, '');
+html = html.replace(/<script\b[^>]*\ssrc=["']\.\/assets\/vendor\/xlsx\/xlsx\.full\.min\.js["'][^>]*><\/script>\s*/g, '');
 writeText(path.join(stagingPath, 'index.html'), html);
 
 for (const relative of mapRuntimeSourceFiles) {

@@ -345,5 +345,10 @@ const payload = {
 };
 
 fs.writeFileSync(path.join(root, 'data/v65-general-title-research.json'), `${JSON.stringify(payload, null, 2)}\n`);
-fs.writeFileSync(path.join(root, 'data/v65-general-title-research.js'), `(function(global){\n  'use strict';\n  global.SGZ_V65_GENERAL_TITLE_RESEARCH = Object.freeze(${JSON.stringify(payload)});\n})(window);\n`);
+/* 不再产出 .js 形态。这份将军名号检索台账是纯审校产物：index.html 从不载入它，
+   读者包、便携版与 reader-boundary 测试都把它列为禁运档，而唯一读过 .js 的是
+   verify-v65-research 的「JS 与 JSON 一致」断言——生成它只为了证明它等于 JSON、
+   且永不出货。16.4 MB 的闭环。改由该校验器断言 .js 不存在：不存在比不一致更强。 */
+const legacyGeneralTitleJs = path.join(root, 'data/v65-general-title-research.js');
+if (fs.existsSync(legacyGeneralTitleJs)) fs.rmSync(legacyGeneralTitleJs);
 console.log(JSON.stringify(payload.summary, null, 2));
