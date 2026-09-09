@@ -242,5 +242,8 @@ const payload = {
 
 const jsonText = `${JSON.stringify(payload, null, 2)}\n`;
 fs.writeFileSync(path.join(root, 'data/v65-volume-review.json'), jsonText);
-fs.writeFileSync(path.join(root, 'data/v65-volume-review.js'), `(function(global){\n  'use strict';\n  global.SGZ_V65_VOLUME_REVIEW = Object.freeze(${JSON.stringify(payload)});\n})(window);\n`);
+/* 与将军名号台账同理：卷次台账也是纯审校产物，界面从不载入，.js 只服务于一条
+   与 JSON 的相等断言。停产该形态，改由校验器断言其不存在。 */
+const legacyVolumeReviewJs = path.join(root, 'data/v65-volume-review.js');
+if (fs.existsSync(legacyVolumeReviewJs)) fs.rmSync(legacyVolumeReviewJs);
 console.log(JSON.stringify(payload.summary, null, 2));

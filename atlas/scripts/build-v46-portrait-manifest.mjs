@@ -625,7 +625,60 @@ const { manifest, catalog } = v62BuildManifest();
 if (process.env.SGZ_PORTRAIT_SKIP_JSON !== '1') {
   fs.writeFileSync(path.join(dataDir, 'portrait-manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
 }
-fs.writeFileSync(path.join(dataDir, 'portrait-manifest.js'), `window.SGZ_PERSON_PORTRAIT_MANIFEST=${JSON.stringify(manifest)};\n`, 'utf8');
+/* byPersonId 与 byName 把 assetsById 的整条资源记录各再抄一遍：三份 512 条拷贝
+   占全档约七成，而 byName 与 byPersonId 逐字相同、byPersonId 只比其主立绘多三个
+   聚合字段。.json 保持完整形态供校验脚本比对；.js 只序列化 assetsById、人物层聚合
+   字段与「姓名→personId」对照，两个索引在载入时按原键序就地重建。 */
+const buildPortraitManifestScript = () => {
+  const aggregateKeys = ['portraitCount', 'portraitIds', 'primaryPortraitId'];
+  const personIndex = {};
+  for (const [personId, item] of Object.entries(manifest.byPersonId || {})) {
+    const primary = manifest.assetsById?.[item.primaryPortraitId];
+    if (!primary) return `window.SGZ_PERSON_PORTRAIT_MANIFEST=${JSON.stringify(manifest)};\n`;
+    const entry = {};
+    for (const key of Object.keys(item)) {
+      const aggregate = aggregateKeys.includes(key);
+      if (aggregate || JSON.stringify(item[key]) !== JSON.stringify(primary[key])) entry[key] = item[key];
+    }
+    personIndex[personId] = entry;
+  }
+  const nameIndex = {};
+  for (const [nameKey, item] of Object.entries(manifest.byName || {})) {
+    if (!personIndex[item?.personId]) return `window.SGZ_PERSON_PORTRAIT_MANIFEST=${JSON.stringify(manifest)};\n`;
+    nameIndex[nameKey] = item.personId;
+  }
+  const shipped = {};
+  for (const key of Object.keys(manifest)) {
+    if (key === 'byPersonId' || key === 'byName') continue;
+    shipped[key] = manifest[key];
+  }
+  const assembled = Object.keys(manifest)
+    .map(key => {
+      if (key === 'byPersonId') return '\n    "byPersonId":byPersonId';
+      if (key === 'byName') return '\n    "byName":byName';
+      return `\n    ${JSON.stringify(key)}:source[${JSON.stringify(key)}]`;
+    })
+    .join(',');
+  return `(function(window){\n`
+    + `  'use strict';\n`
+    + `  var source=${JSON.stringify(shipped)};\n`
+    + `  var personIndex=${JSON.stringify(personIndex)};\n`
+    + `  var nameIndex=${JSON.stringify(nameIndex)};\n`
+    + `  var byPersonId={};\n`
+    + `  for(var personId in personIndex){\n`
+    + `    var aggregate=personIndex[personId];\n`
+    + `    var merged={};\n`
+    + `    var primary=source.assetsById[aggregate.primaryPortraitId];\n`
+    + `    for(var assetKey in primary) merged[assetKey]=primary[assetKey];\n`
+    + `    for(var aggregateKey in aggregate) merged[aggregateKey]=aggregate[aggregateKey];\n`
+    + `    byPersonId[personId]=merged;\n`
+    + `  }\n`
+    + `  var byName={};\n`
+    + `  for(var nameKey in nameIndex) byName[nameKey]=byPersonId[nameIndex[nameKey]];\n`
+    + `  window.SGZ_PERSON_PORTRAIT_MANIFEST={${assembled}\n  };\n`
+    + `})(typeof window!=='undefined'?window:globalThis);\n`;
+};
+fs.writeFileSync(path.join(dataDir, 'portrait-manifest.js'), buildPortraitManifestScript(), 'utf8');
 fs.writeFileSync(path.join(dataDir, 'v62-portrait-catalog.json'), JSON.stringify(catalog, null, 2) + '\n', 'utf8');
 fs.writeFileSync(path.join(dataDir, 'v62-portrait-catalog.js'), `window.SGZ_V62_PORTRAIT_CATALOG=${JSON.stringify(catalog)};\n`, 'utf8');
 console.log(JSON.stringify({ ...manifest.summary, plannedV62Portraits: catalog.plannedTotal, readyV62Portraits: catalog.readyTotal }));

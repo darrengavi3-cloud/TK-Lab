@@ -8,24 +8,24 @@
     "conflict": "表字、政权或其他身份信号冲突时按 sourceRecordId 隔离，禁止以唯一姓名自动合并。"
   },
   "summary": {
-    "people": 2427,
-    "readerPeople": 2086,
+    "people": 2415,
+    "readerPeople": 2074,
     "readerScopeVersion": "V84",
-    "readerScopePeople": 2086,
-    "scopeExcludedPeople": 17,
-    "nonPersonExclusions": 17,
+    "readerScopePeople": 2074,
+    "scopeExcludedPeople": 29,
+    "nonPersonExclusions": 29,
     "legacyMappings": 1140,
     "sourceRecordMappings": 2013,
     "ziConflicts": 17,
     "isolatedSnapshotRecords": 18,
     "addedJinLegacyMappings": 9,
     "protectedExistingPeople": 10,
-    "portraitAssets": 512,
-    "portraitPersonIds": 510,
+    "portraitAssets": 500,
+    "portraitPersonIds": 498,
     "unresolvedPortraits": 0,
     "verifiedFieldCounts": {
-      "name": 2086,
-      "aliases": 511,
+      "name": 2074,
+      "aliases": 499,
       "zi": 121,
       "birthplace": 69,
       "birthYear": 38,
@@ -33,17 +33,17 @@
       "bio": 96,
       "bioCitations": 28,
       "bioClassical": 0,
-      "dynastyTags": 1745,
+      "dynastyTags": 1744,
       "historicalAffiliations": 46,
       "appointments": 146,
       "peerage": 371,
-      "portraits": 510
+      "portraits": 498
     }
   },
   "readerScope": {
     "schemaVersion": "V73",
     "modelId": "sgz-v73-reviewed-reader-scope",
-    "people": 2086,
+    "people": 2074,
     "baselinePeople": 2096,
     "policy": "保留 V62 名册；只按具名、经独立原典核对的身份清单增补或更正，不从任官抽取自动扩展人物。"
   },
@@ -1069,7 +1069,7 @@
           "陳騫"
         ],
         "zi": "休渊",
-        "birthplace": "汝南平舆",
+        "birthplace": "临淮东阳",
         "birthYear": "201",
         "deathYear": "281",
         "bio": "曹魏、西晋将领。长期参与司马氏军政，入晋后任大将军、太尉等，参与平定淮南和伐吴前后的军事部署，封高平公。",
@@ -1134,7 +1134,7 @@
             "sourceRecordId": "source:v60:person:0294"
           },
           {
-            "value": "汝南平舆",
+            "value": "临淮东阳",
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:陈骞"
@@ -49572,7 +49572,7 @@
       "values": {
         "name": "樊建",
         "zi": "长元",
-        "birthplace": "蜀郡",
+        "birthplace": "义阳",
         "bio": "蜀汉末尚书令，后随刘禅入洛阳。其职任位于蜀汉亡国前夕的尚书台，是研究蜀汉末政务运转的重要人物。",
         "peerage": [
           "peerage:298"
@@ -49631,7 +49631,7 @@
         ],
         "birthplace": [
           {
-            "value": "蜀郡",
+            "value": "义阳",
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:樊建"
@@ -57485,51 +57485,6 @@
       }
     },
     {
-      "personId": "person:source:13850e2cf763",
-      "name": "衡阳",
-      "aliases": [
-        "衡阳"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:090:7dcbfb954062",
-        "appointment:source:sgz:53:aecc6e086a06"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "衡阳",
-        "aliases": [
-          "衡阳"
-        ],
-        "portraits": [
-          "portrait:asset:6b3904281ef4003379bb"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:14aa861a41a9",
       "name": "张乾",
       "aliases": [
@@ -61815,50 +61770,6 @@
       }
     },
     {
-      "personId": "person:source:471718b7b363",
-      "name": "邵信臣",
-      "aliases": [
-        "邵信臣"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:25:39d94c72c0bd"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "邵信臣",
-        "aliases": [
-          "邵信臣"
-        ],
-        "portraits": [
-          "portrait:asset:6e72e9de1bd374f4b27e"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:487c8c6bbd70",
       "name": "秦涼二",
       "aliases": [
@@ -62904,50 +62815,6 @@
       "reviewCandidates": {}
     },
     {
-      "personId": "person:source:54b1ec55b537",
-      "name": "全尚息",
-      "aliases": [
-        "全尚息"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:64:9efb86bfe313"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "全尚息",
-        "aliases": [
-          "全尚息"
-        ],
-        "portraits": [
-          "portrait:asset:ec696607f490622ce35c"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:55ad62601686",
       "name": "王德文",
       "aliases": [
@@ -63940,50 +63807,6 @@
       }
     },
     {
-      "personId": "person:source:60e41f08850a",
-      "name": "王請观",
-      "aliases": [
-        "王請观"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:24:92099c7248fc"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "王請观",
-        "aliases": [
-          "王請观"
-        ],
-        "portraits": [
-          "portrait:asset:d27912b0aa64eac47913"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:61ee2bcedd6e",
       "name": "慕容德",
       "aliases": [
@@ -64068,50 +63891,6 @@
       "values": {
         "aliases": [
           "弘代"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
-      "personId": "person:source:64911f32eff7",
-      "name": "年就加",
-      "aliases": [
-        "年就加"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:44:1c106e4707ab"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "年就加",
-        "aliases": [
-          "年就加"
-        ],
-        "portraits": [
-          "portrait:asset:4cdd4b5e7834620eb770"
         ]
       },
       "reviewCandidates": {}
@@ -64749,50 +64528,6 @@
           }
         ]
       }
-    },
-    {
-      "personId": "person:source:6808f45cf265",
-      "name": "于策",
-      "aliases": [
-        "于策"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:15:df8b655a6690"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "于策",
-        "aliases": [
-          "于策"
-        ],
-        "portraits": [
-          "portrait:asset:f2bb270cf521cb9bf749"
-        ]
-      },
-      "reviewCandidates": {}
     },
     {
       "personId": "person:source:69089dc96bde",
@@ -69662,51 +69397,6 @@
       "reviewCandidates": {}
     },
     {
-      "personId": "person:source:994402e8e648",
-      "name": "弘农",
-      "aliases": [
-        "弘农"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:047:c6325dc78225",
-        "appointment:source:sgz:23:88777917d94a"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "弘农",
-        "aliases": [
-          "弘农"
-        ],
-        "portraits": [
-          "portrait:asset:786ea69005769057f548"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:9ab347692482",
       "name": "元顯",
       "aliases": [
@@ -69869,50 +69559,6 @@
       "values": {
         "aliases": [
           "王彌"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
-      "personId": "person:source:9b6ac59b74f6",
-      "name": "于理",
-      "aliases": [
-        "于理"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:65:e59dabddd1db"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "于理",
-        "aliases": [
-          "于理"
-        ],
-        "portraits": [
-          "portrait:asset:a289cd4d6b437e5a2507"
         ]
       },
       "reviewCandidates": {}
@@ -75748,50 +75394,6 @@
       "reviewCandidates": {}
     },
     {
-      "personId": "person:source:dd8a51414ff5",
-      "name": "权加燮",
-      "aliases": [
-        "权加燮"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:49:95665e4a700a"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "权加燮",
-        "aliases": [
-          "权加燮"
-        ],
-        "portraits": [
-          "portrait:asset:f5b8dcb7550dad3570d2"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:dd969714b569",
       "name": "宣城",
       "aliases": [
@@ -77097,51 +76699,6 @@
       "reviewCandidates": {}
     },
     {
-      "personId": "person:source:ee6c75cc5e60",
-      "name": "魏兴",
-      "aliases": [
-        "魏兴"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:081:d6f6cded3531",
-        "appointment:source:sgz:40:01c32f6e38df"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "魏兴",
-        "aliases": [
-          "魏兴"
-        ],
-        "portraits": [
-          "portrait:asset:7e70bd04361bf790624b"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    {
       "personId": "person:source:ef20cd1a60a8",
       "name": "孙资",
       "aliases": [
@@ -77311,51 +76868,6 @@
           }
         ]
       }
-    },
-    {
-      "personId": "person:source:ef77c1e7a8f6",
-      "name": "司鹽",
-      "aliases": [
-        "司鹽"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:076:bb9b8cba19e0",
-        "appointment:source:sgz:41:bb48953e14d8"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "司鹽",
-        "aliases": [
-          "司鹽"
-        ],
-        "portraits": [
-          "portrait:asset:8490b29f440bc8af0e24"
-        ]
-      },
-      "reviewCandidates": {}
     },
     {
       "personId": "person:source:ef9ef54bd399",
@@ -79521,65 +79033,6 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:曹操"
-          }
-        ]
-      }
-    },
-    {
-      "personId": "person:wei:cao-man",
-      "name": "曹曼",
-      "aliases": [
-        "曹曼"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:02:207274f69cb3"
-      ],
-      "datasets": [
-        "activity-source",
-        "curated-identities",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "resolved",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "verified",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "曹曼",
-        "aliases": [
-          "曹曼"
-        ],
-        "dynastyTags": [
-          "魏"
-        ],
-        "portraits": [
-          "portrait:asset:f64c89e0e602b06b4c50"
-        ]
-      },
-      "reviewCandidates": {
-        "dynastyTags": [
-          {
-            "value": [
-              "魏"
-            ],
-            "publicationStatus": "verified",
-            "historicalDisposition": "确定",
-            "sourceRecordId": "v62:person:wei:cao-man"
           }
         ]
       }
@@ -151350,7 +150803,7 @@
             "sourceRecordId": "source:v60:person:0626"
           },
           {
-            "value": "巴西",
+            "value": "南郡",
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:阎宇"
@@ -175142,6 +174595,19 @@
       "publicationStatus": "suppressed"
     },
     {
+      "personId": "person:wei:cao-man",
+      "name": "曹曼",
+      "reason": "「公女曼为长乐郡公主」所指是山阳公之女曼，其姓非曹，且「长」截自「长乐郡公主」，非官名。",
+      "sourcePersonIds": [
+        "person:wei:cao-man"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:02:207274f69cb3",
+        "person:wei:cao-man"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
       "personId": "person:source:b9b442ab00f7",
       "name": "桂阳",
       "reason": "桂阳是郡名，桂阳太守的受任者是赵云。",
@@ -175150,6 +174616,34 @@
       ],
       "sourceRecordIds": [
         "appointment:source:sgz:36:81d04c5d62da"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:13850e2cf763",
+      "name": "衡阳",
+      "reason": "衡阳是郡名，衡阳太守为完整官名。",
+      "sourcePersonIds": [
+        "person:source:13850e2cf763"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:090:7dcbfb954062",
+        "appointment:source:sgz:53:aecc6e086a06",
+        "person:source:13850e2cf763"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:994402e8e648",
+      "name": "弘农",
+      "reason": "弘农是郡名，弘农太守为完整官名。",
+      "sourcePersonIds": [
+        "person:source:994402e8e648"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:047:c6325dc78225",
+        "appointment:source:sgz:23:88777917d94a",
+        "person:source:994402e8e648"
       ],
       "publicationStatus": "suppressed"
     },
@@ -175192,6 +174686,19 @@
       "publicationStatus": "suppressed"
     },
     {
+      "personId": "person:source:64911f32eff7",
+      "name": "年就加",
+      "reason": "「明年就加为大司马」是纪年与叙述，不是人名。",
+      "sourcePersonIds": [
+        "person:source:64911f32eff7"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:44:1c106e4707ab",
+        "person:source:64911f32eff7"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
       "personId": "person:source:e753fd0f66cd",
       "name": "濮阳",
       "reason": "濮阳是袁绍所任县名，不是本段人名；全部关联仅此任官误抽。",
@@ -175213,6 +174720,45 @@
       ],
       "sourceRecordIds": [
         "appointment:source:jinshu:061:e2d0d259d6c4"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:54b1ec55b537",
+      "name": "全尚息",
+      "reason": "「亮召全尚息黄门侍郎纪密谋」中「息」为子，所指是全尚之子黄门侍郎全纪，「全尚息」不是人名。",
+      "sourcePersonIds": [
+        "person:source:54b1ec55b537"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:64:9efb86bfe313",
+        "person:source:54b1ec55b537"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:dd8a51414ff5",
+      "name": "权加燮",
+      "reason": "「权加燮为左将军」是孙权加士燮为左将军，「权加燮」三字跨主语与宾语，不是人名。",
+      "sourcePersonIds": [
+        "person:source:dd8a51414ff5"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:49:95665e4a700a",
+        "person:source:dd8a51414ff5"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:471718b7b363",
+      "name": "邵信臣",
+      "reason": "所引为西汉召信臣「为少府于无事之世」的旧事，是典故而非汉末人物，且本作「召」不作「邵」。",
+      "sourcePersonIds": [
+        "person:source:471718b7b363"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:25:39d94c72c0bd",
+        "person:source:471718b7b363"
       ],
       "publicationStatus": "suppressed"
     },
@@ -175275,6 +174821,47 @@
       "publicationStatus": "suppressed"
     },
     {
+      "personId": "person:source:ef77c1e7a8f6",
+      "name": "司鹽",
+      "reason": "司盐为职司名称，司盐校尉、司盐都尉才是完整官名。",
+      "sourcePersonIds": [
+        "person:source:ef77c1e7a8f6"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:076:bb9b8cba19e0",
+        "appointment:source:sgz:41:bb48953e14d8",
+        "person:source:ef77c1e7a8f6"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:60e41f08850a",
+      "name": "王請观",
+      "reason": "「太尉司马宣王请观为从事中郎」是司马懿请王观任从事中郎，「王請观」跨「宣王」与「观」两处，不是人名。",
+      "sourcePersonIds": [
+        "person:source:60e41f08850a"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:24:92099c7248fc",
+        "person:source:60e41f08850a"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:ee6c75cc5e60",
+      "name": "魏兴",
+      "reason": "魏兴是郡名，魏兴太守为完整官名。",
+      "sourcePersonIds": [
+        "person:source:ee6c75cc5e60"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:jinshu:081:d6f6cded3531",
+        "appointment:source:sgz:40:01c32f6e38df",
+        "person:source:ee6c75cc5e60"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
       "personId": "person:source:f741747b83c4",
       "name": "武卫",
       "reason": "武卫是官号前缀。全部四条分别指曹爽武卫将军、许褚武卫中郎将及武卫将军、孙峻武卫将军，没有名为武卫的人物依据。",
@@ -175300,6 +174887,32 @@
       "sourceRecordIds": [
         "appointment:source:sgz:11:7c0afd2160cf",
         "person:source:8b8bba6b3bd1"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:6808f45cf265",
+      "name": "于策",
+      "reason": "「内威不轨，于策为长」意为在策略上是长处，「于策」是介宾词组，不是人名。",
+      "sourcePersonIds": [
+        "person:source:6808f45cf265"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:15:df8b655a6690",
+        "person:source:6808f45cf265"
+      ],
+      "publicationStatus": "suppressed"
+    },
+    {
+      "personId": "person:source:9b6ac59b74f6",
+      "name": "于理",
+      "reason": "「江表传所言，于理为长」意为在道理上是长处，「于理」是介宾词组，不是人名。",
+      "sourcePersonIds": [
+        "person:source:9b6ac59b74f6"
+      ],
+      "sourceRecordIds": [
+        "appointment:source:sgz:65:e59dabddd1db",
+        "person:source:9b6ac59b74f6"
       ],
       "publicationStatus": "suppressed"
     },
@@ -176351,7 +175964,7 @@
           "陳騫"
         ],
         "zi": "休渊",
-        "birthplace": "汝南平舆",
+        "birthplace": "临淮东阳",
         "birthYear": "201",
         "deathYear": "281",
         "bio": "曹魏、西晋将领。长期参与司马氏军政，入晋后任大将军、太尉等，参与平定淮南和伐吴前后的军事部署，封高平公。",
@@ -176416,7 +176029,7 @@
             "sourceRecordId": "source:v60:person:0294"
           },
           {
-            "value": "汝南平舆",
+            "value": "临淮东阳",
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:陈骞"
@@ -224854,7 +224467,7 @@
       "values": {
         "name": "樊建",
         "zi": "长元",
-        "birthplace": "蜀郡",
+        "birthplace": "义阳",
         "bio": "蜀汉末尚书令，后随刘禅入洛阳。其职任位于蜀汉亡国前夕的尚书台，是研究蜀汉末政务运转的重要人物。",
         "peerage": [
           "peerage:298"
@@ -224913,7 +224526,7 @@
         ],
         "birthplace": [
           {
-            "value": "蜀郡",
+            "value": "义阳",
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:樊建"
@@ -232766,51 +232379,6 @@
         ]
       }
     },
-    "person:source:13850e2cf763": {
-      "personId": "person:source:13850e2cf763",
-      "name": "衡阳",
-      "aliases": [
-        "衡阳"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:090:7dcbfb954062",
-        "appointment:source:sgz:53:aecc6e086a06"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "衡阳",
-        "aliases": [
-          "衡阳"
-        ],
-        "portraits": [
-          "portrait:asset:6b3904281ef4003379bb"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:14aa861a41a9": {
       "personId": "person:source:14aa861a41a9",
       "name": "张乾",
@@ -237096,50 +236664,6 @@
         ]
       }
     },
-    "person:source:471718b7b363": {
-      "personId": "person:source:471718b7b363",
-      "name": "邵信臣",
-      "aliases": [
-        "邵信臣"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:25:39d94c72c0bd"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "邵信臣",
-        "aliases": [
-          "邵信臣"
-        ],
-        "portraits": [
-          "portrait:asset:6e72e9de1bd374f4b27e"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:487c8c6bbd70": {
       "personId": "person:source:487c8c6bbd70",
       "name": "秦涼二",
@@ -238185,50 +237709,6 @@
       },
       "reviewCandidates": {}
     },
-    "person:source:54b1ec55b537": {
-      "personId": "person:source:54b1ec55b537",
-      "name": "全尚息",
-      "aliases": [
-        "全尚息"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:64:9efb86bfe313"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "全尚息",
-        "aliases": [
-          "全尚息"
-        ],
-        "portraits": [
-          "portrait:asset:ec696607f490622ce35c"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:55ad62601686": {
       "personId": "person:source:55ad62601686",
       "name": "王德文",
@@ -239221,50 +238701,6 @@
         ]
       }
     },
-    "person:source:60e41f08850a": {
-      "personId": "person:source:60e41f08850a",
-      "name": "王請观",
-      "aliases": [
-        "王請观"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:24:92099c7248fc"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "王請观",
-        "aliases": [
-          "王請观"
-        ],
-        "portraits": [
-          "portrait:asset:d27912b0aa64eac47913"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:61ee2bcedd6e": {
       "personId": "person:source:61ee2bcedd6e",
       "name": "慕容德",
@@ -239350,50 +238786,6 @@
       "values": {
         "aliases": [
           "弘代"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    "person:source:64911f32eff7": {
-      "personId": "person:source:64911f32eff7",
-      "name": "年就加",
-      "aliases": [
-        "年就加"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:44:1c106e4707ab"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "年就加",
-        "aliases": [
-          "年就加"
-        ],
-        "portraits": [
-          "portrait:asset:4cdd4b5e7834620eb770"
         ]
       },
       "reviewCandidates": {}
@@ -240031,50 +239423,6 @@
           }
         ]
       }
-    },
-    "person:source:6808f45cf265": {
-      "personId": "person:source:6808f45cf265",
-      "name": "于策",
-      "aliases": [
-        "于策"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:15:df8b655a6690"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "于策",
-        "aliases": [
-          "于策"
-        ],
-        "portraits": [
-          "portrait:asset:f2bb270cf521cb9bf749"
-        ]
-      },
-      "reviewCandidates": {}
     },
     "person:source:69089dc96bde": {
       "personId": "person:source:69089dc96bde",
@@ -244943,51 +244291,6 @@
       },
       "reviewCandidates": {}
     },
-    "person:source:994402e8e648": {
-      "personId": "person:source:994402e8e648",
-      "name": "弘农",
-      "aliases": [
-        "弘农"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:047:c6325dc78225",
-        "appointment:source:sgz:23:88777917d94a"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "弘农",
-        "aliases": [
-          "弘农"
-        ],
-        "portraits": [
-          "portrait:asset:786ea69005769057f548"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:9ab347692482": {
       "personId": "person:source:9ab347692482",
       "name": "元顯",
@@ -245151,50 +244454,6 @@
       "values": {
         "aliases": [
           "王彌"
-        ]
-      },
-      "reviewCandidates": {}
-    },
-    "person:source:9b6ac59b74f6": {
-      "personId": "person:source:9b6ac59b74f6",
-      "name": "于理",
-      "aliases": [
-        "于理"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:65:e59dabddd1db"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "于理",
-        "aliases": [
-          "于理"
-        ],
-        "portraits": [
-          "portrait:asset:a289cd4d6b437e5a2507"
         ]
       },
       "reviewCandidates": {}
@@ -251029,50 +250288,6 @@
       },
       "reviewCandidates": {}
     },
-    "person:source:dd8a51414ff5": {
-      "personId": "person:source:dd8a51414ff5",
-      "name": "权加燮",
-      "aliases": [
-        "权加燮"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:49:95665e4a700a"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "权加燮",
-        "aliases": [
-          "权加燮"
-        ],
-        "portraits": [
-          "portrait:asset:f5b8dcb7550dad3570d2"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:dd969714b569": {
       "personId": "person:source:dd969714b569",
       "name": "宣城",
@@ -252378,51 +251593,6 @@
       },
       "reviewCandidates": {}
     },
-    "person:source:ee6c75cc5e60": {
-      "personId": "person:source:ee6c75cc5e60",
-      "name": "魏兴",
-      "aliases": [
-        "魏兴"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:081:d6f6cded3531",
-        "appointment:source:sgz:40:01c32f6e38df"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "魏兴",
-        "aliases": [
-          "魏兴"
-        ],
-        "portraits": [
-          "portrait:asset:7e70bd04361bf790624b"
-        ]
-      },
-      "reviewCandidates": {}
-    },
     "person:source:ef20cd1a60a8": {
       "personId": "person:source:ef20cd1a60a8",
       "name": "孙资",
@@ -252593,51 +251763,6 @@
           }
         ]
       }
-    },
-    "person:source:ef77c1e7a8f6": {
-      "personId": "person:source:ef77c1e7a8f6",
-      "name": "司鹽",
-      "aliases": [
-        "司鹽"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:jinshu:076:bb9b8cba19e0",
-        "appointment:source:sgz:41:bb48953e14d8"
-      ],
-      "datasets": [
-        "activity-source",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "review-only",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "suppressed",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "司鹽",
-        "aliases": [
-          "司鹽"
-        ],
-        "portraits": [
-          "portrait:asset:8490b29f440bc8af0e24"
-        ]
-      },
-      "reviewCandidates": {}
     },
     "person:source:ef9ef54bd399": {
       "personId": "person:source:ef9ef54bd399",
@@ -254803,65 +253928,6 @@
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:曹操"
-          }
-        ]
-      }
-    },
-    "person:wei:cao-man": {
-      "personId": "person:wei:cao-man",
-      "name": "曹曼",
-      "aliases": [
-        "曹曼"
-      ],
-      "legacyPersonIds": [],
-      "sourceRecordIds": [
-        "appointment:source:sgz:02:207274f69cb3"
-      ],
-      "datasets": [
-        "activity-source",
-        "curated-identities",
-        "portraits",
-        "v62-people"
-      ],
-      "readerDatasets": [],
-      "identityStatus": "resolved",
-      "publicationStatus": {
-        "name": "verified",
-        "aliases": "verified",
-        "zi": "suppressed",
-        "birthplace": "suppressed",
-        "birthYear": "suppressed",
-        "deathYear": "suppressed",
-        "bio": "suppressed",
-        "bioCitations": "suppressed",
-        "bioClassical": "suppressed",
-        "dynastyTags": "verified",
-        "historicalAffiliations": "suppressed",
-        "appointments": "suppressed",
-        "peerage": "suppressed",
-        "portraits": "verified"
-      },
-      "values": {
-        "name": "曹曼",
-        "aliases": [
-          "曹曼"
-        ],
-        "dynastyTags": [
-          "魏"
-        ],
-        "portraits": [
-          "portrait:asset:f64c89e0e602b06b4c50"
-        ]
-      },
-      "reviewCandidates": {
-        "dynastyTags": [
-          {
-            "value": [
-              "魏"
-            ],
-            "publicationStatus": "verified",
-            "historicalDisposition": "确定",
-            "sourceRecordId": "v62:person:wei:cao-man"
           }
         ]
       }
@@ -326632,7 +325698,7 @@
             "sourceRecordId": "source:v60:person:0626"
           },
           {
-            "value": "巴西",
+            "value": "南郡",
             "publicationStatus": "verified",
             "historicalDisposition": "确定",
             "sourceRecordId": "biography:阎宇"
@@ -367390,22 +366456,6 @@
       "peerage": "suppressed",
       "portraits": "verified"
     },
-    "person:source:13850e2cf763": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:14aa861a41a9": {
       "name": "suppressed",
       "aliases": "verified",
@@ -368782,22 +367832,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:471718b7b363": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:487c8c6bbd70": {
       "name": "suppressed",
       "aliases": "verified",
@@ -369053,22 +368087,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:54b1ec55b537": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:55ad62601686": {
       "name": "suppressed",
@@ -369358,22 +368376,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:60e41f08850a": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:61ee2bcedd6e": {
       "name": "suppressed",
       "aliases": "verified",
@@ -369405,22 +368407,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:64911f32eff7": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:64b99027de6f": {
       "name": "verified",
@@ -369597,22 +368583,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:6808f45cf265": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:69089dc96bde": {
       "name": "suppressed",
@@ -371070,22 +370040,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:994402e8e648": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:9ab347692482": {
       "name": "suppressed",
       "aliases": "verified",
@@ -371149,22 +370103,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:9b6ac59b74f6": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:9cc4bb54e502": {
       "name": "suppressed",
@@ -372862,22 +371800,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:dd8a51414ff5": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:dd969714b569": {
       "name": "suppressed",
       "aliases": "verified",
@@ -373246,22 +372168,6 @@
       "peerage": "suppressed",
       "portraits": "suppressed"
     },
-    "person:source:ee6c75cc5e60": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
-    },
     "person:source:ef20cd1a60a8": {
       "name": "verified",
       "aliases": "verified",
@@ -373293,22 +372199,6 @@
       "appointments": "suppressed",
       "peerage": "suppressed",
       "portraits": "suppressed"
-    },
-    "person:source:ef77c1e7a8f6": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "suppressed",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
-      "portraits": "verified"
     },
     "person:source:ef9ef54bd399": {
       "name": "suppressed",
@@ -374012,22 +372902,6 @@
       "historicalAffiliations": "suppressed",
       "appointments": "suppressed",
       "peerage": "verified",
-      "portraits": "verified"
-    },
-    "person:wei:cao-man": {
-      "name": "verified",
-      "aliases": "verified",
-      "zi": "suppressed",
-      "birthplace": "suppressed",
-      "birthYear": "suppressed",
-      "deathYear": "suppressed",
-      "bio": "suppressed",
-      "bioCitations": "suppressed",
-      "bioClassical": "suppressed",
-      "dynastyTags": "verified",
-      "historicalAffiliations": "suppressed",
-      "appointments": "suppressed",
-      "peerage": "suppressed",
       "portraits": "verified"
     },
     "person:wei:cao-pi": {
@@ -392947,11 +391821,6 @@
       "personId": "person:source:11e5afb2df97"
     },
     {
-      "portraitId": "portrait:asset:f64c89e0e602b06b4c50",
-      "legacyPersonId": "person:wei:cao-man",
-      "personId": "person:wei:cao-man"
-    },
-    {
       "portraitId": "portrait:asset:dc4e9faf139f2e161845",
       "legacyPersonId": "person:wei:cao-zhen",
       "personId": "person:wei:cao-zhen"
@@ -393137,11 +392006,6 @@
       "personId": "person:wei:zou-qi"
     },
     {
-      "portraitId": "portrait:asset:f2bb270cf521cb9bf749",
-      "legacyPersonId": "person:source:6808f45cf265",
-      "personId": "person:source:6808f45cf265"
-    },
-    {
       "portraitId": "portrait:asset:74dd95ec9c987fbfdde0",
       "legacyPersonId": "person:source:b88e0c05cd6b",
       "personId": "person:source:b88e0c05cd6b"
@@ -393152,29 +392016,14 @@
       "personId": "person:han:liu-biao"
     },
     {
-      "portraitId": "portrait:asset:786ea69005769057f548",
-      "legacyPersonId": "person:source:994402e8e648",
-      "personId": "person:source:994402e8e648"
-    },
-    {
       "portraitId": "portrait:asset:e2bb806248e3e21e3b46",
       "legacyPersonId": "person:wei:cao-shuang",
       "personId": "person:wei:cao-shuang"
     },
     {
-      "portraitId": "portrait:asset:d27912b0aa64eac47913",
-      "legacyPersonId": "person:source:60e41f08850a",
-      "personId": "person:source:60e41f08850a"
-    },
-    {
       "portraitId": "portrait:asset:0052ce665990d2acb47a",
       "legacyPersonId": "person:wei:wei-kang",
       "personId": "person:wei:wei-kang"
-    },
-    {
-      "portraitId": "portrait:asset:6e72e9de1bd374f4b27e",
-      "legacyPersonId": "person:source:471718b7b363",
-      "personId": "person:source:471718b7b363"
     },
     {
       "portraitId": "portrait:asset:496c881354898aa3b874",
@@ -393247,29 +392096,14 @@
       "personId": "person:shu:dong-yun"
     },
     {
-      "portraitId": "portrait:asset:7e70bd04361bf790624b",
-      "legacyPersonId": "person:source:ee6c75cc5e60",
-      "personId": "person:source:ee6c75cc5e60"
-    },
-    {
       "portraitId": "portrait:asset:07d7d551b64b33f8d66e",
       "legacyPersonId": "person:source:c9065395c9a7",
       "personId": "person:source:c9065395c9a7"
     },
     {
-      "portraitId": "portrait:asset:8490b29f440bc8af0e24",
-      "legacyPersonId": "person:source:ef77c1e7a8f6",
-      "personId": "person:source:ef77c1e7a8f6"
-    },
-    {
       "portraitId": "portrait:asset:90d2ef37445c0a469dba",
       "legacyPersonId": "person:source:c2d2b4c0325c",
       "personId": "person:source:c2d2b4c0325c"
-    },
-    {
-      "portraitId": "portrait:asset:4cdd4b5e7834620eb770",
-      "legacyPersonId": "person:source:64911f32eff7",
-      "personId": "person:source:64911f32eff7"
     },
     {
       "portraitId": "portrait:asset:09e49f98b9e35c42773c",
@@ -393382,11 +392216,6 @@
       "personId": "person:source:541aa70629a7"
     },
     {
-      "portraitId": "portrait:asset:f5b8dcb7550dad3570d2",
-      "legacyPersonId": "person:source:dd8a51414ff5",
-      "personId": "person:source:dd8a51414ff5"
-    },
-    {
       "portraitId": "portrait:asset:502454ae6d367468aeaa",
       "legacyPersonId": "person:wu:dai-liang",
       "personId": "person:wu:dai-liang"
@@ -393407,11 +392236,6 @@
       "personId": "person:wu:sun-shao"
     },
     {
-      "portraitId": "portrait:asset:6b3904281ef4003379bb",
-      "legacyPersonId": "person:source:13850e2cf763",
-      "personId": "person:source:13850e2cf763"
-    },
-    {
       "portraitId": "portrait:asset:3503a1c7adf65836efd6",
       "legacyPersonId": "person:source:458e5685f88a",
       "personId": "person:source:458e5685f88a"
@@ -393425,16 +392249,6 @@
       "portraitId": "portrait:asset:7e35546afa85bc276c80",
       "legacyPersonId": "person:source:e3995aefcddc",
       "personId": "person:source:e3995aefcddc"
-    },
-    {
-      "portraitId": "portrait:asset:ec696607f490622ce35c",
-      "legacyPersonId": "person:source:54b1ec55b537",
-      "personId": "person:source:54b1ec55b537"
-    },
-    {
-      "portraitId": "portrait:asset:a289cd4d6b437e5a2507",
-      "legacyPersonId": "person:source:9b6ac59b74f6",
-      "personId": "person:source:9b6ac59b74f6"
     },
     {
       "portraitId": "portrait:asset:72c5a5df25b38c54c0eb",

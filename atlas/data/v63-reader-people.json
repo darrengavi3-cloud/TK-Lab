@@ -2,9 +2,9 @@
   "schemaVersion": "V63",
   "modelId": "sgz-v63-reader-people",
   "summary": {
-    "people": 2086,
+    "people": 2074,
     "legacyMappings": 1140,
-    "portraitAssets": 512,
+    "portraitAssets": 500,
     "readerScopeVersion": "V84"
   },
   "people": [
@@ -172,7 +172,7 @@
         "陳騫"
       ],
       "zi": "休渊",
-      "birthplace": "汝南平舆",
+      "birthplace": "临淮东阳",
       "birthYear": "201",
       "deathYear": "281",
       "bio": "曹魏、西晋将领。长期参与司马氏军政，入晋后任大将军、太尉等，参与平定淮南和伐吴前后的军事部署，封高平公。",
@@ -6172,7 +6172,7 @@
       "personId": "person:snapshot260:d46b31d6638f7d5f",
       "name": "樊建",
       "zi": "长元",
-      "birthplace": "蜀郡",
+      "birthplace": "义阳",
       "bio": "蜀汉末尚书令，后随刘禅入洛阳。其职任位于蜀汉亡国前夕的尚书台，是研究蜀汉末政务运转的重要人物。",
       "peerageEventIds": [
         "peerage:298"
@@ -6976,16 +6976,6 @@
       ]
     },
     {
-      "personId": "person:source:13850e2cf763",
-      "name": "衡阳",
-      "aliases": [
-        "衡阳"
-      ],
-      "portraitIds": [
-        "portrait:asset:6b3904281ef4003379bb"
-      ]
-    },
-    {
       "personId": "person:source:15d17df7bcc9",
       "name": "紀瞻",
       "aliases": [
@@ -7212,16 +7202,6 @@
       ]
     },
     {
-      "personId": "person:source:471718b7b363",
-      "name": "邵信臣",
-      "aliases": [
-        "邵信臣"
-      ],
-      "portraitIds": [
-        "portrait:asset:6e72e9de1bd374f4b27e"
-      ]
-    },
-    {
       "personId": "person:source:4e121ec2c327",
       "name": "蒋济",
       "aliases": [
@@ -7310,16 +7290,6 @@
       ]
     },
     {
-      "personId": "person:source:54b1ec55b537",
-      "name": "全尚息",
-      "aliases": [
-        "全尚息"
-      ],
-      "portraitIds": [
-        "portrait:asset:ec696607f490622ce35c"
-      ]
-    },
-    {
       "personId": "person:source:57f563d7a1ce",
       "name": "韩暨",
       "aliases": [
@@ -7373,26 +7343,6 @@
       ]
     },
     {
-      "personId": "person:source:60e41f08850a",
-      "name": "王請观",
-      "aliases": [
-        "王請观"
-      ],
-      "portraitIds": [
-        "portrait:asset:d27912b0aa64eac47913"
-      ]
-    },
-    {
-      "personId": "person:source:64911f32eff7",
-      "name": "年就加",
-      "aliases": [
-        "年就加"
-      ],
-      "portraitIds": [
-        "portrait:asset:4cdd4b5e7834620eb770"
-      ]
-    },
-    {
       "personId": "person:source:64b99027de6f",
       "name": "陈化",
       "aliases": [
@@ -7439,16 +7389,6 @@
       ],
       "portraitIds": [
         "portrait:asset:e4c0d37d1fe25129e672"
-      ]
-    },
-    {
-      "personId": "person:source:6808f45cf265",
-      "name": "于策",
-      "aliases": [
-        "于策"
-      ],
-      "portraitIds": [
-        "portrait:asset:f2bb270cf521cb9bf749"
       ]
     },
     {
@@ -7732,26 +7672,6 @@
       ],
       "appointmentIds": [
         "appointment:source:jinshu:003:d0d222e1d428"
-      ]
-    },
-    {
-      "personId": "person:source:994402e8e648",
-      "name": "弘农",
-      "aliases": [
-        "弘农"
-      ],
-      "portraitIds": [
-        "portrait:asset:786ea69005769057f548"
-      ]
-    },
-    {
-      "personId": "person:source:9b6ac59b74f6",
-      "name": "于理",
-      "aliases": [
-        "于理"
-      ],
-      "portraitIds": [
-        "portrait:asset:a289cd4d6b437e5a2507"
       ]
     },
     {
@@ -8168,16 +8088,6 @@
       ]
     },
     {
-      "personId": "person:source:dd8a51414ff5",
-      "name": "权加燮",
-      "aliases": [
-        "权加燮"
-      ],
-      "portraitIds": [
-        "portrait:asset:f5b8dcb7550dad3570d2"
-      ]
-    },
-    {
       "personId": "person:source:dfd9e177e28e",
       "name": "刘昶",
       "aliases": [
@@ -8283,16 +8193,6 @@
       ]
     },
     {
-      "personId": "person:source:ee6c75cc5e60",
-      "name": "魏兴",
-      "aliases": [
-        "魏兴"
-      ],
-      "portraitIds": [
-        "portrait:asset:7e70bd04361bf790624b"
-      ]
-    },
-    {
       "personId": "person:source:ef20cd1a60a8",
       "name": "孙资",
       "aliases": [
@@ -8322,16 +8222,6 @@
       ],
       "dynastyTags": [
         "魏"
-      ]
-    },
-    {
-      "personId": "person:source:ef77c1e7a8f6",
-      "name": "司鹽",
-      "aliases": [
-        "司鹽"
-      ],
-      "portraitIds": [
-        "portrait:asset:8490b29f440bc8af0e24"
       ]
     },
     {
@@ -8519,19 +8409,6 @@
       ],
       "portraitIds": [
         "portrait:asset:dfbd4e1b066dc38bba07"
-      ]
-    },
-    {
-      "personId": "person:wei:cao-man",
-      "name": "曹曼",
-      "aliases": [
-        "曹曼"
-      ],
-      "dynastyTags": [
-        "魏"
-      ],
-      "portraitIds": [
-        "portrait:asset:f64c89e0e602b06b4c50"
       ]
     },
     {
@@ -19865,11 +19742,6 @@
       "personId": "person:source:11e5afb2df97"
     },
     {
-      "portraitId": "portrait:asset:f64c89e0e602b06b4c50",
-      "legacyPersonId": "person:wei:cao-man",
-      "personId": "person:wei:cao-man"
-    },
-    {
       "portraitId": "portrait:asset:dc4e9faf139f2e161845",
       "legacyPersonId": "person:wei:cao-zhen",
       "personId": "person:wei:cao-zhen"
@@ -20055,11 +19927,6 @@
       "personId": "person:wei:zou-qi"
     },
     {
-      "portraitId": "portrait:asset:f2bb270cf521cb9bf749",
-      "legacyPersonId": "person:source:6808f45cf265",
-      "personId": "person:source:6808f45cf265"
-    },
-    {
       "portraitId": "portrait:asset:74dd95ec9c987fbfdde0",
       "legacyPersonId": "person:source:b88e0c05cd6b",
       "personId": "person:source:b88e0c05cd6b"
@@ -20070,29 +19937,14 @@
       "personId": "person:han:liu-biao"
     },
     {
-      "portraitId": "portrait:asset:786ea69005769057f548",
-      "legacyPersonId": "person:source:994402e8e648",
-      "personId": "person:source:994402e8e648"
-    },
-    {
       "portraitId": "portrait:asset:e2bb806248e3e21e3b46",
       "legacyPersonId": "person:wei:cao-shuang",
       "personId": "person:wei:cao-shuang"
     },
     {
-      "portraitId": "portrait:asset:d27912b0aa64eac47913",
-      "legacyPersonId": "person:source:60e41f08850a",
-      "personId": "person:source:60e41f08850a"
-    },
-    {
       "portraitId": "portrait:asset:0052ce665990d2acb47a",
       "legacyPersonId": "person:wei:wei-kang",
       "personId": "person:wei:wei-kang"
-    },
-    {
-      "portraitId": "portrait:asset:6e72e9de1bd374f4b27e",
-      "legacyPersonId": "person:source:471718b7b363",
-      "personId": "person:source:471718b7b363"
     },
     {
       "portraitId": "portrait:asset:496c881354898aa3b874",
@@ -20165,29 +20017,14 @@
       "personId": "person:shu:dong-yun"
     },
     {
-      "portraitId": "portrait:asset:7e70bd04361bf790624b",
-      "legacyPersonId": "person:source:ee6c75cc5e60",
-      "personId": "person:source:ee6c75cc5e60"
-    },
-    {
       "portraitId": "portrait:asset:07d7d551b64b33f8d66e",
       "legacyPersonId": "person:source:c9065395c9a7",
       "personId": "person:source:c9065395c9a7"
     },
     {
-      "portraitId": "portrait:asset:8490b29f440bc8af0e24",
-      "legacyPersonId": "person:source:ef77c1e7a8f6",
-      "personId": "person:source:ef77c1e7a8f6"
-    },
-    {
       "portraitId": "portrait:asset:90d2ef37445c0a469dba",
       "legacyPersonId": "person:source:c2d2b4c0325c",
       "personId": "person:source:c2d2b4c0325c"
-    },
-    {
-      "portraitId": "portrait:asset:4cdd4b5e7834620eb770",
-      "legacyPersonId": "person:source:64911f32eff7",
-      "personId": "person:source:64911f32eff7"
     },
     {
       "portraitId": "portrait:asset:09e49f98b9e35c42773c",
@@ -20300,11 +20137,6 @@
       "personId": "person:source:541aa70629a7"
     },
     {
-      "portraitId": "portrait:asset:f5b8dcb7550dad3570d2",
-      "legacyPersonId": "person:source:dd8a51414ff5",
-      "personId": "person:source:dd8a51414ff5"
-    },
-    {
       "portraitId": "portrait:asset:502454ae6d367468aeaa",
       "legacyPersonId": "person:wu:dai-liang",
       "personId": "person:wu:dai-liang"
@@ -20325,11 +20157,6 @@
       "personId": "person:wu:sun-shao"
     },
     {
-      "portraitId": "portrait:asset:6b3904281ef4003379bb",
-      "legacyPersonId": "person:source:13850e2cf763",
-      "personId": "person:source:13850e2cf763"
-    },
-    {
       "portraitId": "portrait:asset:3503a1c7adf65836efd6",
       "legacyPersonId": "person:source:458e5685f88a",
       "personId": "person:source:458e5685f88a"
@@ -20343,16 +20170,6 @@
       "portraitId": "portrait:asset:7e35546afa85bc276c80",
       "legacyPersonId": "person:source:e3995aefcddc",
       "personId": "person:source:e3995aefcddc"
-    },
-    {
-      "portraitId": "portrait:asset:ec696607f490622ce35c",
-      "legacyPersonId": "person:source:54b1ec55b537",
-      "personId": "person:source:54b1ec55b537"
-    },
-    {
-      "portraitId": "portrait:asset:a289cd4d6b437e5a2507",
-      "legacyPersonId": "person:source:9b6ac59b74f6",
-      "personId": "person:source:9b6ac59b74f6"
     },
     {
       "portraitId": "portrait:asset:72c5a5df25b38c54c0eb",

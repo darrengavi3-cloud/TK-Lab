@@ -21,14 +21,17 @@ function loadWindowScript(relative, globalName){
 
 const titleAudit = json('data/v65-general-title-research.json');
 const volumeAudit = json('data/v65-volume-review.json');
-const titleJs = loadWindowScript('data/v65-general-title-research.js', 'SGZ_V65_GENERAL_TITLE_RESEARCH');
-const volumeJs = loadWindowScript('data/v65-volume-review.js', 'SGZ_V65_VOLUME_REVIEW');
 const generalTitles = loadWindowScript('data/general-titles.js', 'SGZ_GENERAL_TITLES');
 const sourceIndex = json('data/person-source-index.json');
 const legacyLedger = json('data/v60-research-ledger.json');
 
-assert(JSON.stringify(titleJs) === JSON.stringify(titleAudit), '将军名号 JSON/JS 不一致');
-assert(JSON.stringify(volumeJs) === JSON.stringify(volumeAudit), '卷次台账 JSON/JS 不一致');
+/* 这两份台账是纯审校产物：界面从不载入，读者包、便携版与 reader-boundary 都把它们
+   列为禁运档。旧断言比对 .js 与 .json 是否一致，等于让一份 16.4 MB 的浏览器形态
+   仅仅为「证明自己等于 JSON」而存在。改为断言该形态不存在——不存在比不一致更强，
+   也彻底断了它被误引入运行期的可能。 */
+for (const relative of ['data/v65-general-title-research.js', 'data/v65-volume-review.js']) {
+  assert(!fs.existsSync(path.join(root, relative)), `${relative} 不应存在：审校台账不产出浏览器形态`);
+}
 
 const legacyPending = generalTitles.groups.flatMap(group => group.titles
   .filter(record => record.evidence === '待考')

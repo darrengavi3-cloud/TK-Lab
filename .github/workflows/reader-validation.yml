@@ -38,6 +38,35 @@ jobs:
       - name: Require committed canonical projections
         run: git diff --exit-code --stat -- atlas README.md release-metadata/current-release.json release-metadata/reader-bundle.json release-metadata/canonical-sources.lock.json
 
+  reader-visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CI: "true"
+    steps:
+      - name: Check out the reviewed change
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: "24.19.0"
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium for the visual gate
+        run: npx playwright install --with-deps chromium
+      # 渲染门禁：字面硬切、触控目标、文字对比、短标签竖排、横向溢出。
+      # 以 atlas/ 源码树直接伺服，不依赖 dist/ 产物，故与上一个 job 并行。
+      - name: Reader visual gate
+        run: npm run test:visual
+      # 史实一致性：库内互证，不联网、不引入外部史源；列出所有相左之处供覆核。
+      - name: Historical consistency audit
+        run: node atlas/scripts/verify-historical-consistency.mjs
+      - name: Citation parser tests
+        run: node --test tests/shiyuan-citation.test.mjs
+
 # This workflow has no Sites credentials and cannot deploy or change access.
 # A successful run does not replace the fresh owner-only release gate,
 # browser visual acceptance, real-device checks, or a deployment receipt.

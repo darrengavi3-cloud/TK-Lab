@@ -33,13 +33,13 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 <!-- current-reviewed-counts:start -->
 | 项目 | 当前审定数量 |
 | --- | ---: |
-| 读者人物 | 2086 人 |
+| 读者人物 | 2074 人 |
 | 任官已核 | 263 条 |
 | 任官待补核 | 510 条 |
 | 任官存疑 | 2 条 |
 | 任官排除 | 76 条 |
 | 实质小传 | 96 篇 |
-| 正式立绘 | 512 项 |
+| 正式立绘 | 500 项 |
 <!-- current-reviewed-counts:end -->
 
 统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V82 审阅说明](V82-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。

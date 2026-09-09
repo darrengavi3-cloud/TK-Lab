@@ -140,10 +140,10 @@ const consolidatedCss = consolidatedCssPaths.map(filePath => ({
   source: fs.readFileSync(filePath, 'utf8').trim()
 }));
 const portablePortraitAssets = {};
-const portraitManifestJson = portraitManifestScript
-  .replace(/^\s*window\.SGZ_PERSON_PORTRAIT_MANIFEST\s*=\s*/, '')
-  .replace(/;\s*$/, '');
-const portraitManifestData = JSON.parse(portraitManifestJson);
+/* 旧写法把 portrait-manifest.js 的文本剥掉赋值前缀再 JSON.parse，等于假定该档永远是
+   单一 window.X={…} 字面量。索引改为载入时重建后这个假定不再成立；改读同目录的
+   .json——它本来就是同一份完整清单，且不受 .js 出货形态变化影响。 */
+const portraitManifestData = JSON.parse(fs.readFileSync(path.join(root, 'data', 'portrait-manifest.json'), 'utf8'));
 const readyPortraitItems = Object.values(portraitManifestData.byPersonId || {})
   .filter(item => item?.status === 'ready' && /^\.\/assets\/portraits\/.+\.(png|jpe?g|webp)$/i.test(String(item.src || '')));
 const defaultPersonIds = new Set(portraitManifestData.defaultPersonIds || []);
@@ -400,7 +400,9 @@ const replacements = [
     `<style>\n${item.source}\n</style>`
   ]),
   [
-    /url\('\.\/assets\/ui\/court-ink-palace\.png'\)/g,
+    /* base.css 与它的贴图同在 assets/ui/，正确的相对写法是 './court-ink-palace.png'；
+       旧标记只认已修正掉的 './assets/ui/…' 形态，两种都收才不会漏内联成 404。 */
+    /url\(\s*["']?\.\/(?:assets\/ui\/)?court-ink-palace\.png["']?\s*\)/g,
     `url('${courtBackgroundData}')`
   ],
   [
@@ -436,8 +438,18 @@ const optionalReplacementPrefixes = [
   '<div style="margin-top:10px;">请确认没有单独移动 index.html',
   '<div style="margin-top:10px;">如文件齐全仍无法打开'
 ];
+/* 这 44 条标记多数是「<script src="…"></script>」的逐字字面量，等于假定头部脚本
+   永远只带 src 一个属性。头部改用 defer 后全部失配，且失配的表现是整份便携导出
+   构建中断。以下把脚本类标记统一改写成容许其他属性的模式，其余标记维持逐字。 */
+const escapeLiteral = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const toPattern = from => {
+  if (from instanceof RegExp) return from;
+  const scriptTag = /^<script src="([^"]+)"><\/script>$/.exec(from);
+  if (scriptTag) return new RegExp(`<script\\b[^>]*\\ssrc="${escapeLiteral(scriptTag[1])}"[^>]*><\\/script>`, 'g');
+  return new RegExp(escapeLiteral(from), 'g');
+};
 replacements.forEach(([from, to]) => {
-  const pattern = from instanceof RegExp ? from : new RegExp(from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+  const pattern = toPattern(from);
   if (!pattern.test(html)) {
     if (typeof from === 'string' && /^<script src="\.\/(?:data|assets\/map\/data)\//.test(from)) return;
     if (optionalReplacementPrefixes.some(prefix => String(from).startsWith(prefix))) return;

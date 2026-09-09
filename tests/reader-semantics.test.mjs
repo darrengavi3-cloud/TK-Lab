@@ -111,11 +111,14 @@ test('reviewed identities extend the frozen roster without losing ids or publish
   const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
   const expectedIds = new Set([...base.people.map(row => row.personId), ...additions]);
   expectedIds.delete('person:source:032cc177a216');
-  for (const batch of ['v75-person-identity-suppressions', 'v80-person-identity-suppressions']) {
+  /* v85（2026-09）：抑制十二条由任官原文误切而成的伪人物——权加燮、全尚息、
+     司盐、衡阳、弘农、魏兴、王請观、年就加、于策、于理、曹曼、邵信臣。
+     判据即各该条任官原文自身的上下文，见 v85-person-identity-suppressions.json。 */
+  for (const batch of ['v75-person-identity-suppressions', 'v80-person-identity-suppressions', 'v85-person-identity-suppressions']) {
     for (const row of json(batch).records) expectedIds.delete(row.personId);
   }
   assert.deepEqual(new Set(roster.map(row => row.personId)), expectedIds);
-  assert.equal(loadReviewedReaderScope(fileURLToPath(root)).length, 2086);
+  assert.equal(loadReviewedReaderScope(fileURLToPath(root)).length, 2074);
   const liu = roster.find(row => row.personId === 'person:snapshot260:9fbd9f0edab3ad59');
   assert.equal(liu.zi, '道真');
   assert.equal(liu.birthplace, '燕国蓟');
@@ -453,7 +456,11 @@ test('Tai Shi corrections preserve source years and reject stale or ambiguous re
     assert.deepEqual(actual.transcriptionReferences.at(-1), review.source);
   }
   const unchanged = rows.filter(r => !corrected.has(r.id)).map(r => [r.id,r.year ?? null,r.yearText || '']).sort((a,b) => a[0].localeCompare(b[0]));
-  assert.equal(sourceDigest(unchanged), '6210bbcf3a6feca66394a04b5bc20867383f642c4637b16ce66bc045d6885b0c');
+  /* 冻结摘要：v72 审定表以外的金石纪年不得被悄悄改动。
+     2026-09 因一处确证改正而更新：wu-dingfeng-contract 的 year 原作 269（建衡元年），
+     与其 yearText「建衡三年」不合；《三国志》卷55 丁奉传「建衡元年……三年，卒」，
+     故改为 271。除该条外本表未动。 */
+  assert.equal(sourceDigest(unchanged), '046a72dfe54796207fc70ac7b5767b5a6e9495f5435c7372286d820a8eef9717');
 });
 
 test('the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate', () => {

@@ -1,4 +1,65 @@
 /* 观史台稳定响应式与无障碍层。模块专属规则保留在 modules.css。 */
+
+/* 触控目标：--sgz-touch-target 此前只被逐条套到输入框、下拉与分段控件，
+   模式切换、次级页签、下拉按钮与检索触发器均未达标。改以指针精度为条件
+   统一兜底：最小尺寸是二维的，只补高度会让两字标签在窄轨里竖排。 */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  [role="tab"],
+  .mini-tab,
+  .v56-segmented button,
+  .workspace-mode-switch button,
+  .global-search-trigger,
+  .theme-trigger,
+  .el-button,
+  .el-input__wrapper,
+  .el-select__wrapper,
+  /* 以下两处在模块层显式设了低于下限的 min-height，需同等特指度覆盖。 */
+  .han-court-nav button,
+  .v66-battle-anchors button {
+    min-block-size: var(--sgz-touch-target);
+  }
+
+  .v56-segmented button,
+  .workspace-mode-switch button,
+  .mini-tab,
+  [role="tab"],
+  .han-court-nav button,
+  .v66-battle-anchors button,
+  .battle-item-actions .battle-map-link,
+  .map-play-btn,
+  .v56-map-period button,
+  .v69-battle-people button,
+  .v69-battle-person-links button,
+  .global-search-trigger,
+  .theme-trigger {
+    min-inline-size: var(--sgz-touch-target);
+    white-space: nowrap;
+  }
+
+  /* 复选框与单选：扩大命中区而非放大视觉尺寸，字面大小不变。 */
+  .el-checkbox,
+  .el-radio {
+    position: relative;
+    min-block-size: var(--sgz-touch-target);
+    display: inline-flex;
+    align-items: center;
+  }
+  .el-checkbox::after,
+  .el-radio::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 0;
+    width: 100%;
+    min-width: var(--sgz-touch-target);
+    height: var(--sgz-touch-target);
+    transform: translateY(-50%);
+  }
+  .el-checkbox > *,
+  .el-radio > * { position: relative; z-index: 1; }
+}
+
 @media (max-width: 760px) {
   .v56-mobile-module-sheet [role="dialog"] {
     max-height: min(88dvh, 720px);

@@ -135,7 +135,10 @@ const identityReviewV75 = json('data/v75-person-identity-suppressions.json');
 const identityBatches = loadIdentityReviewBatches(root);
 const withdrawnPortraits = identityBatches.flatMap(batch => batch.withdrawnPortraits || []);
 assert(identityReviewV75.withdrawnPortraits.length === 5, 'V75 历史撤回不得改写');
-assert(withdrawnPortraits.length === 12 && new Set(withdrawnPortraits.map(row => row.personId)).size === 12, '已审核撤下立绘必须对应十二个不同伪人物');
+  /* 2026-09 第十批：v83 身份审定批次抑制十二条由任官原文误切而成的伪人物
+     （权加燮、全尚息、司盐、衡阳、弘农、魏兴、王請观、年就加、于策、于理、
+     曹曼、邵信臣），并撤回其十二张立绘。以下计数随之更新。 */
+assert(withdrawnPortraits.length === 24 && new Set(withdrawnPortraits.map(row => row.personId)).size === 24, '已审核撤下立绘必须对应二十四个不同伪人物');
 assert(withdrawnPortraits.every(row => identityBatches.flatMap(batch => batch.records).some(record => record.personId === row.personId && record.action === 'suppress') && !portraits.some(active => active.portraitId === row.portraitId)), '撤下立绘与身份审定不符');
 const preservedPortraitBindings = [...portraitBindings, ...withdrawnPortraits.map(row => `${row.portraitId}\0${row.personId}`)];
 const expectedBaselinePortraitCount = (portraitProduction?.status === 'complete' ? 374 : 274) - withdrawnPortraits.length;
