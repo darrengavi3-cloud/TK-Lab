@@ -3,19 +3,19 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 919,
-  "totalBytes": 331469744,
-  "aggregateSha256": "4b0c947147a4887260e8d80cac91747b47c6e42e2e75d696f51aa1bdb664a7cc",
+  "fileCount": 922,
+  "totalBytes": 331490024,
+  "aggregateSha256": "581d6617b28898afbe55ca8f34529cb94a25cda5049a5d1e1c63301c9bcaa70e",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 22382,
-      "sha256": "6fec2b234a00a52f85265e78ebb8d8a81481b8c639ba2ff4f30b33de44ba67b3"
+      "bytes": 25069,
+      "sha256": "a3cee6198ea6e2131d96edfc44518f85e51884b2c7ccfde4a6ca6388c5372de2"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 26264,
-      "sha256": "335b6d8d51362a72435c9e6d31fef715280c705db5ffb136f5cf8c78c1b02080"
+      "bytes": 28652,
+      "sha256": "1b506f5c8a00ebf8b64d0525126ed57432c50972d8852d9f73d11192d6cd641c"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -54,13 +54,13 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 4072,
-      "sha256": "2c376631c73a567d8e200202c2055b86f3dfc67c23f8cd00060dbb8a9bc6afd5"
+      "bytes": 4892,
+      "sha256": "68e79cc1ca1a2b75bb0bcff66513b59c5b057ff7dfc4ce6d33e8de2bb5b8e037"
     },
     {
       "path": "assets/app/release-version.js",
       "bytes": 38,
-      "sha256": "32f1351461f68ddf1be018b3c63974a62ff4a66749e3765578861afe97a80945"
+      "sha256": "a94827daa5f076f9c682b409c1444614abf804aea770432f2dbcbb6615068684"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -69,8 +69,13 @@
     },
     {
       "path": "assets/app/shell.js",
-      "bytes": 850,
-      "sha256": "01c53c73bf508611c7fdaa3bf7c104260f5129f45e30a9edaa161c4d98e0221e"
+      "bytes": 1473,
+      "sha256": "7c1fae184b9e1c5e0af381a375104b464368b9e89aa022865a89ae85dd9c0fac"
+    },
+    {
+      "path": "assets/app/shihuo.js",
+      "bytes": 1294,
+      "sha256": "4d4171d7e24d930b9420be2f7c2cb3de652563d7fcdfa5d4c7242671fc0c79b7"
     },
     {
       "path": "assets/app/shiyuan.js",
@@ -3164,13 +3169,13 @@
     },
     {
       "path": "assets/ui/base.css",
-      "bytes": 102576,
-      "sha256": "78539d6d57533258c3dd4d9e19ea12a1b71c344ea848e9f68558c1f1e48c97ea"
+      "bytes": 102870,
+      "sha256": "b99b6b29084417aa46a171cc8f30c0048a0b68525400661aab93039ff2cf8a6f"
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 47862,
-      "sha256": "161b1801a28102892f1509d3bc9f7f1657eccf49c21c08e044a524c9c28c5246"
+      "bytes": 48173,
+      "sha256": "88a1a6328be31f3725e76446cabb4a701f042360603e60dff577e5c1e810787a"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -3179,13 +3184,13 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 86746,
-      "sha256": "59fb5d6c0bf14725d336d9e8430b3e868d540d1e590c492e9ba44ec048ff62d8"
+      "bytes": 92688,
+      "sha256": "93545c4ebe904fc612752c26ff988d5a63352fbb43525e39630b337bc89ad8f0"
     },
     {
       "path": "assets/ui/responsive.css",
-      "bytes": 4942,
-      "sha256": "6376534303c6717ef9103edfd5126a7b8ddb6f5b309372fec3b393f62059212b"
+      "bytes": 8325,
+      "sha256": "e5bfda839a45053b8e8bfd3d5556a8b498e60a61865cc7b20df0ff1882b679f2"
     },
     {
       "path": "assets/ui/tokens.css",
@@ -3470,7 +3475,7 @@
     {
       "path": "data/release-config.json",
       "bytes": 1197,
-      "sha256": "6d8b4210c4b84f69a9445ee353174e4300e7e975e3862c96247197833d0daae2"
+      "sha256": "c268f1501867574b6f9f67e1f976c1aebdc8ff78b1c74062ae4d06aaf5e91c18"
     },
     {
       "path": "data/research-candidates.js",
@@ -3710,22 +3715,22 @@
     {
       "path": "data/v63-person-registry.js",
       "bytes": 3349139,
-      "sha256": "b978f9efaef4c779dc2fe3e6d593ba0c231d24b543d38826af1c7e37c4eba9ab"
+      "sha256": "62e7a7f1d8f01e004fec0687d5e9f5d3b14992ebe7772e2782d8406abc8db85d"
     },
     {
       "path": "data/v63-person-registry.json",
       "bytes": 11305590,
-      "sha256": "d9dd2b1f3e2a7ffa36c54fbf69194888a5b696779351148e4976c127e703466f"
+      "sha256": "fab91ee7df4e6cc5e3cdcdcd6289d02900bb9fc2221bb18ac120829843e23bc5"
     },
     {
       "path": "data/v63-reader-people.js",
       "bytes": 425075,
-      "sha256": "4f926d66e1920b1dbf1f5957d699dab0ab6fa2e8c4d599b9fb0c00ae3706a707"
+      "sha256": "56ddc9f744b4d8854bb323ec2581fd6a50eee90913a392b96335fbe6f493e223"
     },
     {
       "path": "data/v63-reader-people.json",
       "bytes": 586046,
-      "sha256": "1c2fc864f5b346f6fba0b5988287dc4dc2372b3163add00a12b74d65ac3d59e4"
+      "sha256": "c7c0ad604f96027bf79276086d61cb9504bbcdb229e08f10c8fbab5dd2107fd4"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -4073,9 +4078,14 @@
       "sha256": "45062031249310d4b4444c5dbab210293cb82577e4391f6b918e2a8182aa2bc8"
     },
     {
-      "path": "data/v83-person-identity-suppressions.json",
+      "path": "data/v83-shihuo-display-review.json",
+      "bytes": 3615,
+      "sha256": "98e2bc72f320c45093e41ca47e8f132e3a82347282d15b5018c6b1d7c05b6752"
+    },
+    {
+      "path": "data/v85-person-identity-suppressions.json",
       "bytes": 25232,
-      "sha256": "89a1e0873102cfe25a498b69343418605a858623c76df7769ea4fe5311d7de98"
+      "sha256": "073ffe500b092c573e29dc53cad8cc903a229ec285a886e997e8c64d4253b4b5"
     },
     {
       "path": "data/wikipedia-commandery-audit.json",
@@ -4109,8 +4119,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 798509,
-      "sha256": "06047107b1f36a8d26380857eea36e58e908d2aa6468e37f18ebb2f1fb86e42a"
+      "bytes": 794811,
+      "sha256": "f73d95273a8b34c4c05bcc6e2b0fcf85b3b4c5a055d5cdcc90ae94aba3ffd1bf"
     },
     {
       "path": "scripts/appointment-publication.mjs",
@@ -4174,8 +4184,8 @@
     },
     {
       "path": "scripts/build-reader-bundle.mjs",
-      "bytes": 71475,
-      "sha256": "5937be1483018b48d8276d7e1ea0567df238949fe86023be27a33178e8aed3c8"
+      "bytes": 71730,
+      "sha256": "e59d8cc2b7d1fc70d37a489eff9c0c56dfda877c5c7993631e97e3ff8dcdcb38"
     },
     {
       "path": "scripts/build-release-summary.mjs",
@@ -4388,6 +4398,11 @@
       "sha256": "f9aed84e5717796664962039f871b6ab75bf40f714bc4da8a8502b76682948c4"
     },
     {
+      "path": "scripts/shihuo-publication.mjs",
+      "bytes": 1966,
+      "sha256": "cc5b0a2c0c22d98973ab4e26991909d81c7c34222daa95191d5635db1d2d0aaf"
+    },
+    {
       "path": "scripts/verify-historical-consistency.mjs",
       "bytes": 17347,
       "sha256": "e7335051e72543884e73752ab2a4156e5fce89283cfae95d27a91a19915ecb90"
@@ -4569,8 +4584,8 @@
     },
     {
       "path": "scripts/verify-v66.mjs",
-      "bytes": 34654,
-      "sha256": "d491a79f95ce71fd5c23bfdf279d9cde85cc5ce7c44c7b253a7d24438c735e1f"
+      "bytes": 35054,
+      "sha256": "c7bad17c638669a769d5ce59b7614f2e8a2647272cd1e2004b476ea9cb8325be"
     },
     {
       "path": "scripts/verify-v67.mjs",

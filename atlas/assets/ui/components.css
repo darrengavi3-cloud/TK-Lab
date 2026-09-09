@@ -304,6 +304,10 @@ button:focus-visible,
   flex-direction: column;
   padding: 8px 7px 10px;
   background: var(--v56-rail-bg);
+  /* 深色轨内的默认字色必须是轨面色：--v56-ink 与 --v56-rail-bg 恰好同值，
+     子元素一旦 color:inherit 就会与底同色而完全不可见。窄屏的「⋯ 更多」
+     正是如此——桌面下另有规则遮住，窄屏无遮挡便暴露。 */
+  color: var(--v56-rail-ink);
   border-right: 1px solid color-mix(in srgb, var(--v56-rail-bg) 70%, #000);
   transition: width var(--v56-motion) ease;
 }

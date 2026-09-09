@@ -2625,7 +2625,10 @@ body, #app, .shell { color: var(--v58-ink); }
 .v84-detail-heading strong { flex:1; min-width:100px; font:600 18px/1.5 var(--sgz-font-heading); overflow-wrap:anywhere; }
 .v84-reading-detail .el-drawer__body { overscroll-behavior:contain; }
 .v84-more-menu { display:block; width:100%; }
-.v84-more-menu .v56-mobile-more { width:100%; color:var(--v56-sheet); text-align:center; }
+/* 原作 --v56-sheet：那是「面色」，兰台清昼下恰好是浅色所以看着对，
+   青灯夜校下面色本身就是深色，于是深字压深底、对比 1.16。轨内文字应
+   一律用轨面色 --v56-rail-ink，它在三套主题下都随轨底翻转。 */
+.v84-more-menu .v56-mobile-more { width:100%; color:var(--v56-rail-ink); text-align:center; }
 .global-search-trigger,.theme-trigger { min-height:44px; height:auto; font-size:14px; padding-inline:12px; }
 
 .topbar { height:var(--v56-topbar-h); min-height:var(--v56-topbar-h); padding-block:4px; flex-shrink:0; }

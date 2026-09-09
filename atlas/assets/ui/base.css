@@ -261,7 +261,7 @@ body{
   --paper:#F4F3EF;
   --card:#FFFFFF;
   --ink:#202420;
-  --ink-soft:#6F756F;
+  --ink-soft:#5E655E;   /* 12.5px 的 .mini-tab 在 --v56-paper 上需 4.5:1，原 #6F756F 仅 4.11 */
   --rule:#E2E4DF;
   --seal:#8D3D32;
   --gold:#A78345;
@@ -298,7 +298,9 @@ body{background:#F4F3EF;}
 .canvas-wrap{background:radial-gradient(circle at 1px 1px,rgba(32,36,32,.055) 1px,transparent 0) 0 0/24px 24px,#F5F4F1;}
 .canvas-tabs,.filter-bar{background:rgba(255,255,255,.9);}
 .canvas-tabs{min-height:46px;padding:7px 14px;gap:7px;overflow-x:auto;scrollbar-width:thin;white-space:nowrap;}
-.mini-tab{padding:5px 11px;border-radius:8px;border:1px solid transparent;background:var(--v56-paper);}
+/* --ink-soft 全库只有一个值、不随主题翻转，青灯夜校下深字压深底只剩 2.94。
+   改用随主题走的 --v56-muted，它在三套主题下都已按 AA 定值。 */
+.mini-tab{padding:5px 11px;border-radius:8px;border:1px solid transparent;background:var(--v56-paper);color:var(--v56-muted);}
 .mini-tab:hover{color:var(--ink);}
 .mini-tab.active{background:var(--v56-ink);color:var(--v56-sheet);border-color:var(--v56-ink);}
 .filter-bar{padding:8px 14px;}
