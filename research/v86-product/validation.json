@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-09",
+  "sourceCommit": "ac18d40b3bd0c8c62c26f71ed3d243dadecd29dc",
+  "sourceRecovery": "24 changed source files verified byte-for-byte against GitHub commit",
+  "node": "24.19.0",
+  "checks": {
+    "release:offline": {
+      "exitCode": 0,
+      "tests": 77,
+      "passed": 77,
+      "invariantValidators": 20
+    },
+    "test:source": {
+      "exitCode": 0,
+      "tests": 67,
+      "passed": 67
+    },
+    "typecheck": {
+      "exitCode": 0
+    },
+    "lint": {
+      "exitCode": 0,
+      "warnings": 3,
+      "warningScope": "existing generated types/cloudflare.d.ts"
+    },
+    "premiumAuthoredUiAudit": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "designLint": {
+      "errors": 0,
+      "warnings": 1,
+      "note": "root pointer has no YAML"
+    }
+  },
+  "contentCandidates": 59,
+  "browserAcceptance": "not performed",
+  "realIPhoneAcceptance": "not performed",
+  "deployment": "not performed",
+  "remoteCi": "See pull request #13 checks for current status",
+  "verificationScope": "Local checks below apply to source checkpoint ac18d40; subsequent contrast CSS fixes are validated by PR #13 CI.",
+  "checkpointSourceLockSha256": "82e58912f7a909ad8e9a47cb1b19c6a708d00e378a7e4ab6c60ef47d761c6df7",
+  "checkpointTwoBuildAggregateSha256": "6babd45f57413e542b10017b8232b4a4e8ab3ed27014bbedd36ff328ec4ba89b",
+  "finalSourceLockSha256": "0c04e32ec4dfb8c272f344d586a3ef90ccba457ea19bf86492d06a267216e5ae",
+  "initialRemoteCi": {
+    "runId": 34381772865,
+    "renderedCases": 32,
+    "passed": 23,
+    "failed": 9,
+    "failures": "Low contrast in disabled source pagination, night theme transitions/table selection, and empty office glyph; corrected in follow-up CSS."
+  }
+}

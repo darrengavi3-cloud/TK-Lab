@@ -513,6 +513,10 @@ button:focus-visible,
 .el-table td.el-table__cell { background: var(--v56-sheet); color: var(--v56-ink); }
 .el-table th.el-table__cell { background: color-mix(in srgb, var(--v56-paper) 74%, var(--v56-sheet)); color: var(--v56-ink); }
 
+/* 文字与底色同步切换主题，避免过渡中的浅底浅字；保留焦点反馈。 */
+.el-select__wrapper { transition-property: box-shadow; }
+.el-table--enable-row-transition .el-table__body td.el-table__cell { transition: none; }
+
 /* 人物记：名录 + 档案详情 */
 .v56-people-master-detail {
   min-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 92px);
