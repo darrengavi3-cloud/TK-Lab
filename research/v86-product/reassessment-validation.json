@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-10",
+  "reviewedParent": "1d0dc6cd5e43e1cb599b9a62494ceb1eb7127067",
+  "runtime": {
+    "node": "24.19.0",
+    "npm": "11.9.0"
+  },
+  "canonicalReleaseCheck": {
+    "status": "passed",
+    "validators": 20,
+    "deterministicDoubleBuildSha256": "6068c3349164850334210f2e113b2d89ac143196d4983ae0050d0314393f0f16"
+  },
+  "checks": {
+    "sourceTests": {
+      "passed": 67,
+      "failed": 0
+    },
+    "builtTests": {
+      "passed": 82,
+      "failed": 0
+    },
+    "visualScenarios": {
+      "passed": 32,
+      "failed": 0,
+      "viewports": [
+        [
+          1440,
+          900
+        ],
+        [
+          1280,
+          860
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "note": "Chromium自动量测；手机尺寸不是iPhone。最初缺CJK字体导致26项误报，安装官方Noto Sans CJK后定位并修复1项真实夜间对比问题。"
+    },
+    "typecheck": "passed",
+    "lint": {
+      "errors": 0,
+      "warnings": 3,
+      "note": "既有生成Cloudflare类型的unused-disable警告。失败同步残留的临时副本已清理，未放宽lint规则。"
+    },
+    "uiStaticAudit": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "builtWorkerProbes": {
+      "passed": 10,
+      "failed": 0,
+      "configuration": "生成的dist/server/wrangler.json，保留assets优先级",
+      "liveDeployment": false
+    }
+  },
+  "offlineExecutionNote": "完整离线流程在lint阶段曾被临时同步副本及新测试变量命名阻断；清理副本并修复命名后重跑lint、生产构建、82项构建测试及10项Worker探测，均成功。最终CI将从干净checkout完整重跑release:offline。",
+  "content": {
+    "baselineCandidates": 59,
+    "fixed": 15,
+    "falsePositive": 26,
+    "alreadyReviewed": 4,
+    "sourceReviewRemaining": 14,
+    "additionalBoundaryFix": "王琰墓志",
+    "historicalHashesPreserved": true,
+    "publishedAppointments": 263,
+    "pendingAppointments": 507,
+    "suppressedAppointments": 79,
+    "people": 2074,
+    "portraitAssets": 500
+  },
+  "dependencies": {
+    "all": {
+      "critical": 0,
+      "high": 2,
+      "moderate": 0,
+      "low": 0
+    },
+    "production": {
+      "total": 0
+    },
+    "remainingChain": "vinext -> image-size@2.0.2",
+    "remainingVulnerablePackages": [
+      "image-size",
+      "vinext"
+    ],
+    "residualRiskAccepted": false
+  },
+  "agentBrowserReview": {
+    "status": "partial-passed",
+    "coverage": [
+      "桌面首屏与模块切换",
+      "刘乔简体查询直接命中刘喬",
+      "金石搜索和详情联动",
+      "王琰题名纪年进入列表和阅读面板",
+      "王琰释文边界及说明",
+      "阅读返回按钮保留模块上下文"
+    ],
+    "screenshot": "reader-epigraphy-desktop.jpg",
+    "screenshotSha256": "0f8bd4dc85cee534c57fe3232b4c195cf25d7a936cd95114bd2846a1f0aaf579"
+  },
+  "manualAcceptance": {
+    "fullVisualMatrix": "not-verified",
+    "realIPhone": "not-verified",
+    "deviceSafeAreaKeyboardTouchZoom": "not-verified",
+    "deployment": "not-performed",
+    "livePerformanceAndRollback": "not-verified"
+  },
+  "github": {
+    "ciEvidence": "最终提交SHA与CI运行链接记录于PR #13正文；本文件不以旧head的绿色CI代替新head",
+    "pr": "https://github.com/darrengavi3-cloud/TK-Lab/pull/13",
+    "draft": true,
+    "merged": false
+  },
+  "verdict": {
+    "readyForCodeReview": true,
+    "unconditionalMergeReady": false,
+    "commercialReleaseReady": false
+  }
+}

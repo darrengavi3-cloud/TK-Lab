@@ -2518,7 +2518,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .people-toolbar,.battle-toolbar,.jinshi-toolbar,.shihuo-toolbar,.fangzhen-toolbar { gap:12px;min-height:52px;padding-block:8px; }
 .module-page .el-input__wrapper,.module-page .el-select__wrapper { min-height:38px; }
 .module-page .el-input__inner,.module-page .el-select { font-size:13px; }
-.module-page .el-table { --el-table-header-bg-color:var(--sgz-surface);--el-table-row-hover-bg-color:var(--sgz-selected);font-size:13px; }
+.module-page .el-table { --el-table-header-bg-color:var(--sgz-surface);--el-table-row-hover-bg-color:var(--sgz-selected);--el-table-current-row-bg-color:var(--sgz-selected);font-size:13px; }
 .module-page .el-table .cell { line-height:1.7;padding-block:5px; }
 .module-page .el-table th .cell { color:var(--sgz-muted);font-size:12px;font-weight:500; }
 .v56-people-master-detail { grid-template-columns:minmax(260px,31%) minmax(0,1fr);gap:24px;max-height:none;align-items:start;background:transparent;border:0; }
@@ -2649,6 +2649,13 @@ body, #app, .shell { color: var(--v58-ink); }
 
 .v56-shiyuan-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(300px,1fr); gap:18px; align-items:start; }
 .v56-shiyuan-volumes { min-width:0; }
+.shiyuan-volume-button { min-height:44px; min-width:44px; padding:8px; border:1px solid transparent; border-radius:2px; background:transparent; color:var(--v56-ink); cursor:pointer; font:inherit; }
+.shiyuan-volume-button:hover, .shiyuan-volume-button[aria-pressed="true"] { background:var(--v56-paper); border-color:var(--v56-rule); }
+.shiyuan-volume-button:focus-visible, .v56-shiyuan-entry-list a:focus-visible, #shiyuan-detail-title:focus { outline:2px solid var(--v56-vermilion); outline-offset:2px; }
+.shiyuan-pagination { display:flex; justify-content:space-between; gap:12px; padding-block:12px; }
+.shiyuan-pagination .el-button { --el-button-disabled-text-color:var(--sgz-muted); --el-button-disabled-bg-color:var(--sgz-paper); }
+.v56-shiyuan-entry-list a { color:var(--v56-ink); font-size:16px; line-height:1.65; min-height:44px; display:flex; align-items:center; text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+.v56-shiyuan-entry-list a:hover { color:var(--v56-vermilion); }
 .v56-shiyuan-detail {
   min-width:0; max-height:560px; overflow:auto;
   border:1px solid var(--v56-rule); border-radius:2px;
@@ -2672,7 +2679,7 @@ body, #app, .shell { color: var(--v58-ink); }
   border:1px solid var(--v56-rule);
 }
 .v56-shiyuan-entry-meta { font-size:12px; color:var(--v56-muted); }
-.v56-shiyuan-entry-cite { font-size:12px; color:var(--v56-muted); }
+.v56-shiyuan-entry-cite { font-size:14px; line-height:1.75; color:var(--v56-muted); overflow-wrap:anywhere; }
 
 .v56-shiyuan-unattributed { margin-top:18px; font-size:13px; }
 .v56-shiyuan-unattributed summary { cursor:pointer; color:var(--v56-muted); padding:6px 0; }

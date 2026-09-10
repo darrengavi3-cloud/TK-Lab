@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 922,
-  "totalBytes": 331490024,
-  "aggregateSha256": "581d6617b28898afbe55ca8f34529cb94a25cda5049a5d1e1c63301c9bcaa70e",
+  "fileCount": 925,
+  "totalBytes": 331497293,
+  "aggregateSha256": "9f233960d786eb03fa2fd9031ca357e7e445d4629d38b9c84d547e907acd068c",
   "files": [
     {
       "path": "DESIGN.md",
@@ -14,8 +14,8 @@
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 28652,
-      "sha256": "1b506f5c8a00ebf8b64d0525126ed57432c50972d8852d9f73d11192d6cd641c"
+      "bytes": 29900,
+      "sha256": "b5efad25eafed641380c6369bd6272c745eda9d08f993875f2ea4fbc3f5c6651"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -60,17 +60,17 @@
     {
       "path": "assets/app/release-version.js",
       "bytes": 38,
-      "sha256": "a94827daa5f076f9c682b409c1444614abf804aea770432f2dbcbb6615068684"
+      "sha256": "769ec285e1075053dcea0995e3d0a9d7890760638277d59d29d8a9d0202b5472"
     },
     {
       "path": "assets/app/route-contract.js",
-      "bytes": 502,
-      "sha256": "caa1daabd598b8ec0b65cf60e475175e26dcc4ffd1884a450bed2b1f7ce00ad8"
+      "bytes": 639,
+      "sha256": "a9111b654bca5e910aaf2aa801ebdab452a41d28cd8b972dff69cf1283c8ebbb"
     },
     {
       "path": "assets/app/shell.js",
-      "bytes": 1473,
-      "sha256": "7c1fae184b9e1c5e0af381a375104b464368b9e89aa022865a89ae85dd9c0fac"
+      "bytes": 1377,
+      "sha256": "f9f2c834fd5fc47f4b7ea0212449c5e1a1ce7d986b14ea1a118a231e2b409c42"
     },
     {
       "path": "assets/app/shihuo.js",
@@ -79,8 +79,8 @@
     },
     {
       "path": "assets/app/shiyuan.js",
-      "bytes": 8170,
-      "sha256": "505dc634ac7fb4afc2577b330592a28afe592bc90829bdfc3cb1554d37e2aab2"
+      "bytes": 10271,
+      "sha256": "b88a0f5c4040edec2685f0e7b20e21fbdcd58af8899706197249f4c8fedf378c"
     },
     {
       "path": "assets/map/css/style.css",
@@ -3169,13 +3169,13 @@
     },
     {
       "path": "assets/ui/base.css",
-      "bytes": 102870,
-      "sha256": "b99b6b29084417aa46a171cc8f30c0048a0b68525400661aab93039ff2cf8a6f"
+      "bytes": 103068,
+      "sha256": "5759eeb8f2ca90c5bb7740d7a4a3f6acf271743d383998bac4f50ffa44c13b65"
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 48173,
-      "sha256": "88a1a6328be31f3725e76446cabb4a701f042360603e60dff577e5c1e810787a"
+      "bytes": 48427,
+      "sha256": "213a2b9e968b1a8d73843bcfd288af1d5fd088b10d36ad460078ae699199980b"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -3184,8 +3184,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 92688,
-      "sha256": "93545c4ebe904fc612752c26ff988d5a63352fbb43525e39630b337bc89ad8f0"
+      "bytes": 93799,
+      "sha256": "f3ab3be0060c4f843eae557b5257c5dc8d4e006962fbe7abe20b769453fe787d"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -3474,8 +3474,8 @@
     },
     {
       "path": "data/release-config.json",
-      "bytes": 1197,
-      "sha256": "c268f1501867574b6f9f67e1f976c1aebdc8ff78b1c74062ae4d06aaf5e91c18"
+      "bytes": 1239,
+      "sha256": "536595c8e4513e5e33c3ce740bfe8081dfcf9355c33cf148357fc6f3206af835"
     },
     {
       "path": "data/research-candidates.js",
@@ -3715,22 +3715,22 @@
     {
       "path": "data/v63-person-registry.js",
       "bytes": 3349139,
-      "sha256": "62e7a7f1d8f01e004fec0687d5e9f5d3b14992ebe7772e2782d8406abc8db85d"
+      "sha256": "25057533a59f98bf0f8a792c6afde825cac20b425bd1a9d2ce5e5d2fd679f639"
     },
     {
       "path": "data/v63-person-registry.json",
       "bytes": 11305590,
-      "sha256": "fab91ee7df4e6cc5e3cdcdcd6289d02900bb9fc2221bb18ac120829843e23bc5"
+      "sha256": "028bd0dfb73f74bfcf6df44776d8b3d4e0e55d87aa3d85cd62740714e56fb45a"
     },
     {
       "path": "data/v63-reader-people.js",
       "bytes": 425075,
-      "sha256": "56ddc9f744b4d8854bb323ec2581fd6a50eee90913a392b96335fbe6f493e223"
+      "sha256": "b77d64c8eee0f23c3c8a681c5238550f0436c32a34077b7f4bcfa07e26ae1fae"
     },
     {
       "path": "data/v63-reader-people.json",
       "bytes": 586046,
-      "sha256": "c7c0ad604f96027bf79276086d61cb9504bbcdb229e08f10c8fbab5dd2107fd4"
+      "sha256": "25a56f34f08b1c0f7d6852d46add17cb4c187db7cb68e0b3407871839902c45c"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -3854,13 +3854,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 328401,
-      "sha256": "b22d034a2acff2fa0b46bbdefd3477b0f7eb91ff5e3b6bdea37d7f32174f687a"
+      "bytes": 322477,
+      "sha256": "9fa85488f010c1592c1bbb795403fddd1f5c36d97d78630e149ceffece184dc6"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 393630,
-      "sha256": "9c820a70cb654ebcba8698cb24f5c4f724eecdb0d70384ecfd0a8069497f7fbb"
+      "bytes": 387730,
+      "sha256": "1d64556b607771211cc28fcd2621489a8e53fadade838948baf953674837f249"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -4088,6 +4088,16 @@
       "sha256": "073ffe500b092c573e29dc53cad8cc903a229ec285a886e997e8c64d4253b4b5"
     },
     {
+      "path": "data/v86-appointment-source-review.json",
+      "bytes": 2671,
+      "sha256": "685df9ae50db1a6b5cde00fcd706c03664491f264d2d9fd887220f89021aba9e"
+    },
+    {
+      "path": "data/v86-epigraphy-consistency-review.json",
+      "bytes": 4249,
+      "sha256": "2239c48c3b92375aad5a3ab5458d9a43182e8312b83a8d29a0b04a545599f9c9"
+    },
+    {
       "path": "data/wikipedia-commandery-audit.json",
       "bytes": 3623,
       "sha256": "c67cc22336eae70d1f533295baf592298f8ea9a1d531b9c9e15dff04579aca3a"
@@ -4119,8 +4129,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 794811,
-      "sha256": "f73d95273a8b34c4c05bcc6e2b0fcf85b3b4c5a055d5cdcc90ae94aba3ffd1bf"
+      "bytes": 797573,
+      "sha256": "cb0d51719861e98caedef56401327a10fe242f79898685a5f3884ddf0e0e938d"
     },
     {
       "path": "scripts/appointment-publication.mjs",
@@ -4179,8 +4189,8 @@
     },
     {
       "path": "scripts/build-portable-export.mjs",
-      "bytes": 43720,
-      "sha256": "3b3bd80e885a7d8edb3128ecc1c668a9dda730c8481bf59e05bd0443a6bda694"
+      "bytes": 44288,
+      "sha256": "9878b667bbc85447e6d273dad3fbffc626adc8a15b99ab4f0647dec13a6283d0"
     },
     {
       "path": "scripts/build-reader-bundle.mjs",
@@ -4289,8 +4299,8 @@
     },
     {
       "path": "scripts/build-v69-data.mjs",
-      "bytes": 37970,
-      "sha256": "1e79ce8ba914f23878680e5d54760cd43509c95b4a25139caa7e8d764a1fcc46"
+      "bytes": 38521,
+      "sha256": "967a60da0ebb0b588d632e02f68bb4453eb4a22b8faeedc1a215f879a8ad2d30"
     },
     {
       "path": "scripts/build-v73-portrait-candidates.mjs",
@@ -4301,6 +4311,11 @@
       "path": "scripts/build-v73-review-status-ledger.mjs",
       "bytes": 5681,
       "sha256": "a52ae5079e391b63fb7ac8057ba0ff7c2670869ffe6577e926b1fbe6a4fdbe97"
+    },
+    {
+      "path": "scripts/consistency-publication.mjs",
+      "bytes": 1740,
+      "sha256": "8a796dc143448fe506d1791576b6b8eb4c284fea287d18558b4f1f1b9fed680b"
     },
     {
       "path": "scripts/download-assets.sh",
@@ -4404,8 +4419,8 @@
     },
     {
       "path": "scripts/verify-historical-consistency.mjs",
-      "bytes": 17347,
-      "sha256": "e7335051e72543884e73752ab2a4156e5fce89283cfae95d27a91a19915ecb90"
+      "bytes": 18855,
+      "sha256": "6f110432cc27536684f1bd5ee656243dfa431930c5488e494989dcf5727368c6"
     },
     {
       "path": "scripts/verify-historical-model.mjs",
@@ -4614,8 +4629,8 @@
     },
     {
       "path": "scripts/verify-v73.mjs",
-      "bytes": 5646,
-      "sha256": "5402fc0c99ae9fd391603705db762b83347be9855552b4902254cf8245a06467"
+      "bytes": 5695,
+      "sha256": "2ddc910b12d8b66c528bc96ec8b52e92bddc9a8af1849388aa1f7bdad5ec7eac"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "V84",
+  "schemaVersion": "V86",
   "modelId": "sgz-v73-review-status-ledger",
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "policy": {
@@ -31,9 +31,9 @@
   ],
   "totals": {
     "verified": 2413,
-    "pending": 1372,
+    "pending": 1369,
     "disputed": 94,
-    "suppressed": 105
+    "suppressed": 108
   },
   "modules": [
     {
@@ -54,9 +54,9 @@
       "total": 851,
       "counts": {
         "verified": 263,
-        "pending": 510,
+        "pending": 507,
         "disputed": 2,
-        "suppressed": 76
+        "suppressed": 79
       },
       "excludedFromStatistics": 588
     },

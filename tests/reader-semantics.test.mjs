@@ -15,6 +15,7 @@ import { epigraphicYear, epigraphicEraKey, epigraphicInscriptionState, matchesEp
 import { createPersonNavigator } from '../atlas/assets/app/navigation.js';
 import { acceptedRouteMessage, validRouteHash } from '../atlas/assets/app/route-contract.js';
 import { parseRouteHash, serializeRouteHash } from '../atlas/assets/app/shell.js';
+import { beforeV86Consistency } from './helpers/epigraphy-boundaries.mjs';
 
 const root = new URL('../atlas/', import.meta.url);
 const read = name => fs.readFileSync(new URL(name, root), 'utf8');
@@ -85,7 +86,8 @@ test('V74 chancellery evidence preserves refutations, corrected subjects and unk
   const combined = loadSourceAppointmentReviews(fileURLToPath(root));
   const allSupplements = {records: [...supplement.records, ...json('v75-appointment-supplements').records, ...json('v76-appointment-supplements').records]};
   const counts = appointmentStatusCounts(source.appointments, combined, allSupplements, publishedIds);
-  assert.deepEqual(counts, { verified: 263, pending: 510, disputed: 2, suppressed: 76 });
+  // V86 excludes three misparsed, previously unpublished assertions.
+  assert.deepEqual(counts, { verified: 263, pending: 507, disputed: 2, suppressed: 79 });
   assert.deepEqual(json('v73-review-status-ledger').modules.find(row => row.key === 'appointments').counts, counts);
   const changed = structuredClone(evidence);
   changed.records.find(row => row.id === 'dong-hui').quote = '闢為丞相府屬，遷巴郡太守';
@@ -271,7 +273,7 @@ test('canonical, portable scripts and shared reader templates compile', () => {
 test('all existing inscriptions, sections and variants are preserved verbatim', () => {
   const payload = json('v69-epigraphic-records');
   const restored = new Set([...json('v65-epigraphy-reader-overlays').records, ...json('v71-epigraphy-transcription-review').records].map(row => row.recordId));
-  const originals = payload.records.filter(row => row.inscription && !restored.has(row.id))
+  const originals = beforeV86Consistency(payload.records).filter(row => row.inscription && !restored.has(row.id))
     .map(row => [row.id, row.inscription, row.transcriptionSections || [], row.inscriptionVariants || []]);
   assert.equal(originals.length, 44);
   const digest = crypto.createHash('sha256').update(JSON.stringify(originals)).digest('hex');
@@ -455,7 +457,7 @@ test('Tai Shi corrections preserve source years and reject stale or ambiguous re
     assert.equal(raw.find(r => r.id === row.recordId).year, row.previousYear);
     assert.deepEqual(actual.transcriptionReferences.at(-1), review.source);
   }
-  const unchanged = rows.filter(r => !corrected.has(r.id)).map(r => [r.id,r.year ?? null,r.yearText || '']).sort((a,b) => a[0].localeCompare(b[0]));
+  const unchanged = beforeV86Consistency(rows).filter(r => !corrected.has(r.id)).map(r => [r.id,r.year ?? null,r.yearText || '']).sort((a,b) => a[0].localeCompare(b[0]));
   /* 冻结摘要：v72 审定表以外的金石纪年不得被悄悄改动。
      2026-09 因一处确证改正而更新：wu-dingfeng-contract 的 year 原作 269（建衡元年），
      与其 yearText「建衡三年」不合；《三国志》卷55 丁奉传「建衡元年……三年，卒」，
@@ -466,7 +468,7 @@ test('Tai Shi corrections preserve source years and reject stale or ambiguous re
 test('the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate', () => {
   const additions = ['jinshi-v55-1dea8afedc3a27b9','jinshi-v55-2d74fd631f41de58','jinshi-v55-bad19cd9f016b00a'];
   const rows = json('v69-epigraphic-records').records;
-  const originals = rows.filter(r => r.inscription && !additions.includes(r.id))
+  const originals = beforeV86Consistency(rows).filter(r => r.inscription && !additions.includes(r.id))
     .map(r => [r.id,r.inscription,r.transcriptionSections || [],r.inscriptionVariants || [],r.transcriptionNote || '']).sort((a,b) => a[0].localeCompare(b[0]));
   assert.equal(originals.length, 56);
   assert.equal(sourceDigest(originals), 'a4af410799a43b856606693756ff5b586e2c39240e6809311c71405cd0e33fbd');

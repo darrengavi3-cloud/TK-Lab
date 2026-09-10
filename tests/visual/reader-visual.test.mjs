@@ -173,7 +173,7 @@ const AUDIT = '(' + String(function audit(touchTarget) {
 }) + `)(${TOUCH_TARGET})`;
 
 const MODULES = [
-  ['职官', 'offices'], ['人物', 'people'], ['战事', 'battles'],
+  ['职官', 'offices'], ['人物', 'people'], ['战事', 'battle'],
   ['州镇', 'fangzhen'], ['金石', 'jinshi'], ['食货', 'shihuo'], ['史源', 'shiyuan'], ['形势', 'map']
 ];
 
@@ -195,7 +195,7 @@ test.after(async () => {
 });
 
 for (const scenario of CASES) {
-  for (const [label, key] of MODULES) {
+  for (const [, key] of MODULES) {
     test(`${scenario.name} · ${key}`, async () => {
       const context = await browser.newContext({
         viewport: { width: scenario.width, height: scenario.height },
@@ -207,21 +207,17 @@ for (const scenario of CASES) {
       const pageErrors = [];
       page.on('pageerror', error => pageErrors.push(String(error).slice(0, 200)));
 
-      await page.goto(origin, { waitUntil: 'load', timeout: 60_000 });
-      await page.waitForTimeout(1500);
+      await page.goto(`${origin}#${key}`, { waitUntil: 'load', timeout: 60_000 });
+      const moduleSelector = `.shell[data-active-module="${key}"][data-module-state="ready"]`;
+      await page.locator(moduleSelector).waitFor({ state: 'visible', timeout: 30_000 });
+      assert.equal(await page.evaluate(() => location.hash.split('?')[0]), `#${key}`, 'must reach the requested module before auditing');
       await page.evaluate(theme => document.documentElement.setAttribute('data-sgz-theme', theme), scenario.theme);
       if (scenario.mode === 'review') {
-        const toggle = page.locator('button').filter({ hasText: '审校' }).first();
-        if (await toggle.count()) await toggle.click({ timeout: 5_000 }).catch(() => {});
-        await page.waitForTimeout(800);
+        await page.getByRole('button', { name: '打开设置', exact: true }).click({ timeout: 5_000 });
+        await page.getByRole('button', { name: '进入审校', exact: true }).click({ timeout: 5_000 });
+        await page.locator(`${moduleSelector}.workspace-mode-review`).waitFor({ state: 'visible', timeout: 30_000 });
       }
-      if (key !== 'offices') {
-        const item = page.locator('.v56-spine-nav button').filter({ hasText: label }).first();
-        if (await item.count()) await item.click({ timeout: 8_000 }).catch(() => {});
-        await page.waitForTimeout(4_000);
-      } else {
-        await page.waitForTimeout(1_500);
-      }
+      await page.evaluate(() => document.fonts.ready);
 
       const result = await page.evaluate(AUDIT);
       await context.close();

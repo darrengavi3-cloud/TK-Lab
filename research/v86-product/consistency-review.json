@@ -1,0 +1,865 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-10",
+  "baselineHead": "1d0dc6cd5e43e1cb599b9a62494ceb1eb7127067",
+  "baselineReportSha256": "1d3277c7385899b4cec54d6cca8cb68737ccf40e844646852c9d86675fba5d2a",
+  "scope": "逐项复核59条V86候选；source-review不代表已解决，脚本不提升身份或史料审定状态。",
+  "summary": {
+    "fixed": 15,
+    "false-positive": 26,
+    "already-reviewed": 4,
+    "source-review": 14
+  },
+  "records": [
+    {
+      "id": "V86-C01",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "刘喬（简体作「刘乔」）｜person:source:0376d33f01b7",
+      "recordIds": [
+        "person:source:0376d33f01b7"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C02",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "紀瞻（简体作「纪瞻」）｜person:source:15d17df7bcc9",
+      "recordIds": [
+        "person:source:15d17df7bcc9"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C03",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "顾榮（简体作「顾荣」）｜person:source:2ed4d76da975",
+      "recordIds": [
+        "person:source:2ed4d76da975"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C04",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "和嶠（简体作「和峤」）｜person:source:3615e33dea42",
+      "recordIds": [
+        "person:source:3615e33dea42"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C05",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "刘頌（简体作「刘颂」）｜person:source:46d0b9128c38",
+      "recordIds": [
+        "person:source:46d0b9128c38"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C06",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "钟會（简体作「钟会」）｜person:source:6bea1ab8f79e",
+      "recordIds": [
+        "person:source:6bea1ab8f79e"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C07",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "裴憲（简体作「裴宪」）｜person:source:6c889865981e",
+      "recordIds": [
+        "person:source:6c889865981e"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C08",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "賴恭（简体作「赖恭」）｜person:source:6f24577154e3",
+      "recordIds": [
+        "person:source:6f24577154e3"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C09",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "徐義（简体作「徐义」）｜person:source:70dcf176c2eb",
+      "recordIds": [
+        "person:source:70dcf176c2eb"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C10",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "呂岱（简体作「吕岱」）｜person:source:74484c7b8050",
+      "recordIds": [
+        "person:source:74484c7b8050"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C11",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "賀循（简体作「贺循」）｜person:source:aff8e9dbd7af",
+      "recordIds": [
+        "person:source:aff8e9dbd7af"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C12",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "温嶠（简体作「温峤」）｜person:source:b20377d60093",
+      "recordIds": [
+        "person:source:b20377d60093"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C13",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "杜預（简体作「杜预」）｜person:source:b948df238097",
+      "recordIds": [
+        "person:source:b948df238097"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C14",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "闞泽（简体作「阚泽」）｜person:source:e3995aefcddc",
+      "recordIds": [
+        "person:source:e3995aefcddc"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C15",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "诸葛緒（简体作「诸葛绪」）｜person:source:f5a79ce8466f",
+      "recordIds": [
+        "person:source:f5a79ce8466f"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C16",
+      "category": "繁体姓名而别名未收简体字面（检索会落空）",
+      "originalFinding": "张軌（简体作「张轨」）｜person:source:fff74b3aebad",
+      "recordIds": [
+        "person:source:fff74b3aebad"
+      ],
+      "disposition": "false-positive",
+      "reason": "以读者实际 matchPerson 与完整繁简映射运行简体查询，可直接命中姓名；缺少字面别名不导致漏检。",
+      "evidence": [
+        "atlas/assets/app/people.js",
+        "atlas/data/person-name-normalization.js",
+        "tests/consistency-review.test.mjs"
+      ]
+    },
+    {
+      "id": "V86-C17",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·渨安墓（大康三年）｜题作「大康三年」",
+      "recordIds": [
+        "jinshi-v55-d1cdc6b9a54fa45a"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C18",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·羊瑾碑｜题作「元康初年」",
+      "recordIds": [
+        "jinshi-v55-85ed7fb9382f60b4"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C19",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·晋建威将军竺使君碑（泰元三年）｜题作「泰元三年」",
+      "recordIds": [
+        "jinshi-v55-69053bd786d8d8f2"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C20",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·陆祎碑（泰宁三年）｜题作「泰宁三年」",
+      "recordIds": [
+        "jinshi-v55-4b728f1c4f62f574"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C21",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·王琰墓志｜题作「太元廿一年」",
+      "recordIds": [
+        "jinshi-v55-d724bf9c78cd7d41"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。 同时移除明确后续碑目侵入的释文。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C22",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·王企之墓誌（泰和二年）｜题作「泰和二年」",
+      "recordIds": [
+        "jinshi-v55-544d17f9d73fd84c"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C23",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·王建之妻劉媚子墓誌（泰和六年）｜题作「泰和六年」",
+      "recordIds": [
+        "jinshi-v55-7ea3ea130e4d2e13"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C24",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·王康之妻何法登墓誌（泰元十四年）｜题作「泰元十四年」",
+      "recordIds": [
+        "jinshi-v55-edbcd597f3d32ed3"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C25",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·謝温墓誌（義熙二年）｜题作「義熙二年」",
+      "recordIds": [
+        "jinshi-v55-08894aaa8a4e28f7"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C26",
+      "category": "碑名已写明纪年而 yearText 作未详",
+      "originalFinding": "两晋金石录解析档·刘阿如墓誌（永平元年）｜题作「永平元年」",
+      "recordIds": [
+        "jinshi-v55-5ee7a149b2a1aef1"
+      ],
+      "disposition": "fixed",
+      "reason": "照录原题括注到 yearText，保留 year=null，不自行统一年号异体或作西元换算。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs",
+        "atlas/data/v69-epigraphic-records.json"
+      ]
+    },
+    {
+      "id": "V86-C27",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "石鉴·并州刺史｜文「未详—泰始初」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C28",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "鲁芝·青州刺史｜文「景元中—泰始中」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C29",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "鲁芝·都督青州诸军事｜文「景元中—泰始中」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C30",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "卫瓘·都督徐州诸军事｜文「咸熙中—泰始初」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C31",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "吴景·太守｜文「吴郡钱塘人，汉初平年间在任」 endYear=194",
+      "recordIds": [],
+      "disposition": "source-review",
+      "reason": "文字未载确切讫年；数值来自候选导入，不能由“年间”反推出该年。保留待审资料，需核对原始任期依据。",
+      "evidence": [
+        "atlas/data/wu-fangzhen-records.js",
+        "atlas/data/v65-fangzhen-audit.json"
+      ],
+      "currentFindingId": "a644cbe486cc9ef3"
+    },
+    {
+      "id": "V86-C32",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "滕胤·太守｜文「北海剧人，约赤乌年间任至太元元年」 endYear=251",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "“任至太元元年”提供明确讫年；吴太元元年对应251，旧规则因前文“年间”误报。",
+      "evidence": [
+        "atlas/data/v69-fangzhen-reader.json",
+        "atlas/scripts/verify-historical-consistency.mjs"
+      ]
+    },
+    {
+      "id": "V86-C33",
+      "category": "任期文字无确切讫年而 endYear 有值",
+      "originalFinding": "蔡遗·太守｜文「籍贯不详，约建安年间任」 endYear=219",
+      "recordIds": [],
+      "disposition": "source-review",
+      "reason": "文字未载确切讫年；数值来自候选导入，不能由“年间”反推出该年。保留待审资料，需核对原始任期依据。",
+      "evidence": [
+        "atlas/data/wu-fangzhen-records.js",
+        "atlas/data/v65-fangzhen-audit.json"
+      ],
+      "currentFindingId": "0ef95f02ca25e92a"
+    },
+    {
+      "id": "V86-C34",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "袁隗·「掾」｜《三国志》卷06｜appointment:source:sgz:06:c87d3944bc1a",
+      "recordIds": [
+        "appointment:source:sgz:06:c87d3944bc1a"
+      ],
+      "disposition": "already-reviewed",
+      "reason": "已有审定将受辟者纠正为董卓、官职补全为司徒掾。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v63-reader-person-relations.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C35",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "苏代·「长」｜《三国志》卷06｜appointment:source:sgz:06:26e0f88d68b9",
+      "recordIds": [
+        "appointment:source:sgz:06:26e0f88d68b9"
+      ],
+      "disposition": "already-reviewed",
+      "reason": "V79 已排除误系于苏代的“长”；华容长为具羽，不新建断言。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v63-reader-person-relations.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C36",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "陈群·「掾」｜《三国志》卷21｜appointment:source:sgz:21:439ddd7ffb2a",
+      "recordIds": [
+        "appointment:source:sgz:21:439ddd7ffb2a"
+      ],
+      "disposition": "already-reviewed",
+      "reason": "已有审定将受辟者纠正为傅嘏、官职补全为司空掾。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v63-reader-person-relations.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C37",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "傅嘏·「长」｜《晋书》卷049｜appointment:source:jinshu:049:0b3b7f06c4c9",
+      "recordIds": [
+        "appointment:source:jinshu:049:0b3b7f06c4c9"
+      ],
+      "disposition": "fixed",
+      "reason": "“以傅嘏为长”是对四本论的评价，不是任官；新增排除决定。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v86-appointment-source-review.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C38",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "傅祗·「掾」｜《晋书》卷076｜appointment:source:jinshu:076:c11bc5fc6eb9",
+      "recordIds": [
+        "appointment:source:jinshu:076:c11bc5fc6eb9"
+      ],
+      "disposition": "fixed",
+      "reason": "原文受辟者为彬，傅祗是辟主；新增排除，不自动生成任官。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v86-appointment-source-review.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C39",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "杨珧·「掾」｜《晋书》卷086｜appointment:source:jinshu:086:ad022c03597e",
+      "recordIds": [
+        "appointment:source:jinshu:086:ad022c03597e"
+      ],
+      "disposition": "fixed",
+      "reason": "原文受辟者为张轨，卫将军杨珧是辟主；新增排除，不自动生成任官。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v86-appointment-source-review.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C40",
+      "category": "任官原文的官名只剩单字（疑切分落在官名当中）",
+      "originalFinding": "杨骏·「长」｜《晋书》卷092｜appointment:source:jinshu:092:fb598d513c5b",
+      "recordIds": [
+        "appointment:source:jinshu:092:fb598d513c5b"
+      ],
+      "disposition": "already-reviewed",
+      "reason": "已有审定将任官者纠正为邹湛、官职补全为太傅长史。",
+      "evidence": [
+        "atlas/data/person-source-index.json",
+        "atlas/data/v63-reader-person-relations.json",
+        "atlas/data/release-config.json"
+      ]
+    },
+    {
+      "id": "V86-C41",
+      "category": "任期文字讫年与 endYear 不符",
+      "originalFinding": "邓方·太守｜文「建安十九年（214年）、建安二十年（215年）—章武元年（221年）或二年（222年）」 endYear=222",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "原文明确列“221或222”；222属于所列候选范围，旧解析器漏取省略年号的“二年”。实际离任年仍以候选展示。",
+      "evidence": [
+        "atlas/data/v69-fangzhen-reader.json",
+        "atlas/scripts/verify-historical-consistency.mjs"
+      ]
+    },
+    {
+      "id": "V86-C42",
+      "category": "任期文字讫年与 endYear 不符",
+      "originalFinding": "胡烈·荆州刺史｜文「咸熙元年（264年）—约泰始五年（269年）」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C43",
+      "category": "任期文字讫年与 endYear 不符",
+      "originalFinding": "李憙·司隶校尉｜文「咸熙元年（264年）—泰始三年（267年）」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C44",
+      "category": "任期文字讫年与 endYear 不符",
+      "originalFinding": "石苞·都督扬州诸军事｜文「甘露四年（259年）—泰始四年（268年）」 endYear=265",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "index.html 的跨魏晋任期拆分明确将魏段截于265；endYear 是政权分段边界，原 tenureText 保留完整任期。",
+      "evidence": [
+        "atlas/index.html:跨魏晋分段",
+        "atlas/data/v69-fangzhen-reader.json"
+      ]
+    },
+    {
+      "id": "V86-C45",
+      "category": "年号与西元不符（州镇）",
+      "originalFinding": "夏侯尚·荆州刺史｜约黄初六年（226年 → 黄初六年应为 225",
+      "recordIds": [],
+      "disposition": "source-review",
+      "reason": "文字年号与西元数值冲突。同名其他职任并不能证明本职任的起讫年。保留 candidate 状态及原文，需原典任期证据决定改年号或西元数。",
+      "evidence": [
+        "atlas/data/v69-fangzhen-reader.json",
+        "atlas/data/v65-fangzhen-audit.json"
+      ],
+      "currentFindingId": "93a7da92ecb90ae9"
+    },
+    {
+      "id": "V86-C46",
+      "category": "年号与西元不符（州镇）",
+      "originalFinding": "裴潜·荆州刺史｜约黄初六年（226年 → 黄初六年应为 225",
+      "recordIds": [],
+      "disposition": "source-review",
+      "reason": "文字年号与西元数值冲突。同名其他职任并不能证明本职任的起讫年。保留 candidate 状态及原文，需原典任期证据决定改年号或西元数。",
+      "evidence": [
+        "atlas/data/v69-fangzhen-reader.json",
+        "atlas/data/v65-fangzhen-audit.json"
+      ],
+      "currentFindingId": "3597e40028e5990e"
+    },
+    {
+      "id": "V86-C47",
+      "category": "年号与西元不符（州镇）",
+      "originalFinding": "毌丘俭·都督豫州诸军事｜约嘉平四年（253年 → 嘉平四年应为 252",
+      "recordIds": [],
+      "disposition": "source-review",
+      "reason": "文字年号与西元数值冲突。同库另条豫州刺史记嘉平四年十二月，可跨至次年，但不能据此断言都督授任时间。保留 candidate 状态及原文，需原典任期证据决定改年号或西元数。",
+      "evidence": [
+        "atlas/data/v69-fangzhen-reader.json",
+        "atlas/data/v65-fangzhen-audit.json"
+      ],
+      "currentFindingId": "dd6bdf6463981a9a"
+    },
+    {
+      "id": "V86-C48",
+      "category": "同一来源列生成多个人物实体",
+      "originalFinding": "陆冲：person:snapshot260:056f9b6079050dd7 与 person:snapshot260:0d591cd61c9e314f（来源列 source:v61:snapshot260:8c8009d09b44e77b）",
+      "recordIds": [
+        "person:snapshot260:056f9b6079050dd7",
+        "person:snapshot260:0d591cd61c9e314f"
+      ],
+      "disposition": "source-review",
+      "reason": "内容指纹相同，实际为工作簿不同来源行；不是同一行重复生成的证明。历史 V63 明确隔离身份，需原典身份依据才能合并。",
+      "evidence": [
+        "atlas/data/v61-person-supplements.json:workbookSource.row",
+        "atlas/scripts/build-v63-person-registry.mjs:snapshotSourceRows",
+        "atlas/scripts/build-v61-person-supplements.mjs"
+      ],
+      "currentFindingId": "68efb1ea2856c609"
+    },
+    {
+      "id": "V86-C49",
+      "category": "同一来源列生成多个人物实体",
+      "originalFinding": "毛炅：person:snapshot260:470bd67ea96e7af6 与 person:snapshot260:4b3d9f3bec838e73（来源列 source:v61:snapshot260:0eeaaede9dc88b74）",
+      "recordIds": [
+        "person:snapshot260:470bd67ea96e7af6",
+        "person:snapshot260:4b3d9f3bec838e73"
+      ],
+      "disposition": "source-review",
+      "reason": "内容指纹相同，实际为工作簿不同来源行；不是同一行重复生成的证明。历史 V63 明确隔离身份，需原典身份依据才能合并。",
+      "evidence": [
+        "atlas/data/v61-person-supplements.json:workbookSource.row",
+        "atlas/scripts/build-v63-person-registry.mjs:snapshotSourceRows",
+        "atlas/scripts/build-v61-person-supplements.mjs"
+      ],
+      "currentFindingId": "a75c3975ee0e14d3"
+    },
+    {
+      "id": "V86-C50",
+      "category": "同一来源列生成多个人物实体",
+      "originalFinding": "杨欣：person:snapshot260:216ff0075f32fed8 与 person:snapshot260:9edcff995d08a5dc（来源列 source:v61:snapshot260:eabd7ca0d80f82b8）",
+      "recordIds": [
+        "person:snapshot260:216ff0075f32fed8",
+        "person:snapshot260:9edcff995d08a5dc"
+      ],
+      "disposition": "source-review",
+      "reason": "内容指纹相同，实际为工作簿不同来源行；不是同一行重复生成的证明。历史 V63 明确隔离身份，需原典身份依据才能合并。",
+      "evidence": [
+        "atlas/data/v61-person-supplements.json:workbookSource.row",
+        "atlas/scripts/build-v63-person-registry.mjs:snapshotSourceRows",
+        "atlas/scripts/build-v61-person-supplements.mjs"
+      ],
+      "currentFindingId": "a1b5ca71a725b265"
+    },
+    {
+      "id": "V86-C51",
+      "category": "释文栏疑越界吞并他碑",
+      "originalFinding": "两晋金石录解析档·胡奋登高纪功碑｜3081 字，命中 3 项著录语",
+      "recordIds": [
+        "jinshi-v55-de181fafbb6855f5"
+      ],
+      "disposition": "fixed",
+      "reason": "确认后续碑目／著录文字混入。读者释文在明确边界前截取，原解析档完整保留；不校订残字。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs"
+      ]
+    },
+    {
+      "id": "V86-C52",
+      "category": "释文栏疑越界吞并他碑",
+      "originalFinding": "两晋金石录解析档·牛登碑｜1000 字，命中 4 项著录语",
+      "recordIds": [
+        "jinshi-v55-fe216ac05b0127d3"
+      ],
+      "disposition": "fixed",
+      "reason": "确认后续碑目／著录文字混入。读者释文在明确边界前截取，原解析档完整保留；不校订残字。",
+      "evidence": [
+        "atlas/data/v86-epigraphy-consistency-review.json",
+        "atlas/scripts/consistency-publication.mjs"
+      ]
+    },
+    {
+      "id": "V86-C53",
+      "category": "人物名目是集合表述而非单一人物",
+      "originalFinding": "庞氏三人｜person:peerage:41585dcf53dc6543",
+      "recordIds": [
+        "person:peerage:41585dcf53dc6543"
+      ],
+      "disposition": "source-review",
+      "reason": "确认是集合称谓。现有稳定名目按原文保留；拆出个人、姓名或合并身份都无足够库内证据，需独立实体建模／原典身份审定。",
+      "evidence": [
+        "atlas/data/v63-person-registry.json",
+        "atlas/data/v61-person-supplements.json"
+      ],
+      "currentFindingId": "89d453fb08df9bfe"
+    },
+    {
+      "id": "V86-C54",
+      "category": "人物名目是集合表述而非单一人物",
+      "originalFinding": "王昶子二人｜person:peerage:6662a44d6153b23a",
+      "recordIds": [
+        "person:peerage:6662a44d6153b23a"
+      ],
+      "disposition": "source-review",
+      "reason": "确认是集合称谓。现有稳定名目按原文保留；拆出个人、姓名或合并身份都无足够库内证据，需独立实体建模／原典身份审定。",
+      "evidence": [
+        "atlas/data/v63-person-registry.json",
+        "atlas/data/v61-person-supplements.json"
+      ],
+      "currentFindingId": "61d07bd481105ca2"
+    },
+    {
+      "id": "V86-C55",
+      "category": "人物名目含问号或自陈名失载",
+      "originalFinding": "张?｜person:shu:0hwd4rt",
+      "recordIds": [
+        "person:shu:0hwd4rt"
+      ],
+      "disposition": "source-review",
+      "reason": "名目明确表示姓名未详，不能仅凭占位符判为伪人或补成确定姓名；历史身份仍为 review-only。",
+      "evidence": [
+        "atlas/data/v62-reader-scope.json",
+        "atlas/data/v63-person-registry.json"
+      ],
+      "currentFindingId": "67ff8019c7c8a74d"
+    },
+    {
+      "id": "V86-C56",
+      "category": "人物名目含问号或自陈名失载",
+      "originalFinding": "虞君(名失载)｜person:wu:07mmfhv",
+      "recordIds": [
+        "person:wu:07mmfhv"
+      ],
+      "disposition": "source-review",
+      "reason": "名目明确表示姓名未详，不能仅凭占位符判为伪人或补成确定姓名；历史身份仍为 review-only。",
+      "evidence": [
+        "atlas/data/v62-reader-scope.json",
+        "atlas/data/v63-person-registry.json"
+      ],
+      "currentFindingId": "f327f97397875fbc"
+    },
+    {
+      "id": "V86-C57",
+      "category": "任期文字起年与 startYear 不符",
+      "originalFinding": "吕岱·交州刺史｜文「（226—231） 黄龙三年（231），吕岱奉召还屯长沙沤口。综惧继岱者非其人，上表：“若岱不复南，新刺史宜得精密，检摄八郡，方略智计，能稍稍以渐治高凉者，假其威宠，借之形势，责其成效，庶几可补复。如但中人，近守常法，无奇数异术者，则群恶日滋，久远成害。故国之安危，在于所任，不可不察也。窃惧朝廷忽轻」 startYear=226",
+      "recordIds": [],
+      "disposition": "false-positive",
+      "reason": "原文起首明确列（226—231）；其后231为叙事引文，不能替代任期起年。",
+      "evidence": [
+        "atlas/data/v69-fangzhen-reader.json",
+        "atlas/scripts/verify-historical-consistency.mjs"
+      ]
+    },
+    {
+      "id": "V86-C58",
+      "category": "同名碑目且朝代相左",
+      "originalFinding": "羊瑾碑 ×2｜jinshi-v55-8daa4af8f7a69945/东晋/第1801段  jinshi-v55-85ed7fb9382f60b4/西晋/第440段",
+      "recordIds": [
+        "jinshi-v55-8daa4af8f7a69945",
+        "jinshi-v55-85ed7fb9382f60b4"
+      ],
+      "disposition": "source-review",
+      "reason": "两条记录原始定位为第440段和第1801段；章节朝代标签不同。同名不足以证明同碑，不合并、不改朝代，需著录或拓本身份核定。",
+      "evidence": [
+        "atlas/data/epigraphic-v46-jin.js",
+        "atlas/data/v69-epigraphic-records.json"
+      ],
+      "currentFindingId": "21760709e9718eec"
+    },
+    {
+      "id": "V86-C59",
+      "category": "人物名目含斜线（疑异写并列或解析残留）",
+      "originalFinding": "姚陶/旧｜person:wu:0g9k8rm",
+      "recordIds": [
+        "person:wu:0g9k8rm"
+      ],
+      "disposition": "source-review",
+      "reason": "斜线名目缺少足够证据决定正名／异写；保留原始名目和 review-only 身份，不以字符串清洗制造确定姓名。",
+      "evidence": [
+        "atlas/data/v62-reader-scope.json",
+        "atlas/data/v63-person-registry.json"
+      ],
+      "currentFindingId": "18caf821d634c92a"
+    }
+  ]
+}

@@ -550,19 +550,23 @@ function scriptSafe(source) {
 }
 
 function classicUiModule(moduleName, source) {
-  // Resolve explicit re-exports before converting modules for the single HTML.
-  const reexportNames = [];
-  source = String(source).replace(/export\s+\{([^}]+)\}\s+from\s+['"](\.[^'"]+)['"];?/g, (_match, names, relative) => {
-    reexportNames.push(...names.split(',').map(name => name.trim()));
+  // Shared route imports and re-exports resolve to one classic declaration.
+  const reexportNames = [], dependencies = new Map();
+  const includeDependency = relative => {
     const dependency = path.resolve(root, 'assets/app', relative);
     if (!dependency.startsWith(path.join(root, 'assets/app') + path.sep)) throw new Error('UI dependency escapes app directory');
-    return fs.readFileSync(dependency, 'utf8').replace(/\bexport\s+(?=(?:const|function)\b)/g, '');
+    if (!dependencies.has(dependency)) dependencies.set(dependency, fs.readFileSync(dependency, 'utf8').replace(/\bexport\s+(?=(?:const|function)\b)/g, ''));
+    return '';
+  };
+  source = String(source).replace(/import\s+\{([^}]+)\}\s+from\s+['"](\.[^'"]+)['"];?/g, (_match, _names, relative) => includeDependency(relative));
+  source = source.replace(/export\s+\{([^}]+)\}(?:\s+from\s+['"](\.[^'"]+)['"])?\s*;?/g, (_match, names, relative) => {
+    reexportNames.push(...names.split(',').map(name => name.trim()));
+    return relative ? includeDependency(relative) : '';
   });
-  const exportNames = Array.from(new Set(
-    [...reexportNames, ...[...String(source).matchAll(/\bexport\s+(?:const|function)\s+([A-Za-z_$][\w$]*)/g)].map(match => match[1])]
-  ));
+  const exportNames = Array.from(new Set([...reexportNames, ...[...String(source).matchAll(/\bexport\s+(?:const|function)\s+([A-Za-z_$][\w$]*)/g)].map(match => match[1])]));
   if (!exportNames.length) throw new Error(`轻量单 HTML 无法识别界面模块导出：${moduleName}`);
-  const body = String(source).replace(/\bexport\s+(?=(?:const|function)\b)/g, '');
+  const body = [...dependencies.values(), String(source).replace(/\bexport\s+(?=(?:const|function)\b)/g, '')].join('\n');
+  if (/^\s*(?:import|export)\s/m.test(body) || exportNames.some(name => !/^[A-Za-z_$][\w$]*$/.test(name))) throw new Error(`轻量单 HTML 遇到未支持的模块声明：${moduleName}`);
   return `(function(global){\n${body}\nglobal.SGZ_UI_MODULES=global.SGZ_UI_MODULES||{};global.SGZ_UI_MODULES[${JSON.stringify(moduleName)}]=Object.freeze({${exportNames.join(',')}});\n})(window);`;
 }
 

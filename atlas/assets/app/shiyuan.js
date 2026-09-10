@@ -199,6 +199,47 @@
     };
   }
 
+  function selectSourceVolumes(volumes, { work = 'all', kind = 'all', query = '' } = {}) {
+    const normalize = value => String(value || '').normalize('NFKC').toLowerCase().trim();
+    const keyword = normalize(query);
+    return (volumes || []).flatMap(volume => {
+      if (work !== 'all' && volume.work !== work) return [];
+      const volumeMatches = !keyword || normalize(volume.label).includes(keyword);
+      const entries = volume.entries.filter(entry => (kind === 'all' || entry.kind === kind)
+        && (volumeMatches || normalize(entry.title).includes(keyword) || normalize(entry.detail).includes(keyword)));
+      if (!entries.length) return [];
+      const kinds = {}, layers = {};
+      for (const entry of entries) {
+        kinds[entry.kind] = (kinds[entry.kind] || 0) + 1;
+        const layer = entry.evidenceLayer || '未标注';
+        layers[layer] = (layers[layer] || 0) + 1;
+      }
+      return [{ ...volume, entries, entryCount: entries.length, kinds, layers }];
+    });
+  }
+
+  function paginateSourceVolumes(volumes, requestedPage) {
+    const pageSize = 12, total = volumes.length, pages = Math.max(1, Math.ceil(total / pageSize));
+    const number = Number(requestedPage);
+    const page = Math.min(pages, Math.max(1, Number.isFinite(number) ? Math.floor(number) : 1));
+    return { page, pages, total, rows: volumes.slice((page - 1) * pageSize, page * pageSize) };
+  }
+
+  function sourceEntryRoute(entry, appointments = []) {
+    const params = new URLSearchParams();
+    if (entry.kind === 'appointment') {
+      const fact = appointments.find(row => row.appointmentId === entry.id);
+      if (!fact?.personId) return '';
+      params.set('person', fact.personId);
+      return '#people?' + params;
+    }
+    const module = { battle: 'battle', shihuo: 'shihuo', epigraphy: 'jinshi' }[entry.kind];
+    if (!module || !entry.id) return '';
+    params.set('id', entry.id);
+    if (module === 'shihuo') { params.set('scope', 'all'); params.set('discussion', '1'); }
+    return '#' + module + '?' + params;
+  }
+
   global.SGZ_UI_MODULES = global.SGZ_UI_MODULES || {};
-  global.SGZ_UI_MODULES.shiyuan = { chineseNumeral, parseCitation, buildSourceVolumes, KIND_LABELS };
+  global.SGZ_UI_MODULES.shiyuan = { chineseNumeral, parseCitation, buildSourceVolumes, selectSourceVolumes, paginateSourceVolumes, sourceEntryRoute, KIND_LABELS };
 })(typeof window !== 'undefined' ? window : globalThis);

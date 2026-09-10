@@ -1,8 +1,5 @@
-/* 史实一致性门禁。
- *
- * 只做一件事：拿本库自己的东西互相对质。不引入任何外部史源，也不产生新的
- * 史学判断——凡本门禁报出的，都是库内两处说法互相矛盾，或一处说法与它自己
- * 引的那条文字不合。因此每一条都可以在库内覆核，不需要重新审定。
+/* 库内一致性候选检查。启发式命中不等于已确认错误；需区分解析档、
+ * 审定投影、政权分段和身份歧义，不得据本脚本自动改写史料或提升审定状态。
  *
  * 覆盖五类：
  *   一、年号与西元互证（爵制事件、州镇任期、战事纪）
@@ -19,6 +16,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+import { matchPerson } from '../assets/app/people.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const strict = process.argv.includes('--strict');
@@ -30,7 +29,7 @@ const loadGlobal = relative => {
 };
 
 const findings = [];
-const report = (kind, detail) => findings.push({ kind, detail });
+const report = (kind, detail) => findings.push({ id: createHash('sha256').update(`${kind}\n${detail}`).digest('hex').slice(0, 16), kind, detail });
 
 /* ---------- 年号表 ---------- */
 /* 同名年号列出各朝起点；只有当所有读法都对不上时才判为不符。 */
@@ -108,17 +107,27 @@ for (const record of fangzhen) {
   const { conflicts, pairs } = eraConflicts(record.tenureText);
   for (const conflict of conflicts) report('年号与西元不符（州镇）', `${label}｜${conflict}`);
   const dated = pairs.filter(pair => pair.stated !== null);
-  if (dated.length && record.startYear != null && dated[0].stated !== Number(record.startYear)) {
+  // A leading numeric range precedes narrative quotations (e.g. 吕岱 226—231).
+  const leadingRange = /^[（(](\d{3,4})[—–-](\d{3,4})[）)]/.exec(record.tenureText || '');
+  // index.html splits cross-dynasty tenures at 265; this is the Wei segment,
+  // not an assertion that the office-holder's entire tenure ended in 265.
+  const weiSegment = record.polity === '魏' && /_wei$/.test(record.id) && record.endYear === 265;
+  const statedStart = leadingRange ? Number(leadingRange[1]) : dated[0]?.stated;
+  const endText = String(record.tenureText || '').split(/[—–]/).slice(1).join('—');
+  const endAlternatives = [...endText.matchAll(/[（(](\d{3,4})(?:年[^）)]*)?[）)]/g)].map(match => Number(match[1]));
+  if (statedStart != null && record.startYear != null && statedStart !== Number(record.startYear)) {
     report('任期文字起年与 startYear 不符', `${label}｜文「${record.tenureText}」 startYear=${record.startYear}`);
   }
-  if (dated.length > 1 && record.endYear != null && dated[dated.length - 1].stated !== Number(record.endYear)) {
+  if (!weiSegment && dated.length > 1 && record.endYear != null && !endAlternatives.includes(Number(record.endYear))) {
     report('任期文字讫年与 endYear 不符', `${label}｜文「${record.tenureText}」 endYear=${record.endYear}`);
   }
   if (record.startYear != null && record.endYear != null && Number(record.startYear) > Number(record.endYear)) {
     report('起年晚于讫年', `${label}｜${record.startYear}—${record.endYear}`);
   }
   /* 任期文字未给出确切讫年，字段却给出一个——即断言了原文没有的东西。 */
-  if (record.endYear != null && !dated.length && /未详|未詳|中$|初$|年间|年間/.test(String(record.tenureText || ''))) {
+  const exactEndEra = /至([^，。]+)$/.exec(record.tenureText || '')?.[1] || endText;
+  const supportedEnd = eraConflicts(exactEndEra).pairs.some(pair => pair.candidates.includes(Number(record.endYear)));
+  if (!weiSegment && !supportedEnd && record.endYear != null && !dated.length && /未详|未詳|中$|初$|年间|年間/.test(String(record.tenureText || ''))) {
     report('任期文字无确切讫年而 endYear 有值', `${label}｜文「${record.tenureText}」 endYear=${record.endYear}`);
   }
   const title = String(record.title || '');
@@ -141,8 +150,7 @@ for (const battle of battleData.battles || []) {
 /* 金石条目自带年号文字、西元年、碑名括注纪年与释文四处纪年，彼此可以互证。
    已由 v72 审定表改正者不再报出——那是已完成的审校，不是待办。 */
 const epigraphySources = [
-  ['data/epigraphic-records.js', '正典'],
-  ['data/epigraphic-v46-jin.js', '两晋金石录解析档'],
+  // Check what readers receive; archived parser errors stay preserved as evidence.
   ['data/v69-epigraphic-records.js', '读者投影']
 ];
 let yearReviewed = new Map();
@@ -257,21 +265,25 @@ for (const [name, record] of Object.entries(bioMap)) {
   const indexPath = path.join(root, 'data/person-source-index.json');
   if (fs.existsSync(indexPath)) {
     const appointments = JSON.parse(read('data/person-source-index.json')).appointments || [];
+    const config = JSON.parse(read('data/release-config.json'));
+    const decisions = new Map(config.appointmentReviewBatches.flatMap(file => JSON.parse(read(`data/${file}`)).records).map(row => [row.appointmentId, row]));
     const live = new Set(people.map(person => person.personId));
     for (const appointment of appointments) {
       const office = String(appointment.officeName || '');
-      if (office.length <= 1 && live.has(appointment.personId)) {
+      const status = decisions.get(appointment.id)?.status;
+      if (office.length <= 1 && live.has(appointment.personId) && !['verified', 'suppressed'].includes(status)) {
         report('任官原文的官名只剩单字（疑切分落在官名当中）', `${appointment.name}·「${office}」｜${appointment.sourceWork}卷${appointment.sourceVolume}｜${appointment.id}`);
       }
     }
   }
   /* 繁体姓名而别名未收简体字面：界面是简体，检索会落空 */
   const TRADITIONAL = { 顗: '顗', 喬: '乔', 紀: '纪', 榮: '荣', 嶠: '峤', 頌: '颂', 會: '会', 憲: '宪', 賴: '赖', 義: '义', 呂: '吕', 賀: '贺', 預: '预', 闞: '阚', 鹽: '盐', 緒: '绪', 軌: '轨', 請: '请' };
+  const { toSimplified } = loadGlobal('data/person-name-normalization.js');
   for (const person of people) {
     const name = String(person.name || '');
     if (![...name].some(character => TRADITIONAL[character] && TRADITIONAL[character] !== character)) continue;
     const simplified = [...name].map(character => TRADITIONAL[character] || character).join('');
-    if (simplified !== name && !(person.aliases || []).includes(simplified)) {
+    if (simplified !== name && !matchPerson(person, simplified, { toSimplified }).matched) {
       report('繁体姓名而别名未收简体字面（检索会落空）', `${name}（简体作「${simplified}」）｜${person.personId}`);
     }
   }
@@ -290,13 +302,17 @@ if (fs.existsSync(path.join(root, 'data/v63-person-registry.js'))) {
       if (!marked) continue;
       const base = owner.get(marked[1]);
       if (base && base.personId !== person.personId) {
-        report('同一来源列生成多个人物实体', `${base.name}：${base.personId} 与 ${person.personId}（来源列 ${marked[1]}）`);
+        report('重复内容来源行对应多个人物（身份待核）', `${base.name}：${base.personId} 与 ${person.personId}（内容指纹 ${marked[1]}）`);
       }
     }
   }
 }
 
 /* ---------- 汇总 ---------- */
+if (process.argv.includes('--json')) {
+  console.log(JSON.stringify({ findings }, null, 2));
+  process.exit(strict && findings.length ? 1 : 0);
+}
 const grouped = new Map();
 for (const item of findings) {
   if (!grouped.has(item.kind)) grouped.set(item.kind, []);
@@ -305,9 +321,8 @@ for (const item of findings) {
 const ordered = [...grouped.entries()].sort((a, b) => b[1].length - a[1].length);
 for (const [kind, details] of ordered) {
   console.log(`【${kind}】${details.length} 条`);
-  for (const detail of details.slice(0, 20)) console.log(`    ${detail}`);
-  if (details.length > 20) console.log(`    …另 ${details.length - 20} 条`);
+  for (const detail of details) console.log(`    ${detail}`);
 }
-if (!findings.length) console.log('史实一致性验证通过：库内各处说法互不冲突。');
-else console.log(`\n共 ${findings.length} 条待覆核。每条都是库内两处说法相左，可在库内查证，无须重新审定。`);
+if (!findings.length) console.log('当前规则未发现一致性疑点；不代表史实已全部核定。');
+else console.log(`\n共 ${findings.length} 条候选待覆核；启发式命中不等于已确认错误，不得自动改写原文或提升审定状态。`);
 if (strict && findings.length) process.exit(1);
