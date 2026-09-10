@@ -1,4 +1,5 @@
 import { assertHistoricalIdentityBoundary } from './helpers/reviewed-boundaries.mjs';
+import { beforeV86Consistency } from './helpers/epigraphy-boundaries.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -36,7 +37,7 @@ test('research triage remains unapproved and preserves exact input evidence', ()
 });
 
 test('all 59 existing inscriptions retain exact text including variants', () => {
-  const current = new Map(read('atlas/data/v69-epigraphic-records.json').records.map(r => [r.id, r]));
+  const current = new Map(beforeV86Consistency(read('atlas/data/v69-epigraphic-records.json').records).map(r => [r.id, r]));
   const baseline = work('preserved-inscriptions').records;
   assert.equal(baseline.length, 59);
   for (const row of baseline) {
@@ -353,7 +354,12 @@ test('fifth batch distinguishes refusal, exemption from bowing, posthumous title
 test('V82 closes the frozen queue as 66 approved, 25 excluded and 9 pending without rewriting prior checkpoints', () => {
   const progress = work('appointment-batch-05-review');
   const config = read('atlas/data/release-config.json');
-  assert.deepEqual(config.appointmentReviewBatches, [...progress.baselineAppointmentReviewBatches, 'v82-appointment-source-review.json']);
+  const historicalBatches = [...progress.baselineAppointmentReviewBatches, 'v82-appointment-source-review.json'];
+  assert.deepEqual(config.appointmentReviewBatches.slice(0, historicalBatches.length), historicalBatches);
+  assert.deepEqual(config.appointmentReviewBatches.slice(historicalBatches.length), ['v86-appointment-source-review.json']);
+  const followup = read('atlas/data/v86-appointment-source-review.json').records;
+  assert.equal(followup.length, 3);
+  assert.ok(followup.every(r => r.status === 'suppressed'));
   const prior = new Map(progress.baselineAppointmentReviewBatches.flatMap(p => read('atlas/data/' + p).records).map(r => [r.appointmentId, r]));
   const batch = read('atlas/data/v82-appointment-source-review.json').records;
   assert.ok(batch.every(r => !prior.has(r.appointmentId)));

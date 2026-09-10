@@ -515,6 +515,7 @@ button:focus-visible,
 
 /* 文字与底色同步切换主题，避免过渡中的浅底浅字；保留焦点反馈。 */
 .el-select__wrapper { transition-property: box-shadow; }
+.el-button { transition-property: border-color, box-shadow, transform; }
 .el-table--enable-row-transition .el-table__body td.el-table__cell { transition: none; }
 
 /* 人物记：名录 + 档案详情 */

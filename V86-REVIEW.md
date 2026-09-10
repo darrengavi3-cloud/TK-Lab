@@ -1,5 +1,7 @@
 # V86 产品复审与阅读可靠性
 
+> 2026-09-10 续核已落实依赖与内容修复；以下首次复审数字作为历史记录保留。当前结果见 [PR复核报告](research/v86-product/V86-REASSESSMENT-2026-09-10.md)、[59条逐项处置](research/v86-product/CONSISTENCY-REVIEW.md)及[依赖复核](research/v86-product/DEPENDENCY-REVIEW.md)。
+
 日期：2026-09-09。GitHub 基线为 `50b69a27f619e22b3f2b4b450d3d4b85a1d069c8`（PR #12）。对应 Site 为版本41，当前仅 owner 访问。
 
 ## 产品判断

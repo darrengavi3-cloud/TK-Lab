@@ -2,6 +2,7 @@
 import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import { reviewedEpigraphicYears } from './epigraphy-year-publication.mjs';
 import { applyReviewedTranscription } from './epigraphy-publication.mjs';
+import { applyConsistencyReview } from './consistency-publication.mjs';
 
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -544,6 +545,9 @@ const allEpigraphicRecords = [...(epigraphicBase.records || []), ...(epigraphicJ
 assert(reviewedTranscriptions.every(row => allEpigraphicRecords.some(raw => raw.id === row.recordId) && !removalSet.has(row.recordId)), '金石审校条目不存在或已删除');
 const yearReview = json('data/v72-epigraphy-year-review.json');
 const reviewedYears = reviewedEpigraphicYears(allEpigraphicRecords, yearReview);
+const consistencyReviews = json('data/v86-epigraphy-consistency-review.json').records;
+const consistencyById = new Map(consistencyReviews.map(row => [row.recordId, row]));
+assert(consistencyById.size === consistencyReviews.length && consistencyReviews.every(row => allEpigraphicRecords.some(raw => raw.id === row.recordId) && !removalSet.has(row.recordId)), '一致性复核须指向唯一活动金石条目');
 assert(reviewedYears.size === 7, '泰始纪年更正须为七条');
 assert(allEpigraphicRecords.length === 188 && new Set(allEpigraphicRecords.map(row => row.id)).size === 188, '金石规范源不是 188 条唯一记录');
 assert(removedEpigraphicIds.every(id => allEpigraphicRecords.some(row => row.id === id)), '砖铭删除清单包含不存在的活动 ID');
@@ -582,6 +586,7 @@ const activeEpigraphicRecords = allEpigraphicRecords.filter(row => !removalSet.h
     }));
   }
   applyReviewedTranscription(raw, record, reviewedTranscriptionById.get(raw.id));
+  applyConsistencyReview(raw, record, consistencyById.get(raw.id));
   if (reviewedYears.has(raw.id)) {
     record.year = reviewedYears.get(raw.id);
     record.transcriptionReferences = [...(record.transcriptionReferences || []), structuredClone(yearReview.source)];

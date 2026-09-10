@@ -62,7 +62,7 @@ assert((registry.excludedPeople || []).some(row => row.name === '安国' && row.
 
 const expectedLedger = {
   '人物实体': [2074, 327, 14, 29, 370],
-  '任官事实': [263, 510, 2, 76, 588],
+  '任官事实': [263, 507, 2, 79, 588], // V86: three unpublished parser errors excluded
   '州镇职任': [45, 408, 70, 0, 503],
   '金石记录': [31, 127, 8, 0, 105]
 };

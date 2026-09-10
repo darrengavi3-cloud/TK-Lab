@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "appointmentId": "appointment:source:jinshu:049:0b3b7f06c4c9",
+      "sourceSha256": "69daac039677c68e206611e2c14e9a51f0bedd6d364e5942e3a504170c880b1d",
+      "status": "suppressed",
+      "reason": "“裕以傅嘏为长”评论四本论优劣，不是授官；排除误切出的任官断言。",
+      "citations": [
+        {
+          "title": "《晋书》卷49·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷049",
+          "quote": "甚精。嘗問谢万-{云}-：「未見《四本論》，君試为言之。」万敘説既毕，裕以傅嘏为长，-{于}-是構辭數百言，精義入微，聞者皆嗟味之。裕嘗以人不須廣學，正应以礼讓为先故終日靜默，無",
+          "note": "据库内已提交原文摘录复核主体及语义。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:076:c11bc5fc6eb9",
+      "sourceSha256": "6b4c37151ce691577ea1de92b17e68af4601c4f0954deaf487e3787b4cbf23fb",
+      "status": "suppressed",
+      "reason": "“弟彬……光禄大夫傅祗辟为掾”的受辟者为彬，傅祗是辟主；排除误系傅祗的任官断言，不自动创建新任官。",
+      "citations": [
+        {
+          "title": "《晋书》卷76·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷076",
+          "quote": "，義熙末为尚书。===弟彬===彬字世儒。少稱雅正，弱冠，不就州郡之命。光禄大夫傅祗辟为掾。后與兄廙俱渡江，为扬州刺史刘機建武长史。元帝引为镇东賊曹参军，转典兵参军。豫討华軼功，封都亭侯",
+          "note": "据库内已提交原文摘录复核主体及语义。"
+        }
+      ]
+    },
+    {
+      "appointmentId": "appointment:source:jinshu:086:ad022c03597e",
+      "sourceSha256": "016d6bc62cb26c000c0f44da6b4d170dfd1dc7a18735b936b8d16d9ca87716c8",
+      "status": "suppressed",
+      "reason": "“卫将军杨珧辟为掾……軌”的受辟者为张轨，杨珧是辟主；排除误系杨珧的任官断言，不自动创建新任官。",
+      "citations": [
+        {
+          "title": "《晋书》卷86·正文",
+          "url": "https://zh.wikisource.org/wiki/晉書/卷086",
+          "quote": "經義及政事損益，甚器之，謂安定中正为蔽善抑才，乃美为之談，以为二品之精。卫将军杨珧辟为掾，除太子舍人，累迁散骑常侍、征西军司。軌以时方多難，陰圖據河西，筮之，遇《泰》之《观》，乃投策喜",
+          "note": "据库内已提交原文摘录复核主体及语义。"
+        }
+      ]
+    }
+  ]
+}

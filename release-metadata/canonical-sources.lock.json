@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 922,
-  "totalBytes": 331497640,
-  "aggregateSha256": "30ebe28ced82965409fa6349a5a82ba089516d99f3e08747d085a594c36589ac",
+  "fileCount": 925,
+  "totalBytes": 331497293,
+  "aggregateSha256": "9f233960d786eb03fa2fd9031ca357e7e445d4629d38b9c84d547e907acd068c",
   "files": [
     {
       "path": "DESIGN.md",
@@ -14,8 +14,8 @@
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 29306,
-      "sha256": "26b1ce36433c87af8b2473a55e5dfa6d13e5ddbd36b822caf9c55bc25c9f9ed4"
+      "bytes": 29900,
+      "sha256": "b5efad25eafed641380c6369bd6272c745eda9d08f993875f2ea4fbc3f5c6651"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -3174,8 +3174,8 @@
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 48354,
-      "sha256": "7a01e6eeeaede4661a32e214ec8dd3d1cedcfd5ee187bb3dc81d4f9c214a9d7b"
+      "bytes": 48427,
+      "sha256": "213a2b9e968b1a8d73843bcfd288af1d5fd088b10d36ad460078ae699199980b"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -3474,8 +3474,8 @@
     },
     {
       "path": "data/release-config.json",
-      "bytes": 1197,
-      "sha256": "f977efc874bc3db574b284b00ea50e443e5daa22c67942f4cfa000d46bc72fb6"
+      "bytes": 1239,
+      "sha256": "536595c8e4513e5e33c3ce740bfe8081dfcf9355c33cf148357fc6f3206af835"
     },
     {
       "path": "data/research-candidates.js",
@@ -3854,13 +3854,13 @@
     },
     {
       "path": "data/v69-epigraphic-records.js",
-      "bytes": 328401,
-      "sha256": "b22d034a2acff2fa0b46bbdefd3477b0f7eb91ff5e3b6bdea37d7f32174f687a"
+      "bytes": 322477,
+      "sha256": "9fa85488f010c1592c1bbb795403fddd1f5c36d97d78630e149ceffece184dc6"
     },
     {
       "path": "data/v69-epigraphic-records.json",
-      "bytes": 393630,
-      "sha256": "9c820a70cb654ebcba8698cb24f5c4f724eecdb0d70384ecfd0a8069497f7fbb"
+      "bytes": 387730,
+      "sha256": "1d64556b607771211cc28fcd2621489a8e53fadade838948baf953674837f249"
     },
     {
       "path": "data/v69-epigraphy-audit.js",
@@ -4088,6 +4088,16 @@
       "sha256": "073ffe500b092c573e29dc53cad8cc903a229ec285a886e997e8c64d4253b4b5"
     },
     {
+      "path": "data/v86-appointment-source-review.json",
+      "bytes": 2671,
+      "sha256": "685df9ae50db1a6b5cde00fcd706c03664491f264d2d9fd887220f89021aba9e"
+    },
+    {
+      "path": "data/v86-epigraphy-consistency-review.json",
+      "bytes": 4249,
+      "sha256": "2239c48c3b92375aad5a3ab5458d9a43182e8312b83a8d29a0b04a545599f9c9"
+    },
+    {
       "path": "data/wikipedia-commandery-audit.json",
       "bytes": 3623,
       "sha256": "c67cc22336eae70d1f533295baf592298f8ea9a1d531b9c9e15dff04579aca3a"
@@ -4289,8 +4299,8 @@
     },
     {
       "path": "scripts/build-v69-data.mjs",
-      "bytes": 37970,
-      "sha256": "1e79ce8ba914f23878680e5d54760cd43509c95b4a25139caa7e8d764a1fcc46"
+      "bytes": 38521,
+      "sha256": "967a60da0ebb0b588d632e02f68bb4453eb4a22b8faeedc1a215f879a8ad2d30"
     },
     {
       "path": "scripts/build-v73-portrait-candidates.mjs",
@@ -4301,6 +4311,11 @@
       "path": "scripts/build-v73-review-status-ledger.mjs",
       "bytes": 5681,
       "sha256": "a52ae5079e391b63fb7ac8057ba0ff7c2670869ffe6577e926b1fbe6a4fdbe97"
+    },
+    {
+      "path": "scripts/consistency-publication.mjs",
+      "bytes": 1740,
+      "sha256": "8a796dc143448fe506d1791576b6b8eb4c284fea287d18558b4f1f1b9fed680b"
     },
     {
       "path": "scripts/download-assets.sh",
@@ -4404,8 +4419,8 @@
     },
     {
       "path": "scripts/verify-historical-consistency.mjs",
-      "bytes": 17347,
-      "sha256": "e7335051e72543884e73752ab2a4156e5fce89283cfae95d27a91a19915ecb90"
+      "bytes": 18855,
+      "sha256": "6f110432cc27536684f1bd5ee656243dfa431930c5488e494989dcf5727368c6"
     },
     {
       "path": "scripts/verify-historical-model.mjs",
@@ -4614,8 +4629,8 @@
     },
     {
       "path": "scripts/verify-v73.mjs",
-      "bytes": 5646,
-      "sha256": "5402fc0c99ae9fd391603705db762b83347be9855552b4902254cf8245a06467"
+      "bytes": 5695,
+      "sha256": "2ddc910b12d8b66c528bc96ec8b52e92bddc9a8af1849388aa1f7bdad5ec7eac"
     }
   ]
 }
