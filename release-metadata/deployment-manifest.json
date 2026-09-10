@@ -10304,13 +10304,13 @@
     },
     {
       "path": "client/legacy/index.html",
-      "bytes": 788723,
-      "sha256": "e19150a552949a20b2a455d3bbe181f66e621d787a0b185b24184fc615c95e5d"
+      "bytes": 789300,
+      "sha256": "99a671f464166fc6366367dca426bb564f8ac3ad74fec09909eb3ade7ae4d53f"
     },
     {
       "path": "client/legacy/reader-bundle.json",
       "bytes": 106328,
-      "sha256": "9369ef217f8a92463c1155ea24646dae394cb5fb89c9044691467a15aa5ad85f"
+      "sha256": "4f8c4dbc93ad7a0b6ace0932ed60f6f01de2a7cccbb3d1bd995843aaeb88d499"
     },
     {
       "path": "client/window.svg",
@@ -10339,8 +10339,8 @@
     },
     {
       "path": "server/index.js",
-      "bytes": 642061,
-      "sha256": "b5afe1474ef67efcbcfcbc229d6bdd8c99d8e7e381762797f9965c17ef490948"
+      "bytes": 642170,
+      "sha256": "98d88e7b7ed819162a3757d8cea0a36a83903154d755e8a6eea18d385a64eb3c"
     },
     {
       "path": "server/ssr/__vite_rsc_assets_manifest.js",
@@ -10375,7 +10375,7 @@
     {
       "path": "server/ssr/vinext-server.json",
       "bytes": 86,
-      "sha256": "f68ff29b562a816e6e292dfd4825f6d45f22c1da9805f83889721258a4505465"
+      "sha256": "2681c6a71cefa3f92f112788c6004b80e42ea46a4375c3646b35daa9feb374ef"
     },
     {
       "path": "server/vinext-externals.json",
@@ -10385,7 +10385,7 @@
     {
       "path": "server/vinext-server.json",
       "bytes": 86,
-      "sha256": "f68ff29b562a816e6e292dfd4825f6d45f22c1da9805f83889721258a4505465"
+      "sha256": "2681c6a71cefa3f92f112788c6004b80e42ea46a4375c3646b35daa9feb374ef"
     },
     {
       "path": "server/wrangler.json",
@@ -10393,9 +10393,9 @@
       "sha256": "a6a5507531834174c865237582c0c769ae10ba07cf356925c96c2e11f6949e95"
     }
   ],
-  "aggregateSha256": "8aa77a4b2cd0cbfdd84bd10ee0db7981ba101fd9c841a5f836444242050fa18c",
+  "aggregateSha256": "a2e3147559329d6e00c87020584aa28deac2cab78f564a949de8f6b0405c548e",
   "summary": {
     "fileCount": 2078,
-    "totalBytes": 62763196
+    "totalBytes": 62763882
   }
 }

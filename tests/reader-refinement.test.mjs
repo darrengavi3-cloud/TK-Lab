@@ -59,6 +59,23 @@ test('cross-module reading trail restores exact filtered context and rejects ext
   assert.equal(trail.take(),null);
 });
 
+test('food pagination reacts when its lazy module and records finish loading',()=>{
+  const vueContext={};
+  vm.runInNewContext(read('assets/vendor/vue/vue.global.min.js'),vueContext);
+  const {ref,computed}=vueContext.Vue;
+  const context={computed,filteredShihuoRecords:ref([]),shihuoPage:ref(1),window:{SGZ_UI_MODULES:{}}};
+  const html=read('index.html');
+  const code=html.slice(html.indexOf('    const shihuoPagination ='),html.indexOf('    const shihuoPrimaryDetail ='));
+  vm.runInNewContext(code+';this.pagination=shihuoPagination;',context);
+  assert.equal(context.pagination.value.total,0);
+  context.window.SGZ_UI_MODULES.shihuo={paginateShihuo};
+  context.filteredShihuoRecords.value=Array.from({length:14},(_,index)=>({id:index}));
+  assert.equal(context.pagination.value.total,14);
+  assert.equal(context.pagination.value.rows.length,12);
+  context.shihuoPage.value=2;
+  assert.equal(context.pagination.value.rows.length,2);
+});
+
 test('actual reading-return handler uses browser history even when editor history exists', async()=>{
   const html=read('index.html');
   const code=html.slice(html.indexOf('    async function returnToReading(){'),html.indexOf('    async function openOfficeHolders('));

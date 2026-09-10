@@ -177,13 +177,23 @@ const MODULES = [
   ['州镇', 'fangzhen'], ['金石', 'jinshi'], ['食货', 'shihuo'], ['史源', 'shiyuan'], ['形势', 'map']
 ];
 
-/* 覆盖三种代表性组合：宽屏阅读、笔电审校（两栏展开时最挤）、手机阅读。 */
-const CASES = [
-  { name: '1440 阅读 兰台清昼', width: 1440, height: 900, theme: 'lantai-day', mode: 'reader', touch: false },
+/* 常规 CI 保留代表性组合；发布验收可执行完整三视口 × 三主题矩阵。 */
+const SMOKE_CASES = [
+  { name: '1440 阅读 兰台清昼', width: 1440, height: 900, theme: 'laitai-day', mode: 'reader', touch: false },
   { name: '1440 阅读 青灯夜校', width: 1440, height: 900, theme: 'lamp-night', mode: 'reader', touch: false },
-  { name: '1280 审校 兰台清昼', width: 1280, height: 860, theme: 'lantai-day', mode: 'review', touch: false },
-  { name: '390 阅读 兰台清昼', width: 390, height: 844, theme: 'lantai-day', mode: 'reader', touch: true }
+  { name: '1280 审校 兰台清昼', width: 1280, height: 860, theme: 'laitai-day', mode: 'review', touch: false },
+  { name: '390 阅读 兰台清昼', width: 390, height: 844, theme: 'laitai-day', mode: 'reader', touch: true }
 ];
+const FULL_READER_CASES = [
+  { width: 1440, height: 900, touch: false },
+  { width: 1280, height: 860, touch: false },
+  { width: 390, height: 844, touch: true }
+].flatMap(viewport => [
+  ['laitai-day', '兰台清昼'], ['review-paper', '朱批纸本'], ['lamp-night', '青灯夜校']
+].map(([theme, label]) => ({ ...viewport, theme, mode: 'reader', name: `${viewport.width} 阅读 ${label}` })));
+const CASES = process.env.READER_VISUAL_MATRIX === 'full'
+  ? [...FULL_READER_CASES, SMOKE_CASES.find(scenario => scenario.mode === 'review')]
+  : SMOKE_CASES;
 
 const { server, port } = await startServer(atlasRoot);
 const browser = await chromium.launch();
@@ -234,3 +244,33 @@ for (const scenario of CASES) {
     });
   }
 }
+
+test('cold battle-to-map navigation preserves the requested period and return detail', async () => {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 860 }, locale: 'zh-CN' });
+  try {
+    const page = await context.newPage();
+    await page.goto(`${origin}#battle`, { waitUntil: 'load' });
+    await page.getByRole('button', { name: '官渡之战 官渡之战：曹操奇袭乌巢，大破袁绍，奠定统一北方之基。', exact: true }).click();
+    await page.getByRole('button', { name: '在形势图中查看对应时期 ›', exact: true }).click();
+    await page.frameLocator('#historyMapFrame').getByRole('heading', { name: '官渡之战', exact: true }).waitFor({ state: 'visible' });
+    assert.match(await page.getByRole('region', { name: '当前案卷上下文', exact: true }).innerText(), /官渡之战 · 200年/);
+    await page.getByRole('button', { name: '← 返回战事纪', exact: true }).click();
+    await page.getByRole('dialog').waitFor({ state: 'visible' });
+    assert.match(await page.getByRole('dialog').innerText(), /官渡之战[\s\S]*200年/);
+  } finally { await context.close(); }
+});
+
+test('food lazy navigation renders records and paginates instead of caching an empty result', async () => {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 860 }, locale: 'zh-CN' });
+  try {
+    const page = await context.newPage();
+    await page.goto(`${origin}#offices`, { waitUntil: 'load' });
+    await page.getByRole('button', { name: '更多案卷', exact: true }).click();
+    await page.getByRole('menuitem', { name: '食货志', exact: true }).click();
+    const pagination = page.getByRole('navigation', { name: '食货分页', exact: true });
+    await pagination.getByRole('button', { name: '下一页', exact: true }).click();
+    assert.match(await pagination.innerText(), /2\s*\/\s*[2-9]/);
+    await pagination.getByRole('button', { name: '上一页', exact: true }).click();
+    assert.match(await pagination.innerText(), /1\s*\/\s*[2-9]/);
+  } finally { await context.close(); }
+});

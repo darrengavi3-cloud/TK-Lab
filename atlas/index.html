@@ -2908,6 +2908,7 @@ const app = createApp({
     const historyMapBooted = ref(false);
     const historyMapIndex = ref(0);
     const historyMapReady = ref(false);
+    let pendingHistoryMapIndex = null;
     const historyMapPlaying = ref(false);
     const mapLinkSelection = ref(null);
     const battleRecords = reactive(cloneJSON(window.SGZ_BATTLE_RECORDS || { events:[], battles:[], battlefields:[] }));
@@ -3196,7 +3197,11 @@ const app = createApp({
     const filteredShihuoRecords = computed(()=>selectShihuoRows(shihuoRecords.value,shihuoRecordKind.value));
     const shihuoEvents = computed(()=>filteredShihuoRecords.value.filter(row=>row.recordKind==='event'));
     const filteredShihuoHousehold = computed(()=>selectShihuoRows(shihuoHousehold.value.map(row=>({...row,category:'户口与人口',title:row.label,detail:row.note}))));
-    const shihuoPagination = computed(()=>window.SGZ_UI_MODULES?.shihuo?.paginateShihuo(filteredShihuoRecords.value,shihuoPage.value)||{page:1,pages:1,total:0,rows:[]});
+    const shihuoPagination = computed(()=>{
+      // Read reactive dependencies even before the lazy module is available.
+      const rows=filteredShihuoRecords.value,page=shihuoPage.value;
+      return window.SGZ_UI_MODULES?.shihuo?.paginateShihuo(rows,page)||{page:1,pages:1,total:0,rows:[]};
+    });
     const shihuoPrimaryDetail = computed(()=>filteredShihuoRecords.value.find(row=>row.id===activeShihuoId.value)||shihuoPagination.value.rows[0]||null);
     function openShihuoRecord(record) {
       activeShihuoId.value=record.id;
@@ -3331,6 +3336,7 @@ const app = createApp({
     function selectHistoryPeriod(index,animate=true){
       const max=historyMapPeriods.length-1;
       historyMapIndex.value=Math.max(0,Math.min(max,Number(index)||0));
+      pendingHistoryMapIndex=historyMapIndex.value;
       nextTick(()=>{
         try{
           const timeline=document.getElementById('historyMapFrame')?.contentWindow?.HistoryMapTimeline;
@@ -3397,10 +3403,16 @@ const app = createApp({
     });
     function onHistoryMapMessage(event){
       const frame=document.getElementById('historyMapFrame');
-      if(frame&&event.source!==frame.contentWindow) return;
+      if(!frame||event.source!==frame.contentWindow) return;
       const message=event.data||{};
       if(message.type==='sgz-map-selection') mapLinkSelection.value=message;
-      if(message.type==='sgz-map-period'&&Number.isFinite(Number(message.index))) historyMapIndex.value=Number(message.index);
+      if(message.type==='sgz-map-period'&&Number.isInteger(message.index)&&message.index>=0&&message.index<historyMapPeriods.length){
+        // The iframe first announces period zero. Keep the requested destination
+        // until the child acknowledges it, including messages queued around load.
+        if(pendingHistoryMapIndex!==null&&message.index!==pendingHistoryMapIndex) return;
+        historyMapIndex.value=message.index;
+        pendingHistoryMapIndex=null;
+      }
     }
     function postMapFocus(name,level){
       setTimeout(()=>document.getElementById('historyMapFrame')?.contentWindow?.postMessage({type:'sgz-map-focus',name,level},'*'),420);
