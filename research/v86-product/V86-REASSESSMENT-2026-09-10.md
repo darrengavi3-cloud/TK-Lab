@@ -1,13 +1,13 @@
 # V86 PR #13 复核记录（2026-09-10）
 
-基线：PR #13，head `7fe9046429716121c1c365606b3d8ebaaa619bd9`（`7fe9046`）。
+复核起点：PR #13 的代码 head `7fe9046429716121c1c365606b3d8ebaaa619bd9`（`7fe9046`）；本记录提交后当前 head 为 `2397cf8aafa7b9bd618e1af8d7e431f3433e050e`（文档-only）。
 
 ## 当前可确认状态
 
 | 项目 | 结论 | 依据与边界 |
 | --- | --- | --- |
 | PR 状态 | draft，未合并 | PR #13 当前元数据；mergeable 为 true 不等于 merge-ready |
-| Reader validation | 已通过 | PR 描述记录 77/77 构建测试、32/32 场景、20 项不变量、连续构建哈希一致、类型检查通过 |
+| Reader validation | 已通过 | 当前 head 的 Reader validation run `34470552877` 已完成；`offline-validation` 与 `reader-visual` 均 success。此前代码 head 还记录 77/77 构建测试、32/32 场景、20 项不变量、连续构建哈希一致、类型检查通过 |
 | 依赖审计 | 未解决 | `dependency-audit.json` 记录 24 个告警包：1 critical、16 high、6 moderate、1 low；含传递依赖，且尚未完成补丁兼容性和运行时可达性验证 |
 | 内容一致性 | 未解决 | 59 条候选仍是非 strict 启发式输出，不等于已确认错误 |
 | 人工浏览器视觉 | 未验收 | 自动渲染/静态审计不能替代人工视觉观察 |
