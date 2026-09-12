@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "workflow": "R0/R1",
+  "dataVersion": "V86",
+  "mergeCommit": "4f8c8c9209076a89fed2d917ffac8ffcc58b9182",
+  "sourceCommit": "d7800effea513f12aa89c69aabdbaf44cdce0e26",
+  "versionNumber": 43,
+  "status": "succeeded",
+  "completedAt": "2026-09-12T12:47:06.099127+00:00",
+  "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+  "archiveHash": "sha256:7161bd17195bc8adc446182c647d8285f716aee446c824505e573811c6c1003d",
+  "ownerOnly": true,
+  "ciRun": "https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/34678477909",
+  "localValidation": {
+    "releaseCheck": "passed",
+    "invariants": 20,
+    "applicationTests": 86,
+    "accessTests": 2,
+    "workerProbes": 10
+  },
+  "unverified": [
+    "physical iPhone",
+    "complete keyboard coverage",
+    "200% zoom",
+    "network/performance measurements",
+    "live rollback exercise",
+    "final deployed-page browser QA"
+  ]
+}
