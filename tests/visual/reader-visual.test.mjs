@@ -274,3 +274,31 @@ test('food lazy navigation renders records and paginates instead of caching an e
     assert.match(await pagination.innerText(), /1\s*\/\s*[2-9]/);
   } finally { await context.close(); }
 });
+
+
+test('cold global search loads jinshi and opens the exact stable record', async () => {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 860 }, locale: 'zh-CN' });
+  try {
+    const page = await context.newPage();
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(String(error).slice(0, 200)));
+    await page.goto(`${origin}#offices`, { waitUntil: 'load' });
+    await page.keyboard.press('Control+K');
+    const input = page.locator('.global-search-input input');
+    await input.fill('大飨碑');
+    await page.locator('.palette-summary[role="status"]').waitFor({ state: 'hidden', timeout: 30_000 });
+    const group = page.locator('.palette-group').filter({ has: page.locator('.palette-group-head', { hasText: '金石录' }) });
+    const result = group.locator('.palette-item').filter({ hasText: '大飨碑' }).first();
+    await result.waitFor({ state: 'visible', timeout: 10_000 });
+    await result.click();
+    await page.locator('.shell[data-active-module="jinshi"][data-module-state="ready"]').waitFor({ state: 'visible', timeout: 30_000 });
+    const route = await page.evaluate(() => {
+      const [module, query=''] = location.hash.slice(1).split('?');
+      return { module, id: new URLSearchParams(query).get('id'), q: new URLSearchParams(query).get('q') };
+    });
+    assert.equal(route.module, 'jinshi');
+    assert.ok(route.id, 'stable jinshi id must be written to the URL');
+    assert.equal(route.q, null, 'result opening must not degrade into a title re-search');
+    assert.deepEqual(pageErrors, []);
+  } finally { await context.close(); }
+});
