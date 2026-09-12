@@ -104,3 +104,19 @@ test('identity and portrait gates reject same-count replacements',()=>{
   const people=expectedReaderPersonIds.map(personId=>({personId}));assertReaderPeople(people);people[0]={personId:'person:unreviewed'};assert.throws(()=>assertReaderPeople(people));
   const portraits=expectedPortraitResolutions.map(row=>({...row}));assertReaderPortraits(portraits);portraits[0].portraitId='portrait:unreviewed';assert.throws(()=>assertReaderPortraits(portraits));
 });
+
+
+test('global search prepares lazy domains, opens stable records and keeps pending records visible by default',()=>{
+  const palette=html.slice(html.indexOf('    const commandPaletteSections='),html.indexOf('    watch(showSearch,visible=>'));
+  assert.match(palette,/all:\['people','fangzhen','battle','shihuo','jinshi'\]/);
+  assert.match(palette,/Promise\.allSettled\(sections\.map\(section=>prepareSectionRuntimeData\(section\)\)\)/);
+  assert.match(palette,/prepareCommandPaletteData\(searchState\.scope\)/);
+  const actions=html.slice(html.indexOf("      if(scope==='all'||scope==='office')"),html.indexOf("      if(scope==='all'||scope==='hydronym')"));
+  assert.match(actions,/selectFangzhenWorkbenchRecord\(r,\{historyMode:'push'\}\)/);
+  assert.match(actions,/openEpigraphicDetail\(r\)/);
+  assert.match(actions,/openShihuoRecord\(r\)/);
+  const route=html.slice(html.indexOf('    function routeExtraFields('),html.indexOf('    function applyRouteExtras('));
+  assert.match(route,/verified:\[fangzhenOnlyVerified,false\]/);
+  const filters=html.slice(html.indexOf('    function readingFilterDefinitions()'),html.indexOf('    const readingFilterTags='));
+  assert.match(filters,/field\('verified','范围',fangzhenOnlyVerified,false/);
+});

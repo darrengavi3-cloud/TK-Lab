@@ -106,16 +106,16 @@ test('food all-period scope and explicit candidate inclusion survive actual URL 
   const html=read('index.html');
   const serialize=html.slice(html.indexOf('    function currentUrlState(){'),html.indexOf("    let pendingUrlMode='replace'"));
   const restore=html.slice(html.indexOf('    function applyRouteExtras(module,params){'),html.indexOf('    function notifyHostRoute('));
-  const candidate={value:true};
-  const context={viewportWidth:{value:1200},showPeopleDetail:{value:false},showFangzhenDetail:{value:false},showEpigraphicDetail:{value:false},showShihuoDetail:{value:false},URLSearchParams,activeModule:{value:'shihuo'},shihuoView:{value:'institution'},shihuoPolity:{value:'all'},shihuoScope:{value:'all'},routeExtraFields:module=>module==='fangzhen'?{verified:[candidate,true]}:{},window:{}};
+  const candidate={value:false};
+  const context={viewportWidth:{value:1200},showPeopleDetail:{value:false},showFangzhenDetail:{value:false},showEpigraphicDetail:{value:false},showShihuoDetail:{value:false},URLSearchParams,activeModule:{value:'shihuo'},shihuoView:{value:'institution'},shihuoPolity:{value:'all'},shihuoScope:{value:'all'},routeExtraFields:module=>module==='fangzhen'?{verified:[candidate,false]}:{},window:{}};
   vm.runInNewContext(serialize+restore+';this.serialize=currentUrlState;this.restore=applyRouteExtras;',context);
   assert.equal(context.serialize(),'#shihuo?scope=all');
   context.viewportWidth.value=390;assert.equal(context.serialize(),'#shihuo?scope=all&list=1');
   context.showShihuoDetail.value=true;assert.equal(context.serialize(),'#shihuo?scope=all');
-  context.restore('fangzhen',new URLSearchParams('verified=0'));
-  assert.equal(candidate.value,false);
-  context.restore('fangzhen',new URLSearchParams());
+  context.restore('fangzhen',new URLSearchParams('verified=1'));
   assert.equal(candidate.value,true);
+  context.restore('fangzhen',new URLSearchParams());
+  assert.equal(candidate.value,false);
 });
 
 test('shared filters count, name and clear only active conditions across reader modules',()=>{
@@ -123,16 +123,16 @@ test('shared filters count, name and clear only active conditions across reader 
   const code=html.slice(html.indexOf('    function readingFilterDefinitions(){'),html.indexOf('    function closeReadingDetail('));
   const ctx={activeModule:{value:'people'},workspaceMode:{value:'reader'},OFFICE_GROUP_DEFS:[{key:'central',label:'中央'}],computed:fn=>({get value(){return fn();}}),canvasFilters:{rank:'',special:'',hideNonCore:false,showArchived:false,showHidden:false},fangzhenArchiveDef:{value:{label:'魏'}},selectFangzhenArchive:key=>{ctx.fangzhenArchiveKey.value=key;}};
   for(const key of ['peoplePolity','peopleKind','peopleContent','peopleEra','peopleServiceDomain','peopleInstitutionType','peopleSource','peopleEvidence','fangzhenArchiveKey','fangzhenLevel','fangzhenState','fangzhenRecordType','epigraphicEra','epigraphicPolity','epigraphicType','epigraphicInscriptionStatus','epigraphicArchive','officeGroup','officeSub','officeSub2'])ctx[key]={value:'all'};
-  ctx.peopleOnlyPortrait={value:false};ctx.peopleYear={value:null};ctx.fangzhenOnlyVerified={value:true};ctx.timelineEnabled={value:false};ctx.timelineYear={value:220};
+  ctx.peopleOnlyPortrait={value:false};ctx.peopleYear={value:null};ctx.fangzhenOnlyVerified={value:false};ctx.timelineEnabled={value:false};ctx.timelineYear={value:220};
   vm.runInNewContext(code+';this.tags=readingFilterTags;this.clear=clearReadingFilters;',ctx);
   assert.equal(ctx.tags.value.length,0);
   ctx.peopleContent.value='biography';ctx.peopleYear.value=260;
   assert.deepEqual(Array.from(ctx.tags.value,t=>t.label),['内容：有小传','年份：260']);
   ctx.tags.value[0].clear();assert.equal(ctx.peopleYear.value,260);
   ctx.clear();assert.equal(ctx.peopleYear.value,null);
-  ctx.activeModule.value='fangzhen';ctx.fangzhenOnlyVerified.value=false;
-  assert.equal(ctx.tags.value[0].label,'范围：含待审资料');
-  ctx.clear();assert.equal(ctx.fangzhenOnlyVerified.value,true);
+  ctx.activeModule.value='fangzhen';ctx.fangzhenOnlyVerified.value=true;
+  assert.equal(ctx.tags.value[0].label,'范围：仅已核');
+  ctx.clear();assert.equal(ctx.fangzhenOnlyVerified.value,false);
   ctx.activeModule.value='jinshi';ctx.epigraphicEra.value='三国';
   assert.equal(ctx.tags.value[0].label,'时代：三国');
   ctx.activeModule.value='offices';ctx.officeGroup.value='central';ctx.officeSub.value='列卿';

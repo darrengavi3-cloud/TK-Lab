@@ -2860,7 +2860,7 @@ const app = createApp({
     const periodSelections = reactive({ han:'all', wei:'all', shu:'all', wu:'all', jin:'all', tribal:'all' });
     const canvasFilters = reactive({ query:'', category:'', rank:'', special:'', showArchived:false, showHidden:false, hideNonCore:false });
     const searchFilters = reactive({ query:'', faction:'all', treeType:'all', category:'', rank:'', special:'', year:null });
-    const searchState = reactive({ scope:'all', activeIndex:0, lastQuery:'', recentQueries:[], advanced:false });
+    const searchState = reactive({ scope:'all', activeIndex:0, lastQuery:'', recentQueries:[], advanced:false, loading:false, error:'', loadGeneration:0 });
     const searchScopeOptions = [
       { key:'all', label:'全部' }, { key:'office', label:'职官谱' }, { key:'people', label:'人物记' },
       { key:'fangzhen', label:'州镇表' }, { key:'battle', label:'战事纪' }, { key:'shihuo', label:'食货志' },
@@ -5888,8 +5888,8 @@ const app = createApp({
         push('people','人物记','人',rows.map(({p,match})=>({ id:p.personId,title:p.name, meta:[...(p.dynastyTags||[]),...(p.historicalAffiliations||[]).slice(0,1),p.startYear?p.startYear+'—'+p.endYear+'年':'',p.appointmentCount?p.appointmentCount+' 条履历':''].filter(Boolean).join(' · '),matchReason:match.reason||'人物档案', action:()=>{ showSearch.value=false; switchModule('people'); openPeopleDetail(p.personId); } })));
       }
       if(scope==='all'||scope==='fangzhen'){
-        const rows=fangzhenRecords.value.filter(r=>(!fangzhenOnlyVerified.value||r.readerDisplayStatus==='verified')&&!onlyPeople&&!onlyBattle&&paletteTextHit([r.commander,r.title,r.jurisdiction,r.tenureText,r.note].join(' '),clean)&&(!year||(normalizeYear(r.startYear)??-9999)<=Number(year)&&(normalizeYear(r.endYear)??9999)>=Number(year))).slice(0,60);
-        push('fangzhen','州镇表','州',rows.map(r=>({ id:r.id,title:r.commander+' · '+r.title, meta:(r.polity||'')+' · '+(r.jurisdiction||'辖区未详')+' · '+(r.tenureText||'任期未详'),matchReason:paletteMatchReason([{label:'人物',value:r.commander},{label:'职任',value:r.title},{label:'辖区',value:r.jurisdiction},{label:'任期',value:r.tenureText}],clean), action:()=>{ showSearch.value=false; switchModule('fangzhen'); selectFangzhenArchive(fangzhenArchiveKeyFor(r)); fangzhenQuery.value=r.commander; } })));
+        const rows=fangzhenRecords.value.filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.commander,r.title,r.jurisdiction,r.tenureText,r.note].join(' '),clean)&&(!year||(normalizeYear(r.startYear)??-9999)<=Number(year)&&(normalizeYear(r.endYear)??9999)>=Number(year))).slice(0,60);
+        push('fangzhen','州镇表','州',rows.map(r=>({ id:r.id,title:r.commander+' · '+r.title, meta:(r.polity||'')+' · '+(r.jurisdiction||'辖区未详')+' · '+(r.tenureText||'任期未详'),matchReason:paletteMatchReason([{label:'人物',value:r.commander},{label:'职任',value:r.title},{label:'辖区',value:r.jurisdiction},{label:'任期',value:r.tenureText}],clean), action:()=>{ showSearch.value=false; switchModule('fangzhen',{url:false}); selectFangzhenArchive(fangzhenArchiveKeyFor(r)); fangzhenQuery.value=''; nextTick(()=>selectFangzhenWorkbenchRecord(r,{historyMode:'push'})); } })));
       }
       if(scope==='all'||scope==='battle'){
         const rows=[...battleRecords.events.map(e=>({kind:'event',...e})),...battleRecords.battles.map(b=>({kind:'battle',...b})),...battleRecords.battlefields.map(f=>({kind:'battlefield',...f}))]
@@ -5897,12 +5897,12 @@ const app = createApp({
         push('battle','战事纪','战',rows.map(r=>({ id:r.id||`${r.kind}:${r.year||r.from}:${r.title||r.name}`,title:r.title||r.name||String(r.text||'').slice(0,18), meta:((r.year!=null)?r.year+'年':((r.from!=null)?r.from+'—'+r.to+'年':'年代未详'))+' · '+(r.front||r.a||'')+' · '+(r.result||''),matchReason:paletteMatchReason([{label:'名称',value:r.title||r.name},{label:'交战方',value:[r.front,r.a,r.b].join(' ')},{label:'结果',value:r.result},{label:'记述',value:r.text||r.note}],clean), action:()=>{ showSearch.value=false; switchModule('battle'); openBattleDetail(r); } })));
       }
       if(scope==='all'||scope==='shihuo'){
-        const rows=filteredShihuoRecords.value.filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.title,r.detail,r.polity,r.category].join(' '),clean)&&(!year||r.year===Number(year))).slice(0,50);
-        push('shihuo','食货志','食',rows.map(r=>({ id:r.id,title:r.title, meta:(r.polity||'')+' · '+(r.category||'')+' · '+(r.year||r.yearText||'年代未详'),matchReason:paletteMatchReason([{label:'题名',value:r.title},{label:'内容',value:r.detail},{label:'类别',value:r.category}],clean), action:()=>{ showSearch.value=false; switchModule('shihuo'); shihuoView.value='institution'; shihuoQuery.value=r.title; nextTick(()=>openShihuoRecord(r)); } })));
+        const rows=projectForReading(shihuoRecords.value).filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.title,r.detail,r.polity,r.category].join(' '),clean)&&(!year||r.year===Number(year))).slice(0,50);
+        push('shihuo','食货志','食',rows.map(r=>({ id:r.id,title:r.title, meta:(r.polity||'')+' · '+(r.category||'')+' · '+(r.year||r.yearText||'年代未详'),matchReason:paletteMatchReason([{label:'题名',value:r.title},{label:'内容',value:r.detail},{label:'类别',value:r.category}],clean), action:()=>{ showSearch.value=false; switchModule('shihuo',{url:false}); shihuoView.value='institution'; shihuoQuery.value=''; shihuoPolity.value='all'; shihuoScope.value='all'; shihuoCategory.value='all'; shihuoRecordKind.value='all'; shihuoIncludeDiscussion.value=true; nextTick(()=>openShihuoRecord(r)); } })));
       }
       if(scope==='all'||scope==='jinshi'){
-        const rows=filteredEpigraphicRecords.value.filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.displayTitle,r.name,(r.titleAliases||[]).join(' '),r.variantLabel,r.place,r.people,r.offices,r.inscription,r.note].join(' '),clean)&&(!year||r.year===Number(year))).slice(0,50);
-        push('jinshi','金石录','石',rows.map(r=>({ id:r.id,title:r.displayTitle||r.name, meta:[r.variantLabel,r.polity,r.type,r.year||r.yearText||'年代未详'].filter(Boolean).join(' · '),matchReason:paletteMatchReason([{label:'题名',value:r.displayTitle||r.name},{label:'别名',value:(r.titleAliases||[]).join(' ')},{label:'版本',value:r.variantLabel},{label:'出土地',value:r.place},{label:'释文',value:r.inscription},{label:'关联人物',value:r.people}],clean), action:()=>{ showSearch.value=false; switchModule('jinshi'); epigraphicQuery.value=r.displayTitle||r.name; } })));
+        const rows=epigraphicRecords.value.map(raw=>workspaceMode.value==='review'?projectForReading(raw):projectForReader(raw)).filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.displayTitle,r.name,(r.titleAliases||[]).join(' '),r.variantLabel,r.place,r.people,r.offices,r.inscription,r.note].join(' '),clean)&&(!year||r.year===Number(year))).slice(0,50);
+        push('jinshi','金石录','石',rows.map(r=>({ id:r.id,title:r.displayTitle||r.name, meta:[r.variantLabel,r.polity,r.type,r.year||r.yearText||'年代未详'].filter(Boolean).join(' · '),matchReason:paletteMatchReason([{label:'题名',value:r.displayTitle||r.name},{label:'别名',value:(r.titleAliases||[]).join(' ')},{label:'版本',value:r.variantLabel},{label:'出土地',value:r.place},{label:'释文',value:r.inscription},{label:'关联人物',value:r.people}],clean), action:()=>{ showSearch.value=false; switchModule('jinshi',{url:false}); epigraphicQuery.value=''; epigraphicEra.value='all'; epigraphicType.value='all'; epigraphicPolity.value='all'; epigraphicInscriptionStatus.value='all'; epigraphicArchive.value='all'; nextTick(()=>openEpigraphicDetail(r)); } })));
       }
       if(scope==='all'||scope==='hydronym'){
         const rows=(window.HYDRONYM_AUDIT?.hydronyms||[]).filter(r=>!onlyPeople&&!onlyBattle&&paletteTextHit([r.ancientName,(r.aliases||[]).join(' ')].join(' '),clean)).slice(0,50);
@@ -5950,13 +5950,33 @@ const app = createApp({
     function loadSearchHistory(){
       try{ const rows=JSON.parse(localStorage.getItem('sgz_search_history')||'[]'); searchState.recentQueries=Array.isArray(rows)?rows.filter(value=>typeof value==='string').slice(0,8):[]; }catch(_){ searchState.recentQueries=[]; }
     }
+    const commandPaletteSections=Object.freeze({
+      all:['people','fangzhen','battle','shihuo','jinshi'],
+      people:['people'],fangzhen:['fangzhen'],battle:['battle'],shihuo:['shihuo'],jinshi:['jinshi']
+    });
+    async function prepareCommandPaletteData(scope){
+      const sections=commandPaletteSections[scope]||[];
+      const generation=++searchState.loadGeneration;
+      searchState.error='';
+      if(!sections.length){searchState.loading=false;return;}
+      searchState.loading=true;
+      const results=await Promise.allSettled(sections.map(section=>prepareSectionRuntimeData(section)));
+      if(generation!==searchState.loadGeneration)return;
+      const failed=results.filter(result=>result.status==='rejected');
+      searchState.loading=false;
+      searchState.error=failed.length?'部分案卷载入失败，可关闭检索后重试。':'';
+      searchState.activeIndex=Math.min(searchState.activeIndex,Math.max(0,commandPaletteCount.value-1));
+    }
     function openCommandPalette(scope){
       palettePreviousFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
       searchState.scope=scope||searchState.scope||'all';
       searchState.activeIndex=0;
       showSearch.value=true;
+      prepareCommandPaletteData(searchState.scope);
       nextTick(()=>document.querySelector('.global-search-input input')?.focus());
     }
+    watch(()=>searchState.scope,scope=>{if(showSearch.value)prepareCommandPaletteData(scope);});
+    watch(()=>searchFilters.query,()=>{searchState.activeIndex=0;});
     watch(showSearch,visible=>{
       if(visible) return;
       const target=palettePreviousFocus;
@@ -5983,14 +6003,15 @@ const app = createApp({
       rebuildModel(false);
     }
     function jumpToSearchResult(result){
+      showSearch.value=false;
+      switchModule('offices',{url:false});
       Object.assign(canvasFilters,{query:'',category:'',rank:'',special:'',showArchived:true,showHidden:true,hideNonCore:false});
       timelineEnabled.value=false;
       currentFaction.value=result.factionKey;
       treeType.value=result.treeType;
       selectedKey.value=result.node.key;
-      showSearch.value=false;
       officePresentation.value='table';
-      nextTick(()=>{ selectedKey.value=result.node.key; });
+      nextTick(()=>{ selectedKey.value=result.node.key; scheduleUrlState('push'); });
     }
 
     function openPersonProfile(personRef){ openPeopleDetail(personRef); }
@@ -8232,7 +8253,7 @@ const app = createApp({
         field('era','时代',peopleEra,'all',value=>({latehan:'汉末',three:'三国',jin:'西晋'})[value]||value),field('year','年份',peopleYear,null),
         field('domain','文武',peopleServiceDomain),field('institution','官署',peopleInstitutionType),
         ...(workspaceMode.value==='review'?[field('source','来源',peopleSource,'all',value=>({sgz:'《三国志》',pei:'裴松之注',jinshu:'《晋书》',curated:'任官档案'})[value]||value),field('evidence','证据',peopleEvidence,'all',value=>value==='confirmed'?'确定／推定':'待补核／存疑')]:[])];
-      if(activeModule.value==='fangzhen')return [field('archive','政权',fangzhenArchiveKey,'all',()=>fangzhenArchiveDef.value.label,()=>selectFangzhenArchive('all')),field('level','层级',fangzhenLevel),field('state','州郡',fangzhenState),field('kind','职任',fangzhenRecordType,'all',value=>({cishi:'刺史／州牧',taishou:'太守／国相',dudu:'都督',duwei:'都尉',other:'其他'})[value]||value),field('verified','范围',fangzhenOnlyVerified,true,()=> '含待审资料')];
+      if(activeModule.value==='fangzhen')return [field('archive','政权',fangzhenArchiveKey,'all',()=>fangzhenArchiveDef.value.label,()=>selectFangzhenArchive('all')),field('level','层级',fangzhenLevel),field('state','州郡',fangzhenState),field('kind','职任',fangzhenRecordType,'all',value=>({cishi:'刺史／州牧',taishou:'太守／国相',dudu:'都督',duwei:'都尉',other:'其他'})[value]||value),field('verified','范围',fangzhenOnlyVerified,false,value=>value?'仅已核':'含待审资料')];
       if(activeModule.value==='jinshi')return [field('era','时代',epigraphicEra),field('polity','政权',epigraphicPolity),field('type','材质',epigraphicType),field('text','释文',epigraphicInscriptionStatus),...(workspaceMode.value==='review'?[field('archive','范围',epigraphicArchive)]:[])];
       return [field('group','分类',officeGroup,'all',value=>OFFICE_GROUP_DEFS.find(row=>row.key===value)?.label||value,()=>{officeGroup.value='all';officeSub.value='all';officeSub2.value='all';}),field('sub','类别',officeSub,'all',value=>value,()=>{officeSub.value='all';officeSub2.value='all';}),field('sub2','官署',officeSub2),field('rank','官品',props('rank'),''),field('special','属性',props('special'),'',value=>({yaoling:'遥领',virtual:'虚职',kaifu:'可开府',temporary:'临时职任'})[value]||value),field('timeline','年份',timelineEnabled,false,()=>timelineYear.value),field('core','范围',props('hideNonCore'),false,()=> '仅核心体系'),...(workspaceMode.value==='review'?[field('archived','归档',props('showArchived'),false,()=> '显示归档'),field('hidden','隐藏',props('showHidden'),false,()=> '显示隐藏')]:[])];
     }
@@ -8271,7 +8292,7 @@ const app = createApp({
     function routeExtraFields(module){
       if(module==='shiyuan')return {q:[shiyuanQuery,''],work:[shiyuanWork,'all'],kind:[shiyuanKind,'all'],volume:[shiyuanVolumeId,''],page:[shiyuanPage,1]};
       if(module==='people')return {era:[peopleEra,'all'],year:[peopleYear,null],service:[peopleServiceDomain,'all'],institution:[peopleInstitutionType,'all'],portrait:[peopleOnlyPortrait,false],content:[peopleContent,'all'],view:[peopleView,'people'],source:[peopleSource,'all'],evidence:[peopleEvidence,'all']};
-      if(module==='fangzhen')return {year:[fangzhenSnapshotYear,null],compare:[fangzhenCompareYear,null],verified:[fangzhenOnlyVerified,true]};
+      if(module==='fangzhen')return {year:[fangzhenSnapshotYear,null],compare:[fangzhenCompareYear,null],verified:[fangzhenOnlyVerified,false]};
       if(module==='offices')return {period:[currentPeriodKey,'all'],office:[catalogFocusKey,''],selected:[selectedKey,null],holders:[showOfficials,false],roster:[officialsTab,'current'],phase:[periodRosterPhase,'all'],group:[officeGroup,'all'],sub:[officeSub,'all'],sub2:[officeSub2,'all'],rank:[{get value(){return canvasFilters.rank},set value(v){canvasFilters.rank=v}},''],special:[{get value(){return canvasFilters.special},set value(v){canvasFilters.special=v}},''],q:[{get value(){return canvasFilters.query},set value(v){canvasFilters.query=v}},''],core:[{get value(){return canvasFilters.hideNonCore},set value(v){canvasFilters.hideNonCore=v}},false],at:[timelineEnabled,false],year:[timelineYear,220]};
       if(module==='jinshi')return {archive:[epigraphicArchive,'all']};
       if(module==='shihuo')return {q:[shihuoQuery,''],category:[shihuoCategory,'all'],kind:[shihuoRecordKind,'all'],sort:[shihuoSort,'year'],discussion:[shihuoIncludeDiscussion,false],page:[shihuoPage,1],id:[activeShihuoId,'']};
@@ -10247,7 +10268,9 @@ const app = createApp({
           <button v-for="option in searchScopeOptions" :key="option.key" class="palette-scope-chip"
                   :class="{active:searchState.scope===option.key}" @click="searchState.scope=option.key; searchState.activeIndex=0">{{option.label}}</button>
         </div>
-        <div class="palette-summary" v-if="paletteIsLanding">从最近检索或常用入口开始；输入“@”限定人物、“#”限定战事，末尾年份可限定时段。</div>
+        <div class="palette-summary" v-if="searchState.loading" role="status">正在载入检索范围内的案卷…</div>
+        <div class="palette-summary" v-else-if="searchState.error" role="alert">{{searchState.error}}</div>
+        <div class="palette-summary" v-else-if="paletteIsLanding">从最近检索或常用入口开始；输入“@”限定人物、“#”限定战事，末尾年份可限定时段。</div>
         <div class="palette-summary" v-else>共 {{commandPaletteCount}} 条结果 · 方向键选择 · Enter 打开 · Esc 关闭。</div>
         <div class="palette-advanced" v-if="searchState.scope==='all'||searchState.scope==='office'">
           <el-button size="small" text @click="searchState.advanced=!searchState.advanced">{{searchState.advanced?'收起高级筛选':'更多筛选（势力／类别／品秩／属性）'}}</el-button>
@@ -10260,7 +10283,7 @@ const app = createApp({
             <el-input-number v-model="searchFilters.year" class="compact-select" size="small" :min="150" :max="320" controls-position="right" placeholder="限定年份" style="width:130px" />
           </div>
         </div>
-        <div v-if="!commandPaletteCount" class="summary-empty">没有匹配结果。可减少筛选条件或尝试别称。</div>
+        <div v-if="!searchState.loading&&!commandPaletteCount" class="summary-empty">没有匹配结果。可减少筛选条件或尝试别称。</div>
         <div v-else class="palette-groups">
           <section v-for="group in commandPaletteGroups" :key="group.key" class="palette-group">
             <header class="palette-group-head"><span class="palette-group-icon">{{group.icon}}</span>{{group.label}}<small>{{group.items.length}} 条</small></header>
