@@ -38,7 +38,7 @@ jobs:
       - name: Probe the built read-only Worker
         run: npm run test:runtime
       - name: Require committed canonical projections
-        run: git diff --exit-code --stat -- atlas README.md release-metadata/current-release.json release-metadata/reader-bundle.json release-metadata/canonical-sources.lock.json
+        run: git diff --exit-code -- atlas README.md release-metadata/current-release.json release-metadata/reader-bundle.json release-metadata/canonical-sources.lock.json
 
   reader-visual:
     runs-on: ubuntu-24.04
