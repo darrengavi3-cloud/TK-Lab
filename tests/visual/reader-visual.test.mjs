@@ -283,8 +283,10 @@ test('cold global search loads jinshi and opens the exact stable record', async 
     const pageErrors = [];
     page.on('pageerror', error => pageErrors.push(String(error).slice(0, 200)));
     await page.goto(`${origin}#offices`, { waitUntil: 'load' });
+    await page.locator('.shell[data-active-module="offices"][data-module-state="ready"]').waitFor({ state: 'visible', timeout: 30_000 });
     await page.keyboard.press('Control+K');
     const input = page.locator('.global-search-input input');
+    await input.waitFor({ state: 'visible', timeout: 10_000 });
     await input.fill('大飨碑');
     await page.locator('.palette-summary[role="status"]').waitFor({ state: 'hidden', timeout: 30_000 });
     const group = page.locator('.palette-group').filter({ has: page.locator('.palette-group-head', { hasText: '金石录' }) });
