@@ -1,0 +1,40 @@
+test_blank_can_be_exported (test_csv_export.CsvExportTests.test_blank_can_be_exported) ... ok
+test_blank_skipped_but_error_retained (test_csv_export.CsvExportTests.test_blank_skipped_but_error_retained) ... ok
+test_completed_rows_survive_without_end_callback (test_csv_export.CsvExportTests.test_completed_rows_survive_without_end_callback) ... ok
+test_initialization_creates_header (test_csv_export.CsvExportTests.test_initialization_creates_header) ... ok
+test_unicode_metadata_and_csv_roundtrip_before_end (test_csv_export.CsvExportTests.test_unicode_metadata_and_csv_roundtrip_before_end) ... ok
+test_write_failure_is_reported (test_csv_export.CsvExportTests.test_write_failure_is_reported) ... ok
+test_blank_success_is_reused (test_recovery.RecoveryTests.test_blank_success_is_reused) ... ok
+test_changed_bytes_invalidate_even_same_size_and_mtime (test_recovery.RecoveryTests.test_changed_bytes_invalidate_even_same_size_and_mtime) ... ok
+test_changed_during_recognition_is_not_saved (test_recovery.RecoveryTests.test_changed_during_recognition_is_not_saved) ... ok
+test_concurrent_open_rejected_and_lock_released (test_recovery.RecoveryTests.test_concurrent_open_rejected_and_lock_released) ... ok
+test_corrupted_payload_is_recomputed (test_recovery.RecoveryTests.test_corrupted_payload_is_recomputed) ... ok
+test_model_tree_fingerprint_changes_with_weights (test_recovery.RecoveryTests.test_model_tree_fingerprint_changes_with_weights) ... ok
+test_partial_success_and_exception_remain_retryable (test_recovery.RecoveryTests.test_partial_success_and_exception_remain_retryable) ... ok
+test_process_exit_releases_lock_and_keeps_completed_result (test_recovery.RecoveryTests.test_process_exit_releases_lock_and_keeps_completed_result) ... ok
+test_recipe_and_input_order_separate_jobs (test_recovery.RecoveryTests.test_recipe_and_input_order_separate_jobs) ... ok
+test_resume_replays_completed_and_retries_failed_in_order (test_recovery.RecoveryTests.test_resume_replays_completed_and_retries_failed_in_order) ... ok
+test_cancel_during_inference_preserves_result_for_next_run (test_recovery_integration.IntegrationTests.test_cancel_during_inference_preserves_result_for_next_run) ... ok
+test_cancel_then_new_controller_replays_in_order_without_duplicate_csv_rows (test_recovery_integration.IntegrationTests.test_cancel_then_new_controller_replays_in_order_without_duplicate_csv_rows) ... ok
+test_changed_model_and_parser_invalidate_cached_results (test_recovery_integration.IntegrationTests.test_changed_model_and_parser_invalidate_cached_results) ... ok
+test_concurrent_job_rejection_does_not_truncate_previous_output (test_recovery_integration.IntegrationTests.test_concurrent_job_rejection_does_not_truncate_previous_output) ... ok
+test_engine_change_after_submission_aborts_before_export_overwrite (test_recovery_integration.IntegrationTests.test_engine_change_after_submission_aborts_before_export_overwrite) ... ok
+test_engine_change_during_inference_does_not_cache_success (test_recovery_integration.IntegrationTests.test_engine_change_during_inference_does_not_cache_success) ... ok
+test_export_error_is_visible_and_successful_ocr_can_be_replayed (test_recovery_integration.IntegrationTests.test_export_error_is_visible_and_successful_ocr_can_be_replayed) ... ok
+test_partial_pdf_pages_keep_text_but_are_retried (test_recovery_integration.IntegrationTests.test_partial_pdf_pages_keep_text_but_are_retried) ... 文档识别异常。P0, errMsg: [Error] OCR code:500 msg:image failure
+
+文档识别异常。P1, errMsg: [Error] OCR code:500 msg:image failure
+
+文档识别异常。P2, errMsg: [Error] OCR code:500 msg:image failure
+
+ok
+test_pause_during_inference_replays_once_after_resume (test_recovery_integration.IntegrationTests.test_pause_during_inference_replays_once_after_resume) ... ok
+test_real_pdf_resume_rebuilds_three_pages_once (test_recovery_integration.IntegrationTests.test_real_pdf_resume_rebuilds_three_pages_once) ... ok
+test_recovery_off_always_runs_without_creating_journal (test_recovery_integration.IntegrationTests.test_recovery_off_always_runs_without_creating_journal) ... ok
+test_retry_only_failed_items (test_recovery_integration.IntegrationTests.test_retry_only_failed_items) ... ok
+test_wait_does_not_miss_immediate_completion (test_recovery_integration.IntegrationTests.test_wait_does_not_miss_immediate_completion) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.182s
+
+OK
