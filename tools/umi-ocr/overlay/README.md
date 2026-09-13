@@ -1,3 +1,13 @@
+# Sumi-OCR
+
+基于 Umi-OCR 的离线识别与原图校对工具。当前重点：真实模型识别、错字/漏字评测与古籍文字完整性。
+
+新版离线引擎、模型包和实测记录见 [Sumi-OCR 使用说明](docs/SUMI_ACCURACY_ZH.md)。当前为源码预览版，尚无 Sumi-OCR 安装包。
+
+以下保留上游项目介绍与下载信息；上游安装包不包含 Sumi-OCR 改动。
+
+---
+
 <p align="left">
     <span>
         <b>中文</b>

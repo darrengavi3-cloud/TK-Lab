@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: "Umi-OCR desktop"
+name: "Sumi-OCR desktop"
 description: "离线识别桌面工具，沿用上游标签页和紧凑配置面板。"
 colors:
   background: "#FFFFFF"
@@ -25,11 +25,11 @@ components:
   accentText: {textColor: "{colors.primary}"}
 ---
 
-# Umi-OCR Desktop Design
+# Sumi-OCR Desktop Design
 
 ## Overview
 
-面向本地图片和扫描文档的使用者；当前迭代增强任务恢复与本地校对包导出。视觉参照为现有桌面工具的标签页、文件列表、文字结果和右侧配置栏。保留紧凑操作密度，识别文字和处理状态优先。
+面向本地图片和扫描文档的使用者；当前迭代以识别准确率为重点，增加独立离线引擎、模型配置和右起分栏排序，并保留任务恢复与校对包导出。名称使用 Sumi-OCR，关于页面注明 Umi-OCR 来源。视觉参照为现有桌面工具的标签页、文件列表、文字结果和右侧配置栏。保留紧凑操作密度，识别文字和处理状态优先。
 
 Runtime source of truth: `UmiOCR-data/qt_res/qml/Themes/Theme.qml` 与共享 Configs/Widgets；本文记录现状，不生成主题。上述颜色映射默认浅色主题的 bgColor/textColor/subTextColor/tabBarColor/specialTextColor；其余主题继续使用运行时定义。没有新增或修改视觉 token。
 
@@ -59,7 +59,7 @@ UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设�
 
 同名操作在两页面共用标题和说明。恢复结果在已有状态列显示“已恢复”。不完整页保留文字，并在标题标出“识别不完整”；批次结束展示警告。继续任务与校对包默认关闭，用户可明确开启。校对提示说明仅本地保存，模型建议需显式采纳；未知置信度使用文字标识。
 
-配置控件和通知分别由 Configs 与 Popup_ 负责。没有增加下拉框、日期选择、表单提交或新交互动画。Qt桌面键盘、主题、提示布局仍待实际验证，不能据配置代码声称可访问性通过。
+配置控件和通知分别由 Configs 与 Popup_ 负责。排版下拉框继续使用 Configs.qml 的 compEnum 与 QtQuick.Controls.ComboBox；弹出层的主题、布局和键盘行为由现有控件负责。新增配置复用字符串和布尔项；没有新交互动画。Qt桌面键盘、主题、提示布局仍待实际验证，不能据配置代码声称可访问性通过。
 
 ## Do's and Don'ts
 

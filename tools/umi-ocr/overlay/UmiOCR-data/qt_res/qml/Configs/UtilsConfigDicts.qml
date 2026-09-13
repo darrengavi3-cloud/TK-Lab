@@ -80,6 +80,7 @@ QtObject {
                 ["single_line", qsTr("单栏-总是换行")],
                 ["single_none", qsTr("单栏-无换行")],
                 ["single_code", qsTr("单栏-保留缩进")],
+                ["right_columns", qsTr("竖排/分栏-从右到左（不合并）")],
                 ["none", qsTr("不做处理")],
             ],
         }

@@ -75,6 +75,38 @@ def quality(raw, processed, error=None, threshold=0.85):
             "flags": flags, "status": "needs_review" if flags or findings else "unreviewed"}
 
 
+def right_columns(blocks):
+    """Explicit fixed-column order: right to left, top to bottom; no text edits.
+
+    Intended for separate columns/vertical lines. Spanning headings and complex
+    interlinear notes require manual layout review. Invalid geometry keeps the
+    entire original sequence rather than dropping or guessing a block position.
+    """
+    blocks = deepcopy(blocks)
+    if not blocks or any(bbox(block) is None for block in blocks):
+        return blocks
+    columns = []
+    for block in sorted(blocks, key=lambda b: -bbox(b)[2]):
+        left, top, right, bottom = bbox(block)
+        choices = []
+        for i, column in enumerate(columns):
+            overlap = min(right, column['right']) - max(left, column['left'])
+            ratio = overlap / min(right-left, column['right']-column['left'])
+            if ratio >= 0.5:
+                choices.append((ratio, i))
+        if choices:
+            column = columns[max(choices)[1]]
+            column['left'] = max(left, column['left'])
+            column['right'] = min(right, column['right'])
+            column['blocks'].append(block)
+        else:
+            columns.append({'left':left, 'right':right, 'blocks':[block]})
+    result = []
+    for column in sorted(columns, key=lambda c: -c['right']):
+        result.extend(sorted(column['blocks'], key=lambda b: (bbox(b)[1], -bbox(b)[2])))
+    return result
+
+
 def apply_proposals(page, proposal, accepted_ids):
     """Create a separate edition; never mutate evidence or auto-accept AI text."""
     if proposal.get("page_digest") != checksum(page):

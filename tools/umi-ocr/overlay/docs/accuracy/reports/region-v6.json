@@ -1,0 +1,101 @@
+{
+  "code": 100,
+  "data": [
+    {
+      "text": "正文與夾注皆須完整保存。",
+      "box": [
+        [
+          23.5,
+          24.5
+        ],
+        [
+          186.0,
+          24.5
+        ],
+        [
+          186.0,
+          42.5
+        ],
+        [
+          23.5,
+          42.5
+        ]
+      ],
+      "score": 0.95671,
+      "end": "\n"
+    },
+    {
+      "text": "反切、引書與異體字不可删除。",
+      "box": [
+        [
+          23.5,
+          69.0
+        ],
+        [
+          213.5,
+          69.0
+        ],
+        [
+          213.5,
+          86.0
+        ],
+        [
+          23.5,
+          86.0
+        ]
+      ],
+      "score": 0.98995,
+      "end": "\n"
+    },
+    {
+      "text": "凡字形難辨者，當據原圖核定。",
+      "box": [
+        [
+          24.0,
+          112.5
+        ],
+        [
+          214.0,
+          112.5
+        ],
+        [
+          214.0,
+          130.5
+        ],
+        [
+          24.0,
+          130.5
+        ]
+      ],
+      "score": 0.99632,
+      "end": "\n"
+    }
+  ],
+  "engineInfo": {
+    "backend": "rapidocr-onnxruntime",
+    "rapidocr": "3.9.2",
+    "onnxruntime": "1.23.2",
+    "profile": "v6-small",
+    "model_sha256": {
+      "det": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f",
+      "rec": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884",
+      "cls": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+    },
+    "detail": false,
+    "network": "disabled",
+    "text_score_filter": 0.0,
+    "dictionary": "embedded",
+    "fingerprint": "d0739d837f9da2a2d893ba518fecb8591c3541e8878d68bdc3077bd98c825912",
+    "region": [
+      15,
+      20,
+      310,
+      150
+    ],
+    "scale": 2
+  },
+  "schema_version": 1,
+  "status": "unreviewed",
+  "source_sha256": "a6864e4ccd55a94e622aeaf8056ddd10878b8fb799b5ee0d8aabd679f821a0bd",
+  "coordinates": "original_image_pixels"
+}

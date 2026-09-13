@@ -1,19 +1,35 @@
-# Umi-OCR：可恢复任务与 Codex 辅助校对
+# Sumi-OCR
 
-以 [hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) 为主干的源码增强。保留现有 Qt 桌面与离线引擎，重点改进批处理可靠性、原始结果保留、疑字检查和修订可追溯。未打包为安装程序。
+以 [hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) 为主干的离线识别工具，重点提升识别准确率，并保留可恢复任务和原图校对。当前为 **0.1.0-preview.1 源码预览版**，尚无 Sumi-OCR 安装包。
 
 本目录保存所有改动文件的完整源码 `overlay/`、上游固定提交和每个文件的 SHA-256 `SOURCE.json`，由脚本恢复完整项目。未改动的源码从固定上游取得；不用把上游附带的二进制工具重复加入 TK-Lab。独立目录不接入 TK-Lab 网站、数据库、atlas/reader 数据或发布流程。
 
-## 可以改进什么，以及已经完成什么
+## 本轮：真实模型与准确率回归
+
+新增独立 RapidOCR + ONNX Runtime 插件，运行 Paddle 系列 v4-mobile、v5-server、v6-small 模型。模型/字典摘要、参数、依赖身份写入结果和恢复指纹；缺失或不符明确失败，识别阶段禁止自动下载。增加可选高分辨率、命令行局部 2 倍重识别、显式右起分栏/竖排排序。
+
+在 **9 张合成图、288 个非空白字符**上，使用相同右起分栏排序：
+
+| 模型包 | 编辑错误 | 字符错误率 CER |
+| --- | ---: | ---: |
+| v4-mobile | 26 | 9.03% |
+| v5-server | 10 | 3.47% |
+| v6-small | 4 | 1.39% |
+
+本轮优先试用 v6-small。以上是开发回归集，排序规则开发使用过这组图片，**不能代表真实扫描件准确率或普遍模型排名**。基线是本适配器中的 v4 ONNX 模型。安装方法见 [Sumi 使用说明](overlay/docs/SUMI_ACCURACY_ZH.md)，输入图片、逐字真值和完整报告见 [准确率记录](overlay/docs/accuracy/README.md)。
+
+目录名 `tools/umi-ocr` 保持既有链接兼容，产品名称为 Sumi-OCR。
+
+## 已有增强与后续方向
 
 | 方向 | 本次交付 | 后续 |
 | --- | --- | --- |
 | 导出可靠性 | CSV Unicode/BOM、逐结果落盘、错误可见 | Excel 与大批次实机验收 |
 | 长任务 | 可选 SQLite 恢复、输入/模型/参数指纹、只重跑失败或未完成项 | 桌面历史任务入口、缓存配额 |
 | 结果保留 | 引擎原始结果、处理后结果、校订稿分层 | 联动校对编辑器、阅读顺序编辑 |
-| 疑字发现 | 低分/未知分数、完整页图、局部裁图、空白/失败状态 | 校准阈值、区域重识别、多引擎比较 |
+| 疑字发现 | 低分/未知分数、完整页图、局部裁图、空白/失败状态、CLI 区域重识别 | 校准阈值、桌面框选复核 |
 | Codex 协作 | 本地证据包、逐页建议协议、显式采纳另存新版本 | 可选模型服务适配器，需另行设计 |
-| 古籍与文档 | 保留繁体/异体字和原注的校对约束 | 固定样本评估、夹注、表格/版面插件 |
+| 古籍与文档 | 繁简异体差异计入 CER、原文不自动改写、固定模型/合成样本评测 | 真实独立验证集、夹注、表格/版面插件 |
 
 设计取舍和同类工具参考：[优化方案](overlay/docs/OPTIMIZATION_PLAN_ZH.md)。使用方法：[任务恢复](overlay/docs/RECOVERY_ZH.md)、[Codex 校对](overlay/docs/CODEX_REVIEW_ZH.md)。
 
@@ -22,7 +38,7 @@
 要求 Git 和 Python 3.8+。在 TK-Lab 仓库根目录运行，目标必须是尚不存在的新目录：
 
 ```bash
-python tools/umi-ocr/bootstrap.py ../Umi-OCR-enhanced
+python tools/umi-ocr/bootstrap.py ../Sumi-OCR
 ```
 
 脚本校验增强文件，获取固定上游提交，写入全部增强源码。没有安装依赖、下载模型或启动应用。源码中的上游运行/打包说明仍适用；上游发布的现成安装包不包含这些增强。
@@ -30,7 +46,7 @@ python tools/umi-ocr/bootstrap.py ../Umi-OCR-enhanced
 已有上游 Git 克隆时可以离线恢复，原克隆不修改：
 
 ```bash
-python tools/umi-ocr/bootstrap.py ../Umi-OCR-enhanced --local-source /path/to/Umi-OCR
+python tools/umi-ocr/bootstrap.py ../Sumi-OCR --local-source /path/to/Umi-OCR
 ```
 
 生成目录保留上游 Git 信息，修改作为未提交的工作区差异，便于 `git diff` / `git status` 检查。以后拆分为独立仓库时，可直接提交完整改进源码。
@@ -44,11 +60,11 @@ python -m venv ../umi-tests-env
 # Linux/macOS: source ../umi-tests-env/bin/activate
 # Windows: ..\umi-tests-env\Scripts\activate
 python -m pip install -r tools/umi-ocr/requirements-test.txt
-cd ../Umi-OCR-enhanced
+cd ../Sumi-OCR
 python -m unittest discover -s tests -v
 ```
 
-**42 项测试通过**：CSV、恢复/重试/取消/锁、源文件和模型变更、真实 PDF 导出、原始文字不覆盖、图片裁图/旋转坐标、缺失置信度、证据摘要验证和显式修订。后端使用真实调度器、SQLite、Pillow、PyMuPDF，替代 Qt/OS 包装和引擎推理。验证摘要见 [VALIDATION.md](VALIDATION.md)。
+**54 项测试通过**：CSV、恢复/重试/取消/锁、真实 PDF、原始证据和显式修订，另含模型包校验、工作进程超时/崩溃/重启、坐标逆变换、排序与 CER 失败计数。单元测试替代 Qt/OS 包装和引擎推理；另完成三组真实模型的离线评测。验证摘要见 [VALIDATION.md](VALIDATION.md)。
 
 ## Codex 工作流
 
@@ -59,9 +75,9 @@ python dev-tools/review_cli.py inspect "/path/to/result.review-xxxx"
 python dev-tools/review_cli.py apply "/path/to/result.review-xxxx" --page p000001 --proposal proposal.json --accept s1
 ```
 
-以上命令在**恢复后的完整 Umi-OCR 源码目录**运行。新校订稿保存在包内 `editions/`，原始证据不覆盖。程序不自动上传文件，不调用 Codex/OpenAI API，也没有所谓本地 Codex OCR 引擎。模型建议仍需核对；本次没有测出真实识别准确率提升。
+以上命令在**恢复后的完整 Sumi-OCR 源码目录**运行。新校订稿保存在包内 `editions/`，原始证据不覆盖。程序不自动上传文件、不调用 Codex/OpenAI API；Codex 是看图辅助校对工作流。真实扫描件的准确率仍待独立样本验证。
 
-Qt 桌面、Windows、真实 OCR 模型、复杂古籍与大文档性能仍待实机验收。因此以源码分支/草稿 PR 交付，尚非可直接发布的桌面发行版。
+Qt 桌面、Windows、真实古籍、手写、复杂表格与大文档性能仍待验收。因此以源码分支/草稿 PR 交付，尚非可直接发布的桌面发行版。
 
 ## 来源与许可
 
