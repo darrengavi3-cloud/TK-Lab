@@ -1,0 +1,10 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["UmiOCR-data/qt_res/qml"],
+  "locale": "zh-CN",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Form", "Toast"],
+  "requiredCommands": ["unit"],
+  "commands": {"unit": "python -m unittest discover -s tests -v"},
+  "evidence": {"failurePaths": "tests/test_recovery_integration.py"}
+}
