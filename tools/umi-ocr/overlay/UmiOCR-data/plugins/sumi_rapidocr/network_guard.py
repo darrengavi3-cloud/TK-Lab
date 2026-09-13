@@ -1,4 +1,4 @@
-"""Linux-only validation helper: kernel-enforced denial of network syscalls.
+"""Opt-in kernel network-denial validation for Linux and macOS.
 
 Opt-in in the test worker. Fails closed if libseccomp is unavailable; it never
 claims an OS-level isolation result from the normal Python socket guard.
@@ -10,6 +10,8 @@ import sys
 
 
 def deny_network_syscalls():
+    if sys.platform == 'darwin':
+        return verify_macos_network_denial()
     if not sys.platform.startswith('linux'):
         raise RuntimeError('Kernel offline validation requires Linux and libseccomp')
     name = ctypes.util.find_library('seccomp')
@@ -47,3 +49,41 @@ def deny_network_syscalls():
             raise RuntimeError('Unexpected kernel network probe error')
     return {'mechanism':'linux-libseccomp', 'denied_syscalls':list(names),
             'ipv4_socket_denied':True, 'ipv6_socket_denied':True}
+
+
+def verify_macos_network_denial():
+    """Verify the sandbox-exec profile installed by the parent before exec.
+
+    A normal worker must fail this probe. ECONNREFUSED / an unreachable network
+    is not evidence of sandbox enforcement. Probe libc, before Python wrappers.
+    """
+    import socket
+    import struct
+    libc = ctypes.CDLL(None, use_errno=True)
+    libc.connect.argtypes = [ctypes.c_int, ctypes.c_void_p, ctypes.c_uint32]
+    libc.connect.restype = ctypes.c_int
+    probes = {}
+    for family, name, packed in (
+        (socket.AF_INET, 'ipv4', struct.pack('BB', 16, socket.AF_INET) +
+         struct.pack('!H', 9) + socket.inet_pton(socket.AF_INET, '127.0.0.1') + bytes(8)),
+        (socket.AF_INET6, 'ipv6', struct.pack('BB', 28, socket.AF_INET6) +
+         struct.pack('!H', 9) + bytes(4) + socket.inet_pton(socket.AF_INET6, '::1') + bytes(4)),
+    ):
+        fd = libc.socket(family, socket.SOCK_STREAM, 0)
+        if fd < 0:
+            if ctypes.get_errno() in (errno.EPERM, errno.EACCES):
+                probes[name+'_socket_denied'] = True
+                continue
+            raise RuntimeError('Cannot create macOS network probe socket')
+        try:
+            address = ctypes.create_string_buffer(packed)
+            ctypes.set_errno(0)
+            result = libc.connect(fd, address, len(packed))
+            error = ctypes.get_errno()
+            if result != -1 or error not in (errno.EPERM, errno.EACCES):
+                raise RuntimeError('macOS network sandbox proof missing: ' + name)
+            probes[name+'_connect_denied'] = True
+        finally:
+            libc.close(fd)
+    return {'mechanism':'macos-sandbox-exec', 'profile':'(version 1) (allow default) (deny network*)',
+            'deprecated_system_tool':True, **probes}

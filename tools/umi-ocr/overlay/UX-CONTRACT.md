@@ -50,3 +50,17 @@ Separate accuracy experiments run real RapidOCR/ONNX models on frozen synthetic 
 | Load Jinghua Old Song | Choose local TTF/OTF/TTC or installed family | Preview and explicitly select content font; persist local file URL | Visible loading error; retain previous content font |
 
 RegionSelection owns drag geometry as a shared ImageScale extension. TextField_, CheckButton, Button_, TextEdit_ and FileDialog_ remain canonical owners. Candidates are selectable read-only plain text. Password fields mask input and do not persist passwords. Local snapshots/candidates are plaintext in the displayed directory. Font files are never downloaded at app startup; font display does not change recognition models or Unicode output.
+
+## macOS source preview
+
+Source: `docs/MACOS_ZH.md`, user request to merge and adapt Mac. The established Qt 5 shell remains; Apple Silicon runs that shell under Rosetta and the external CPU OCR worker natively. This is not a native ARM GUI or a signed standalone app.
+
+| Trigger | Pending | Result | Failure recovery |
+| --- | --- | --- | --- |
+| Prepare dependencies with --download | Explicit network step in temporary build environments | Versioned wheelhouse with hashes and architecture | Fix preparation error; use a new destination |
+| Local setup | Validate wheelhouse and local model, install with --no-index | Two local environments and launcher | Existing environments preserved; choose a new data directory |
+| Screenshot | Check macOS permission only after this action | Capture physical pixels; map logical selection by X/Y ratios | Permission instructions in canonical popup; local file OCR remains available |
+| Global hotkey without authorization | Do not report successful registration | Warning with settings location | Use visible buttons; grant OS permission and restart |
+| Worker offline verification | System sandbox plus direct libc connection probes | Distinct OS-level proof, only when probes pass | Fail explicitly without downgrade |
+
+Configuration, themes, logs and caches use the Mac user data directory. Local file names are decoded exactly once. Default Mac UI/data font is PingFang SC through GlobalConfigs, existing selections remain authoritative. Software rendering uses the existing Main.qml rectangle without the GPU opacity mask. OS permissions, Finder and physical Mac behavior are not proven by Linux Qt checks.

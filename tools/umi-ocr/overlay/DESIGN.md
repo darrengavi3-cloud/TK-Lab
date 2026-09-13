@@ -41,7 +41,7 @@ background/text 是主要阅读面；secondary 是次要内容；tab 是标签�
 
 ## Typography
 
-UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设置，保留中文、生僻字回退。任务参数与结果文本各走原有字体角色。字体面板提供京华老宋体本地字体文件入口和已安装字体选择；以 Qt 返回的字体家族名为准，保留系统缺字回退，不改 OCR 原始文字。
+UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设置，保留中文、生僻字回退。macOS 默认变体由 GlobalConfigs 选择 PingFang SC，其余平台仍为 Microsoft YaHei；既有用户字体优先。任务参数与结果文本各走原有字体角色。字体面板提供京华老宋体本地字体文件入口和已安装字体选择；以 Qt 返回的字体家族名为准，保留系统缺字回退，不改 OCR 原始文字。
 
 ## Layout
 
@@ -53,7 +53,7 @@ UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设�
 
 ## Shapes
 
-控件形状来自现有 Widgets 与 Qt Controls。此次无独立圆角或尺寸值。
+控件形状来自现有 Widgets 与 Qt Controls。此次无独立圆角或尺寸值。软件渲染下 Main.qml 禁用依赖 GPU 的圆角遮罩并使用普通裁切，避免透明空窗。
 
 ## Components
 

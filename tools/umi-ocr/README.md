@@ -1,6 +1,6 @@
 # Sumi-OCR
 
-基于 [Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) 的离线 OCR 与原图校对增强，当前为 **0.1.0-preview.2 源码预览版**，尚无安装包。
+基于 [Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) 的离线 OCR 与原图校对增强，当前为 **0.1.0-preview.3 源码预览版**，尚无安装包。
 
 本轮完成独立引擎适配、完整离线模型包、本地导入、桌面框选区域重识别、候选分歧提示和六类真实样本评测；新增 **京华老宋体本地加载与内容字体选择**。保留旧插件、恢复任务与原始结果，不按高分自动覆盖原文。
 
@@ -8,6 +8,7 @@
 | --- | --- |
 | 独立进程 / 离线模型包 | [使用说明](overlay/docs/SUMI_ACCURACY_ZH.md)：Qt 与现代推理环境分离，模型/字典摘要与运行后端固定，Linux 系统断网下导入包可启动识别 |
 | 框选重识别 / 分歧候选 | [桌面记录](overlay/docs/desktop/README.md)：图片/PDF 坐标映射、配置候选只追加、模型同源提示、取消与失败恢复 |
+| macOS 适配 | [Mac 安装与诊断](overlay/docs/MACOS_ZH.md)：Intel / Rosetta Qt 5 界面 + 原生独立 OCR、离线依赖安装、Finder 启动器；实机待验收 |
 | 京华老宋体 | [字体支持](overlay/docs/JINGHUA_FONT_ZH.md)：本地导入，不捆绑或修改字库文件 |
 | 六类真实验收 | [逐场景结果](overlay/docs/acceptance/README.md)：截图、繁体竖排、双栏、夹注、倾斜扫描、表格；错漏字、顺序、时间、内存 |
 
@@ -29,7 +30,7 @@ python tools/umi-ocr/bootstrap.py ../Sumi-OCR
 python tools/umi-ocr/bootstrap.py ../Sumi-OCR --local-source /path/to/Umi-OCR
 ```
 
-然后在新源码目录按使用说明准备独立引擎、模型包和原有 Qt 桌面环境。模型包不包含 Python 运行环境，Windows 桌面仍待验收。
+Mac 请在新源码目录按 [Mac 说明](overlay/docs/MACOS_ZH.md)准备两个解释器、本地依赖与 Finder 启动器。其他平台按使用说明准备独立引擎、模型包和原有 Qt 桌面环境。模型包不包含 Python 运行环境，Windows 桌面仍待验收。
 
 ```bash
 python -m pip install -r tools/umi-ocr/requirements-test.txt
@@ -37,7 +38,7 @@ python -m pip install -r tools/umi-ocr/requirements-test.txt
 python -m unittest discover -s tests -v
 ```
 
-**64 项后端测试通过**；另完成真实模型推理、原生 Qt 页面/字体、内核断网验证。证据与范围见 [VALIDATION.md](VALIDATION.md)。
+**76 项后端测试通过**；另完成真实模型推理、原生 Qt 页面/字体、内核断网验证。证据与范围见 [VALIDATION.md](VALIDATION.md)。
 
 ## 来源与范围
 

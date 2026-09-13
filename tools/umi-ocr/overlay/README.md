@@ -1,3 +1,5 @@
+> Mac 源码适配：Intel 界面 / Apple Silicon Rosetta 界面 + 原生独立 OCR；[安装与验证范围](docs/MACOS_ZH.md)。尚无签名安装包，Mac 实机待验收。
+
 # Sumi-OCR
 
 基于 Umi-OCR 的离线识别与原图校对工具。当前重点：真实模型识别、错字/漏字评测与古籍文字完整性。

@@ -19,6 +19,7 @@ PLUGIN = ROOT/'UmiOCR-data/plugins/sumi_rapidocr'
 sys.path.insert(0, str(PLUGIN.parent))
 sys.path.insert(0, str(PLUGIN))
 from sumi_rapidocr import client
+from sumi_rapidocr import process
 from sumi_rapidocr import bundle
 from backend import Backend
 
@@ -190,7 +191,7 @@ for line in sys.stdin:
         continue
     print(json.dumps({'code':100,'data':request}),flush=True)
 ''',encoding='utf-8')
-        patcher = patch.object(client,'__file__',str(self.root/'client.py'))
+        patcher = patch.object(process,'__file__',str(self.root/'process.py'))
         patcher.start()
         self.addCleanup(patcher.stop)
         self.api = client.Api({'python_executable':sys.executable,'bundle_manifest':str(self.root/'bundle.json')})

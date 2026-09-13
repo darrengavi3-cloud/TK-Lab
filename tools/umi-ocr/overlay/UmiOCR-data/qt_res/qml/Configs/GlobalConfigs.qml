@@ -73,11 +73,11 @@ Configs {
                 ],
             },
             "fontFamily": {
-                "default": "Microsoft YaHei",
+                "default": Qt.platform.os === "osx" ? "PingFang SC" : "Microsoft YaHei",
                 "onChanged": (val)=>{ theme.fontFamily = val },
             },
             "dataFontFamily": {
-                "default": "Microsoft YaHei",
+                "default": Qt.platform.os === "osx" ? "PingFang SC" : "Microsoft YaHei",
                 "onChanged": (val)=>{ theme.dataFontFamily = val },
             },
             "localDataFontFile": {

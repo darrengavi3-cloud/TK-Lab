@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate an imported bundle under kernel-enforced network denial (Linux)."""
+"""Validate a local bundle under kernel network denial (Linux/macOS)."""
 import argparse
 import hashlib
 import json
@@ -34,7 +34,8 @@ def main():
         if result['code']!=100:
             raise RuntimeError(str(result))
         guard=api.engineInfo.get('offline_validation',{})
-        if not guard.get('ipv4_socket_denied') or not guard.get('ipv6_socket_denied'):
+        if not all(guard.get(family+'_socket_denied') or guard.get(family+'_connect_denied')
+                   for family in ('ipv4','ipv6')):
             raise RuntimeError('Kernel network-denial evidence missing')
         report={'schema_version':1,'platform':platform.platform(),'startup_seconds':startup,
                 'recognition_seconds':elapsed,'engine':api.engineInfo,

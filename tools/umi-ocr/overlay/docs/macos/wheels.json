@@ -1,0 +1,575 @@
+{
+  "checked_on": "Linux x86_64",
+  "macos_execution_tested": false,
+  "method": "uv target-platform dependency resolution; pip download of pinned wheels; ZIP CRC and WHEEL metadata; antlr pure-Python wheel built on Linux",
+  "files": [
+    {
+      "group": "gui-x86_64",
+      "filename": "PySide2-5.15.2.1-5.15.2-cp35.cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_13_intel.whl",
+      "bytes": 148464754,
+      "sha256": "a9e2e6bbcb5d2ebb421e46e72244a0f4fe0943b2288115f80a863aacc1de1f06",
+      "tags": [
+        "cp35.cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_13_intel"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pillow-12.3.0-cp310-cp310-macosx_10_10_x86_64.whl",
+      "bytes": 5392418,
+      "sha256": "6c0016e7b354317c4e9e525b937ac8596c38d2d232b419529b9cd7a1cd46e39a",
+      "tags": [
+        "cp310-cp310-macosx_10_10_x86_64"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "psutil-7.2.2-cp36-abi3-macosx_10_9_x86_64.whl",
+      "bytes": 129090,
+      "sha256": "ed0cace939114f62738d808fdcecd4c869222507e266e574799e9c0faa17d486",
+      "tags": [
+        "cp36-abi3-macosx_10_9_x86_64"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pymupdf-1.26.6-cp310-abi3-macosx_10_9_x86_64.whl",
+      "bytes": 23178988,
+      "sha256": "e46f320a136ad55e5219e8f0f4061bdf3e4c12b126d2740d5a49f73fae7ea176",
+      "tags": [
+        "cp310-abi3-macosx_10_9_x86_64"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pynput-1.8.1-py2.py3-none-any.whl",
+      "bytes": 91693,
+      "sha256": "42dfcf27404459ca16ca889c8fb8ffe42a9fe54f722fd1a3e130728e59e768d2",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pyobjc_core-10.3.2-cp310-cp310-macosx_10_9_universal2.whl",
+      "bytes": 774483,
+      "sha256": "acb40672d682851a5c7fd84e5041c4d069b62076168d72591abb5fcc871bb039",
+      "tags": [
+        "cp310-cp310-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pyobjc_framework_ApplicationServices-10.3.2-cp310-cp310-macosx_10_9_universal2.whl",
+      "bytes": 30723,
+      "sha256": "7e0d5d7d23a406508d59fee53bb91b1f559c055d744edc3172669b3fb0f9941b",
+      "tags": [
+        "cp310-cp310-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pyobjc_framework_Cocoa-10.3.2-cp310-cp310-macosx_10_9_universal2.whl",
+      "bytes": 381552,
+      "sha256": "61f44c2adab28fdf3aa3d593c9497a2d9ceb9583ed9814adb48828c385d83ff4",
+      "tags": [
+        "cp310-cp310-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pyobjc_framework_CoreText-10.3.2-cp310-cp310-macosx_10_9_universal2.whl",
+      "bytes": 30083,
+      "sha256": "ead0b5b28031259d8874d641887fcbe106a8325773e142b054532859eb3d9ad3",
+      "tags": [
+        "cp310-cp310-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "pyobjc_framework_Quartz-10.3.2-cp310-cp310-macosx_10_9_universal2.whl",
+      "bytes": 209295,
+      "sha256": "5574754c23895269751c2b78d2d2b33b6de415f562534a1432484558f0a5a293",
+      "tags": [
+        "cp310-cp310-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "shiboken2-5.15.2.1-5.15.2-cp35.cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_13_intel.whl",
+      "bytes": 958579,
+      "sha256": "ffd3d0ec3d508e592d7ee3885d27fee1f279a49989f734eb130f46d9501273a9",
+      "tags": [
+        "cp35.cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_13_intel"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "six-1.17.0-py2.py3-none-any.whl",
+      "bytes": 11050,
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "gui-x86_64",
+      "filename": "zxing_cpp-2.2.0-cp310-cp310-macosx_10_9_universal2.whl",
+      "bytes": 1500775,
+      "sha256": "eb8ede507dad76d0ed606c17be943cfe554909cdb517f7650da076e8dc9648c0",
+      "tags": [
+        "cp310-cp310-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "certifi-2026.2.25-py3-none-any.whl",
+      "bytes": 153684,
+      "sha256": "027692e4402ad994f1c42e52a4997a9763c646b73e4096e4d5d6db8af1d6f0fa",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "charset_normalizer-3.4.4-cp312-cp312-macosx_10_13_universal2.whl",
+      "bytes": 208425,
+      "sha256": "0a98e6759f854bd25a58a73fa88833fba3b7c491169f86ce1180c948ab3fd394",
+      "tags": [
+        "cp312-cp312-macosx_10_13_universal2"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "coloredlogs-15.0.1-py2.py3-none-any.whl",
+      "bytes": 46018,
+      "sha256": "612ee75c546f53e92e70049c9dbfcc18c935a2b9a53b66085ce9ef6a6e5c0934",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "colorlog-6.10.1-py3-none-any.whl",
+      "bytes": 11743,
+      "sha256": "2d7e8348291948af66122cff006c9f8da6255d224e7cf8e37d8de2df3bad8c9c",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "flatbuffers-25.12.19-py2.py3-none-any.whl",
+      "bytes": 26661,
+      "sha256": "7634f50c427838bb021c2d66a3d1168e9d199b0607e6329399f04846d42e20b4",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "humanfriendly-10.0-py2.py3-none-any.whl",
+      "bytes": 86794,
+      "sha256": "1697e1a8a8f550fd43c2865cd84542fc175a61dcb779b6fee18cf6b6ccba1477",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "idna-3.11-py3-none-any.whl",
+      "bytes": 71008,
+      "sha256": "771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "mpmath-1.3.0-py3-none-any.whl",
+      "bytes": 536198,
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "numpy-2.2.6-cp312-cp312-macosx_11_0_arm64.whl",
+      "bytes": 14119362,
+      "sha256": "de749064336d37e340f640b05f24e9e3dd678c57318c7289d222a8a2f543e90c",
+      "tags": [
+        "cp312-cp312-macosx_11_0_arm64"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "omegaconf-2.3.0-py3-none-any.whl",
+      "bytes": 79500,
+      "sha256": "7b4df175cdb08ba400f45cae3bdcae7ba8365db4d165fc65fd04b050ab63b46b",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "onnxruntime-1.23.2-cp312-cp312-macosx_13_0_arm64.whl",
+      "bytes": 17195929,
+      "sha256": "b8f029a6b98d3cf5be564d52802bb50a8489ab73409fa9db0bf583eabb7c2321",
+      "tags": [
+        "cp312-cp312-macosx_13_0_arm64"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "opencv_python-4.11.0.86-cp37-abi3-macosx_13_0_arm64.whl",
+      "bytes": 37326322,
+      "sha256": "432f67c223f1dc2824f5e73cdfcd9db0efc8710647d4e813012195dc9122a52a",
+      "tags": [
+        "cp37-abi3-macosx_13_0_arm64"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "packaging-25.0-py3-none-any.whl",
+      "bytes": 66469,
+      "sha256": "29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "pillow-12.3.0-cp312-cp312-macosx_11_0_arm64.whl",
+      "bytes": 4780323,
+      "sha256": "ffd0c5368496f41b0944be820fcb7a838aa6e623d250b01acf2643939c3f99d7",
+      "tags": [
+        "cp312-cp312-macosx_11_0_arm64"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "protobuf-6.33.5-cp39-abi3-macosx_10_9_universal2.whl",
+      "bytes": 427766,
+      "sha256": "a5cb85982d95d906df1e2210e58f8e4f1e3cdc088e52c921a041f9c9a0386de5",
+      "tags": [
+        "cp39-abi3-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "pyclipper-1.3.0.post6-cp312-cp312-macosx_10_13_universal2.whl",
+      "bytes": 270487,
+      "sha256": "6363b9d79ba1b5d8f32d1623e797c1e9f994600943402e68d5266067bdde173e",
+      "tags": [
+        "cp312-cp312-macosx_10_13_universal2"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+      "bytes": 173973,
+      "sha256": "fc09d0aa354569bc501d4e787133afc08552722d3ab34836a80547331bb5d4a0",
+      "tags": [
+        "cp312-cp312-macosx_11_0_arm64"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "rapidocr-3.9.2-py3-none-any.whl",
+      "bytes": 27275208,
+      "sha256": "04d6b8d151f823d930bd91910555f57bea897c0c44fa6794267b94cf9c1ef9a0",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "requests-2.32.5-py3-none-any.whl",
+      "bytes": 64738,
+      "sha256": "2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "shapely-2.1.2-cp312-cp312-macosx_11_0_arm64.whl",
+      "bytes": 1643556,
+      "sha256": "ba4d1333cc0bc94381d6d4308d2e4e008e0bd128bdcff5573199742ee3634359",
+      "tags": [
+        "cp312-cp312-macosx_11_0_arm64"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "six-1.17.0-py2.py3-none-any.whl",
+      "bytes": 11050,
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "sympy-1.14.0-py3-none-any.whl",
+      "bytes": 6299353,
+      "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "tqdm-4.67.1-py3-none-any.whl",
+      "bytes": 78540,
+      "sha256": "26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-arm64",
+      "filename": "urllib3-2.6.3-py3-none-any.whl",
+      "bytes": 131584,
+      "sha256": "bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "certifi-2026.2.25-py3-none-any.whl",
+      "bytes": 153684,
+      "sha256": "027692e4402ad994f1c42e52a4997a9763c646b73e4096e4d5d6db8af1d6f0fa",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "charset_normalizer-3.4.4-cp312-cp312-macosx_10_13_universal2.whl",
+      "bytes": 208425,
+      "sha256": "0a98e6759f854bd25a58a73fa88833fba3b7c491169f86ce1180c948ab3fd394",
+      "tags": [
+        "cp312-cp312-macosx_10_13_universal2"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "coloredlogs-15.0.1-py2.py3-none-any.whl",
+      "bytes": 46018,
+      "sha256": "612ee75c546f53e92e70049c9dbfcc18c935a2b9a53b66085ce9ef6a6e5c0934",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "colorlog-6.10.1-py3-none-any.whl",
+      "bytes": 11743,
+      "sha256": "2d7e8348291948af66122cff006c9f8da6255d224e7cf8e37d8de2df3bad8c9c",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "flatbuffers-25.12.19-py2.py3-none-any.whl",
+      "bytes": 26661,
+      "sha256": "7634f50c427838bb021c2d66a3d1168e9d199b0607e6329399f04846d42e20b4",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "humanfriendly-10.0-py2.py3-none-any.whl",
+      "bytes": 86794,
+      "sha256": "1697e1a8a8f550fd43c2865cd84542fc175a61dcb779b6fee18cf6b6ccba1477",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "idna-3.11-py3-none-any.whl",
+      "bytes": 71008,
+      "sha256": "771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "mpmath-1.3.0-py3-none-any.whl",
+      "bytes": 536198,
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "numpy-2.2.6-cp312-cp312-macosx_10_13_x86_64.whl",
+      "bytes": 20875348,
+      "sha256": "41c5a21f4a04fa86436124d388f6ed60a9343a6f767fced1a8a71c3fbca038ff",
+      "tags": [
+        "cp312-cp312-macosx_10_13_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "omegaconf-2.3.0-py3-none-any.whl",
+      "bytes": 79500,
+      "sha256": "7b4df175cdb08ba400f45cae3bdcae7ba8365db4d165fc65fd04b050ab63b46b",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "onnxruntime-1.23.2-cp312-cp312-macosx_13_0_x86_64.whl",
+      "bytes": 19157705,
+      "sha256": "218295a8acae83905f6f1aed8cacb8e3eb3bd7513a13fe4ba3b2664a19fc4a6b",
+      "tags": [
+        "cp312-cp312-macosx_13_0_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "opencv_python-4.11.0.86-cp37-abi3-macosx_13_0_x86_64.whl",
+      "bytes": 56723197,
+      "sha256": "9d05ef13d23fe97f575153558653e2d6e87103995d54e6a35db3f282fe1f9c66",
+      "tags": [
+        "cp37-abi3-macosx_13_0_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "packaging-25.0-py3-none-any.whl",
+      "bytes": 66469,
+      "sha256": "29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "pillow-12.3.0-cp312-cp312-macosx_10_13_x86_64.whl",
+      "bytes": 5345969,
+      "sha256": "ba09209fbe443b4acccebe845d8a138b89a8f4fbaeedd44953490b5315d5e965",
+      "tags": [
+        "cp312-cp312-macosx_10_13_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "protobuf-6.33.5-cp39-abi3-macosx_10_9_universal2.whl",
+      "bytes": 427766,
+      "sha256": "a5cb85982d95d906df1e2210e58f8e4f1e3cdc088e52c921a041f9c9a0386de5",
+      "tags": [
+        "cp39-abi3-macosx_10_9_universal2"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "pyclipper-1.3.0.post6-cp312-cp312-macosx_10_13_x86_64.whl",
+      "bytes": 143469,
+      "sha256": "32cd7fb9c1c893eb87f82a072dbb5e26224ea7cebbad9dc306d67e1ac62dd229",
+      "tags": [
+        "cp312-cp312-macosx_10_13_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "pyyaml-6.0.3-cp312-cp312-macosx_10_13_x86_64.whl",
+      "bytes": 182063,
+      "sha256": "7f047e29dcae44602496db43be01ad42fc6f1cc0d8cd6c83d342306c32270196",
+      "tags": [
+        "cp312-cp312-macosx_10_13_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "rapidocr-3.9.2-py3-none-any.whl",
+      "bytes": 27275208,
+      "sha256": "04d6b8d151f823d930bd91910555f57bea897c0c44fa6794267b94cf9c1ef9a0",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "requests-2.32.5-py3-none-any.whl",
+      "bytes": 64738,
+      "sha256": "2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "shapely-2.1.2-cp312-cp312-macosx_10_13_x86_64.whl",
+      "bytes": 1833550,
+      "sha256": "fe2533caae6a91a543dec62e8360fe86ffcdc42a7c55f9dfd0128a977a896b94",
+      "tags": [
+        "cp312-cp312-macosx_10_13_x86_64"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "six-1.17.0-py2.py3-none-any.whl",
+      "bytes": 11050,
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "tags": [
+        "py2-none-any",
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "sympy-1.14.0-py3-none-any.whl",
+      "bytes": 6299353,
+      "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "tqdm-4.67.1-py3-none-any.whl",
+      "bytes": 78540,
+      "sha256": "26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-x86_64",
+      "filename": "urllib3-2.6.3-py3-none-any.whl",
+      "bytes": 131584,
+      "sha256": "bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4",
+      "tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "group": "engine-pure-python-built-on-linux",
+      "filename": "antlr4_python3_runtime-4.9.3-py3-none-any.whl",
+      "bytes": 144590,
+      "sha256": "bc909d32613fdb65d0f1f7583ad16390f5d510c0a31cf00f04d07ce78cf262d5",
+      "tags": [
+        "py3-none-any"
+      ]
+    }
+  ]
+}

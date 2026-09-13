@@ -16,3 +16,12 @@ QT_QPA_PLATFORM=offscreen QT_QUICK_BACKEND=software /path/to/qt-python dev-tools
 ![区域校对](region-review.png)
 ![小窗口](region-narrow.png)
 ![深色主题](region-dark.png)
+
+## macOS 适配后的完整窗口检查
+
+`dev-tools/qt_app_check.py` 在 Linux Qt 5 中加载真实 Main.qml、插件配置和页面管理器，再从标签页管理器打开区域校对。报告/画面见 `../macos/`；检查用户目录配置、字面百分号文件名和生产截图组件的 2× 坐标。pynput 热键监听替换为 dummy，offscreen 平台没有原生菜单栏/托盘；不代表 Mac Finder、权限、屏幕截图或剪贴板通过。软件渲染禁用主窗口 GPU 遮罩后检查画面非空。
+
+```bash
+QT_QPA_PLATFORM=offscreen QT_QUICK_BACKEND=software PYNPUT_BACKEND=dummy \
+  /path/to/gui/python dev-tools/qt_app_check.py --output /new/check-directory
+```

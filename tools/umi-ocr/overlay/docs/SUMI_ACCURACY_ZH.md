@@ -1,6 +1,6 @@
 # Sumi-OCR：准确率优先的离线增强
 
-Sumi-OCR 基于 Umi-OCR，继续保留原项目的 MIT 声明、插件体系、截图/图片/文档工作流。本轮交付是 `0.1.0-preview.2` 源码预览版；桌面安装包仍需构建和实机验收。
+Sumi-OCR 基于 Umi-OCR，继续保留原项目的 MIT 声明、插件体系、截图/图片/文档工作流。本轮交付是 `0.1.0-preview.3` 源码预览版；桌面安装包仍需构建和实机验收。
 
 ## 本轮重点
 
@@ -119,6 +119,8 @@ python dev-tools/accuracy_benchmark.py --suite docs/accuracy/samples/suite.json 
 
 ## 验证和许可
 
-64 项后端测试覆盖旧功能、完整模型包与字典校验、导入异常、进程超时/崩溃/重启、候选保留/分歧、旋转 PDF 坐标、阅读顺序与 CER 漏页计数。测试日志见 [sumi-tests.log](sumi-tests.log)。原生 Qt 页面与字体已完成独立测试壳验证；六类真实资料的准确率、耗时与内存另见 acceptance 报告。完整主程序、Windows、手写与大规模性能尚未验收，复杂古籍质量并未通过免校对标准。
+76 项后端测试覆盖旧功能、完整模型包与字典校验、导入异常、进程超时/崩溃/重启、候选保留/分歧、旋转 PDF 坐标、阅读顺序与 CER 漏页计数。测试日志见 [sumi-tests.log](sumi-tests.log)。原生 Qt 页面与字体已完成独立测试壳验证；六类真实资料的准确率、耗时与内存另见 acceptance 报告。完整主程序、Windows、手写与大规模性能尚未验收，复杂古籍质量并未通过免校对标准。
 
 保留 [Umi-OCR 的 MIT 许可](https://github.com/hiroi-sora/Umi-OCR/blob/main/LICENSE)。[RapidOCR](https://github.com/RapidAI/RapidOCR)、[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) 的 Apache-2.0 及模型、依赖各自许可仍适用；主项目 MIT 不替代它们。模型包随附 Apache-2.0 与来源声明；仓库只保存代码/模型清单，不放模型权重。Python 依赖和字体不随模型包分发。真实资料遵守其独立研究用途限制，不随 MIT 应用分发。
+
+macOS 的独立运行环境、Finder 启动器、本地依赖安装、系统权限和断网诊断见 [Mac 适配](MACOS_ZH.md)。Mac 界面使用 Intel Qt 5（M 系列经 Rosetta），OCR 可原生 arm64；实机验收尚未完成。

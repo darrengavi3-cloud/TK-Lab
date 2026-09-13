@@ -4,6 +4,18 @@ test_completed_rows_survive_without_end_callback (test_csv_export.CsvExportTests
 test_initialization_creates_header (test_csv_export.CsvExportTests.test_initialization_creates_header) ... ok
 test_unicode_metadata_and_csv_roundtrip_before_end (test_csv_export.CsvExportTests.test_unicode_metadata_and_csv_roundtrip_before_end) ... ok
 test_write_failure_is_reported (test_csv_export.CsvExportTests.test_write_failure_is_reported) ... ok
+test_app_metadata_and_existing_app_preserved (test_macos.MacTests.test_app_metadata_and_existing_app_preserved) ... ok
+test_connection_refused_is_not_offline_sandbox_proof (test_macos.MacTests.test_connection_refused_is_not_offline_sandbox_proof) ... ok
+test_find_native_hardware_from_rosetta_interpreter (test_macos.MacTests.test_find_native_hardware_from_rosetta_interpreter) ... ok
+test_invalid_arch_fails_before_process_start (test_macos.MacTests.test_invalid_arch_fails_before_process_start) ... ok
+test_kernel_permission_denial_is_checked_for_both_families (test_macos.MacTests.test_kernel_permission_denial_is_checked_for_both_families) ... ok
+test_launcher_quotes_unicode_and_shell_metacharacters (test_macos.MacTests.test_launcher_quotes_unicode_and_shell_metacharacters) ... ok
+test_local_open_never_invokes_shell (test_macos.MacTests.test_local_open_never_invokes_shell) ... ok
+test_missing_permissions_return_recovery_instructions (test_macos.MacTests.test_missing_permissions_return_recovery_instructions) ... ok
+test_modifier_keys_are_normalized_without_text_rewriting (test_macos.MacTests.test_modifier_keys_are_normalized_without_text_rewriting) ... ok
+test_native_worker_arch_survives_rosetta_parent (test_macos.MacTests.test_native_worker_arch_survives_rosetta_parent) ... ok
+test_offline_wheels_reject_tampering_extras_and_wrong_arch (test_macos.MacTests.test_offline_wheels_reject_tampering_extras_and_wrong_arch) ... ok
+test_worker_does_not_inherit_gui_libraries (test_macos.MacTests.test_worker_does_not_inherit_gui_libraries) ... ok
 test_blank_success_is_reused (test_recovery.RecoveryTests.test_blank_success_is_reused) ... ok
 test_changed_bytes_invalidate_even_same_size_and_mtime (test_recovery.RecoveryTests.test_changed_bytes_invalidate_even_same_size_and_mtime) ... ok
 test_changed_during_recognition_is_not_saved (test_recovery.RecoveryTests.test_changed_during_recognition_is_not_saved) ... ok
@@ -72,6 +84,6 @@ test_timeout_discards_late_response_and_allows_clean_restart (test_sumi_accuracy
 test_worker_exit_and_invalid_json_report_errors_and_release_process (test_sumi_accuracy.WorkerLifecycleTests.test_worker_exit_and_invalid_json_report_errors_and_release_process) ... ok
 
 ----------------------------------------------------------------------
-Ran 64 tests in 0.883s
+Ran 76 tests in 0.837s
 
 OK

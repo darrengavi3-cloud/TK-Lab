@@ -18,8 +18,8 @@ TabPage {
     Component.onCompleted: {
         const d = callPy("defaults")
         if(d) modelDirectory = d.model_directory
-        pythonPath.text = qmlapp.globalConfigs.getValue("ocr.sumi_rapidocr.python_executable") || ""
-        bundlePath.text = qmlapp.globalConfigs.getValue("ocr.sumi_rapidocr.bundle_manifest") || ""
+        pythonPath.text = qmlapp.globalConfigs.getValue("ocr.sumi_rapidocr.python_executable") || (d && d.python) || ""
+        bundlePath.text = qmlapp.globalConfigs.getValue("ocr.sumi_rapidocr.bundle_manifest") || (d && d.bundle) || ""
     }
     function acceptStart(result) {
         if(result && result.started) {busy=true;statusText=qsTr("处理中…");return}

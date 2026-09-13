@@ -1,6 +1,7 @@
 """Desktop region review controller; OCR dependencies stay in the worker."""
 from pathlib import Path
 import threading
+import os
 
 from PySide2.QtCore import Signal, Slot, Qt
 from .page import Page
@@ -24,7 +25,9 @@ class RegionOCR(Page):
         self.finished.connect(self._finish,Qt.QueuedConnection)
 
     def defaults(self):
-        return {'model_directory':str(Path.home()/'Sumi-OCR/models')}
+        return {'model_directory':str(Path(os.environ.get('SUMI_DATA_DIR', str(Path.home()/'Sumi-OCR')))/'models'),
+                'python':os.environ.get('SUMI_ENGINE_PYTHON',''),
+                'bundle':os.environ.get('SUMI_MODEL_BUNDLE','')}
 
     def _start(self, operation):
         if self.running:

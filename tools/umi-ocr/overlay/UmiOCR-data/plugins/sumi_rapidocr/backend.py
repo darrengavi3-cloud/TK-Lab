@@ -6,6 +6,7 @@ from importlib.metadata import version
 from io import BytesIO
 import json
 import math
+import platform
 from pathlib import Path
 import sys
 
@@ -53,6 +54,8 @@ class Backend:
             raise ValueError('Embedded dictionary differs from the pinned catalog')
         model_identity = {k: v['sha256'] for k,v in profile['models'].items()}
         self.info = {'backend':'rapidocr-onnxruntime', 'rapidocr':version('rapidocr'),
+                     'platform':sys.platform, 'architecture':platform.machine(),
+                     'python':platform.python_version(),
                      'onnxruntime':version('onnxruntime'), 'profile':manifest['profile'],
                      'model_sha256':model_identity, 'detail':bool(detail), 'network':'disabled',
                      'text_score_filter':0.0, 'dictionary':'embedded',

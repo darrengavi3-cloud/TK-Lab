@@ -1,17 +1,19 @@
 """Umi-compatible OCR API. Standard library only; inference runs in a worker."""
 import base64
 import json
+import os
 from pathlib import Path
 import queue
 import subprocess
 import sys
 import threading
+from .process import worker_command, worker_environment
 
 
 class Api:
     def __init__(self, globalArgd):
-        self.python = str(globalArgd.get('python_executable') or sys.executable)
-        self.bundle = str(globalArgd.get('bundle_manifest') or '')
+        self.python = str(globalArgd.get('python_executable') or os.environ.get('SUMI_ENGINE_PYTHON') or sys.executable)
+        self.bundle = str(globalArgd.get('bundle_manifest') or os.environ.get('SUMI_MODEL_BUNDLE') or '')
         self.kernel_offline = bool(globalArgd.get('kernel_offline', False))
         self.timeout = 120
         self.process = None
@@ -28,15 +30,11 @@ class Api:
             self.stop()
             if not self.bundle or not Path(self.bundle).is_file():
                 return '[Error] 请先准备本地模型包，并设置 bundle.json 路径。'
-            command=[self.python,'-u',str(Path(__file__).with_name('worker.py')),'--bundle',self.bundle]
-            if settings:
-                command.append('--detail')
-            if self.kernel_offline:
-                command.append('--kernel-offline')
             try:
+                command = worker_command(self.python, self.bundle, settings, self.kernel_offline)
                 self.process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,
                     stderr=subprocess.DEVNULL, encoding='utf-8', errors='strict',bufsize=1,
-                    creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+                    creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0), env=worker_environment())
                 replies=queue.Queue()
                 self.replies=replies
                 output=self.process.stdout
