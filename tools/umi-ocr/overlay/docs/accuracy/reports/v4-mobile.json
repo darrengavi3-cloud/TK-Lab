@@ -1,0 +1,794 @@
+{
+  "schema_version": 1,
+  "suite_sha256": "11e9e626cd52f681b27a470a1e08ba3bca58cbcfe719b935115c1e794b46b0ae",
+  "dataset_kind": "synthetic_regression",
+  "metric": "Unicode codepoint CER; whitespace excluded; punctuation and variants preserved",
+  "cases": [
+    {
+      "id": "simplified",
+      "reference": "离线文字识别应保留每一段正文。\n识别结果需要核对，不能擅自删改。\n文件编号：A-260；页码：001。",
+      "hypothesis": "离线文字识别应保留每一段正文。\n识别结果需要核对，不能擅自删改。\n文件编号：A-260；页码：001。\n",
+      "image_sha256": "2c7af9162084d89113f2c3dcc5bd726a473fbf9454b76a55daab3a7ed8dbdebf",
+      "code": 100,
+      "seconds": 2.2193494880011713,
+      "raw_hypothesis": "离线文字识别应保留每一段正文。\n识别结果需要核对，不能擅自删改。\n文件编号：A-260；页码：001。\n",
+      "raw_blocks": [
+        {
+          "text": "离线文字识别应保留每一段正文。",
+          "box": [
+            [
+              30.0,
+              31.0
+            ],
+            [
+              483.0,
+              31.0
+            ],
+            [
+              483.0,
+              60.0
+            ],
+            [
+              30.0,
+              60.0
+            ]
+          ],
+          "score": 0.99701,
+          "end": "\n"
+        },
+        {
+          "text": "识别结果需要核对，不能擅自删改。",
+          "box": [
+            [
+              28.0,
+              92.0
+            ],
+            [
+              516.0,
+              93.0
+            ],
+            [
+              516.0,
+              122.0
+            ],
+            [
+              28.0,
+              121.0
+            ]
+          ],
+          "score": 0.99854,
+          "end": "\n"
+        },
+        {
+          "text": "文件编号：A-260；页码：001。",
+          "box": [
+            [
+              27.0,
+              154.0
+            ],
+            [
+              454.0,
+              154.0
+            ],
+            [
+              454.0,
+              186.0
+            ],
+            [
+              27.0,
+              186.0
+            ]
+          ],
+          "score": 0.99881,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 0,
+      "substitutions": 0,
+      "deletions": 0,
+      "insertions": 0,
+      "reference_characters": 49,
+      "cer": 0.0
+    },
+    {
+      "id": "traditional",
+      "reference": "原註須存，不得刪略。\n異體字依原樣保留。\n疑字另記，勿自行補文。",
+      "hypothesis": "原存，不得刪略。\n體字依原樣保留。\n疑字另記，勿自行補文。\n",
+      "image_sha256": "ebf856ec3b7289e16ff33b29afc54145e3303731a5cd629c1ad20873086b64dc",
+      "code": 100,
+      "seconds": 1.3771250120007608,
+      "raw_hypothesis": "原存，不得刪略。\n體字依原樣保留。\n疑字另記，勿自行補文。\n",
+      "raw_blocks": [
+        {
+          "text": "原存，不得刪略。",
+          "box": [
+            [
+              29.0,
+              31.0
+            ],
+            [
+              382.0,
+              31.0
+            ],
+            [
+              382.0,
+              67.0
+            ],
+            [
+              29.0,
+              67.0
+            ]
+          ],
+          "score": 0.97734,
+          "end": "\n"
+        },
+        {
+          "text": "體字依原樣保留。",
+          "box": [
+            [
+              29.0,
+              98.0
+            ],
+            [
+              344.0,
+              98.0
+            ],
+            [
+              344.0,
+              136.0
+            ],
+            [
+              29.0,
+              136.0
+            ]
+          ],
+          "score": 0.99328,
+          "end": "\n"
+        },
+        {
+          "text": "疑字另記，勿自行補文。",
+          "box": [
+            [
+              26.0,
+              166.0
+            ],
+            [
+              419.0,
+              166.0
+            ],
+            [
+              419.0,
+              204.0
+            ],
+            [
+              26.0,
+              204.0
+            ]
+          ],
+          "score": 0.98016,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 3,
+      "substitutions": 0,
+      "deletions": 3,
+      "insertions": 0,
+      "reference_characters": 30,
+      "cer": 0.1
+    },
+    {
+      "id": "small_text",
+      "reference": "正文與夾注皆須完整保存。\n反切、引書與異體字不可刪除。\n凡字形難辨者，當據原圖核定。",
+      "hypothesis": "正文舆夹注皆须完整保存。\n反切、引書與體字不可删除。\n凡字形辨者，當據原圖核定。\n",
+      "image_sha256": "a6864e4ccd55a94e622aeaf8056ddd10878b8fb799b5ee0d8aabd679f821a0bd",
+      "code": 100,
+      "seconds": 1.189052535999508,
+      "raw_hypothesis": "正文舆夹注皆须完整保存。\n反切、引書與體字不可删除。\n凡字形辨者，當據原圖核定。\n",
+      "raw_blocks": [
+        {
+          "text": "正文舆夹注皆须完整保存。",
+          "box": [
+            [
+              26.0,
+              27.0
+            ],
+            [
+              184.0,
+              27.0
+            ],
+            [
+              184.0,
+              41.0
+            ],
+            [
+              26.0,
+              41.0
+            ]
+          ],
+          "score": 0.93267,
+          "end": "\n"
+        },
+        {
+          "text": "反切、引書與體字不可删除。",
+          "box": [
+            [
+              26.0,
+              71.0
+            ],
+            [
+              212.0,
+              71.0
+            ],
+            [
+              212.0,
+              84.0
+            ],
+            [
+              26.0,
+              84.0
+            ]
+          ],
+          "score": 0.94397,
+          "end": "\n"
+        },
+        {
+          "text": "凡字形辨者，當據原圖核定。",
+          "box": [
+            [
+              26.0,
+              116.0
+            ],
+            [
+              212.0,
+              116.0
+            ],
+            [
+              212.0,
+              129.0
+            ],
+            [
+              26.0,
+              129.0
+            ]
+          ],
+          "score": 0.95013,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 6,
+      "substitutions": 4,
+      "deletions": 2,
+      "insertions": 0,
+      "reference_characters": 40,
+      "cer": 0.15
+    },
+    {
+      "id": "blur",
+      "reference": "春雨初晴，山川澄明。\n書頁微損，文字尚可辨。\n校者錄其原文，別記疑義。",
+      "hypothesis": "春雨初晴，山川澄明。\n書真微損，文字尚可辨。\n校者錄其原文，别記疑義。\n",
+      "image_sha256": "dc094c2e53b262ba51dc64dfada04d80d493f53708be24148d3940935c72b0c5",
+      "code": 100,
+      "seconds": 0.8546373970020795,
+      "raw_hypothesis": "春雨初晴，山川澄明。\n書真微損，文字尚可辨。\n校者錄其原文，别記疑義。\n",
+      "raw_blocks": [
+        {
+          "text": "春雨初晴，山川澄明。",
+          "box": [
+            [
+              27.0,
+              30.0
+            ],
+            [
+              285.0,
+              30.0
+            ],
+            [
+              285.0,
+              56.0
+            ],
+            [
+              27.0,
+              56.0
+            ]
+          ],
+          "score": 0.99954,
+          "end": "\n"
+        },
+        {
+          "text": "書真微損，文字尚可辨。",
+          "box": [
+            [
+              27.0,
+              88.0
+            ],
+            [
+              316.0,
+              88.0
+            ],
+            [
+              316.0,
+              114.0
+            ],
+            [
+              27.0,
+              114.0
+            ]
+          ],
+          "score": 0.90975,
+          "end": "\n"
+        },
+        {
+          "text": "校者錄其原文，别記疑義。",
+          "box": [
+            [
+              26.0,
+              145.0
+            ],
+            [
+              345.0,
+              145.0
+            ],
+            [
+              345.0,
+              172.0
+            ],
+            [
+              26.0,
+              172.0
+            ]
+          ],
+          "score": 0.98346,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 2,
+      "substitutions": 2,
+      "deletions": 0,
+      "insertions": 0,
+      "reference_characters": 33,
+      "cer": 0.06060606060606061
+    },
+    {
+      "id": "low_contrast",
+      "reference": "官職、地名與人名應逐項核對。\n不得以摘要代替正文。\n編號二六〇，卷次第十三。",
+      "hypothesis": "官職、地名與人名應逐填核對。\n不得以摘要代替正文。\n编號二六〇，卷次第十三，\n",
+      "image_sha256": "5d747f60440c038fc7f23ce6dcae726749e6f6541c6dd811e1ef20848582f57d",
+      "code": 100,
+      "seconds": 0.7752679909972358,
+      "raw_hypothesis": "官職、地名與人名應逐填核對。\n不得以摘要代替正文。\n编號二六〇，卷次第十三，\n",
+      "raw_blocks": [
+        {
+          "text": "官職、地名與人名應逐填核對。",
+          "box": [
+            [
+              29.0,
+              29.0
+            ],
+            [
+              373.0,
+              29.0
+            ],
+            [
+              373.0,
+              54.0
+            ],
+            [
+              29.0,
+              54.0
+            ]
+          ],
+          "score": 0.93042,
+          "end": "\n"
+        },
+        {
+          "text": "不得以摘要代替正文。",
+          "box": [
+            [
+              27.0,
+              84.0
+            ],
+            [
+              265.0,
+              85.0
+            ],
+            [
+              265.0,
+              110.0
+            ],
+            [
+              26.0,
+              109.0
+            ]
+          ],
+          "score": 0.99766,
+          "end": "\n"
+        },
+        {
+          "text": "编號二六〇，卷次第十三，",
+          "box": [
+            [
+              25.0,
+              140.0
+            ],
+            [
+              316.0,
+              141.0
+            ],
+            [
+              316.0,
+              167.0
+            ],
+            [
+              25.0,
+              166.0
+            ]
+          ],
+          "score": 0.94462,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 3,
+      "substitutions": 3,
+      "deletions": 0,
+      "insertions": 0,
+      "reference_characters": 36,
+      "cer": 0.08333333333333333
+    },
+    {
+      "id": "vertical",
+      "reference": "天地玄黃宇宙洪荒\n日月盈昃辰宿列張\n寒來暑往秋收冬藏",
+      "hypothesis": "天地玄黄宇宙洪荒\n日月盈昊辰宿列張\n寒來暑往秋收冬藏\n",
+      "image_sha256": "9160b2e045dae83662f3496af581951548e83b3bf569cbd8e8dc3bf82f2eb148",
+      "code": 100,
+      "seconds": 0.6551759409994702,
+      "raw_hypothesis": "寒來暑往秋收冬藏\n日月盈昊辰宿列張\n天地玄黄宇宙洪荒\n",
+      "raw_blocks": [
+        {
+          "text": "寒來暑往秋收冬藏",
+          "box": [
+            [
+              579.0,
+              24.0
+            ],
+            [
+              614.0,
+              24.0
+            ],
+            [
+              614.0,
+              310.0
+            ],
+            [
+              579.0,
+              310.0
+            ]
+          ],
+          "score": 0.96297,
+          "end": "\n"
+        },
+        {
+          "text": "日月盈昊辰宿列張",
+          "box": [
+            [
+              650.0,
+              24.0
+            ],
+            [
+              683.0,
+              24.0
+            ],
+            [
+              683.0,
+              309.0
+            ],
+            [
+              650.0,
+              309.0
+            ]
+          ],
+          "score": 0.93327,
+          "end": "\n"
+        },
+        {
+          "text": "天地玄黄宇宙洪荒",
+          "box": [
+            [
+              720.0,
+              25.0
+            ],
+            [
+              753.0,
+              25.0
+            ],
+            [
+              753.0,
+              310.0
+            ],
+            [
+              720.0,
+              310.0
+            ]
+          ],
+          "score": 0.99937,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 2,
+      "substitutions": 2,
+      "deletions": 0,
+      "insertions": 0,
+      "reference_characters": 24,
+      "cer": 0.08333333333333333
+    },
+    {
+      "id": "two_columns",
+      "reference": "右欄首行：原文須存。\n右欄次行：校語另記。\n左欄首行：不得補文。\n左欄次行：據圖辨字。",
+      "hypothesis": "右首行：原文须存。\n右次行：校語另記。\n左首行：不得補文。\n左次行：據圖辨字。\n",
+      "image_sha256": "0355d3298cbbcea222c7ab97e943beb68f8c1cfcea7f43b83cc39e4e56ee9a5f",
+      "code": 100,
+      "seconds": 0.9590621550014475,
+      "raw_hypothesis": "左首行：不得補文。\n右首行：原文须存。\n左次行：據圖辨字。\n右次行：校語另記。\n",
+      "raw_blocks": [
+        {
+          "text": "左首行：不得補文。",
+          "box": [
+            [
+              32.0,
+              54.0
+            ],
+            [
+              252.0,
+              54.0
+            ],
+            [
+              252.0,
+              77.0
+            ],
+            [
+              32.0,
+              77.0
+            ]
+          ],
+          "score": 0.98875,
+          "end": "\n"
+        },
+        {
+          "text": "右首行：原文须存。",
+          "box": [
+            [
+              432.0,
+              54.0
+            ],
+            [
+              655.0,
+              54.0
+            ],
+            [
+              655.0,
+              76.0
+            ],
+            [
+              432.0,
+              76.0
+            ]
+          ],
+          "score": 0.97837,
+          "end": "\n"
+        },
+        {
+          "text": "左次行：據圖辨字。",
+          "box": [
+            [
+              32.0,
+              124.0
+            ],
+            [
+              252.0,
+              124.0
+            ],
+            [
+              252.0,
+              146.0
+            ],
+            [
+              32.0,
+              146.0
+            ]
+          ],
+          "score": 0.9806,
+          "end": "\n"
+        },
+        {
+          "text": "右次行：校語另記。",
+          "box": [
+            [
+              431.0,
+              123.0
+            ],
+            [
+              652.0,
+              124.0
+            ],
+            [
+              652.0,
+              147.0
+            ],
+            [
+              431.0,
+              146.0
+            ]
+          ],
+          "score": 0.98942,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 5,
+      "substitutions": 1,
+      "deletions": 4,
+      "insertions": 0,
+      "reference_characters": 40,
+      "cer": 0.125
+    },
+    {
+      "id": "rare_characters",
+      "reference": "𠮷、𡈽、㠯、祕、祠、禮。\n註、注、於、于、後、后。\n刺史、太守、都督、侍中。",
+      "hypothesis": "吉、土、吕、秘、祠、禮。\n主、注、於、于、後、后。\n刺史、太守、都督、侍中。\n",
+      "image_sha256": "5d5f81e1ac24ef2905ee22de63870102b72e73ab963dc04c8bb01d9426c6ca6b",
+      "code": 100,
+      "seconds": 0.8429822079997393,
+      "raw_hypothesis": "吉、土、吕、秘、祠、禮。\n主、注、於、于、後、后。\n刺史、太守、都督、侍中。\n",
+      "raw_blocks": [
+        {
+          "text": "吉、土、吕、秘、祠、禮。",
+          "box": [
+            [
+              28.0,
+              30.0
+            ],
+            [
+              433.0,
+              30.0
+            ],
+            [
+              433.0,
+              67.0
+            ],
+            [
+              28.0,
+              67.0
+            ]
+          ],
+          "score": 0.96036,
+          "end": "\n"
+        },
+        {
+          "text": "主、注、於、于、後、后。",
+          "box": [
+            [
+              27.0,
+              96.0
+            ],
+            [
+              435.0,
+              96.0
+            ],
+            [
+              435.0,
+              132.0
+            ],
+            [
+              27.0,
+              132.0
+            ]
+          ],
+          "score": 0.94598,
+          "end": "\n"
+        },
+        {
+          "text": "刺史、太守、都督、侍中。",
+          "box": [
+            [
+              26.0,
+              163.0
+            ],
+            [
+              434.0,
+              163.0
+            ],
+            [
+              434.0,
+              197.0
+            ],
+            [
+              26.0,
+              197.0
+            ]
+          ],
+          "score": 0.99661,
+          "end": "\n"
+        }
+      ],
+      "error": null,
+      "errors": 5,
+      "substitutions": 5,
+      "deletions": 0,
+      "insertions": 0,
+      "reference_characters": 36,
+      "cer": 0.1388888888888889
+    },
+    {
+      "id": "blank",
+      "reference": "",
+      "hypothesis": "",
+      "image_sha256": "4564a116d420ba3e22c16e8a897b4ce1b6972d5c31f8654af46fdcd0f3c774ab",
+      "code": 101,
+      "seconds": 0.80667190800159,
+      "raw_hypothesis": "",
+      "raw_blocks": [],
+      "error": null,
+      "errors": 0,
+      "substitutions": 0,
+      "deletions": 0,
+      "insertions": 0,
+      "reference_characters": 0,
+      "cer": null
+    }
+  ],
+  "engine": {
+    "backend": "rapidocr-onnxruntime",
+    "rapidocr": "3.9.2",
+    "onnxruntime": "1.23.2",
+    "profile": "v4-mobile",
+    "model_sha256": {
+      "det": "d2a7720d45a54257208b1e13e36a8479894cb74155a5efe29462512d42f49da9",
+      "rec": "48fc40f24f6d2a207a2b1091d3437eb3cc3eb6b676dc3ef9c37384005483683b",
+      "cls": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+    },
+    "detail": false,
+    "network": "disabled",
+    "text_score_filter": 0.0,
+    "dictionary": "embedded",
+    "dependencies": {
+      "Pillow": "12.3.0",
+      "numpy": "2.5.3",
+      "opencv-python": "5.0.0.93",
+      "pyclipper": "1.4.0",
+      "shapely": "2.1.2"
+    },
+    "parameters": {
+      "Global.log_level": "error",
+      "Global.text_score": 0.0,
+      "Global.max_side_len": 2000,
+      "Det.limit_side_len": 960,
+      "EngineConfig.onnxruntime.intra_op_num_threads": 2,
+      "EngineConfig.onnxruntime.inter_op_num_threads": 1,
+      "Det.ocr_version": "PP-OCRv4",
+      "Det.model_type": "mobile",
+      "Rec.ocr_version": "PP-OCRv4",
+      "Rec.model_type": "mobile",
+      "Cls.ocr_version": "PP-OCRv4",
+      "Cls.model_type": "mobile"
+    },
+    "fingerprint": "72dff24aeea87d5065e66a8864cf9f1f18b18e022d7606f1412f34c76c60fa06"
+  },
+  "reading_order": "right_columns",
+  "startup_seconds": 0.8574161689975881,
+  "total": {
+    "reference_characters": 288,
+    "errors": 26,
+    "substitutions": 17,
+    "deletions": 9,
+    "insertions": 0,
+    "cer": 0.09027777777777778,
+    "failed_cases": 0,
+    "exact_cases": 2,
+    "total_cases": 9
+  }
+}

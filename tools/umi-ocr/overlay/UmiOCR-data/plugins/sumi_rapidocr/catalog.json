@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "rapidocr_version": "3.9.2",
+  "onnxruntime_version": "1.23.2",
+  "source": "RapidAI/RapidOCR v3.9.2 default_models.yaml",
+  "profiles": {
+    "v4-mobile": {
+      "model_version": "PP-OCRv4",
+      "model_type": "mobile",
+      "models": {
+        "det": {
+          "file": "ch_PP-OCRv4_det_mobile.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/det/ch_PP-OCRv4_det_mobile.onnx",
+          "sha256": "d2a7720d45a54257208b1e13e36a8479894cb74155a5efe29462512d42f49da9"
+        },
+        "rec": {
+          "file": "ch_PP-OCRv4_rec_mobile.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/rec/ch_PP-OCRv4_rec_mobile.onnx",
+          "sha256": "48fc40f24f6d2a207a2b1091d3437eb3cc3eb6b676dc3ef9c37384005483683b"
+        },
+        "cls": {
+          "file": "ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+          "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+        }
+      },
+      "dictionary": {
+        "file": "dictionary.json",
+        "sha256": "eef21850d068e74b0649e1f1b5a2d245cf5800b7118062c263dc19100b4a9c35",
+        "entries": 6623,
+        "source": "recognition ONNX metadata: character"
+      }
+    },
+    "v5-server": {
+      "model_version": "PP-OCRv5",
+      "model_type": "server",
+      "models": {
+        "det": {
+          "file": "ch_PP-OCRv5_det_server.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv5/det/ch_PP-OCRv5_det_server.onnx",
+          "sha256": "0f8846b1d4bba223a2a2f9d9b44022fbc22cc019051a602b41a7fda9667e4cad"
+        },
+        "rec": {
+          "file": "ch_PP-OCRv5_rec_server.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv5/rec/ch_PP-OCRv5_rec_server.onnx",
+          "sha256": "e09385400eaaaef34ceff54aeb7c4f0f1fe014c27fa8b9905d4709b65746562a"
+        },
+        "cls": {
+          "file": "ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+          "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+        }
+      },
+      "dictionary": {
+        "file": "dictionary.json",
+        "sha256": "8ad94e456475f65c95944b1b1601695b3f027198163bdd31b1bb31092e185642",
+        "entries": 18383,
+        "source": "recognition ONNX metadata: character"
+      }
+    },
+    "v6-small": {
+      "model_version": "PP-OCRv6",
+      "model_type": "small",
+      "models": {
+        "det": {
+          "file": "PP-OCRv6_det_small.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv6/det/PP-OCRv6_det_small.onnx",
+          "sha256": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f"
+        },
+        "rec": {
+          "file": "PP-OCRv6_rec_small.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv6/rec/PP-OCRv6_rec_small.onnx",
+          "sha256": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884"
+        },
+        "cls": {
+          "file": "ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+          "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+          "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+        }
+      },
+      "dictionary": {
+        "file": "dictionary.json",
+        "sha256": "d0f188dc99b79444bb4f11747e76197ce43a54e332cf10c0cb6da32415361dae",
+        "entries": 18708,
+        "source": "recognition ONNX metadata: character"
+      }
+    }
+  }
+}

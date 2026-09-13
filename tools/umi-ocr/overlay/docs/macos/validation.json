@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0-preview.3",
+  "date": "2026-09-13",
+  "host": "Linux x86_64",
+  "unit_tests": {
+    "passed": 76,
+    "failed": 0
+  },
+  "full_qt_shell": "passed; OS hotkeys replaced with dummy; see full-app-check.json",
+  "mac_dependency_graph": {
+    "gui_x86_64": "resolved",
+    "engine_arm64": "resolved",
+    "engine_x86_64": "resolved"
+  },
+  "wheel_files_checked": 62,
+  "linux_inference_with_mac_pins": "passed under libseccomp; not Mac execution",
+  "macos_real_machine_tested": false,
+  "macos_network_sandbox_tested": false,
+  "macos_app_status": "source-linked launcher only; no self-contained package/signing/notarization",
+  "remaining": [
+    "Finder and Rosetta startup",
+    "native arm64 worker on Apple Silicon",
+    "OS permissions acceptance/denial",
+    "Retina and mixed-DPI real capture",
+    "native dialogs, clipboard and Command keys",
+    "macOS sandbox-exec offline inference",
+    "six-category Mac performance and accuracy"
+  ]
+}

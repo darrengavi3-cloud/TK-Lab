@@ -117,6 +117,8 @@ class __MissionOcrClass(Mission):
         if capture:
             res["rawResult"] = {"code": res["code"], "data": deepcopy(res["data"]),
                                 "engine": self._apiKey, "coordinates": "image_pixels"}
+            if "engineInfo" in res:
+                res["rawResult"]["engineInfo"] = deepcopy(res["engineInfo"])
             if source_fingerprint:
                 if file_digest(msn["path"]) != source_fingerprint:
                     raise RuntimeError("Source changed during recognition")
@@ -230,6 +232,7 @@ class __MissionOcrClass(Mission):
         from PIL import __version__ as pillow_version
         import fitz
         return {"engine": self._apiKey, "settings": digest(settings),
+                "backendIdentity": digest(getattr(self._api, "engineInfo", None)),
                 "globalSettings": self._apiSettingsDigest,
                 "pluginFiles": plugin_files, "externalFiles": digest(external),
                 "pipeline": pipeline, "python": sys.version,

@@ -1,52 +1,21 @@
-# 验证记录
+# Sumi-OCR 验证记录
 
-2026-09-13，Linux，Python 3.12.14，Pillow 12.3.0，PyMuPDF 1.26.6 / MuPDF 1.26.11。
+2026-09-13，Linux x86_64，源版本 0.1.0-preview.3。
 
-## 源码与可复现性
+上游 `83173efc4f4453b41223ea96d63d44534bf0505c`；增强提交 `121391e3b48c2363ee00b56898cdb1b3a56e2012`。本包包含 **142 个 overlay 文件**，均在 SOURCE.json 中记录 SHA-256。
 
-上游固定提交：`83173efc4f4453b41223ea96d63d44534bf0505c`。
-增强源码提交：`dc73368`，含 CSV、恢复和校对三轮改动。
+- `bootstrap.py --local-source` 在全新目录重建成功，142 个 overlay 文件摘要逐一一致；恢复目录再次运行 76 项测试通过。
+- 76 项后端测试通过：CSV、恢复、进程异常、原始证据、完整模型与字典校验、恶意归档/重复条目、候选分歧/只追加、源文件变化、旋转 PDF 坐标、真实验收错误与阅读顺序计分。
+- 独立 v6 模型包导出并在新目录导入，Linux libseccomp 拒绝 socket/connect/send 等系统调用后成功启动并识别，验证 IPv4/IPv6 不可建连。
+- 原生 Qt 5 页面测试通过拖拽、缩放坐标、键盘 Tab、两种真实模型分歧、取消和失败保留；浅/深色及 820×600 画面已检查。
+- 京华老宋体实际文件加载、家族名与内容字体选择通过；测试副本版本 1.007，未把字体文件放入仓库。
+- 六类真实资料 6 例、1,545 字符，完整记录替换/删除/插入、阅读顺序、失败、耗时与峰值内存。复杂古籍仍有严重错误，质量未达到免校对使用要求。
+- 编译检查、git diff --check、设计 lint 和 strict 静态审计通过。
 
-通过 `bootstrap.py --local-source` 在新的独立目录从固定上游重新恢复完整项目，再检查所有 33 个 overlay 文件的 SHA-256 与 SOURCE.json 完全相同。脚本拒绝已有目标目录，也拒绝摘要不匹配的增强文件。未验证网络下载路径或 Windows 脚本运行。
+日志：[后端测试](overlay/docs/sumi-tests.log)、[断网识别](overlay/docs/accuracy/offline-import-validation.json)、[桌面与字体](overlay/docs/desktop/README.md)、[真实验收](overlay/docs/acceptance/README.md)。
 
-在该恢复目录执行：
+Qt 使用 Python 3.10.21 / PySide2 5.15.2.1；独立引擎为 Python 3.12.14 / RapidOCR 3.9.2 / ONNX Runtime 1.23.2。原有区域/字体测试壳替代主窗口与平台服务；新增完整 Main.qml 加载与区域页入口检查（Linux offscreen，热键使用 dummy），不代表 Mac/Windows 系统行为。未覆盖屏幕阅读器、系统截图/剪贴板、原生文件对话框、Windows 打包、手写及大规模性能。
 
-```text
-python -m unittest discover -s tests -v
-Ran 42 tests
-OK
+发布形态继续为源码预览；用户已要求合并此 PR。Mac .app 仅为本地源码/双环境启动器，未签名、公证，也无自包含安装包。模型权重和研究图像不进入 Git 仓库，分别以本地导入包/显式下载验收资料提供。
 
-python -m compileall -q UmiOCR-data/py_src/mission UmiOCR-data/py_src/ocr dev-tools/review_cli.py tests
-退出状态 0
-
-git diff --check
-退出状态 0
-```
-
-## 测试范围
-
-| 分组 | 数量 | 覆盖 |
-| --- | ---: | --- |
-| CSV | 6 | Unicode、转义、逐条写出、空白/错误、写出失败 |
-| 恢复基础 | 10 | 输入/模型变化、顺序、并发锁、损坏结果、异常重试、进程退出 |
-| 批处理集成 | 15 | 实际调度器/控制器、取消/暂停、导出错误、真实 PDF、部分失败、原始证据缓存恢复 |
-| 校对包与修订 | 11 | 原始数据不可覆盖、未知置信度、原图/裁图校验、旋转 PDF、EXIF 回退、错误/空白保留、显式修订 |
-
-测试替代 Qt/OS 接口和引擎推理；没有使用真实 OCR 模型。注入错误的日志是预期的失败路径，不代表测试失败。`overlay/docs/recovery-tests.log` 是上一轮 29 项测试的历史记录，不是此轮测试总数。
-
-## 视觉流程演示
-
-自制三行繁体样张，注入“原註”识别为“原往”的错误，生成含原图和疑字裁图的校对包。在本会话中实际查看整页和裁图，确认“註”的言旁；随后校验、提交建议并显式选择 s1，生成新校订稿。原始错误文本继续保留。未对其他样本开展模型识别或准确率基准。
-
-## 界面验证边界
-
-复用 QML Configs/Widgets 与现有主题。静态设计审计无错误/警告，但该审计不等于运行 QML；没有进行 Qt 桌面布局、键盘/屏幕阅读器、真实 Windows 锁、Excel 打开或发行包启动验收。设计记录见 overlay/DESIGN.md 与 overlay/UX-CONTRACT.md。
-
-## 待完成发布验收
-
-- Windows / Linux 的 Qt 桌面启动与配置开关。
-- 安装实际引擎/模型后，截图、中文扫描件、竖排繁体与夹注古籍的对照评测。
-- 大文档校对包的渲染、磁盘、内存、页耗时和取消体验。
-- 实际 Excel、加密文档、多语言 UI 与打包分发。
-
-本 PR 是可复现源码交付，不是桌面正式发行版；不自动合并或部署 TK-Lab。
+Mac 适配新增验证：76 项回归测试；13 个 GUI wheel、两种架构各 24 个引擎 wheel 及 1 个共享纯 Python wheel 共 62 个文件完成 CRC/SHA-256/标签核验；Mac 固定依赖在 Linux 成功断网识别。Qt 完整窗口、用户目录配置、字面百分号路径、实际截图组件 2× 坐标和软件渲染非空画面通过。证据：[Mac 验证](overlay/docs/macos/validation.json)、[完整窗口](overlay/docs/macos/full-app-check.json)、[依赖清单](overlay/docs/macos/wheels.json)。Mac Finder、Rosetta/原生进程、权限、多屏、沙箱与真实性能仍待实机。

@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: "Umi-OCR desktop"
+name: "Sumi-OCR desktop"
 description: "离线识别桌面工具，沿用上游标签页和紧凑配置面板。"
 colors:
   background: "#FFFFFF"
@@ -25,11 +25,11 @@ components:
   accentText: {textColor: "{colors.primary}"}
 ---
 
-# Umi-OCR Desktop Design
+# Sumi-OCR Desktop Design
 
 ## Overview
 
-面向本地图片和扫描文档的使用者；当前迭代增强任务恢复与本地校对包导出。视觉参照为现有桌面工具的标签页、文件列表、文字结果和右侧配置栏。保留紧凑操作密度，识别文字和处理状态优先。
+面向本地图片和扫描文档的使用者；当前迭代以识别准确率为重点，增加独立离线引擎、模型配置和右起分栏排序，并保留任务恢复与校对包导出。名称使用 Sumi-OCR，关于页面注明 Umi-OCR 来源。视觉参照为现有桌面工具的标签页、文件列表、文字结果和右侧配置栏。保留紧凑操作密度，识别文字和处理状态优先。
 
 Runtime source of truth: `UmiOCR-data/qt_res/qml/Themes/Theme.qml` 与共享 Configs/Widgets；本文记录现状，不生成主题。上述颜色映射默认浅色主题的 bgColor/textColor/subTextColor/tabBarColor/specialTextColor；其余主题继续使用运行时定义。没有新增或修改视觉 token。
 
@@ -41,11 +41,11 @@ background/text 是主要阅读面；secondary 是次要内容；tab 是标签�
 
 ## Typography
 
-UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设置，保留中文、生僻字回退。任务参数与结果文本各走原有字体角色，不为新开关添加字体。
+UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设置，保留中文、生僻字回退。macOS 默认变体由 GlobalConfigs 选择 PingFang SC，其余平台仍为 Microsoft YaHei；既有用户字体优先。任务参数与结果文本各走原有字体角色。字体面板提供京华老宋体本地字体文件入口和已安装字体选择；以 Qt 返回的字体家族名为准，保留系统缺字回退，不改 OCR 原始文字。
 
 ## Layout
 
-图片与文档继续使用原有分栏、文件列表和结果区。继续任务开关置于各自“批量任务”设置组；共用 UtilsConfigDicts 的配置定义和现有布尔控件，不改变外层滚动或窗口布局。校对包开关位于两页“保存文件类型”，共用 getReviewOutput。
+图片与文档继续使用原有分栏、文件列表和结果区。继续任务开关置于各自“批量任务”设置组；共用 UtilsConfigDicts 的配置定义和现有布尔控件，不改变外层滚动或窗口布局。校对包开关位于两页“保存文件类型”，共用 getReviewOutput。新增“区域校对”标签页：上部源文件/模型表单，左侧复用 ImageScale 预览与框选，右侧坐标、识别状态与只读候选。坐标输入提供拖拽的键盘替代；窄窗口下候选区独立滚动。
 
 ## Elevation & Depth
 
@@ -53,13 +53,13 @@ UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设�
 
 ## Shapes
 
-控件形状来自现有 Widgets 与 Qt Controls。此次无独立圆角或尺寸值。
+控件形状来自现有 Widgets 与 Qt Controls。此次无独立圆角或尺寸值。软件渲染下 Main.qml 禁用依赖 GPU 的圆角遮罩并使用普通裁切，避免透明空窗。
 
 ## Components
 
 同名操作在两页面共用标题和说明。恢复结果在已有状态列显示“已恢复”。不完整页保留文字，并在标题标出“识别不完整”；批次结束展示警告。继续任务与校对包默认关闭，用户可明确开启。校对提示说明仅本地保存，模型建议需显式采纳；未知置信度使用文字标识。
 
-配置控件和通知分别由 Configs 与 Popup_ 负责。没有增加下拉框、日期选择、表单提交或新交互动画。Qt桌面键盘、主题、提示布局仍待实际验证，不能据配置代码声称可访问性通过。
+配置控件和通知分别由 Configs 与 Popup_ 负责。排版下拉框继续使用 Configs.qml 的 compEnum 与 QtQuick.Controls.ComboBox；弹出层的主题、布局和键盘行为由现有控件负责。新增配置复用字符串和布尔项；没有新交互动画。Qt桌面键盘、主题、提示布局仍待实际验证，不能据配置代码声称可访问性通过。
 
 ## Do's and Don'ts
 

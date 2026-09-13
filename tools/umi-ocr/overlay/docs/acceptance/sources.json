@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "source": "https://huggingface.co/datasets/opendatalab/OmniDocBench",
+  "revision": "aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec",
+  "annotation_sha256": "a45cd84b04ad8b793e775089640e6b681209abea33ead54c1828ddca35fae496",
+  "kind": "real_document_pilot",
+  "license_note": "OmniDocBench data: research only, noncommercial; fetch separately. Application screenshot: Sumi-OCR MIT. Do not include third-party dataset pages in application distributions.",
+  "gt_policy": "Frozen source annotations and specified literal formatting conversions, before inference. No OCR-generated ground truth. Six-case pilot, not a representative held-out accuracy guarantee.",
+  "cases": [
+    {
+      "id": "desktop",
+      "category": "screenshot",
+      "source": "desktop-instructions.png",
+      "source_sha256": "4851e45830a64730aae7692130e230971e262c276e62be5b3fc9ca186da52aaa",
+      "image": "desktop.png",
+      "regions": [
+        {
+          "id": "heading",
+          "box": [
+            0,
+            0,
+            447,
+            24
+          ],
+          "text": "候选结果 · 未校对"
+        },
+        {
+          "id": "caution",
+          "box": [
+            0,
+            26,
+            447,
+            73
+          ],
+          "text": "不同引擎可能使用同源模型。结果一致不等于独立证明；分数不会用于自动覆盖原文。"
+        },
+        {
+          "id": "history",
+          "box": [
+            0,
+            78,
+            447,
+            119
+          ],
+          "text": "再次选择模型、倍率或细节选项后识别，可追加候选。显示此选区最近 50 条，全部记录保存在目录中。"
+        },
+        {
+          "id": "coordinates",
+          "box": [
+            0,
+            120,
+            447,
+            143
+          ],
+          "text": "保存的文字框使用原图像素坐标。"
+        }
+      ]
+    },
+    {
+      "id": "traditional-vertical",
+      "category": "traditional_vertical",
+      "page_index": 184,
+      "crop": [
+        690,
+        175,
+        905,
+        1510
+      ],
+      "annotation_ids": [
+        "box-nkwhn4u7",
+        "box-knwwrsc0",
+        "box-21jqjq1t"
+      ],
+      "source": "page-3ecc67a1-9b19-4fb9-b74d-acbb73db5c53.png",
+      "source_sha256": "f106f4f0139c31e1e906c634fb63e294f5d433fd313a69de2552e9f834391d01",
+      "image": "traditional-vertical.png"
+    },
+    {
+      "id": "double-column",
+      "category": "double_column",
+      "page_index": 189,
+      "crop": [
+        0,
+        0,
+        1559,
+        2087
+      ],
+      "annotation_ids": "all_text",
+      "literal_replacements": {
+        "## “断粮”危机": "“断粮”危机",
+        "$50 \\%$": "50%",
+        "$2 7 \\% \\sim 2 8 \\%$": "27%~28%",
+        "$60 \\%$": "60%",
+        "$1 5 \\%$": "15%"
+      },
+      "source": "page-6e75aef4-33d0-478a-a3a3-489c782bfa39.png",
+      "source_sha256": "795473598510c0c5fad3da84fd62cd84188a1acde35d364314c55ba46c696ff2",
+      "image": "double-column.png"
+    },
+    {
+      "id": "interlinear",
+      "category": "interlinear_annotations",
+      "page_index": 111,
+      "crop": [
+        330,
+        180,
+        425,
+        1478
+      ],
+      "annotation_ids": [
+        "box-iirmic5m"
+      ],
+      "source": "page-942ac90d-4704-43f3-9286-719c7be9e655.png",
+      "source_sha256": "73d6248eceac4dd6218e22237082ced988dd1fd46d917b1b87f721ce86971048",
+      "image": "interlinear.png"
+    },
+    {
+      "id": "tilted-scan",
+      "category": "tilted_scan",
+      "page_index": 110,
+      "crop": [
+        3805,
+        470,
+        3945,
+        1300
+      ],
+      "annotation_ids": [
+        "box-6410rlif"
+      ],
+      "source": "page-07088b2f-f9d6-4c38-9c97-d7f98bc3d556.png",
+      "source_sha256": "15a13b0cb26a2e25929287f8532001a2b958bc9e0c71ea20ce345c86881bb882",
+      "image": "tilted-scan.png"
+    },
+    {
+      "id": "table",
+      "category": "table",
+      "page_index": 142,
+      "crop": [
+        332,
+        268,
+        766,
+        541
+      ],
+      "table_id": "box_id_2",
+      "table_rows": [
+        274,
+        317,
+        361,
+        404,
+        448,
+        491,
+        535
+      ],
+      "source": "page-52e82aa9-7bd7-4683-8adc-520cae0291e0.png",
+      "source_sha256": "3d8ee69c5011e2baa7b0fd125e0392e6beeb2dc706d9cc09902e6b9d587076fb",
+      "image": "table.png"
+    }
+  ]
+}
