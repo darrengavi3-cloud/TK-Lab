@@ -4,6 +4,8 @@
 
 新版离线引擎、模型包和实测记录见 [Sumi-OCR 使用说明](docs/SUMI_ACCURACY_ZH.md)。当前为源码预览版，尚无 Sumi-OCR 安装包。
 
+已加入完整离线模型包、桌面框选重识别、候选分歧提示和[京华老宋体本地支持](docs/JINGHUA_FONT_ZH.md)。[六类真实验收](docs/acceptance/README.md)同步记录失败、顺序、耗时与内存；新模型并非全面胜过旧版。
+
 以下保留上游项目介绍与下载信息；上游安装包不包含 Sumi-OCR 改动。
 
 ---

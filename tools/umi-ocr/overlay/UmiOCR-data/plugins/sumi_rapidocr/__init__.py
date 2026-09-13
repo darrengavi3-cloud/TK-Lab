@@ -5,9 +5,11 @@ PluginInfo = {
     'group':'ocr', 'api_class':Api,
     'global_options': {
         'title':'Sumi-OCR · Paddle 模型 / RapidOCR', 'type':'group',
-        'python_executable':{'title':'引擎 Python 路径','default':'',
+        'python_executable':{'title':'引擎 Python 路径','default':'','type':'file',
+            'selectExisting':True,'selectFolder':False,
             'toolTip':'选择安装了 Sumi 引擎依赖的独立 Python 可执行文件。'},
-        'bundle_manifest':{'title':'本地模型包','default':'',
+        'bundle_manifest':{'title':'本地模型包','default':'','type':'file',
+            'selectExisting':True,'selectFolder':False,'nameFilters':['模型清单 (bundle.json)'],
             'toolTip':'填写已校验模型包中 bundle.json 的完整路径。识别时不会下载模型。'},
     },
     'local_options': {

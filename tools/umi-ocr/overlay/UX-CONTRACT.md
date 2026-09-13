@@ -26,7 +26,7 @@ All source paths above are under UmiOCR-data. Theme ownership is documented in D
 | Select Sumi engine | Enter independent Python path and local bundle.json through shared settings | Worker validates model/dictionary checksums and pinned runtime; model identity enters recovery and raw evidence | Explicit startup error; prepare a complete bundle and retry |
 | Enable more small-text detail | Restart worker with larger resolution limits | New parameter identity, more compute; no accuracy guarantee | Turn setting off and rerun if results degrade |
 | Select right-to-left columns | Explicit layout selection; existing default remains unchanged | Preserve every text block; order columns right to left and each column top to bottom | Invalid coordinates preserve original sequence; spanning headings and interlinear notes require review |
-| CLI region recognition | Run selected pixel rectangle at 1x or 2x | Separate unreviewed JSON, original-coordinate boxes and source hash | Bounds/input-change/output-conflict errors; choose a valid region or new output |
+| Desktop and CLI region recognition | Run selected pixel rectangle at 1x or 2x | Separate unreviewed JSON, original-coordinate boxes and source hash | Bounds/input-change/output-conflict errors; choose a valid region or new output |
 
 Recovery is opt-in local plaintext data in output-directory/.umi-recovery. The setting explains this before use and describes manual cleanup after all tasks stop. Journal state describes recognition; an output-finalization failure is reported separately and can be retried from successful recognition records.
 
@@ -34,6 +34,19 @@ No automated deletion, cloud synchronization, or credentials persistence. Docume
 
 ## Verification boundaries
 
-Unit/integration evidence covers actual scheduler, batch controllers, parsers, SQLite, CSV and PyMuPDF; Qt wrappers and inference are substituted. OS process-exit recovery and locking are tested on Linux. Native Qt rendering, screen-reader/keyboard interactions, translation and Windows locking remain unverified.
+Unit/integration evidence covers actual scheduler, batch controllers, parsers, SQLite, CSV and PyMuPDF; Qt wrappers and inference are substituted. OS process-exit recovery and locking are tested on Linux. Native Qt region/font pages, drag, keyboard Tab, cancellation, and narrow/dark rendering are verified in a test shell (docs/desktop/README.md). Full application/platform integration, screen readers, translation and Windows locking remain unverified.
 
-Separate accuracy experiments run real RapidOCR/ONNX models on frozen synthetic images. They do not replace real-scan evaluation or desktop UI verification. Region recognition currently uses the CLI; there is no desktop region-selection editor. The worker blocks Python socket connections and model downloads, not an OS-level network sandbox. OCR runs offline after dependencies and model files are prepared.
+Separate accuracy experiments run real RapidOCR/ONNX models on frozen synthetic images. They remain separate from the new six-category real-document pilot and native Qt page checks. Desktop region selection and append-only candidates are implemented in RegionOCR with the shared ImageScale component; native Qt validation is recorded separately. Normal workers block Python connections and model downloads. Optional Linux --kernel-offline validation additionally denies network syscalls with libseccomp; this does not assert a Windows network sandbox. OCR runs offline after dependencies and model files are prepared.
+
+## Region review and font flow
+
+| Trigger | Pending | Result | Failure recovery |
+| --- | --- | --- | --- |
+| Open image/document page | Disable conflicting controls; render in background | Immutable local page snapshot and original-coordinate metadata | Visible error; previous candidates remain on disk |
+| Drag selection or enter coordinates | Validate preview-pixel bounds | Load candidates for the exact page and rectangle | Reject invalid rectangle and retain last valid selection |
+| Recognize selected region | Independent worker; busy state and cancel | Append unreviewed candidate and mapped boxes; compare all configurations | Preserve failures and earlier candidates; retry explicitly |
+| Import offline model | Validate allowlisted archive and hashes in staging directory | Publish a new local bundle; no network | Reject corrupt/incomplete archives without replacing existing bundle |
+| Candidate disagreement | Compare literal text ignoring whitespace only | Explicit disagreement; show all texts without a confidence-based winner | Review against page image; agreement remains unverified |
+| Load Jinghua Old Song | Choose local TTF/OTF/TTC or installed family | Preview and explicitly select content font; persist local file URL | Visible loading error; retain previous content font |
+
+RegionSelection owns drag geometry as a shared ImageScale extension. TextField_, CheckButton, Button_, TextEdit_ and FileDialog_ remain canonical owners. Candidates are selectable read-only plain text. Password fields mask input and do not persist passwords. Local snapshots/candidates are plaintext in the displayed directory. Font files are never downloaded at app startup; font display does not change recognition models or Unicode output.

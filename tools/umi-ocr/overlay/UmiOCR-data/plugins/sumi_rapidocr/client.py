@@ -12,6 +12,7 @@ class Api:
     def __init__(self, globalArgd):
         self.python = str(globalArgd.get('python_executable') or sys.executable)
         self.bundle = str(globalArgd.get('bundle_manifest') or '')
+        self.kernel_offline = bool(globalArgd.get('kernel_offline', False))
         self.timeout = 120
         self.process = None
         self.settings = None
@@ -30,6 +31,8 @@ class Api:
             command=[self.python,'-u',str(Path(__file__).with_name('worker.py')),'--bundle',self.bundle]
             if settings:
                 command.append('--detail')
+            if self.kernel_offline:
+                command.append('--kernel-offline')
             try:
                 self.process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,
                     stderr=subprocess.DEVNULL, encoding='utf-8', errors='strict',bufsize=1,
@@ -104,3 +107,15 @@ class Api:
 
     def runRegion(self, path, region, scale=2):
         return self._run({'path':str(path),'region':list(region),'scale':scale})
+
+    def getDictionary(self):
+        return self._run({'operation':'dictionary'})
+
+    def cancel(self):
+        # Do not acquire the request lock: terminating unblocks a waiting request.
+        process = self.process
+        if process and process.poll() is None:
+            try:
+                process.terminate()
+            except ProcessLookupError:
+                pass

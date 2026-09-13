@@ -1,5 +1,7 @@
 # 准确率开发回归记录
 
+这是此前的合成开发回归记录。新增的六类真实样本、逐场景指标和模型选择限制见 [真实验收集](../acceptance/README.md)。
+
 2026-09-13，Linux / Python 3.12.14，RapidOCR 3.9.2 + ONNX Runtime 1.23.2，CPU 推理，每引擎 intra-op 2 / inter-op 1 线程；detail 关闭。依赖完整快照见 [engine-environment.lock](engine-environment.lock)。
 
 9 张固定合成 PNG，288 个非空白 Unicode 码点，使用 BabelStone Han 字体渲染。正文由本项目编写，竖排使用公版短句。原始字体不分发，字体 SHA-256 记录于 [suite.json](samples/suite.json)。直接使用仓库内 PNG 复测，无需安装该字体；另有 `dev-tools/make_accuracy_samples.py` 可生成新样本。重新生成时应比较图片摘要，不能假设跨平台渲染完全一致。

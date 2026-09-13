@@ -33,6 +33,8 @@ UmiOCR-data/plugins/*/
 UmiOCR-data/plugins/sumi_rapidocr/*
 !UmiOCR-data/plugins/sumi_rapidocr/*.py
 !UmiOCR-data/plugins/sumi_rapidocr/catalog.json
+!UmiOCR-data/plugins/sumi_rapidocr/MODEL-LICENSE.txt
+!UmiOCR-data/plugins/sumi_rapidocr/MODEL-NOTICE.txt
 !dev-tools/requirements-sumi-engine.txt
 UmiOCR-data/temp
 UmiOCR-data/temp_doc

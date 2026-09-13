@@ -2,52 +2,68 @@
   "schema_version": 1,
   "upstream_url": "https://github.com/hiroi-sora/Umi-OCR.git",
   "upstream_commit": "83173efc4f4453b41223ea96d63d44534bf0505c",
-  "enhancement_commit": "83c71727ceb138b7a17984b7427532e227cff1e1",
-  "license": "MIT",
+  "enhancement_commit": "d049e884309f9e9f77653ef4304fa78e549fa576",
+  "license": "MIT (third-party model notices retain their own licenses)",
   "overlay": [
     {
       "path": ".gitignore",
-      "sha256": "66c595971a1532ca425a181253b049d342ab042375cef4beb95670e41034706e"
+      "sha256": "f28c9b17611666dac0f7da46ed880d8da517b5aeea7f506bf57efbe12c694afb"
     },
     {
       "path": "DESIGN.md",
-      "sha256": "1a0d18739524761eaf8bb4178aeecf4e636049eac5389af236c776a458853dee"
+      "sha256": "1c000df0e934b09b8617b583ff609d4463e9821609460518cbff28017dd726a7"
     },
     {
       "path": "README.md",
-      "sha256": "d27d57b1416b8621d5ba449da1dd852800016606912ff6e660263dffaeecbf36"
+      "sha256": "aa1b12641d111de96a342c0dc427a0df4369d2f33edec62334579425810f5363"
     },
     {
       "path": "UX-CONTRACT.md",
-      "sha256": "81e62567b184f53165594cfefa661627aef1a6b609e6770bab42bfe2b71c677d"
+      "sha256": "02ebb0247515100420322277c1bd19afcfa9f0cb72bd2fd98bdcb9b5dd7ba5eb"
     },
     {
       "path": "UmiOCR-data/about.json",
-      "sha256": "100b9c5137f51336ad29f4e0a400ddd5f61ffb6457dfd258f4fbae689c79d7e6"
+      "sha256": "c23968c9037899fb2460d5ebe100f770a91c2586e406b2fe431ac1c76d5397b5"
+    },
+    {
+      "path": "UmiOCR-data/plugins/sumi_rapidocr/MODEL-LICENSE.txt",
+      "sha256": "3e0af25fdd06aa9586ae97adb00ea927ebe5a3805ac77d2d3a81ce5f55693333"
+    },
+    {
+      "path": "UmiOCR-data/plugins/sumi_rapidocr/MODEL-NOTICE.txt",
+      "sha256": "0b6a45809ff8e7bd25af6c3f3630164178c5d16f0d7d65bb8ee5cad7644d77fc"
     },
     {
       "path": "UmiOCR-data/plugins/sumi_rapidocr/__init__.py",
-      "sha256": "01aab70b1cb29555a6d93e338b2d950dd344724ff1fbd1f3587e273603663cf7"
+      "sha256": "67af7b87b81e1deee770e052a4b6fd9c11557a62d0240160e8cb007b633eb68e"
     },
     {
       "path": "UmiOCR-data/plugins/sumi_rapidocr/backend.py",
-      "sha256": "f5b0e73d594002330f9414898d3c37e7f486c089075c740119520a01d23d2755"
+      "sha256": "9247bf77313fa3c4d5a4d355981797b5243d9ff8ce154a48a6b077b26dead7c6"
     },
     {
       "path": "UmiOCR-data/plugins/sumi_rapidocr/bundle.py",
-      "sha256": "2068482472eda6ad352c5f7f219ff2773f092c0714bcd93fdc124af5a2a12d0f"
+      "sha256": "f9f3d59c935cd4f1a472b28d7606f04113eba8990f64f5985be22422dd5abc87"
     },
     {
       "path": "UmiOCR-data/plugins/sumi_rapidocr/catalog.json",
-      "sha256": "830ad1d5d90bab26d79d7c1e61ed3d6b040b3cc3f4fbce9d08f5025a4ed2b1b8"
+      "sha256": "b74a8bf92fb3e5a64c49fdc08c3563aa84afff36b0b749f5e981f7c8dd36091e"
     },
     {
       "path": "UmiOCR-data/plugins/sumi_rapidocr/client.py",
-      "sha256": "c3359d3dde55a24ce5bbb5b76efa98e03152fcbbc4640e957d202dc23dc47a23"
+      "sha256": "4f476a57b258a394ea0891eea2e208277226d252eea89f22a0aace8b77cac524"
+    },
+    {
+      "path": "UmiOCR-data/plugins/sumi_rapidocr/network_guard.py",
+      "sha256": "51aa5222080948e4d572539c6e1bb6feff4093d73401a5c6e54d1fa56b8082ab"
+    },
+    {
+      "path": "UmiOCR-data/plugins/sumi_rapidocr/package.py",
+      "sha256": "76e1f972a75dbc11c752ed8ecb632e562eb7f8bccad22264dec88956bd6bd9ae"
     },
     {
       "path": "UmiOCR-data/plugins/sumi_rapidocr/worker.py",
-      "sha256": "e40f444a68a7917ffdb171df391bddb677d15139a45a97e43e173148fa653735"
+      "sha256": "a7cb8b18289e175429ea6293baaec3aaac0cd34e899b42c5547cd5a1a3b61b97"
     },
     {
       "path": "UmiOCR-data/py_src/mission/mission.py",
@@ -82,8 +98,16 @@
       "sha256": "08b45a778f742ea710a322c0cd3ae63366c732b22d377db4c0f48a29d4a7671f"
     },
     {
+      "path": "UmiOCR-data/py_src/ocr/review/candidates.py",
+      "sha256": "b07698f8de468d51f119cc74ad0c253e2d75220cc63d50373e03652d11ca80c2"
+    },
+    {
       "path": "UmiOCR-data/py_src/ocr/review/prompt.md",
       "sha256": "a4cec8d13dfcdaa741d0eec2c77a5b0640489102d38e69894ed5f247dd526416"
+    },
+    {
+      "path": "UmiOCR-data/py_src/ocr/review/region_session.py",
+      "sha256": "624c1362a02eb3e2d2b72b6c2c03d4023666d5dac29cc429a2acdf0fa212ebdf"
     },
     {
       "path": "UmiOCR-data/py_src/ocr/tbpu/__init__.py",
@@ -106,8 +130,16 @@
       "sha256": "dbd1d787c3114000239774793d7433ac78d72c2407e2b1d45648bec46ff98f0d"
     },
     {
+      "path": "UmiOCR-data/py_src/tag_pages/RegionOCR.py",
+      "sha256": "7f4e4e31ae412ffe7fc8eda20d7fe13204fa344d69c283dea897927abb423859"
+    },
+    {
+      "path": "UmiOCR-data/py_src/tag_pages/tag_pages_connector.py",
+      "sha256": "eb4a733bc3800ff2096f0b11c5abc246d3db429e3f16f7eac43d627d49f54227"
+    },
+    {
       "path": "UmiOCR-data/qt_res/qml/Configs/GlobalConfigs.qml",
-      "sha256": "adeb83bd99705d6a332c9152ef3bffc34fbcce8a340cf72dd3923ae17e8ffae3"
+      "sha256": "76217efe6cadda6f6ce10c99a909fc05a4db6ef57cd94ad3a76c305cf0fc572b"
     },
     {
       "path": "UmiOCR-data/qt_res/qml/Configs/UtilsConfigDicts.qml",
@@ -142,8 +174,36 @@
       "sha256": "0fa60d00f8c519d13ecb138fab3bd8576424cf1db273ce64c7a986ce64b09065"
     },
     {
+      "path": "UmiOCR-data/qt_res/qml/TabPages/GlobalConfigsPage/FontPanel.qml",
+      "sha256": "554d46de9af0c7c414b8658a08f8c65bd1e75367697ba05a5ff7150c2be2c851"
+    },
+    {
       "path": "UmiOCR-data/qt_res/qml/TabPages/Navigation/Navigation.qml",
       "sha256": "0c1a1da53f09323a469f32d5c31091c523f50641103d44d0d7039bb5eaba6d34"
+    },
+    {
+      "path": "UmiOCR-data/qt_res/qml/TabPages/PagesManager.qml",
+      "sha256": "2c24ff91de633b34ec0f649faa95581cbd628467545bfd479e019ac9ad7410e2"
+    },
+    {
+      "path": "UmiOCR-data/qt_res/qml/TabPages/RegionOCR/RegionOCR.qml",
+      "sha256": "0fc83604f4a8bae6dd94557e876edb3f29f713e86cc2f60c5e31665e10083fd8"
+    },
+    {
+      "path": "UmiOCR-data/qt_res/qml/Widgets/Button_.qml",
+      "sha256": "2d0198d351a052d5fa1df5fefb12cb8d9b3305195a41f976ab474419783674e6"
+    },
+    {
+      "path": "UmiOCR-data/qt_res/qml/Widgets/ImageViewer/RegionSelection.qml",
+      "sha256": "f7c0724a46a843d683da7760361ccfb76932c665a5bb96df889a6811b616df19"
+    },
+    {
+      "path": "UmiOCR-data/qt_res/qml/Widgets/LocalFont.qml",
+      "sha256": "aee2f788cf4f1b040a66a4cec7847b3bbb8c6b4898a8fad6a23e75a1848405e9"
+    },
+    {
+      "path": "dev-tools/acceptance_benchmark.py",
+      "sha256": "8791c80232beb13cd66ba583e6eb3caced013db86b7848e24ff6c6877aca580b"
     },
     {
       "path": "dev-tools/accuracy_benchmark.py",
@@ -154,8 +214,24 @@
       "sha256": "027362b173bf7b2f8699ecf1800022748654b49a364090c795d095cc8bdefd69"
     },
     {
+      "path": "dev-tools/model_bundle.py",
+      "sha256": "2d4eac268e0b199f1d5bbff9aa117c1527eb933176a943157300e4604cd424b0"
+    },
+    {
+      "path": "dev-tools/prepare_acceptance.py",
+      "sha256": "ba5c80d4858d16a0d5eb6ab8a56a199ac783636014f26733aedd9cbc9b0776b8"
+    },
+    {
       "path": "dev-tools/prepare_models.py",
       "sha256": "b04266559fc7ab2279e35d0a661145c19e5e72e7aa59f199da6af868124bfba5"
+    },
+    {
+      "path": "dev-tools/qt_font_check.py",
+      "sha256": "8c99d369c242db57a535e0f4c9a46570fe22fa7bad4eb632005026904ea393a4"
+    },
+    {
+      "path": "dev-tools/qt_region_check.py",
+      "sha256": "a47438bc7a7614167816ad649f94bf32b7cdc82b687114172ee12dbbfb3b58b0"
     },
     {
       "path": "dev-tools/requirements-sumi-engine.txt",
@@ -170,8 +246,16 @@
       "sha256": "c61207f38013420a1e38190082b7d4b00554744878d6e95817df3107662df038"
     },
     {
+      "path": "dev-tools/validate_offline.py",
+      "sha256": "2502407728f50493f587e3e0e9b7d95cbdcded27c6840255d987556c685f6b1c"
+    },
+    {
       "path": "docs/CODEX_REVIEW_ZH.md",
       "sha256": "3f7722d7115e7afc3d8ceced9ad24388dbce5665f1a715508d79daa4f8d97a27"
+    },
+    {
+      "path": "docs/JINGHUA_FONT_ZH.md",
+      "sha256": "37a203ad562bf45bc1d698ffa04d800a615c5848b7b0fea26d7c426053a39a73"
     },
     {
       "path": "docs/OPTIMIZATION_PLAN_ZH.md",
@@ -183,15 +267,39 @@
     },
     {
       "path": "docs/SUMI_ACCURACY_ZH.md",
-      "sha256": "ff937087a8090f8899f10e508189cb5bf22723a49908777ede0047411401ed31"
+      "sha256": "5ca2bfc6557f140aa44a63b6d7768cad5b49f3bd1e56fbbbeb0c0b671d0d98da"
+    },
+    {
+      "path": "docs/acceptance/README.md",
+      "sha256": "15159e560f7f127dddf8b69bc768071d6b481891544bb563c3791a680f0006b2"
+    },
+    {
+      "path": "docs/acceptance/desktop-instructions.png",
+      "sha256": "4851e45830a64730aae7692130e230971e262c276e62be5b3fc9ca186da52aaa"
+    },
+    {
+      "path": "docs/acceptance/reports/v4-mobile.json",
+      "sha256": "722a417375345ee30c99d3c2a5261aecdccb09e4d2b0b21f92a8e54412aefee8"
+    },
+    {
+      "path": "docs/acceptance/reports/v6-small.json",
+      "sha256": "9c65bd1c4e1d11865cc3f2ed2a48d112727eb14def0dced6304b4dbc0f302cf3"
+    },
+    {
+      "path": "docs/acceptance/sources.json",
+      "sha256": "32a89c6c609d892b020895a0885aa179a2a418e2b3eca9b20179641232bc96a5"
     },
     {
       "path": "docs/accuracy/README.md",
-      "sha256": "6d465a39a83d6c4c1f045f2ea9281a5a390677533e5d7bac2ebdf375f6b90ced"
+      "sha256": "9d2c3b6e924e52c9200ffa609e2dc7ae8f12dc9ce5e85479b68f9efd1d581a8f"
     },
     {
       "path": "docs/accuracy/engine-environment.lock",
       "sha256": "97233584594b9008fa1d152df0cb894655f09549af36db1cea60eabc9936a468"
+    },
+    {
+      "path": "docs/accuracy/offline-import-validation.json",
+      "sha256": "2c8331a01b4d8acf1c1973f0905d34aff04bee79cbd0bdd2e5c11273b7fae359"
     },
     {
       "path": "docs/accuracy/reports/offline-smoke.json",
@@ -258,6 +366,34 @@
       "sha256": "f206ccd8b512d380379d2960cb3f2463d64485d2204b989672fe8f36e6377a19"
     },
     {
+      "path": "docs/desktop/README.md",
+      "sha256": "30634d24b8f87169a989793345cc8c12cbbeec91470b04e7eb56c6cd50116939"
+    },
+    {
+      "path": "docs/desktop/font-check.json",
+      "sha256": "dc2b6c6702d31a9887d74f3dca713dda0ea1d6913b3f7aeff26eced6513ce353"
+    },
+    {
+      "path": "docs/desktop/jinghua-font.png",
+      "sha256": "38f168804592730ba74890b625421be053761e9ef96e2bb012b215ad6bd0518b"
+    },
+    {
+      "path": "docs/desktop/region-check.json",
+      "sha256": "405bf2d192701c26f4d4cb4fe29e232a2c959a991bca3d6bc279975ac04a9172"
+    },
+    {
+      "path": "docs/desktop/region-dark.png",
+      "sha256": "1cc27df2b53f278b341da47e339f9d6da79eb4ebab0b2b55965ee6b21bbd5da3"
+    },
+    {
+      "path": "docs/desktop/region-narrow.png",
+      "sha256": "cb1013d0cba999db433e97fa632db52f11e2dcf2be9b103f6dfe174fb3038395"
+    },
+    {
+      "path": "docs/desktop/region-review.png",
+      "sha256": "b903bcffc0519ee8cb9167753e4b298a07fe23d5d26f7d969505abed43df91d0"
+    },
+    {
       "path": "docs/premium-audit.json",
       "sha256": "5c55ff096773cc56864b50c950723ef83bda612eac6c93460c2b35c4ed254110"
     },
@@ -267,7 +403,7 @@
     },
     {
       "path": "docs/sumi-tests.log",
-      "sha256": "1e45e3a329f817925210dc75441790f3053b96b4dbbdbf1fc4348b774837670c"
+      "sha256": "88b1d526fd4fa5529b78e82cd12d4809f0999e9b6d113a1f863c16c8358e612a"
     },
     {
       "path": "premium-ui.json",
@@ -290,6 +426,10 @@
       "sha256": "035d7605784c1719a81e0aec8eadeaa8eeb6020170fa2574a11b502169cf6bb9"
     },
     {
+      "path": "tests/test_region_review.py",
+      "sha256": "75f23694082fc00fb926449c6061410248384e0ba6a3143e0a75ef09b7dac239"
+    },
+    {
       "path": "tests/test_review.py",
       "sha256": "52923fac415b442616298cc95eea0c00907e740389ad774f4662b3f4b523c635"
     },
@@ -299,5 +439,5 @@
     }
   ],
   "name": "Sumi-OCR",
-  "version": "0.1.0-preview.1"
+  "version": "0.1.0-preview.2"
 }

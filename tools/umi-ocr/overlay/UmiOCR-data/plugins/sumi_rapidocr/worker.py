@@ -15,10 +15,17 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--bundle', required=True)
     parser.add_argument('--detail', action='store_true')
+    parser.add_argument('--kernel-offline', action='store_true')
     args=parser.parse_args()
     try:
+        guard = None
+        if args.kernel_offline:
+            from network_guard import deny_network_syscalls
+            guard = deny_network_syscalls()
         with redirect_stdout(sys.stderr):
             backend=Backend(args.bundle,args.detail)
+        if guard:
+            backend.info['offline_validation'] = guard
         send({'event':'ready','engineInfo':backend.info})
     except Exception as exc:
         send({'event':'error','message':str(exc)})

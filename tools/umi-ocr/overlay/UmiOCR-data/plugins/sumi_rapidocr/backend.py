@@ -46,11 +46,19 @@ class Backend:
             self.engine = RapidOCR(params=params)
         if not self.engine.text_rec.session.have_key():
             raise ValueError('The recognition model must embed its character dictionary')
+        self.characters = self.engine.text_rec.session.get_character_list()
+        dictionary_bytes = (json.dumps(self.characters, ensure_ascii=False, separators=(',',':'))+'\n').encode('utf-8')
+        dictionary_sha = hashlib.sha256(dictionary_bytes).hexdigest()
+        if profile.get('dictionary') and dictionary_sha != profile['dictionary']['sha256']:
+            raise ValueError('Embedded dictionary differs from the pinned catalog')
         model_identity = {k: v['sha256'] for k,v in profile['models'].items()}
         self.info = {'backend':'rapidocr-onnxruntime', 'rapidocr':version('rapidocr'),
                      'onnxruntime':version('onnxruntime'), 'profile':manifest['profile'],
                      'model_sha256':model_identity, 'detail':bool(detail), 'network':'disabled',
                      'text_score_filter':0.0, 'dictionary':'embedded',
+                     'dictionary_sha256':dictionary_sha, 'dictionary_entries':len(self.characters),
+                     'lineage':{'family':'PaddleOCR','model_version':profile['model_version'],
+                         'conversion':'RapidAI ONNX','independence':'not_established'},
                      'dependencies':{name:version(name) for name in
                          ('Pillow','numpy','opencv-python','pyclipper','shapely')},
                      'parameters':{key:(value.value if hasattr(value,'value') else value)
@@ -58,6 +66,8 @@ class Backend:
         self.info['fingerprint'] = hashlib.sha256(json.dumps(self.info, sort_keys=True).encode()).hexdigest()
 
     def run(self, request):
+        if request.get('operation') == 'dictionary':
+            return {'code':100,'data':self.characters,'engineInfo':self.info}
         from PIL import Image
         if 'path' in request:
             source = Path(request['path'])
@@ -104,5 +114,12 @@ class Backend:
                 if not math.isfinite(confidence) or not 0<=confidence<=1:
                     confidence = None
                 blocks.append({'text':text,'box':points,'score':confidence,'end':'\n'})
+        try:
+            import resource
+            peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+            peak = int(peak if sys.platform == 'darwin' else peak*1024)
+        except (ImportError, AttributeError):
+            peak = None
         return {'code':100 if blocks else 101, 'data':blocks if blocks else '',
-                'engineInfo':dict(self.info, region=region, scale=scale)}
+                'engineInfo':dict(self.info, region=region, scale=scale),
+                'performance':{'worker_lifetime_peak_rss_bytes':peak}}

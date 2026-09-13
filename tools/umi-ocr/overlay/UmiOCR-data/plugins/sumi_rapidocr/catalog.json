@@ -23,6 +23,12 @@
           "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
           "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
         }
+      },
+      "dictionary": {
+        "file": "dictionary.json",
+        "sha256": "eef21850d068e74b0649e1f1b5a2d245cf5800b7118062c263dc19100b4a9c35",
+        "entries": 6623,
+        "source": "recognition ONNX metadata: character"
       }
     },
     "v5-server": {
@@ -44,6 +50,12 @@
           "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
           "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
         }
+      },
+      "dictionary": {
+        "file": "dictionary.json",
+        "sha256": "8ad94e456475f65c95944b1b1601695b3f027198163bdd31b1bb31092e185642",
+        "entries": 18383,
+        "source": "recognition ONNX metadata: character"
       }
     },
     "v6-small": {
@@ -65,6 +77,12 @@
           "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.9.2/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
           "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
         }
+      },
+      "dictionary": {
+        "file": "dictionary.json",
+        "sha256": "d0f188dc99b79444bb4f11747e76197ce43a54e332cf10c0cb6da32415361dae",
+        "entries": 18708,
+        "source": "recognition ONNX metadata: character"
       }
     }
   }

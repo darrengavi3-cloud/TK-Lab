@@ -41,11 +41,11 @@ background/text 是主要阅读面；secondary 是次要内容；tab 是标签�
 
 ## Typography
 
-UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设置，保留中文、生僻字回退。任务参数与结果文本各走原有字体角色，不为新开关添加字体。
+UI/data 字体继承 Theme 中的 fontFamily/dataFontFamily 及用户全局设置，保留中文、生僻字回退。任务参数与结果文本各走原有字体角色。字体面板提供京华老宋体本地字体文件入口和已安装字体选择；以 Qt 返回的字体家族名为准，保留系统缺字回退，不改 OCR 原始文字。
 
 ## Layout
 
-图片与文档继续使用原有分栏、文件列表和结果区。继续任务开关置于各自“批量任务”设置组；共用 UtilsConfigDicts 的配置定义和现有布尔控件，不改变外层滚动或窗口布局。校对包开关位于两页“保存文件类型”，共用 getReviewOutput。
+图片与文档继续使用原有分栏、文件列表和结果区。继续任务开关置于各自“批量任务”设置组；共用 UtilsConfigDicts 的配置定义和现有布尔控件，不改变外层滚动或窗口布局。校对包开关位于两页“保存文件类型”，共用 getReviewOutput。新增“区域校对”标签页：上部源文件/模型表单，左侧复用 ImageScale 预览与框选，右侧坐标、识别状态与只读候选。坐标输入提供拖拽的键盘替代；窄窗口下候选区独立滚动。
 
 ## Elevation & Depth
 

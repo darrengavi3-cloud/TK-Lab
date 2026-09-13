@@ -1,61 +1,19 @@
 # Sumi-OCR 验证记录
 
-2026-09-13，Linux，Python 3.12.14，Pillow 12.3.0，PyMuPDF 1.26.6 / MuPDF 1.26.11。
+2026-09-13，Linux x86_64，源版本 0.1.0-preview.2。
 
-## 源码与可复现性
+上游 `83173efc4f4453b41223ea96d63d44534bf0505c`；增强提交 `d049e884309f9e9f77653ef4304fa78e549fa576`。本包包含 **108 个 overlay 文件**，均在 SOURCE.json 中记录 SHA-256。
 
-上游固定提交：`83173efc4f4453b41223ea96d63d44534bf0505c`。
-增强源码提交：`83c71727ceb138b7a17984b7427532e227cff1e1`。在上一轮 CSV、恢复和校对基础上，新增 Sumi-OCR 名称、离线模型插件、局部重识别、右起分栏排序和准确率开发回归。
+- `bootstrap.py --local-source` 在全新目录重建成功，108 个 overlay 文件摘要逐一一致；恢复目录再次运行 64 项测试通过。
+- 64 项后端测试通过：CSV、恢复、进程异常、原始证据、完整模型与字典校验、恶意归档/重复条目、候选分歧/只追加、源文件变化、旋转 PDF 坐标、真实验收错误与阅读顺序计分。
+- 独立 v6 模型包导出并在新目录导入，Linux libseccomp 拒绝 socket/connect/send 等系统调用后成功启动并识别，验证 IPv4/IPv6 不可建连。
+- 原生 Qt 5 页面测试通过拖拽、缩放坐标、键盘 Tab、两种真实模型分歧、取消和失败保留；浅/深色及 820×600 画面已检查。
+- 京华老宋体实际文件加载、家族名与内容字体选择通过；测试副本版本 1.007，未把字体文件放入仓库。
+- 六类真实资料 6 例、1,545 字符，完整记录替换/删除/插入、阅读顺序、失败、耗时与峰值内存。复杂古籍仍有严重错误，质量未达到免校对使用要求。
+- 编译检查、git diff --check、设计 lint 和 strict 静态审计通过。
 
-通过 `bootstrap.py --local-source` 在新的独立目录从固定上游重新恢复完整项目，再检查所有 73 个 overlay 文件的 SHA-256 与 SOURCE.json 完全相同。脚本拒绝已有目标目录，也拒绝摘要不匹配的增强文件。未验证 bootstrap 的网络下载路径或 Windows 脚本运行。
+日志：[后端测试](overlay/docs/sumi-tests.log)、[断网识别](overlay/docs/accuracy/offline-import-validation.json)、[桌面与字体](overlay/docs/desktop/README.md)、[真实验收](overlay/docs/acceptance/README.md)。
 
-在该恢复目录执行：
+Qt 使用 Python 3.10.21 / PySide2 5.15.2.1；独立引擎为 Python 3.12.14 / RapidOCR 3.9.2 / ONNX Runtime 1.23.2。Qt 测试壳替代主窗口与平台服务，不能代表完整应用或 Windows。未覆盖屏幕阅读器、系统截图/剪贴板、原生文件对话框、Windows 打包、手写及大规模性能。
 
-```text
-python -m unittest discover -s tests -v
-Ran 54 tests
-OK
-
-python -m compileall -q UmiOCR-data/py_src/mission UmiOCR-data/py_src/ocr UmiOCR-data/plugins/sumi_rapidocr dev-tools/accuracy_benchmark.py dev-tools/prepare_models.py dev-tools/sumi_ocr.py dev-tools/make_accuracy_samples.py tests
-退出状态 0
-
-git diff --check
-退出状态 0
-```
-
-## 测试范围
-
-| 分组 | 数量 | 覆盖 |
-| --- | ---: | --- |
-| CSV | 6 | Unicode、转义、逐条写出、空白/错误、写出失败 |
-| 恢复基础 | 10 | 输入/模型变化、顺序、并发锁、损坏结果、异常重试、进程退出 |
-| 批处理集成 | 15 | 实际调度器/控制器、取消/暂停、导出错误、真实 PDF、部分失败、原始证据缓存恢复 |
-| 校对包与修订 | 11 | 原始数据不可覆盖、未知置信度、原图/裁图校验、旋转 PDF、EXIF 回退、错误/空白保留、显式修订 |
-| Sumi 准确率与引擎 | 12 | Unicode CER、失败/空白计数、排序不丢字、模型/运行身份校验、局部坐标、真实子进程的超时/崩溃/重启、恢复指纹 |
-
-这些单元/集成测试替代 Qt/OS 接口和引擎推理；工作进程生命周期测试使用真实 Python 子进程。注入错误日志是预期失败路径。`overlay/docs/sumi-tests.log` 为本轮 54 项记录；`overlay/docs/recovery-tests.log` 是早期 29 项测试的历史记录。
-
-## 真实模型验证
-
-独立 Python 3.12.14 环境安装 RapidOCR 3.9.2 / ONNX Runtime 1.23.2，实际准备并校验 v4-mobile、v5-server、v6-small 三个模型包，运行全部 9 张固定合成 PNG。每组 288 个非空白参考字符，失败页均为 0。同样右起分栏排序下，编辑错误分别为 26、10、4，对应 CER 9.03%、3.47%、1.39%。各组报告同时保存原始文字/框和排序结果，参见 [完整准确率记录](overlay/docs/accuracy/README.md)。
-
-排序规则开发使用过这组合成图，因此是开发回归集，不是独立验收集；不代表真实扫描件准确率。v4 基线是本插件的 ONNX 配置，不是所有 Umi-OCR 发行版。没有训练或微调模型。
-
-真实 v6 引擎还验证了路径/base64 输入一致、越界区域拒绝、Python socket 连接拒绝和局部 2 倍识别的原图坐标。放大后“刪→删”仍未纠正，结果单独保存。Python socket 拦截不是 OS 网络沙箱。模型缺失/篡改、运行版本不同和进程错误的拒绝路径另由单元测试覆盖。
-
-## 上一轮视觉校对流程演示
-
-上一轮使用自制繁体样张，注入“原註→原往”错误，查看整页和裁图、提出并显式采纳 s1，生成独立校订稿，原始证据保留。这个演示用于验证修订流程，不计入本轮真实模型 CER。
-
-## 界面验证边界
-
-复用 QML Configs/Widgets 与现有主题。静态设计审计无错误/警告，但该审计不等于运行 QML；没有进行 Qt 桌面布局、键盘/屏幕阅读器、真实 Windows 锁、Excel 打开或发行包启动验收。设计记录见 overlay/DESIGN.md 与 overlay/UX-CONTRACT.md。
-
-## 待完成发布验收
-
-- Windows / Linux 的 Qt 桌面启动与配置开关。
-- 真实截图、中文扫描件、竖排繁体与夹注古籍的独立对照评测。
-- 大文档校对包的渲染、磁盘、内存、页耗时和取消体验。
-- 实际 Excel、加密文档、多语言 UI 与打包分发。
-
-本 PR 是可复现源码交付，不是桌面正式发行版；不自动合并或部署 TK-Lab。
+发布形态继续为源码预览与草稿 PR。模型权重和研究图像不进入 Git 仓库，分别以本地导入包/显式下载验收资料提供。

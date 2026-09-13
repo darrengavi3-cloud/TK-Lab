@@ -35,6 +35,18 @@ test_recovery_off_always_runs_without_creating_journal (test_recovery_integratio
 test_retry_only_failed_items (test_recovery_integration.IntegrationTests.test_retry_only_failed_items) ... ok
 test_review_capture_invalidates_cache_and_replays_raw_evidence (test_recovery_integration.IntegrationTests.test_review_capture_invalidates_cache_and_replays_raw_evidence) ... ok
 test_wait_does_not_miss_immediate_completion (test_recovery_integration.IntegrationTests.test_wait_does_not_miss_immediate_completion) ... ok
+test_failed_pages_count_as_deletions_not_dropped_samples (test_region_review.AcceptanceTests.test_failed_pages_count_as_deletions_not_dropped_samples) ... ok
+test_geometry_separates_order_errors_from_text_errors (test_region_review.AcceptanceTests.test_geometry_separates_order_errors_from_text_errors) ... ok
+test_agreement_failure_and_mismatched_region_are_distinct (test_region_review.CandidateTests.test_agreement_failure_and_mismatched_region_are_distinct) ... ok
+test_changed_source_or_preview_prevents_saving_candidate (test_region_review.CandidateTests.test_changed_source_or_preview_prevents_saving_candidate) ... ok
+test_disagreement_preserves_literal_variants_and_no_winner (test_region_review.CandidateTests.test_disagreement_preserves_literal_variants_and_no_winner) ... ok
+test_history_is_append_only_scoped_and_reports_tampering (test_region_review.CandidateTests.test_history_is_append_only_scoped_and_reports_tampering) ... ok
+test_rotated_pdf_region_maps_back_to_page_points (test_region_review.CandidateTests.test_rotated_pdf_region_maps_back_to_page_points) ... ok
+test_archive_traversal_and_duplicate_entries_are_rejected (test_region_review.CompleteBundleTests.test_archive_traversal_and_duplicate_entries_are_rejected) ... /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'dictionary.json'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+ok
+test_complete_import_is_unique_and_tampered_dictionary_is_rejected (test_region_review.CompleteBundleTests.test_complete_import_is_unique_and_tampered_dictionary_is_rejected) ... ok
+test_dictionary_and_backend_are_bound_to_catalog (test_region_review.CompleteBundleTests.test_dictionary_and_backend_are_bound_to_catalog) ... ok
 test_blank_and_failed_pages_survive_ignore_blank_and_partial_is_incomplete (test_review.ReviewTests.test_blank_and_failed_pages_survive_ignore_blank_and_partial_is_incomplete) ... ok
 test_code_parser_keeps_text_with_unknown_confidence (test_review.ReviewTests.test_code_parser_keeps_text_with_unknown_confidence) ... ok
 test_exif_orientation_disables_unreliable_crops (test_review.ReviewTests.test_exif_orientation_disables_unreliable_crops) ... ok
@@ -60,6 +72,6 @@ test_timeout_discards_late_response_and_allows_clean_restart (test_sumi_accuracy
 test_worker_exit_and_invalid_json_report_errors_and_release_process (test_sumi_accuracy.WorkerLifecycleTests.test_worker_exit_and_invalid_json_report_errors_and_release_process) ... ok
 
 ----------------------------------------------------------------------
-Ran 54 tests in 0.999s
+Ran 64 tests in 0.883s
 
 OK

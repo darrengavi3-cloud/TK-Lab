@@ -7,6 +7,7 @@ import GlobalConfigsConnector 1.0
 import PluginsConnector 1.0
 import "../Configs"
 import "../ApiManager"
+import "../Widgets"
 
 Configs {
     id: gRoot
@@ -78,6 +79,10 @@ Configs {
             "dataFontFamily": {
                 "default": "Microsoft YaHei",
                 "onChanged": (val)=>{ theme.dataFontFamily = val },
+            },
+            "localDataFontFile": {
+                "default": "",
+                "onChanged": (val)=>{ localDataFont.fileUrl = val },
             },
             "scale": {
                 "title": qsTr("界面与文字大小"),
@@ -308,6 +313,11 @@ Configs {
     property alias utilsDicts: utilsDicts
     property bool isPortInit: false // 标记端口号是否初始化完毕
     property var fontPanel: undefined // 缓存字体控制面板组件引用
+    property alias localDataFont: localDataFont
+    LocalFont {
+        id: localDataFont
+        onLoaded: if(gRoot.fontPanel) gRoot.fontPanel.refreshFonts()
+    }
 
     Component.onCompleted: {
         // 初始化主题
