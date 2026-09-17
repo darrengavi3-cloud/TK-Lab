@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "workflow": "Reader validation",
+  "runId": 35236628811,
+  "url": "https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35236628811",
+  "headCommit": "c63a0502da1be52d2c255adf2488caa045de5868",
+  "baseCommit": "7b8d03990b6b72b4d62bf93f2a39aaeb9367ebd2",
+  "status": "completed",
+  "conclusion": "success",
+  "updatedAt": "2026-09-17T14:57:12Z",
+  "mergeCommit": "e837d5b1a1d8821c7c004ac6ea5621f689276058",
+  "mergedTree": "4c5c7513ac2e8859486867ae6c96a143e17877c0",
+  "jobs": [
+    {
+      "id": 105254084045,
+      "name": "offline-validation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 105254084313,
+      "name": "reader-visual",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "cleanLocalReleaseCheck": "passed; generated catalogue modules removed before rerun",
+  "historicalFailedRun": {
+    "runId": 35235841463,
+    "reason": "Private generated catalogue modules were absent before typecheck on a clean checkout.",
+    "resolution": "Generate catalogue after syncing reader assets and before typecheck."
+  },
+  "deploymentSource": "8c117b47edf571a7a23b90075630201626d4b04a",
+  "note": "CI, GitHub merge and Sites deployment are separate receipts. The post-deployment change only prepares generated inputs and records status; runtime source is unchanged."
+}

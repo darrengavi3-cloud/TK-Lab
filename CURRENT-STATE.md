@@ -14,11 +14,14 @@
 | 資料來源基線 | V86，2,074 位讀者人物、263 條已核任官 | 用於遷移核對；不以程式部署提升 V／R 或更改史實審定 |
 | 生產工作資料 | 本次部署未初始化 D1 工作資料 | 首次擁有者登入 `/admin`，按「載入既有資料」；初始化不自動發布 |
 | 閱讀內容 | 首次後台發布前沿用 V86 既有投影 | 保存修訂、切換閱讀快照、Sites 程式部署分開記錄 |
-| GitHub `main` 核對快照 | `7b8d03990b6b72b4d62bf93f2a39aaeb9367ebd2` | 已移除 Sumi-OCR；本期程式在 [PR #18](https://github.com/darrengavi3-cloud/TK-Lab/pull/18)，尚未合入 main |
+| GitHub `main` 本期合併基線 | `e837d5b1a1d8821c7c004ac6ea5621f689276058` | [PR #18](https://github.com/darrengavi3-cloud/TK-Lab/pull/18) 已合入；Sumi-OCR 保持移除，後續回執提交不替換實際部署源碼 |
 | 存取權限 | owner-only，2026-09-17 14:06 UTC 複核 | 第 44 版沿用既有私密站點，環境修訂 1 |
 | 本地及隔離驗證 | 115 項應用測試、35 項閱讀瀏覽器回歸、18 項 Worker 探測通過 | [驗收紀錄及未驗事項](release-metadata/catalogue-validation.json)；不等於生產首次登入或真機驗收 |
+| GitHub CI | [Reader validation #55](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35236628811) 成功 | 針對 PR 提交 `c63a0502`；[CI 與合併回執](release-metadata/catalogue-ci.json)分開記錄 |
 
 入口：[管理後台](https://zhiguanpu-private.darrengavi3.chatgpt.site/admin) · [閱讀版](https://zhiguanpu-private.darrengavi3.chatgpt.site)。後台初始化後，人物身份、任官與引用史料的工作修訂由 D1 維護；其他領域仍使用 atlas。當次發布數量以後台固定閱讀快照為準。
+
+第 44 版部署後的仓库补充仅为干净 CI 的生成顺序及状态回执；没有重新部署运行程序。`main` 后续前进不改变上列已部署源碼 SHA。
 
 ## R1 歷史產品與部署基線（固定記錄）
 

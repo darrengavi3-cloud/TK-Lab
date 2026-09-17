@@ -6,7 +6,7 @@
 
 第 44 版於 **2026-09-17 14:47 UTC** 部署成功，沿用 owner-only 私密站點。你可在[管理後台](https://zhiguanpu-private.darrengavi3.chatgpt.site/admin)維護人物、任官與引用史料，匯入資料、比較修訂，預覽後統一發布閱讀內容。首次登入按「載入既有資料」初始化；本次未將隔離驗收資料寫入生產資料庫。
 
-遷移來源仍為 V86；第 44 版是程式部署，不提升資料 V／R 標識。保存修訂、發布閱讀快照與部署網站程式分開。唯一當前狀態入口為 [CURRENT-STATE.md](CURRENT-STATE.md)；本期見[部署回執](release-metadata/catalogue-deployment.json)與[驗收紀錄](release-metadata/catalogue-validation.json)。GitHub 實作位於 [PR #18](https://github.com/darrengavi3-cloud/TK-Lab/pull/18)，核對的 main 仍為 `7b8d0399`，不以 main 的 SHA 代替實際部署源碼。
+遷移來源仍為 V86；第 44 版是程式部署，不提升資料 V／R 標識。保存修訂、發布閱讀快照與部署網站程式分開。唯一當前狀態入口為 [CURRENT-STATE.md](CURRENT-STATE.md)；本期見[部署回執](release-metadata/catalogue-deployment.json)與[驗收紀錄](release-metadata/catalogue-validation.json)。[PR #18](https://github.com/darrengavi3-cloud/TK-Lab/pull/18) 已在 [CI #55](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35236628811) 通過後合入 main，合併基線為 `e837d5b1`。部署後補入的 CI 前置順序及回執不構成新部署，main 的 SHA 不替代實際部署源碼。
 
 R1 歷史事實保持不變：從 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27` 開始，經 [PR #15](https://github.com/darrengavi3-cloud/TK-Lab/pull/15) 合併為 `4f8c8c92`，發布記錄為 `2617c69b`；Sites 源碼 `d7800effea513f12aa89c69aabdbaf44cdce0e26`，第 43 版於 **2026-09-12 12:47 UTC** 成功部署。保留[原回執](release-metadata/r1-deployment.json)與 [R1-REVIEW.md](R1-REVIEW.md)，不回寫成本期驗收。
 
