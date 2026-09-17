@@ -4,6 +4,8 @@ import {snapshot,watermark} from './catalogue-service';
 import {storage,setting,check,type CatalogueEnv} from './storage';
 import identity from './generated/build-identity.json';
 import baselineProfiles from './generated/reader-profiles.json';
+import {appointmentForReader,linkedReadingProjections} from './reading-projections';
+import {validateReaderLinks} from './reader-links';
 type ReaderRow=Record<string,unknown>;
 interface BaselineReader {people:{people:ReaderRow[];summary:Record<string,unknown>;[key:string]:unknown};relations:{appointments:ReaderRow[];peerageEvents:ReaderRow[];[key:string]:unknown}}
 interface CandidateManifest {id:string;digest:string;watermark:number;codeId:string;assetsDigest:string;readerContract:number;policy:string;dataBaseline:string;files:Record<string,string>;counts:Record<string,number>;changes:{id:string;kind:string;revision:number;assessment:string}[];records:{id:string;revision:number;digest:string}[];evidenceRevisions:{id:string;revision:number;digest:string}[]}
@@ -12,6 +14,7 @@ export async function makePublication(env:CatalogueEnv,actor:string){
   const baseObject=await bucket.get('baseline/reader.json');check(baseObject,'請先完成基線匯入。',409);
   const base=await baseObject.json<BaselineReader>();
   const seq=await watermark(db),rows=await snapshot(db,seq);
+  validateReaderLinks(rows.map(r=>r.data));
   const sourceVersions=new Map<string,Source>();
   const evidenceRevisions=[];
   for(const r of rows)check(await sha256(canonicalJson(r.data))===r.digest,'資料修訂核驗失敗：'+r.id,409);
@@ -39,15 +42,7 @@ export async function makePublication(env:CatalogueEnv,actor:string){
     if(r.data.kind!=='appointment'||!isReaderCandidate(r.data)||!isVerifiedFact(r.data))continue;
     const a=r.data as Appointment;check(people.has(a.personId),'任官的人物尚未可供閱讀：'+a.personId,409);
     if(r.number===1&&baseAppointments.has(a.id)){appointments.push({...baseAppointments.get(a.id)!});continue;}
-    const links=[...a.evidence];
-    for(const d of rows)if(d.data.kind==='appointment'&&d.data.disposition==='duplicate'&&d.data.duplicateOf===a.id)for(const e of d.data.evidence)if(!links.some(x=>canonicalJson(x)===canonicalJson(e)))links.push(e);
-    const citations=links.map(e=>{
-      const s=sourceVersions.get(e.sourceId+'@'+e.sourceRevision);
-      check(s&&s.visibility==='reader'&&s.assessment!=='excluded','引用的原文尚未允許讀者閱讀：'+e.sourceId,409);
-      return {title:[s.title,s.edition,s.locator].filter(Boolean).join(' · '),url:s.url,quote:s.text,textScope:s.textScope,role:e.role,...(e.note?{note:e.note}:{})};
-    });
-    const certain=a.date.certainty==='certain';
-    appointments.push({appointmentId:a.id,personId:a.personId,nodeName:a.officeName,startYear:certain?a.date.startYear:null,endYear:certain?a.date.endYear:null,polity:a.polity,jurisdiction:a.jurisdiction,factionName:a.polity,appointmentNature:a.nature,treeType:'source',dateText:a.date.original,dateCertainty:a.date.certainty,citations});
+    appointments.push(appointmentForReader(a,rows,sourceVersions));
   }
   const appointmentIds=new Set(appointments.map(a=>a.appointmentId));
   for(const [id,p] of people){
@@ -62,12 +57,13 @@ export async function makePublication(env:CatalogueEnv,actor:string){
   const appointmentsById=new Map(appointments.map(a=>[a.appointmentId,a]));
   const orderedAppointments=[...base.relations.appointments.map(a=>appointmentsById.get(a.appointmentId)).filter(Boolean),...appointments.filter(a=>!baseAppointments.has(String(a.appointmentId)))];
   const relationPayload={...base.relations,appointments:orderedAppointments};
+  const linked=linkedReadingProjections(rows,people,appointments,sourceVersions);
   const changedAppointments=new Set(rows.filter(r=>r.data.kind==='appointment'&&(r.number>1||r.commit>1)).map(r=>r.id));
   const profilesById=new Map((baselineProfiles.profiles as ReaderRow[]).map(p=>[String(p.personId),p]));
   const profiles=ordered.map(person=>{
     const old=profilesById.get(String(person.personId))||{personId:person.personId,isRuler:false};
     const oldEvents=(old.lifeEvents||[]) as ReaderRow[];
-    const kept=oldEvents.filter(e=>e.eventType!=='appointment'||!changedAppointments.has(String(e.relatedRecordId)));
+    const kept=oldEvents.filter(e=>(e.eventType!=='appointment'||!changedAppointments.has(String(e.relatedRecordId))) && !(e.eventType==='fangzhen'&&linked.managedFangzhenIds.has(String(e.relatedRecordId))));
     const added=appointments.filter(a=>a.personId===person.personId&&changedAppointments.has(String(a.appointmentId))).map(a=>({
       eventId:'life:appointment:'+a.appointmentId,personId:a.personId,eventType:'appointment',startYear:a.startYear,endYear:a.endYear,title:a.nodeName,
       detail:[a.polity,a.jurisdiction,a.appointmentNature,a.dateText,a.dateCertainty==='inferred'?'年代推定':a.dateCertainty==='unknown'?'年代尚待核定':''].filter(Boolean).join(' · '),relatedRecordId:a.appointmentId,citations:a.citations,
@@ -83,10 +79,14 @@ export async function makePublication(env:CatalogueEnv,actor:string){
     'data/v63-reader-person-relations.js':"(function(g){const p="+JSON.stringify(relationPayload)+";g.SGZ_V63_READER_PERSON_RELATIONS=Object.freeze({...p,appointmentsById:Object.fromEntries(p.appointments.map(r=>[r.appointmentId,r])),peerageEventsById:p.peerageEvents.reduce((o,r)=>{(o[r.eventId]||(o[r.eventId]=[])).push(r);return o;},{}),peerageEventsByRelationId:Object.fromEntries(p.peerageEvents.map(r=>[r.relationId,r]))});})(window);",
     'data/v69-person-profiles.js':'window.SGZ_V69_PERSON_PROFILES='+JSON.stringify(profilePayload)+';',
     'data/v69-person-profiles.json':JSON.stringify(profilePayload),
+    'data/reviewed-office-succession.json':JSON.stringify(linked.succession),
+    'data/reviewed-office-succession.js':'window.SGZ_OFFICE_SUCCESSION='+JSON.stringify(linked.succession)+';',
+    'data/v69-fangzhen-reader.json':JSON.stringify(linked.fangzhen),
+    'data/v69-fangzhen-reader.js':'window.SGZ_V69_FANGZHEN_READER='+JSON.stringify(linked.fangzhen)+';',
   };
   const fileDigests:Record<string,string>={};for(const [name,bytes] of Object.entries(files))fileDigests[name]=await sha256(bytes);
   const changes=rows.filter(r=>r.number>1||r.commit>1).map(r=>({id:r.id,kind:r.data.kind,revision:r.number,assessment:r.data.assessment}));
-  const content={watermark:seq,codeId:identity.codeId,assetsDigest:identity.assetsDigest,readerContract:identity.readerContract,policy:identity.policy,dataBaseline:identity.dataBaseline,records:rows.map(r=>({id:r.id,revision:r.number,digest:r.digest})),evidenceRevisions,files:fileDigests,counts:{people:ordered.length,appointments:appointments.length,pending:rows.filter(r=>r.data.kind==='appointment'&&r.data.assessment==='pending').length},changes};
+  const content={watermark:seq,codeId:identity.codeId,assetsDigest:identity.assetsDigest,readerContract:identity.readerContract,policy:identity.policy,dataBaseline:identity.dataBaseline,records:rows.map(r=>({id:r.id,revision:r.number,digest:r.digest})),evidenceRevisions,files:fileDigests,counts:{people:ordered.length,appointments:appointments.length,pending:rows.filter(r=>r.data.kind==='appointment'&&r.data.assessment==='pending').length,linkedAppointments:linked.linkedAppointments,fangzhen:linked.fangzhen.records.length},changes};
   const digest=await sha256(canonicalJson(content)),id=digest;
   const manifest:CandidateManifest={id,digest,...content};
   for(const [name,bytes] of Object.entries(files))await bucket.put('releases/'+id+'/'+name,bytes,{httpMetadata:{contentType:name.endsWith('.js')?'text/javascript;charset=utf-8':'application/json;charset=utf-8'}});

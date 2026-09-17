@@ -14,12 +14,13 @@ export function verifyBackup(buffer){
   const text=gunzipSync(buffer,{maxOutputLength:256*1024*1024}).toString('utf8');
   const lines=text.trimEnd().split('\n').map(line=>JSON.parse(line));
   const first=lines.shift(),last=lines.pop();
-  requireValue(first?.format==='guanshitai-backup-2'&&last?.type==='complete','不支援或未完整下載的備份。');
-  requireValue(JSON.stringify(first.tables)===JSON.stringify(Object.keys(tables)),'資料表契約不相符。');
-  const data=Object.fromEntries(Object.keys(tables).map(t=>[t,[]])),objects=new Map();let rowCount=0;
+  requireValue(['guanshitai-backup-2','guanshitai-backup-3'].includes(first?.format)&&last?.type==='complete','不支援或未完整下載的備份。');
+  const names=Object.keys(tables).filter(t=>first.format!=='guanshitai-backup-2'||t!=='catalogue_reader_links');
+  requireValue(JSON.stringify(first.tables)===JSON.stringify(names),'資料表契約不相符。');
+  const data=Object.fromEntries(names.map(t=>[t,[]])),objects=new Map();let rowCount=0;
   for(const line of lines){
     if(line.type==='row'){
-      requireValue(tables[line.table]&&line.row&&Object.keys(line.row).length===tables[line.table].length&&tables[line.table].every(k=>k in line.row),'備份資料欄位無效。');
+      requireValue(names.includes(line.table)&&line.row&&Object.keys(line.row).length===tables[line.table].length&&tables[line.table].every(k=>k in line.row),'備份資料欄位無效。');
       data[line.table].push(line.row);rowCount++;
     }else if(line.type==='object'){
       requireValue(safeKey(line.key)&&!objects.has(line.key)&&Number.isSafeInteger(line.bytes)&&line.bytes>=0&&line.bytes<=32*1024*1024,'備份物件無效。');
@@ -31,6 +32,7 @@ export function verifyBackup(buffer){
     }else throw new Error('未知備份行。');
   }
   requireValue(last.rows===rowCount&&last.objects===objects.size&&last.rowsDigest===hash(JSON.stringify(data)),'備份摘要不一致。');
+  if(first.format==='guanshitai-backup-2')data.catalogue_reader_links=[];
   requireValue(first.watermark===last.watermark&&last.watermark===Math.max(0,...data.catalogue_commits.map(r=>r.seq)),'提交序號不相符。');
   for(const object of objects.values()){
     object.content=Buffer.concat(object.parts);delete object.parts;

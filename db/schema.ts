@@ -29,3 +29,7 @@ export const publicationEvents=sqliteTable('catalogue_publication_events',{seq:i
 export const settings=sqliteTable('catalogue_settings',{key:text('key').primaryKey(),value:text('value').notNull()});
 
 export const aliases=sqliteTable('catalogue_aliases',{alias:text('alias').primaryKey(),personId:text('person_id').notNull().references(()=>people.id)});
+export const readerLinks=sqliteTable('catalogue_reader_links',{
+  appointmentId:text('appointment_id').primaryKey().references(()=>appointments.id),
+  fangzhenId:text('fangzhen_id').notNull().unique(),
+});

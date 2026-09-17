@@ -1,11 +1,18 @@
 import {createRecord} from '../domain/create-record';
 import {canonicalJson,type Revision} from '../domain/revisions';
-import type {CatalogueRecord,Evidence} from '../domain/catalogue';
+import type {CatalogueRecord,Evidence,AppointmentReaderLinks} from '../domain/catalogue';
 interface VueBridge {toRefs:<T extends object>(value:T)=>Record<keyof T,unknown>;createApp:(options:Record<string,unknown>)=>{use:(plugin:unknown,options?:unknown)=>{mount:(selector:string)=>void}};reactive:<T extends object>(value:T)=>T;computed:<T>(getter:()=>T)=>{value:T};watch:(getter:()=>unknown,callback:()=>void,options?:Record<string,unknown>)=>void;onMounted:(fn:()=>void|Promise<void>)=>void;nextTick:()=>Promise<void>}
 declare global {interface Window {Vue:VueBridge;ElementPlus:{ElMessageBox:{confirm:(message:string,title:string,options?:Record<string,unknown>)=>Promise<unknown>}}}}
 interface Row {id:string;version:number;data:CatalogueRecord;digest:string}
 interface Job {id:string;filename:string;state:string;total:number}
-interface Candidate {id:string;digest:string;counts:{people:number;appointments:number;pending:number};changes:{id:string;revision:number;assessment:string}[]}
+interface Candidate {id:string;digest:string;counts:{people:number;appointments:number;pending:number;linkedAppointments?:number;fangzhen?:number};changes:{id:string;revision:number;assessment:string}[]}
+interface LinkOptions {
+  offices:{id:string;factionKey:string;nodeKey:string;name:string;category:string;path:string[]}[];
+  inherited:Record<string,string[]>;
+  units:{id:string;name:string;polity:string}[];
+  fangzhen:{id:string;personId:string;title:string;jurisdiction:string;polity:string;dynastyLabel:string;recordType:string;tenureText:string;administrativeUnitId:string|null}[];
+}
+const polityLabels:Record<string,string>={han:'後漢',wei:'曹魏',shu:'季漢',wu:'孫吳',jin:'西晉',eastjin:'東晉',tribal:'異族諸部'};
 interface Release {id:string;state:string;at:string;watermark:number;manifest:Candidate}
 interface Preview {job:Job;count:number;warnings:string[];errors:{row:number;message:string}[];rows:{id:string;kind:string;baseVersion:number;data:CatalogueRecord}[];more:boolean}
 class ApiError extends Error {status:number;constructor(status:number,message:string){super(message);this.status=status;}}
@@ -20,7 +27,7 @@ const labels:Record<string,string>={pending:'待核',verified:'已核',disputed:
 const names:Record<string,string>={person:'人物',appointment:'任官',source:'史料'};
 function recordName(data:CatalogueRecord){return data.kind==='person'?data.name:data.kind==='source'?data.title:data.officeName;}
 const navigation=[{id:'workspace',label:'資料工作台'},{id:'sources',label:'史料庫'},{id:'imports',label:'匯入中心'},{id:'history',label:'修訂紀錄'},{id:'publish',label:'發布中心'},{id:'settings',label:'系統設定'}];
-const fieldLabels:Record<string,string>={id:'穩定 ID',kind:'資料類型',name:'姓名',aliases:'別名',aliasPublication:'別名審定',title:'典籍或史料名稱',edition:'底本版本',locator:'卷頁定位',text:'原文',textScope:'原文範圍',url:'來源網址',personId:'人物',officeId:'官職',officeName:'原始官名',nature:'任職性質',polity:'政權',jurisdiction:'轄區',date:'年代',assessment:'史實判斷',workflow:'整理進度',visibility:'讀者可見性',disposition:'處置',decisionReason:'史實判斷依據',evidence:'引用史料',duplicateOf:'互證所屬記錄',legacy:'原始資料映射'};
+const fieldLabels:Record<string,string>={id:'穩定 ID',kind:'資料類型',name:'姓名',aliases:'別名',aliasPublication:'別名審定',title:'典籍或史料名稱',edition:'底本版本',locator:'卷頁定位',text:'原文',textScope:'原文範圍',url:'來源網址',personId:'人物',officeId:'官職',officeName:'原始官名',nature:'任職性質',polity:'政權',jurisdiction:'轄區',date:'年代',assessment:'史實判斷',workflow:'整理進度',visibility:'讀者可見性',disposition:'處置',decisionReason:'史實判斷依據',evidence:'引用史料',duplicateOf:'互證所屬記錄',legacy:'原始資料映射',readerLinks:'閱讀關聯'};
 const dispositions=[{value:'incorrect',label:'確認錯誤'},{value:'duplicate',label:'重複互證'},{value:'not-held',label:'未實任'},{value:'out-of-scope',label:'範圍排除'},{value:'legacy-suppressed',label:'沿用舊處置，尚未細分'}];
 const fieldSets:Record<string,{key:string;label:string}[]>={
   person:[{key:'id',label:'穩定 ID（可留空）'},{key:'name',label:'人物姓名'},{key:'aliases',label:'別名（分號分隔）'}],
@@ -30,6 +37,29 @@ const fieldSets:Record<string,{key:string;label:string}[]>={
 createApp({setup(){
   const state=reactive({needsBaseline:false,screen:'workspace',kind:'person' as CatalogueRecord['kind'],query:'',page:1,total:0,rows:[] as Row[],selected:null as Revision|null,loadedJson:'',reason:'',reviewed:false,ready:false,loading:false,busy:false,error:'',message:'',unauthorized:false,actor:'',theme:'laitai-day',composing:false,referenceLoading:false,personOptions:[] as Row[],sourceOptions:[] as Row[],conflict:null as Revision|null,recoverable:null as {base:number;data:CatalogueRecord;reason:string;at:number}|null,draftPersisted:false,revisions:[] as Revision[],jobs:[] as Job[],fileHash:'',fileInfo:null as {filename:string;total:number;columns:string[];native:boolean}|null,importKind:'person',mapping:{} as Record<string,string>,allowUnmapped:false,importPreview:null as Preview|null,importConfirmed:false,staging:false,stopStaging:false,releases:[] as Release[],candidate:null as Candidate|null,publishConfirmed:false,activeRelease:null as string|null});
   let listEpoch=0,selectionEpoch=0,personEpoch=0,sourceEpoch=0,draftTimer:ReturnType<typeof setTimeout>|undefined;
+  const references=reactive({value:null as LinkOptions|null,officeQuery:''});
+  const activeLinks=computed<AppointmentReaderLinks>(()=>{
+    const a=state.selected?.data;
+    return a?.kind==='appointment'?(a.readerLinks??{offices:references.value?.inherited[a.id]||[],fangzhen:null}):{offices:[],fangzhen:null};
+  });
+  const officeOptions=computed(()=>{
+    const all=references.value?.offices||[],q=references.officeQuery.trim().toLowerCase();
+    const selected=all.filter(o=>activeLinks.value.offices.includes(o.id));
+    const matches=all.filter(o=>!activeLinks.value.offices.includes(o.id)&&q.split(/\s+/).every(term=>[...o.path,o.category,polityLabels[o.factionKey]].join(' ').toLowerCase().includes(term)));
+    return [...selected,...matches.slice(0,60)];
+  });
+  const fangzhenOptions=computed(()=>references.value?.fangzhen.filter(r=>state.selected?.data.kind==='appointment'&&r.personId===state.selected.data.personId)||[]);
+  function updateLinks(links:AppointmentReaderLinks){if(state.selected?.data.kind==='appointment')state.selected.data.readerLinks=links;}
+  function setOfficeLinks(offices:string[]){updateLinks({...activeLinks.value,offices});}
+  function toggleFangzhen(enabled:boolean){updateLinks({...activeLinks.value,fangzhen:enabled?{recordId:null,polityKey:'han',recordType:'other',administrativeUnitId:null}:null});}
+  function setFangzhenField(key:string,value:string|null){const f=activeLinks.value.fangzhen;if(f)updateLinks({...activeLinks.value,fangzhen:{...f,[key]:value||null}});}
+  function selectFangzhenRecord(id:string){
+    const old=references.value?.fangzhen.find(r=>r.id===id),f=activeLinks.value.fangzhen;if(!f)return;
+    if(!old){setFangzhenField('recordId',null);return;}
+    const key=({后汉:'han',季汉:'shu',魏:'wei',吴:'wu',西晋:'jin',东晋:'eastjin'} as Record<string,string>)[old.dynastyLabel]||f.polityKey;
+    const unit=state.selected?.data.kind==='appointment'&&old.jurisdiction===state.selected.data.jurisdiction?old.administrativeUnitId:null;
+    updateLinks({...activeLinks.value,fangzhen:{recordId:old.id,polityKey:key as typeof f.polityKey,recordType:old.recordType as typeof f.recordType,administrativeUnitId:unit}});
+  }
   const dirty=()=>!!state.selected&&canonicalJson(state.selected.data)!==state.loadedJson;
   const draftKey=()=>state.selected?'guanshitai:admin-draft:'+state.actor+':'+state.selected.id:'';
   const saveStatus=computed(()=>state.busy?'正在處理…':dirty()?(state.draftPersisted?'未保存 · 草稿已暫存此裝置':'有修改，尚未保存'):state.selected?.number?'已保存於伺服器':'尚未保存');
@@ -106,7 +136,8 @@ createApp({setup(){
   window.addEventListener('beforeunload',event=>{persistDraft();if(dirty()&&!state.draftPersisted){event.preventDefault();}});
   window.addEventListener('pagehide',persistDraft);
   onMounted(async()=>{try{
-    const session=await api<{actor:string;baselineLoaded:boolean}>('/session');state.actor=session.actor;state.needsBaseline=!session.baselineLoaded;state.ready=true;
+    const session=await api<{actor:string;baselineLoaded:boolean}>('/session');state.actor=session.actor;state.needsBaseline=!session.baselineLoaded;
+    references.value=await api<LinkOptions>('/reader-links');state.ready=true;
     const params=new URLSearchParams(location.search);const screen=params.get('screen');if(navigation.some(n=>n.id===screen))state.screen=screen!;
     const kind=params.get('kind');if(['person','appointment','source'].includes(kind||''))state.kind=kind as CatalogueRecord['kind'];
     if(state.screen==='sources')state.kind='source';state.query=params.get('q')||'';state.page=Number(params.get('page'))||1;
@@ -114,6 +145,9 @@ createApp({setup(){
     await refreshScreen();const selected=params.get('id');if(selected)await selectRecord(selected);
   }catch(e){failure(e);}});
   return {...window.Vue.toRefs(state),closeEditor,clearSearch,
+    activeLinks,officeOptions,fangzhenOptions,polityLabels,unitOptions:computed(()=>references.value?.units||[]),
+    filterOffices:(q:string)=>{references.officeQuery=q;},officeLabel:(o:LinkOptions['offices'][number])=>[polityLabels[o.factionKey],...o.path].filter(Boolean).join(' · '),
+    setOfficeLinks,toggleFangzhen,setFangzhenField,selectFangzhenRecord,
     differences:(before:Record<string,unknown>,after:Record<string,unknown>)=>[...new Set([...Object.keys(before),...Object.keys(after)])].filter(k=>JSON.stringify(before[k])!==JSON.stringify(after[k])).map(k=>({field:fieldLabels[k]||k,before:before[k]??'—',after:after[k]??'—'})),
     initializeBaseline,navigation,dispositions,assessments:Object.entries(labels).map(([value,label])=>({value,label})),saveStatus,mappingFields,
     kindLabel:(kind:string)=>names[kind]||kind,assessmentLabel:(a:string)=>labels[a]||a,recordName,format:(v:unknown)=>JSON.stringify(v,null,2),formatTime,

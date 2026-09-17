@@ -46,7 +46,7 @@ try {
     }
     if (url === '/api/admin/backup') {
       const lines = body.trimEnd().split('\n');
-      assert.equal(JSON.parse(lines[0]).format, 'guanshitai-backup-2');
+      assert.equal(JSON.parse(lines[0]).format, 'guanshitai-backup-3');
       assert.equal(JSON.parse(lines.at(-1)).type, 'complete', 'the built Worker must stream a complete compressed backup');
       assert.match(response.headers.get('content-disposition'), /attachment/);
     }

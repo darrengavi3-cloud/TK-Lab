@@ -47,6 +47,17 @@ export interface Appointment extends Header {
   jurisdiction: string;
   date: HistoricalDate;
   duplicateOf: string | null;
+  /** Absent on v1 revisions; existing reviewed office mappings remain explicit defaults. */
+  readerLinks?: AppointmentReaderLinks;
+}
+export interface AppointmentReaderLinks {
+  offices: string[];
+  fangzhen: null | {
+    recordId: string | null;
+    polityKey: 'han' | 'wei' | 'shu' | 'wu' | 'jin' | 'eastjin';
+    recordType: 'cishi' | 'taishou' | 'junshou' | 'dudu' | 'duwei' | 'other';
+    administrativeUnitId: string | null;
+  };
 }
 export interface Source extends Header {
   kind: "source";
@@ -115,6 +126,13 @@ export function validateRecord(value: CatalogueRecord): CatalogueRecord {
     requireValue(value.duplicateOf === null || (id(value.duplicateOf) && value.duplicateOf !== value.id), "duplicate-target", "互證須指向另一條任官。");
     requireValue((value.disposition === "duplicate") === (value.duplicateOf !== null), "duplicate-target", "互證目標與重複處置必須同時登記。");
     requireValue(value.assessment !== "verified" || (value.reason.trim() && value.evidence.some(e => e.role === "support")), "review", "核定任官須有審定理由與支持史料。");
+    if (value.readerLinks !== undefined) {
+      const links = value.readerLinks;
+      requireValue(links && Array.isArray(links.offices) && links.offices.length <= 20 && links.offices.every(id) && new Set(links.offices).size === links.offices.length, 'reader-links', '官職關聯須選擇不重複的既有官職。');
+      const f = links.fangzhen;
+      requireValue(f === null || (f && (f.recordId === null || id(f.recordId)) && ['han','wei','shu','wu','jin','eastjin'].includes(f.polityKey) && ['cishi','taishou','junshou','dudu','duwei','other'].includes(f.recordType) && (f.administrativeUnitId === null || id(f.administrativeUnitId))), 'reader-links', '州鎮關聯須填寫政權、職任類型及有效識別碼。');
+      requireValue(!f || value.jurisdiction.trim(), 'reader-links', '同步到州鎮表前，請填寫轄區。');
+    }
   } else {
     requireValue(text(value.title) && value.title.trim() && text(value.edition) && text(value.locator) && text(value.text) && text(value.url), "source", "史料須保留題名、版本、定位與原文。");
     requireValue(["excerpt","full"].includes(value.textScope), "source-scope", "節引不可冒稱全文。");
@@ -131,7 +149,7 @@ export function isVerifiedFact(record: Header): boolean {
 }
 export function holdsOfficeInYear(record: Appointment, year: number): boolean {
   validateRecord(record);
-  const notHeld = /未拜|不拜|未受|不受|未就|不就|未赴|不赴|未任|追贈|追赠/.test(record.nature);
+  const notHeld = /未拜|不拜|未受|不受|未就|不就|未赴|不赴|未任|未上任|追贈|追赠/.test(record.nature);
   return Number.isInteger(year) && !notHeld && isVerifiedFact(record) && record.date.certainty === "certain"
     && record.date.startYear !== null && record.date.endYear !== null
     && record.date.startYear <= year && year <= record.date.endYear;

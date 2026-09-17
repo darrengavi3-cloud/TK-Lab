@@ -1129,6 +1129,7 @@ function makeFigureRecord(source){
     sourceTitle: String(raw.sourceTitle || raw.citations?.map(c=>c.title).join('；') || ''),
     sourceUrl: String(raw.sourceUrl || raw.citations?.[0]?.url || ''),
     sourceExcerpt: String(raw.sourceExcerpt || raw.citations?.map(c=>c.quote).join('\n') || ''),
+    ...(raw.catalogueManaged ? {catalogueManaged:true,appointmentNature:String(raw.appointmentNature||''),dateCertainty:String(raw.dateCertainty||'unknown'),citations:raw.citations||[]} : {}),
   };
 }
 
@@ -3804,6 +3805,7 @@ const app = createApp({
       if(timelineEnabled.value){
         visible=visible.filter(item=>{
           const start=normalizeYear(item.startYear),end=normalizeYear(item.endYear);
+          if(item.catalogueManaged && (item.dateCertainty!=='certain' || start===null || end===null || /未拜|不拜|未受|不受|未就|不就|未赴|不赴|未任|未上任|追贈|追赠/.test(item.appointmentNature||'')))return false;
           if(start===null&&end===null) return !currentPeriodDef.value;
           return (start===null||timelineYear.value>=start)&&(end===null||timelineYear.value<=end);
         });
@@ -9721,6 +9723,7 @@ const app = createApp({
             <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></div></header>
             <div class="v67-fangzhen-person"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">{{fangzhenPrimaryDetail.commander}}</button><strong>{{fangzhenPrimaryDetail.title}}</strong></div>
             <dl class="v67-fact-grid"><div v-if="fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange"><dt>任期</dt><dd>{{fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange}}</dd></div><div v-if="fangzhenPrimaryDetail.seat"><dt>{{fangzhenPrimaryDetail.seatType||'治所／驻地'}}</dt><dd>{{fangzhenPrimaryDetail.seat}}</dd></div><div v-if="fangzhenPrimaryDetail.commission"><dt>委任</dt><dd>{{fangzhenPrimaryDetail.commission}}</dd></div><div v-if="fangzhenPrimaryDetail.appointmentStatus"><dt>任职性质</dt><dd>{{fangzhenPrimaryDetail.appointmentStatus}}</dd></div></dl>
+            <reader-citations :citations="fangzhenPrimaryDetail.citations||[]"></reader-citations>
             <div class="v67-dossier-actions"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">人物履历</button><button v-if="fangzhenHasResidence(fangzhenPrimaryDetail)" type="button" @click="openFangzhenResidence(fangzhenPrimaryDetail)">府署</button><button type="button" @click="jumpFangzhenToMap(fangzhenPrimaryDetail)">形势图定位</button></div>
           </aside>
           <section v-if="fangzhenSeatPeriods.length" class="v67-fangzhen-related">
@@ -10006,7 +10009,8 @@ const app = createApp({
           <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></div></header>
           <div class="v67-fangzhen-person"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">{{fangzhenPrimaryDetail.commander}}</button><strong>{{fangzhenPrimaryDetail.title}}</strong></div>
           <dl class="v67-fact-grid"><div v-if="fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange"><dt>任期</dt><dd>{{fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange}}</dd></div><div v-if="fangzhenPrimaryDetail.seat"><dt>{{fangzhenPrimaryDetail.seatType||'治所／驻地'}}</dt><dd>{{fangzhenPrimaryDetail.seat}}</dd></div><div v-if="fangzhenPrimaryDetail.commission"><dt>委任</dt><dd>{{fangzhenPrimaryDetail.commission}}</dd></div><div v-if="fangzhenPrimaryDetail.appointmentStatus"><dt>任职性质</dt><dd>{{fangzhenPrimaryDetail.appointmentStatus}}</dd></div></dl>
-          <div class="v67-dossier-actions"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">人物履历</button><button v-if="fangzhenHasResidence(fangzhenPrimaryDetail)" type="button" @click="openFangzhenResidence(fangzhenPrimaryDetail)">府署</button><button type="button" @click="jumpFangzhenToMap(fangzhenPrimaryDetail)">形势图定位</button></div>
+          <reader-citations :citations="fangzhenPrimaryDetail.citations||[]"></reader-citations>
+            <div class="v67-dossier-actions"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">人物履历</button><button v-if="fangzhenHasResidence(fangzhenPrimaryDetail)" type="button" @click="openFangzhenResidence(fangzhenPrimaryDetail)">府署</button><button type="button" @click="jumpFangzhenToMap(fangzhenPrimaryDetail)">形势图定位</button></div>
         </div>
         <section v-if="fangzhenSeatPeriods.length" class="v67-fangzhen-related v67-fangzhen-related-mobile">
           <article v-if="fangzhenSeatPeriods.length"><header><strong>已核治所分期</strong><small>{{fangzhenSeatPeriods.length}} 条</small></header><table><thead><tr><th>治所／驻地</th><th>类型</th><th>有效年代</th></tr></thead><tbody><tr v-for="period in fangzhenSeatPeriods" :key="'drawer-'+period.seatPeriodId"><td>{{period.seatName}}</td><td>{{period.seatType}}</td><td>{{fangzhenPeriodLabel(period)}}</td></tr></tbody></table></article>

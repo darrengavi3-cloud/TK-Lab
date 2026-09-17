@@ -17,7 +17,7 @@ export async function backup(env:CatalogueEnv):Promise<ReadableStream<Uint8Array
   }
   if(data.catalogue_settings.some(r=>r.key==='baseline-ready'))keys.add('baseline/reader.json');
   async function* lines(){
-    yield {type:'manifest',format:'guanshitai-backup-2',watermark,at:new Date().toISOString(),tables:names};
+    yield {type:'manifest',format:'guanshitai-backup-3',watermark,at:new Date().toISOString(),tables:names};
     let rowCount=0;
     for(const table of names)for(const row of data[table]){yield {type:'row',table,row};rowCount++;}
     for(const key of keys){
