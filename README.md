@@ -2,13 +2,13 @@
 
 本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 保留 V86 迁移来源、尚未迁移领域和阅读资产的规范输入；后台初始化后，人物身份、任官及引用史料由 D1 修订核心维护；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
-## 觀史台當前產品：管理後台一期，第 44 版部署
+## 觀史台當前產品：管理後台與任官閱讀關聯，第 45 版部署
 
-第二次交付「任官閱讀關聯」已完成實作，正在發布驗證：一份任官修訂同步到人物、選定的官職任職者與州鎮條目。詳見[實作與邊界](docs/catalogue-reader-links.md)；部署成功前，現行線上版仍為以下第 44 版。
+第 45 版於 **2026-09-17 16:53 UTC** 部署成功，沿用 owner-only 私密站點。你可在[管理後台](https://zhiguanpu-private.darrengavi3.chatgpt.site/admin)編輯、匯入及修訂人物、任官與引用史料，選定官職及州鎮關聯，再預覽並統一發布。一份任官修訂同步到人物履歷、選定的官職任職者與州鎮條目；詳見[實作與邊界](docs/catalogue-reader-links.md)。
 
-第 44 版於 **2026-09-17 14:47 UTC** 部署成功，沿用 owner-only 私密站點。你可在[管理後台](https://zhiguanpu-private.darrengavi3.chatgpt.site/admin)維護人物、任官與引用史料，匯入資料、比較修訂，預覽後統一發布閱讀內容。首次登入按「載入既有資料」初始化；本次未將隔離驗收資料寫入生產資料庫。
+首次登入按「載入既有資料」初始化；初始化不自動發布。此次未將隔離驗收資料寫入生產資料庫。未接管的州鎮、官職制度及其他領域仍使用 atlas，全部領域重構尚未完成。
 
-遷移來源仍為 V86；第 44 版是程式部署，不提升資料 V／R 標識。保存修訂、發布閱讀快照與部署網站程式分開。唯一當前狀態入口為 [CURRENT-STATE.md](CURRENT-STATE.md)；本期見[部署回執](release-metadata/catalogue-deployment.json)與[驗收紀錄](release-metadata/catalogue-validation.json)。[PR #18](https://github.com/darrengavi3-cloud/TK-Lab/pull/18) 已在 [CI #55](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35236628811) 通過後合入 main，合併基線為 `e837d5b1`。部署後補入的 CI 前置順序及回執不構成新部署，main 的 SHA 不替代實際部署源碼。
+遷移來源仍為 V86；程式部署不提升資料 V／R 標識。保存修訂、發布閱讀快照與部署網站程式分開。唯一當前狀態入口為 [CURRENT-STATE.md](CURRENT-STATE.md)；本期見[部署回執](release-metadata/catalogue-links-deployment.json)與[驗收紀錄](release-metadata/catalogue-links-validation.json)。[PR #19](https://github.com/darrengavi3-cloud/TK-Lab/pull/19) 已在 [CI](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35248889983) 通過後合入 main，合併基線為 `0689a8a3`。實際部署源碼為 `5997a4155915a2bce8c6aecc01cdf994472516db`，與合併樹一致；後續文檔及回執提交不替換此 SHA。第 44 版後台一期保留[原部署回執](release-metadata/catalogue-deployment.json)。
 
 R1 歷史事實保持不變：從 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27` 開始，經 [PR #15](https://github.com/darrengavi3-cloud/TK-Lab/pull/15) 合併為 `4f8c8c92`，發布記錄為 `2617c69b`；Sites 源碼 `d7800effea513f12aa89c69aabdbaf44cdce0e26`，第 43 版於 **2026-09-12 12:47 UTC** 成功部署。保留[原回執](release-metadata/r1-deployment.json)與 [R1-REVIEW.md](R1-REVIEW.md)，不回寫成本期驗收。
 

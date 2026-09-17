@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "product": "觀史台任官閱讀關聯",
+  "dataBaseline": "V86",
+  "historicalReceipts": [
+    "release-metadata/r1-deployment.json",
+    "release-metadata/catalogue-deployment.json"
+  ],
+  "sourceCommit": "5997a4155915a2bce8c6aecc01cdf994472516db",
+  "githubImplementationCommit": "36048c399290abc7e3950d113a6fbbf5e7788fe4",
+  "githubMergeCommit": "0689a8a3de5a48610a778094be2a44ebe7f6bbd7",
+  "githubCiReceipt": "release-metadata/catalogue-links-ci.json",
+  "sourceTree": "4dd1b4181d2390cded8f9e00146a176474d95139",
+  "versionNumber": 45,
+  "versionId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_45a56a6b1adc8191a44727e88fd56e77",
+  "deploymentId": "appgdep_6aac1aea13fc81918cb8d9665ee57c52",
+  "status": "succeeded",
+  "completedAt": "2026-09-17T16:53:14.408158+00:00",
+  "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+  "archiveHash": "sha256:0f286ab0fb2bb02d94ba577b4d448e026ec4860805fd1687a10f537e00c6ada3",
+  "localGzipSha256": "a8e6abc7b9c21ff6fb8afd69163c3f8821e0339f4d6a93f4d8d88122f1a69145",
+  "archiveFileCount": 2128,
+  "envSetRevision": 1,
+  "ownerOnly": true,
+  "productionDataInitialized": false,
+  "productionDataState": "catalogue_settings read before deployment returned no rows; no production content written",
+  "contentPublicationIsSitesDeployment": false,
+  "validation": "release-metadata/catalogue-links-validation.json"
+}

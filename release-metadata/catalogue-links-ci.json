@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "workflow": "Reader validation",
+  "runId": 35248889983,
+  "url": "https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35248889983",
+  "headCommit": "36048c399290abc7e3950d113a6fbbf5e7788fe4",
+  "baseCommit": "0c2613b08b59bdde22814a4c6aebf89eb832bd01",
+  "status": "completed",
+  "conclusion": "success",
+  "updatedAt": "2026-09-17T16:52:16Z",
+  "pr": 19,
+  "mergeCommit": "0689a8a3de5a48610a778094be2a44ebe7f6bbd7",
+  "mergedTree": "4dd1b4181d2390cded8f9e00146a176474d95139",
+  "jobs": [
+    {
+      "id": 105295990920,
+      "name": "offline-validation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 105295991322,
+      "name": "reader-visual",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "deploymentSource": "5997a4155915a2bce8c6aecc01cdf994472516db",
+  "note": "Both clean CI jobs passed before merge and deployment. GitHub and Sites implementation trees are identical; later receipt-only commits do not replace this source."
+}
