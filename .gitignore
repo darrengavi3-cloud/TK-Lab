@@ -52,3 +52,8 @@ next-env.d.ts
 /atlas/node_modules
 /atlas/public/
 /atlas/.DS_Store
+
+# Generated catalogue bundles and local profile
+/server/generated/
+/public/admin-client.mjs
+/.sites-runtime/

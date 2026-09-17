@@ -26,10 +26,10 @@
       template: `<section v-if="citations.length" class="reader-citations" aria-label="原典回查">
         <h3>原典回查 <small>{{citations.length}} 条引文</small></h3>
         <details v-for="(citation,index) in citations" :key="citation.url+'|'+index">
-          <summary><span>{{citation.title}}</span><small class="reader-citation-expand">展开节录</small><small class="reader-citation-collapse">收起节录</small></summary>
+          <summary><span>{{citation.title}}</span><small v-if="citation.role==='counter'">反证</small><small v-if="citation.role==='variant'">异说</small><small class="reader-citation-expand">{{citation.textScope==='full'?'展开原文':'展开节录'}}</small><small class="reader-citation-collapse">收起原文</small></summary>
           <blockquote v-if="citation.quote">{{citation.quote}}</blockquote>
           <p v-if="citation.note">{{citation.note}}</p>
-          <a :href="citation.url" target="_blank" rel="noopener noreferrer">阅读原典全文 ↗</a>
+          <a v-if="/^https?:/.test(citation.url||'')" :href="citation.url" target="_blank" rel="noopener noreferrer">阅读原典全文 ↗</a>
         </details>
       </section>`
     },

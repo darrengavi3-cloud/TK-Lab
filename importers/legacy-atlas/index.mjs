@@ -38,7 +38,7 @@ export function readLegacyBaseline(projectRoot = path.resolve(path.dirname(fileU
   const registry = data('v63-person-registry.json');
   const reader = data('v63-reader-people.json');
   const relations = data('v63-reader-person-relations.json');
-  const sourceIndex = data('person-source-index.json');
+  data('person-source-index.json');
   const scope = data('v62-reader-scope.json');
   const release = read('release-metadata/current-release.json');
   // All decision/evidence batches are preserved, including superseded reviews.
@@ -68,7 +68,8 @@ export function readLegacyBaseline(projectRoot = path.resolve(path.dirname(fileU
       // aliases and explicit maps remain intact in the archived registry.
       legacyIds:[...new Set(row.legacyPersonIds||[])].filter(id=>id!==row.personId&&!allPersonIds.has(id))};
   });
-  for (const row of registry.excludedPeople) {
+  const excludedTerms = registry.excludedPeople.filter(row => !row.personId);
+  for (const row of registry.excludedPeople.filter(row => row.personId)) {
     if (people.some(p=>p.id===row.personId)) throw new Error('Excluded identity duplicates active registry: '+row.personId);
     people.push({...header(row.personId,'excluded','private',row.reason),kind:'person',name:row.name,aliases:[],aliasPublication:'private',legacyIds:[]});
   }
@@ -161,6 +162,7 @@ export function readLegacyBaseline(projectRoot = path.resolve(path.dirname(fileU
       dataVersion:release.version,readerPeople:reader.people.length,people:people.length,
       appointments:appointments.length,appointmentCounts:sourceCounts,sources:sourceRows.length,
       unresolvedReferences,
+      excludedTerms,
       dataAuthority:'atlas',
       writeCutover:false,
       preservedOnly:['person field reviews and biographies','peerage','offices and titles','fangzhen','epigraphy','residences','battles','economy','map periods and geometry'],

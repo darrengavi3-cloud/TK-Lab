@@ -1,11 +1,39 @@
 {
   "profile": "product-admin",
-  "sourceRoots": ["app", "atlas/index.html", "atlas/assets/app", "atlas/assets/ui/tokens.css", "atlas/assets/ui/base.css", "atlas/assets/ui/components.css", "atlas/assets/ui/modules.css", "atlas/assets/ui/responsive.css"],
+  "sourceRoots": [
+    "app",
+    "atlas/index.html",
+    "atlas/assets/app",
+    "atlas/assets/ui/tokens.css",
+    "atlas/assets/ui/base.css",
+    "atlas/assets/ui/components.css",
+    "atlas/assets/ui/modules.css",
+    "atlas/assets/ui/responsive.css",
+    "admin",
+    "public/admin.css"
+  ],
   "locale": "zh-CN",
   "canonicalMap": "atlas/UX-CONTRACT.md",
-  "requiredCapabilities": ["Table Selection", "Select/Listbox", "Scrollbar", "Toast"],
-  "ownership": {"Select/Listbox": "authored"},
-  "requiredCommands": ["unit", "typecheck", "lint"],
-  "commands": {"unit": "npm run test:source", "typecheck": "npm run typecheck", "lint": "npm run lint"},
-  "evidence": {"failurePaths": "tests/reader-product.test.mjs"}
+  "requiredCapabilities": [
+    "Table Selection",
+    "Select/Listbox",
+    "Scrollbar",
+    "Toast"
+  ],
+  "ownership": {
+    "Select/Listbox": "authored"
+  },
+  "requiredCommands": [
+    "unit",
+    "typecheck",
+    "lint"
+  ],
+  "commands": {
+    "unit": "npm run test:source",
+    "typecheck": "npm run typecheck",
+    "lint": "npm run lint"
+  },
+  "evidence": {
+    "failurePaths": "tests/reader-product.test.mjs"
+  }
 }

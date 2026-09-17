@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "scope": "catalogue-admin-first-delivery",
+  "checkedAt": "2026-09-17T14:35:20.163400+00:00",
+  "legacyDataBaseline": "V86",
+  "githubBase": "7b8d03990b6b72b4d62bf93f2a39aaeb9367ebd2",
+  "historicalDeploymentReceipt": "release-metadata/r1-deployment.json",
+  "automated": {
+    "releaseOffline": "passed",
+    "deterministicCanonicalBuild": "passed",
+    "historicalInvariants": 20,
+    "applicationTests": 115,
+    "catalogueTestsIncluded": 29,
+    "sourceTests": 69,
+    "readerBrowserTests": 35,
+    "runtimeProbes": 18,
+    "freshOwnerAccessTests": 2,
+    "typecheck": "passed",
+    "lint": {
+      "errors": 0,
+      "existingGeneratedTypeWarnings": 3
+    },
+    "strictUIAuditFindings": 0
+  },
+  "migration": {
+    "records": 4336,
+    "people": 2443,
+    "appointments": 851,
+    "sourceExcerpts": 1042,
+    "readerPeople": 2074,
+    "verifiedAppointments": 263,
+    "pendingAppointments": 507,
+    "disputedAppointments": 2,
+    "suppressedAppointments": 79,
+    "assertions": [
+      "stable IDs and raw source hashes preserved",
+      "complete baseline import is atomic and idempotent",
+      "all baseline reader people and appointments reproduce the original projection",
+      "full baseline backup passes integrity verification",
+      "a separate empty D1/R2 restore recreates revisions and the same candidate digest"
+    ]
+  },
+  "browser": {
+    "environment": "isolated managed preview; synthetic owner fixture; no production edits",
+    "verified": [
+      "full baseline upload, staging and commit",
+      "create person, exact source text and appointment with pinned citation",
+      "review confirmation and save",
+      "fixed candidate preview and content publication",
+      "published reader search, unknown dates and paper-source quotation expansion",
+      "two-tab stale save rejected with unsaved input preserved",
+      "revision comparison and loading old content as a new draft",
+      "search no-results and clear action",
+      "three themes, select Enter/Escape and Tab focus"
+    ]
+  },
+  "runtime": {
+    "environment": "built production Worker in Miniflare with isolated D1/R2",
+    "verified": [
+      "unsigned requests denied",
+      "non-owner denied",
+      "cross-origin writes denied",
+      "legacy write and action paths denied",
+      "owner baseline initialization returns 4336 staged records",
+      "compressed backup has attachment headers and a completion marker"
+    ]
+  },
+  "unverified": [
+    "physical iPhone",
+    "complete keyboard and assistive-technology coverage",
+    "admin narrow viewport and actual 200% browser zoom",
+    "production owner sign-in and initial data setup",
+    "browser download handoff of the full backup; actual Worker stream and backup integrity are verified",
+    "production disaster-recovery switch",
+    "production final-page browser acceptance",
+    "network/performance measurements"
+  ],
+  "scopeRemaining": [
+    "offices and prefectural facts unified with appointment editing",
+    "other historical domains and global identity merge",
+    "full reader componentization and old generator retirement"
+  ],
+  "productionDataInitialized": false,
+  "contentPublicationIsSitesDeployment": false
+}

@@ -32,7 +32,7 @@ test("server-renders the historical atlas shell", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>观史台 · 历史资料库<\/title>/);
-  assert.ok(html.includes(`src="/legacy/index.html?v=${RELEASE_VERSION.slice(1)}"`));
+  assert.ok(html.includes(`src="/reader/current?v=${RELEASE_VERSION.slice(1)}"`));
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 

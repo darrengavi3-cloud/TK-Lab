@@ -131,7 +131,8 @@ export function isVerifiedFact(record: Header): boolean {
 }
 export function holdsOfficeInYear(record: Appointment, year: number): boolean {
   validateRecord(record);
-  return Number.isInteger(year) && isVerifiedFact(record) && record.date.certainty === "certain"
+  const notHeld = /未拜|不拜|未受|不受|未就|不就|未赴|不赴|未任|追贈|追赠/.test(record.nature);
+  return Number.isInteger(year) && !notHeld && isVerifiedFact(record) && record.date.certainty === "certain"
     && record.date.startYear !== null && record.date.endYear !== null
     && record.date.startYear <= year && year <= record.date.endYear;
 }

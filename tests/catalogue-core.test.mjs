@@ -37,6 +37,8 @@ test('unknown endpoints and inferred years never make certain tenure claims',()=
   row.date={...row.date,startYear:199,endYear:201,precision:'range',certainty:'inferred',basis:'待考'};
   assert.equal(c.holdsOfficeInYear(row,200),false);
   row.date.certainty='certain';
+  assert.equal(c.holdsOfficeInYear(row,200),false,'授而未拜 is not actual tenure');
+  row.nature='實任';
   assert.equal(c.holdsOfficeInYear(row,200),true);
   assert.equal(c.holdsOfficeInYear(row,202),false);
   row.date.endYear=198;

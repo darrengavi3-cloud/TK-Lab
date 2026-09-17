@@ -31,7 +31,7 @@ test('every original byte, including full registry and superseded decisions, is 
 });
 test('person and appointment IDs are mapped one for one, not merely counted',()=>{
   const registry=json('atlas/data/v63-person-registry.json');
-  assert.deepEqual(ids(migration.records.filter(r=>r.kind==='person')),[...registry.people,...registry.excludedPeople].map(r=>r.personId).sort());
+  assert.deepEqual(ids(migration.records.filter(r=>r.kind==='person')),[...registry.people,...registry.excludedPeople].map(r=>r.personId).filter(Boolean).sort());
   const expected=json('atlas/data/person-source-index.json').appointments.map(r=>r.id);
   for(const batch of json('atlas/data/release-config.json').appointmentSupplementBatches) expected.push(...json('atlas/data/'+batch.decisions).records.map(r=>r.id));
   assert.deepEqual(ids(migration.records.filter(r=>r.kind==='appointment')),expected.sort());
@@ -63,4 +63,10 @@ test('unresolved identity links are explicit and do not invent people or erase f
   const missing=migration.records.filter(r=>r.kind==='appointment'&&!people.has(r.personId)).map(r=>({appointmentId:r.id,personId:r.personId}));
   assert.deepEqual(migration.report.unresolvedReferences,missing);
   assert.equal(migration.records.filter(r=>r.kind==='appointment').length,851);
+});
+
+test("non-person exclusions stay as terms without fabricated person IDs",()=>{
+ const registry=json("atlas/data/v63-person-registry.json");
+ assert.deepEqual(migration.report.excludedTerms,registry.excludedPeople.filter(r=>!r.personId));
+ assert.ok(migration.report.excludedTerms.some(r=>r.name==="安南"));
 });

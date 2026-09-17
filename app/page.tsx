@@ -77,7 +77,7 @@ export default function Home() {
         key={attempt}
         className="legacy-frame"
         ref={frame}
-        src={`/legacy/index.html?v=${RELEASE_VERSION.slice(1)}`}
+        src={`/reader/current?v=${RELEASE_VERSION.slice(1)}`}
         title="观史台 · 历史资料库"
         onError={() => monitor.current?.fail()}
       />
