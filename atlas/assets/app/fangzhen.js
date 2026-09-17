@@ -108,6 +108,9 @@ export function classifyFangzhenJurisdiction(record){
  * 汉末与季汉只在已有明确来源标识或可定位年份时拆分，模糊记录保留“汉”。
  */
 export function classifyFangzhenDynasty(record){
+  // Owner-managed links specify the archive explicitly; uncertain years must
+  // not erase that choice or reclassify a reused legacy record ID.
+  if(record?.catalogueManaged && record.dynastyLabel)return String(record.dynastyLabel);
   const polity=String(record?.polity||'').trim();
   if(polity==='季汉'||polity==='蜀汉')return '季汉';
   if(polity!=='汉')return polity||'';
@@ -131,6 +134,9 @@ export function knownYear(value){
 export function fangzhenValidAtYear(record,value){
   const year=knownYear(value),start=knownYear(record?.startYear),end=knownYear(record?.endYear);
   return record?.readerDisplayStatus==='verified'
+    && record?.definiteTenure!==false
+    && !/未拜|不拜|未受|不受|未就|不就|未赴|不赴|未任|未上任|追贈|追赠/.test(record?.appointmentStatus||'')
+    && (!record?.dateCertainty || record.dateCertainty==='certain')
     && year!==null && start!==null && end!==null && start<=end
     && start<=year && year<=end;
 }

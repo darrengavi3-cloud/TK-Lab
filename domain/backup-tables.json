@@ -12,5 +12,6 @@
   "catalogue_objects": ["hash","filename","bytes","media_type","at"],
   "catalogue_releases": ["id","watermark","digest","state","code_id","manifest","at","actor"],
   "catalogue_publication_events": ["seq","request_id","release_id","previous_id","actor","at","action","digest"],
-  "catalogue_settings": ["key","value"]
+  "catalogue_settings": ["key","value"],
+  "catalogue_reader_links": ["appointment_id","fangzhen_id"]
 }

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "scope": "catalogue-reader-links-second-delivery",
+  "checkedAt": "2026-09-17T16:43:10.761Z",
+  "legacyDataBaseline": "V86",
+  "githubBase": "0c2613b08b59bdde22814a4c6aebf89eb832bd01",
+  "historicalReceipts": [
+    "release-metadata/r1-deployment.json",
+    "release-metadata/catalogue-deployment.json"
+  ],
+  "automated": {
+    "siteBuild": "passed",
+    "applicationTests": 119,
+    "catalogueTestsIncluded": 33,
+    "sourceTests": 69,
+    "browserTests": 37,
+    "adminViewportTestsIncluded": [
+      390,
+      1280
+    ],
+    "runtimeProbes": 18,
+    "freshOwnerAccessTests": 2,
+    "typecheck": "passed",
+    "lint": {
+      "errors": 0,
+      "existingGeneratedTypeWarnings": 3
+    },
+    "strictUIAuditFindings": 0
+  },
+  "migration": {
+    "records": 4336,
+    "readerPeople": 2074,
+    "verifiedAppointments": 263,
+    "unchangedFangzhenRecords": 523,
+    "inheritedOfficeAppointments": 11,
+    "officeReferenceNodes": 1459,
+    "additiveMigration": "0002_bent_silver_sable.sql",
+    "backupFormatsAccepted": [
+      "guanshitai-backup-2",
+      "guanshitai-backup-3"
+    ]
+  },
+  "dataTests": [
+    "single revision drives person, office and state with pinned quotations",
+    "all baseline reader people, appointments, 523 state records and 11 office facts preserved",
+    "unknown/inferred/not-held tenures excluded from certain-year snapshots",
+    "withdrawal removes managed projections without resurrecting legacy names",
+    "invalid polity/person/unit links rejected",
+    "concurrent claims allow one owner and roll back every competing fact",
+    "v3 backup includes ownership links and v2 backup verifier remains compatible"
+  ],
+  "browser": {
+    "environment": "isolated managed preview and project-owned Chromium fixtures; no production writes",
+    "verified": [
+      "save explicit office and new state links",
+      "invalid polity rejected with inputs retained",
+      "candidate shows linked and state counts",
+      "state search, explicit polity with unknown dates and exact source expansion",
+      "person history shares the appointment and pinned quotation",
+      "office card includes the new linked appointment",
+      "fixed candidate and content publication",
+      "no-results, multi-token office search, popup geometry, Escape and keyboard selection at 390px and 1280px"
+    ],
+    "fixturePublication": "95d96e6707a6579e005b94f6b1c2fdbbcbf3b614ced6206dc7278b1eab50e12f"
+  },
+  "unverified": [
+    "physical iPhone and full assistive-technology matrix",
+    "actual 200% browser zoom",
+    "production owner first sign-in, baseline initialization and first content publication",
+    "production disaster-recovery switch",
+    "production final-page browser acceptance"
+  ],
+  "scopeRemaining": [
+    "unlinked state facts and office institutions",
+    "other historical domains and global identity merge",
+    "full reader componentization and retirement of old generators"
+  ],
+  "productionDataInitialized": false,
+  "contentPublicationIsSitesDeployment": false
+}

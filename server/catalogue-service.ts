@@ -1,6 +1,7 @@
 import {validateRecord,validateLinks,type CatalogueRecord,DomainError} from '../domain/catalogue';
 import {canonicalJson,sha256,prepareRevision,type Revision} from '../domain/revisions';
 import {check,HttpError} from './storage';
+import {validateReaderLinks} from './reader-links';
 export interface StoredRevision {id:string;version:number;commit_seq:number;payload:string;digest:string;actor:string;at:string;reason:string}
 export const decode=(r:StoredRevision):Revision=>({id:r.id,number:r.version,commit:r.commit_seq,data:JSON.parse(r.payload),digest:r.digest,actor:r.actor,at:r.at,reason:r.reason});
 export async function getRevision(db:D1Database,id:string,version?:number):Promise<Revision|null>{
@@ -29,6 +30,7 @@ export async function validateBatch(db:D1Database,changes:{data:CatalogueRecord;
   const versionSet=new Set((await db.prepare("SELECT v.id,v.version FROM catalogue_revisions v JOIN catalogue_records r ON r.id=v.id WHERE r.kind='source'").all<{id:string;version:number}>()).results.map(r=>r.id+'@'+r.version));
   for(const c of changes){validateRecord(c.data);byId.set(c.data.id,c.data);if(c.data.kind==='source')versionSet.add(c.data.id+'@'+(c.baseVersion+1));}
   validateLinks([...byId.values()],versionSet);
+  validateReaderLinks([...byId.values()]);
 }
 export async function commitStaged(db:D1Database,jobId:string,actor:string,reason:string):Promise<number>{
   const done=await db.prepare('SELECT seq FROM catalogue_commits WHERE request_id=?').bind(jobId).first<{seq:number}>();
@@ -50,6 +52,8 @@ export async function commitStaged(db:D1Database,jobId:string,actor:string,reaso
     run("INSERT INTO catalogue_sources(id,edition,locator,scope) SELECT id,json_extract(payload,'$.edition'),json_extract(payload,'$.locator'),json_extract(payload,'$.textScope') FROM catalogue_staged WHERE job_id=? AND json_extract(payload,'$.kind')='source' ON CONFLICT(id) DO UPDATE SET edition=excluded.edition,locator=excluded.locator,scope=excluded.scope",jobId),
     run("INSERT INTO catalogue_appointments(id,person_id,office_id,office_name,nature,start_year,end_year,date_text,duplicate_of) SELECT id,json_extract(payload,'$.personId'),json_extract(payload,'$.officeId'),json_extract(payload,'$.officeName'),json_extract(payload,'$.nature'),json_extract(payload,'$.date.startYear'),json_extract(payload,'$.date.endYear'),json_extract(payload,'$.date.original'),json_extract(payload,'$.duplicateOf') FROM catalogue_staged WHERE job_id=? AND json_extract(payload,'$.kind')='appointment' ON CONFLICT(id) DO UPDATE SET person_id=excluded.person_id,office_id=excluded.office_id,office_name=excluded.office_name,nature=excluded.nature,start_year=excluded.start_year,end_year=excluded.end_year,date_text=excluded.date_text,duplicate_of=excluded.duplicate_of",jobId),
     run("DELETE FROM catalogue_evidence WHERE id IN(SELECT id FROM catalogue_staged WHERE job_id=?)",jobId),
+    run("DELETE FROM catalogue_reader_links WHERE appointment_id IN(SELECT id FROM catalogue_staged WHERE job_id=?)",jobId),
+    run("INSERT INTO catalogue_reader_links(appointment_id,fangzhen_id) SELECT id,json_extract(payload,'$.readerLinks.fangzhen.recordId') FROM catalogue_staged WHERE job_id=? AND json_extract(payload,'$.kind')='appointment' AND json_extract(payload,'$.readerLinks.fangzhen.recordId') IS NOT NULL",jobId),
     run("INSERT INTO catalogue_evidence(id,source_id,source_version,role,note) SELECT s.id,json_extract(e.value,'$.sourceId'),json_extract(e.value,'$.sourceRevision'),json_extract(e.value,'$.role'),json_extract(e.value,'$.note') FROM catalogue_staged s,json_each(s.payload,'$.evidence') e WHERE s.job_id=?",jobId),
     run("UPDATE catalogue_imports SET state='committed',commit_seq="+seq+" WHERE id=?",jobId,jobId),
   ];
@@ -58,6 +62,7 @@ export async function commitStaged(db:D1Database,jobId:string,actor:string,reaso
     const committed=await db.prepare('SELECT seq FROM catalogue_commits WHERE request_id=?').bind(jobId).first<{seq:number}>();
     if(committed)return committed.seq;
     if(String(error).includes('catalogue_cas_guard'))throw new HttpError(409,'資料已被其他分頁修改；本批次未提交，請重新比較。');
+    if(String(error).includes('catalogue_reader_links'))throw new HttpError(409,'州鎮條目已由另一條任官關聯；本批次未提交，請重新核對。');
     throw error;
   }
   return (await db.prepare('SELECT seq FROM catalogue_commits WHERE request_id=?').bind(jobId).first<{seq:number}>())!.seq;

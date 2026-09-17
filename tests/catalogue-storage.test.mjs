@@ -124,6 +124,12 @@ test('complete baseline bootstrap commits 4336 records once and reproduces all r
     const candidate=await service.makePublication(localEnv,'owner-fixture'),baseline=readLegacyBaseline();
     assert.deepEqual(await (await localBucket.get('releases/'+candidate.id+'/data/v63-reader-people.json')).json(),baseline.readerBaseline.people);
     assert.deepEqual(await (await localBucket.get('releases/'+candidate.id+'/data/v63-reader-person-relations.json')).json(),baseline.readerBaseline.relations);
+    assert.deepEqual((await (await localBucket.get('releases/'+candidate.id+'/data/v69-fangzhen-reader.json')).json()).records,JSON.parse(fs.readFileSync('atlas/data/v69-fangzhen-reader.json','utf8')).records);
+    const offices=(await (await localBucket.get('releases/'+candidate.id+'/data/reviewed-office-succession.json')).json()).offices;
+    for(const old of JSON.parse(fs.readFileSync('atlas/data/reviewed-office-succession.json','utf8')).offices){
+      const current=offices.find(o=>o.factionKey===old.factionKey&&o.name===old.name);
+      assert.deepEqual(current.appointments.map(r=>Object.fromEntries(Object.entries(r).filter(([key])=>!['appointmentNature','dateCertainty','dateText','catalogueManaged'].includes(key)))),old.appointments);
+    }
     const complete=verifyBackup(gzipSync(await new Response(await service.backup(localEnv)).text()));
     assert.equal(complete.data.catalogue_records.length,4336);
     assert.equal(complete.data.catalogue_revisions.length,4336);

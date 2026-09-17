@@ -7,6 +7,7 @@ import {storage,check,setting,HttpError,type CatalogueEnv} from './storage';
 import {domainErrorStatus,listRecords,getRevision,history,saveRecord,watermark} from './catalogue-service';
 import {upload,inspectFile,createImport,importDetail,stageImport,commitImport} from './import-service';
 import {makePublication,publishData} from './publication-service';
+import {readerLinkOptions} from './reader-links';
 import adminHtml from '../admin/index.html?raw';
 import readerHtml from './generated/reader.html?raw';
 const noStore={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
@@ -25,6 +26,7 @@ export async function catalogueRouter(request:Request,env:CatalogueEnv):Promise<
     if(path==='/admin'||path==='/admin/'){check(['GET','HEAD'].includes(request.method),'不支援此操作。',405);return new Response(request.method==='HEAD'?null:adminHtml,{headers:{...noStore,'Content-Type':'text/html;charset=utf-8'}});}
     const {db,bucket}=storage(env);
     const method=request.method==='HEAD'?'GET':request.method;
+    if(method==='GET'&&path==='/api/admin/reader-links')return json(readerLinkOptions());
     if(method==='GET'&&path==='/api/admin/session'){
       const counts=(await db.prepare('SELECT kind,count(*) AS total FROM catalogue_records GROUP BY kind').all()).results;
       return json({actor,counts,watermark:await watermark(db),activeRelease:await setting(db,'active-release'),baselineLoaded:!!await setting(db,'baseline-ready')});
