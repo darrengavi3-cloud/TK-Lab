@@ -1,12 +1,20 @@
 # 观史台私密网站
 
-本仓库同时保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 是历史数据、读者投影和资源清单的唯一规范输入；`public/legacy` 是构建生成物，不得手工编辑或提交。
+本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 是观史台历史数据、读者投影和资源清单的唯一规范输入；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
-## 当前开发：R0 状态收口与 R1 阅读连续性
+## 观史台当前产品：V86 数据，R0／R1 改进，第 43 版部署
 
-当前规范数据快照仍为 V86；本轮使用 R 编号记录产品改进，不把产品可靠性修复误写成新的史料审定版本。唯一当前口径见 [CURRENT-STATE.md](CURRENT-STATE.md)，改动与验收边界见 [R1-REVIEW.md](R1-REVIEW.md)。
+当前规范数据快照仍为 V86；R0 状态收口与 R1 阅读连续性已合并并部署。V 表示数据审定版本，R 表示产品改进，第 43 版表示 Sites 部署，三者分别记录。观史台唯一当前状态入口见 [CURRENT-STATE.md](CURRENT-STATE.md)，本页仅作摘要；改动与验收边界见 [R1-REVIEW.md](R1-REVIEW.md)。文档与仓库核对日期为 2026-09-17，部署事实仍为 2026-09-12。
 
-本轮从 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27` 建立候选分支，修复全局检索冷启动、稳定 ID 详情跳转及州镇清除筛选默认。已通过 PR #15 合并，并于 2026-09-12 部署为第 43 版（owner-only）；发布回执见 CURRENT-STATE.md；真实 iPhone、键盘、200% 缩放和线上回滚仍待验收。
+R1 从历史开发起点 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27` 修复全局检索冷启动、稳定 ID 详情跳转及州镇清除筛选默认，经 [PR #15](https://github.com/darrengavi3-cloud/TK-Lab/pull/15) 合并为 `4f8c8c92`，发布记录提交为 `2617c69b`。Sites 发布源码为 `d7800effea513f12aa89c69aabdbaf44cdce0e26`，第 43 版于 **2026-09-12 12:47 UTC** 部署成功（owner-only）；[原发布回执](release-metadata/r1-deployment.json)保持不变。真实 iPhone、完整键盘、200% 缩放、网络／性能测量、线上回滚及最终线上页面验收仍待办。
+
+## 仓库 main 与 Sumi-OCR 迁出
+
+本次校准及移除前核对的仓库 `main` 为 [`f170c891`](https://github.com/darrengavi3-cloud/TK-Lab/commit/f170c8914d2694947fc99591dab9b94a8a4fa02e)（2026-09-13 10:18:35 UTC）。R1 发布记录之后，PR #16／#17 及其分支共 6 个提交只新增了 `tools/umi-ocr/` 中的 148 个文件；[提交比较](https://github.com/darrengavi3-cloud/TK-Lab/compare/2617c69b61ec7387da919309b53f2dab8e609a67...f170c8914d2694947fc99591dab9b94a8a4fa02e)没有观史台产品改动。
+
+2026-09-17 核对 TK-Laby 已保留全部 148 个文件后，本次提交从 TK-Lab 当前树移除 Sumi-OCR 副本，并校准本页与 CURRENT-STATE.md。Sumi-OCR 的源码、构建和交付请前往 [TK-Laby](https://github.com/darrengavi3-cloud/TK-Laby/tree/main/tools/umi-ocr)，逐文件核对范围见 [CURRENT-STATE.md](CURRENT-STATE.md)。本次整理保持观史台 V86、R0／R1、第 43 版部署及未验收事项不变。
+
+仓库后续进度见 [`main` 提交历史](https://github.com/darrengavi3-cloud/TK-Lab/commits/main/)；以上 SHA 是带时间的核对快照，不作为滚动更新的仓库 HEAD。以下 V 系列段落保留各轮当时的开发、审定、PR 与部署事实，当前状态统一以上文及 CURRENT-STATE.md 为准。
 
 ## 历史修改：V84 工具栏、按钮与手机阅读
 
@@ -30,11 +38,11 @@ V82复核冻结清单第81—100条：批准12、排除实任4、待补核4。�
 
 2026-09-08 验收续办：已核对 V82 源码树、现有 CI／保存／历史部署回执和 owner-only 权限，完成 V80 本地源码恢复核验。两次预览均在页面加载前超时，72 个阅读组合、键盘／缩放、真实 iPhone、性能指标与线上回滚演练仍未验收；PR 继续保持 draft。详细结果和本次门禁终态见 [V82-ACCEPTANCE.md](V82-ACCEPTANCE.md)。
 
-## 已合并审定基线：V76
+## 历史审定基线：V76
 
-V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 2026-09-07 03:02:30 UTC 合入 `main`，合并提交为 [`23c6d8b`](https://github.com/darrengavi3-cloud/TK-Lab/commit/23c6d8b3fb2d35c1efb3f5fbc9f5d3cd9b9f2c03)。该基线任官已核 197／待补核 601／存疑 2／排除 51；本分支续核后的当前数字如下，不回写为 V76 的历史结果。
+V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 2026-09-07 03:02:30 UTC 合入 `main`，合并提交为 [`23c6d8b`](https://github.com/darrengavi3-cloud/TK-Lab/commit/23c6d8b3fb2d35c1efb3f5fbc9f5d3cd9b9f2c03)。该基线任官已核 197／待补核 601／存疑 2／排除 51；后续续核形成的观史台当前统计如下，不回写为 V76 的历史结果。
 
-## 当前分支审定结果
+## 观史台当前审定统计（V86 数据快照）
 
 <!-- current-reviewed-counts:start -->
 | 项目 | 当前审定数量 |
@@ -50,7 +58,7 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 
 统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V82 审阅说明](V82-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
 
-## V76 更新摘要
+## V76 历史更新摘要
 
 - 核准现有《三国志》卷 32—45 抽取中最后两条未审任官：刘备领司隶校尉归回本人，保留刘璋推领性质；吴壹车骑将军按建兴十二年核准。处理范围仅指现有抽取记录，不表示相关卷次的全部史事已完成校勘。
 - 补明蒋琬尚书令（234）、大将军（235），费祎大将军（243），姜维初授大将军（256）的年份；蒋琬延熙二年大司马的跨卷重复记录合并为一条事实、两处证据。
@@ -59,7 +67,7 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 
 逐条范围与原典输入见 [V76-REVIEW.md](V76-REVIEW.md)；此前府署续核与伪人物清理见 [V74-REVIEW.md](V74-REVIEW.md)、[V75-REVIEW.md](V75-REVIEW.md)。小传为有原典依据的文言撰述，不冒充古籍原文；原典引文为定位节引，省略处明标，不冒充全卷校录。
 
-## 发布边界
+## 观史台发布边界
 
 - 站点复用既有 owner-only Site，不新建站点、不扩大访问范围。
 - 线上包只能包含读者投影；工作簿行号、检索日志、审校字段和本机路径不得进入部署产物。公开原典引文仅允许 `citations` 中的 title/url/quote/note，独立于研究台账。
@@ -67,7 +75,7 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 - 图片剪枝和缩放完成后重新生成 `dist/deployment-manifest.json`，清单逐项记录最终字节数和 SHA-256。
 - 形势图的 16 期、几何、图层与稳定 ID 由规范源验证锁定。
 
-## 唯一流程
+## 观史台发布检查流程
 
 ```bash
 npm run release:check
