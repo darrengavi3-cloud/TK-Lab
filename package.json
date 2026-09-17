@@ -23,7 +23,9 @@
     "types:generate": "node scripts/generate-worker-types.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
-    "test:runtime": "node scripts/check-worker-runtime.mjs"
+    "test:runtime": "node scripts/check-worker-runtime.mjs",
+    "test:catalogue": "node --test tests/catalogue-core.test.mjs tests/catalogue-migration.test.mjs",
+    "migrate:shadow": "node importers/legacy-atlas/index.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

@@ -134,3 +134,10 @@ npm run release:offline
 要求 Node.js `>=22.13.0`。
 
 Cloudflare runtime 型别由锁定版本 Wrangler / workerd 根据实际构建配置生成并提交。完成构建后可运行 `npm run types:generate` 刷新；`npm run typecheck` 不需要连接 Cloudflare。D1 保持可选绑定，并保留缺少绑定时的运行时检查。
+
+## 管理後台重構（開發中）
+
+已開始建立人物、任官與史料的共用資料契約、修訂規則、發布候選核對及唯讀遷移器。這是未部署的重構程式；管理後台、資料庫持久化與發布接線仍待完成。詳見 [實作與交接](docs/catalogue-refactor.md)，當前線上狀態繼續以 [CURRENT-STATE.md](CURRENT-STATE.md) 為準。
+
+- 單獨核對新核心：npm run test:catalogue。
+- 唯讀遷移報告：npm run migrate:shadow；不寫入 atlas、資料庫或線上站點。
