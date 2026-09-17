@@ -1,18 +1,20 @@
 # 观史台私密网站
 
-本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 是观史台历史数据、读者投影和资源清单的唯一规范输入；`public/legacy` 是构建生成物，不得手工编辑或提交。
+本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 保留 V86 迁移来源、尚未迁移领域和阅读资产的规范输入；后台初始化后，人物身份、任官及引用史料由 D1 修订核心维护；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
-## 观史台当前产品：V86 数据，R0／R1 改进，第 43 版部署
+## 觀史台當前產品：管理後台一期，第 44 版部署
 
-当前规范数据快照仍为 V86；R0 状态收口与 R1 阅读连续性已合并并部署。V 表示数据审定版本，R 表示产品改进，第 43 版表示 Sites 部署，三者分别记录。观史台唯一当前状态入口见 [CURRENT-STATE.md](CURRENT-STATE.md)，本页仅作摘要；改动与验收边界见 [R1-REVIEW.md](R1-REVIEW.md)。文档与仓库核对日期为 2026-09-17，部署事实仍为 2026-09-12。
+第 44 版於 **2026-09-17 14:47 UTC** 部署成功，沿用 owner-only 私密站點。你可在[管理後台](https://zhiguanpu-private.darrengavi3.chatgpt.site/admin)維護人物、任官與引用史料，匯入資料、比較修訂，預覽後統一發布閱讀內容。首次登入按「載入既有資料」初始化；本次未將隔離驗收資料寫入生產資料庫。
 
-R1 从历史开发起点 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27` 修复全局检索冷启动、稳定 ID 详情跳转及州镇清除筛选默认，经 [PR #15](https://github.com/darrengavi3-cloud/TK-Lab/pull/15) 合并为 `4f8c8c92`，发布记录提交为 `2617c69b`。Sites 发布源码为 `d7800effea513f12aa89c69aabdbaf44cdce0e26`，第 43 版于 **2026-09-12 12:47 UTC** 部署成功（owner-only）；[原发布回执](release-metadata/r1-deployment.json)保持不变。真实 iPhone、完整键盘、200% 缩放、网络／性能测量、线上回滚及最终线上页面验收仍待办。
+遷移來源仍為 V86；第 44 版是程式部署，不提升資料 V／R 標識。保存修訂、發布閱讀快照與部署網站程式分開。唯一當前狀態入口為 [CURRENT-STATE.md](CURRENT-STATE.md)；本期見[部署回執](release-metadata/catalogue-deployment.json)與[驗收紀錄](release-metadata/catalogue-validation.json)。GitHub 實作位於 [PR #18](https://github.com/darrengavi3-cloud/TK-Lab/pull/18)，核對的 main 仍為 `7b8d0399`，不以 main 的 SHA 代替實際部署源碼。
+
+R1 歷史事實保持不變：從 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27` 開始，經 [PR #15](https://github.com/darrengavi3-cloud/TK-Lab/pull/15) 合併為 `4f8c8c92`，發布記錄為 `2617c69b`；Sites 源碼 `d7800effea513f12aa89c69aabdbaf44cdce0e26`，第 43 版於 **2026-09-12 12:47 UTC** 成功部署。保留[原回執](release-metadata/r1-deployment.json)與 [R1-REVIEW.md](R1-REVIEW.md)，不回寫成本期驗收。
 
 ## 仓库 main 与 Sumi-OCR 迁出
 
 本次校准及移除前核对的仓库 `main` 为 [`f170c891`](https://github.com/darrengavi3-cloud/TK-Lab/commit/f170c8914d2694947fc99591dab9b94a8a4fa02e)（2026-09-13 10:18:35 UTC）。R1 发布记录之后，PR #16／#17 及其分支共 6 个提交只新增了 `tools/umi-ocr/` 中的 148 个文件；[提交比较](https://github.com/darrengavi3-cloud/TK-Lab/compare/2617c69b61ec7387da919309b53f2dab8e609a67...f170c8914d2694947fc99591dab9b94a8a4fa02e)没有观史台产品改动。
 
-2026-09-17 核对 TK-Laby 已保留全部 148 个文件后，本次提交从 TK-Lab 当前树移除 Sumi-OCR 副本，并校准本页与 CURRENT-STATE.md。Sumi-OCR 的源码、构建和交付请前往 [TK-Laby](https://github.com/darrengavi3-cloud/TK-Laby/tree/main/tools/umi-ocr)，逐文件核对范围见 [CURRENT-STATE.md](CURRENT-STATE.md)。本次整理保持观史台 V86、R0／R1、第 43 版部署及未验收事项不变。
+2026-09-17 的 `7b8d0399` 在核对 TK-Laby 已保留全部 148 个文件后，从 TK-Lab 当前树移除 Sumi-OCR 副本，并校准本页与 CURRENT-STATE.md。Sumi-OCR 的源码、构建和交付请前往 [TK-Laby](https://github.com/darrengavi3-cloud/TK-Laby/tree/main/tools/umi-ocr)，逐文件核对范围见 [CURRENT-STATE.md](CURRENT-STATE.md)。该次目录整理没有改变当时的 V86、R0／R1 或第 43 版部署事实；其后的管理後台第 44 版发布另见上方回执。
 
 仓库后续进度见 [`main` 提交历史](https://github.com/darrengavi3-cloud/TK-Lab/commits/main/)；以上 SHA 是带时间的核对快照，不作为滚动更新的仓库 HEAD。以下 V 系列段落保留各轮当时的开发、审定、PR 与部署事实，当前状态统一以上文及 CURRENT-STATE.md 为准。
 
@@ -42,7 +44,7 @@ V82复核冻结清单第81—100条：批准12、排除实任4、待补核4。�
 
 V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 2026-09-07 03:02:30 UTC 合入 `main`，合并提交为 [`23c6d8b`](https://github.com/darrengavi3-cloud/TK-Lab/commit/23c6d8b3fb2d35c1efb3f5fbc9f5d3cd9b9f2c03)。该基线任官已核 197／待补核 601／存疑 2／排除 51；后续续核形成的观史台当前统计如下，不回写为 V76 的历史结果。
 
-## 观史台当前审定统计（V86 数据快照）
+## V86 遷移核對統計（固定來源基線）
 
 <!-- current-reviewed-counts:start -->
 | 项目 | 当前审定数量 |
@@ -56,7 +58,7 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 | 正式立绘 | 500 项 |
 <!-- current-reviewed-counts:end -->
 
-统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V82 审阅说明](V82-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
+以上是 Git 中 V86 遷移輸入的核對數，不冒充後台將來每次發布的即時數量；運行中的工作資料與閱讀快照在後台分別統計。统计依据为[审定状态台账](atlas/data/v73-review-status-ledger.json)、[读者人物数据](atlas/data/v63-reader-people.json)和[读者包清单](release-metadata/reader-bundle.json)，V76 基线与本批增量分别见 [V76 审阅说明](V76-REVIEW.md)及 [V82 审阅说明](V82-REVIEW.md)。沿用旧版本号的文件名不代表数据仍停留在旧版本。任官共 851 条；待补核、存疑及已排除记录不进入确定履历与确定性统计，人物身份通过也不自动放行任官、州镇或金石事实。
 
 ## V76 历史更新摘要
 
@@ -70,7 +72,7 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 ## 观史台发布边界
 
 - 站点复用既有 owner-only Site，不新建站点、不扩大访问范围。
-- 线上包只能包含读者投影；工作簿行号、检索日志、审校字段和本机路径不得进入部署产物。公开原典引文仅允许 `citations` 中的 title/url/quote/note，独立于研究台账。
+- 浏览器静态资产及阅读快照只包含允许的读者字段；研究数据留在受 owner guard 保护的服务端和私密存储。初始化封包为私密 Worker 模组，不是可下载的公开资产。原典引文与研究台账分开。
 - 审定更正必须匹配此前的完整审定摘要；小传更正必须匹配现存旧文及更正内容摘要，不能凭同一记录 ID 静默覆盖。旧文、被替代审定、证据和更正理由保留在研究层；读者层只投影更正后的正文和原典，不携带研究运行字段。
 - 图片剪枝和缩放完成后重新生成 `dist/deployment-manifest.json`，清单逐项记录最终字节数和 SHA-256。
 - 形势图的 16 期、几何、图层与稳定 ID 由规范源验证锁定。
@@ -84,7 +86,7 @@ npm run release:check
 该命令依次完成：
 
 1. 在规范源执行确定性全量构建和当前不变量验证；
-2. 按 `reader-bundle.json` 同步纯净读者包；
+2. 按 `reader-bundle.json` 同步纯净读者包，并生成后台所需的私密基线、投影型别输入与客户端资源；
 3. 执行 TypeScript 型别检查与站点静态检查；
 4. 构建、剪枝并校验最终部署清单，执行应用测试；
 5. 执行发布前的新鲜 owner-only 权限快照检查。
@@ -121,6 +123,8 @@ npm run release:offline
 
 - `atlas/`：版本化规范源、研究台账、生成器与长期不变量验证。
 - `app/`：私密站壳层。
+- `admin/`、`server/`：擁有者後台、授權、修訂、匯入、快照發布及備份。
+- `domain/`、`db/`、`drizzle/`：領域規則與資料結構；`importers/legacy-atlas/` 為唯讀遷移器。
 - `research/v77-iteration/`：未批准研究初检、来源调查及后续证据包，不属于读者构建输入。
 - `scripts/sync-reader-bundle.mjs`：从规范源清单单向同步读者包。
 - `scripts/prune-site-build.mjs`：部署剪枝、头像优化和最终清单生成。
@@ -129,8 +133,17 @@ npm run release:offline
 - `tests/deployment-integrity.test.mjs`：最终部署文件的尺寸与哈希闭合。
 - `tests/reader-semantics.test.mjs`：任官主体与否定句、年代快照、跨模块跳转、网址同步和释文全文不变。
 
-任官审定以 `atlas/data/v71-appointment-review.json` 为基础，续接 V74、V75、V76、V78、V79、V80、V81、V82 的 `appointment-source-review`、V81 的 `appointment-followup-review`，以及 V74—V76 的 `appointment-supplements`；批准清单以 `release-config.json` 为准。人物身份批准批次同样由该清单显式声明；撤回前核清全部关联，新增关联须重新审核。原典依据保存在各批次的 `citations` 或 `chancellery-evidence`。修改原始行后必须重新核定，不能仅凭人物消歧状态恢复发布。V76 小传新增与更正分别保存于 `atlas/data/v76-person-biography-review.json`、`atlas/data/v76-person-biography-corrections.json`。阅读与交互规范见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md`。
+凍結遷移來源中的任官审定以 `atlas/data/v71-appointment-review.json` 为基础，续接 V74、V75、V76、V78、V79、V80、V81、V82 的 `appointment-source-review`、V81 的 `appointment-followup-review`，以及 V74—V76 的 `appointment-supplements`；批准清单以 `release-config.json` 为准。人物身份批准批次同样由该清单显式声明。後台初始化後，這些檔案不反向覆蓋 D1 修訂。尚未遷移的小传等領域仍由 atlas 維護。原典依据保存在各批次的 `citations` 或 `chancellery-evidence`；修改內容須重新核定，不能仅凭人物消歧状态恢复发布。阅读与交互规范见 `atlas/DESIGN.md`、`atlas/UX-CONTRACT.md`。
 
 要求 Node.js `>=22.13.0`。
 
-Cloudflare runtime 型别由锁定版本 Wrangler / workerd 根据实际构建配置生成并提交。完成构建后可运行 `npm run types:generate` 刷新；`npm run typecheck` 不需要连接 Cloudflare。D1 保持可选绑定，并保留缺少绑定时的运行时检查。
+Cloudflare runtime 型别由锁定版本 Wrangler / workerd 根据实际构建配置生成并提交。完成构建后可运行 `npm run types:generate` 刷新；`npm run typecheck` 不需要连接 Cloudflare。本期後台需要 D1 `DB` 與私密 R2 `BUCKET` 綁定，缺少時明確回報資料服務未就緒。
+
+## 管理後台一期
+
+第 44 版已接通 `/admin`：人物／任官／史料編輯、修訂比較與恢復、CSV／Excel／JSON 匯入、固定閱讀候選、確認發布、內容回退及備份。首次擁有者登入可載入已核驗的 V86 基線。工作修訂、閱讀內容快照、Sites 程式部署分開記錄；當前部署結果見 CURRENT-STATE.md。
+
+- 單獨核對新核心：`npm run test:catalogue`。
+- 唯讀遷移報告：`npm run migrate:shadow`；不寫入 atlas、資料庫或線上站點。
+
+使用說明、資料權威、還原命令與後續範圍見 [資料核心重構紀錄](docs/catalogue-refactor.md)。官職／州鎮統一關聯及金石等其他領域仍待逐域遷移，不將首期稱為全項目重構完成。

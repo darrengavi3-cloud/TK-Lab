@@ -1,4 +1,5 @@
 import vinext from "vinext";
+import { existsSync, readFileSync } from "node:fs";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
@@ -33,7 +34,9 @@ const localBindingConfig = {
     : [],
 };
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ command }) => {
+  const previewFile = ".sites-runtime/catalogue-preview.json";
+  const preview = command === "serve" && existsSync(previewFile) ? JSON.parse(readFileSync(previewFile, "utf8")) as { actor: string } : null;
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= "false";
@@ -55,11 +58,18 @@ export default defineConfig(async () => {
         : {}),
     },
     plugins: [
+      ...(preview ? [{ name: "catalogue-local-preview", configureServer(server: import("vite").ViteDevServer) { server.middlewares.use((request, _response, next) => {
+        // Cloudflare's Node-to-Request adapter consumes rawHeaders.
+        request.headers["oai-authenticated-user-id"] = preview.actor;
+        request.rawHeaders = request.rawHeaders.filter((_value, index, all) => all[index - index % 2].toLowerCase() !== "oai-authenticated-user-id");
+        request.rawHeaders.push("oai-authenticated-user-id", preview.actor);
+        next();
+      }); } }] : []),
       vinext(),
       sites(),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-        config: localBindingConfig,
+        config: { ...localBindingConfig, ...(preview ? { vars: { ADMIN_OWNER_ID: preview.actor } } : {}) },
       }),
     ],
   };

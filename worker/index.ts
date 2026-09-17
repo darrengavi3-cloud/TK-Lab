@@ -1,10 +1,12 @@
 import handler from "vinext/server/app-router-entry";
+import { catalogueRouter } from "../server/admin-router";
 import { readerRequestGuard } from "./reader-request-guard";
 
-// The reader serves prebuilt data and local images. It has no Server Actions,
-// image transformation service, uploads, or server-side mutations.
+// Owner-authorized catalogue routes are isolated before the unchanged reader guard.
 const worker = {
   async fetch(request: Request, env: Cloudflare.Env, ctx: ExecutionContext): Promise<Response> {
+    const catalogue = await catalogueRouter(request, env);
+    if (catalogue) return catalogue;
     const rejected = readerRequestGuard(request);
     if (rejected) return rejected;
     return handler.fetch(request, env, ctx);

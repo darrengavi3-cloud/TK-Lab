@@ -1,0 +1,16 @@
+{
+  "catalogue_commits": ["seq","request_id","request_hash","actor","reason","at","guard"],
+  "catalogue_records": ["id","kind","version","commit_seq","name","assessment","visibility"],
+  "catalogue_revisions": ["id","version","commit_seq","payload","digest"],
+  "catalogue_people": ["id","aliases","alias_publication"],
+  "catalogue_aliases": ["alias","person_id"],
+  "catalogue_sources": ["id","edition","locator","scope"],
+  "catalogue_appointments": ["id","person_id","office_id","office_name","nature","start_year","end_year","date_text","duplicate_of"],
+  "catalogue_evidence": ["id","source_id","source_version","role","note"],
+  "catalogue_imports": ["id","filename","original_hash","mapping","mapping_hash","state","total","at","commit_seq"],
+  "catalogue_staged": ["job_id","position","id","base_version","payload","digest"],
+  "catalogue_objects": ["hash","filename","bytes","media_type","at"],
+  "catalogue_releases": ["id","watermark","digest","state","code_id","manifest","at","actor"],
+  "catalogue_publication_events": ["seq","request_id","release_id","previous_id","actor","at","action","digest"],
+  "catalogue_settings": ["key","value"]
+}

@@ -7015,8 +7015,8 @@ const app = createApp({
     function personCitations(person){
       const seen=new Set();
       return [...(person?.bioCitations||[]),...(person?.lifeEvents||[]).flatMap(event=>event.citations||[])].filter(citation=>{
-        if(!/^https:\/\//.test(citation.url||''))return false;
-        const key=citation.url+'|'+citation.quote;
+        if(!String(citation.title||'').trim()||(!citation.quote&&!/^https?:\/\//.test(citation.url||'')))return false;
+        const key=[citation.title,citation.url,citation.quote,citation.role||'support'].join('|');
         if(seen.has(key))return false;seen.add(key);return true;
       });
     }
@@ -8666,6 +8666,7 @@ const app = createApp({
         </button>
         <el-popover v-model:visible="showTheme" placement="bottom-end" width="288" trigger="click" popper-class="v57-appearance-popover">
           <template #reference><button class="theme-trigger" type="button" aria-label="打开设置">设置</button></template>
+          <a href="/admin" target="_top" class="v84-button v84-button--outline">资料管理</a>
           <button type="button" class="v84-button v84-button--outline" @click="setWorkspaceMode(workspaceMode==='review'?'reader':'review');showTheme=false">{{workspaceMode==='review'?'返回阅读':'进入审校'}}</button>
           <p v-if="workspaceMode==='review'" class="reader-quiet-note">当前为审校模式</p>
           <div class="field-group-title">外观主题</div>
