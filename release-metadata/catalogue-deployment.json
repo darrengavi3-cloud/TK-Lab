@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "product": "觀史台管理後台一期",
+  "dataBaseline": "V86",
+  "historicalR1Receipt": "release-metadata/r1-deployment.json",
+  "sourceCommit": "8c117b47edf571a7a23b90075630201626d4b04a",
+  "githubImplementationCommit": "c7f06f7b3e8d95d6ae9d0f8eee4e78ebfb81682b",
+  "sourceTree": "a00383d8771283dcc71f70730c99f62f8aee0363",
+  "versionNumber": 44,
+  "versionId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_baf826b918ec819195152968641e5959",
+  "deploymentId": "appgdep_6aabfd5dc55c819183141e38accd1e1d",
+  "status": "succeeded",
+  "completedAt": "2026-09-17T14:47:14.216293+00:00",
+  "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+  "archiveHash": "sha256:9dabfbb208eecdd77209e0b5e8ec9e8b15f21988b9e4f4b31d5ca641ffbfb30f",
+  "localGzipSha256": "31cb7a77c072189533d9e2eeb3053223119240a031c082abf31bc96ee73b45bf",
+  "archiveFileCount": 2127,
+  "envSetRevision": 1,
+  "ownerOnly": true,
+  "productionDataInitialized": false,
+  "contentPublicationIsSitesDeployment": false,
+  "validation": "release-metadata/catalogue-validation.json"
+}

@@ -16,7 +16,7 @@
     "test:built": "node --test tests/*.test.mjs",
     "test:source": "node --test tests/reader-semantics.test.mjs tests/office-succession.test.mjs tests/research-worklist.test.mjs tests/access-policy.test.mjs tests/reader-refinement.test.mjs tests/shiyuan-citation.test.mjs tests/reader-product.test.mjs",
     "test:visual": "node --test tests/visual/*.test.mjs",
-    "release:offline": "node atlas/scripts/release-check.mjs && npm run sync:reader && npm run typecheck && npm run lint && npm run build:site && npm run test:built",
+    "release:offline": "node atlas/scripts/release-check.mjs && npm run sync:reader && npm run build:catalogue && npm run typecheck && npm run lint && npm run build:site && npm run test:built",
     "release:access": "REQUIRE_FRESH_SITE_ACCESS=1 node --test tests/access-policy.test.mjs",
     "release:check": "npm run release:offline && npm run release:access",
     "typecheck": "tsc --noEmit --incremental false",
