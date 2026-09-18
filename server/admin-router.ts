@@ -4,10 +4,12 @@ import {bootstrap} from './bootstrap-service';
 import {validateRecord} from '../domain/catalogue';
 import {canonicalJson,sha256} from '../domain/revisions';
 import {storage,check,setting,HttpError,type CatalogueEnv} from './storage';
-import {domainErrorStatus,listRecords,getRevision,history,saveRecord,watermark} from './catalogue-service';
+import {domainErrorStatus,listRecords,getRevision,history,saveRecord,watermark,snapshot} from './catalogue-service';
 import {upload,inspectFile,createImport,importDetail,stageImport,commitImport} from './import-service';
 import {makePublication,publishData} from './publication-service';
 import {readerLinkOptions} from './reader-links';
+import {previewPersonResearch,inspectPersonResearch,parseResearchWatermark} from './research-preview';
+import {ResearchError} from '../domain/prosopography/time';
 import adminHtml from '../admin/index.html?raw';
 import readerHtml from './generated/reader.html?raw';
 const noStore={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
@@ -26,6 +28,11 @@ export async function catalogueRouter(request:Request,env:CatalogueEnv):Promise<
     if(path==='/admin'||path==='/admin/'){check(['GET','HEAD'].includes(request.method),'不支援此操作。',405);return new Response(request.method==='HEAD'?null:adminHtml,{headers:{...noStore,'Content-Type':'text/html;charset=utf-8'}});}
     const {db,bucket}=storage(env);
     const method=request.method==='HEAD'?'GET':request.method;
+    // Read-only research endpoints stay behind owner identity and POST origin guards.
+    const researchRepo={watermark:()=>watermark(db),snapshot:(seq:number)=>snapshot(db,seq),getRevision:(id:string,version:number)=>getRevision(db,id,version)};
+    const researchPerson=path.match(/^\/api\/admin\/research\/people\/([^/]+)$/);
+    if(method==='GET'&&researchPerson)return json(await previewPersonResearch(researchRepo,safeId(researchPerson[1]),parseResearchWatermark(url.searchParams.get('watermark'))));
+    if(method==='POST'&&path==='/api/admin/research/inspect')return json(await inspectPersonResearch(researchRepo,await body(request)));
     if(method==='GET'&&path==='/api/admin/reader-links')return json(readerLinkOptions());
     if(method==='GET'&&path==='/api/admin/session'){
       const counts=(await db.prepare('SELECT kind,count(*) AS total FROM catalogue_records GROUP BY kind').all()).results;
@@ -72,7 +79,7 @@ export async function catalogueRouter(request:Request,env:CatalogueEnv):Promise<
     }
     return json({error:'找不到此操作。'},404);
   }catch(error){
-    const status=domainErrorStatus(error);if(status>=500)console.error('Catalogue request failed',error instanceof Error?error.message:'unknown');
+    const status=error instanceof ResearchError?422:domainErrorStatus(error);if(status>=500)console.error('Catalogue request failed',error instanceof Error?error.message:'unknown');
     return json({error:status>=500?'資料服務暫時無法使用，輸入仍保留，請稍後重試。':error instanceof Error?error.message:'操作失敗。',...(error instanceof HttpError&&error.details?{details:error.details}:{})},status);
   }
 }
