@@ -8354,6 +8354,7 @@ const app = createApp({
         if(['州','郡','方镇'].includes(fangzhenLevel.value))params.set('level',fangzhenLevel.value);
         if(fangzhenState.value!=='all')params.set('state',fangzhenState.value);
         if(fangzhenRecordType.value!=='all')params.set('kind',fangzhenRecordType.value);
+        if(fangzhenDutyView.value!=='all')params.set('duty',fangzhenDutyView.value);
         if(fangzhenView.value!=='records')params.set('view',fangzhenView.value);
         if(fangzhenPage.value>1)params.set('page',String(fangzhenPage.value));
         if(fangzhenPrimaryDetail.value?.id)params.set('id',fangzhenPrimaryDetail.value.id);
@@ -8428,7 +8429,7 @@ const app = createApp({
           const archive=p.get('archive')||'all';
           if(FANGZHEN_ARCHIVE_DEFS.some(item=>item.key===archive))selectFangzhenArchive(archive);
           const requestedLevel=p.get('level')||'all';
-          fangzhenQuery.value=p.get('q')||'';fangzhenLevel.value=['all','州','郡','方镇'].includes(requestedLevel)?requestedLevel:'all';fangzhenState.value=p.get('state')||'all';fangzhenRecordType.value=p.get('kind')||'all';fangzhenView.value=p.get('view')||'records';fangzhenPage.value=Math.max(1,Number(p.get('page'))||1);
+          fangzhenQuery.value=p.get('q')||'';fangzhenLevel.value=['all','州','郡','方镇'].includes(requestedLevel)?requestedLevel:'all';fangzhenState.value=p.get('state')||'all';fangzhenRecordType.value=p.get('kind')||'all';fangzhenDutyView.value=['all','administrative','military'].includes(p.get('duty'))?p.get('duty'):'all';fangzhenView.value=p.get('view')||'records';fangzhenPage.value=Math.max(1,Number(p.get('page'))||1);
           const record=fangzhenRecords.value.find(item=>item.id===p.get('id'));
           if(record)selectFangzhenWorkbenchRecord(record,{url:false});
         }else if(module==='battle'){
