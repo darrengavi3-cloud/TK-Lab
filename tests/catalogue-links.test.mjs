@@ -95,3 +95,12 @@ test('backup v3 includes ownership links and the restore verifier still admits e
   const restored=verifyBackup(gzipSync(older.map(r=>JSON.stringify(r)).join('\n')+'\n'));
   assert.deepEqual(restored.data.catalogue_reader_links,[]);
 });
+
+test('explicit state power kinds publish without changing jurisdiction semantics',async()=>{
+  appointment={...appointment,assessment:'verified',disposition:'none',nature:'實授',polity:'季汉',jurisdiction:'汉军',date:{original:'延熙十九年',startYear:256,endYear:256,precision:'year',certainty:'certain',basis:''},readerLinks:{...appointment.readerLinks,fangzhen:{...appointment.readerLinks.fangzhen,recordId:target.id,powerKinds:['administrative','military_title','military_command','delegated_power']}}};
+  await save(appointment);
+  const candidate=await service.makePublication(env,'test-owner');
+  const state=(await payload(candidate,'v69-fangzhen-reader')).records.find(r=>r.id===target.id);
+  assert.deepEqual(state.powerKinds,['administrative','military_title','military_command','delegated_power']);
+  assert.equal(state.jurisdiction,'汉军');
+});
