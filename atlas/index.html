@@ -2889,6 +2889,7 @@ const app = createApp({
     },{deep:true});
     const fangzhenArchiveKey = ref('all');
     const fangzhenRecordType = ref('all');
+    const fangzhenDutyView = ref('all');
     const fangzhenLevel = ref('all');
     const fangzhenState = ref('all');
     const fangzhenPeriod = ref('three');
@@ -4360,6 +4361,7 @@ const app = createApp({
         .filter(r=>!fangzhenOnlyVerified.value||r.readerDisplayStatus==='verified')
         .filter(r=>fangzhenLevel.value==='all'||r.jurisdictionKind===fangzhenLevel.value)
         .filter(r=>fangzhenRecordType.value==='all'||(r.recordType||'other')===fangzhenRecordType.value)
+        .filter(r=>window.SGZ_UI_MODULES?.fangzhen?.fangzhenMatchesDutyView(r,fangzhenDutyView.value)!==false)
         .filter(r=>fangzhenState.value==='all'||fangzhenJurisdictionKey(r)===fangzhenState.value)
         .filter(r=>!q||administrativeSearchText(r).includes(q))
         .slice().sort((a,b)=>(Number(a.startYear)||0)-(Number(b.startYear)||0)||String(a.polity).localeCompare(String(b.polity),'zh-CN'));
@@ -8474,7 +8476,7 @@ const app = createApp({
     watch([showPeopleDetail,showFangzhenDetail,showEpigraphicDetail,showShihuoDetail],()=>scheduleUrlState('replace'));
     watch(()=>[canvasFilters.query,canvasFilters.rank,canvasFilters.special,officeGroup.value,officeSub.value,officeSub2.value,timelineEnabled.value,timelineYear.value,peopleSource.value,peopleEvidence.value,epigraphicArchive.value],()=>scheduleUrlState('replace'));
     watch(peopleContent,()=>{if(!urlStateApplying)peoplePage.value=1;});
-    watch([fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenView,fangzhenOnlyVerified],()=>{if(urlStateApplying)return;fangzhenPage.value=1;activeFangzhenRecordId.value='';});
+    watch([fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenDutyView,fangzhenView,fangzhenOnlyVerified],()=>{if(urlStateApplying)return;fangzhenPage.value=1;activeFangzhenRecordId.value='';});
     watch([shiyuanWork,shiyuanKind,shiyuanQuery],()=>{if(!urlStateApplying){shiyuanPage.value=1;shiyuanVolumeId.value='';}});
     watch(shiyuanPage,()=>{if(!urlStateApplying&&!shiyuanPagination.value.rows.some(row=>row.id===shiyuanVolumeId.value))shiyuanVolumeId.value='';});
     watch([shiyuanWork,shiyuanKind,shiyuanQuery,shiyuanVolumeId,shiyuanPage],()=>scheduleUrlState('replace'));
@@ -8579,7 +8581,7 @@ const app = createApp({
       courtResidenceReason, HAN_COURT_SECTION_NAV, hanCourtActiveSection, hanCourtStructure, hanCourtSelectedDetail, showHanCourtDetail,
       hanCourtDutySummary, selectHanCourtNode, scrollHanCourtSection, closeHanCourtDetail, handleHanCourtDetailKeydown, openHanEastPalace,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
-      fangzhenArchiveKey, fangzhenRecordType, fangzhenLevel, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions, fangzhenArchiveRows,
+      fangzhenArchiveKey, fangzhenRecordType, fangzhenDutyView, fangzhenLevel, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions, fangzhenArchiveRows,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
       fangzhenJurisdictionIndex, fangzhenJurisdictionGroups, fangzhenPage, fangzhenPageCount, fangzhenPagination, fangzhenPagedRecords, fangzhenPrimaryDetail, fangzhenRelatedRecords, fangzhenSeatPeriods, fangzhenPeriodLabel, classifyFangzhenJurisdiction, fangzhenDynastyLabel,
       activeFangzhenRecordId, showFangzhenDetail, selectFangzhenWorkbenchRecord, fangzhenHasResidence, openFangzhenResidence,
@@ -9700,7 +9702,7 @@ const app = createApp({
         </div>
         <section v-if="fangzhenView==='records'" class="v67-fangzhen-workbench" aria-label="州镇职任工作台">
           <section class="v67-fangzhen-table-panel">
-            <header class="v67-panel-heading"><div><small>{{fangzhenArchiveDef.label}}</small><strong>职任表</strong></div><span>第 {{fangzhenPage}} / {{fangzhenPageCount}} 页</span></header>
+            <header class="v67-panel-heading"><div><small>{{fangzhenArchiveDef.label}}</small><strong>职任</strong></div><nav class="fangzhen-duty-tabs" aria-label="军政职任视图"><button type="button" :class="{active:fangzhenDutyView==='all'}" @click="fangzhenDutyView='all'">综合</button><button type="button" :class="{active:fangzhenDutyView==='administrative'}" @click="fangzhenDutyView='administrative'">行政</button><button type="button" :class="{active:fangzhenDutyView==='military'}" @click="fangzhenDutyView='military'">军事</button></nav><span>第 {{fangzhenPage}} / {{fangzhenPageCount}} 页</span></header>
             <div class="fangzhen-table-card fangzhen-desktop-table">
               <el-table :data="fangzhenPagedRecords" row-key="id" highlight-current-row :current-row-key="fangzhenPrimaryDetail&&fangzhenPrimaryDetail.id" size="small" empty-text="当前档案尚无符合条件的记录" @row-click="selectFangzhenWorkbenchRecord">
                 <el-table-column label="辖区" min-width="86" show-overflow-tooltip><template #default="scope"><span>{{scope.row.jurisdiction}}</span><small class="fz-jurisdiction-kind">{{scope.row.jurisdictionKind}}</small></template></el-table-column>
@@ -9709,7 +9711,7 @@ const app = createApp({
                 <el-table-column prop="title" label="职任" min-width="110" show-overflow-tooltip />
                 <el-table-column label="治所／驻地" min-width="82" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.seat">{{scope.row.seat}}</span></template></el-table-column>
                 <el-table-column label="任期" min-width="118" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.tenureText||scope.row.confirmedRange">{{scope.row.tenureText||scope.row.confirmedRange}}</span></template></el-table-column>
-                <el-table-column label="类型" width="70"><template #default="scope"><span class="fz-type-pill">{{fangzhenTypeLabel(scope.row.recordType)}}</span></template></el-table-column>
+                <el-table-column label="职权" min-width="96"><template #default="scope"><span class="fz-power-text">{{(window.SGZ_UI_MODULES?.fangzhen?.classifyFangzhenPowers(scope.row)||[]).map(window.SGZ_UI_MODULES?.fangzhen?.fangzhenPowerLabel).join(' · ')||fangzhenTypeLabel(scope.row.recordType)}}</span></template></el-table-column>
                 <el-table-column label="状态" width="76"><template #default="scope"><span class="v69-review-status" :class="scope.row.readerDisplayStatus">{{scope.row.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></template></el-table-column>
                 <el-table-column v-if="workspaceMode==='review'" class-name="review-only" label="操作" width="108" fixed="right"><template #default="scope"><el-button class="review-only" size="small" text type="primary" @click.stop="openFangzhenEditor(scope.row)">编辑</el-button><el-button class="review-only" size="small" text type="danger" @click.stop="deleteFangzhenRecord(scope.row)">删除</el-button></template></el-table-column>
               </el-table>
