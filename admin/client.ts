@@ -52,7 +52,7 @@ createApp({setup(){
   function updateLinks(links:AppointmentReaderLinks){if(state.selected?.data.kind==='appointment')state.selected.data.readerLinks=links;}
   function setOfficeLinks(offices:string[]){updateLinks({...activeLinks.value,offices});}
   function toggleFangzhen(enabled:boolean){updateLinks({...activeLinks.value,fangzhen:enabled?{recordId:null,polityKey:'han',recordType:'other',powerKinds:[],administrativeUnitId:null}:null});}
-  function setFangzhenField(key:string,value:string|null){const f=activeLinks.value.fangzhen;if(f)updateLinks({...activeLinks.value,fangzhen:{...f,[key]:value||null}});}
+  function setFangzhenField(key:string,value:string|string[]|null){const f=activeLinks.value.fangzhen;if(f)updateLinks({...activeLinks.value,fangzhen:{...f,[key]:Array.isArray(value)?value:(value||null)}});}
   function selectFangzhenRecord(id:string){
     const old=references.value?.fangzhen.find(r=>r.id===id),f=activeLinks.value.fangzhen;if(!f)return;
     if(!old){setFangzhenField('recordId',null);return;}
