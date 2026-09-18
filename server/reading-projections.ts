@@ -67,6 +67,7 @@ export function linkedReadingProjections(rows: Revision[], people: Map<string, R
       title: a.officeName, commission: a.officeName, polity, dynastyLabel: polityLabels[f.polityKey],
       eraGroup: f.polityKey === 'eastjin' ? 'eastjin' : f.polityKey === 'jin' ? 'jin' : 'three',
       archiveScope: f.polityKey === 'eastjin' ? '东晋扩展' : '核心：汉末—西晋', recordType: f.recordType,
+      ...(f.powerKinds?.length ? {powerKinds: [...new Set(f.powerKinds)]} : {}),
       relation: '职任记录', jurisdiction: a.jurisdiction, appointmentStatus: a.nature,
       startYear: fact.startYear, endYear: fact.endYear,
       tenureText: a.date.original || (a.date.certainty === 'certain' ? [a.date.startYear ?? '始年未详', a.date.endYear ?? '终年未详'].join('—') : '年代未详'),
