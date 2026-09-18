@@ -9,6 +9,7 @@ import {upload,inspectFile,createImport,importDetail,stageImport,commitImport} f
 import {makePublication,publishData} from './publication-service';
 import {readerLinkOptions} from './reader-links';
 import {previewPersonResearch,inspectPersonResearch,parseResearchWatermark} from './research-preview';
+import {saveResearch,getResearchRevision,researchHistory} from './research-journal';
 import {ResearchError} from '../domain/prosopography/time';
 import researchHtml from '../admin/research.html?raw';
 import adminHtml from '../admin/index.html?raw';
@@ -35,6 +36,15 @@ export async function catalogueRouter(request:Request,env:CatalogueEnv):Promise<
     const researchPerson=path.match(/^\/api\/admin\/research\/people\/([^/]+)$/);
     if(method==='GET'&&researchPerson)return json(await previewPersonResearch(researchRepo,safeId(researchPerson[1]),parseResearchWatermark(url.searchParams.get('watermark'))));
     if(method==='POST'&&path==='/api/admin/research/inspect')return json(await inspectPersonResearch(researchRepo,await body(request)));
+    const dossier=path.match(/^\/api\/admin\/research\/dossiers\/([^/]+)(\/history)?$/);
+    if(method==='POST'&&path==='/api/admin/research/dossiers')return json(await saveResearch(db,researchRepo,actor,await body(request)));
+    if(dossier){
+      check(method==='GET','不支援此操作。',405);
+      const id=safeId(dossier[1]),cursor=parseResearchWatermark(url.searchParams.get(dossier[2]?'before':'revision'));
+      const result=dossier[2]?await researchHistory(db,id,cursor):await getResearchRevision(db,id,cursor);
+      const response=json({persisted:result!==null,published:false,data:result});
+      return request.method==='HEAD'?new Response(null,{status:response.status,headers:response.headers}):response;
+    }
     if(method==='GET'&&path==='/api/admin/reader-links')return json(readerLinkOptions());
     if(method==='GET'&&path==='/api/admin/session'){
       const counts=(await db.prepare('SELECT kind,count(*) AS total FROM catalogue_records GROUP BY kind').all()).results;

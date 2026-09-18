@@ -9,7 +9,7 @@ export async function loadResearchForTests() {
   const temp = await fs.mkdtemp(path.join(os.tmpdir(), 'prosopography-'));
   // Discover the maintained core so a newly imported module cannot disappear in tests.
   const core = (await fs.readdir('domain/prosopography')).filter(name => name.endsWith('.ts')).sort().map(name => 'domain/prosopography/' + name);
-  const files = ['domain/catalogue.ts', 'domain/revisions.ts', ...core, 'server/research-preview.ts', 'server/storage.ts', 'server/authorization.ts', 'server/admin-router.ts'];
+  const files = ['domain/catalogue.ts', 'domain/revisions.ts', ...core, 'server/research-preview.ts', 'server/research-journal.ts', 'server/storage.ts', 'server/authorization.ts', 'server/admin-router.ts'];
   for (const file of files) {
     const source = await fs.readFile(file, 'utf8');
     let output = ts.transpileModule(source, {fileName: file, compilerOptions: {target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext}}).outputText;

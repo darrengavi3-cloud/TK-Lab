@@ -17,11 +17,12 @@ export async function loadResearchModules(entries, overrides = {}) {
     let content;
     if (Object.hasOwn(overrides, relative)) content = overrides[relative];
     else if (relative.endsWith('?raw')) content = 'export default ' + JSON.stringify(await fs.readFile(path.join(root, relative.slice(0, -4)), 'utf8'));
+    else if (relative.endsWith('.json')) content = 'export default ' + await fs.readFile(path.join(root, relative), 'utf8');
     else content = ts.transpileModule(await fs.readFile(path.join(root, relative), 'utf8'), {compilerOptions: {target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext}}).outputText;
     const dependencies = [];
     content = content.replace(/(\bfrom\s*['"]|\bimport\s*['"])(\.[^'"]+)(['"])/g, (_, before, specifier, after) => {
       const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(relative), specifier));
-      const dependency = resolved.endsWith('?raw') || /\.(ts|mjs|js)$/.test(resolved) ? resolved : resolved + '.ts';
+      const dependency = resolved.endsWith('?raw') || /\.(ts|mjs|js|json)$/.test(resolved) ? resolved : resolved + '.ts';
       dependencies.push(dependency);
       let local = path.posix.relative(path.posix.dirname(relative), dependency + '.mjs');
       if (!local.startsWith('.')) local = './' + local;
