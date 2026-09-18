@@ -5,6 +5,7 @@ import {researchPresence} from '../domain/prosopography/presence';
 import {requireResearch as ok} from '../domain/prosopography/time';
 import {validateResearchGraph, verifyResearchGraph, pinKey} from '../domain/prosopography/validate';
 import type {ResearchGraph} from '../domain/prosopography/types';
+import {matchesLegacyOriginal} from '../domain/prosopography/origin';
 
 /** Adapter is read-only; all HTTP access must remain behind the existing owner guard. */
 export interface ResearchRepository {
@@ -55,6 +56,7 @@ export async function inspectPersonResearch(repo: ResearchRepository, input: {gr
   for (const tenure of graph.tenures) if (tenure.legacyOrigin) {
     const origin = origins.get(pinKey(tenure.legacyOrigin));
     ok(origin && origin.data.kind === 'appointment' && origin.data.personId === graph.personId && origin.id === tenure.id && origin.digest === tenure.legacyOrigin.digest, 'origin-reference', '舊任官來源須對應此水位、人物及原穩定 ID。');
+    ok(matchesLegacyOriginal(tenure, origin.data), 'origin-content', '固定舊修訂與原官名、性質、政權或轄區文字不符；校改請另立有依據的說法。');
   }
   // Reuse the bridge's origin byte verification, including person evidence.
   const refs = [...graph.evidence.map(e => e.source), ...graph.textualVariants.flatMap(v => v.readings.map(r => r.source)), ...rows.flatMap(r => r.data.evidence.map(e => ({id: e.sourceId, revision: e.sourceRevision})))];
