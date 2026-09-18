@@ -10,6 +10,7 @@ import {makePublication,publishData} from './publication-service';
 import {readerLinkOptions} from './reader-links';
 import {previewPersonResearch,inspectPersonResearch,parseResearchWatermark} from './research-preview';
 import {ResearchError} from '../domain/prosopography/time';
+import researchHtml from '../admin/research.html?raw';
 import adminHtml from '../admin/index.html?raw';
 import readerHtml from './generated/reader.html?raw';
 const noStore={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
@@ -19,13 +20,14 @@ async function body(request:Request){try{return JSON.parse(new TextDecoder('utf-
 function safeId(value:string){try{return decodeURIComponent(value);}catch{throw new HttpError(400,'識別碼無效。');}}
 export async function catalogueRouter(request:Request,env:CatalogueEnv):Promise<Response|null>{
   const url=new URL(request.url),path=url.pathname;
-  if(path!=='/admin'&&path!=='/admin/'&&!path.startsWith('/api/admin/')&&!path.startsWith('/reader/'))return null;
+  if(path!=='/admin/research'&&path!=='/admin'&&path!=='/admin/'&&!path.startsWith('/api/admin/')&&!path.startsWith('/reader/'))return null;
   try{
     if(request.headers.has('next-action')||request.headers.has('x-rsc-action'))return json({error:'不支援此操作。'},405);
     if(path.startsWith('/reader/'))return await readerRoute(request,env);
     const actor=await owner(request,env);
     if(!['GET','HEAD'].includes(request.method))mutationGuard(request);
-    if(path==='/admin'||path==='/admin/'){check(['GET','HEAD'].includes(request.method),'不支援此操作。',405);return new Response(request.method==='HEAD'?null:adminHtml,{headers:{...noStore,'Content-Type':'text/html;charset=utf-8'}});}
+    if(path==='/admin/research'){check(['GET','HEAD'].includes(request.method),'不支援此操作。',405);return new Response(request.method==='HEAD'?null:researchHtml,{headers:{...noStore,'Content-Type':'text/html;charset=utf-8'}});}
+    if(path==='/admin'||path==='/admin/'){check(['GET','HEAD'].includes(request.method),'不支援此操作。',405);return new Response(request.method==='HEAD'?null:adminHtml.replace('</nav>','<a href="/admin/research">人物誌研究（預覽）</a></nav>'),{headers:{...noStore,'Content-Type':'text/html;charset=utf-8'}});}
     const {db,bucket}=storage(env);
     const method=request.method==='HEAD'?'GET':request.method;
     // Read-only research endpoints stay behind owner identity and POST origin guards.
