@@ -4406,6 +4406,9 @@ const app = createApp({
       const module=window.SGZ_UI_MODULES?.fangzhen;
       return module?module.relatedFangzhenRecords(rows,selected):[];
     });
+        function fangzhenIsAdministrative(record){
+      return (window.SGZ_UI_MODULES?.fangzhen?.classifyFangzhenPowers(record)||[]).includes('administrative');
+    }
     const fangzhenMilitaryJurisdictions=computed(()=>{
       const module=window.SGZ_UI_MODULES?.fangzhen;
       return module?module.militaryJurisdictions(fangzhenRelatedRecords.value):[];
@@ -8595,7 +8598,7 @@ const app = createApp({
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenDutyView, fangzhenSection, fangzhenLevel, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions, fangzhenArchiveRows,
       filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPowerText, fangzhenPolityClass, fangzhenRowClassName,
-      fangzhenJurisdictionIndex, fangzhenJurisdictionGroups, fangzhenPage, fangzhenPageCount, fangzhenPagination, fangzhenPagedRecords, fangzhenPrimaryDetail, fangzhenRelatedRecords, fangzhenSeatPeriods, fangzhenMilitaryJurisdictions, fangzhenPeriodLabel, classifyFangzhenJurisdiction, fangzhenDynastyLabel,
+      fangzhenJurisdictionIndex, fangzhenJurisdictionGroups, fangzhenPage, fangzhenPageCount, fangzhenPagination, fangzhenPagedRecords, fangzhenPrimaryDetail, fangzhenRelatedRecords, fangzhenSeatPeriods, fangzhenMilitaryJurisdictions, fangzhenIsAdministrative, fangzhenPeriodLabel, classifyFangzhenJurisdiction, fangzhenDynastyLabel,
       activeFangzhenRecordId, showFangzhenDetail, selectFangzhenWorkbenchRecord, fangzhenHasResidence, openFangzhenResidence,
       retryActiveModule, personCitations, fangzhenOnlyVerified, fangzhenSnapshotExcluded,
       fangzhenSnapshotYear, fangzhenCompareYear, fangzhenView, fangzhenSnapshotRecords, fangzhenCompareRecords, fangzhenVisibleRecords, fangzhenOverlapIssues, fangzhenTimelineStyle, fangzhenValidAtYear,
@@ -9749,7 +9752,7 @@ const app = createApp({
           <header><div><small>{{fangzhenArchiveDef.label}}</small><h2>{{fangzhenState!=='all'?fangzhenState:'治所与辖境'}}</h2></div><p>行政辖属与军事督辖分开呈现；军事辖区保持史料原范围。</p></header>
           <div class="fangzhen-territory-grid">
             <article><h3>治所</h3><template v-if="fangzhenSeatPeriods.length"><dl v-for="period in fangzhenSeatPeriods" :key="period.seatPeriodId"><dt>{{period.seatName}}</dt><dd>{{fangzhenPeriodLabel(period)}}</dd></dl></template><p v-else>暂无可确认治所分期。</p></article>
-            <article><h3>行政辖属</h3><p v-if="fangzhenState==='all'">请选择州郡后查看对应行政记录。</p><ul v-else><li v-for="record in fangzhenRelatedRecords.filter(r=>(window.SGZ_UI_MODULES?.fangzhen?.classifyFangzhenPowers(r)||[]).includes('administrative'))" :key="'admin-'+record.id">{{record.jurisdiction}}<small>{{record.tenureText||record.confirmedRange||'时期未详'}}</small></li></ul></article>
+            <article><h3>行政辖属</h3><p v-if="fangzhenState==='all'">请选择州郡后查看对应行政记录。</p><ul v-else><li v-for="record in fangzhenRelatedRecords.filter(fangzhenIsAdministrative)" :key="'admin-'+record.id">{{record.jurisdiction}}<small>{{record.tenureText||record.confirmedRange||'时期未详'}}</small></li></ul></article>
             <article><h3>军事辖区</h3><p v-if="!fangzhenMilitaryJurisdictions.length">暂无明确军事督辖记录。</p><ul v-else><li v-for="item in fangzhenMilitaryJurisdictions" :key="item.recordId">{{item.jurisdiction}}<small>{{item.tenureText||'时期未详'}}</small></li></ul></article>
           </div>
         </section>
