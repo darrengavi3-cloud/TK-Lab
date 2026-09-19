@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-19T01:27:21Z",
+  "scope": "PR #23 post-merge repository repair",
+  "baseCommit": "cd2fb66edfb63c406bfed415a77acbfd6e7ef9ce",
+  "originalPullRequest": 23,
+  "originalPullRequestState": "merged",
+  "originalHead": "f8913a697a0b39cc1918bf070fe910f713a37deb",
+  "finalPrHead": "c6db19c81dd37f3d0456cb63083208e8ba0a5daa",
+  "failedRuns": [
+    35386040817,
+    35410599776,
+    35410711617
+  ],
+  "reviewedSourceLockChanges": [
+    "assets/app/fangzhen.js",
+    "assets/ui/modules.css",
+    "index.html"
+  ],
+  "sourceLockSha256": "e499d9b0781e7db5264ae941662fa83f70b9cbfa44a331aa47cf7078c0b92f04",
+  "sourceFileSha256": {
+    "atlas/assets/app/fangzhen.js": "6a8ecb10e7f542c1f3f94d6713ce2b7e476e76bc4d7a735f849788aeea2f60c1",
+    "atlas/assets/ui/modules.css": "2722b856c514feb9384ee9aae7be35efa161bc2e76a3fcf299dc1b4916f17649",
+    "atlas/index.html": "4e2db2a9bef2ee9edc11b1c9625f81c579eb911e5dbafe94bb5167152c4ec7b4",
+    "tests/visual/reader-visual.test.mjs": "42ab7d251606bf6385344620827ceb64df78a96241b9a430769f953e6bf78f9c"
+  },
+  "local": {
+    "node": "24.19.0",
+    "releaseOffline": {
+      "command": "npm run release:offline",
+      "exitCode": 0,
+      "applicationTests": 121,
+      "passed": 121,
+      "typecheck": "passed",
+      "lintErrors": 0,
+      "existingLintWarnings": 3,
+      "productionBuild": "passed",
+      "deterministicBuild": "two identical builds"
+    },
+    "sourceTests": {
+      "command": "npm run test:source",
+      "exitCode": 0,
+      "passed": 69
+    },
+    "runtime": {
+      "command": "CLOUDFLARE_CF_FETCH_ENABLED=false npm run test:runtime",
+      "exitCode": 0,
+      "passed": 18,
+      "environment": "isolated local Worker; no production requests"
+    },
+    "targetedBrowserRun": {
+      "command": "node --test --test-name-pattern='fangzhen V2|1440 阅读 兰台清昼 · fangzhen' tests/visual/reader-visual.test.mjs",
+      "exitCode": 1,
+      "newRegressionTestsPassed": 3,
+      "viewportWidths": [
+        390,
+        1280,
+        1440
+      ],
+      "existingGeometryGate": "failed with fallback fonts: 设置 43x44; 职任 44x44; no Chinese fonts installed",
+      "engine": "Chromium headless 141 / Playwright 1.56.1"
+    },
+    "premiumStrictAudit": {
+      "errors": 0,
+      "warnings": 0,
+      "unresolved": 0
+    }
+  },
+  "ci": {
+    "status": "success",
+    "runId": 35412522242,
+    "url": "https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35412522242",
+    "headCommit": "d0002b7eaac7443a7b8e95d3de51df0c91918fab",
+    "tree": "1ec6f1803669ae3dfe93c04c0d0a17b18c1b867d",
+    "completedAt": "2026-09-19T01:27:21Z",
+    "jobs": [
+      {
+        "name": "reader-visual",
+        "id": 105814789719,
+        "conclusion": "success",
+        "browserTestsPassed": 41,
+        "citationTestsPassed": 7,
+        "historicalAuditCandidates": 14,
+        "historicalAuditMode": "report only; candidates are not confirmed errors"
+      },
+      {
+        "name": "offline-validation",
+        "id": 105814789921,
+        "conclusion": "success",
+        "invariantTestsPassed": 24,
+        "applicationTestsPassed": 121,
+        "workerProbesPassed": 18,
+        "committedProjectionDrift": "none",
+        "deterministicDoubleBuild": "passed"
+      }
+    ]
+  },
+  "notVerified": [
+    "real iPhone Safari and touch",
+    "human visual acceptance",
+    "full accessibility and 200% zoom acceptance",
+    "fresh production owner-only access",
+    "Sites deployment and online acceptance",
+    "production content publication and rollback drill"
+  ],
+  "unchangedBoundaries": [
+    "V86 historical data and review decisions",
+    "owner-only publishing policy",
+    "production D1 and content snapshots",
+    "historical deployment receipts"
+  ],
+  "note": "CI validates automated repository gates only; no CI result promotes manual/device or deployment acceptance.",
+  "readiness": {
+    "codeCommitReady": true,
+    "evaluatedCommit": "d0002b7eaac7443a7b8e95d3de51df0c91918fab",
+    "baseCommit": "cd2fb66edfb63c406bfed415a77acbfd6e7ef9ce",
+    "pullRequest": 24,
+    "conflicts": false,
+    "unresolvedReviewThreads": 0,
+    "humanApprovalRecorded": false,
+    "fullProductAcceptance": false,
+    "deploymentPerformed": false,
+    "rule": "Any later commit must use its own CI result. This record certifies the named code commit only."
+  }
+}

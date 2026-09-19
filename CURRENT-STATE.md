@@ -2,7 +2,15 @@
 
 > 本页是观史台当前产品、数据、部署与验收状态的唯一入口。TK-Lab 仓库级 `main` 的后续改动单独记录；历史版本说明保留事实记录，但不得覆盖现行产品口径。
 
-文档与仓库核对日期：2026-09-17。各次仓库整理、重构、权限复核、部署与验收分别记时，历史回执不回写。
+文档与仓库核对日期：2026-09-19。各次仓库整理、重构、权限复核、部署与验收分别记时，历史回执不回写。
+
+## 州镇表 V2：合并后修复核对（2026-09-19）
+
+[PR #23](https://github.com/darrengavi3-cloud/TK-Lab/pull/23) 已于 2026-09-19 00:50:30 UTC 合并；本轮起点为 `main@cd2fb66edfb63c406bfed415a77acbfd6e7ef9ce`。最终 PR head `c6db19c` 与合并提交的 tree 相同。合并后的 [Reader validation](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35410711617) 仍失败，不能将「已合并」解释为「验收通过」。
+
+[后续修复 PR #24](https://github.com/darrengavi3-cloud/TK-Lab/pull/24) 调整州镇分区按钮操作范围，补全军政视图与分区的 URL 更新，并显式重建源锁及读者包摘要。修复代码提交 `d0002b7` 的 [Reader validation](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35412522242) 两项工作均成功：41 项浏览器测试、121 项应用测试、18 项 Worker 探测及规范投影一致性检查通过；PR #24 尚未合并。完整自动验证与精确提交记录见 [州镇表 V2 修复复核](docs/fangzhen-v2-validation.md)。真实 iPhone 触控、人工视觉验收仍为 **未验证**。
+
+本轮只核对仓库代码与自动门禁，未部署网站、未操作生产 D1 或阅读内容发布、未重新核验线上 owner-only 权限。下方第 45 版仅保留已有部署回执，不代表州镇表 V2 已上线。
 
 ## 觀史台當前產品與部署
 
