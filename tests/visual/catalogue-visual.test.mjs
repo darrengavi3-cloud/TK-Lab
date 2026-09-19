@@ -27,7 +27,7 @@ const server=createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const browser=await chromium.launch({headless:true});
 test.after(async()=>{await browser.close();await new Promise(resolve=>server.close(resolve));});
-for(const width of [390,1280])test(`appointment link selectors preserve layout, no-results and keyboard at ${width}px`,async()=>{
+for(const width of [390,1280,1440])test(`appointment link selectors preserve layout, no-results and keyboard at ${width}px`,async()=>{
   const context=await browser.newContext({viewport:{width,height:860},locale:'zh-TW',reducedMotion:'reduce'});
   try{
     const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));

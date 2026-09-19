@@ -2889,6 +2889,8 @@ const app = createApp({
     },{deep:true});
     const fangzhenArchiveKey = ref('all');
     const fangzhenRecordType = ref('all');
+    const fangzhenDutyView = ref('all');
+    const fangzhenSection = ref('appointments');
     const fangzhenLevel = ref('all');
     const fangzhenState = ref('all');
     const fangzhenPeriod = ref('three');
@@ -4360,6 +4362,7 @@ const app = createApp({
         .filter(r=>!fangzhenOnlyVerified.value||r.readerDisplayStatus==='verified')
         .filter(r=>fangzhenLevel.value==='all'||r.jurisdictionKind===fangzhenLevel.value)
         .filter(r=>fangzhenRecordType.value==='all'||(r.recordType||'other')===fangzhenRecordType.value)
+        .filter(r=>window.SGZ_UI_MODULES?.fangzhen?.fangzhenMatchesDutyView(r,fangzhenDutyView.value)!==false)
         .filter(r=>fangzhenState.value==='all'||fangzhenJurisdictionKey(r)===fangzhenState.value)
         .filter(r=>!q||administrativeSearchText(r).includes(q))
         .slice().sort((a,b)=>(Number(a.startYear)||0)-(Number(b.startYear)||0)||String(a.polity).localeCompare(String(b.polity),'zh-CN'));
@@ -4402,6 +4405,13 @@ const app = createApp({
       const selected=fangzhenPrimaryDetail.value;
       const module=window.SGZ_UI_MODULES?.fangzhen;
       return module?module.relatedFangzhenRecords(rows,selected):[];
+    });
+        function fangzhenIsAdministrative(record){
+      return (window.SGZ_UI_MODULES?.fangzhen?.classifyFangzhenPowers(record)||[]).includes('administrative');
+    }
+    const fangzhenMilitaryJurisdictions=computed(()=>{
+      const module=window.SGZ_UI_MODULES?.fangzhen;
+      return module?module.militaryJurisdictions(fangzhenRelatedRecords.value):[];
     });
     const fangzhenSeatPeriods=computed(()=>{
       const rows=fangzhenRelatedRecords.value;
@@ -4606,6 +4616,12 @@ const app = createApp({
     function deleteFangzhenRecord(record){
       ElementPlus.ElMessageBox.confirm('确认删除“'+record.commander+' · '+record.title+'”？','删除州镇职任',{type:'warning'})
         .then(()=>{ fangzhenRecords.value=fangzhenRecords.value.filter(r=>r.id!==record.id); pushHistory('删除州镇职任：'+record.commander); }).catch(()=>{});
+    }
+    function fangzhenPowerText(record){
+      const module=window.SGZ_UI_MODULES?.fangzhen;
+      if(!module)return fangzhenTypeLabel(record?.recordType);
+      const kinds=module.classifyFangzhenPowers(record)||[];
+      return kinds.map(kind=>module.fangzhenPowerLabel(kind)).filter(Boolean).join(' · ')||fangzhenTypeLabel(record?.recordType);
     }
     function fangzhenTypeLabel(type){
       return type==='cishi'?'刺史／州牧':type==='taishou'?'太守／国相':type==='dudu'?'都督':type==='duwei'?'都尉':'其他';
@@ -8352,6 +8368,8 @@ const app = createApp({
         if(['州','郡','方镇'].includes(fangzhenLevel.value))params.set('level',fangzhenLevel.value);
         if(fangzhenState.value!=='all')params.set('state',fangzhenState.value);
         if(fangzhenRecordType.value!=='all')params.set('kind',fangzhenRecordType.value);
+        if(fangzhenDutyView.value!=='all')params.set('duty',fangzhenDutyView.value);
+        if(fangzhenSection.value!=='appointments')params.set('section',fangzhenSection.value);
         if(fangzhenView.value!=='records')params.set('view',fangzhenView.value);
         if(fangzhenPage.value>1)params.set('page',String(fangzhenPage.value));
         if(fangzhenPrimaryDetail.value?.id)params.set('id',fangzhenPrimaryDetail.value.id);
@@ -8426,7 +8444,7 @@ const app = createApp({
           const archive=p.get('archive')||'all';
           if(FANGZHEN_ARCHIVE_DEFS.some(item=>item.key===archive))selectFangzhenArchive(archive);
           const requestedLevel=p.get('level')||'all';
-          fangzhenQuery.value=p.get('q')||'';fangzhenLevel.value=['all','州','郡','方镇'].includes(requestedLevel)?requestedLevel:'all';fangzhenState.value=p.get('state')||'all';fangzhenRecordType.value=p.get('kind')||'all';fangzhenView.value=p.get('view')||'records';fangzhenPage.value=Math.max(1,Number(p.get('page'))||1);
+          fangzhenQuery.value=p.get('q')||'';fangzhenLevel.value=['all','州','郡','方镇'].includes(requestedLevel)?requestedLevel:'all';fangzhenState.value=p.get('state')||'all';fangzhenRecordType.value=p.get('kind')||'all';fangzhenDutyView.value=['all','administrative','military'].includes(p.get('duty'))?p.get('duty'):'all';fangzhenSection.value=['appointments','territory'].includes(p.get('section'))?p.get('section'):'appointments';fangzhenView.value=p.get('view')||'records';fangzhenPage.value=Math.max(1,Number(p.get('page'))||1);
           const record=fangzhenRecords.value.find(item=>item.id===p.get('id'));
           if(record)selectFangzhenWorkbenchRecord(record,{url:false});
         }else if(module==='battle'){
@@ -8474,7 +8492,7 @@ const app = createApp({
     watch([showPeopleDetail,showFangzhenDetail,showEpigraphicDetail,showShihuoDetail],()=>scheduleUrlState('replace'));
     watch(()=>[canvasFilters.query,canvasFilters.rank,canvasFilters.special,officeGroup.value,officeSub.value,officeSub2.value,timelineEnabled.value,timelineYear.value,peopleSource.value,peopleEvidence.value,epigraphicArchive.value],()=>scheduleUrlState('replace'));
     watch(peopleContent,()=>{if(!urlStateApplying)peoplePage.value=1;});
-    watch([fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenView,fangzhenOnlyVerified],()=>{if(urlStateApplying)return;fangzhenPage.value=1;activeFangzhenRecordId.value='';});
+    watch([fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenDutyView,fangzhenView,fangzhenOnlyVerified],()=>{if(urlStateApplying)return;fangzhenPage.value=1;activeFangzhenRecordId.value='';});
     watch([shiyuanWork,shiyuanKind,shiyuanQuery],()=>{if(!urlStateApplying){shiyuanPage.value=1;shiyuanVolumeId.value='';}});
     watch(shiyuanPage,()=>{if(!urlStateApplying&&!shiyuanPagination.value.rows.some(row=>row.id===shiyuanVolumeId.value))shiyuanVolumeId.value='';});
     watch([shiyuanWork,shiyuanKind,shiyuanQuery,shiyuanVolumeId,shiyuanPage],()=>scheduleUrlState('replace'));
@@ -8579,9 +8597,9 @@ const app = createApp({
       courtResidenceReason, HAN_COURT_SECTION_NAV, hanCourtActiveSection, hanCourtStructure, hanCourtSelectedDetail, showHanCourtDetail,
       hanCourtDutySummary, selectHanCourtNode, scrollHanCourtSection, closeHanCourtDetail, handleHanCourtDetailKeydown, openHanEastPalace,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
-      fangzhenArchiveKey, fangzhenRecordType, fangzhenLevel, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions, fangzhenArchiveRows,
-      filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
-      fangzhenJurisdictionIndex, fangzhenJurisdictionGroups, fangzhenPage, fangzhenPageCount, fangzhenPagination, fangzhenPagedRecords, fangzhenPrimaryDetail, fangzhenRelatedRecords, fangzhenSeatPeriods, fangzhenPeriodLabel, classifyFangzhenJurisdiction, fangzhenDynastyLabel,
+      fangzhenArchiveKey, fangzhenRecordType, fangzhenDutyView, fangzhenSection, fangzhenLevel, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions, fangzhenArchiveRows,
+      filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPowerText, fangzhenPolityClass, fangzhenRowClassName,
+      fangzhenJurisdictionIndex, fangzhenJurisdictionGroups, fangzhenPage, fangzhenPageCount, fangzhenPagination, fangzhenPagedRecords, fangzhenPrimaryDetail, fangzhenRelatedRecords, fangzhenSeatPeriods, fangzhenMilitaryJurisdictions, fangzhenIsAdministrative, fangzhenPeriodLabel, classifyFangzhenJurisdiction, fangzhenDynastyLabel,
       activeFangzhenRecordId, showFangzhenDetail, selectFangzhenWorkbenchRecord, fangzhenHasResidence, openFangzhenResidence,
       retryActiveModule, personCitations, fangzhenOnlyVerified, fangzhenSnapshotExcluded,
       fangzhenSnapshotYear, fangzhenCompareYear, fangzhenView, fangzhenSnapshotRecords, fangzhenCompareRecords, fangzhenVisibleRecords, fangzhenOverlapIssues, fangzhenTimelineStyle, fangzhenValidAtYear,
@@ -9698,9 +9716,10 @@ const app = createApp({
             <span v-for="record in cmp.removed.slice(0,8)" :key="'removed-'+cmp.year+'-'+record.id" class="fz-snapshot-chip removed">－ {{record.commander}} · {{record.title}}</span>
           </div>
         </div>
-        <section v-if="fangzhenView==='records'" class="v67-fangzhen-workbench" aria-label="州镇职任工作台">
+        <nav v-if="fangzhenView==='records'" class="fangzhen-section-tabs" aria-label="州镇详情"><button type="button" :class="{active:fangzhenSection==='appointments'}" @click="fangzhenSection='appointments'">职任</button><button type="button" :class="{active:fangzhenSection==='territory'}" @click="fangzhenSection='territory'">治所与辖境</button></nav>
+        <section v-if="fangzhenView==='records'&&fangzhenSection==='appointments'" class="v67-fangzhen-workbench" aria-label="州镇职任工作台">
           <section class="v67-fangzhen-table-panel">
-            <header class="v67-panel-heading"><div><small>{{fangzhenArchiveDef.label}}</small><strong>职任表</strong></div><span>第 {{fangzhenPage}} / {{fangzhenPageCount}} 页</span></header>
+            <header class="v67-panel-heading"><div><small>{{fangzhenArchiveDef.label}}</small><strong>职任</strong></div><nav class="fangzhen-duty-tabs" aria-label="军政职任视图"><button type="button" :class="{active:fangzhenDutyView==='all'}" @click="fangzhenDutyView='all'">综合</button><button type="button" :class="{active:fangzhenDutyView==='administrative'}" @click="fangzhenDutyView='administrative'">行政</button><button type="button" :class="{active:fangzhenDutyView==='military'}" @click="fangzhenDutyView='military'">军事</button></nav><span>第 {{fangzhenPage}} / {{fangzhenPageCount}} 页</span></header>
             <div class="fangzhen-table-card fangzhen-desktop-table">
               <el-table :data="fangzhenPagedRecords" row-key="id" highlight-current-row :current-row-key="fangzhenPrimaryDetail&&fangzhenPrimaryDetail.id" size="small" empty-text="当前档案尚无符合条件的记录" @row-click="selectFangzhenWorkbenchRecord">
                 <el-table-column label="辖区" min-width="86" show-overflow-tooltip><template #default="scope"><span>{{scope.row.jurisdiction}}</span><small class="fz-jurisdiction-kind">{{scope.row.jurisdictionKind}}</small></template></el-table-column>
@@ -9709,7 +9728,7 @@ const app = createApp({
                 <el-table-column prop="title" label="职任" min-width="110" show-overflow-tooltip />
                 <el-table-column label="治所／驻地" min-width="82" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.seat">{{scope.row.seat}}</span></template></el-table-column>
                 <el-table-column label="任期" min-width="118" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.tenureText||scope.row.confirmedRange">{{scope.row.tenureText||scope.row.confirmedRange}}</span></template></el-table-column>
-                <el-table-column label="类型" width="70"><template #default="scope"><span class="fz-type-pill">{{fangzhenTypeLabel(scope.row.recordType)}}</span></template></el-table-column>
+                <el-table-column label="职权" min-width="96"><template #default="scope"><span class="fz-power-text">{{fangzhenPowerText(scope.row)}}</span></template></el-table-column>
                 <el-table-column label="状态" width="76"><template #default="scope"><span class="v69-review-status" :class="scope.row.readerDisplayStatus">{{scope.row.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></template></el-table-column>
                 <el-table-column v-if="workspaceMode==='review'" class-name="review-only" label="操作" width="108" fixed="right"><template #default="scope"><el-button class="review-only" size="small" text type="primary" @click.stop="openFangzhenEditor(scope.row)">编辑</el-button><el-button class="review-only" size="small" text type="danger" @click.stop="deleteFangzhenRecord(scope.row)">删除</el-button></template></el-table-column>
               </el-table>
@@ -9729,6 +9748,14 @@ const app = createApp({
           <section v-if="fangzhenSeatPeriods.length" class="v67-fangzhen-related">
             <article v-if="fangzhenSeatPeriods.length"><header><strong>已核治所分期</strong><small>{{fangzhenSeatPeriods.length}} 条</small></header><table><thead><tr><th>治所／驻地</th><th>类型</th><th>有效年代</th></tr></thead><tbody><tr v-for="period in fangzhenSeatPeriods" :key="period.seatPeriodId"><td>{{period.seatName}}</td><td>{{period.seatType}}</td><td>{{fangzhenPeriodLabel(period)}}</td></tr></tbody></table></article>
           </section>
+        </section>
+        <section v-if="fangzhenView==='records'&&fangzhenSection==='territory'" class="fangzhen-territory-panel" aria-label="治所与辖境">
+          <header><div><small>{{fangzhenArchiveDef.label}}</small><h2>{{fangzhenState!=='all'?fangzhenState:'治所与辖境'}}</h2></div><p>行政辖属与军事督辖分开呈现；军事辖区保持史料原范围。</p></header>
+          <div class="fangzhen-territory-grid">
+            <article><h3>治所</h3><template v-if="fangzhenSeatPeriods.length"><dl v-for="period in fangzhenSeatPeriods" :key="period.seatPeriodId"><dt>{{period.seatName}}</dt><dd>{{fangzhenPeriodLabel(period)}}</dd></dl></template><p v-else>暂无可确认治所分期。</p></article>
+            <article><h3>行政辖属</h3><p v-if="fangzhenState==='all'">请选择州郡后查看对应行政记录。</p><ul v-else><li v-for="record in fangzhenRelatedRecords.filter(fangzhenIsAdministrative)" :key="'admin-'+record.id">{{record.jurisdiction}}<small>{{record.tenureText||record.confirmedRange||'时期未详'}}</small></li></ul></article>
+            <article><h3>军事辖区</h3><p v-if="!fangzhenMilitaryJurisdictions.length">暂无明确军事督辖记录。</p><ul v-else><li v-for="item in fangzhenMilitaryJurisdictions" :key="item.recordId">{{item.jurisdiction}}<small>{{item.tenureText||'时期未详'}}</small></li></ul></article>
+          </div>
         </section>
         <section v-if="workspaceMode==='review'&&fangzhenOverlapIssues.length" class="fangzhen-overlap-audit review-only"><header>任期重叠审校</header><p v-for="issue in fangzhenOverlapIssues.slice(0,20)" :key="issue.id">{{issue.unit}} · {{issue.office}}：{{issue.a.commander}}（{{issue.a.tenureText||issue.a.startYear+'—'+issue.a.endYear}}）／{{issue.b.commander}}（{{issue.b.tenureText||issue.b.startYear+'—'+issue.b.endYear}}）</p></section>
       </div>

@@ -51,14 +51,14 @@ createApp({setup(){
   const fangzhenOptions=computed(()=>references.value?.fangzhen.filter(r=>state.selected?.data.kind==='appointment'&&r.personId===state.selected.data.personId)||[]);
   function updateLinks(links:AppointmentReaderLinks){if(state.selected?.data.kind==='appointment')state.selected.data.readerLinks=links;}
   function setOfficeLinks(offices:string[]){updateLinks({...activeLinks.value,offices});}
-  function toggleFangzhen(enabled:boolean){updateLinks({...activeLinks.value,fangzhen:enabled?{recordId:null,polityKey:'han',recordType:'other',administrativeUnitId:null}:null});}
-  function setFangzhenField(key:string,value:string|null){const f=activeLinks.value.fangzhen;if(f)updateLinks({...activeLinks.value,fangzhen:{...f,[key]:value||null}});}
+  function toggleFangzhen(enabled:boolean){updateLinks({...activeLinks.value,fangzhen:enabled?{recordId:null,polityKey:'han',recordType:'other',powerKinds:[],administrativeUnitId:null}:null});}
+  function setFangzhenField(key:string,value:string|string[]|null){const f=activeLinks.value.fangzhen;if(f)updateLinks({...activeLinks.value,fangzhen:{...f,[key]:Array.isArray(value)?value:(value||null)}});}
   function selectFangzhenRecord(id:string){
     const old=references.value?.fangzhen.find(r=>r.id===id),f=activeLinks.value.fangzhen;if(!f)return;
     if(!old){setFangzhenField('recordId',null);return;}
     const key=({后汉:'han',季汉:'shu',魏:'wei',吴:'wu',西晋:'jin',东晋:'eastjin'} as Record<string,string>)[old.dynastyLabel]||f.polityKey;
     const unit=state.selected?.data.kind==='appointment'&&old.jurisdiction===state.selected.data.jurisdiction?old.administrativeUnitId:null;
-    updateLinks({...activeLinks.value,fangzhen:{recordId:old.id,polityKey:key as typeof f.polityKey,recordType:old.recordType as typeof f.recordType,administrativeUnitId:unit}});
+    updateLinks({...activeLinks.value,fangzhen:{recordId:old.id,polityKey:key as typeof f.polityKey,recordType:old.recordType as typeof f.recordType,powerKinds:f.powerKinds||[],administrativeUnitId:unit}});
   }
   const dirty=()=>!!state.selected&&canonicalJson(state.selected.data)!==state.loadedJson;
   const draftKey=()=>state.selected?'guanshitai:admin-draft:'+state.actor+':'+state.selected.id:'';

@@ -56,6 +56,8 @@ export interface AppointmentReaderLinks {
     recordId: string | null;
     polityKey: 'han' | 'wei' | 'shu' | 'wu' | 'jin' | 'eastjin';
     recordType: 'cishi' | 'taishou' | 'junshou' | 'dudu' | 'duwei' | 'other';
+    /** Optional additive V2 classification. Absence preserves v1/V86 behaviour. */
+    powerKinds?: ('administrative' | 'military_title' | 'military_command' | 'delegated_power')[];
     administrativeUnitId: string | null;
   };
 }
@@ -130,7 +132,7 @@ export function validateRecord(value: CatalogueRecord): CatalogueRecord {
       const links = value.readerLinks;
       requireValue(links && Array.isArray(links.offices) && links.offices.length <= 20 && links.offices.every(id) && new Set(links.offices).size === links.offices.length, 'reader-links', '官職關聯須選擇不重複的既有官職。');
       const f = links.fangzhen;
-      requireValue(f === null || (f && (f.recordId === null || id(f.recordId)) && ['han','wei','shu','wu','jin','eastjin'].includes(f.polityKey) && ['cishi','taishou','junshou','dudu','duwei','other'].includes(f.recordType) && (f.administrativeUnitId === null || id(f.administrativeUnitId))), 'reader-links', '州鎮關聯須填寫政權、職任類型及有效識別碼。');
+      requireValue(f === null || (f && (f.recordId === null || id(f.recordId)) && ['han','wei','shu','wu','jin','eastjin'].includes(f.polityKey) && ['cishi','taishou','junshou','dudu','duwei','other'].includes(f.recordType) && (!f.powerKinds || (Array.isArray(f.powerKinds) && f.powerKinds.every(k => ['administrative','military_title','military_command','delegated_power'].includes(k)))) && (f.administrativeUnitId === null || id(f.administrativeUnitId))), 'reader-links', '州鎮關聯須填寫政權、職任類型及有效識別碼。');
       requireValue(!f || value.jurisdiction.trim(), 'reader-links', '同步到州鎮表前，請填寫轄區。');
     }
   } else {

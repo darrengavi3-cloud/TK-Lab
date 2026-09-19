@@ -123,6 +123,54 @@ export function classifyFangzhenDynasty(record){
   return '汉';
 }
 
+export const FANGZHEN_POWER_KINDS = Object.freeze(['administrative','military_title','military_command','delegated_power']);
+
+/**
+ * 职权性质与地域层级是两个正交维度。优先使用后台明确标注；旧 V86 条目
+ * 仅在阅读投影中按官名作保守分类，不回写原始数据，也不据军号推定督区。
+ */
+export function classifyFangzhenPowers(record){
+  const explicit=Array.isArray(record?.powerKinds)?record.powerKinds.filter(kind=>FANGZHEN_POWER_KINDS.includes(kind)):[];
+  if(explicit.length)return [...new Set(explicit)];
+  const title=[record?.title,record?.commission].filter(Boolean).join(' · ');
+  const kinds=[];
+  if(/州牧|刺史|太守|国相|郡守|县令|县长/.test(title))kinds.push('administrative');
+  if(/都督.*军事|督.*诸军事|都督中外|监.*军事/.test(title))kinds.push('military_command');
+  if(/(?:大将军|将军|中郎将|校尉|都尉)/.test(title))kinds.push('military_title');
+  if(/使持节|持节|假节(?:钺|鉞)?/.test(title))kinds.push('delegated_power');
+  if(!kinds.length){
+    const type=String(record?.recordType||'');
+    if(['cishi','taishou','junshou'].includes(type))kinds.push('administrative');
+    if(type==='dudu')kinds.push('military_command');
+    if(type==='duwei')kinds.push('military_title');
+  }
+  return [...new Set(kinds)];
+}
+
+export function fangzhenPowerLabel(kind){
+  return ({administrative:'行政',military_title:'军号',military_command:'军事督辖',delegated_power:'节权'})[kind]||kind||'';
+}
+
+export function fangzhenMatchesDutyView(record,view='all'){
+  if(view==='all')return true;
+  const powers=classifyFangzhenPowers(record);
+  if(view==='administrative')return powers.includes('administrative');
+  if(view==='military')return powers.includes('military_title')||powers.includes('military_command')||powers.includes('delegated_power');
+  return true;
+}
+
+export function militaryJurisdictions(records){
+  const seen=new Map();
+  (Array.isArray(records)?records:[]).forEach(record=>{
+    if(!classifyFangzhenPowers(record).includes('military_command'))return;
+    const jurisdiction=String(record?.jurisdiction||'').trim();
+    if(!jurisdiction)return;
+    const key=[jurisdiction,record?.startYear??'',record?.endYear??''].join('|');
+    if(!seen.has(key))seen.set(key,{jurisdiction,startYear:record?.startYear??null,endYear:record?.endYear??null,tenureText:record?.tenureText||record?.confirmedRange||'',recordId:record?.id||key});
+  });
+  return [...seen.values()].sort((a,b)=>(Number(a.startYear)||0)-(Number(b.startYear)||0)||a.jurisdiction.localeCompare(b.jurisdiction,'zh-CN'));
+}
+
 export function knownYear(value){
   if(value===null||value===undefined||String(value).trim()===''||typeof value==='boolean')return null;
   const year=Number(value);
