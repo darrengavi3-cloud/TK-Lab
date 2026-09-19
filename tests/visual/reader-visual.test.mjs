@@ -245,6 +245,70 @@ for (const scenario of CASES) {
   }
 }
 
+for (const width of [390, 1280, 1440]) {
+  test(`fangzhen V2 view controls persist across reload at ${width}px`, async () => {
+    const context = await browser.newContext({
+      viewport: { width, height: 900 }, locale: 'zh-CN',
+      isMobile: width === 390, hasTouch: width === 390
+    });
+    try {
+      const page = await context.newPage();
+      const errors = [];
+      page.on('pageerror', error => errors.push(String(error)));
+      const ready = '.shell[data-active-module="fangzhen"][data-module-state="ready"]';
+      const sections = page.getByRole('navigation', { name: '州镇详情', exact: true });
+      const duties = page.getByRole('navigation', { name: '军政职任视图', exact: true });
+      const waitParam = (key, value) => page.waitForFunction(
+        ({ key, value }) => new URLSearchParams(location.hash.split('?')[1] || '').get(key) === value,
+        { key, value }, { timeout: 5000 }
+      );
+      await page.goto(`${origin}#fangzhen?list=1`, { waitUntil: 'load' });
+      await page.locator(ready).waitFor();
+
+      // Switching on page one must update the URL even if pagination and the
+      // selected record do not change. Previously neither ref was watched.
+      await duties.getByRole('button', { name: '军事', exact: true }).click();
+      await waitParam('duty', 'military');
+      await sections.getByRole('button', { name: '治所与辖境', exact: true }).click();
+      await waitParam('section', 'territory');
+      await page.reload({ waitUntil: 'load' });
+      await page.locator(ready).waitFor();
+      await page.locator('.fangzhen-territory-panel').waitFor();
+      assert.equal(await sections.getByRole('button', { name: '治所与辖境', exact: true }).getAttribute('aria-pressed'), 'true');
+      await waitParam('duty', 'military');
+      const territoryAudit = await page.evaluate(AUDIT);
+      assert.deepEqual(territoryAudit.clipped, []);
+      assert.equal(territoryAudit.overflowX, false);
+
+      const appointments = sections.getByRole('button', { name: '职任', exact: true });
+      await appointments.focus();
+      await appointments.press('Enter');
+      await waitParam('section', null);
+      assert.equal(await duties.getByRole('button', { name: '军事', exact: true }).getAttribute('aria-pressed'), 'true');
+      await duties.getByRole('button', { name: '行政', exact: true }).click();
+      await waitParam('duty', 'administrative');
+      await page.reload({ waitUntil: 'load' });
+      await page.locator(ready).waitFor();
+      assert.equal(await duties.getByRole('button', { name: '行政', exact: true }).getAttribute('aria-pressed'), 'true');
+      await duties.getByRole('button', { name: '综合', exact: true }).click();
+      await waitParam('duty', null);
+
+      const buttons = await sections.getByRole('button').evaluateAll(elements => elements.map(button => {
+        const box = button.getBoundingClientRect();
+        const range = document.createRange();
+        range.selectNodeContents(button);
+        const lines = new Set([...range.getClientRects()].map(rect => Math.round(rect.top)));
+        return { label: button.textContent.trim(), width: box.width, height: box.height, lines: lines.size };
+      }));
+      for (const button of buttons) {
+        assert.ok(button.width >= TOUCH_TARGET && button.height >= TOUCH_TARGET, JSON.stringify(button));
+        assert.equal(button.lines, 1, JSON.stringify(button));
+      }
+      assert.deepEqual(errors, []);
+    } finally { await context.close(); }
+  });
+}
+
 test('cold battle-to-map navigation preserves the requested period and return detail', async () => {
   const context = await browser.newContext({ viewport: { width: 1280, height: 860 }, locale: 'zh-CN' });
   try {
