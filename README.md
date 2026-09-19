@@ -14,7 +14,7 @@ R1 歷史事實保持不變：從 `main@63f9964484bc2ef53825caf5aefa99abcf0f6d27
 
 ## 仓库 main 与 Sumi-OCR 迁出
 
-2026-09-19 州镇表 V2 核对：PR #23 已合并为 `cd2fb66e`，但合并后的 Reader validation 仍失败。后续修复调整分区按钮尺寸、补齐军政／分区 URL 监听，并显式重建源锁和读者包摘要；当前验证与提交依据见 [修复复核记录](docs/fangzhen-v2-validation.md)。真实 iPhone 与人工视觉验收仍未验证，本轮没有新增部署回执。
+2026-09-19 州镇表 V2 核对：PR #23 已合并为 `cd2fb66e`，但合并后的 Reader validation 仍失败。后续修复调整分区按钮尺寸、补齐军政／分区 URL 监听，并显式重建源锁和读者包摘要；[修复 PR #24](https://github.com/darrengavi3-cloud/TK-Lab/pull/24) 的代码提交 `d0002b7` 已通过两个 Reader validation 工作，尚未合并；验证与提交依据见 [修复复核记录](docs/fangzhen-v2-validation.md)。真实 iPhone 与人工视觉验收仍未验证，本轮没有新增部署回执。
 
 本次校准及移除前核对的仓库 `main` 为 [`f170c891`](https://github.com/darrengavi3-cloud/TK-Lab/commit/f170c8914d2694947fc99591dab9b94a8a4fa02e)（2026-09-13 10:18:35 UTC）。R1 发布记录之后，PR #16／#17 及其分支共 6 个提交只新增了 `tools/umi-ocr/` 中的 148 个文件；[提交比较](https://github.com/darrengavi3-cloud/TK-Lab/compare/2617c69b61ec7387da919309b53f2dab8e609a67...f170c8914d2694947fc99591dab9b94a8a4fa02e)没有观史台产品改动。
 

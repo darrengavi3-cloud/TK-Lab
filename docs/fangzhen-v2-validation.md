@@ -23,17 +23,31 @@
 
 新增 390／1280／1440px 浏览器回归，实际点击军事、行政、综合与治所分区，核验网址写入、刷新恢复、键盘 Enter 返回职任、选中状态、正文不硬切、页面不横溢和分区按钮尺寸／单行文字。移动视口是 Chromium 模拟，不是 iPhone。
 
-本地 `npm run release:offline` 已完整通过：确定性双构建、规范数据校验、类型检查、lint、生产构建和 121 项应用测试。另有 69 项源码测试、18 项隔离 Worker 探测及上述三项新增浏览器回归通过；Premium strict 静态审计无发现。[机器可读记录](../release-metadata/fangzhen-v2-validation.json)保留命令、输入摘要与本地限制；远程 Reader validation 的最终结果待追加。lint 为 0 错误、3 条既有 unused eslint-disable 警告。
+本地 `npm run release:offline` 已完整通过：确定性双构建、规范数据校验、类型检查、lint、生产构建和 121 项应用测试。另有 69 项源码测试、18 项隔离 Worker 探测及上述三项新增浏览器回归通过；Premium strict 静态审计无发现。[机器可读记录](../release-metadata/fangzhen-v2-validation.json)保留命令、输入摘要与本地限制；远程结果见下表。lint 为 0 错误、3 条既有 unused eslint-disable 警告。
 
 本地没有中文字体，安装系统浏览器依赖受权限限制；默认完整 Chromium 启动还受到 Unix socket 限制。已安装的无头 Chromium 可执行交互测试，但本地字体回退导致通用几何门禁额外报告“设置”等按钮。因此正式自动布局结果使用 GitHub workflow 的 `playwright install --with-deps chromium` 环境；不据本地字体结果改动其他模块或降低阈值。
 
+## GitHub CI 回执
+
+修复提交 `d0002b7eaac7443a7b8e95d3de51df0c91918fab`（tree `1ec6f1803669ae3dfe93c04c0d0a17b18c1b867d`）的 [Reader validation 35412522242](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35412522242) 于 2026-09-19 01:27:21 UTC 完成，两个工作均成功。
+
+| 工作 | 实际验证 | 结果 |
+| --- | --- | --- |
+| reader-visual，job 105814789719 | 41 项浏览器测试、7 项引用解析测试、库内一致性报告 | 通过 |
+| offline-validation，job 105814789921 | 确定性双构建、24 项不变量测试、类型／lint／构建、121 项应用测试 | 通过 |
+| 同一 offline-validation 的最后两步 | 18 项隔离 Worker 探测；规范源与提交投影无漂移 | 通过 |
+
+一致性报告仍列出 14 条启发式候选，未视为确认错误，未自动改写史料或提升审定状态。上述浏览器矩阵是 workflow 的代表性组合，不等于完整三主题×三视口的人工验收。
+
 ## 就绪结论与未验证事项
 
-原 PR 的失败在合并时未完全解决；应通过基于当前 main 的后续修复 PR 收口。后续修复尚须以对应最新提交的两个 Reader validation 工作均成功、规范投影无未提交漂移为准，不能借用旧提交的绿色结果。
+**代码合并就绪：是，针对上述已验证的修复提交。完整产品验收：否。** [后续 PR #24](https://github.com/darrengavi3-cloud/TK-Lab/pull/24) 基于 main@cd2fb66e；GitHub 核对为可合并、无冲突，无未解决的审阅线程，但未记录人工批准。原 PR #23 无需再次合并；本轮未合并 PR #24。
+
+本回执固定引用已通过验证的代码提交。此后只追加状态文档与回执；最新 head 的检查状态以 PR #24 对应运行链接为准，不把旧 head 的绿色结果冒作新提交 CI。
 
 | 项目 | 状态／边界 |
 | --- | --- |
-| 后续修复自动门禁 | 待远程 CI 完成 |
+| 后续修复自动门禁 | 上述代码提交两项工作均成功；PR #24 尚未合并 |
 | 真实 iPhone Safari、触控、虚拟键盘与安全区 | **未验证** |
 | 人工视觉验收、完整三主题×三视口验收 | **未验证**；自动尺寸与对比检测不能代替人工审阅 |
 | 完整键盘／200% 缩放／辅助技术验收 | **未验证**；新增测试仅覆盖所述 Enter 操作 |
