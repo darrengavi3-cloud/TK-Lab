@@ -174,7 +174,7 @@ const AUDIT = '(' + String(function audit(touchTarget) {
 
 const MODULES = [
   ['职官', 'offices'], ['人物', 'people'], ['战事', 'battle'],
-  ['州镇', 'fangzhen'], ['金石', 'jinshi'], ['食货', 'shihuo'], ['史源', 'shiyuan'], ['形势', 'map']
+  ['州镇', 'fangzhen'], ['金石', 'jinshi'], ['食货', 'shihuo'], ['形势', 'map']
 ];
 
 /* 常规 CI 保留代表性组合；发布验收可执行完整三视口 × 三主题矩阵。 */

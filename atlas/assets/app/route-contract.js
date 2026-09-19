@@ -1,4 +1,4 @@
-export const MODULE_KEYS = Object.freeze(['offices','people','battle','fangzhen','jinshi','shihuo','shiyuan','map']);
+export const MODULE_KEYS = Object.freeze(['offices','people','battle','fangzhen','jinshi','shihuo','map']);
 
 export function validRouteHash(hash) {
   return typeof hash === 'string' && hash.length <= 4096
