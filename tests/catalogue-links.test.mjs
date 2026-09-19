@@ -104,3 +104,13 @@ test('explicit state power kinds publish without changing jurisdiction semantics
   assert.deepEqual(state.powerKinds,['administrative','military_title','military_command','delegated_power']);
   assert.equal(state.jurisdiction,'汉军');
 });
+
+test('civil and military power combinations remain data, not a combined-office flag',async()=>{
+  appointment={...appointment,assessment:'verified',disposition:'none',nature:'實授',polity:'季汉',jurisdiction:'益州诸军事',date:{original:'景耀元年',startYear:258,endYear:258,precision:'year',certainty:'certain',basis:''},readerLinks:{...appointment.readerLinks,fangzhen:{recordId:null,polityKey:'shu',recordType:'dudu',powerKinds:['military_title','military_command','delegated_power'],administrativeUnitId:null}}};
+  await save(appointment);
+  const candidate=await service.makePublication(env,'test-owner');
+  const state=(await payload(candidate,'v69-fangzhen-reader')).records.find(r=>r.appointmentId===appointment.id);
+  assert.deepEqual(state.powerKinds,['military_title','military_command','delegated_power']);
+  assert.equal(state.jurisdiction,'益州诸军事');
+  assert.equal(Object.hasOwn(state,'militaryCivilCombined'),false);
+});
