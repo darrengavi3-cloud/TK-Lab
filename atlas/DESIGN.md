@@ -262,3 +262,7 @@ V71 第二批续修：正文令牌为 16px，原典及著录说明采用 14px �
 - `/admin` 沿用既有 `.notice`／`.panel`／`.record-row` 等类名，未新增元件或结构；新增规则只依既有 `role="status"`／`.error` 属性与类名区分语义层级，让保存确认、一般提示与错误三者有可辨识的边色与底色差异。
 - 依既有“保存只写工作修订；发布须建立固定候选”的心智模型，`/admin` 的“发布阅读内容”改用 Element Plus `type="danger"`，“切回此版”“提交整批”改用 `type="warning"`，“舍弃草稿”改用 `type="danger"`；其余保存、建立候选等可逆操作维持 `primary`，藉此把“会影响线上读者或不可逆”的操作与一般保存操作在视觉上分级，不改动任何绑定与后端逻辑。
 - 本轮只读源码与样式表完成，未执行浏览器视觉、对比度或真实装置验收；深色“青灯夜校”主题下的新色阶对比度建议下一轮用 `tests/visual/*.test.mjs` 或新写的 Playwright 探针复核（根目录旧有一次性调试脚本 `contrast.mjs`／`probe2.mjs`／`smoke.mjs` 已清理，其硬编码 `/tmp/tk/atlas` 路径且未接入任何 npm 脚本或 CI，不可复用）。
+
+## V88 移除史源表
+
+史源表（shiyuan）模块整体移除：`assets/app/shiyuan.js`、`index.html` 中对应的状态／计算属性／模板、`assets/ui/modules.css` 里全部 `shiyuan-*`／`v56-shiyuan-*` 选择器均已删除；`route-contract.js` 的 `MODULE_KEYS` 由 8 项收为 7 项。原因：史源表与新架构的 `Source` 记录概念重复，且未接入全局检索，用户决定直接移除而非维护两套并行数据。

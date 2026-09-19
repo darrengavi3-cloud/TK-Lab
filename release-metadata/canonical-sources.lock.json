@@ -3,19 +3,19 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 925,
-  "totalBytes": 331516923,
-  "aggregateSha256": "bbc0dd0370d2347b3b5b4959464e9d87ea0949239108c8b8cd4a98d50aa3aa70",
+  "fileCount": 924,
+  "totalBytes": 331490297,
+  "aggregateSha256": "dad7bef19a6c5f84015321dec33e2fea397b1d9ee451605e3cb6dc7e3fb89d75",
   "files": [
     {
       "path": "DESIGN.md",
-      "bytes": 26725,
-      "sha256": "0a3c37cc89ce4b2322b97a01c7918622ff2a0d6796e7d27b4897dd741700a206"
+      "bytes": 27176,
+      "sha256": "afffdbf71e3f5fc96ce36440e7aa035668e94a710398018aaecd4e26e761380c"
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 32671,
-      "sha256": "5e7bcf73d3b95615b96b1172911c44c409436b88d1854f545d68b40af9d6dfbe"
+      "bytes": 33075,
+      "sha256": "f7d1b96c3d62f80d3a612542e36df9c75c83ea5dd722fbe6f73a1f5bcbe208d7"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -64,8 +64,8 @@
     },
     {
       "path": "assets/app/route-contract.js",
-      "bytes": 639,
-      "sha256": "a9111b654bca5e910aaf2aa801ebdab452a41d28cd8b972dff69cf1283c8ebbb"
+      "bytes": 629,
+      "sha256": "c613beb24ba895b82f089a1e43a0baa345d1cc13a180c92f77de22f508141679"
     },
     {
       "path": "assets/app/shell.js",
@@ -76,11 +76,6 @@
       "path": "assets/app/shihuo.js",
       "bytes": 1294,
       "sha256": "4d4171d7e24d930b9420be2f7c2cb3de652563d7fcdfa5d4c7242671fc0c79b7"
-    },
-    {
-      "path": "assets/app/shiyuan.js",
-      "bytes": 10271,
-      "sha256": "b88a0f5c4040edec2685f0e7b20e21fbdcd58af8899706197249f4c8fedf378c"
     },
     {
       "path": "assets/map/css/style.css",
@@ -3184,8 +3179,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 97719,
-      "sha256": "d9482dbe9aa18bcbc94971a43c3ef51f022caa08857f830ad0e8e3439e3cddec"
+      "bytes": 94091,
+      "sha256": "96134583df3b3292784e0e5083a9ae5d8bcb569cd52d0090f88a889cae2a8096"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -4129,8 +4124,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 804764,
-      "sha256": "2e41381de17ffea4ce4450caf133430e6a451f974afe9ca4b748d3b724f06c87"
+      "bytes": 791192,
+      "sha256": "c8445db2714dd762335e1eb6f0f52fbf9d26acd216d3cdf165ccf9a18247822d"
     },
     {
       "path": "scripts/appointment-publication.mjs",
