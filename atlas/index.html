@@ -4609,6 +4609,12 @@ const app = createApp({
       ElementPlus.ElMessageBox.confirm('确认删除“'+record.commander+' · '+record.title+'”？','删除州镇职任',{type:'warning'})
         .then(()=>{ fangzhenRecords.value=fangzhenRecords.value.filter(r=>r.id!==record.id); pushHistory('删除州镇职任：'+record.commander); }).catch(()=>{});
     }
+    function fangzhenPowerText(record){
+      const module=window.SGZ_UI_MODULES?.fangzhen;
+      if(!module)return fangzhenTypeLabel(record?.recordType);
+      const kinds=module.classifyFangzhenPowers(record)||[];
+      return kinds.map(kind=>module.fangzhenPowerLabel(kind)).filter(Boolean).join(' · ')||fangzhenTypeLabel(record?.recordType);
+    }
     function fangzhenTypeLabel(type){
       return type==='cishi'?'刺史／州牧':type==='taishou'?'太守／国相':type==='dudu'?'都督':type==='duwei'?'都尉':'其他';
     }
@@ -8583,7 +8589,7 @@ const app = createApp({
       hanCourtDutySummary, selectHanCourtNode, scrollHanCourtSection, closeHanCourtDetail, handleHanCourtDetailKeydown, openHanEastPalace,
       fangzhenRecords, fangzhenPeriod, fangzhenQuery, fangzhenPolity, fangzhenPolityOptions,
       fangzhenArchiveKey, fangzhenRecordType, fangzhenDutyView, fangzhenLevel, fangzhenState, fangzhenStateOptions, fangzhenArchiveDef, fangzhenArchiveStyle, fangzhenArchiveOptions, fangzhenArchiveRows,
-      filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPolityClass, fangzhenRowClassName,
+      filteredFangzhenRecords, fangzhenMetrics, selectFangzhenArchive, fangzhenTypeLabel, fangzhenPowerText, fangzhenPolityClass, fangzhenRowClassName,
       fangzhenJurisdictionIndex, fangzhenJurisdictionGroups, fangzhenPage, fangzhenPageCount, fangzhenPagination, fangzhenPagedRecords, fangzhenPrimaryDetail, fangzhenRelatedRecords, fangzhenSeatPeriods, fangzhenPeriodLabel, classifyFangzhenJurisdiction, fangzhenDynastyLabel,
       activeFangzhenRecordId, showFangzhenDetail, selectFangzhenWorkbenchRecord, fangzhenHasResidence, openFangzhenResidence,
       retryActiveModule, personCitations, fangzhenOnlyVerified, fangzhenSnapshotExcluded,
@@ -9712,7 +9718,7 @@ const app = createApp({
                 <el-table-column prop="title" label="职任" min-width="110" show-overflow-tooltip />
                 <el-table-column label="治所／驻地" min-width="82" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.seat">{{scope.row.seat}}</span></template></el-table-column>
                 <el-table-column label="任期" min-width="118" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.tenureText||scope.row.confirmedRange">{{scope.row.tenureText||scope.row.confirmedRange}}</span></template></el-table-column>
-                <el-table-column label="职权" min-width="96"><template #default="scope"><span class="fz-power-text">{{(window.SGZ_UI_MODULES?.fangzhen?.classifyFangzhenPowers(scope.row)||[]).map(window.SGZ_UI_MODULES?.fangzhen?.fangzhenPowerLabel).join(' · ')||fangzhenTypeLabel(scope.row.recordType)}}</span></template></el-table-column>
+                <el-table-column label="职权" min-width="96"><template #default="scope"><span class="fz-power-text">{{fangzhenPowerText(scope.row)}}</span></template></el-table-column>
                 <el-table-column label="状态" width="76"><template #default="scope"><span class="v69-review-status" :class="scope.row.readerDisplayStatus">{{scope.row.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></template></el-table-column>
                 <el-table-column v-if="workspaceMode==='review'" class-name="review-only" label="操作" width="108" fixed="right"><template #default="scope"><el-button class="review-only" size="small" text type="primary" @click.stop="openFangzhenEditor(scope.row)">编辑</el-button><el-button class="review-only" size="small" text type="danger" @click.stop="deleteFangzhenRecord(scope.row)">删除</el-button></template></el-table-column>
               </el-table>
