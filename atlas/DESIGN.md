@@ -266,3 +266,12 @@ V71 第二批续修：正文令牌为 16px，原典及著录说明采用 14px �
 ## V88 移除史源表
 
 史源表（shiyuan）模块整体移除：`assets/app/shiyuan.js`、`index.html` 中对应的状态／计算属性／模板、`assets/ui/modules.css` 里全部 `shiyuan-*`／`v56-shiyuan-*` 选择器均已删除；`route-contract.js` 的 `MODULE_KEYS` 由 8 项收为 7 项。原因：史源表与新架构的 `Source` 记录概念重复，且未接入全局检索，用户决定直接移除而非维护两套并行数据。
+
+## V90 用户上传人物总表并入人物数据库
+
+- 新增匯入腳本 `atlas/scripts/build-v90-person-workbook-import.mjs`：讀取用戶上傳的 xlsx（無 xlsx 依賴，直接以 `unzip -p` 讀取 OOXML 內部 XML 並手寫正則解析），涵蓋「人物總覽」4300 行與「民族政權」262 行。收錄範圍：卒年≥184、生年≤280（閉區間，含邊界年份本身），生卒年皆缺失的行按 v60 先例一併收錄為候選；政權欄「蜀漢」一律正規化為「季漢」。按規範化姓名與既有 `person-identities.js`／v60／v61／v63 身份庫比對查重，命中則沿用既有 `personId`，未命中新建 `person:v90:<hash>` 穩定 ID。輸出 `atlas/data/v90-person-workbook-import.json`（4548 行落入範圍，其中 2819 條為未匹配既有身份庫的新候選）。
+- `atlas/scripts/build-v63-person-registry.mjs` 新增一個獨立、自成一體的 V90 候選迴圈（緊接 V60 迴圈之後），不與 V60／V61 專用的表字衝突隔離、快照身份仲裁等複雜邏輯混合——V90 的查重已在匯入腳本內以身份庫比對完成，無需複用那套機制。
+- 新增身份複核批次 `atlas/data/v90-person-identity-review.json`：對史源＋引文齊全（原表未標「待考」）且未匹配既有身份庫的 1547 條候選，逐條生成 `status:verified`、`action:add` 的複核記錄，帶哈希鎖定的 `sourceGuards` 與原表引文；讀者庫人數由 V86 的 2074 人增至 3621 人。批次註冊於 `release-config.json` 的 `identityReviewBatches`。
+- `atlas/scripts/person-identity-publication.mjs` 的 `reviewedReaderScope` 校驗放寬：`citations[].url` 不再强制要求 `https://` 開頭（原表 4300+261 行史源欄無一帶網址），但 `title`／`quote`／`reason`／`sourceGuards` 仍為硬性必填、`url` 若存在仍須為合法網址。這是本輪對讀者可見性信任門檻的唯一鬆動；決策背景、風險與範圍見根目錄 `V90-REVIEW.md`。
+- 「蜀漢→季漢」清理範圍限縮在項目自撰的標籤／敘述文字：`person-biographies.js`（10 處小傳正文）、`shihuo-records.js`（5 處 `title`／`detail`）、`index.html`（1 處節點注釋）；引文原文、現代著作書名、既有「蜀漢→季漢」兼容判斷邏輯一律不動——原因見 `V90-REVIEW.md`「範圍限縮」一節。
+- 連帶影響：`atlas/scripts/build-v69-data.mjs` 的 `uniquePersonIdForName` 要求方鎮候選的人物連結必須唯一命中才連結；新增 1547 名候選後，部分方鎮任職者姓名與新人物撞名，原本唯一命中的連結按既有規則正確地不再連結（寧缺勿濫），`v69-fangzhen-reader.json` 中相應記錄的 `personId` 字段消失屬預期行為，不是回歸。

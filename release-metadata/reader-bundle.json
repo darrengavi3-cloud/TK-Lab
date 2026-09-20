@@ -3,7 +3,7 @@
   "build": "reader",
   "sourceRegistryModelId": "sgz-v63-person-registry",
   "sourceReaderModelId": "sgz-v63-reader-people",
-  "personCount": 2074,
+  "personCount": 3621,
   "portraitCount": 500,
   "readerProjection": {
     "mapRuntimeFiles": [
@@ -81,7 +81,7 @@
     "fangzhenReaderRecordCount": 523,
     "fangzhenVerifiedRecordCount": 45,
     "fangzhenCandidateRecordCount": 478,
-    "personProfileCount": 2074,
+    "personProfileCount": 3621,
     "battlePersonLinkCount": 106,
     "epigraphicRecordCount": 166,
     "peerageNodeCount": 13,
@@ -109,8 +109,8 @@
     "explicitCodeIdentifierExceptions": 3
   },
   "fileCount": 586,
-  "totalBytes": 201558657,
-  "aggregateSha256": "bda010645b33e31fd2756fe1506dbaedb59636accca4114bac00c0e4b2063188",
+  "totalBytes": 201976116,
+  "aggregateSha256": "d213b67d8cafc92deca66c36c8e60193fb01e5af3f93c3bd19e8f3ca7de6c7dc",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -2980,7 +2980,7 @@
     {
       "path": "data/shihuo-records.js",
       "bytes": 51655,
-      "sha256": "b9b7ad108495730aff80772d50a22f13822c0733189732380cddebec1c5c74f3"
+      "sha256": "f04f8f6cd5165fc82087ae711039e181b0ff0061a2f57ce944275fb79237afd5"
     },
     {
       "path": "data/v62-jinshi-display.js",
@@ -2989,13 +2989,13 @@
     },
     {
       "path": "data/v63-reader-people.js",
-      "bytes": 425075,
-      "sha256": "b77d64c8eee0f23c3c8a681c5238550f0436c32a34077b7f4bcfa07e26ae1fae"
+      "bytes": 551677,
+      "sha256": "f608040cdfa48d1d468eb6aced2effcd5e4e1b18f1fead6d4583f47f1a9aec60"
     },
     {
       "path": "data/v63-reader-people.json",
-      "bytes": 586046,
-      "sha256": "25a56f34f08b1c0f7d6852d46add17cb4c187db7cb68e0b3407871839902c45c"
+      "bytes": 788102,
+      "sha256": "6cae6478117260c458a89cd0c84249c6ff0a965930e44bb623cb4e8f2c8179b2"
     },
     {
       "path": "data/v63-reader-person-relations.js",
@@ -3024,23 +3024,23 @@
     },
     {
       "path": "data/v69-fangzhen-reader.js",
-      "bytes": 258465,
-      "sha256": "04687516a413a462f029157be15f835f8965bfe0c56245deaaadd8c288f01baa"
+      "bytes": 255991,
+      "sha256": "b573b318c7feb2d5d865e2815e57dba75ae5b836e366a165dd68a8b788e2d359"
     },
     {
       "path": "data/v69-person-profiles.js",
-      "bytes": 603845,
-      "sha256": "e58ac3dac40f5aa4f04603b806038e979a89fcd4ad473dc9717f78fbd9b0999e"
+      "bytes": 695118,
+      "sha256": "3087b7c639bfe42d1f9564278442813d2554822508351d82650dce1b2cd54e1c"
     },
     {
       "path": "data/v73-review-status-ledger.js",
-      "bytes": 1809,
-      "sha256": "0319816f3bf613bd03ea8a00db3bbbdb3613d819405290c2591aae1882677a69"
+      "bytes": 1811,
+      "sha256": "4377dbb10b407e08688dc56ae6406a6cab870b14896131c93cc0d46040ca7a63"
     },
     {
       "path": "index.html",
       "bytes": 782342,
-      "sha256": "a025438b35d1f1b5fb9bb53110885ad880958c2c4dfedcd000f920e7468cdd28"
+      "sha256": "f1cd4eaa3975ddd9aa4bc0792e14c8687b3d5e9e86c292023fbf7aff3bbd715f"
     }
   ]
 }

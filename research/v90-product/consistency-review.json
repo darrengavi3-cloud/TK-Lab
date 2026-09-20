@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-20",
+  "scope": "复核因 V90 人物总表匯入新出现、不属于 V86 候选清单基线的一致性发现。",
+  "summary": {
+    "fixed": 0,
+    "false-positive": 0,
+    "already-reviewed": 0,
+    "source-review": 1
+  },
+  "records": [
+    {
+      "id": "V90-C01",
+      "category": "人物名目含斜线（疑异写并列或解析残留）",
+      "originalFinding": "丁固（密/宓）｜person:v90:3c415bbb9b5540ea",
+      "recordIds": ["person:v90:3c415bbb9b5540ea"],
+      "disposition": "source-review",
+      "reason": "斜线出自上传总表原文，标注该人本名或作「密」或作「宓」两种异写（《晋书·卷五十四》裴注引《会稽典录》以其为丁览之子、字子贱），未定案；保留原始名目与 review-only 身份，不以字符串清洗制造确定姓名。",
+      "evidence": [
+        "atlas/data/v90-person-workbook-import.json",
+        "atlas/data/v63-person-registry.json"
+      ],
+      "currentFindingId": "a449f7906ec1d4c6"
+    }
+  ]
+}

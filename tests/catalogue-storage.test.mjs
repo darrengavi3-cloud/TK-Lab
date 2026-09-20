@@ -87,7 +87,7 @@ test('real baseline records pass domain and relational import validation',async(
   const baseline=readLegacyBaseline();
   // Validate all historical links without publishing or mutating the running Site.
   await service.validateBatch(db,baseline.records.map(data=>({data,baseVersion:0})));
-  assert.equal(baseline.records.length,4336);
+  assert.equal(baseline.records.length,7155);
 });
 test('backup restores D1 history, originals and published snapshots into an empty database',async()=>{
   const raw=await new Response(await service.backup(env)).text(),archive=gzipSync(raw);
@@ -109,7 +109,7 @@ test('backup restores D1 history, originals and published snapshots into an empt
 });
 
 
-test('complete baseline bootstrap commits 4336 records once and reproduces all reader facts',async()=>{
+test('complete baseline bootstrap commits 7155 records once and reproduces all reader facts',async()=>{
   const local=new Miniflare(convertV4MiniflareOptions({modules:true,script:'export default {fetch(){return new Response("test")}}',compatibilityDate:'2026-09-01',d1Databases:['DB'],r2Buckets:['BUCKET']}));
   try{
     const localDb=await local.getD1Database('DB'),localBucket=await local.getR2Bucket('BUCKET'),localEnv={DB:localDb,BUCKET:localBucket};
@@ -118,7 +118,7 @@ test('complete baseline bootstrap commits 4336 records once and reproduces all r
     let staged;do{staged=await service.stageImport(localEnv,job.id);}while(staged.state==='staging');
     assert.equal((await localDb.prepare('SELECT count(*) AS n FROM catalogue_records').first()).n,0);
     await service.commitImport(localEnv,job.id,'owner-fixture','完整遷移');
-    assert.equal((await localDb.prepare('SELECT count(*) AS n FROM catalogue_records').first()).n,4336);
+    assert.equal((await localDb.prepare('SELECT count(*) AS n FROM catalogue_records').first()).n,7155);
     assert.deepEqual((await localDb.prepare('PRAGMA foreign_key_check').all()).results,[]);
     assert.equal((await service.bootstrap(localEnv)).id,job.id);
     const candidate=await service.makePublication(localEnv,'owner-fixture'),baseline=readLegacyBaseline();
@@ -131,7 +131,7 @@ test('complete baseline bootstrap commits 4336 records once and reproduces all r
       assert.deepEqual(current.appointments.map(r=>Object.fromEntries(Object.entries(r).filter(([key])=>!['appointmentNature','dateCertainty','dateText','catalogueManaged'].includes(key)))),old.appointments);
     }
     const complete=verifyBackup(gzipSync(await new Response(await service.backup(localEnv)).text()));
-    assert.equal(complete.data.catalogue_records.length,4336);
-    assert.equal(complete.data.catalogue_revisions.length,4336);
+    assert.equal(complete.data.catalogue_records.length,7155);
+    assert.equal(complete.data.catalogue_revisions.length,7155);
   }finally{await local.dispose();}
 });

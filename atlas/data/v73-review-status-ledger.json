@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "V86",
+  "schemaVersion": "V90",
   "modelId": "sgz-v73-review-status-ledger",
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "policy": {
@@ -30,8 +30,8 @@
     }
   ],
   "totals": {
-    "verified": 2413,
-    "pending": 1369,
+    "verified": 3960,
+    "pending": 2641,
     "disputed": 94,
     "suppressed": 108
   },
@@ -39,14 +39,14 @@
     {
       "key": "people",
       "label": "人物实体",
-      "total": 2444,
+      "total": 5263,
       "counts": {
-        "verified": 2074,
-        "pending": 327,
+        "verified": 3621,
+        "pending": 1599,
         "disputed": 14,
         "suppressed": 29
       },
-      "excludedFromStatistics": 370
+      "excludedFromStatistics": 1642
     },
     {
       "key": "appointments",

@@ -11,7 +11,7 @@ const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 const ids=rows=>rows.map(r=>r.id).sort();
 
 test('shadow import closes the frozen V86 appointment status counts without promoting candidates',()=>{
-  assert.equal(migration.report.readerPeople,2074);
+  assert.equal(migration.report.readerPeople,3621);
   assert.equal(migration.report.appointments,851);
   assert.deepEqual(migration.report.appointmentCounts,{verified:263,pending:507,disputed:2,suppressed:79});
   const rows=migration.records.filter(r=>r.kind==='appointment');

@@ -41,7 +41,7 @@ try {
     assert.equal(response.status, expected);
     if (url === '/api/admin/bootstrap') {
       const job = JSON.parse(body);
-      assert.equal(job.total, 4336, 'the packaged private baseline must initialize through the owner API');
+      assert.equal(job.total, 7155, 'the packaged private baseline must initialize through the owner API');
       assert.equal(job.state, 'staging');
     }
     if (url === '/api/admin/backup') {

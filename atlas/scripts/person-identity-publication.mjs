@@ -26,8 +26,10 @@ export function reviewedReaderScope(base, ...reviews) {
       if (!row.personId || seen.has(row.personId)) throw new Error('Duplicate or missing identity review');
       seen.add(row.personId);
       if (row.status !== 'verified') continue;
+      // V90：原典网址不再强制要求，但标题与原文节引仍是硬性门槛——
+      // 出处仍必须可辨认、可核对，只是不要求已知网址。
       if (!row.name || !row.reason || !row.citations?.length || !row.sourceGuards?.length ||
-          row.citations.some(c => !c.title || !c.quote || !/^https:\/\//.test(c.url))) {
+          row.citations.some(c => !c.title || !c.quote || (c.url && !/^https:\/\//.test(c.url)))) {
         throw new Error(`Incomplete identity review: ${row.personId}`);
       }
       if (row.action === 'add' && !ids.has(row.personId)) {

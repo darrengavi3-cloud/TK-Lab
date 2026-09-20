@@ -110,7 +110,8 @@ test('reviewed identities extend the frozen roster without losing ids or publish
   const base = json('v62-reader-scope');
   const identityReview = json('v71-person-identity-review');
   const roster = json('v63-reader-people').people;
-  const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi'];
+  const additions = ['person:han:liu-wangzhi', 'person:han:wang-shang-wenbiao', 'person:jin:li-xing-junshi',
+    ...json('v90-person-identity-review').records.map(row => row.personId)];
   const expectedIds = new Set([...base.people.map(row => row.personId), ...additions]);
   expectedIds.delete('person:source:032cc177a216');
   /* v85（2026-09）：抑制十二条由任官原文误切而成的伪人物——权加燮、全尚息、
@@ -120,7 +121,7 @@ test('reviewed identities extend the frozen roster without losing ids or publish
     for (const row of json(batch).records) expectedIds.delete(row.personId);
   }
   assert.deepEqual(new Set(roster.map(row => row.personId)), expectedIds);
-  assert.equal(loadReviewedReaderScope(fileURLToPath(root)).length, 2074);
+  assert.equal(loadReviewedReaderScope(fileURLToPath(root)).length, 3621);
   const liu = roster.find(row => row.personId === 'person:snapshot260:9fbd9f0edab3ad59');
   assert.equal(liu.zi, '道真');
   assert.equal(liu.birthplace, '燕国蓟');
@@ -205,7 +206,7 @@ test('verified administrative tenures resolve into person timelines; candidates 
     assert.equal(record.readerDisplayStatus, 'verified');
     assert.equal(event.personId, record.personId);
   }
-  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 96);
+  assert.equal(json('v63-reader-people').people.filter(person => person.bio).length, 101);
   assert.equal(json('v63-reader-people').people.filter(person => person.bioClassical).length, 0);
 });
 
@@ -413,7 +414,7 @@ test('reviewed biographies pin identities and evidence without replacing existin
   const additions = new Set([...approved, ...newer].map(row => row.personId));
   const originals = people.filter(person => person.bio && !additions.has(person.personId))
     .map(({ personId, bio }) => ({ personId, bio: json('v76-person-biography-corrections').records.find(row => row.personId === personId)?.previousBio || bio }));
-  assert.equal(originals.length, 70);
+  assert.equal(originals.length, 75);
   assert.equal(sourceDigest(originals), review.baselineBiographyDigest);
   const altered = structuredClone(review);
   altered.records[0].bio += '无据新增。';

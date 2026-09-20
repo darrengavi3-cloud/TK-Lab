@@ -23,7 +23,9 @@ export function verifyBackup(buffer){
       requireValue(names.includes(line.table)&&line.row&&Object.keys(line.row).length===tables[line.table].length&&tables[line.table].every(k=>k in line.row),'備份資料欄位無效。');
       data[line.table].push(line.row);rowCount++;
     }else if(line.type==='object'){
-      requireValue(safeKey(line.key)&&!objects.has(line.key)&&Number.isSafeInteger(line.bytes)&&line.bytes>=0&&line.bytes<=32*1024*1024,'備份物件無效。');
+      // V90: the decompressed baseline seed object now exceeds the old 32 MB bound; matches
+      // the internal upload() headroom in server/import-service.ts and bootstrap-service.ts.
+      requireValue(safeKey(line.key)&&!objects.has(line.key)&&Number.isSafeInteger(line.bytes)&&line.bytes>=0&&line.bytes<=64*1024*1024,'備份物件無效。');
       objects.set(line.key,{...line,parts:[],position:0});
     }else if(line.type==='bytes'){
       const object=objects.get(line.key),bytes=Buffer.from(line.data,'base64');

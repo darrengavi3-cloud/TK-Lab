@@ -15,7 +15,7 @@ export const expectedReaderPersonIds = reviewedReaderScope(base, ...config.ident
   .map(person => person.personId).sort();
 const laterBatches = config.identityReviewBatches.slice(checkpoint.identityReviewBatches.length);
 assert.deepEqual(config.identityReviewBatches.slice(0, checkpoint.identityReviewBatches.length), checkpoint.identityReviewBatches);
-assert.deepEqual(laterBatches, ['v85-person-identity-suppressions.json'], 'new identity batches require an explicit boundary review');
+assert.deepEqual(laterBatches, ['v85-person-identity-suppressions.json', 'v90-person-identity-review.json'], 'new identity batches require an explicit boundary review');
 const withdrawals = review(laterBatches[0]);
 const removedPeople = new Set(withdrawals.records.filter(row => row.status === 'verified' && row.action === 'suppress').map(row => row.personId));
 const removedPortraits = new Set(withdrawals.withdrawnPortraits.map(row => row.portraitId));
@@ -26,6 +26,14 @@ assert.ok(withdrawals.withdrawnPortraits.every(row => removedPeople.has(row.pers
   && frozen.portraitResolutions.some(old => old.portraitId === row.portraitId && old.personId === row.personId)));
 export const expectedPortraitResolutions = frozen.portraitResolutions.filter(row => !removedPortraits.has(row.portraitId));
 assert.ok(expectedPortraitResolutions.every(row => !removedPeople.has(row.personId)), 'a withdrawn identity retains a portrait');
+
+// V90: batches beyond the frozen withdrawal add newly reviewed identities rather than
+// removing existing ones; reconcile the historical boundary against those additions too.
+const addedPeople = new Set(laterBatches.slice(1).flatMap(name => review(name).records)
+  .filter(row => row.status === 'verified' && row.action === 'add')
+  .map(row => row.personId));
+assert.equal(addedPeople.size, 1547);
+assert.ok(![...addedPeople].some(id => removedPeople.has(id)), 'a withdrawn identity cannot also be a new addition');
 
 export function assertReaderPeople(people) {
   assert.deepEqual(Array.from(people, person => person.personId).sort(), expectedReaderPersonIds,
@@ -42,7 +50,8 @@ export function assertHistoricalIdentityBoundary(boundary, people) {
   assert.equal(historicalIds.length, boundary.people);
   assert.equal(digest(historicalIds), boundary.personIdsSha256, 'historical roster changed');
   assert.equal(digest(frozen.portraitResolutions), boundary.portraitResolutionsSha256, 'historical portrait bindings changed');
-  assert.deepEqual(expectedReaderPersonIds, historicalIds.filter(id => !removedPeople.has(id)), 'only reviewed identities may be withdrawn');
+  const reconciledIds = [...historicalIds.filter(id => !removedPeople.has(id)), ...addedPeople].sort();
+  assert.deepEqual(expectedReaderPersonIds, reconciledIds, 'only reviewed identities may be withdrawn or added');
   assertReaderPeople(people.people);
   assert.deepEqual(people.portraitResolutions, expectedPortraitResolutions, 'retained portrait bindings and order must stay unchanged');
 }

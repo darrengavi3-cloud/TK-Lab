@@ -26,7 +26,7 @@ assert(projected.filter(row=>row.dynastyLabel==='后汉').length===5,'后汉记�
 assert(projected.filter(row=>row.dynastyLabel==='季汉').length===6,'季汉记录未按稳定键拆分');
 assert(projected.filter(row=>row.dynastyLabel==='汉').length===0,'已有稳定键的汉记录仍未完成后汉／季汉拆分');
 
-assert((reader.people||[]).filter(person=>person.bio).length===96,'读者人物小传数量异常');
+assert((reader.people||[]).filter(person=>person.bio).length===101,'读者人物小传数量异常');
 assert(html.includes('人物小传')&&html.includes('class="person-biography"'),'人物详情缺少人物小传卡片');
 assert(!html.includes('相关历任长官'),'州镇页仍渲染重复的相关历任长官模块');
 assert(html.includes('v-model="fangzhenLevel"')&&html.includes('label="辖区层级"'),'州／方镇筛选未接入上下文栏');
@@ -44,5 +44,5 @@ if(failures.length){
   console.error(JSON.stringify({ok:false,failures},null,2));
   process.exitCode=1;
 }else{
-  console.log(JSON.stringify({ok:true,biographies:96,fangzhen:{records:45,levels:{州:36,方镇:9},dynasties:{后汉:5,季汉:6}},removedRelatedOfficials:true},null,2));
+  console.log(JSON.stringify({ok:true,biographies:101,fangzhen:{records:45,levels:{州:36,方镇:9},dynasties:{后汉:5,季汉:6}},removedRelatedOfficials:true},null,2));
 }
