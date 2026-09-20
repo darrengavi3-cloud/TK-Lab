@@ -273,7 +273,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v56-jinshi-row { padding-inline-start: 20px; }
 .v56-jinshi-row-title { color: var(--v58-ink); }
 .v56-jinshi-row-meta { color: var(--v58-muted); }
-.v58-jinshi-status { margin-top: 5px; display: block; color: var(--v58-accent); font-size: 12px; font-weight: 700; }
+.v58-jinshi-status { margin-top: 5px; display: block; color: var(--v58-muted); font-size: 12px; font-weight: 500; }
 .v56-jinshi-reader { padding: 18px; }
 .v56-jinshi-reader header { border-bottom-color: var(--v58-line); }
 .v56-jinshi-reader h2 { color: var(--v58-ink); }
@@ -346,6 +346,11 @@ body, #app, .shell { color: var(--v58-ink); }
 .v69-person-facts > div:nth-last-child(-n + 2) { border-bottom: 0; }
 .v69-person-facts dt { color: var(--v58-muted); font-size: 12px; letter-spacing: .08em; }
 .v69-person-facts dd { margin: 0; color: var(--v58-ink); font-size: 12px; line-height: 1.6; }
+.v69-person-fact-list summary { cursor: pointer; color: var(--v58-ink); font: 700 12px ui-monospace, SFMono-Regular, Menlo, monospace; list-style: none; }
+.v69-person-fact-list summary::-webkit-details-marker { display: none; }
+.v69-person-fact-list summary::before { content: '▸'; display: inline-block; margin-inline-end: 4px; color: var(--v58-muted); transition: transform .12s ease; }
+.v69-person-fact-list[open] summary::before { transform: rotate(90deg); }
+.v69-person-fact-list .person-card-badges { margin: 6px 0 0; }
 
 .v69-person-life-section { margin-top: 20px; }
 .v69-person-life-timeline { position: relative; display: grid; gap: 0; padding: 4px 0 4px 8px; }
@@ -2140,6 +2145,22 @@ body, #app, .shell { color: var(--v58-ink); }
   min-height: 0;
   overflow-y: auto;
   scrollbar-gutter: stable;
+}
+
+/* 金石录顶部改用安静的说明行，不再套用与州镇表共用的深色题签（避免误改方镇视觉）。 */
+.v67-jinshi-masthead {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--v58-line);
+  color: var(--v58-muted);
+  font-size: 12px;
+}
+.v67-jinshi-masthead strong {
+  color: var(--v58-ink);
+  font: 700 15px/1.35 "Songti SC", SimSun, serif;
 }
 
 .v67-jinshi-directory-head {

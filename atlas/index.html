@@ -6884,11 +6884,11 @@ const app = createApp({
     const peoplePrimaryPeerageTimeline=computed(()=>verifiedPeerageTimeline(peoplePrimaryDetail.value?.peerageEvents||[]));
     const peoplePrimaryOfficeSummary=computed(()=>{
       const names=(peoplePrimaryDetail.value?.appointments||[]).map(item=>item.nodeName||item.title||item.officeName).filter(Boolean);
-      return [...new Set(names)].slice(0,6).join('、');
+      return [...new Set(names)];
     });
     const peoplePrimaryPeerageSummary=computed(()=>{
       const names=peoplePrimaryPeerageTimeline.value.map(item=>[item.displayRank||item.rank,item.displayTitle||item.title].filter(Boolean).join(' · ')).filter(Boolean);
-      return [...new Set(names)].slice(0,6).join('、');
+      return [...new Set(names)];
     });
     const peoplePrimaryLifeTimeline=computed(()=>{
       const events=cloneJSON(peoplePrimaryDetail.value?.lifeEvents||[]).sort((a,b)=>{
@@ -9489,7 +9489,6 @@ const app = createApp({
                 <person-identity-facts :person="peoplePrimaryDetail" :lifespan="personLifespanLabel(peoplePrimaryDetail)" :office="peoplePrimaryOfficeSummary" :peerage="peoplePrimaryPeerageSummary" />
                 <div v-if="workspaceMode==='review'&&peoplePrimaryDetail.importCandidate" class="v60-import-candidate review-only"><strong>附件人物候选 · {{peoplePrimaryDetail.researchDisposition}}</strong><template v-if="peoplePrimaryDetail.v60Records&&peoplePrimaryDetail.v60Records.length"><span v-for="record in peoplePrimaryDetail.v60Records" :key="record.workbookSource.row">{{record.workbookSource.sheet}} 第 {{record.workbookSource.row}} 行 · 原名 {{record.rawName||record.name}}<template v-if="record.officeRaw"> · 官职字段 {{record.officeRaw}}</template></span></template><span v-else>{{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.sheet}} 第 {{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.row}} 行 · 原名 {{peoplePrimaryDetail.rawName||peoplePrimaryDetail.name}}</span><span v-if="peoplePrimaryDetail.candidateReason">{{peoplePrimaryDetail.candidateReason}}</span></div>
                 <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{peoplePrimaryDetail.sourceVolumes.length?peoplePrimaryDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span><span class="v58-status" :class="peoplePrimaryDetail.sourceVolumes.length?'v58-status--ready':'v58-status--pending'">{{peoplePrimaryDetail.sourceVolumes.length?'来源已关联':'来源待补'}}</span></div>
-                <span v-if="peoplePrimaryDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像。</span>
                 <section v-if="readableFact(peoplePrimaryDetail.bio)" class="person-biography" aria-label="人物小传"><h3>人物小传</h3><p>{{peoplePrimaryDetail.bio}}</p></section>
                 <el-button v-if="workspaceMode==='review'" class="review-only" size="small" plain @click="openPersonMetaEditor(peoplePrimaryDetail.personId)">编辑人物档案</el-button>
               </div>
@@ -9553,7 +9552,7 @@ const app = createApp({
               </div>
               <div v-if="battlePersonLinksFor(item).length" class="v69-battle-people" aria-label="涉及人物">
                 <span>涉及人物</span>
-                <button v-for="link in battlePersonLinksFor(item).slice(0,6)" :key="link.linkId" type="button" @click="openBattlePerson(link)">{{link.personName}}</button>
+                <button v-for="link in battlePersonLinksFor(item).slice(0,6)" :key="link.linkId" type="button" class="person-link" @click="openBattlePerson(link)">{{link.personName}}</button>
                 <small v-if="battlePersonLinksFor(item).length>6">另 {{battlePersonLinksFor(item).length-6}} 人</small>
               </div>
               <div class="battle-item-actions">
@@ -9647,10 +9646,7 @@ const app = createApp({
 
     <main v-if="moduleVisited.jinshi&&moduleLoadState.jinshi==='ready'" v-show="activeModule==='jinshi'" class="module-page jinshi-workbench">
       <div class="module-page-inner">
-        <header class="v67-module-masthead">
-
-          <div class="v67-masthead-meta"><strong>{{epigraphicMetrics.current}}</strong><span>当前</span><strong>{{epigraphicMetrics.withInscription}}</strong><span>有释文</span></div>
-        </header>
+        <div class="v67-jinshi-masthead"><strong>{{epigraphicMetrics.current}}</strong><span>当前</span><strong>{{epigraphicMetrics.withInscription}}</strong><span>有释文</span></div>
         <section v-if="!filteredEpigraphicRecords.length" class="jinshi-empty-panel">
           <div class="seal">金</div>
           <h2>暂无符合条件的金石材料</h2>
@@ -9914,13 +9910,13 @@ const app = createApp({
           <b>{{activeBattleDetail.a}}</b><span class="vs">vs</span><b>{{activeBattleDetail.b}}</b>
         </div>
         <div v-if="activeBattleDetail.result" class="battle-detail-result">{{activeBattleDetail.result}}</div>
-        <p style="font-size:12.5px;color:#6F766F;line-height:1.75;margin:0 0 10px;">{{activeBattleDetail.desc||activeBattleDetail.note}}</p>
+        <p style="font-size:12.5px;color:var(--v56-muted);line-height:1.75;margin:0 0 10px;">{{activeBattleDetail.desc||activeBattleDetail.note}}</p>
         <div v-if="activeBattleDetail.participants&&activeBattleDetail.participants.length" class="battle-detail-meta">
           <div class="row"><span>参战方</span>{{activeBattleDetail.participants.join(' · ')}}</div>
         </div>
         <section v-if="battlePersonLinksFor(activeBattleDetail).length" class="v69-battle-person-links" aria-label="涉及人物">
           <h4>涉及人物</h4>
-          <div><button v-for="link in battlePersonLinksFor(activeBattleDetail)" :key="'drawer-'+link.linkId" type="button" @click="openBattlePerson(link)"><strong>{{link.personName}}</strong><small>{{link.role}}</small></button></div>
+          <div><button v-for="link in battlePersonLinksFor(activeBattleDetail)" :key="'drawer-'+link.linkId" type="button" class="person-link" @click="openBattlePerson(link)"><strong>{{link.personName}}</strong><small>{{link.role}}</small></button></div>
         </section>
         <div v-if="activeBattleDetail.strengthNote" class="battle-detail-meta">
           <div class="row"><span>兵力说明</span>{{activeBattleDetail.strengthNote}}</div>
@@ -9951,7 +9947,6 @@ const app = createApp({
             <p v-if="workspaceMode==='review'&&activePeopleDetail.homonymStatus" class="homonym-note review-only">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
             <p v-if="workspaceMode==='review'&&activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note review-only">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
             <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length?activePeopleDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span></div>
-            <span v-if="activePeopleDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像。</span>
             <section v-if="activePeopleDetail.bio" class="person-biography" aria-label="人物小传"><h3>人物小传</h3><p>{{activePeopleDetail.bio}}</p></section>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.dynastyTags" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
             <person-identity-facts :person="activePeopleDetail" :lifespan="personLifespanLabel(activePeopleDetail)" :office="peoplePrimaryOfficeSummary" :peerage="peoplePrimaryPeerageSummary" />

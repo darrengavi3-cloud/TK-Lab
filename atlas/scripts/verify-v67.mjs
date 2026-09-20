@@ -81,7 +81,10 @@ const malicious='<img src=x onerror=alert(1)>曹全碑';
 const fragments=highlightTextFragments(malicious,'曹全');
 assert(fragments.map(row=>row.text).join('')===malicious&&fragments.some(row=>row.hit&&row.text==='曹全'),'金石高亮没有保持恶意字符串为纯文本片段');
 
-assert((html.match(/class="v67-module-masthead"/g)||[]).length===2,'州镇表与金石录未各自使用一个墨色题签');
+// V90：金石录顶部改用安静说明行（.v67-jinshi-masthead），不再与州镇表共用深色题签，
+// 避免为金石录改样式时误动方镇视觉；州镇表自身的墨色题签保留不变。
+assert((html.match(/class="v67-module-masthead"/g)||[]).length===1,'州镇表墨色题签缺失或被误动');
+assert(html.includes('class="v67-jinshi-masthead"'),'金石录顶部安静说明行缺失');
 assert(html.includes("period:'all',polity:'all'")&&html.includes("fangzhen.js?v=67")&&html.includes("jinshi.js?v=71.1"),'综合州镇范围或当前模块缓存键未更新');
 assert(html.includes('class="v67-fangzhen-workbench"')&&html.includes('class="v56-jinshi-workbench-grid"'),'双卷工作台主布局缺失');
 assert(html.includes('const fangzhenPageSize = 12')&&html.includes('const epigraphicPageSize = 12'),'双卷分页没有固定为每页 12 条');

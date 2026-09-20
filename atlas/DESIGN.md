@@ -275,3 +275,14 @@ V71 第二批续修：正文令牌为 16px，原典及著录说明采用 14px �
 - `atlas/scripts/person-identity-publication.mjs` 的 `reviewedReaderScope` 校驗放寬：`citations[].url` 不再强制要求 `https://` 開頭（原表 4300+261 行史源欄無一帶網址），但 `title`／`quote`／`reason`／`sourceGuards` 仍為硬性必填、`url` 若存在仍須為合法網址。這是本輪對讀者可見性信任門檻的唯一鬆動；決策背景、風險與範圍見根目錄 `V90-REVIEW.md`。
 - 「蜀漢→季漢」清理範圍限縮在項目自撰的標籤／敘述文字：`person-biographies.js`（10 處小傳正文）、`shihuo-records.js`（5 處 `title`／`detail`）、`index.html`（1 處節點注釋）；引文原文、現代著作書名、既有「蜀漢→季漢」兼容判斷邏輯一律不動——原因見 `V90-REVIEW.md`「範圍限縮」一節。
 - 連帶影響：`atlas/scripts/build-v69-data.mjs` 的 `uniquePersonIdForName` 要求方鎮候選的人物連結必須唯一命中才連結；新增 1547 名候選後，部分方鎮任職者姓名與新人物撞名，原本唯一命中的連結按既有規則正確地不再連結（寧缺勿濫），`v69-fangzhen-reader.json` 中相應記錄的 `personId` 字段消失屬預期行為，不是回歸。
+
+## V91 人物記／戰事紀／金石錄／食貨志／形勢圖 視覺與功能第一輪（依用戶設計覆核）
+
+依用戶提供的設計覆核文檔逐項執行，範圍限定在文檔明確列為「建議」的項目；文檔自身標記「不代為決定」「不代為判斷」「還沒細看」的項目一律不動；史源表（shiyuan）一節因該模組已於 V88 移除而整段跳過。
+
+- **人物記**：刪除兩處「界面识别立绘，非史实肖像」提示（`index.html` 主詳情欄與抽屜各一處），與 V56 人物抽屜同輪刪除同一句話的理由一致；空狀態文案「已收录身份资料；独立小传与经历尚待补充」核對後語氣已符合要求，未改動。詳情欄 `.people-detail-*`／`.person-biography`／`.homonym-note`／`.people-source-note` 等原先用寫死十六進位色值的規則（`base.css`），改為引用 `--v56-*` 拓本色系令牌，深色「青灯夜校」主題下能正確換色。`官职`／`爵位`兩行原本只是逗號拼接的純文字，現改為可展開的結構化清單：`PersonIdentityFacts`（`atlas/assets/app/reader-components.js`）改用 `<details><summary>{{count}} 任/爵</summary>` 包裹既有 `.person-pill` 徽章，`peoplePrimaryOfficeSummary`／`peoplePrimaryPeerageSummary` 相應由拼接字串改為返回原始陣列。
+- **戰事紀**：「涉及人物」按鈕（列表行與抽屜兩處）新增語意 class `person-link`，與全站其餘「點擊開人物抽屜」的視覺標記一致；其點擊行為（`openBattlePerson`→`openPeopleDetail`）在改動前已經正確打通共用抽屜，本輪未改動任何跳轉邏輯。詳情欄 `.battle-detail-vs`／`.battle-detail-result`／`.battle-detail-meta` 的寫死色值改為 `--v56-*` 令牌。
+- **金石錄**：頂部黑底統計條（`.v67-module-masthead`，與州鎮表共用）替換為金石錄專屬的安靜說明行 `.v67-jinshi-masthead`（襯線粗體數字＋淺色標籤、底部細線），不再與州鎮表共用深色題簽組件，避免牽動方鎮視覺（州鎮表本輪不在範圍內）。條目狀態標籤（殘缺釋文／源文未見釋文／釋文已錄入）從硃紅加粗降階為中性灰、非加粗，仍保留（這是資料可讀性提示，不是考據存疑標記）。`atlas/scripts/verify-v67.mjs` 對應更新：州鎮表題簽數量斷言由 2 改為 1，新增金石錄安靜說明行存在性斷言。
+- **食貨志**：詳情欄核實已全面使用 `--sgz-*` 令牌與襯線標題字體，本輪無需改動；「出處」引書維持（性質同職官谱模組頭引，非考據痕跡）；「含推算与讨论」核取方塊維持原文——與職官谱「仅核心体系」語法不同（前者是納入型篩選、後者是排除型篩選），強行統一措辭會誤導語義，故不改。
+- **形勢圖**：年代速覽軸（`.battle-timebar`／`.battle-period` 等）已大致在 `--v56-*` 令牌上，僅 `.battle-period.past::before` 一處寫死色值 `#A78345` 改為 `var(--v56-gold)`；地圖畫布本身因環境無法連線 `arcgisonline.com` 圖磚服務，未渲染、不編視覺建議。
+- 本輪所有涉及色值的改動都經過本機 Playwright 截圖驗證（1440 寬、無主控台錯誤），並重跑 `release-check.mjs`／`typecheck`／`lint`／`build:site`／`test:built`／`test:runtime` 全部通過；`test:visual` 的 3 項既有失敗（方鎮模組「职任」按鈕在特定視口竖排）經 `git worktree` 對比 V89 提交點復現，確認與本輪改動無關，不在本輪修復範圍。
