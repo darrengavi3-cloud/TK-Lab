@@ -93,6 +93,11 @@ const compareText = (left, right) => left < right ? -1 : left > right ? 1 : 0;
 // object-literal payloads, audit globals, absolute paths and review status
 // values.  Keeping this list explicit makes a new exception a reviewable build
 // change rather than a silent hole in the leak scan.
+//
+// 注意：这份清单只为「审校键/字面量」检查开口子。review-only/audit-only 的
+// 检查（下文的 auditStatusValue 分支）另有独立的 CSS 类名豁免，不要为了放行
+// 界面单元里的 class="... review-only" 而把文件加到这里——那会连带跳过审校键
+// 扫描，属于过度豁免。
 const readerCodeIdentifierExceptions = new Set([
   'index.html',
   'data/jinshi-schema.js',
@@ -1120,6 +1125,40 @@ writeText(path.join(stagingPath, 'data', 'portrait-manifest.json'), projectionOv
 const sensitiveSerializedPattern = new RegExp(`"(?:${serializedSensitiveKeys.join('|')})"\\s*:`, 'g');
 const sensitiveObjectKeyPattern = new RegExp(`(?:^|[,{;])\\s*(?:["'](?:${serializedSensitiveKeys.join('|')})["']|(?:${serializedSensitiveKeys.join('|')}))\\s*:`, 'gm');
 const sensitiveKeyLiteralPattern = new RegExp(`["'](?:${serializedSensitiveKeys.join('|')})["']`, 'g');
+
+// review-only / audit-only 只以 CSS 类名出现在承载类名的属性值中（原在 index.html，
+// 现随界面单元迁至 assets/app/ui/*.js）。泄漏扫描要抓的是「审校状态字符串」，例如
+// status:'review-only'；类名不是审校数据，且承载它的区块一律由
+// v-if="workspaceMode==='review'" 控制——读者包构建会把 setWorkspaceMode 强制改写为
+// 'reader'（见上方 workspaceMode 投影）并删除审校切换按钮，因此这些区块静态不可达。
+//
+// 判定规则简单且保守：逐个找出 review-only/audit-only 的出现位置，只看它是否落在
+// 某个承载类名的属性值内部。以下三种都算类名：
+//   class="..."        普通类名属性
+//   :class="..."       动态类名绑定（含 :class="{...}" 对象语法）
+//   class-name="..."   Element Plus el-table-column 的类名 prop，直接落到 DOM 的 class
+// 在类名属性内 = 类名，放行；在类名属性外 = 被当作状态值使用，拦截。
+// 任何解析不出来的位置都按拦截处理。
+function findAuditStatusValue(contents) {
+  const occurrencePattern = /\b(?:audit-only|review-only)\b/g;
+  // 前置的 : 与 class-name 都要接受；用 (?:^|[^\w-]) 保证不从更长的标识符中间起匹配。
+  const classAttributePattern = /(?:^|[^\w-])(?::?class|class-name)\s*=\s*(["'])([\s\S]*?)\1/g;
+  const classRanges = [];
+  let classMatch;
+  while ((classMatch = classAttributePattern.exec(contents)) !== null) {
+    // 只把引号之间的内容算作类名区间，属性名与定界符本身不算。
+    const valueStart = classMatch.index + classMatch[0].length - classMatch[2].length - 1;
+    classRanges.push([valueStart, valueStart + classMatch[2].length]);
+  }
+  const withinClassAttribute = index => classRanges.some(([start, end]) => index >= start && index < end);
+  let match;
+  while ((match = occurrencePattern.exec(contents)) !== null) {
+    if (withinClassAttribute(match.index)) continue;
+    return match[0];
+  }
+  return '';
+}
+
 const identifierExceptionHits = new Set();
 for (const filePath of listFiles(stagingPath)) {
   if (!/\.(?:html|js|json|css|md|txt)$/i.test(filePath)) continue;
@@ -1139,8 +1178,18 @@ for (const filePath of listFiles(stagingPath)) {
         fail(`代码例外文件内嵌了审校全局对象：${relative}`);
       }
     }
-    if (!thirdPartyCode && !readerCodeIdentifierExceptions.has(relative) && /["'](?:audit-only|review-only)["']/.test(contents)) {
-      fail(`读者文件仍包含审校状态值：${relative}`);
+    if (!thirdPartyCode) {
+      // 与审校键检查共用同一份例外清单：清单内的文件是「知道如何忽略审校字段的
+      // 读者侧兼容代码」，其中的 review-only/audit-only 只作为 fail-closed 默认值
+      // 存在，并且随后会被 publicationStatus==='verified' 过滤掉。仍记录命中，
+      // 让「例外已无命中」的校验继续生效。
+      const auditStatusValue = findAuditStatusValue(contents);
+      if (auditStatusValue) {
+        if (!readerCodeIdentifierExceptions.has(relative)) {
+          fail(`读者文件仍包含审校状态值：${relative}（${auditStatusValue}）`);
+        }
+        identifierExceptionHits.add(relative);
+      }
     }
     if (!thirdPartyCode && mapAuditIdentifiers.some(identifier => contents.includes(identifier))) {
       fail(`读者文件仍包含地图审校台账标识：${relative}`);

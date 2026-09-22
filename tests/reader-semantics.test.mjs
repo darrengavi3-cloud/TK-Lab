@@ -300,9 +300,14 @@ test('the final reader retains all six reviewed transcriptions and variants with
   }
   const canonicalHtml = read('index.html');
   const readerHtml = read('exports/观史台-读者版/index.html');
+  /* 金石主体已迁入界面单元 jinshi-ui.js，另一处（移动端详情抽屉）仍在主文档中。
+   * 两处都必须保留 inscription-apparatus 接线，故分别核对。 */
+  const jinshiUnit = read('assets/app/ui/jinshi-ui.js');
   for (const html of [canonicalHtml, readerHtml]) {
-    assert.ok(html.includes('<inscription-apparatus :record="jinshiPrimaryDetail" />'));
     assert.ok(html.includes('<inscription-apparatus :record="activeEpigraphicDetail" />'));
+  }
+  for (const source of [jinshiUnit, read('exports/观史台-读者版/assets/app/ui/jinshi-ui.js')]) {
+    assert.ok(source.includes('<inscription-apparatus :record="jinshiPrimaryDetail" />'));
   }
 });
 

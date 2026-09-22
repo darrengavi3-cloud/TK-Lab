@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { projectOfficeSuccession } from '../atlas/scripts/build-office-succession.mjs';
 import { readReleaseConfig, loadSupplementDecisions } from '../atlas/scripts/release-config.mjs';
 
@@ -81,5 +82,5 @@ test('public office projection fails closed for missing identities or citations'
   changed.find(row=>row.polity==='季汉'&&row.nodeName==='大将军').citations=[];
   assert.throws(()=>projectOfficeSuccession(people,changed), /Incomplete/);
   assert.ok(readReleaseConfig().appointmentReviewBatches.includes('v76-appointment-source-review.json'));
-  assert.ok(loadSupplementDecisions(new URL('../atlas/',import.meta.url).pathname).records.length);
+  assert.ok(loadSupplementDecisions(fileURLToPath(new URL('../atlas/',import.meta.url))).records.length);
 });
