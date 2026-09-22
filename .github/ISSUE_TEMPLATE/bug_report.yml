@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a reproducible problem in the public code, reader, build, or research tooling.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, private URLs, production data, or exploit details. Security issues should follow SECURITY.md.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Reader / UI
+        - Research data pipeline
+        - Data model / schema
+        - Build / CI / validation
+        - Import / export
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide the smallest reproducible steps or fixture.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include branch/commit, Node version, browser/runtime, and operating system when relevant.
+  - type: textarea
+    id: validation
+    attributes:
+      label: Checks already run
+      description: List commands or tests you ran and their results.
