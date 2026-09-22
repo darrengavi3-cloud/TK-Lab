@@ -1,0 +1,45 @@
+name: Historical data correction
+description: Propose a source-backed correction to a person, office, appointment, place, citation, or related research record.
+title: "[Data] "
+labels: ["research"]
+body:
+  - type: input
+    id: record
+    attributes:
+      label: Entity or record
+      description: Give the person, office, appointment, place, or stable record ID when known.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current value or interpretation
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed correction
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Provide a bibliographic citation, stable link, edition/page/juan location, or other reproducible locator.
+    validations:
+      required: true
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Evidence and reasoning
+      description: Explain how the cited evidence supports the change and preserve uncertainty where the evidence is ambiguous.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Submission boundary
+      options:
+        - label: I have not included private credentials, restricted production data, or material I do not have the right to submit.
+          required: true
