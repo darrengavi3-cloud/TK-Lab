@@ -2,14 +2,14 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 825,
-  "totalBytes": 314312225,
-  "aggregateSha256": "87d0214fb3dc9a167bc2aa6d66bc5436f950c1b81e010a3edb5b73f0c10be03d",
+  "fileCount": 833,
+  "totalBytes": 314487604,
+  "aggregateSha256": "95080202327f3870fcc52308c50e7e066f63571881cebdad0e9de0c55be17552",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
-      "bytes": 9307,
-      "sha256": "09d35f78714bcf5105c986daeddbb066946e8c84a461ba311ab5eea246173ff8"
+      "bytes": 12267,
+      "sha256": "9ccba08fc1bbfbfc1fc4ddb319c47314fe260c5e9483706543632163ab4774bb"
     },
     {
       "path": "assets/app/jinshi.js",
@@ -28,8 +28,8 @@
     },
     {
       "path": "assets/app/people.js",
-      "bytes": 3453,
-      "sha256": "e6975c2fa25bbc64d73029b3486b03824b7a97db31ba47986b1bf7e9ad46e070"
+      "bytes": 3795,
+      "sha256": "ec9520c3599a1dbfa947dab9733d948ee50e0895e1f207025a635137cf4df73c"
     },
     {
       "path": "assets/app/persistence-core.js",
@@ -63,13 +63,53 @@
     },
     {
       "path": "assets/app/shihuo.js",
-      "bytes": 1294,
-      "sha256": "4d4171d7e24d930b9420be2f7c2cb3de652563d7fcdfa5d4c7242671fc0c79b7"
+      "bytes": 1637,
+      "sha256": "8c10657abf4465372c62de29643800e6a75faa2acbbc0076097da38c3b239ad6"
     },
     {
       "path": "assets/app/shiyuan.js",
       "bytes": 10271,
       "sha256": "b88a0f5c4040edec2685f0e7b20e21fbdcd58af8899706197249f4c8fedf378c"
+    },
+    {
+      "path": "assets/app/ui/battle-ui.js",
+      "bytes": 4431,
+      "sha256": "b3268061b4be852e46dfa57ce048070277a9fb970e66bdfcc8b7f88943f635d0"
+    },
+    {
+      "path": "assets/app/ui/fangzhen-ui.js",
+      "bytes": 24488,
+      "sha256": "802446ce3c0f3110beb056daf9cbeaf455ccc566ae897b3e22274d6163035759"
+    },
+    {
+      "path": "assets/app/ui/jinshi-ui.js",
+      "bytes": 15187,
+      "sha256": "b85d772bb3fd7b9905216aee2e9e4e21d9be25b194c8e2372e33d6d39183d327"
+    },
+    {
+      "path": "assets/app/ui/map-ui.js",
+      "bytes": 5347,
+      "sha256": "598f697a4278b4f9be68e37fb1765fe20138e30f7a9484a4fa14c2a5a22ff1b3"
+    },
+    {
+      "path": "assets/app/ui/offices-ui.js",
+      "bytes": 83045,
+      "sha256": "dad6296d7a6b5c6c16e1efca993c2e8ceb8a709e19d1a0ba5ddaab81b99743ba"
+    },
+    {
+      "path": "assets/app/ui/people-ui.js",
+      "bytes": 18700,
+      "sha256": "455fbd3715ef4ac39cff3bf4dd0cf910decf0d3b109b0e63198879a8576a5e0d"
+    },
+    {
+      "path": "assets/app/ui/shihuo-ui.js",
+      "bytes": 8440,
+      "sha256": "a77d74b4060d3520b87c8dc4a20937812a0be8581ce7e1074685564c8ce2d575"
+    },
+    {
+      "path": "assets/app/ui/shiyuan-ui.js",
+      "bytes": 8176,
+      "sha256": "e16b1a7a83dc55a3e3defc43fc2b28da0bbe47fa7614b864c61dc4707af446cc"
     },
     {
       "path": "assets/map/css/style.css",
@@ -3183,8 +3223,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 93799,
-      "sha256": "f3ab3be0060c4f843eae557b5257c5dc8d4e006962fbe7abe20b769453fe787d"
+      "bytes": 97719,
+      "sha256": "d9482dbe9aa18bcbc94971a43c3ef51f022caa08857f830ad0e8e3439e3cddec"
     },
     {
       "path": "assets/ui/responsive.css",

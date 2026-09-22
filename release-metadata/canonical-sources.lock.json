@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 925,
-  "totalBytes": 331504700,
-  "aggregateSha256": "be0b1ed2b3d46a39072d2da4f27899e9fabd979d0fec5d07546e8e9cacc41a0a",
+  "fileCount": 926,
+  "totalBytes": 331522157,
+  "aggregateSha256": "ac2ecc09e242e2a1f443eb6da23418e47742b134bf0de29726bcd2b43af5d5a7",
   "files": [
     {
       "path": "DESIGN.md",
@@ -19,8 +19,8 @@
     },
     {
       "path": "assets/app/fangzhen.js",
-      "bytes": 9307,
-      "sha256": "09d35f78714bcf5105c986daeddbb066946e8c84a461ba311ab5eea246173ff8"
+      "bytes": 11923,
+      "sha256": "6a8ecb10e7f542c1f3f94d6713ce2b7e476e76bc4d7a735f849788aeea2f60c1"
     },
     {
       "path": "assets/app/jinshi.js",
@@ -81,6 +81,11 @@
       "path": "assets/app/shiyuan.js",
       "bytes": 10271,
       "sha256": "b88a0f5c4040edec2685f0e7b20e21fbdcd58af8899706197249f4c8fedf378c"
+    },
+    {
+      "path": "assets/app/ui/shihuo-ui.js",
+      "bytes": 6368,
+      "sha256": "d55be0c0df6de044cc7b32ef439b25822c6402fde6fd9ab0aa15078a1781f015"
     },
     {
       "path": "assets/map/css/style.css",
@@ -3184,8 +3189,8 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 93799,
-      "sha256": "f3ab3be0060c4f843eae557b5257c5dc8d4e006962fbe7abe20b769453fe787d"
+      "bytes": 97719,
+      "sha256": "d9482dbe9aa18bcbc94971a43c3ef51f022caa08857f830ad0e8e3439e3cddec"
     },
     {
       "path": "assets/ui/responsive.css",
@@ -4129,8 +4134,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 801087,
-      "sha256": "c45ff0117112959cb7f87c4937658b74cc10ad5b021867b1565df6ed953c1f9e"
+      "bytes": 805640,
+      "sha256": "7169d5cb2014836332c8cb45c0678e2c3fe32034d3d025eb061dc5ec4d2ca2af"
     },
     {
       "path": "scripts/appointment-publication.mjs",

@@ -71,6 +71,33 @@ function renderFatalPanel(title,lines,maxWidth='560px'){
   }
 })();
 window.SGZ_UI_MODULES=window.SGZ_UI_MODULES||{};
+// 模块级界面组件登记表。各模块的 UI 单元以 ESM 导出，由 loadSgzUiModule 载入后
+// 经 registerSgzUiModuleComponents 登记，索引在 app.mount 前统一注册为 Vue 组件。
+// 与 SGZ_READER_COMPONENTS（只读、承载跨模块共享组件）分离，避免改写冻结对象。
+window.SGZ_UI_COMPONENTS=window.SGZ_UI_COMPONENTS||{};
+function registerSgzUiModuleComponents(moduleValue){
+  const entries=moduleValue&&moduleValue.ui;
+  if(!entries)return;
+  Object.entries(entries).forEach(([name,component])=>{
+    if(!component)return;
+    if(window.SGZ_UI_COMPONENTS[name]&&window.SGZ_UI_COMPONENTS[name]!==component){
+      throw new Error('界面组件重复登记：'+name);
+    }
+    window.SGZ_UI_COMPONENTS[name]=component;
+  });
+}
+/* 模块界面单元的显式加载表。每一项都写成 import() 的字面量调用，读者包构建
+ * 会按正则扫描这些目标并把对应文件纳入产物；不要改成拼接路径。 */
+const sgzUiUnitLoaders={
+  people:()=>import('./assets/app/ui/people-ui.js'),
+  fangzhen:()=>import('./assets/app/ui/fangzhen-ui.js'),
+  jinshi:()=>import('./assets/app/ui/jinshi-ui.js'),
+  shihuo:()=>import('./assets/app/ui/shihuo-ui.js'),
+  shiyuan:()=>import('./assets/app/ui/shiyuan-ui.js'),
+  battle:()=>import('./assets/app/ui/battle-ui.js'),
+  map:()=>import('./assets/app/ui/map-ui.js'),
+  offices:()=>import('./assets/app/ui/offices-ui.js')
+};
 const sgzUiModulePromises=new Map();
 const sgzUiModuleAttempts=new Map();
 function loadSgzUiModule(name){
@@ -89,7 +116,18 @@ function loadSgzUiModule(name){
   if(attempt){request.catch(()=>{});request=import('./assets/app/'+name+'.js?retry='+attempt);}
   const pending=request.then(module=>{
     window.SGZ_UI_MODULES[name]=module;
-    return module;
+    // 模块的界面单元在此登记为全局组件。app.mount 之前完成注册，因此模板中的
+    // <shihuo-workbench> 等自定义标签一定能在渲染前解析到组件。
+    // 界面实现统一放在 assets/app/ui/ 下。此处刻意保留 import() 的静态字面量，
+    // 因为读者包构建依赖正则静态追踪 import() 目标；写成拼接表达式会导致
+    // 界面单元被漏出读者包。
+    if(module&&module.ui){registerSgzUiModuleComponents(module);return module;}
+    const uiUnit=sgzUiUnitLoaders[name];
+    if(!uiUnit)return module;
+    return uiUnit().then(uiModule=>{
+      registerSgzUiModuleComponents(uiModule);
+      return module;
+    }).catch(()=>module);
   }).catch(error=>{
     sgzUiModulePromises.delete(name);
     throw error;
@@ -98,14 +136,47 @@ function loadSgzUiModule(name){
   return pending;
 }
 function ensureSectionModule(section){
+  /* 模块界面单元的统一下载通道。
+   * 资料模块与界面单元分属两条载入路径：people／fangzhen／jinshi／shihuo 的资料
+   * 是 ESM，import() 成功后由 loadSgzUiModule 登记其 ui；shiyuan／battle／map 的
+   * 资料走经典 script（或根本无资料），界面单元则是 ESM，需要在资料就绪后另行
+   * import()。此处把两件事收敛为「先保资料、再保界面」，调用方无需区分。 */
+  const loadUiUnit=()=>{
+    const loader=sgzUiUnitLoaders[section];
+    if(!loader)return Promise.resolve(null);
+    return loader().then(uiModule=>{
+      registerSgzUiModuleComponents(uiModule);
+      return window.SGZ_UI_MODULES?.[section]||null;
+    });
+  };
   if(section==='people')return loadSgzUiModule('people');
   if(section==='fangzhen')return loadSgzUiModule('fangzhen');
   if(section==='jinshi')return loadSgzUiModule('jinshi');
   if(section==='shihuo')return loadSgzUiModule('shihuo');
-  if(section==='shiyuan')return (window.SGZ_UI_MODULES?.shiyuan?Promise.resolve():loadSgzDataScript('shiyuan-ui','./assets/app/shiyuan.js')).then(()=>{
-    if(!window.SGZ_UI_MODULES?.shiyuan)throw new Error('史源资料载入失败');
-    return window.SGZ_UI_MODULES.shiyuan;
-  });
+  if(section==='map'){
+    // 形势图外壳为 ESM 界面单元；地图本体仍是 assets/map 下的独立 iframe 应用。
+    return loadUiUnit();
+  }
+  if(section==='offices'){
+    // 职官谱为启动模块：其资料由 <head> 中的多个 defer script 在首屏前载入，
+    // 页面就绪时数据已存在，故此处只需补上界面单元。
+    return loadUiUnit();
+  }
+  if(section==='shiyuan'){
+    return (window.SGZ_UI_MODULES?.shiyuan?Promise.resolve():loadSgzDataScript('shiyuan-ui','./assets/app/shiyuan.js'))
+      .then(()=>loadUiUnit())
+      .then(()=>{
+        if(!window.SGZ_UI_MODULES?.shiyuan)throw new Error('史源资料载入失败');
+        return window.SGZ_UI_MODULES.shiyuan;
+      });
+  }
+  if(section==='battle'){
+    // 战事纪的资料走经典 script；其界面单元是 ESM，用动态 import() 加载后登记组件。
+    return Promise.all([
+      loadSgzDataScript('battle-records','./data/battle-records.js','SGZ_BATTLE_RECORDS'),
+      loadSgzDataScript('v69-battle-person-links','./data/v69-battle-person-links.js?v=69','SGZ_V69_BATTLE_PERSON_LINKS')
+    ]).then(()=>loadUiUnit());
+  }
   return Promise.resolve(null);
 }
 const sgzDataScriptPromises=new Map();
@@ -188,9 +259,11 @@ function prepareSgzSectionData(section,reviewMode=false){
     return Promise.all(requests);
   }
   if(section==='battle'){
+    // 战事纪的资料走经典 script；其界面单元是 ESM，用动态 import() 加载后登记组件。
     return Promise.all([
       loadSgzDataScript('battle-records','./data/battle-records.js','SGZ_BATTLE_RECORDS'),
-      loadSgzDataScript('v69-battle-person-links','./data/v69-battle-person-links.js?v=69','SGZ_V69_BATTLE_PERSON_LINKS')
+      loadSgzDataScript('v69-battle-person-links','./data/v69-battle-person-links.js?v=69','SGZ_V69_BATTLE_PERSON_LINKS'),
+      import('./assets/app/ui/battle-ui.js').then(uiModule=>registerSgzUiModuleComponents(uiModule))
     ]);
   }
   if(section==='shihuo'){
@@ -2930,6 +3003,31 @@ const app = createApp({
     const shihuoPolities = ref(cloneJSON(SHIHUO_POLITIES));
     const shihuoCategories = ref(cloneJSON(SHIHUO_CATEGORIES));
     const shihuoRecords = ref(cloneJSON(SHIHUO_RECORDS));
+    /* ---- 食货志模块界面单元（shihuo-ui.js）的父层状态契约 ----
+       模块模板迁出后不再隐式捕获 setup 的全部返回值，改为按需暴露。
+       shihuoUiState 只列出该模块真正读取的字段；写入统一走 setShihuoUiState。 */
+    const shihuoUiWritableKeys={
+      shihuoPolity, shihuoScope, shihuoSort, shihuoIncludeDiscussion, shihuoQuery,
+      shihuoView, shihuoCategory, viewportWidth, showShihuoDetail
+    };
+    const shihuoUiState=reactive({
+      shihuoPolity, shihuoScope, shihuoSort, shihuoIncludeDiscussion, shihuoQuery,
+      shihuoView, shihuoCategory, viewportWidth, showShihuoDetail,
+      get shihuoPolities(){return shihuoPolities.value;},
+      get shihuoPagination(){return shihuoPagination.value;},
+      get shihuoPrimaryDetail(){return shihuoPrimaryDetail.value;},
+      get filteredShihuoHousehold(){return filteredShihuoHousehold.value;}
+    });
+    function setShihuoUiState(key,value){
+      const target=shihuoUiWritableKeys[key];
+      if(target)target.value=value;
+    }
+
+    /* 分页：等价替换原先的 `shihuoPage--;activeShihuoId=''`。 */
+    function stepShihuoPage(delta){
+      shihuoPage.value+=delta;
+      activeShihuoId.value='';
+    }
     function buildEpigraphicRuntimeRecords(){
       if(Array.isArray(window.SGZ_V69_EPIGRAPHIC_RECORDS?.records)){
         return window.SGZ_V69_EPIGRAPHIC_RECORDS.records.map(record=>normalizeEpigraphicRecord(cloneJSON(record)));
@@ -3049,6 +3147,43 @@ const app = createApp({
       const labels=(window.SGZ_UI_MODULES&&window.SGZ_UI_MODULES.shiyuan&&window.SGZ_UI_MODULES.shiyuan.KIND_LABELS)||{};
       return Object.keys(kinds).map(key=>`${labels[key]||key} ${kinds[key]}`).join(' · ')||'—';
     }
+    /* ---- 史源表模块界面单元（shiyuan-ui.js）的父层状态契约 ----
+       与 shihuo 同范式：state 代理只读暴露，写入经 setShiyuanUiState 白名单落库。 */
+    const shiyuanUiWritableKeys={ shiyuanWork, shiyuanKind, shiyuanQuery, shiyuanPage, shiyuanVolumeId };
+    const shiyuanUiState=reactive({
+      shiyuanWork, shiyuanKind, shiyuanQuery, shiyuanPage, shiyuanVolumeId,
+      get shiyuanWorks(){return shiyuanWorks.value;},
+      get shiyuanPagination(){return shiyuanPagination.value;},
+      get shiyuanActiveVolume(){return shiyuanActiveVolume.value;},
+      get shiyuanSummary(){return shiyuanSummary.value;},
+      get shiyuanUnattributed(){return shiyuanUnattributed.value;}
+    });
+    function setShiyuanUiState(key,value){
+      const target=shiyuanUiWritableKeys[key];
+      if(target)target.value=value;
+    }
+    /* ---- 战事纪模块界面单元（battle-ui.js）的父层状态契约 ----
+       本模块主体只读，无可写字段，故不设 setBattleUiState。
+       BATTLE_ERA_ANCHORS 是模块级冻结常量，作为普通 prop 传入。 */
+    const battleUiState=reactive({
+      get filteredBattles(){return filteredBattles.value;},
+      get workspaceMode(){return workspaceMode.value;}
+    });
+    /* ---- 形势图模块界面单元（map-ui.js）的父层状态契约 ----
+       本模块外壳只读；播放、跳期、关闭联动卡片等均为动作，经函数 prop 回传。
+       historyMapPeriods 本身是 reactive 对象，直接取值即可保持响应。 */
+    const mapUiState=reactive({
+      get historyMapBooted(){return historyMapBooted.value;},
+      get historyMapReady(){return historyMapReady.value;},
+      get historyMapIndex(){return historyMapIndex.value;},
+      get historyMapEras(){return historyMapEras;},
+      get historyMapPeriods(){return historyMapPeriods;},
+      get historyMapPlaying(){return historyMapPlaying.value;},
+      get historyMapUrl(){return historyMapUrl.value;},
+      get currentHistoryPeriod(){return currentHistoryPeriod.value;},
+      get mapLinkSelection(){return mapLinkSelection.value;},
+      get mapLinkedFangzhenRecords(){return mapLinkedFangzhenRecords.value;}
+    });
 
     function refreshLazyShihuoData(){
       const source=window.SGZ_SHIHUO_DATA||{polities:[],categories:[],records:[],events:[],household:[]};
@@ -3163,6 +3298,38 @@ const app = createApp({
     const jinshiMediaAssets=computed(()=>window.SGZ_UI_MODULES.jinshi.normalizeEpigraphicMediaAssets(jinshiPrimaryDetail.value?.mediaAssets));
     const jinshiActiveMedia=computed(()=>jinshiMediaAssets.value[Math.min(epigraphicMediaIndex.value,Math.max(0,jinshiMediaAssets.value.length-1))]||null);
     const jinshiRecordIndex=computed(()=>filteredEpigraphicRecords.value.findIndex(item=>item.id===jinshiPrimaryDetail.value?.id));
+/* ---- 金石录模块界面单元（jinshi-ui.js）的父层状态契约 ----
+       与食货志同理：模块模板只读取下列字段，写入统一走 setJinshiUiState。
+       jinshi-ui.js 中的同名 computed 均指向本代理，组件自身不持有状态。 */
+    const jinshiUiWritableKeys={
+      epigraphicPage, epigraphicEra, epigraphicType, epigraphicPolity,
+      epigraphicInscriptionStatus, epigraphicArchive, epigraphicQuery,
+      epigraphicMediaIndex
+    };
+    const jinshiUiState=reactive({
+      epigraphicPage, epigraphicEra, epigraphicType, epigraphicPolity,
+      epigraphicInscriptionStatus, epigraphicArchive, epigraphicQuery,
+      epigraphicMediaIndex,
+      get epigraphicMetrics(){return epigraphicMetrics.value;},
+      get filteredEpigraphicRecords(){return filteredEpigraphicRecords.value;},
+      get epigraphicPageCount(){return epigraphicPageCount.value;},
+      get pagedEpigraphicRecords(){return pagedEpigraphicRecords.value;},
+      get jinshiPrimaryDetail(){return jinshiPrimaryDetail.value;},
+      get jinshiRecordIndex(){return jinshiRecordIndex.value;},
+      get jinshiMediaAssets(){return jinshiMediaAssets.value;},
+      get jinshiActiveMedia(){return jinshiActiveMedia.value;},
+      get epigraphicEraOptions(){return epigraphicEraOptions.value;},
+      get epigraphicTypes(){return epigraphicTypes.value;},
+      get epigraphicPolities(){return epigraphicPolities.value;},
+      get epigraphicInscriptionStatuses(){return epigraphicInscriptionStatuses.value;}
+    });
+    function setJinshiUiState(key,value){
+      const target=jinshiUiWritableKeys[key];
+      if(target)target.value=value;
+    }
+    function stepJinshiPage(delta){
+      epigraphicPage.value+=delta;
+    }
     function epigraphicHighlight(text){
       const q=epigraphicQuery.value.trim().toLowerCase();
       const value=String(text||'');
@@ -4642,6 +4809,48 @@ const app = createApp({
         任期显示:r.tenureText||'任期未详',起始年:r.startYear,结束年:r.endYear,备注:r.note
       }));
       const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(rows),'州镇表'); XLSX.writeFile(wb,'汉魏晋_州镇表.xlsx');
+    }
+
+    /* ---- 州镇表模块界面单元（fangzhen-ui.js）的父层状态契约 ----
+       与食货志、金石录、人物记同理：模块模板只读取下列字段，写入统一走
+       setFangzhenUiState，分页走 stepFangzhenPage。fangzhen-ui.js 中的同名
+       computed 均指向本代理，组件自身不持有状态。
+       本段必须放在所有被引用声明之后（fangzhenRecords／v56ActiveRecord／
+       exportFangzhen 等均已就绪），否则模板求值会触发 TDZ。 */
+    const fangzhenUiWritableKeys={
+      fangzhenArchiveKey, fangzhenRecordType, fangzhenDutyView, fangzhenSection,
+      fangzhenLevel, fangzhenState, fangzhenSnapshotYear, fangzhenCompareYear,
+      fangzhenView, fangzhenOnlyVerified, fangzhenPage
+    };
+    const fangzhenUiState=reactive({
+      fangzhenArchiveKey, fangzhenRecordType, fangzhenDutyView, fangzhenSection,
+      fangzhenLevel, fangzhenState, fangzhenSnapshotYear, fangzhenCompareYear,
+      fangzhenView, fangzhenOnlyVerified, fangzhenPage,
+      get fangzhenArchiveStyle(){return fangzhenArchiveStyle.value;},
+      get fangzhenArchiveOptions(){return fangzhenArchiveOptions.value;},
+      get fangzhenArchiveDef(){return fangzhenArchiveDef.value;},
+      get fangzhenArchiveRows(){return fangzhenArchiveRows.value;},
+      get fangzhenStateOptions(){return fangzhenStateOptions.value;},
+      get fangzhenMetrics(){return fangzhenMetrics.value;},
+      get fangzhenPagination(){return fangzhenPagination.value;},
+      get fangzhenPagedRecords(){return fangzhenPagedRecords.value;},
+      get fangzhenPageCount(){return fangzhenPageCount.value;},
+      get fangzhenPrimaryDetail(){return fangzhenPrimaryDetail.value;},
+      get fangzhenRelatedRecords(){return fangzhenRelatedRecords.value;},
+      get fangzhenMilitaryJurisdictions(){return fangzhenMilitaryJurisdictions.value;},
+      get fangzhenSeatPeriods(){return fangzhenSeatPeriods.value;},
+      get fangzhenSnapshotExcluded(){return fangzhenSnapshotExcluded.value;},
+      get fangzhenSnapshotRecords(){return fangzhenSnapshotRecords.value;},
+      get fangzhenCompareRecords(){return fangzhenCompareRecords.value;},
+      get fangzhenVisibleRecords(){return fangzhenVisibleRecords.value;},
+      get fangzhenOverlapIssues(){return fangzhenOverlapIssues.value;}
+    });
+    function setFangzhenUiState(key,value){
+      const target=fangzhenUiWritableKeys[key];
+      if(target)target.value=value;
+    }
+    function stepFangzhenPage(delta){
+      fangzhenPage.value+=delta;
     }
 
     function showToolHint(event, label){
@@ -7061,6 +7270,42 @@ const app = createApp({
       if(target)openPeopleDetail(target.personId);
     }
     function clearPeopleQuery(){ peopleQuery.value='';peopleKeyboardIndex.value=0;nextTick(()=>document.querySelector('.v62-person-search input')?.focus()); }
+    /* ---- 人物记模块界面单元（people-ui.js）的父层状态契约 ----
+       与食货志、金石录同理：界面单元只读取下列字段，写入统一走 setPeopleUiState。
+       people-ui.js 中的同名 computed 均指向本代理，组件自身不持有状态。 */
+    const peopleUiWritableKeys={
+      peoplePolity, peopleKind, peopleContent, peopleOnlyPortrait,
+      peopleEra, peopleYear, peopleSource, peopleEvidence,
+      peopleServiceDomain, peopleInstitutionType
+    };
+    const peopleUiState=reactive({
+      peoplePolity, peopleKind, peopleContent, peopleOnlyPortrait,
+      peopleEra, peopleYear, peopleSource, peopleEvidence,
+      peopleServiceDomain, peopleInstitutionType,
+      get peopleView(){return peopleView.value;},
+      get peopleQuery(){return peopleQuery.value;},
+      get peopleKeyboardIndex(){return peopleKeyboardIndex.value;},
+      get peoplePage(){return peoplePage.value;},
+      get peoplePageCount(){return peoplePageCount.value;},
+      get peoplePageSize(){return peoplePageSize.value;},
+      get filteredPeople(){return filteredPeople.value;},
+      get pagedPeople(){return pagedPeople.value;},
+      get peopleMetrics(){return peopleMetrics.value;},
+      get peoplePrimaryDetail(){return peoplePrimaryDetail.value;},
+      get peoplePrimaryLifeTimeline(){return peoplePrimaryLifeTimeline.value;},
+      get peoplePrimaryOfficeSummary(){return peoplePrimaryOfficeSummary.value;},
+      get peoplePrimaryPeerageSummary(){return peoplePrimaryPeerageSummary.value;},
+      get peopleArchiveScope(){return peopleArchiveScope.value;}
+    });
+    function setPeopleUiState(key,value){
+      const target=peopleUiWritableKeys[key];
+      if(target)target.value=value;
+    }
+    function stepPeoplePage(delta){ peoplePage.value+=delta; }
+    /* 界面单元所需常量与函数的统一注入包，避免逐个 prop 传递。 */
+    const peopleUiOptions=Object.freeze({
+      PERSON_DYNASTY_ORDER, SERVICE_DOMAIN_OPTIONS, INSTITUTION_TYPE_OPTIONS
+    });
     const peopleMetrics = computed(()=>{
       const stats={people:personRegistry.value.length,records:0,office:0,noble:0,fangzhen:0,roster:0,source:0,portrait:0,curated:0,snapshotRows:0,peerageEvents:0};
       personRegistry.value.forEach(p=>{
@@ -8574,9 +8819,136 @@ const app = createApp({
       pauseHistoryMap();
     });
 
+    /* ---- 职官谱模块界面单元（offices-ui.js）的父层状态契约 ----
+       本模块是八个案卷中最大的一支（画布区原本 830 行），故界面单元拆成 8 个：
+       OfficesContext（上下文栏＋筛选抽屉，双 slot）、OfficesActions（审校工具条）、
+       OfficesCourt（朝堂与府署画布）、OfficesCatalog（总览）、OfficesTable（表格）、
+       OfficesStatus（状态栏）、OfficesDetail（详情面板）、OfficesEvidence（证据栏）。
+       与其余模块同理：模板只读取下列字段，写入统一走 setOfficesUiState，
+       开关类走 toggleOfficesUiState。纯函数（courtSeatStats 等 18 个）一并挂在本代理上，
+       组件以同名 computed 转发，从而模板逐字保留。
+       本段必须放在所有被引用声明之后（canvasFilters／timelineEnabled／
+       OFFICE_GROUP_DEFS／HAN_COURT_SECTION_NAV 等均已就绪），否则模板求值会触发 TDZ。
+       注意：history（reactive，第 4941 行）与 persistence 系列声明在本段之后，
+       故不纳入；由 OfficesStatus 以 :history 属性直接注入。 */
+    const officesUiWritableKeys={
+      workspaceMode,
+      currentFaction, currentPeriodKey, treeType, officePresentation,
+      officeGroup, officeSub, officeSub2,
+      canvasFilters, timelineEnabled, timelineYear,
+      showHanCourtDetail, showCourtResidence, hanCourtActiveSection,
+      showTemplateLibrary, showAuditCenter
+    };
+    const officesUiState=reactive({
+      workspaceMode,
+      currentFaction, currentPeriodKey, treeType, officePresentation,
+      officeGroup, officeSub, officeSub2,
+      canvasFilters, timelineEnabled, timelineYear,
+      showHanCourtDetail, showCourtResidence, hanCourtActiveSection,
+      showTemplateLibrary, showAuditCenter,
+      /* 上下文栏 */
+      get factions(){return factions.value;},
+      get periodOptions(){return periodOptions.value;},
+      /* 筛选抽屉 */
+      get RANK9_OPTIONS(){return RANK9_OPTIONS;},
+      get OFFICE_GROUP_DEFS(){return OFFICE_GROUP_DEFS;},
+      get rank9Enabled(){return rank9Enabled.value;},
+      get officeClassStats(){return officeClassStats.value;},
+      get officeSubOptions(){return officeSubOptions.value;},
+      get officeSub2Options(){return officeSub2Options.value;},
+      get currentEraLabel(){return currentEraLabel.value;},
+      get timelineMinYear(){return timelineMinYear.value;},
+      get timelineMaxYear(){return timelineMaxYear.value;},
+      /* 画布 */
+      get viewportWidth(){return viewportWidth.value;},
+      get courtHierarchy(){return courtHierarchy.value;},
+      get courtActiveState(){return courtActiveState.value;},
+      get courtResidence(){return courtResidence.value;},
+      get courtResidenceName(){return courtResidenceName.value;},
+      get courtResidenceType(){return courtResidenceType.value;},
+      get courtResidenceClass(){return courtResidenceClass.value;},
+      get courtResidenceStyle(){return courtResidenceStyle.value;},
+      get courtResidencePopulatedRoles(){return courtResidencePopulatedRoles.value;},
+      get courtFigureSlots(){return courtFigureSlots.value;},
+      get currentFactionDef(){return currentFactionDef.value;},
+      get hanCourtStructure(){return hanCourtStructure.value;},
+      get hanCourtSelectedDetail(){return hanCourtSelectedDetail.value;},
+      get HAN_COURT_SECTION_NAV(){return HAN_COURT_SECTION_NAV;},
+      /* 总览 */
+      get catalogCards(){return catalogCards.value;},
+      get catalogFocusNode(){return catalogFocusNode.value;},
+      get catalogPath(){return catalogPath.value;},
+      get catalogTreeRows(){return catalogTreeRows.value;},
+      get catalogYearLabel(){return catalogYearLabel.value;},
+      /* 表格 */
+      get tableColumns(){return tableColumns.value;},
+      get officeRows(){return officeRows.value;},
+      get CATEGORY_OPTIONS(){return CATEGORY_OPTIONS;},
+      /* 详情面板所需的下拉数据集（模块级常量，原样挂载） */
+      get EVOLUTION_TYPES(){return EVOLUTION_TYPES;},
+      get HAN_RANK_OPTIONS(){return HAN_RANK_OPTIONS;},
+      get INHERIT_OPTIONS(){return INHERIT_OPTIONS;},
+      get INSTITUTION_TYPE_OPTIONS(){return INSTITUTION_TYPE_OPTIONS;},
+      get JIAGUAN_OPTIONS(){return JIAGUAN_OPTIONS;},
+      get JIE_OPTIONS(){return JIE_OPTIONS;},
+      get NOBLE_RANK_OPTIONS(){return NOBLE_RANK_OPTIONS;},
+      get REGION_OPTIONS(){return REGION_OPTIONS;},
+      get RELATION_OPTIONS(){return RELATION_OPTIONS;},
+      get SERVICE_DOMAIN_OPTIONS(){return SERVICE_DOMAIN_OPTIONS;},
+      get selectedNode(){return selectedNode.value;},
+      get selectedPolityLabel(){return selectedPolityLabel.value;},
+      get selectedDraftTime(){return selectedDraftTime.value;},
+      get moduleLoadState(){return moduleLoadState;},
+      /* 状态栏 */
+      get currentFactionLabel(){return currentFactionLabel.value;},
+      get currentPeriodLabel(){return currentPeriodLabel.value;},
+      get totalNodeCount(){return totalNodeCount.value;},
+      get selectedCount(){return selectedCount.value;},
+      get validationEnabled(){return validationEnabled.value;},
+      get autosaveStatus(){return autosaveStatus.value;},
+      get zoomPct(){return zoomPct.value;},
+      /* 画布内的纯函数（模板以函数调用形式使用，故原样挂载） */
+      courtSeatStats, peerageNodeMetrics, catalogRowExpanded, officeGroupLabel, officeGroupColor,
+      courtDisplayName, courtRulerLabel, courtKaifuLabel, courtSeatMeta,
+      courtResidenceRoleMeta, courtFigureCount, courtColumnCount, courtSeatCount,
+      courtPrimaryFigure, hanCourtDutySummary, catalogNodeIcon, catalogNodeMeta,
+      catalogNodeSummary, personPortraitFor, portraitStyleFor,
+      /* 画布内引用的父层动作（同样以函数形式被模板调用） */
+      switchTreeType, setOfficePresentation, setOfficeGroup, setOfficeSub, setOfficeSub2,
+      switchFaction, openOfficeHolders, courtResidenceAvailable, openCourtResidence,
+      courtResidenceIsLocal,
+      addCourtPosition, deleteCourtPosition, courtSlotClick, selectCourtSlot, selectCourtState,
+      openCourtPerson, closeCourtResidence, editCourtResidenceOwner,
+      /* 后汉结构图导航与详情 */
+      selectHanCourtNode, scrollHanCourtSection, closeHanCourtDetail,
+      handleHanCourtDetailKeydown, openHanEastPalace,
+      /* 总览工作台 */
+      toggleCatalogRow, selectCatalogNode, selectCatalogCard, openPersonProfile,
+      peerageNodeEvents, peerageEventRecipientRows, peerageNodeRecipientRows,
+      openPeerageEventPerson,
+      /* 表格视图 */
+      selectOfficeRow, onFormChangedDebounced,
+      /* 详情面板动作 */
+      generateKaifuTemplate, syncRegionFromPath, jumpToMount,
+      addFigureRecord, removeFigureRecord, addEvolutionEvent, removeEvolutionEvent,
+      onFigureRulerChanged, uploadPortrait, clearPortrait,
+      restoreCurrentDraft, clearCurrentDraft, mountOptions,
+      /* 视图工具条 */
+      openRankCompareForSelected, openOfficeCompareForSelected
+    });
+    function setOfficesUiState(key,value){
+      const target=officesUiWritableKeys[key];
+      if(target)target.value=value;
+    }
+    function toggleOfficesUiState(key){
+      const target=officesUiWritableKeys[key];
+      if(target)target.value=!target.value;
+    }
+
+
     return {
       factions, activeModule, moduleLoadState, moduleVisited, prefetchModule, viewportWidth, moduleContextLabel, v56ModuleItems, v56ModuleMeta, moduleSearchScope, switchModule, currentFaction, treeType, viewMode, officePresentation, setOfficePresentation, validationEnabled, zoomPct,
-      showReadingFilters, readingQuery, readingFilterTags, clearReadingFilters, handleReadingQueryKey, closeReadingDetail, readingReturn, returnToReading, primaryModuleItems, secondaryModuleItems, rankReferenceTab, officialsTab, openOfficeHolders, peopleContent, shihuoSort, shihuoIncludeDiscussion, shihuoPage, activeShihuoId, showShihuoDetail, shihuoPagination, shihuoPrimaryDetail, openShihuoRecord,
+      showReadingFilters, readingQuery, readingFilterTags, clearReadingFilters, handleReadingQueryKey, closeReadingDetail, readingReturn, returnToReading, primaryModuleItems, secondaryModuleItems, rankReferenceTab, officialsTab, openOfficeHolders, peopleContent, shihuoSort, shihuoIncludeDiscussion, shihuoPage, activeShihuoId, showShihuoDetail, shihuoPagination, shihuoPrimaryDetail, openShihuoRecord, shihuoUiState, setShihuoUiState, stepShihuoPage, jinshiUiState, setJinshiUiState, stepJinshiPage, peopleUiState, setPeopleUiState, stepPeoplePage, peopleUiOptions,
       showLog, showStats, showVersions, showOfficials, showSearch, showBatch, showArchives, showCompare, showPalette, showTheme, showTongdian, showGeneralTitles, generalTitlePolity,
       themeKey, densityMode, motionMode, workspaceMode, themeOptions, setTheme, setDensity, setMotion, setWorkspaceMode,
       spineCollapsed, evidenceRailCollapsed, showMobileModules, toggleSpine, toggleEvidenceRail, openMobileModules, closeMobileModules, handleMobileModulesKeydown, v56ActiveRecord, selectV56Record,
@@ -8604,6 +8976,8 @@ const app = createApp({
       retryActiveModule, personCitations, fangzhenOnlyVerified, fangzhenSnapshotExcluded,
       fangzhenSnapshotYear, fangzhenCompareYear, fangzhenView, fangzhenSnapshotRecords, fangzhenCompareRecords, fangzhenVisibleRecords, fangzhenOverlapIssues, fangzhenTimelineStyle, fangzhenValidAtYear,
       fangzhenDialog, openFangzhenEditor, saveFangzhenRecord, deleteFangzhenRecord, exportFangzhen,
+      fangzhenUiState, setFangzhenUiState, stepFangzhenPage,
+      officesUiState, setOfficesUiState, toggleOfficesUiState,
       historyMapPeriods, historyMapEras, historyMapUrl, historyMapBooted, historyMapIndex, historyMapReady, historyMapPlaying, currentHistoryPeriod,
       selectHistoryPeriod, stepHistoryPeriod, toggleHistoryMapPlay, onHistoryMapLoaded,
       mapLinkSelection, mapLinkedFangzhenRecords, jumpFangzhenToMap, openMapSelectionFangzhen, closeMapLink,
@@ -8655,13 +9029,13 @@ const app = createApp({
       personMetaDialog, openPersonMetaEditor, savePersonMeta, uploadPersonPortrait,
       showAuditCenter, v60Ledger, v61Epigraphy, reviewStatusLedger, reviewStatusDefinitions, reviewStatusTotals, auditIssues, auditFilters, auditFiltered, auditMetrics, auditSeverityMeta, auditLastRun,
       runDataAudit, auditJump, exportAuditReport, exportAuditWorkbook,
-      battleRecords, battleEntryList, battleChronologyRows, BATTLE_ERA_ANCHORS, battleMetrics, filteredBattles, battleKindLabel, battleKindClass, battlePersonLinksFor, openBattlePerson,
+      battleRecords, battleEntryList, battleChronologyRows, BATTLE_ERA_ANCHORS, battleMetrics, filteredBattles, battleKindLabel, battleKindClass, battlePersonLinksFor, openBattlePerson, battleUiState, mapUiState,
       showBattleDetail, activeBattleDetail, openBattleDetail, closeBattleDetail, battleDetailYear, battlePeriodForItem, jumpToBattlePeriod,
       jumpBattleToMap, scrollBattleEra, battlePartiesLabel, battleNeighbors,
       shihuoPolities, shihuoCategories, shihuoQuery, shihuoPolity, shihuoCategory, shihuoScope, shihuoRecordKind, shihuoView,
       shiyuanIndex, shiyuanWork, shiyuanKind, shiyuanQuery, shiyuanVolumeId, shiyuanWorks, shiyuanVolumes,
       shiyuanActiveVolume, shiyuanSummary, shiyuanUnattributed, shiyuanLayerText, shiyuanKindText,
-      shiyuanPage, shiyuanPagination, selectShiyuanVolume, shiyuanEntryRoute, openShiyuanEntry,
+      shiyuanPage, shiyuanPagination, selectShiyuanVolume, shiyuanEntryRoute, openShiyuanEntry, shiyuanUiState, setShiyuanUiState,
       shihuoRecords, shihuoEvents, shihuoHousehold, filteredShihuoHousehold, filteredShihuoRecords, shihuoMetrics, shihuoPolityClass,
       shihuoEvidenceClass, shihuoEvidenceLabel, householdMiniChart,
       epigraphicRecords, epigraphicTypes, epigraphicPolities, epigraphicQuery, epigraphicEra, epigraphicEraOptions, epigraphicType, epigraphicPolity, epigraphicArchive, epigraphicInscriptionStatus, epigraphicInscriptionStatuses, filteredEpigraphicRecords, epigraphicMetrics, jinshiPrimaryDetail, epigraphicConfirmedText,
@@ -8724,35 +9098,18 @@ const app = createApp({
     <section class="v56-context-bar" aria-label="当前案卷上下文">
       <button v-if="readingReturn" type="button" class="v83-reading-return" @click="returnToReading">← 返回{{readingReturn.label}}</button>
       <div class="v56-context-identity"><h1>{{v56ModuleMeta.label}}</h1></div>
-      <template v-if="activeModule==='offices'">
-        <el-select v-model="currentFaction" class="v56-context-select faction-select" size="small" aria-label="当前政权" @change="switchFaction">
-          <el-option v-for="f in factions" :key="f.key" :label="f.label||f.short||f.name" :value="f.key" />
-        </el-select>
-        <el-select v-model="currentPeriodKey" class="v56-context-select period-select" size="small" aria-label="皇帝在位时期"><el-option label="全部时期" value="all"/><el-option v-for="p in periodOptions" :key="p.key" :label="p.name+'（'+p.startYear+'—'+p.endYear+'）'" :value="p.key"/></el-select>
-        <div class="v56-segmented" aria-label="职官谱视图"><button :class="{active:officePresentation==='catalog'}" @click="setOfficePresentation('catalog')">朝堂</button><button :class="{active:officePresentation==='table'}" @click="setOfficePresentation('table')">表格</button></div><button type="button" class="v84-button v84-button--outline" @click="openOfficeHolders('current')">查看在任人物</button>
-      </template>
+      <offices-context v-if="activeModule==='offices'" :state="officesUiState" slot="context" :workspace-mode="workspaceMode" @state-update="setOfficesUiState" @state-toggle="toggleOfficesUiState"/>
       <template v-else-if="activeModule==='battle'">
         <span class="v66-context-note">汉末至西晋编年</span>
       </template>
-      <template v-else-if="activeModule==='fangzhen'">        <el-select v-model="fangzhenView" class="v56-context-select" aria-label="州镇查阅工具"><el-option label="职任表" value="records"/><el-option label="年份快照" value="snapshot"/><el-option label="两年对比" value="compare"/></el-select></template>
-      <template v-else-if="activeModule==='shihuo'">
-        <el-select v-model="shihuoCategory" class="v56-context-select" size="small" aria-label="食货类别"><el-option label="全部类别" value="all"/><el-option v-for="c in shihuoCategories" :key="c" :label="c" :value="c"/></el-select>
-        <div class="v56-segmented shihuo-context-view" aria-label="食货志视图"><button type="button" :class="{active:shihuoView==='institution'}" @click="shihuoView='institution'">制度与事件</button><button type="button" :class="{active:shihuoView==='quantitative'}" @click="shihuoView='quantitative';shihuoCategory='all'">户口资料</button></div>
-      </template>
-      <template v-else-if="activeModule==='shiyuan'">
-        <el-select v-model="shiyuanWork" class="v56-context-select" size="small" aria-label="典籍筛选"><el-option label="全部典籍" value="all"/><el-option v-for="row in shiyuanWorks" :key="row.work" :label="row.work" :value="row.work"/></el-select>
-        <div class="v56-segmented shiyuan-context-kind" aria-label="条目类别"><button :class="{active:shiyuanKind==='all'}" @click="shiyuanKind='all'">全部</button><button :class="{active:shiyuanKind==='appointment'}" @click="shiyuanKind='appointment'">任官</button><button :class="{active:shiyuanKind==='battle'}" @click="shiyuanKind='battle'">战事</button><button :class="{active:shiyuanKind==='shihuo'}" @click="shiyuanKind='shihuo'">食货</button><button :class="{active:shiyuanKind==='epigraphy'}" @click="shiyuanKind='epigraphy'">金石</button></div>
-        <el-input v-model="shiyuanQuery" class="v56-context-search" size="small" clearable placeholder="检索卷次或条目" aria-label="检索卷次或条目"/>
-      </template>
+      <fangzhen-context v-else-if="activeModule==='fangzhen'" :state="fangzhenUiState" slot="context" @state-update="setFangzhenUiState"/>
+      <shihuo-context v-else-if="activeModule==='shihuo'" :state="shihuoUiState" @state-update="setShihuoUiState"/>
+      <shiyuan-context v-else-if="activeModule==='shiyuan'" :state="shiyuanUiState" @state-update="setShiyuanUiState"/>
       <template v-else-if="activeModule==='map'">
         <span>{{currentHistoryPeriod.name}} · {{currentHistoryPeriod.year}}年</span>
       </template>
       <div class="v56-context-spacer"></div>
-      <div v-if="activeModule==='offices'&&workspaceMode==='review'" class="v56-context-actions review-only">
-        <el-upload :show-file-list="false" accept=".json" :before-upload="importJSON"><el-button size="small">导入 JSON</el-button></el-upload>
-        <el-upload :show-file-list="false" accept=".xlsx,.xls" :before-upload="importExcel"><el-button size="small">导入表格</el-button></el-upload>
-        <el-dropdown trigger="click"><el-button size="small">工程与导出 ▾</el-button><template #dropdown><el-dropdown-menu><el-dropdown-item @click="saveLocal()">保存到本地缓存</el-dropdown-item><el-dropdown-item @click="loadLocal">从本地缓存恢复</el-dropdown-item><el-dropdown-item @click="clearLegacyCacheCopies">清理旧缓存副本</el-dropdown-item><el-dropdown-item @click="showAuditCenter=true;runDataAudit()">资料状态与审校</el-dropdown-item><el-dropdown-item divided @click="exportJSON">导出完整工程 JSON</el-dropdown-item><el-dropdown-item @click="exportTable">导出表格</el-dropdown-item><el-dropdown-item @click="exportImage">导出图片</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
-      </div>
+      <offices-actions v-if="activeModule==='offices'" :state="officesUiState" :workspace-mode="workspaceMode" @state-update="setOfficesUiState"/>
       <button v-if="workspaceMode==='review'" class="v56-evidence-toggle review-only" type="button" @click="toggleEvidenceRail" :aria-label="evidenceRailCollapsed?'展开证据案卷':'收起证据案卷'">{{evidenceRailCollapsed?'证据 ›':'证据 ‹'}}</button>
     </section>
 
@@ -8770,77 +9127,10 @@ const app = createApp({
 
     <el-drawer v-model="showReadingFilters" :title="v56ModuleMeta.label+' · 筛选'" :direction="viewportWidth<=760?'btt':'rtl'" :size="viewportWidth<=760?'min(85dvh,720px)':'400px'" class="v84-filter-panel">
       <div class="v84-filter-fields">
-        <template v-if="activeModule==='people'">
-        <el-select v-model="peoplePolity" class="v56-context-select" size="small" aria-label="朝代筛选"><el-option label="全部朝代" value="all"/><el-option v-for="dynasty in PERSON_DYNASTY_ORDER" :key="dynasty" :label="dynasty" :value="dynasty"/></el-select>
-        <el-select v-model="peopleKind" class="v56-context-select" size="small" aria-label="记录类别"><el-option label="全部记录" value="all"/><el-option label="任官" value="office"/><el-option label="受爵" value="noble"/><el-option label="州镇" value="fangzhen"/><el-option label="时期录" value="roster"/></el-select>
-                <el-select v-model="peopleContent" aria-label="人物内容筛选" style="width:150px"><el-option label="全部人物" value="all"/><el-option label="有小传" value="biography"/><el-option label="有已核经历" value="events"/></el-select>
-
-          <el-checkbox v-model="peopleOnlyPortrait">仅有立绘</el-checkbox>
-          <el-select v-model="peopleEra" size="small" style="width:132px;" aria-label="时代筛选">
-            <el-option label="全部时代" value="all" />
-            <el-option label="汉末（168—219）" value="latehan" />
-            <el-option label="三国（220—265）" value="three" />
-            <el-option label="西晋（266—316）" value="jin" />
-          </el-select>
-          <el-input-number v-model="peopleYear" size="small" :min="168" :max="316" controls-position="right" style="width:120px" aria-label="相关年份" />
-          <el-select v-if="workspaceMode==='review'" v-model="peopleSource" size="small" style="width:132px;" aria-label="史料来源">
-            <el-option label="全部来源" value="all" />
-            <el-option label="《三国志》正文" value="sgz" />
-            <el-option label="裴松之注" value="pei" />
-            <el-option label="《晋书》" value="jinshu" />
-            <el-option label="工程内任官档案" value="curated" />
-          </el-select>
-          <el-select v-if="workspaceMode==='review'" v-model="peopleEvidence" size="small" style="width:132px;" aria-label="证据状态">
-            <el-option label="全部证据状态" value="all" />
-            <el-option label="确定／推定" value="confirmed" />
-            <el-option label="待补核／存疑" value="pending" />
-          </el-select>
-          <el-select v-model="peopleServiceDomain" size="small" style="width:132px;" aria-label="文武类别">
-            <el-option label="文武全部" value="all" />
-            <el-option v-for="d in SERVICE_DOMAIN_OPTIONS" :key="d" :label="d" :value="d" />
-          </el-select>
-          <el-select v-model="peopleInstitutionType" size="small" style="width:150px;" aria-label="官署类型">
-            <el-option label="官署全部" value="all" />
-            <el-option v-for="t in INSTITUTION_TYPE_OPTIONS" :key="t" :label="t" :value="t" />
-          </el-select>
-        </template>
-        <template v-else-if="activeModule==='fangzhen'">
-        <el-select v-model="fangzhenLevel" class="v56-context-select" size="small" aria-label="辖区层级"><el-option label="州、郡与方镇" value="all"/><el-option label="州" value="州"/><el-option label="郡" value="郡"/><el-option label="方镇" value="方镇"/></el-select>
-        <el-select v-model="fangzhenRecordType" class="v56-context-select" size="small" aria-label="档案类别"><el-option label="全部类别" value="all"/><el-option label="刺史／州牧" value="cishi"/><el-option label="太守／国相" value="taishou"/><el-option label="都督" value="dudu"/><el-option label="都尉" value="duwei"/><el-option label="其他" value="other"/></el-select>
-        <el-select v-model="fangzhenState" class="v56-context-select" size="small" aria-label="州郡筛选"><el-option label="全部州郡" value="all"/><el-option v-for="state in fangzhenStateOptions" :key="state" :label="state" :value="state"/></el-select>
-
-      <el-checkbox :model-value="!fangzhenOnlyVerified" @update:model-value="value=>fangzhenOnlyVerified=!value">含待审资料</el-checkbox><p class="reader-quiet-note">已核 {{fangzhenArchiveRows.filter(r=>r.readerDisplayStatus==='verified').length}} · 待补核 {{fangzhenArchiveRows.filter(r=>r.readerDisplayStatus==='candidate').length}}</p></template>
-        <template v-else-if="activeModule==='jinshi'">
-        <el-select v-model="epigraphicEra" class="v56-context-select" size="small" aria-label="时代筛选"><el-option label="全部时代" value="all"/><el-option v-for="era in epigraphicEraOptions" :key="era" :label="era" :value="era"/></el-select>
-        <el-select v-model="epigraphicType" class="v56-context-select" size="small" aria-label="材料类型"><el-option label="全部类型" value="all"/><el-option v-for="type in epigraphicTypes" :key="type" :label="type" :value="type"/></el-select>
-        <el-select v-model="epigraphicPolity" class="v56-context-select" size="small" aria-label="政权筛选"><el-option label="全部政权" value="all"/><el-option v-for="polity in epigraphicPolities" :key="polity" :label="polity" :value="polity"/></el-select>
-        <el-select v-if="workspaceMode==='review'" v-model="epigraphicArchive" class="v56-context-select review-only" size="small" aria-label="来源范围"><el-option label="全部范围" value="all"/><el-option label="核心" value="核心"/><el-option label="扩展" value="扩展"/><el-option label="争议" value="争议"/></el-select>
-        <el-select v-model="epigraphicInscriptionStatus" class="v56-context-select" size="small" aria-label="释文状态"><el-option label="全部释文状态" value="all"/><el-option v-for="status in epigraphicInscriptionStatuses" :key="status" :label="status==='已录入'?'有释文（含残缺）':status" :value="status"/></el-select>
-      </template>
-        <template v-else-if="activeModule==='offices'">          <el-select v-if="treeType==='office' && rank9Enabled" v-model="canvasFilters.rank" class="compact-select" size="small" clearable placeholder="官品">
-            <el-option v-for="r in RANK9_OPTIONS" :key="r" :label="r" :value="r" />
-          </el-select>
-          <el-select v-if="treeType==='office'" v-model="canvasFilters.special" class="compact-select" size="small" clearable placeholder="特殊属性">
-            <el-option label="仅遥领" value="yaoling"/><el-option label="仅虚职" value="virtual"/><el-option label="仅可开府" value="kaifu"/><el-option label="仅临时职任" value="temporary"/>
-          </el-select>
-<el-checkbox v-model="canvasFilters.hideNonCore">仅核心体系</el-checkbox><fieldset v-if="workspaceMode==='review'"><legend>显示内容</legend><el-checkbox v-model="canvasFilters.showArchived">显示归档</el-checkbox><el-checkbox v-model="canvasFilters.showHidden">显示隐藏</el-checkbox></fieldset><fieldset><legend>相关年份</legend><el-switch v-model="timelineEnabled" active-text="按年份筛选"/><el-input-number v-if="timelineEnabled" v-model="timelineYear" :min="timelineMinYear" :max="timelineMaxYear" aria-label="职官年份"/><p v-if="timelineEnabled">{{currentEraLabel}}</p></fieldset><fieldset v-if="treeType==='office'"><legend>官署分类</legend>
-          <div class="office-group-nav">
-            <button v-for="g in OFFICE_GROUP_DEFS" :key="g.key" class="group-pill"
-                    :class="{active:officeGroup===g.key}"
-                    :style="officeGroup===g.key ? {background:g.color,borderColor:g.color} : {}"
-                    @click="setOfficeGroup(g.key)">
-              <span class="group-dot" :style="{background:g.color}"></span>{{g.label}}<b>{{officeClassStats[g.key]}}</b>
-            </button>
-          </div>
-          <div v-if="officeSubOptions.length" class="office-sub-nav">
-            <button class="sub-pill" :class="{active:officeSub==='all'}" @click="setOfficeSub('all')">全部<b>{{officeClassStats[officeGroup]}}</b></button>
-            <button v-for="sub in officeSubOptions" :key="sub" class="sub-pill" :class="{active:officeSub===sub}" @click="setOfficeSub(sub)">{{sub}}<b>{{officeClassStats[officeGroup+'_'+sub]}}</b></button>
-          </div>
-          <div v-if="officeSub2Options.length" class="office-sub-nav office-sub2-nav">
-            <button class="sub-pill" :class="{active:officeSub2==='all'}" @click="setOfficeSub2('all')">全部官署<b>{{officeClassStats[officeGroup+'_'+officeSub]}}</b></button>
-            <button v-for="cat in officeSub2Options" :key="cat" class="sub-pill" :class="{active:officeSub2===cat}" @click="setOfficeSub2(cat)">{{cat}}<b>{{officeClassStats[officeGroup+'_'+officeSub+'_'+cat]}}</b></button>
-          </div>
-        </fieldset></template>
+        <people-context v-if="activeModule==='people'" :state="peopleUiState" :workspace-mode="workspaceMode" :options="peopleUiOptions" @state-update="setPeopleUiState"/>
+        <fangzhen-context v-else-if="activeModule==='fangzhen'" :state="fangzhenUiState" slot="filter" @state-update="setFangzhenUiState"/>
+        <jinshi-context v-else-if="activeModule==='jinshi'" :state="jinshiUiState" :workspace-mode="workspaceMode" @state-update="setJinshiUiState"/>
+        <offices-context v-else-if="activeModule==='offices'" :state="officesUiState" slot="filter" :workspace-mode="workspaceMode" @state-update="setOfficesUiState" @state-toggle="toggleOfficesUiState"/>
       </div>
       <template #footer><el-button v-if="readingFilterTags.length" @click="clearReadingFilters">清除筛选</el-button><el-button type="primary" @click="showReadingFilters=false">查看结果</el-button></template>
     </el-drawer>
@@ -8864,1134 +9154,136 @@ const app = createApp({
           </el-dropdown>
           <div class="spacer"></div>
         </div>
-        <div v-if="officePresentation==='catalog'&&treeType==='office'&&!showCourtResidence" class="court-scroll">
-          <div v-if="currentFaction==='han'&&courtHierarchy.root" class="han-court-canvas" :style="{'--court-accent':currentFactionDef.color}">
-            <header class="han-court-header">
-              <div>
-                <div class="han-court-kicker">《后汉书·百官志》</div>
-                <h2>后汉官职结构</h2>
-              </div>
-              <div v-if="workspaceMode==='review'" class="court-heading-actions review-only">
-                <el-button size="small" type="primary" plain @click="addCourtPosition">＋ 添加朝堂位置</el-button>
-                <el-button size="small" text @click="setOfficePresentation('table')">打开数据表</el-button>
-              </div>
-            </header>
-
-            <div class="han-court-layout" :class="{'review-mode':workspaceMode==='review'}">
-              <nav class="han-court-nav" aria-label="后汉官职结构分区" :inert="showHanCourtDetail&&viewportWidth<=760?true:undefined">
-                <button v-for="item in HAN_COURT_SECTION_NAV" :key="item.id" type="button"
-                        :class="{active:hanCourtActiveSection===item.id}" :aria-current="hanCourtActiveSection===item.id?'location':undefined"
-                        @click="scrollHanCourtSection(item.id)">{{item.label}}</button>
-              </nav>
-
-              <main class="han-court-map" :inert="showHanCourtDetail&&viewportWidth<=760?true:undefined">
-                <section id="han-court-core" class="han-court-section han-court-core-section">
-                  <header class="han-court-section-head"><span>01</span><div><h3>中枢</h3><small>皇权、东宫与辅政公位</small></div></header>
-                  <div class="han-imperial-axis" aria-label="皇帝">
-                    <div class="han-office-card han-office-card--sovereign han-office-card--structural">
-                      <span class="han-office-eyebrow">最高统治者</span><strong>{{courtHierarchy.root.name}}</strong>
-                    </div>
-                    <span class="han-structure-line" aria-hidden="true"></span>
-                  </div>
-                  <div class="han-core-stage">
-                    <div class="han-core-grid" aria-label="辅政、公位与大将军">
-                      <button v-for="node in hanCourtStructure.core" :key="'han-core-'+node.key" type="button" class="han-office-card"
-                              :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
-                              @click="selectHanCourtNode(node,$event)">
-                        <span class="han-office-eyebrow">{{node.category}}</span><strong>{{node.name}}</strong>
-                        <small>{{node.hanRank||'品秩未录'}}</small><p v-if="hanCourtDutySummary(node)">{{hanCourtDutySummary(node)}}</p>
-                        <span v-if="courtResidenceAvailable(node)" class="han-office-residence">府</span>
-                      </button>
-                    </div>
-                    <div class="han-heir-branch">
-                      <button type="button" class="han-office-card han-office-card--heir" @click="openHanEastPalace">
-                        <span class="han-office-eyebrow">东宫</span><strong>太子</strong><small>查看官属</small>
-                      </button>
-                    </div>
-                  </div>
-                </section>
-
-                <section v-if="hanCourtActiveSection==='han-court-nine'" id="han-court-nine" class="han-court-section">
-                  <header class="han-court-section-head"><span>02</span><div><h3>九卿</h3><small>礼制 · 宫卫 · 治政</small></div></header>
-                  <div class="han-nine-grid">
-                    <article v-for="group in hanCourtStructure.nineGroups" :key="group.id" class="han-nine-group">
-                      <h4>{{group.label}}</h4>
-                      <button v-for="node in group.items" :key="'han-nine-'+node.key" type="button" class="han-office-card han-office-card--compact"
-                              :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
-                              @click="selectHanCourtNode(node,$event)">
-                        <strong>{{node.name}}</strong><small>{{node.hanRank}}</small><p>{{hanCourtDutySummary(node)}}</p>
-                      </button>
-                    </article>
-                  </div>
-                </section>
-
-                <section v-if="hanCourtActiveSection==='han-court-secretariat'" id="han-court-secretariat" class="han-court-section">
-                  <header class="han-court-section-head"><span>03</span><div><h3>台阁近侍</h3><small>章奏、监察与近侍官分区</small></div></header>
-                  <div class="han-functional-grid">
-                    <article v-for="group in hanCourtStructure.secretariatGroups" :key="group.id" class="han-functional-group">
-                      <header><h4>{{group.label}}</h4><span>{{group.items.length}}</span></header>
-                      <div class="han-office-chip-grid">
-                        <button v-for="node in group.items" :key="'han-secretariat-'+node.key" type="button"
-                                :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
-                                @click="selectHanCourtNode(node,$event)">
-                          <strong>{{node.name}}</strong><small>{{node.hanRank||node.category}}</small>
-                        </button>
-                      </div>
-                    </article>
-                  </div>
-                </section>
-
-                <section v-if="hanCourtActiveSection==='han-court-military'" id="han-court-military" class="han-court-section">
-                  <header class="han-court-section-head"><span>04</span><div><h3>军职宿卫</h3><small>将军、郎卫、校尉与护边职分组</small></div></header>
-                  <div class="han-military-list">
-                    <article v-for="group in hanCourtStructure.militaryGroups" :key="group.id" class="han-military-group">
-                      <h4>{{group.label}}</h4>
-                      <div class="han-office-chip-grid">
-                        <button v-for="node in group.items" :key="'han-military-'+node.key" type="button"
-                                :class="{selected:selectedNode&&selectedNode.key===node.key}" :aria-pressed="selectedNode&&selectedNode.key===node.key"
-                                @click="selectHanCourtNode(node,$event)">
-                          <strong>{{node.name}}</strong><small>{{node.hanRank||'品秩未录'}}</small><span v-if="courtResidenceAvailable(node)">府</span>
-                        </button>
-                      </div>
-                    </article>
-                  </div>
-                </section>
-
-                <section v-if="hanCourtActiveSection==='han-court-east-palace'" id="han-court-east-palace" class="han-court-section han-east-palace-section">
-                  <header class="han-court-section-head"><span>05</span><div><h3>东宫</h3><small>太子官属独立成署</small></div></header>
-                  <div class="han-east-palace-body">
-                    <div class="han-east-palace-roles" aria-label="东宫官属摘要">
-                      <span v-for="role in hanCourtStructure.eastPalaceRoles" :key="role.key">{{role.name}}</span>
-                    </div>
-                    <button type="button" class="han-system-action" @click="openHanEastPalace">查看东宫官属</button>
-                  </div>
-                </section>
-
-              </main>
-
-              <teleport to="body" :disabled="viewportWidth>760">
-                <button v-if="workspaceMode!=='review'&&showHanCourtDetail" type="button" class="han-court-detail-backdrop" aria-label="关闭官职详情" @click="closeHanCourtDetail()"></button>
-                <aside v-if="workspaceMode!=='review'" id="han-court-detail" class="han-court-detail" :class="{'mobile-open':showHanCourtDetail}"
-                       :role="viewportWidth<=760?'dialog':'complementary'" :aria-modal="viewportWidth<=760?'true':undefined"
-                       aria-label="后汉官职详情" aria-live="polite" @keydown="handleHanCourtDetailKeydown">
-                <button type="button" class="han-detail-close" aria-label="关闭官职详情" @click="closeHanCourtDetail()">关闭</button>
-                <template v-if="hanCourtSelectedDetail">
-                  <header><span>{{hanCourtSelectedDetail.node.category}}</span><h3>{{hanCourtSelectedDetail.node.name}}</h3></header>
-                  <dl>
-                    <div v-if="hanCourtSelectedDetail.node.hanRank||hanCourtSelectedDetail.node.rank9"><dt>品秩</dt><dd>{{hanCourtSelectedDetail.node.hanRank||hanCourtSelectedDetail.node.rank9}}</dd></div>
-                    <div v-if="hanCourtSelectedDetail.parent"><dt>结构归属</dt><dd>{{hanCourtSelectedDetail.parent.name}}</dd></div>
-                  </dl>
-                  <section v-if="hanCourtSelectedDetail.node.duty"><h4>职掌</h4><p>{{hanCourtSelectedDetail.node.duty}}</p></section>
-                  <section v-if="hanCourtSelectedDetail.figures.length"><h4>任官人物</h4><div class="han-detail-people"><button v-for="figure in hanCourtSelectedDetail.figures" :key="figure.id||figure.personId||figure.name" type="button" @click="openCourtPerson(figure)">{{figure.name}}</button></div></section>
-                  <section v-if="hanCourtSelectedDetail.children.length"><h4>属官</h4><div class="han-detail-children"><button v-for="child in hanCourtSelectedDetail.children.slice(0,12)" :key="child.key" type="button" @click="selectHanCourtNode(child,$event)">{{child.name}}</button></div></section>
-                  <button v-if="courtResidenceAvailable(hanCourtSelectedDetail.node)" type="button" class="han-detail-residence" @click="openCourtResidence(hanCourtSelectedDetail.node)">进入府属</button>
-                </template>
-                <template v-else>
-                  <header><span>官署详情</span><h3>后汉百官</h3></header>
-                  <div class="han-detail-overview"><strong>{{hanCourtStructure.searchable.length}}</strong><span>项当前可见中央官职</span></div>
-                </template>
-                </aside>
-              </teleport>
-            </div>
-
-            <footer class="han-court-legend" aria-label="结构图说明">
-              <span><i class="axis"></i>连线表示展示层级，不自动等同逐级直属</span>
-              <span><i class="group"></i>分组表示制度功能，不跨类强定尊卑</span>
-              <span><i class="residence">府</i>仅在已有府属规范记录时出现</span>
-            </footer>
-          </div>
-
-          <div v-else-if="courtHierarchy.root" class="court-canvas" :style="{'--court-accent':currentFactionDef.color}">
-            <header class="court-heading">
-              <h2>{{currentFactionDef.label||currentFactionDef.name}}中央官署总览</h2>
-              <div v-if="workspaceMode==='review'" class="court-heading-actions review-only">
-                <el-button size="small" type="primary" plain @click="addCourtPosition">＋ 添加朝堂位置</el-button>
-                <el-button size="small" text type="danger" @click="deleteCourtPosition">删除自定义位置</el-button>
-                <el-button class="review-only" size="small" text @click="setOfficePresentation('table')">打开数据表</el-button>
-              </div>
-            </header>
-            <div v-if="!courtResidenceIsLocal||courtPrimaryFigure(courtResidence.owner)" class="court-sovereign-row">
-              <article class="court-slot sovereign" role="button" tabindex="0" :class="{selected:selectedNode&&selectedNode.key===courtHierarchy.root.key}" @click="selectCourtSlot(courtHierarchy.root)" @keydown.enter.prevent="selectCourtSlot(courtHierarchy.root)" @keydown.space.prevent="selectCourtSlot(courtHierarchy.root)">
-                <div class="court-slot-name">{{courtHierarchy.root.name}}</div>
-                <div class="court-slot-person">
-                  <div class="court-portrait"><span>{{courtRulerLabel().slice(0,1)}}</span></div>
-                  <div class="court-person-name">{{courtRulerLabel()}}</div>
-                </div>
-                <div class="court-slot-meta">君主</div>
-              </article>
-            </div>
-            <div class="court-link-vertical"></div>
-            <section class="court-tier court-heir-tier">
-              <div class="court-tier-title"><span>太子</span></div>
-              <div class="court-tier-grid">
-                <article v-for="node in [courtHierarchy.heir]" :key="node.key" class="court-slot heir-slot"
-                         :class="{selected:selectedNode&&selectedNode.key===node.key,virtual:node.virtualSlot}" @click="courtSlotClick(node)">
-                  <div class="court-slot-name">{{courtDisplayName(node)}}</div>
-                  <div class="court-slot-person">
-                    <template v-if="courtPrimaryFigure(node)">
-                      <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img loading="lazy" decoding="async" v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
-                      <button class="court-person-name court-person-link" @click.stop="openCourtPerson(courtPrimaryFigure(node))">{{courtPrimaryFigure(node).name}}</button>
-                    </template>
-                    <div v-else class="court-person-empty">{{node.virtualSlot?'未立／人物未详':'暂无任官记录'}}</div>
-                  </div>
-                  <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
-                  <button v-if="courtResidenceAvailable(node)" type="button" class="court-residence-badge" title="进入府属" @click.stop="openCourtResidence(node)">府</button>
-                  <span v-if="courtFigureCount(node)>1" class="court-slot-count" :class="{'has-residence':courtResidenceAvailable(node)}" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
-                </article>
-              </div>
-            </section>
-            <div class="court-link-vertical"></div>
-            <section class="court-tier">
-              <div class="court-tier-title"><span>公位</span></div>
-              <div class="court-apex-columns">
-                <section class="court-apex-branch civil">
-                  <div class="court-apex-branch-title">文官公位</div>
-                  <div class="court-tier-grid">
-                  <article v-for="node in courtHierarchy.apexCivil" :key="node.key" class="court-slot civil"
-                             :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="courtSlotClick(node)">
-                      <span class="court-branch-badge" aria-label="文官">文</span>
-                      <div class="court-slot-name">{{node.name}}</div>
-                      <div class="court-slot-person">
-                        <template v-if="courtPrimaryFigure(node)">
-                          <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img loading="lazy" decoding="async" v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
-                          <button class="court-person-name court-person-link" @click.stop="openCourtPerson(courtPrimaryFigure(node))">{{courtPrimaryFigure(node).name}}</button>
-                        </template>
-                        <div v-else class="court-person-empty">暂无任官记录</div>
-                      </div>
-                      <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
-                      <button v-if="courtResidenceAvailable(node)" type="button" class="court-residence-badge" title="进入府属" @click.stop="openCourtResidence(node)">府</button>
-                      <span v-if="courtFigureCount(node)>1" class="court-slot-count" :class="{'has-residence':courtResidenceAvailable(node)}" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
-                    </article>
-                  </div>
-                </section>
-                <section class="court-apex-branch military">
-                  <div class="court-apex-branch-title">武官公位</div>
-                  <div class="court-tier-grid">
-                    <article v-for="node in courtHierarchy.apexMilitary" :key="node.key" class="court-slot military"
-                             :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="courtSlotClick(node)">
-                      <span class="court-branch-badge" aria-label="武官">武</span>
-                      <div class="court-slot-name">{{node.name}}</div>
-                      <div class="court-slot-person">
-                        <template v-if="courtPrimaryFigure(node)">
-                          <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img loading="lazy" decoding="async" v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
-                          <button class="court-person-name court-person-link" @click.stop="openCourtPerson(courtPrimaryFigure(node))">{{courtPrimaryFigure(node).name}}</button>
-                        </template>
-                        <div v-else class="court-person-empty">暂无任官记录</div>
-                      </div>
-                      <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
-                      <button v-if="courtResidenceAvailable(node)" type="button" class="court-residence-badge" title="进入府属" @click.stop="openCourtResidence(node)">府</button>
-                      <span v-if="courtFigureCount(node)>1" class="court-slot-count" :class="{'has-residence':courtResidenceAvailable(node)}" :title="'本期共 '+courtFigureCount(node)+' 条任职记录'">{{courtFigureCount(node)}}</span>
-                    </article>
-                  </div>
-                </section>
-              </div>
-            </section>
-            <div class="court-columns" aria-label="文官与武官分列">
-              <section v-for="column in courtHierarchy.columns" :key="column.key" class="court-column" :class="column.key">
-                <div class="court-column-title">{{column.label}}<span>{{courtColumnCount(column)}} 项具体官职</span></div>
-                <section v-for="group in column.groups" :key="group.label" class="court-department">
-                  <div class="court-department-head"><span>{{group.label}}</span></div>
-                  <div class="court-office-track">
-                    <article v-for="node in group.items" :key="node.key" class="court-slot"
-                             :class="[column.key,{selected:selectedNode&&selectedNode.key===node.key}]" @click="courtSlotClick(node)">
-                      <span class="court-branch-badge" :aria-label="column.label">{{column.key==='military'?'武':'文'}}</span>
-                      <div class="court-slot-name">{{node.name}}</div>
-                      <div class="court-seat-grid" :class="{many:courtSeatCount(node)>1}">
-                        <div v-for="(figure,index) in courtFigureSlots(node)" :key="(figure&&figure.id)||node.key+'-seat-'+index" class="court-seat">
-                          <template v-if="figure">
-                            <div class="court-portrait" :style="portraitStyleFor(figure)"><img loading="lazy" decoding="async" v-if="personPortraitFor(figure.name,[figure])" :src="personPortraitFor(figure.name,[figure])" :alt="figure.name+'立绘'"/><span v-else>{{figure.name.slice(0,1)}}</span></div>
-                            <button class="court-seat-name" @click.stop="openCourtPerson(figure)">{{figure.name}}</button>
-                          </template>
-                          <span v-else class="court-seat-empty">空席</span>
-                        </div>
-                      </div>
-                      <div class="court-slot-meta">{{courtSeatMeta(node)}}</div>
-                      <button v-if="courtResidenceAvailable(node)" type="button" class="court-residence-badge" title="进入府属" @click.stop="openCourtResidence(node)">府</button>
-                      <span v-if="courtSeatCount(node)>1" class="court-slot-count" :class="{'has-residence':courtResidenceAvailable(node)}" :title="'本期设置 '+courtSeatCount(node)+' 席；已录 '+courtFigureCount(node)+' 人'">{{courtSeatCount(node)}}</span>
-                    </article>
-                  </div>
-                </section>
-              </section>
-            </div>
-            <section v-if="courtHierarchy.states.length" class="court-local">
-              <div class="court-local-head"><strong>州郡长吏</strong><span>州牧／刺史统州，太守／国相治郡国</span></div>
-              <div class="court-state-tabs" role="tablist" aria-label="州级政区">
-                <button v-for="item in courtHierarchy.states" :key="item.node.key" class="court-state-tab"
-                        :class="{active:courtActiveState&&courtActiveState.node.key===item.node.key}" @click="selectCourtState(item.node.key)">{{item.node.region||item.node.name}}</button>
-              </div>
-              <div v-if="courtActiveState" class="court-local-chain">
-                <div class="court-state-holder">
-                  <article class="court-state-card" role="button" tabindex="0" @click="courtSlotClick(courtActiveState.node)" @keydown.enter.prevent="courtSlotClick(courtActiveState.node)" @keydown.space.prevent="courtSlotClick(courtActiveState.node)">
-                    <strong>{{courtActiveState.node.name}}</strong><span>{{courtActiveState.node.region}} · 州牧／刺史</span>
-                  </article>
-                </div>
-                <div class="court-local-trunk"></div>
-                <div class="court-commandery-grid">
-                  <article v-for="node in courtActiveState.commanderies" :key="node.key" class="court-commandery"
-                           :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="courtSlotClick(node)">
-                    <strong>{{node.name}}</strong><span>{{/国$/.test(node.name)?'国相':'太守'}} · {{node.region}}</span>
-                  </article>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div v-else class="court-empty">当前体系尚无可显示的中央官署节点。</div>
-        </div>
-        <div v-if="officePresentation==='catalog'&&treeType==='office'&&showCourtResidence" class="court-scroll">
-          <div class="court-canvas office-residence-canvas" :class="courtResidenceClass" :style="courtResidenceStyle">
-            <header class="court-heading">
-              <h2>{{courtResidence.owner?courtResidence.owner.name:'府属'}} · {{courtResidenceName}}</h2>
-              <p class="residence-owner-note">府主：<strong>{{courtResidence.owner&&courtPrimaryFigure(courtResidence.owner)?courtPrimaryFigure(courtResidence.owner).name:(courtResidence.definition&&courtResidence.definition.ownerPersonName||'任职人物未详')}}</strong><template v-if="workspaceMode==='review'"> · 开府依据：<strong>{{courtKaifuLabel(courtResidence.owner)}}</strong></template> · 府署类型：{{courtResidenceType}}</p>
-              <div v-if="workspaceMode==='review'" class="residence-policy-strip review-only">
-                <span class="residence-policy-tag" :class="{verified:courtResidence.kaifuPolicy&&courtResidence.kaifuPolicy.researchStatus==='确定'}">{{courtResidence.kaifuPolicy&&courtResidence.kaifuPolicy.evidence&&courtResidence.kaifuPolicy.evidence.sourceLocator||'开府依据待考'}}</span>
-                <span class="residence-policy-tag" :class="{verified:courtResidence.definition&&courtResidence.definition.researchStatus==='确定'}">{{courtResidence.definition&&courtResidence.definition.evidence&&courtResidence.definition.evidence.sourceLocator||'府属来源待考'}}</span>
-                <span class="residence-policy-tag">制度员额与展示席位分列；实任人数按当前时期去重</span>
-              </div>
-              <div class="court-heading-actions">
-                <el-button size="small" type="primary" plain @click="closeCourtResidence">← 返回朝堂</el-button>
-                <el-button v-if="workspaceMode==='review'" class="review-only" size="small" text @click="editCourtResidenceOwner">编辑府主</el-button>
-              </div>
-            </header>
-            <div class="court-sovereign-row">
-              <article v-if="courtResidence.owner" class="court-slot sovereign selected" role="button" tabindex="0" @click="selectCourtSlot(courtResidence.owner)" @keydown.enter.prevent="selectCourtSlot(courtResidence.owner)" @keydown.space.prevent="selectCourtSlot(courtResidence.owner)">
-                <div class="court-slot-name">府主</div>
-                <div class="court-slot-person">
-                  <template v-if="courtPrimaryFigure(courtResidence.owner)">
-                    <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(courtResidence.owner))"><img loading="lazy" decoding="async" v-if="personPortraitFor(courtPrimaryFigure(courtResidence.owner).name,[courtPrimaryFigure(courtResidence.owner)])" :src="personPortraitFor(courtPrimaryFigure(courtResidence.owner).name,[courtPrimaryFigure(courtResidence.owner)])" :alt="courtPrimaryFigure(courtResidence.owner).name+'立绘'"/><span v-else>{{courtPrimaryFigure(courtResidence.owner).name.slice(0,1)}}</span></div>
-                    <button class="court-person-name court-person-link" @click.stop="openCourtPerson(courtPrimaryFigure(courtResidence.owner))">{{courtPrimaryFigure(courtResidence.owner).name}}</button>
-                  </template>
-                  <div v-else class="court-person-empty">府主人物未详</div>
-                </div>
-                <div class="court-slot-meta">{{courtResidence.owner.name}}</div>
-              </article>
-            </div>
-            <div v-if="!courtResidenceIsLocal||courtPrimaryFigure(courtResidence.owner)" class="court-link-vertical"></div>
-            <section class="court-tier">
-              <div class="court-tier-title"><span>府属官次</span></div>
-              <div v-if="courtResidenceIsLocal" class="v69-local-residence-definition">
-                <strong>府属定义</strong>
-                <div><span v-for="node in courtResidence.roles" :key="'definition-'+node.key">{{node.name}}</span></div>
-                <p v-if="!courtResidencePopulatedRoles.length">当前没有已核到任人物。</p>
-              </div>
-              <div v-if="(courtResidenceIsLocal?courtResidencePopulatedRoles:courtResidence.roles).length" class="residence-role-track">
-                <article v-for="(node,index) in (courtResidenceIsLocal?courtResidencePopulatedRoles:courtResidence.roles)" :key="node.key" class="residence-role-card"
-                         :class="{selected:selectedNode&&selectedNode.key===node.key}" @click="selectCourtSlot(node)">
-                  <span class="residence-role-order">{{index+1}}</span>
-                  <div class="residence-role-name">{{node.name}}</div>
-                  <div class="residence-role-person">
-                    <template v-if="courtPrimaryFigure(node)">
-                      <div class="court-portrait" :style="portraitStyleFor(courtPrimaryFigure(node))"><img loading="lazy" decoding="async" v-if="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :src="personPortraitFor(courtPrimaryFigure(node).name,[courtPrimaryFigure(node)])" :alt="courtPrimaryFigure(node).name+'立绘'"/><span v-else>{{courtPrimaryFigure(node).name.slice(0,1)}}</span></div>
-                      <button class="court-person-name court-person-link" @click.stop="openCourtPerson(courtPrimaryFigure(node))">{{courtPrimaryFigure(node).name}}</button>
-                    </template>
-                    <div v-else class="court-person-empty">暂无任官记录</div>
-                  </div>
-                  <div class="residence-role-meta">{{courtResidenceRoleMeta(node)}}</div>
-                  <div class="residence-counts">
-                    <span v-if="workspaceMode==='review'" :class="{uncertain:courtSeatStats(courtResidence.owner,node).authorized===null}"><b>{{courtSeatStats(courtResidence.owner,node).authorized===null?'待考':courtSeatStats(courtResidence.owner,node).authorized}}</b>制度员额</span>
-                    <span><b>{{courtSeatStats(courtResidence.owner,node).display}}</b>展示席位</span>
-                    <span><b>{{courtSeatStats(courtResidence.owner,node).actual}}</b>实任人数</span>
-                  </div>
-                </article>
-              </div>
-              <div v-else-if="!courtResidenceIsLocal" class="residence-empty">当前府属尚未录入具体属官。<br/>可返回朝堂，按三公府、将军府、都督府、州府、郡府或东宫的实际归属补充任官记录。</div>
-            </section>
-          </div>
-        </div>
-        <div v-if="officePresentation==='catalog'&&treeType==='noble'" class="catalog-workbench">
-          <aside class="catalog-hierarchy" aria-label="职官爵位层级目录">
-            <div class="catalog-hierarchy-head">
-              <strong>{{treeType==='office'?'职官层级':'爵位层级'}}</strong>
-              <span>沿制度层级展开；右侧显示具体{{treeType==='office'?'官名与任职人物':'爵位与受爵人物'}}。</span>
-            </div>
-            <div class="catalog-tree-scroll">
-              <div v-for="row in catalogTreeRows" :key="row.node.key"
-                   class="catalog-tree-row" :class="{active:catalogFocusNode&&catalogFocusNode.key===row.node.key,root:row.node.kind==='root'}"
-                   :style="{'--depth':row.depth}" @click="selectCatalogNode(row)">
-                <button class="catalog-tree-toggle" :class="{empty:!row.childCount}" :aria-label="catalogRowExpanded(row)?'折叠':'展开'"
-                        @click.stop="toggleCatalogRow(row)">{{row.childCount?(catalogRowExpanded(row)?'▾':'▸'):''}}</button>
-                <span class="catalog-tree-name" :title="row.node.name">{{row.node.name}}</span>
-                <span class="catalog-tree-count" v-if="row.childCount">{{row.childCount}}</span>
-              </div>
-            </div>
-          </aside>
-          <section class="catalog-content" v-if="catalogFocusNode">
-            <div class="catalog-content-head">
-              <div>
-                <div class="catalog-breadcrumb">{{catalogPath}}</div>
-                <h2>{{catalogFocusNode.name}}</h2>
-                <p>{{catalogNodeMeta(catalogFocusNode)}}<template v-if="workspaceMode==='review'"> · 点击卡片后可在审校面板编辑完整条目</template></p>
-              </div>
-              <div class="catalog-count-seal"><strong>{{catalogCards.length}}</strong><span>本层条目</span></div>
-            </div>
-            <div class="catalog-card-grid">
-              <article v-for="node in catalogCards" :key="node.key" class="catalog-card"
-                       :class="{selected:selectedNode&&selectedNode.key===node.key}"
-                       :style="{'--catalog-accent':node.color||currentFactionDef.color}" @click="selectCatalogCard(node)">
-                <div class="catalog-card-top">
-                  <div class="catalog-card-icon">{{catalogNodeIcon(node)}}</div>
-                  <div class="catalog-card-title"><h3>{{node.name}}</h3><p>{{catalogNodeMeta(node)}}</p></div>
-                  <span v-if="node.kind==='office'" class="catalog-group-pill" :style="{color:officeGroupColor(node),background:officeGroupColor(node)+'14'}">{{officeGroupLabel(node)}}</span>
-                </div>
-                <div class="catalog-card-badges">
-                  <span v-if="node.rank9||node.hanRank||node.nobleRank" class="catalog-card-badge">{{node.rank9||node.hanRank||node.nobleRank}}</span>
-                  <span v-if="node.officeStartYear||node.officeEndYear" class="catalog-card-badge">{{node.officeStartYear||'？'}}—{{node.officeEndYear||'？'}}</span>
-                  <span v-if="node.yaoling" class="catalog-card-badge special">遥领</span>
-                  <span v-if="node.virtual" class="catalog-card-badge special">虚职</span>
-                  <span v-if="node.kaifu" class="catalog-card-badge special">可开府</span>
-                  <span v-if="node.actualFief===false" class="catalog-card-badge special">虚封</span>
-                  <span v-if="currentFaction==='wei'&&node.peerageNodeId" class="catalog-card-badge v66-peerage-count">{{peerageNodeMetrics(node).events}} 件 · {{peerageNodeMetrics(node).people}} 人</span>
-                </div>
-                <p class="catalog-card-duty">{{catalogNodeSummary(node)}}</p>
-                <div class="catalog-people">
-                  <button v-for="person in (node.figures||[]).slice(0,6)" :key="person.id||person.name+person.startYear"
-                          class="catalog-person-chip" :title="person.name+' · '+catalogYearLabel(person)"
-                          @click.stop="openPersonProfile(person.name)">
-                    <span class="catalog-person-avatar" :style="portraitStyleFor(person)"><img loading="lazy" decoding="async" v-if="personPortraitFor(person.name,[person])" :src="personPortraitFor(person.name,[person])" :alt="person.name+'立绘'"/><span v-else>{{person.name.slice(0,1)}}</span></span>
-                    <span>{{person.name}}</span>
-                  </button>
-                  <template v-if="currentFaction==='wei'&&node.peerageNodeId">
-                    <button v-for="recipient in peerageNodeRecipientRows(node).slice(0,6)" :key="'peerage-'+node.key+'-'+recipient.key" class="catalog-person-chip" @click.stop="openPeerageEventPerson(recipient.personRef)">
-                      <span class="catalog-person-avatar"><span>{{recipient.label.slice(0,1)}}</span></span>
-                      <span>{{recipient.label}}</span>
-                    </button>
-                  </template>
-                  <span v-else-if="!node.figures||node.figures.length===0" class="catalog-no-people">尚未录入人物</span>
-                  <span v-else-if="node.figures.length>6" class="catalog-no-people">另 {{node.figures.length-6}} 人</span>
-                </div>
-              </article>
-              <div v-if="catalogCards.length===0" class="catalog-empty">当前层级没有符合筛选条件的条目。<br/>可清除筛选，或在左侧选择其他层级。</div>
-            </div>
-            <section v-if="currentFaction==='wei'&&selectedNode&&selectedNode.peerageNodeId" class="v66-peerage-events" aria-live="polite">
-              <header><div><small>曹魏封爵关联</small><h3>{{selectedNode.name}}</h3></div><strong>{{peerageNodeMetrics(selectedNode).events}} 件 · {{peerageNodeMetrics(selectedNode).people}} 人</strong></header>
-              <div v-if="peerageNodeEvents(selectedNode).length" class="v66-peerage-event-list">
-                <article v-for="event in peerageNodeEvents(selectedNode).slice(0,24)" :key="event.eventId">
-                  <time>{{event.grantDate||event.year||''}}</time>
-                  <div><b>{{event.title||event.rawRecipient||'封爵记录'}}</b><span>{{event.rank||''}}<template v-if="event.rawRecipient"> · {{event.rawRecipient}}</template></span></div>
-                  <div class="v66-peerage-event-recipients">
-                    <button v-for="recipient in peerageEventRecipientRows(event)" :key="event.eventId+'-'+recipient.key" type="button" @click="openPeerageEventPerson(recipient.personRef)">{{recipient.label}}</button>
-                    <span v-if="!peerageEventRecipientRows(event).length">{{event.rawRecipient}}</span>
-                  </div>
-                </article>
-              </div>
-              <p v-else>当前节点没有已核且可公开的曹魏本朝封爵事件。</p>
-            </section>
-          </section>
-        </div>
-        <div v-if="treeType==='office' && officePresentation==='table'" class="office-table-wrap">
-          <div class="office-table-card">
-            <div style="display:flex;align-items:center;justify-content:flex-end;padding:7px 12px;border-bottom:1px solid var(--rule);gap:8px;">
-              <span style="font-size:11px;color:#8A918A;">表格内可直接编辑名称、类别、职权与辖区</span>
-              <el-popover placement="bottom-end" width="170" trigger="click">
-                <template #reference><el-button size="small" text>列显示 ▾</el-button></template>
-                <el-checkbox v-model="tableColumns.name">官职</el-checkbox>
-                <el-checkbox v-model="tableColumns.level">层级</el-checkbox>
-                <el-checkbox v-model="tableColumns.category">类别</el-checkbox>
-                <el-checkbox v-model="tableColumns.rank">品级／秩俸</el-checkbox>
-                <el-checkbox v-model="tableColumns.duty">职权</el-checkbox>
-                <el-checkbox v-model="tableColumns.region">辖区</el-checkbox>
-                <el-checkbox v-model="tableColumns.years">沿革年代</el-checkbox>
-                <el-checkbox v-model="tableColumns.figures">历任人物</el-checkbox>
-              </el-popover>
-            </div>
-            <el-table :data="officeRows" height="100%" size="small" @row-click="selectOfficeRow" highlight-current-row>
-              <el-table-column v-if="tableColumns.name" prop="name" label="官职" min-width="170" fixed sortable>
-                <template #default="scope"><el-input v-model="scope.row.name" size="mini" @click.stop @change="onFormChangedDebounced" /></template>
-              </el-table-column>
-              <el-table-column v-if="tableColumns.level" label="层级" width="132" sortable>
-                <template #default="scope"><span class="scope-pill" :style="{background:officeGroupColor(scope.row)+'14',color:officeGroupColor(scope.row)}">{{officeGroupLabel(scope.row)}}</span></template>
-              </el-table-column>
-              <el-table-column v-if="tableColumns.category" label="官职类别" width="148" sortable>
-                <template #default="scope"><el-select v-model="scope.row.category" size="mini" @click.stop @change="onFormChangedDebounced"><el-option v-for="c in CATEGORY_OPTIONS" :key="c" :label="c" :value="c" /></el-select></template>
-              </el-table-column>
-              <el-table-column v-if="tableColumns.rank" label="品级／秩俸" width="118" sortable><template #default="scope">{{scope.row.rank9||scope.row.hanRank||'—'}}</template></el-table-column>
-              <el-table-column v-if="tableColumns.duty" label="主要职权" min-width="220" show-overflow-tooltip><template #default="scope"><el-input v-model="scope.row.duty" size="mini" type="textarea" :rows="1" @click.stop @change="onFormChangedDebounced" /></template></el-table-column>
-              <el-table-column v-if="tableColumns.region" label="辖区" min-width="140"><template #default="scope"><el-input v-model="scope.row.region" size="mini" @click.stop @change="onFormChangedDebounced" /></template></el-table-column>
-              <el-table-column v-if="tableColumns.years" label="沿革年代" width="132" sortable><template #default="scope">{{scope.row.officeStartYear||'？'}}—{{scope.row.officeEndYear||'？'}}</template></el-table-column>
-              <el-table-column v-if="tableColumns.figures" label="历任人物" min-width="150" show-overflow-tooltip><template #default="scope">{{(scope.row.figures||[]).map(p=>p.name).filter(Boolean).join('、')||'—'}}</template></el-table-column>
-            </el-table>
-          </div>
-        </div>
+        <!-- 画布区已拆为七个界面单元（offices-ui.js）；各单元以同名 computed 转发只读引用，逐字保留原模板。 -->
+        <offices-canvas-tabs v-if="officePresentation==='catalog'&&treeType==='office'" :state="officesUiState" @state-update="setOfficesUiState"/>
+        <offices-han-court v-if="officePresentation==='catalog'&&treeType==='office'&&!showCourtResidence" :state="officesUiState" @state-update="setOfficesUiState"/>
+        <offices-court-canvas v-if="officePresentation==='catalog'&&treeType==='office'&&showCourtResidence" :state="officesUiState"/>
+        <offices-court-residence v-if="officePresentation==='catalog'&&treeType==='office'&&showCourtResidence" :state="officesUiState"/>
+        <offices-catalog v-if="officePresentation==='catalog'&&treeType==='noble'" :state="officesUiState"/>
+        <offices-table v-if="treeType==='office' && officePresentation==='table'" :state="officesUiState"/>
       </div>
 
-      <div v-show="workspaceMode==='review'" class="right-panel review-only">
-        <div class="panel-head">
-          <div class="name serif">{{ selectedNode ? selectedNode.name : '属性面板' }}</div>
-          <div class="sub" v-if="selectedNode">{{ selectedPolityLabel }} · {{ selectedNode.kind==='office' ? '官职' : (selectedNode.kind==='root' ? '根节点' : '爵位') }}</div>
-          <div class="sub" v-else>点击朝堂官位或表格行以编辑其属性</div>
-        </div>
-        <div class="panel-body">
-          <div v-if="!selectedNode" class="panel-empty">
-            <div class="glyph">職</div>
-            尚未选中节点<br/>在朝堂或表格中点击任意官职或爵位
-          </div>
-
-          <el-form v-else label-position="top" size="small" @change="onFormChangedDebounced">
-            <div v-if="selectedDraftTime" class="draft-banner">
-              <span>📝 草稿已暂存于 {{new Date(selectedDraftTime).toLocaleTimeString('zh-CN',{hour12:false})}}</span>
-              <div style="display:flex;gap:6px;margin-left:auto;">
-                <el-button size="small" text type="primary" @click="restoreCurrentDraft">恢复草稿</el-button>
-                <el-button size="small" text @click="clearCurrentDraft">清除</el-button>
-              </div>
-            </div>
-
-            <template v-if="selectedNode.kind==='office'">
-              <div class="field-group-title">基本信息</div>
-              <el-form-item label="官职名称"><el-input v-model="selectedNode.name" /></el-form-item>
-              <el-form-item label="别称／异名"><el-input v-model="selectedNode.aliases" placeholder="如：中护军／护军将军" /></el-form-item>
-              <el-form-item label="国家／部落">
-                <el-input :model-value="selectedPolityLabel" :disabled="currentFaction!=='tribal'" placeholder="如：匈奴、鲜卑、乌桓" @input="selectedNode.polity=$event" />
-                <div v-if="currentFaction==='tribal'" class="form-inline-note">异族节点可直接填写部落名；未填写时会根据节点及祖先名称自动识别。</div>
-              </el-form-item>
-              <el-form-item label="官职分类">
-                <el-select v-model="selectedNode.category" style="width:100%">
-                  <el-option v-for="c in CATEGORY_OPTIONS" :key="c" :label="c" :value="c" />
-                </el-select>
-              </el-form-item>
-              <div class="year-row">
-                <el-form-item label="职务性质">
-                  <el-select v-model="selectedNode.serviceDomain" style="width:100%">
-                    <el-option v-for="value in SERVICE_DOMAIN_OPTIONS" :key="value" :label="value" :value="value" />
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="所属官署">
-                  <el-select v-model="selectedNode.institutionType" style="width:100%">
-                    <el-option v-for="value in INSTITUTION_TYPE_OPTIONS" :key="value" :label="value" :value="value" />
-                  </el-select>
-                </el-form-item>
-              </div>
-
-              <div class="field-group-title">{{ rank9Enabled ? '官品与秩俸' : '秩俸制度' }}</div>
-              <div v-if="!rank9Enabled" class="rank-notice">
-                东汉与汉不实行曹魏九品官品体系；异族内部称号也不套用中原九品。本页仅记录可考的秩俸。
-              </div>
-              <el-form-item v-if="rank9Enabled" label="官品">
-                <el-select v-model="selectedNode.rank9" clearable style="width:100%">
-                  <el-option v-for="r in RANK9_OPTIONS" :key="r" :label="r" :value="r" />
-                </el-select>
-                <div class="gis-stub">官品与九品中正选官是相关但不同的概念；请按具体制度和任职记录填写。</div>
-              </el-form-item>
-              <el-form-item label="汉代秩俸（石）">
-                <el-select v-model="selectedNode.hanRank" clearable style="width:100%">
-                  <el-option v-for="r in HAN_RANK_OPTIONS" :key="r" :label="r" :value="r" />
-                </el-select>
-              </el-form-item>
-
-              <div class="field-group-title">职权</div>
-              <el-form-item label="职权文本"><el-input v-model="selectedNode.duty" type="textarea" :rows="2" /></el-form-item>
-
-              <div class="field-group-title">沿革</div>
-              <div class="year-row">
-                <el-form-item label="设立年份"><el-input-number v-model="selectedNode.officeStartYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
-                <el-form-item label="裁撤年份"><el-input-number v-model="selectedNode.officeEndYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
-              </div>
-              <el-form-item label="更名／裁撤沿革"><el-input v-model="selectedNode.evolution" type="textarea" :rows="2" placeholder="记录设立、改名、复置、裁撤等变更" /></el-form-item>
-              <div class="field-group-title" style="margin-top:8px;">沿革事件（结构化） <el-button size="small" text type="primary" @click="addEvolutionEvent">＋ 添加</el-button></div>
-              <div v-if="!selectedNode.evolutionEvents || !selectedNode.evolutionEvents.length" class="gis-stub">暂无结构化沿革事件；可逐条记录设立、更名、复置、裁撤的年份与说明。</div>
-              <div v-for="(ev,evi) in selectedNode.evolutionEvents" :key="ev.id" class="evolution-event-row">
-                <div style="display:flex;gap:6px;align-items:center;">
-                  <el-input-number v-model="ev.year" :min="-300" :max="500" controls-position="right" size="small" style="width:92px" />
-                  <el-select v-model="ev.type" size="small" style="width:92px;">
-                    <el-option v-for="t in EVOLUTION_TYPES" :key="t" :label="t" :value="t" />
-                  </el-select>
-                  <el-button size="small" text type="danger" @click="removeEvolutionEvent(evi)">✕</el-button>
-                </div>
-                <el-input v-model="ev.text" size="small" placeholder="事件说明（如：更名河南尹）" style="margin-top:5px;" />
-              </div>
-
-              <div class="field-group-title">辖区与权限</div>
-              <el-form-item label="规范行政区划（州—郡）">
-                <el-cascader v-model="selectedNode.regionPath" :options="REGION_OPTIONS" clearable filterable style="width:100%" @change="syncRegionFromPath" />
-              </el-form-item>
-              <el-form-item label="管辖区域">
-                <el-input v-model="selectedNode.region" placeholder="如：荆州、南中、西域…" />
-                <div class="gis-stub">📍 GIS 地图接口预留位：后续可接入三国行政区划地图，按坐标高亮本官职实际／遥领辖区。</div>
-              </el-form-item>
-
-              <div class="field-group-title">直属关系约束</div>
-              <el-form-item label="从属性质">
-                <el-select v-model="selectedNode.relationType" clearable style="width:100%"><el-option v-for="r in RELATION_OPTIONS" :key="r" :label="r" :value="r" /></el-select>
-              </el-form-item>
-              <el-form-item label="直属限制说明"><el-input v-model="selectedNode.directRules" type="textarea" :rows="2" placeholder="区分固定属官、临时幕僚、不可跨系挂靠等" /></el-form-item>
-              <el-form-item label="符节权限">
-                <el-select v-model="selectedNode.jie" style="width:100%">
-                  <el-option v-for="j in JIE_OPTIONS" :key="j" :label="j" :value="j" />
-                </el-select>
-              </el-form-item>
-
-              <div class="field-group-title">标记</div>
-              <el-form-item label="是否允许开府">
-                <el-switch v-model="selectedNode.kaifu" />
-                <el-button v-if="selectedNode.kaifu" size="small" text type="primary" style="margin-left:8px" @click="generateKaifuTemplate">生成标准幕府僚属</el-button>
-              </el-form-item>
-              <el-form-item label="遥领 / 世袭领兵 / 录尚书事">
-                <el-checkbox v-model="selectedNode.yaoling">遥领</el-checkbox>
-                <el-checkbox v-model="selectedNode.worldTangBing">世袭领兵</el-checkbox>
-                <el-checkbox v-model="selectedNode.lushangshushi">录尚书事</el-checkbox>
-              </el-form-item>
-              <el-form-item label="加官（额外授予的荣衔）">
-                <el-select v-model="selectedNode.jiaguan" style="width:100%">
-                  <el-option v-for="j in JIAGUAN_OPTIONS" :key="j" :label="j" :value="j" />
-                </el-select>
-              </el-form-item>
-              <div v-if="selectedNode.yaoling" class="warning-inline">遥领官职请补充辖区，并在备注中说明属于实授、虚领或名义兼领。</div>
-              <el-form-item label="显示状态">
-                <el-checkbox v-model="selectedNode.virtual">虚职</el-checkbox>
-                <el-checkbox v-model="selectedNode.temporary">临时职任</el-checkbox>
-                <el-checkbox v-model="selectedNode.archived">归档</el-checkbox>
-                <el-checkbox v-model="selectedNode.hidden">隐藏</el-checkbox>
-              </el-form-item>
-              <el-form-item label="自定义标签">
-                <el-select v-model="selectedNode.customTags" multiple filterable allow-create default-first-option style="width:100%" placeholder="输入后回车，如“战时临时官职”" />
-              </el-form-item>
-
-              <div class="field-group-title">爵位关联挂载</div>
-              <el-form-item label="关联爵位节点（跨体系挂载）">
-                <el-select v-model="selectedNode.mountId" clearable filterable style="width:100%">
-                  <el-option v-for="m in mountOptions" :key="m.key" :label="m.name" :value="m.key" />
-                </el-select>
-                <div v-if="selectedNode.mountId" style="margin-top:6px;">
-                  <el-button size="small" text @click="jumpToMount">🔗 查看关联爵位节点</el-button>
-                </div>
-              </el-form-item>
-
-              <div class="field-group-title">备注</div>
-              <el-form-item><el-input v-model="selectedNode.note" type="textarea" :rows="2" placeholder="备注" /></el-form-item>
-            </template>
-
-            <template v-else-if="selectedNode.kind==='noble'">
-              <div class="field-group-title">基本信息</div>
-              <el-form-item label="爵位名称"><el-input v-model="selectedNode.name" /></el-form-item>
-              <el-form-item label="国家／部落">
-                <el-input :model-value="selectedPolityLabel" :disabled="currentFaction!=='tribal'" placeholder="如：匈奴、鲜卑、乌桓" @input="selectedNode.polity=$event" />
-              </el-form-item>
-              <el-form-item label="爵等">
-                <el-select v-model="selectedNode.nobleRank" style="width:100%">
-                  <el-option v-for="r in NOBLE_RANK_OPTIONS" :key="r" :label="r" :value="r" />
-                </el-select>
-              </el-form-item>
-              <el-form-item label="食邑 / 租税"><el-input v-model="selectedNode.fief" placeholder="如：食邑千户" /></el-form-item>
-              <el-form-item label="承袭方式">
-                <el-select v-model="selectedNode.inherit" clearable style="width:100%">
-                  <el-option v-for="i in INHERIT_OPTIONS" :key="i" :label="i" :value="i" />
-                </el-select>
-              </el-form-item>
-              <el-form-item label="封爵性质">
-                <el-radio-group v-model="selectedNode.actualFief"><el-radio-button :value="true">实封</el-radio-button><el-radio-button :value="false">虚封</el-radio-button></el-radio-group>
-              </el-form-item>
-              <div class="year-row">
-                <el-form-item label="始封／设立年"><el-input-number v-model="selectedNode.officeStartYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
-                <el-form-item label="废止年"><el-input-number v-model="selectedNode.officeEndYear" :min="-300" :max="500" controls-position="right" style="width:100%" /></el-form-item>
-              </div>
-              <el-form-item label="自定义标签"><el-select v-model="selectedNode.customTags" multiple filterable allow-create default-first-option style="width:100%" /></el-form-item>
-              <el-form-item label="显示状态"><el-checkbox v-model="selectedNode.archived">归档</el-checkbox><el-checkbox v-model="selectedNode.hidden">隐藏</el-checkbox></el-form-item>
-
-              <div class="field-group-title">官职关联挂载</div>
-              <el-form-item label="关联官职节点（跨体系挂载）">
-                <el-select v-model="selectedNode.mountId" clearable filterable style="width:100%">
-                  <el-option v-for="m in mountOptions" :key="m.key" :label="m.name" :value="m.key" />
-                </el-select>
-                <div v-if="selectedNode.mountId" style="margin-top:6px;">
-                  <el-button size="small" text @click="jumpToMount">🔗 查看关联官职节点</el-button>
-                </div>
-              </el-form-item>
-
-              <div class="field-group-title">备注</div>
-              <el-form-item><el-input v-model="selectedNode.note" type="textarea" :rows="2" /></el-form-item>
-            </template>
-
-            <template v-else>
-              <div class="panel-empty" style="padding:20px 0;">
-                根节点仅用于组织画布，不承载具体官职 / 爵位信息。
-              </div>
-            </template>
-
-            <div v-if="selectedNode.kind==='office' || selectedNode.kind==='noble'">
-              <div class="field-group-title">{{ selectedNode.kind==='office' ? '任职人物与立绘' : '受爵人物与立绘' }}</div>
-              <div class="person-toolbar">
-                <span class="tip">每条记录可绑定君主时期、年份和立绘</span>
-                <el-button size="small" type="primary" plain @click="addFigureRecord">＋ 添加人物</el-button>
-              </div>
-              <div v-if="!selectedNode.figures || selectedNode.figures.length===0" class="gis-stub">
-                尚无人物记录。添加后可在上方按皇帝时期生成官员汇总。
-              </div>
-              <div v-for="(p,pidx) in selectedNode.figures" :key="p.id" class="person-card">
-                <div class="person-card-head">
-                  <div class="portrait-box" :style="portraitStyleFor(p)">
-                    <img loading="lazy" decoding="async" v-if="personPortraitFor(p.name,[p])" :src="personPortraitFor(p.name,[p])" :alt="(p.name||'人物')+'立绘'" />
-                    <span v-else>暂无<br/>立绘</span>
-                  </div>
-                  <div class="person-card-title">
-                    <el-input v-model="p.name" placeholder="人物姓名" aria-label="人物姓名" />
-                    <div class="person-card-actions">
-                      <el-upload :show-file-list="false" accept=".jpg,.jpeg,.png,.webp,.gif"
-                                 :before-upload="file=>uploadPortrait(file,p)">
-                        <el-button size="small" text>上传立绘</el-button>
-                      </el-upload>
-                      <el-button v-if="p.portrait" size="small" text @click="clearPortrait(p)">移除立绘</el-button>
-                      <el-button size="small" text type="danger" @click="removeFigureRecord(pidx)">删除人物</el-button>
-                    </div>
-                  </div>
-                </div>
-                <el-input v-model="p.portrait" size="small" clearable aria-label="立绘图片地址"
-                          placeholder="立绘图片网址，或使用上方本地上传" />
-                <div class="portrait-source">本地图片会写入 JSON 工程；为避免缓存过大，单张限制 1MB。</div>
-                <el-form-item label="任职时期" style="margin-top:8px;">
-                  <el-select v-model="p.rulerKey" clearable style="width:100%" aria-label="任职时期"
-                             @change="onFigureRulerChanged(p)">
-                    <el-option v-for="period in periodOptions" :key="period.key"
-                               :label="period.name+'（'+period.startYear+'—'+period.endYear+'）'" :value="period.key" />
-                  </el-select>
-                </el-form-item>
-                <div class="year-row">
-                  <el-form-item label="起始年">
-                    <el-input-number v-model="p.startYear" :min="160" :max="300" controls-position="right" style="width:100%" />
-                  </el-form-item>
-                  <el-form-item label="结束年">
-                    <el-input-number v-model="p.endYear" :min="160" :max="300" controls-position="right" style="width:100%" />
-                  </el-form-item>
-                </div>
-                <el-input v-model="p.note" size="small" placeholder="任职、领衔或人物备注" aria-label="人物备注" />
-              </div>
-            </div>
-
-            <div class="badge-row" v-if="selectedNode.kind!=='root'">
-              <span class="mini-badge" v-if="selectedNode.locked">🔒 已锁定</span>
-              <span class="mini-badge" v-if="selectedNode.color">🎨 自定义色</span>
-              <span class="mini-badge" v-if="selectedNode.icon">{{selectedNode.icon}} 图标标记</span>
-            </div>
-          </el-form>
-        </div>
-      </div>
+      <offices-detail v-show="workspaceMode==='review'" :state="officesUiState"/>
     </div>
 
     <main v-if="!['offices','map'].includes(activeModule)&&moduleLoadState[activeModule]!=='ready'" class="module-page v69-module-loading" aria-live="polite" :aria-busy="moduleLoadState[activeModule]==='loading'">
       <div class="v69-loading-frame" :class="{'is-error':moduleLoadState[activeModule]==='error'}"><span></span><span></span><span></span><strong>{{moduleLoadState[activeModule]==='error'?'案卷暂未打开':'正在展开案卷'}}</strong><template v-if="moduleLoadState[activeModule]==='error'"><p>请检查连接后重试，当前筛选条件会保留。</p><el-button type="primary" @click="retryActiveModule">重新载入</el-button></template></div>
     </main>
 
-    <main v-if="moduleVisited.people&&moduleLoadState.people==='ready'" v-show="activeModule==='people'" class="module-page people-workbench">
-      <div class="module-page-inner">
-        <div class="people-view-layout">
-          <div class="people-view-content">
-        <div class="people-metrics">
-          <div class="people-metric"><strong>{{filteredPeople.length}}</strong><span>当前人物</span></div>
-          <div class="people-metric"><strong>{{peopleMetrics.records}}</strong><span>任官记录</span></div>
-          <div class="people-metric"><strong>{{peopleMetrics.peerageEvents}}</strong><span>人物封爵关联</span></div>
-        </div>
-        <template v-if="peopleView==='people'">
-        <div v-if="!filteredPeople.length" class="summary-empty">没有匹配的人物。试试姓名或表字，或减少筛选条件。</div>
-        <div v-else class="v56-people-master-detail">
-          <section class="v56-person-directory" role="list" aria-label="人物名录">
-            <button v-for="p in pagedPeople" :key="p.personId" type="button"
-                    class="v56-person-row" :class="{active:peoplePrimaryDetail&&peoplePrimaryDetail.personId===p.personId,'keyboard-active':peopleQuery&&filteredPeople[peopleKeyboardIndex]&&filteredPeople[peopleKeyboardIndex].personId===p.personId}"
-                    :aria-current="peoplePrimaryDetail?.personId===p.personId?'true':undefined" :data-person-id="p.personId" :data-person-name="p.name" @click="openPeopleDetail(p.personId)">
-              <span class="person-avatar" :style="portraitStyleFor(p)"><reader-portrait v-if="p.portrait" :src="p.portrait" :alt="p.name+'立绘'"/><span v-else>{{p.name.slice(0,1)}}</span></span>
-              <span class="v56-person-row-copy">
-                <span class="v56-person-row-name"><strong>{{p.canonicalName||p.name}}</strong><small v-if="p.zi">字{{p.zi}}</small></span>
-                <span v-if="p.dynastyTags.length||p.appointments.length" class="v56-person-row-meta"><template v-if="p.dynastyTags.length">{{p.dynastyTags.join(' · ')}}</template><template v-if="p.appointments.length"><template v-if="p.dynastyTags.length"> · </template>{{p.appointments[0].nodeName}}</template></span>
-                <small v-if="p.searchReason" class="v62-person-match" :class="'match-'+p.searchMatchKind">{{p.searchReason}}<template v-if="p.searchMatchValue&&p.searchMatchValue!==p.name">：{{p.searchMatchValue}}</template></small>
-              </span>
-              <span v-if="p.appointmentCount" class="v56-person-row-count">{{p.appointmentCount}} 任</span>
-              <span v-else-if="p.peerageEvents.length" class="v56-person-row-count">{{p.peerageEvents.length}} 爵</span>
-            </button>
-          </section>
-          <article v-if="peoplePrimaryDetail" class="v56-person-dossier" :data-person-id="peoplePrimaryDetail.personId">
-            <header class="v56-person-dossier-head">
-              <div class="people-detail-portrait" :style="portraitStyleFor(peoplePrimaryDetail)"><reader-portrait v-if="peoplePrimaryDetail.portrait" :src="peoplePrimaryDetail.portrait" :alt="peoplePrimaryDetail.name+'立绘'" detail/><span v-else>{{peoplePrimaryDetail.name.slice(0,1)}}</span></div>
-              <div>
-                <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2>
-                <div class="v56-person-dossier-meta"><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
-                <div class="people-detail-tags"><span v-for="pol in peoplePrimaryDetail.dynastyTags" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
-                <p v-if="peoplePrimaryDetail.historicalAffiliations.length" class="v62-historical-affiliations">历史归属：{{peoplePrimaryDetail.historicalAffiliations.join('、')}}</p>
-                <person-identity-facts :person="peoplePrimaryDetail" :lifespan="personLifespanLabel(peoplePrimaryDetail)" :office="peoplePrimaryOfficeSummary" :peerage="peoplePrimaryPeerageSummary" />
-                <div v-if="workspaceMode==='review'&&peoplePrimaryDetail.importCandidate" class="v60-import-candidate review-only"><strong>附件人物候选 · {{peoplePrimaryDetail.researchDisposition}}</strong><template v-if="peoplePrimaryDetail.v60Records&&peoplePrimaryDetail.v60Records.length"><span v-for="record in peoplePrimaryDetail.v60Records" :key="record.workbookSource.row">{{record.workbookSource.sheet}} 第 {{record.workbookSource.row}} 行 · 原名 {{record.rawName||record.name}}<template v-if="record.officeRaw"> · 官职字段 {{record.officeRaw}}</template></span></template><span v-else>{{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.sheet}} 第 {{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.row}} 行 · 原名 {{peoplePrimaryDetail.rawName||peoplePrimaryDetail.name}}</span><span v-if="peoplePrimaryDetail.candidateReason">{{peoplePrimaryDetail.candidateReason}}</span></div>
-                <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{peoplePrimaryDetail.sourceVolumes.length?peoplePrimaryDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span><span class="v58-status" :class="peoplePrimaryDetail.sourceVolumes.length?'v58-status--ready':'v58-status--pending'">{{peoplePrimaryDetail.sourceVolumes.length?'来源已关联':'来源待补'}}</span></div>
-                <span v-if="peoplePrimaryDetail.portrait" class="v58-portrait-note">界面识别立绘，非史实肖像。</span>
-                <section v-if="readableFact(peoplePrimaryDetail.bio)" class="person-biography" aria-label="人物小传"><h3>人物小传</h3><p>{{peoplePrimaryDetail.bio}}</p></section>
-                <el-button v-if="workspaceMode==='review'" class="review-only" size="small" plain @click="openPersonMetaEditor(peoplePrimaryDetail.personId)">编辑人物档案</el-button>
-              </div>
-            </header>
-            <p v-if="!peoplePrimaryDetail.bio&&!peoplePrimaryLifeTimeline.length" class="reader-quiet-note">已收录身份资料；独立小传与经历尚待补充。</p>
-            <reader-citations :citations="personCitations(peoplePrimaryDetail)" />
-            <section v-if="peoplePrimaryLifeTimeline.length" class="v69-person-life-section">
-              <h3 class="v56-dossier-section-title">人物经历 · {{peoplePrimaryDetail.lifeEvents.length}} 条</h3>
-              <div class="v69-person-life-timeline">
-                <section v-for="group in peoplePrimaryLifeTimeline" :key="group.year" class="v69-person-life-year">
-                  <time>{{group.year}}</time>
-                  <div class="v69-person-life-events">
-                    <button v-for="event in group.events" :key="event.eventId" type="button" @click="openPersonLifeEvent(event)">
-                      <span class="v69-life-type">{{personLifeEventTypeLabel(event)}}</span>
-                      <strong>{{event.title}}</strong>
-                      <small v-if="event.detail">{{event.detail}}</small>
-                    </button>
-                  </div>
-                </section>
-              </div>
-            </section>
-          </article>
-        </div>
-        <nav v-if="peoplePageCount>1" class="people-pagination" aria-label="人物档案分页">
-          <button type="button" :disabled="peoplePage<=1" @click="peoplePage-=1">上一页</button>
-          <span>第 {{peoplePage}} / {{peoplePageCount}} 页 · 每页 {{peoplePageSize}} 人</span>
-          <button type="button" :disabled="peoplePage>=peoplePageCount" @click="peoplePage+=1">下一页</button>
-        </nav>
-        </template>
+    <people-workbench
+      v-if="moduleVisited.people&&moduleLoadState.people==='ready'"
+      v-show="activeModule==='people'"
+      class="module-page people-workbench"
+      :state="peopleUiState"
+      :workspace-mode="workspaceMode"
+      :active="activeModule==='people'"
+      :fn-open-detail="openPeopleDetail"
+      :fn-open-life-event="openPersonLifeEvent"
+      :fn-open-meta-editor="openPersonMetaEditor"
+      :fn-citations="personCitations"
+      :fn-lifespan-label="personLifespanLabel"
+      :fn-life-event-type-label="personLifeEventTypeLabel"
+      :fn-portrait-style="portraitStyleFor"
+      :fn-polity-pill-class="polityPillClass"
+      :fn-readable-fact="readableFact"
+      :options="peopleUiOptions"
+      @page-step="stepPeoplePage"
+    />
 
-          </div>
-        </div>
-      </div>
-    </main>
+    <battle-workbench
+      :module-visited="moduleVisited.battle"
+      :module-ready="moduleLoadState.battle==='ready'"
+      :active="activeModule==='battle'"
+      :state="battleUiState"
+      :eras="BATTLE_ERA_ANCHORS"
+      :scroll-era="scrollBattleEra"
+      :detail-year="battleDetailYear"
+      :open-detail="openBattleDetail"
+      :parties-label="battlePartiesLabel"
+      :person-links-for="battlePersonLinksFor"
+      :open-person="openBattlePerson"
+      :kind-class="battleKindClass"
+      :kind-label="battleKindLabel"
+      :jump-to-map="jumpBattleToMap"
+    />
 
-    <main v-if="moduleVisited.battle&&moduleLoadState.battle==='ready'" v-show="activeModule==='battle'" class="module-page battle-workbench">
-      <div class="module-page-inner">
-        <div class="page-heading">
-          <div>
-            <div class="page-kicker">汉末至西晋</div>
-            <h1>战事纪</h1>
-            <p>按年份连续阅读战事、战役与战场记录。</p>
-          </div>
-        </div>
-        <nav class="v66-battle-anchors" aria-label="战事时代定位">
-          <button v-for="era in BATTLE_ERA_ANCHORS" :key="era.key" type="button" @click="scrollBattleEra(era.key)">{{era.label}}</button>
-          <span>{{filteredBattles.length}} 条</span>
-        </nav>
-        <div class="battle-vertical-scroll" aria-label="战事编年列表">
-          <div class="battle-chronology-list">
-            <article v-for="item in filteredBattles" :key="'chronology-'+item.id" class="battle-timeline-item" :data-battle-era="item.isEraStart?item.eraKey:null">
-              <div v-if="item.isEraStart" class="v66-battle-era">{{item.eraLabel}}</div>
-              <time class="battle-timeline-year">{{battleDetailYear(item)}}</time>
-              <button type="button" class="v66-battle-open" @click="openBattleDetail(item)">
-                <span class="battle-timeline-title">{{item.title||item.name||item.text}}</span>
-                <span class="battle-timeline-desc">{{item.desc||item.text||item.note||item.result}}</span>
-              </button>
-              <div class="v66-battle-facts">
-                <span v-if="battlePartiesLabel(item)">{{battlePartiesLabel(item)}}</span>
-                <span v-if="item.result">{{item.result}}</span>
-              </div>
-              <div v-if="battlePersonLinksFor(item).length" class="v69-battle-people" aria-label="涉及人物">
-                <span>涉及人物</span>
-                <button v-for="link in battlePersonLinksFor(item).slice(0,6)" :key="link.linkId" type="button" @click="openBattlePerson(link)">{{link.personName}}</button>
-                <small v-if="battlePersonLinksFor(item).length>6">另 {{battlePersonLinksFor(item).length-6}} 人</small>
-              </div>
-              <div class="battle-item-actions">
-                <span class="battle-kind-pill" :class="battleKindClass(item.kind)">{{battleKindLabel(item.kind)}}</span>
-                <span v-if="workspaceMode==='review'&&item.kind==='battlefield'&&!item.coordinateEvidence" class="v58-coordinate-pending review-only">坐标来源待补</span>
-                <button type="button" class="battle-map-link" @click="jumpBattleToMap(item)">地图</button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </main>
+    <fangzhen-workbench
+      :module-visited="moduleVisited.fangzhen"
+      :module-ready="moduleLoadState.fangzhen==='ready'"
+      :active="activeModule==='fangzhen'"
+      :workspace-mode="workspaceMode"
+      :state="fangzhenUiState"
+      :fn-select-archive="selectFangzhenArchive"
+      :fn-power-text="fangzhenPowerText"
+      :fn-type-label="fangzhenTypeLabel"
+      :fn-polity-class="fangzhenPolityClass"
+      :fn-period-label="fangzhenPeriodLabel"
+      :fn-is-administrative="fangzhenIsAdministrative"
+      :fn-has-residence="fangzhenHasResidence"
+      :fn-select-record="selectFangzhenWorkbenchRecord"
+      :fn-open-editor="openFangzhenEditor"
+      :fn-delete-record="deleteFangzhenRecord"
+      :fn-export="exportFangzhen"
+      :fn-open-residence="openFangzhenResidence"
+      :fn-jump-to-map="jumpFangzhenToMap"
+      :fn-open-person="openPeopleDetail"
+      @page-step="stepFangzhenPage"
+    />
 
-    <main v-if="moduleVisited.fangzhen&&moduleLoadState.fangzhen==='ready'" v-show="activeModule==='fangzhen'" class="module-page fangzhen-workbench" :style="fangzhenArchiveStyle">
-      <div class="module-page-inner">
-        <header class="v67-module-masthead">
-          <nav class="v67-masthead-tabs" aria-label="政权州镇档案">
-            <button v-for="item in fangzhenArchiveOptions" :key="item.key" type="button" :class="{active:fangzhenArchiveKey===item.key}" @click="selectFangzhenArchive(item.key)"><span>{{item.label.replace('州镇档案','').replace('州镇扩展','')}}</span><small>{{item.count}}</small></button>
-          </nav>
-          <div class="v67-masthead-meta"><strong>{{fangzhenVisibleRecords.length}}</strong><span>当前职任</span><strong>{{fangzhenMetrics.commanders}}</strong><span>人</span><small class="v67-fangzhen-state-count">{{fangzhenArchiveDef.stateCountLabel}}</small></div>
-        </header>
-        <div v-if="fangzhenView!=='records'||workspaceMode==='review'" class="fangzhen-toolbar">
-          <strong v-if="fangzhenView==='records'">{{fangzhenArchiveDef.label}}</strong><span style="flex:1"></span>
-          <el-input-number v-if="fangzhenView!=='records'" v-model="fangzhenSnapshotYear" :min="168" :max="316" size="small" controls-position="right" placeholder="起始年份" style="width:130px" />
-          <el-input-number v-if="fangzhenView==='compare'" v-model="fangzhenCompareYear" :min="168" :max="316" size="small" controls-position="right" placeholder="对比年份" style="width:130px" />
-          <el-button v-if="workspaceMode==='review'" class="review-only" type="primary" @click="openFangzhenEditor()">添加职任</el-button>
-          <el-button v-if="workspaceMode==='review'" class="review-only" @click="exportFangzhen">导出 Excel</el-button>
-        </div>
-        <div v-if="fangzhenView!=='records'" class="fangzhen-snapshot-panel">
-          <p class="reader-quiet-note">仅统计已核且起讫年明确的任期。{{fangzhenSnapshotExcluded}} 条待补核或年代未定资料未计入；数量反映本库已核范围。</p>
-          <div v-if="fangzhenView==='snapshot'&&fangzhenSnapshotYear" class="fangzhen-snapshot-row">
-            <strong>{{fangzhenSnapshotYear}} 年任职快照</strong>
-            <span>{{fangzhenSnapshotRecords.length}} 条记录</span>
-            <span v-for="r in fangzhenSnapshotRecords.slice(0,12)" :key="r.id" class="fz-snapshot-chip">{{r.commander}} · {{r.title}}<small v-if="r.jurisdiction">{{r.jurisdiction}}</small></span>
-            <span v-if="fangzhenSnapshotRecords.length>12" class="fz-snapshot-more">另有 {{fangzhenSnapshotRecords.length-12}} 条</span>
-          </div>
-          <div v-if="fangzhenView==='compare'&&!fangzhenCompareRecords.length" class="summary-empty">请输入两个不同年份生成对比。</div>
-          <div v-if="fangzhenView==='compare'" v-for="cmp in fangzhenCompareRecords" :key="cmp.year" class="fangzhen-compare-row">
-            <strong>{{cmp.year}} 年</strong>
-            <span>{{cmp.rows.length}} 条在任记录</span>
-            <span v-if="cmp.added.length" class="fz-diff added">新出现 {{cmp.added.length}} 条</span>
-            <span v-if="cmp.removed.length" class="fz-diff removed">未见于该年快照 {{cmp.removed.length}} 条</span>
-            <span v-for="record in cmp.added.slice(0,8)" :key="'added-'+cmp.year+'-'+record.id" class="fz-snapshot-chip">＋ {{record.commander}} · {{record.title}}</span>
-            <span v-for="record in cmp.removed.slice(0,8)" :key="'removed-'+cmp.year+'-'+record.id" class="fz-snapshot-chip removed">－ {{record.commander}} · {{record.title}}</span>
-          </div>
-        </div>
-        <nav v-if="fangzhenView==='records'" class="fangzhen-section-tabs" aria-label="州镇详情"><button type="button" :class="{active:fangzhenSection==='appointments'}" @click="fangzhenSection='appointments'">职任</button><button type="button" :class="{active:fangzhenSection==='territory'}" @click="fangzhenSection='territory'">治所与辖境</button></nav>
-        <section v-if="fangzhenView==='records'&&fangzhenSection==='appointments'" class="v67-fangzhen-workbench" aria-label="州镇职任工作台">
-          <section class="v67-fangzhen-table-panel">
-            <header class="v67-panel-heading"><div><small>{{fangzhenArchiveDef.label}}</small><strong>职任</strong></div><nav class="fangzhen-duty-tabs" aria-label="军政职任视图"><button type="button" :class="{active:fangzhenDutyView==='all'}" @click="fangzhenDutyView='all'">综合</button><button type="button" :class="{active:fangzhenDutyView==='administrative'}" @click="fangzhenDutyView='administrative'">行政</button><button type="button" :class="{active:fangzhenDutyView==='military'}" @click="fangzhenDutyView='military'">军事</button></nav><span>第 {{fangzhenPage}} / {{fangzhenPageCount}} 页</span></header>
-            <div class="fangzhen-table-card fangzhen-desktop-table">
-              <el-table :data="fangzhenPagedRecords" row-key="id" highlight-current-row :current-row-key="fangzhenPrimaryDetail&&fangzhenPrimaryDetail.id" size="small" empty-text="当前档案尚无符合条件的记录" @row-click="selectFangzhenWorkbenchRecord">
-                <el-table-column label="辖区" min-width="86" show-overflow-tooltip><template #default="scope"><span>{{scope.row.jurisdiction}}</span><small class="fz-jurisdiction-kind">{{scope.row.jurisdictionKind}}</small></template></el-table-column>
-                <el-table-column label="政权" width="68"><template #default="scope"><span class="fz-polity-badge" :class="fangzhenPolityClass(scope.row.polity)">{{scope.row.dynastyLabel||scope.row.polity}}</span></template></el-table-column>
-                <el-table-column label="人物" min-width="76" show-overflow-tooltip><template #default="scope"><button type="button" class="fz-person person-link" @click.stop="openPeopleDetail(scope.row.personId||scope.row.commander)">{{scope.row.commander}}</button></template></el-table-column>
-                <el-table-column prop="title" label="职任" min-width="110" show-overflow-tooltip />
-                <el-table-column label="治所／驻地" min-width="82" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.seat">{{scope.row.seat}}</span></template></el-table-column>
-                <el-table-column label="任期" min-width="118" show-overflow-tooltip><template #default="scope"><span v-if="scope.row.tenureText||scope.row.confirmedRange">{{scope.row.tenureText||scope.row.confirmedRange}}</span></template></el-table-column>
-                <el-table-column label="职权" min-width="96"><template #default="scope"><span class="fz-power-text">{{fangzhenPowerText(scope.row)}}</span></template></el-table-column>
-                <el-table-column label="状态" width="76"><template #default="scope"><span class="v69-review-status" :class="scope.row.readerDisplayStatus">{{scope.row.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></template></el-table-column>
-                <el-table-column v-if="workspaceMode==='review'" class-name="review-only" label="操作" width="108" fixed="right"><template #default="scope"><el-button class="review-only" size="small" text type="primary" @click.stop="openFangzhenEditor(scope.row)">编辑</el-button><el-button class="review-only" size="small" text type="danger" @click.stop="deleteFangzhenRecord(scope.row)">删除</el-button></template></el-table-column>
-              </el-table>
-            </div>
-            <nav class="v67-pagination" aria-label="州镇表分页"><button type="button" :disabled="fangzhenPage<=1" @click="fangzhenPage-=1">上一页</button><span>{{fangzhenPagination.total||fangzhenVisibleRecords.length}} 条</span><button type="button" :disabled="fangzhenPage>=fangzhenPageCount" @click="fangzhenPage+=1">下一页</button></nav>
-            <div class="fangzhen-mobile-cards">
-              <button v-for="record in fangzhenPagedRecords" :key="'mobile-'+record.id" type="button" class="fangzhen-mobile-card" @click="selectFangzhenWorkbenchRecord(record)"><span><b>{{record.commander}}</b><small>{{record.dynastyLabel||record.polity}} · {{record.jurisdictionKind}} · {{fangzhenTypeLabel(record.recordType)}}</small><i class="v69-review-status" :class="record.readerDisplayStatus">{{record.readerDisplayStatus==='verified'?'已核':'待补核'}}</i></span><strong>{{record.title}}</strong><span>{{record.jurisdiction}}<template v-if="record.seat"> · {{record.seat}}</template></span><time v-if="record.tenureText||record.confirmedRange">{{record.tenureText||record.confirmedRange}}</time></button>
-            </div>
-          </section>
-          <aside v-if="fangzhenPrimaryDetail" class="v67-fangzhen-dossier" aria-label="州镇记录详情">
-            <header><div><small>{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}} · {{fangzhenPrimaryDetail.jurisdictionKind}} · {{fangzhenTypeLabel(fangzhenPrimaryDetail.recordType)}}</small><h2>{{fangzhenPrimaryDetail.jurisdiction}}</h2></div><div class="v69-fangzhen-statuses"><span class="fz-polity-badge" :class="fangzhenPolityClass(fangzhenPrimaryDetail.polity)">{{fangzhenPrimaryDetail.dynastyLabel||fangzhenPrimaryDetail.polity}}</span><span class="v69-review-status" :class="fangzhenPrimaryDetail.readerDisplayStatus">{{fangzhenPrimaryDetail.readerDisplayStatus==='verified'?'已核':'待补核'}}</span></div></header>
-            <div class="v67-fangzhen-person"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">{{fangzhenPrimaryDetail.commander}}</button><strong>{{fangzhenPrimaryDetail.title}}</strong></div>
-            <dl class="v67-fact-grid"><div v-if="fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange"><dt>任期</dt><dd>{{fangzhenPrimaryDetail.tenureText||fangzhenPrimaryDetail.confirmedRange}}</dd></div><div v-if="fangzhenPrimaryDetail.seat"><dt>{{fangzhenPrimaryDetail.seatType||'治所／驻地'}}</dt><dd>{{fangzhenPrimaryDetail.seat}}</dd></div><div v-if="fangzhenPrimaryDetail.commission"><dt>委任</dt><dd>{{fangzhenPrimaryDetail.commission}}</dd></div><div v-if="fangzhenPrimaryDetail.appointmentStatus"><dt>任职性质</dt><dd>{{fangzhenPrimaryDetail.appointmentStatus}}</dd></div></dl>
-            <reader-citations :citations="fangzhenPrimaryDetail.citations||[]"></reader-citations>
-            <div class="v67-dossier-actions"><button type="button" @click="openPeopleDetail(fangzhenPrimaryDetail.personId||fangzhenPrimaryDetail.commander)">人物履历</button><button v-if="fangzhenHasResidence(fangzhenPrimaryDetail)" type="button" @click="openFangzhenResidence(fangzhenPrimaryDetail)">府署</button><button type="button" @click="jumpFangzhenToMap(fangzhenPrimaryDetail)">形势图定位</button></div>
-          </aside>
-          <section v-if="fangzhenSeatPeriods.length" class="v67-fangzhen-related">
-            <article v-if="fangzhenSeatPeriods.length"><header><strong>已核治所分期</strong><small>{{fangzhenSeatPeriods.length}} 条</small></header><table><thead><tr><th>治所／驻地</th><th>类型</th><th>有效年代</th></tr></thead><tbody><tr v-for="period in fangzhenSeatPeriods" :key="period.seatPeriodId"><td>{{period.seatName}}</td><td>{{period.seatType}}</td><td>{{fangzhenPeriodLabel(period)}}</td></tr></tbody></table></article>
-          </section>
-        </section>
-        <section v-if="fangzhenView==='records'&&fangzhenSection==='territory'" class="fangzhen-territory-panel" aria-label="治所与辖境">
-          <header><div><small>{{fangzhenArchiveDef.label}}</small><h2>{{fangzhenState!=='all'?fangzhenState:'治所与辖境'}}</h2></div><p>行政辖属与军事督辖分开呈现；军事辖区保持史料原范围。</p></header>
-          <div class="fangzhen-territory-grid">
-            <article><h3>治所</h3><template v-if="fangzhenSeatPeriods.length"><dl v-for="period in fangzhenSeatPeriods" :key="period.seatPeriodId"><dt>{{period.seatName}}</dt><dd>{{fangzhenPeriodLabel(period)}}</dd></dl></template><p v-else>暂无可确认治所分期。</p></article>
-            <article><h3>行政辖属</h3><p v-if="fangzhenState==='all'">请选择州郡后查看对应行政记录。</p><ul v-else><li v-for="record in fangzhenRelatedRecords.filter(fangzhenIsAdministrative)" :key="'admin-'+record.id">{{record.jurisdiction}}<small>{{record.tenureText||record.confirmedRange||'时期未详'}}</small></li></ul></article>
-            <article><h3>军事辖区</h3><p v-if="!fangzhenMilitaryJurisdictions.length">暂无明确军事督辖记录。</p><ul v-else><li v-for="item in fangzhenMilitaryJurisdictions" :key="item.recordId">{{item.jurisdiction}}<small>{{item.tenureText||'时期未详'}}</small></li></ul></article>
-          </div>
-        </section>
-        <section v-if="workspaceMode==='review'&&fangzhenOverlapIssues.length" class="fangzhen-overlap-audit review-only"><header>任期重叠审校</header><p v-for="issue in fangzhenOverlapIssues.slice(0,20)" :key="issue.id">{{issue.unit}} · {{issue.office}}：{{issue.a.commander}}（{{issue.a.tenureText||issue.a.startYear+'—'+issue.a.endYear}}）／{{issue.b.commander}}（{{issue.b.tenureText||issue.b.startYear+'—'+issue.b.endYear}}）</p></section>
-      </div>
-    </main>
+    <jinshi-workbench
+      :module-visited="moduleVisited.jinshi"
+      :module-ready="moduleLoadState.jinshi==='ready'"
+      :active="activeModule==='jinshi'"
+      :workspace-mode="workspaceMode"
+      :state="jinshiUiState"
+      :open-record="openEpigraphicDetail"
+      :step-record="stepEpigraphicRecord"
+      :highlight="epigraphicHighlight"
+      :confirmed-text="epigraphicConfirmedText"
+      :open-person="openEpigraphicPerson"
+    />
 
-    <main v-if="moduleVisited.jinshi&&moduleLoadState.jinshi==='ready'" v-show="activeModule==='jinshi'" class="module-page jinshi-workbench">
-      <div class="module-page-inner">
-        <header class="v67-module-masthead">
+    <shiyuan-workbench
+      :module-visited="moduleVisited.shiyuan"
+      :module-ready="moduleLoadState.shiyuan==='ready'"
+      :active="activeModule==='shiyuan'"
+      :state="shiyuanUiState"
+      :select-volume="selectShiyuanVolume"
+      :entry-route="shiyuanEntryRoute"
+      :open-entry="openShiyuanEntry"
+      :layer-text="shiyuanLayerText"
+      :kind-text="shiyuanKindText"
+      @state-update="setShiyuanUiState"
+    />
+    <shihuo-workbench
+      :module-visited="moduleVisited.shihuo"
+      :module-ready="moduleLoadState.shihuo==='ready'"
+      :active="activeModule==='shihuo'"
+      :state="shihuoUiState"
+      :open-record="openShihuoRecord"
+      :close-detail="closeReadingDetail"
+      :page-delta="stepShihuoPage"
+    />
 
-          <div class="v67-masthead-meta"><strong>{{epigraphicMetrics.current}}</strong><span>当前</span><strong>{{epigraphicMetrics.withInscription}}</strong><span>有释文</span></div>
-        </header>
-        <section v-if="!filteredEpigraphicRecords.length" class="jinshi-empty-panel">
-          <div class="seal">金</div>
-          <h2>暂无符合条件的金石材料</h2>
-          <p>可清除筛选条件，或调整国别和材料类型。</p>
-        </section>
-        <section v-else class="v56-jinshi-workbench-grid" aria-label="金石目录与释文阅读区">
-          <aside class="v56-jinshi-directory" aria-label="金石材料目录">
-            <header class="v67-jinshi-directory-head"><div><strong>金石条目</strong><small>共 {{filteredEpigraphicRecords.length}} 条</small></div><span>第 {{epigraphicPage}} / {{epigraphicPageCount}} 页</span></header>
-            <div role="list">
-            <button v-for="record in pagedEpigraphicRecords" :key="record.id" type="button"
-                    class="v56-jinshi-row" :aria-current="jinshiPrimaryDetail?.id===record.id?'true':undefined" :class="{active:jinshiPrimaryDetail&&jinshiPrimaryDetail.id===record.id}" @click="openEpigraphicDetail(record)">
-              <span class="v56-jinshi-row-title">{{record.displayName}}<small v-if="record.variantLabel" class="v62-jinshi-variant-label">{{record.variantLabel}}</small></span>
-              <span class="v56-jinshi-row-meta">{{[epigraphicConfirmedText(record.dateText),record.materialType,epigraphicConfirmedText(record.findspot)].filter(Boolean).join(' · ')}}</span>
-              <span class="v58-jinshi-status">{{record.inscriptionState==='已录入'?'释文已录入':record.inscriptionState==='残缺'?'残缺释文':record.inscriptionState==='待校'?'待校释文':'源文未见释文'}}<template v-if="record.archiveKind==='争议'"> · 年代或归属存疑</template></span>
-            </button>
-            </div>
-            <nav class="v67-pagination" aria-label="金石目录分页"><button type="button" :disabled="epigraphicPage<=1" @click="epigraphicPage-=1">上一页</button><span>{{filteredEpigraphicRecords.length}} 条</span><button type="button" :disabled="epigraphicPage>=epigraphicPageCount" @click="epigraphicPage+=1">下一页</button></nav>
-          </aside>
-          <article v-if="jinshiPrimaryDetail" class="v56-jinshi-reader">
-            <header class="v67-jinshi-reader-head"><div><small>{{[jinshiPrimaryDetail.dynasty,jinshiPrimaryDetail.materialType].filter(Boolean).join(' · ')}}</small><h2>{{jinshiPrimaryDetail.displayName}}<small v-if="jinshiPrimaryDetail.variantLabel" class="v62-jinshi-variant-label">{{jinshiPrimaryDetail.variantLabel}}</small></h2><p v-if="jinshiPrimaryDetail.titleAliases&&jinshiPrimaryDetail.titleAliases.length" class="v62-jinshi-aliases">别名：{{jinshiPrimaryDetail.titleAliases.join('、')}}</p></div><nav aria-label="前后金石条目"><button type="button" :disabled="jinshiRecordIndex<=0" @click="stepEpigraphicRecord(-1)">上一条</button><button type="button" :disabled="jinshiRecordIndex<0||jinshiRecordIndex>=filteredEpigraphicRecords.length-1" @click="stepEpigraphicRecord(1)">下一条</button></nav></header>
-            <section v-if="jinshiMediaAssets.length" class="v67-jinshi-media" aria-label="金石图像">
-              <figure v-if="jinshiActiveMedia"><img :src="jinshiActiveMedia.localPath" :alt="jinshiActiveMedia.altText" :width="jinshiActiveMedia.width||undefined" :height="jinshiActiveMedia.height||undefined" loading="lazy" decoding="async"><figcaption>{{jinshiActiveMedia.sourceTitle}}<template v-if="jinshiActiveMedia.rightsStatus"> · {{jinshiActiveMedia.rightsStatus}}</template></figcaption></figure>
-              <div v-if="jinshiMediaAssets.length>1" class="v67-jinshi-thumbnails"><button v-for="(asset,index) in jinshiMediaAssets" :key="asset.assetId" type="button" :class="{active:epigraphicMediaIndex===index}" @click="epigraphicMediaIndex=index"><img :src="asset.localPath" :alt="asset.altText" loading="lazy" decoding="async"></button></div>
-            </section>
-            <dl class="v67-jinshi-facts"><div v-if="epigraphicConfirmedText(jinshiPrimaryDetail.dateText)"><dt>年代</dt><dd>{{epigraphicConfirmedText(jinshiPrimaryDetail.dateText)}}</dd></div><div v-if="jinshiPrimaryDetail.dynasty"><dt>政权</dt><dd>{{jinshiPrimaryDetail.dynasty}}</dd></div><div v-if="jinshiPrimaryDetail.materialType"><dt>类型</dt><dd>{{jinshiPrimaryDetail.materialType}}</dd></div><div v-if="epigraphicConfirmedText(jinshiPrimaryDetail.findspot)"><dt>出土地</dt><dd>{{epigraphicConfirmedText(jinshiPrimaryDetail.findspot)}}</dd></div><div v-if="jinshiPrimaryDetail.scriptStyle"><dt>书体</dt><dd>{{jinshiPrimaryDetail.scriptStyle}}</dd></div><div v-if="jinshiPrimaryDetail.form"><dt>形制</dt><dd>{{jinshiPrimaryDetail.form}}</dd></div><div v-if="jinshiPrimaryDetail.bibliography"><dt>著录</dt><dd>{{jinshiPrimaryDetail.bibliography}}</dd></div></dl>
-            <dl v-if="workspaceMode==='review'" class="v56-jinshi-fields review-only"><div><dt>原始题名</dt><dd>{{jinshiPrimaryDetail.rawRecord&&jinshiPrimaryDetail.rawRecord.title||jinshiPrimaryDetail.rawTitle||jinshiPrimaryDetail.name}}</dd></div><div><dt>来源范围</dt><dd>{{jinshiPrimaryDetail.archiveKind}} · {{jinshiPrimaryDetail.sourceTitle||jinshiPrimaryDetail.sourceDocument||'来源待补'}}</dd></div><div><dt>释文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionState==='已录入'?'释文已录入':jinshiPrimaryDetail.inscriptionState==='残缺'?'残缺释文':jinshiPrimaryDetail.inscriptionState==='待校'?'待校释文':'源文未见明确释文标识'}}</dd></div><div><dt>源文状态</dt><dd>{{jinshiPrimaryDetail.inscriptionStatus||'源文未见明确释文标识'}}</dd></div></dl>
-            <inscription-availability :record="jinshiPrimaryDetail" />
-            <section v-if="jinshiPrimaryDetail.inscription" class="v56-jinshi-inscription">
-              <h3>释文</h3>
-              <div class="v62-transcription">
-                <section v-for="section in jinshiPrimaryDetail.transcriptionSections" :key="section.key" class="v62-transcription-section">
-                  <h4 v-if="section.label&&!['正文','释文'].includes(section.label)">{{section.label}}</h4>
-                  <div v-if="section.text" class="v62-transcription-text"><template v-for="(fragment,index) in epigraphicHighlight(section.text)" :key="section.key+'-'+index"><mark v-if="fragment.hit">{{fragment.text}}</mark><template v-else>{{fragment.text}}</template></template></div>
-                </section>
-              </div>
-            </section>
-            <inscription-apparatus :record="jinshiPrimaryDetail" />
-            <section v-if="workspaceMode==='review'&&jinshiPrimaryDetail.sourceVerification" class="v61-jinshi-research review-only">
-              <h3>V61 检索与释文分层</h3>
-              <p>{{jinshiPrimaryDetail.sourceVerification.result}}</p>
-              <div v-if="jinshiPrimaryDetail.sourceVerification.sources&&jinshiPrimaryDetail.sourceVerification.sources.length" class="v61-jinshi-sources">
-                <a v-for="source in jinshiPrimaryDetail.sourceVerification.sources" :key="source.url||source.title" :href="source.url" target="_blank" rel="noreferrer"><strong>{{source.title}}</strong><span>{{source.locator||source.role}}</span></a>
-              </div>
-              <details v-for="variant in (jinshiPrimaryDetail.inscriptionVariants||[])" :key="variant.type+'-'+variant.label" class="v61-jinshi-variant">
-                <summary>{{variant.label||variant.type}} · {{variant.type}}</summary>
-                <p v-if="variant.note">{{variant.note}}</p>
-                <pre v-if="variant.text">{{variant.text}}</pre>
-              </details>
-              <details v-if="jinshiPrimaryDetail.externalSearchLog&&jinshiPrimaryDetail.externalSearchLog.length" class="v61-jinshi-variant">
-                <summary>逐条检索日志（{{jinshiPrimaryDetail.externalSearchLog.length}}）</summary>
-                <p v-for="log in jinshiPrimaryDetail.externalSearchLog" :key="log.url+'-'+log.source"><b>{{log.source}}</b>：{{log.result}}</p>
-              </details>
-            </section>
-            <section v-if="jinshiPrimaryDetail.people||jinshiPrimaryDetail.offices||jinshiPrimaryDetail.contentSummary||jinshiPrimaryDetail.readerDescription||(workspaceMode==='review'&&jinshiPrimaryDetail.note)" class="v67-jinshi-related"><h3>相关信息</h3><p v-if="jinshiPrimaryDetail.contentSummary||jinshiPrimaryDetail.readerDescription">{{jinshiPrimaryDetail.contentSummary||jinshiPrimaryDetail.readerDescription}}</p><p v-if="workspaceMode==='review'&&jinshiPrimaryDetail.note" class="review-only">{{jinshiPrimaryDetail.note}}</p><div class="jinshi-related"><button v-for="nm in (jinshiPrimaryDetail.people||'').split(/[、，,]/).filter(Boolean)" :key="nm" @click="openEpigraphicPerson(nm)">{{nm}}</button><span v-if="jinshiPrimaryDetail.offices">{{jinshiPrimaryDetail.offices}}</span></div></section>
-          </article>
-        </section>
-      </div>
-    </main>
+    <map-shell
+      :active="activeModule==='map'"
+      :state="mapUiState"
+      :step-period="stepHistoryPeriod"
+      :toggle-play="toggleHistoryMapPlay"
+      :select-period="selectHistoryPeriod"
+      :close-link="closeMapLink"
+      :open-people-detail="openPeopleDetail"
+      :open-selection-fangzhen="openMapSelectionFangzhen"
+      :on-frame-loaded="onHistoryMapLoaded"
+    />
 
-    <main v-if="moduleVisited.shiyuan&&moduleLoadState.shiyuan==='ready'" v-show="activeModule==='shiyuan'" class="module-page shiyuan-workbench">
-      <div class="module-page-inner">
-        <p class="reader-quiet-note">按典籍卷次查看引文，选择条目可继续阅读正文。</p>
-        <div class="battle-metrics">
-          <div class="battle-metric"><strong>{{shiyuanSummary.volumes}}</strong><span>已归卷卷次</span></div>
-          <div class="battle-metric"><strong>{{shiyuanSummary.entries}}</strong><span>卷次条目</span></div>
-          <div class="battle-metric"><strong>{{shiyuanSummary.resolvedCitations}} / {{shiyuanSummary.citations}}</strong><span>引文已解析</span></div>
-          <div class="battle-metric"><strong>{{shiyuanSummary.unattributed}}</strong><span>卷次未详</span></div>
-        </div>
-        <div class="v56-shiyuan-grid">
-          <section class="v56-shiyuan-volumes" aria-label="卷次一览">
-            <p class="reader-quiet-note" role="status">{{shiyuanPagination.total}} 卷符合条件 · 第 {{shiyuanPagination.page}} / {{shiyuanPagination.pages}} 页</p>
-            <el-table :data="shiyuanPagination.rows" size="small" height="560" empty-text="暂无符合条件的卷次" @row-click="selectShiyuanVolume">
-              <el-table-column prop="work" label="典籍" width="104"/>
-              <el-table-column label="卷次" width="96"><template #default="{row}"><button type="button" class="shiyuan-volume-button" :aria-label="'查看'+row.label" :aria-pressed="shiyuanVolumeId===row.id" @click.stop="selectShiyuanVolume(row)">卷{{row.volume}}</button></template></el-table-column>
-              <el-table-column prop="entryCount" label="条目" width="66"/>
-              <el-table-column label="类别"><template #default="{row}">{{shiyuanKindText(row)}}</template></el-table-column>
-              <el-table-column label="证据层" width="150"><template #default="{row}">{{shiyuanLayerText(row)}}</template></el-table-column>
-            </el-table>
-            <nav class="shiyuan-pagination" aria-label="史源卷次分页"><el-button :disabled="shiyuanPagination.page===1" @click="shiyuanPage=shiyuanPagination.page-1">上一页</el-button><el-button :disabled="shiyuanPagination.page===shiyuanPagination.pages" @click="shiyuanPage=shiyuanPagination.page+1">下一页</el-button></nav>
-            <el-button v-if="!shiyuanPagination.total" @click="shiyuanWork='all';shiyuanKind='all';shiyuanQuery=''">清除检索与筛选</el-button>
-          </section>
-          <section class="v56-shiyuan-detail" aria-label="卷次详情">
-            <template v-if="shiyuanActiveVolume">
-              <h2 id="shiyuan-detail-title" tabindex="-1" class="v56-shiyuan-detail-title">{{shiyuanActiveVolume.label}}</h2>
-              <p class="v56-shiyuan-detail-meta">{{shiyuanActiveVolume.entryCount}} 条 · {{shiyuanLayerText(shiyuanActiveVolume)}}</p>
-              <ul class="v56-shiyuan-entry-list">
-                <li v-for="(entry,index) in shiyuanActiveVolume.entries" :key="entry.kind+':'+entry.id+':'+index">
-                  <span class="v56-shiyuan-entry-kind">{{entry.kindLabel}}</span>
-                  <a v-if="shiyuanEntryRoute(entry)" :href="shiyuanEntryRoute(entry)" @click.prevent="openShiyuanEntry(entry)">{{entry.title}}</a><strong v-else>{{entry.title}}</strong>
-                  <span v-if="entry.meta" class="v56-shiyuan-entry-meta">{{entry.meta}}</span>
-                  <span v-if="entry.citedWork" class="v56-shiyuan-entry-meta">裴注引《{{entry.citedWork}}》</span>
-                  <span class="v56-shiyuan-entry-cite">{{entry.citation}}</span>
-                </li>
-              </ul>
-            </template>
-            <p v-else class="v56-shiyuan-empty">在左侧选择一卷，查看它支撑了本库哪些条目。</p>
-          </section>
-        </div>
-        <details v-if="shiyuanUnattributed.length" class="v56-shiyuan-unattributed">
-          <summary>卷次未详 {{shiyuanUnattributed.length}} 条（引文未写明卷次，未作归卷推测）</summary>
-          <ul>
-            <li v-for="(item,index) in shiyuanUnattributed" :key="item.kind+':'+item.id+':'+index">
-              <strong>{{item.title}}</strong>
-              <span class="v56-shiyuan-entry-meta">{{item.reason}}</span>
-              <span v-if="item.citationTexts&&item.citationTexts.length" class="v56-shiyuan-entry-cite">{{item.citationTexts.join('；')}}</span>
-            </li>
-          </ul>
-        </details>
-      </div>
-    </main>
-    <main v-if="moduleVisited.shihuo&&moduleLoadState.shihuo==='ready'" v-show="activeModule==='shihuo'" class="module-page shihuo-workbench">
-      <div class="module-page-inner">
-        <div class="page-heading"><h1>食货志</h1></div>
-        <div class="v83-reading-tools">
-          <el-select v-model="shihuoPolity" aria-label="食货政权"><el-option label="全部政权" value="all"/><el-option v-for="p in shihuoPolities" :key="p" :label="p" :value="p"/></el-select>
-          <el-select v-model="shihuoScope" aria-label="食货时段"><el-option label="168—316主体" value="core"/><el-option label="146／157基线" value="baseline"/><el-option label="全部时段" value="all"/></el-select>
-          <el-select v-if="shihuoView==='institution'" v-model="shihuoSort" aria-label="食货排序"><el-option label="按年代" value="year"/><el-option label="按类别" value="category"/></el-select>
-          <el-checkbox v-model="shihuoIncludeDiscussion">含推算与讨论</el-checkbox>
-        </div>
-        <div v-if="shihuoQuery" class="reader-filter-summary"><span>检索：{{shihuoQuery}}</span><button type="button" class="person-link" @click="shihuoQuery=''">清除检索</button></div>
-        <section v-if="shihuoView==='institution'" class="v83-food-workbench">
-          <div class="v83-food-directory">
-            <header class="v67-panel-heading"><strong>制度与事件</strong><span>{{shihuoPagination.total}} 条</span></header>
-            <div v-if="!shihuoPagination.total" class="reader-quiet-note">没有符合条件的条目。可清除检索或调整筛选。</div>
-            <button v-for="record in shihuoPagination.rows" :key="record.id" type="button" class="v83-food-row" :aria-pressed="shihuoPrimaryDetail&&shihuoPrimaryDetail.id===record.id" @click="openShihuoRecord(record)">
-              <span>{{record.yearText||record.year||'年代未详'}} · {{record.polity}}</span><strong>{{record.title}}</strong><small>{{record.category}}<template v-if="record.readingClass==='discussion'"> · 推算与讨论</template></small>
-            </button>
-            <nav class="v67-pagination" aria-label="食货分页"><button type="button" :disabled="shihuoPagination.page<=1" @click="shihuoPage--;activeShihuoId=''">上一页</button><span>{{shihuoPagination.page}} / {{shihuoPagination.pages}}</span><button type="button" :disabled="shihuoPagination.page>=shihuoPagination.pages" @click="shihuoPage++;activeShihuoId=''">下一页</button></nav>
-          </div>
-          <shihuo-reading-detail v-if="shihuoPrimaryDetail&&viewportWidth>980" :record="shihuoPrimaryDetail"/>
-        </section>
-        <section v-else class="fangzhen-table-card v83-households">
-          <p class="reader-quiet-note">户与口分别列示；不同疆域、时点与记载性质不作直接比例比较。</p>
-          <el-table :data="filteredShihuoHousehold" size="small" empty-text="没有符合条件的户口资料">
-            <el-table-column label="年代与政权" min-width="150"><template #default="scope">{{scope.row.label}} · {{scope.row.polity}}</template></el-table-column>
-            <el-table-column prop="households" label="户数" min-width="130"/>
-            <el-table-column prop="population" label="口数" min-width="130"/>
-            <el-table-column label="范围与依据" min-width="300"><template #default="scope"><p>{{scope.row.regionScope}}</p><p>{{scope.row.dataNature}}</p><details><summary>出处与说明</summary><p>{{scope.row.note}}</p><p>{{scope.row.sourceTitle}}</p><reader-citations :citations="scope.row.citations||[]"/></details><p v-if="scope.row.readingClass==='discussion'" class="reader-quiet-note">推算与讨论：{{scope.row.discussion}}</p></template></el-table-column>
-          </el-table>
-        </section>
-      </div>
-    </main>
-    <el-drawer v-model="showShihuoDetail" title="食货条目" :size="viewportWidth<=980?'100%':'720px'" :show-close="false" class="v84-reading-detail v83-food-drawer"><template #header="{titleId}"><div class="v84-detail-heading"><button type="button" class="v84-button v84-button--text" @click="closeReadingDetail('shihuo')">← 返回食货列表</button><strong :id="titleId">{{shihuoPrimaryDetail?shihuoPrimaryDetail.title:'食货详情'}}</strong></div></template>
-      <shihuo-reading-detail v-if="shihuoPrimaryDetail" :record="shihuoPrimaryDetail"/>
-    </el-drawer>
-
-    <main v-if="historyMapBooted" v-show="activeModule==='map'" class="module-page history-map-page">
-      <section class="battle-timebar" aria-label="朝代时间轴">
-        <div class="battle-time-head">
-          <div class="battle-time-title">
-            <span class="eyebrow">历史时期</span>
-            <strong>{{currentHistoryPeriod.axisLabel}}</strong>
-            <span>{{currentHistoryPeriod.name}} · 公元 {{currentHistoryPeriod.year}} 年</span>
-          </div>
-          <div class="battle-time-summary">{{currentHistoryPeriod.snapshotMoment}} · {{currentHistoryPeriod.tagline}} · {{currentHistoryPeriod.summary}}</div>
-          <div class="map-play-controls">
-            <button class="map-play-btn" title="上一时期" @click="stepHistoryPeriod(-1)">‹</button>
-            <el-dropdown trigger="click"><button type="button" class="map-play-btn" aria-label="地图更多操作">⋯</button><template #dropdown><el-dropdown-menu><el-dropdown-item @click="toggleHistoryMapPlay">{{historyMapPlaying?'暂停播放':'自动播放时期'}}</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
-            <button class="map-play-btn" title="下一时期" @click="stepHistoryPeriod(1)">›</button>
-          </div>
-        </div>
-        <div class="battle-timeline-scroll">
-          <div class="battle-era-track" aria-label="朝代分段">
-            <button v-for="era in historyMapEras" :key="era.id" class="battle-era-segment"
-                    :class="{active:historyMapIndex>=era.start&&historyMapIndex<era.start+era.span}"
-                    :style="{gridColumn:'span '+era.span,'--era-color':era.color}"
-                    @click="selectHistoryPeriod(era.start,true)">
-              <strong>{{era.label}}</strong><span>{{era.range}}</span>
-            </button>
-          </div>
-          <div class="battle-period-track">
-            <button v-for="(period,index) in historyMapPeriods" :key="period.id" class="battle-period"
-                    :class="{active:historyMapIndex===index,past:index<historyMapIndex}"
-                    @click="selectHistoryPeriod(index,true)">
-              <b>{{period.year}}</b><span>{{period.name}}</span>
-            </button>
-          </div>
-        </div>
-      </section>
-      <section class="history-map-stage">
-        <div v-if="!historyMapReady" class="map-loading">正在载入历史疆域与战役图层…</div>
-        <iframe id="historyMapFrame" class="history-map-frame" title="汉末三国历史形势图" loading="lazy"
-                :src="historyMapUrl" @load="onHistoryMapLoaded"></iframe>
-        <div v-if="mapLinkSelection" class="map-link-card" aria-live="polite">
-          <div class="map-link-head"><strong>{{mapLinkSelection.name||mapLinkSelection.state}}</strong><span>{{mapLinkSelection.year||currentHistoryPeriod.year}} 年 · {{mapLinkSelection.level==='commandery'?'郡级辖区':'州级辖区'}}</span><button title="关闭" @click="closeMapLink">×</button></div>
-          <div v-if="mapLinkedFangzhenRecords.length" class="map-link-records">
-            <button v-for="record in mapLinkedFangzhenRecords" :key="record.id" class="map-link-person" @click="openPeopleDetail(record.personId||record.commander)"><b>{{record.commander}}</b><span>{{record.title}}</span></button>
-          </div>
-          <div v-else class="map-link-empty">当前年份未检索到明确匹配的州镇职任；可进入州镇表查看相邻任期或任期未详的记录。</div>
-          <div class="map-link-actions"><el-button size="small" type="primary" plain @click="openMapSelectionFangzhen">在州镇表中检索</el-button></div>
-        </div>
-      </section>
-    </main>
-
-    <div v-show="activeModule==='offices'" class="statusbar">
-      <div class="item">当前：{{ currentFactionLabel }} · {{ treeType==='office' ? '官职体系' : '爵位体系' }}</div>
-      <div class="item">时期：{{ currentPeriodLabel }}</div>
-      <div class="item" v-if="timelineEnabled">年号：{{ currentEraLabel }}</div>
-      <div class="item">节点数：{{ totalNodeCount }}</div>
-      <div class="item">视图：{{ officePresentation==='catalog' ? (treeType==='office'?'朝堂总览':'爵位总览') : '表格总览' }}</div>
-      <div class="item">已选：{{ selectedCount }}</div>
-      <div class="item">校验：{{ validationEnabled ? '已启用' : '已关闭（自定义模式）' }}</div>
-      <div class="spacer"></div>
-      <div class="item">{{ autosaveStatus }}</div>
-      <div class="item">缩放 {{ zoomPct }}%</div>
-      <div class="item">历史步骤 {{ history.index+1 }} / {{ history.stack.length }}</div>
-    </div>
+    <offices-status v-show="activeModule==='offices'" :state="officesUiState" :active="activeModule==='offices'" :history="history"/>
 
     <aside v-show="workspaceMode==='review'" class="v56-evidence-rail review-only" aria-label="证据案卷">
       <header class="v56-evidence-head"><strong>证据案卷</strong><span>{{v56ModuleMeta.short}}资料导轨</span><button type="button" @click="toggleEvidenceRail" :aria-label="evidenceRailCollapsed?'展开证据案卷':'收起证据案卷'">{{evidenceRailCollapsed?'‹':'›'}}</button></header>
       <div class="v56-evidence-body">
-        <template v-if="activeModule==='people'&&peoplePrimaryDetail">
-          <h3 class="v56-evidence-title">{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h3>
-          <div class="v56-evidence-meta">{{peoplePrimaryDetail.personId}} · {{peoplePrimaryDetail.appointments.length}} 条履历</div>
-          <span class="v56-evidence-status" :class="{pending:!peoplePrimaryDetail.sourceVolumes.length}">{{peoplePrimaryDetail.sourceVolumes.length?'已关联卷次':'来源卷次待补'}}</span>
-          <section class="v56-evidence-section"><h4>正史卷次</h4><div v-if="peoplePrimaryDetail.sourceVolumes.length" v-for="source in peoplePrimaryDetail.sourceVolumes" :key="source" class="v56-evidence-source"><b>出处</b><span>{{source}}</span></div><p v-else>当前仅显示工程内可验证履历，未自动生成本传摘要。</p></section>
-          <section class="v56-evidence-section"><h4>实体关系</h4><p v-if="peoplePrimaryDetail.historicalAffiliations.length">历史归属：{{peoplePrimaryDetail.historicalAffiliations.join('、')}}</p><p v-if="peoplePrimaryDetail.homonymStatus">同名消歧：{{peoplePrimaryDetail.homonymStatus}}</p><p>稳定 ID、姓名和立绘索引保持一一对应。</p></section>
-        </template>
-        <template v-else-if="activeModule==='offices'&&selectedNode">
-          <h3 class="v56-evidence-title">{{selectedNode.name}}</h3>
-          <div class="v56-evidence-meta">{{selectedNode.key}} · {{selectedNode.category||'分类待考'}}</div>
-          <span class="v56-evidence-status" :class="{pending:['待考','存疑'].includes(selectedNode.confidence)}">{{selectedNode.confidence||'证据状态待考'}}</span>
-          <section class="v56-evidence-section"><h4>制度归属</h4><p>{{selectedNode.serviceDomain||'文武类别待考'}} · {{selectedNode.institutionType||'官署类型待考'}}</p><p v-if="selectedNode.rank9||selectedNode.hanRank">品秩：{{selectedNode.rank9||selectedNode.hanRank}}</p><p>{{selectedNode.duty||'职掌待补'}}</p></section>
-          <section class="v56-evidence-section"><h4>来源与关联</h4><p>{{selectedNode.sources||selectedNode.sourceTitle||'来源待补'}}</p><p v-if="courtResidenceAvailable(selectedNode)">该官位有明确府署入口；“府”标签仅按当前官位的开府政策进入。</p><el-button v-if="courtResidenceAvailable(selectedNode)" size="small" plain @click="openCourtResidence(selectedNode)">进入对应府署</el-button></section>
-        </template>
+        <people-evidence v-if="activeModule==='people'&&peoplePrimaryDetail" :state="peopleUiState"/>
+        <offices-evidence v-else-if="activeModule==='offices'&&selectedNode" :state="officesUiState"/>
         <template v-else-if="activeModule==='battle'&&activeBattleDetail">
           <h3 class="v56-evidence-title">{{activeBattleDetail.title||activeBattleDetail.name||activeBattleDetail.text}}</h3>
           <div class="v56-evidence-meta">{{battleDetailYear(activeBattleDetail)}} · {{battleKindLabel(activeBattleDetail.kind)}}</div>
@@ -9999,13 +9291,10 @@ const app = createApp({
           <section class="v56-evidence-section"><h4>交战与结果</h4><p v-if="activeBattleDetail.a">{{activeBattleDetail.a}} 对 {{activeBattleDetail.b}}</p><p>{{activeBattleDetail.result||activeBattleDetail.desc||activeBattleDetail.note||'结果待补'}}</p></section>
           <section class="v56-evidence-section"><h4>关联动作</h4><el-button size="small" plain @click="jumpBattleToMap(activeBattleDetail)">在形势图定位</el-button></section>
         </template>
-        <template v-else-if="activeModule==='fangzhen'&&v56ActiveRecord&&v56ActiveRecord.kind==='fangzhen'">
-          <h3 class="v56-evidence-title">{{v56ActiveRecord.record.commander}} · {{v56ActiveRecord.record.title}}</h3>
-          <div class="v56-evidence-meta">{{v56ActiveRecord.record.id}} · {{v56ActiveRecord.record.tenureText||'任期未详'}}</div>
-          <span class="v56-evidence-status" :class="{pending:['待考','存疑'].includes(v56ActiveRecord.record.confidence)}">{{v56ActiveRecord.record.confidence||'证据状态待考'}}</span>
-          <section class="v56-evidence-section"><h4>行政关系</h4><p>{{v56ActiveRecord.record.polity||'政权待考'}} · {{v56ActiveRecord.record.jurisdiction||'辖区未详'}}</p><p v-if="v56ActiveRecord.record.seat">治所：{{v56ActiveRecord.record.seat}}</p></section>
-          <section class="v56-evidence-section"><h4>跨模块动作</h4><el-button size="small" plain @click="openPeopleDetail(v56ActiveRecord.record.personId||v56ActiveRecord.record.commander)">查看人物履历</el-button><el-button size="small" plain @click="jumpFangzhenToMap(v56ActiveRecord.record)">地图定位</el-button></section>
-        </template>
+        <fangzhen-evidence v-else-if="activeModule==='fangzhen'&&v56ActiveRecord&&v56ActiveRecord.kind==='fangzhen'"
+          :fn-active-record="()=>v56ActiveRecord"
+          :fn-open-person="openPeopleDetail"
+          :fn-jump-to-map="jumpFangzhenToMap" />
         <template v-else-if="activeModule==='jinshi'&&activeEpigraphicDetail">
           <h3 class="v56-evidence-title">{{activeEpigraphicDetail.displayTitle||activeEpigraphicDetail.name}}</h3>
           <div class="v56-evidence-meta">{{activeEpigraphicDetail.id}} · {{activeEpigraphicDetail.dateText||'年代未详'}}</div>
@@ -10587,6 +9876,7 @@ const app = createApp({
 });
 
 Object.entries(window.SGZ_READER_COMPONENTS||{}).forEach(([name,component])=>app.component(name,component));
+Object.entries(window.SGZ_UI_COMPONENTS||{}).forEach(([name,component])=>app.component(name,component));
 app.use(ElementPlus);
 app.mount('#app');
 }).catch(error=>{
