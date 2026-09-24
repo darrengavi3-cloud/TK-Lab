@@ -8623,6 +8623,7 @@ const app = createApp({
       document.title=[detail,moduleLabel,'观史台'].filter(Boolean).join(' · ');
     }
     watch([epigraphicQuery,epigraphicEra,epigraphicType,epigraphicPolity,epigraphicPage,historyMapIndex,currentFaction,treeType,officePresentation,fangzhenArchiveKey,fangzhenQuery,fangzhenLevel,fangzhenState,fangzhenRecordType,fangzhenView,fangzhenPage,shihuoView,shihuoPolity,shihuoScope,shihuoQuery,shihuoCategory,shihuoRecordKind,fangzhenSnapshotYear,fangzhenCompareYear,fangzhenOnlyVerified,currentPeriodKey,catalogFocusKey,selectedKey,peopleView,peopleContent,showOfficials,officialsTab,periodRosterPhase,epigraphicInscriptionStatus,shihuoSort,shihuoIncludeDiscussion,shihuoPage,activeShihuoId],()=>scheduleUrlState('replace'));
+    watch([fangzhenDutyView,fangzhenSection],()=>scheduleUrlState('replace'));
     watch([epigraphicQuery,epigraphicEra,epigraphicType,epigraphicPolity,epigraphicInscriptionStatus],()=>{if(!urlStateApplying)epigraphicPage.value=1;});
     watch([showPeopleDetail,showFangzhenDetail,showEpigraphicDetail,showShihuoDetail],()=>scheduleUrlState('replace'));
     watch(()=>[canvasFilters.query,canvasFilters.rank,canvasFilters.special,officeGroup.value,officeSub.value,officeSub2.value,timelineEnabled.value,timelineYear.value,peopleSource.value,peopleEvidence.value,epigraphicArchive.value],()=>scheduleUrlState('replace'));
@@ -9110,6 +9111,7 @@ const app = createApp({
       :fn-open-residence="openFangzhenResidence"
       :fn-jump-to-map="jumpFangzhenToMap"
       :fn-open-person="openPeopleDetail"
+      @state-update="setFangzhenUiState"
       @page-step="stepFangzhenPage"
     />
 

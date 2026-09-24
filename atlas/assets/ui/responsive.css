@@ -38,6 +38,8 @@
     white-space: nowrap;
   }
 
+  .v56-segmented button { min-inline-size:64px; }
+
   /* 复选框与单选：扩大命中区而非放大视觉尺寸，字面大小不变。 */
   .el-checkbox,
   .el-radio {
