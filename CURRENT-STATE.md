@@ -6,16 +6,16 @@
 
 ## 2026-09-24 仓库进展与线上边界
 
-- `main@203287fa01ac5c5be5b78dc2a410b55710070faa` 已合入 PR #25，包含 V87／V88 界面及仓库清理、V90 人物总表导入和 V91 人物记／战事纪／金石录等界面覆核。V91 见 `atlas/DESIGN.md` 与 `atlas/UX-CONTRACT.md`，并非独立的站点部署回执。
+- `main@8177038a24ecb61eaf5b6231307563dda8c8e8f7` 已合入 PR #27（基线 `203287f` 的 PR #25），包含 V87／V88 界面及仓库清理、V90 人物总表导入和 V91 人物记／战事纪／金石录等界面覆核。V91 见 `atlas/DESIGN.md` 与 `atlas/UX-CONTRACT.md`，并非独立的站点部署回执。
 - V90 的 Git 规范输入现有 3,621 位读者人物（从 2,074 位净增 1,547 位）；任官为已核 263、待补核 507、存疑 2、排除 79，小传 101、立绘 500。新增人物依用户当轮决定允许史源与原文节引齐全但缺网址；这批未逐项完成第二来源交叉核查。此处是仓库数据口径，不能推断线上阅读快照已更新。
-- `main` 的 PR #25 head Reader validation `35939405522`：offline-validation 成功，reader-visual 31/34，通过以外的三项均为州镇「职任」按钮在 1440px 双主题及 1280px 审校视图竖排。PR #24 有针对性修复，但旧分支当前不可直接合并；修复需在现行 `main` 重新验证。
+- 历史失败：`main` 的 PR #25 head Reader validation `35939405522`：offline-validation 成功，reader-visual 31/34，通过以外的三项均为州镇「职任」按钮在 1440px 双主题及 1280px 审校视图竖排。PR #24 有针对性修复，但旧分支当前不可直接合并；修复需在现行 `main` 重新验证。
 - 下表第 45 版仍是仓库内最后一份明确成功的 Sites 部署回执；此处未作新的线上权限、首次初始化或内容发布核验。真实 iPhone 与完整人工视觉验收仍未验证。仓库合并、CI 与站点部署各自独立。
 
-### 2026-09-24 州镇表修复候选（尚未合并或部署）
+### 2026-09-24 州镇表修复合并回执（尚未部署）
 
 从上述 `main` 建立 `codex/fangzhen-main-validation-20260924`，移植 PR #24 仍适用的分区按钮触控面积、禁止竖排、选中语义及视图 URL 监听，并为 V91 后拆出的州镇工作台接通遗漏的 `state-update` 事件；同时处理全量浏览器门禁发现的职官分段按钮与设置按钮短标签尺寸。新增 390／1280／1440px 切换、键盘与刷新回归。规范源锁和读者资源清单显式重建。
 
-本地 `npm run test:visual` **37/37 通过**；`npm run release:offline`（确定性构建、规范验证、typecheck、lint、站点构建及 **110/110** 应用测试）通过。此为候选分支本地验证，仍需 GitHub 新 head 的 CI 与合并状态；不等于 Sites 部署、生产权限核验、真实 iPhone 或人工视觉验收。
+本地 `npm run test:visual` **37/37 通过**；`npm run release:offline`（确定性构建、规范验证、typecheck、lint、站点构建及 **110/110** 应用测试）通过。[PR #27](https://github.com/darrengavi3-cloud/TK-Lab/pull/27) 的 [Reader validation 35949161019](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35949161019) 两项工作均成功，合并提交 `8177038a24ecb61eaf5b6231307563dda8c8e8f7`；旧 PR #24 已关闭且未合并。此处只证明仓库修复与 CI；Sites 部署、生产权限核验、真实 iPhone 及人工视觉验收仍未完成。
 
 ## 觀史台當前產品與部署
 
