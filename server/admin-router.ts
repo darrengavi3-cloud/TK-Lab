@@ -4,10 +4,11 @@ import {bootstrap} from './bootstrap-service';
 import {validateRecord} from '../domain/catalogue';
 import {canonicalJson,sha256} from '../domain/revisions';
 import {storage,check,setting,HttpError,type CatalogueEnv} from './storage';
-import {domainErrorStatus,listRecords,getRevision,history,saveRecord,watermark} from './catalogue-service';
+import {domainErrorStatus,listRecords,getRevision,history,saveRecord,watermark,snapshot} from './catalogue-service';
 import {upload,inspectFile,createImport,importDetail,stageImport,commitImport} from './import-service';
 import {makePublication,publishData} from './publication-service';
 import {readerLinkOptions} from './reader-links';
+import {parseResearchQuery,previewPersonResearch,validateResearchPreview} from './prosopography-preview';
 import adminHtml from '../admin/index.html?raw';
 import readerHtml from './generated/reader.html?raw';
 const noStore={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
@@ -26,6 +27,16 @@ export async function catalogueRouter(request:Request,env:CatalogueEnv):Promise<
     if(path==='/admin'||path==='/admin/'){check(['GET','HEAD'].includes(request.method),'不支援此操作。',405);return new Response(request.method==='HEAD'?null:adminHtml,{headers:{...noStore,'Content-Type':'text/html;charset=utf-8'}});}
     const {db,bucket}=storage(env);
     const method=request.method==='HEAD'?'GET':request.method;
+    // Research previews have no write capability and share the owner-only boundary.
+    if(path==='/api/admin/prosopography'||path==='/api/admin/prosopography/validate'){
+      const researchStore={watermark:()=>watermark(db),snapshot:(seq:number)=>snapshot(db,seq),revision:(id:string,version:number)=>getRevision(db,id,version)};
+      if(method==='GET'&&path==='/api/admin/prosopography'){
+        const response=json(await previewPersonResearch(researchStore,parseResearchQuery(url.searchParams)));
+        return request.method==='HEAD'?new Response(null,{status:response.status,headers:response.headers}):response;
+      }
+      if(method==='POST'&&path==='/api/admin/prosopography/validate')return json(await validateResearchPreview(researchStore,await body(request)));
+      return json({error:'此研究預覽不支援該操作。'},405);
+    }
     if(method==='GET'&&path==='/api/admin/reader-links')return json(readerLinkOptions());
     if(method==='GET'&&path==='/api/admin/session'){
       const counts=(await db.prepare('SELECT kind,count(*) AS total FROM catalogue_records GROUP BY kind').all()).results;
