@@ -1,8 +1,8 @@
 # 观史台私密网站
 
-> 2026-09-24 仓库快照：`main@203287f` 已包含 V90 人物数据（读者人物 3,621）和 V91 界面覆核；最后有明确成功回执的站点程序仍为第 45 版（2026-09-17）。PR #25 的阅读视觉检查有三项州镇按钮竖排失败，真实 iPhone／完整人工验收未完成。仓库、阅读内容快照与线上程序状态详见 [CURRENT-STATE.md](CURRENT-STATE.md)。
+> 2026-09-24 仓库快照：`main@8177038` 已包含 V90 人物数据（读者人物 3,621）、V91 界面覆核及 PR #27 州镇表修复；[Reader validation 35949161019](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35949161019) 两项工作均成功。最后有明确成功回执的站点程序仍为第 45 版（2026-09-17）；真实 iPhone／完整人工验收未完成。仓库、阅读内容快照与线上程序状态详见 [CURRENT-STATE.md](CURRENT-STATE.md)。
 
-州镇修复候选分支 `codex/fangzhen-main-validation-20260924` 已在本地通过 37 项浏览器回归及 `release:offline` 的 110 项应用测试；合并与部署另计。
+州镇修复已通过 [PR #27](https://github.com/darrengavi3-cloud/TK-Lab/pull/27) 合并；本地 37 项浏览器回归与 110 项应用测试通过。旧 PR #24 已关闭；站点部署另计。
 
 本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 保留 V86 迁移来源、尚未迁移领域和阅读资产的规范输入；后台初始化后，人物身份、任官及引用史料由 D1 修订核心维护；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
