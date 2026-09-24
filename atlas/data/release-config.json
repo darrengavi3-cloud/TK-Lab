@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "V86",
+  "version": "V90",
   "reviewBaseline": "V76",
   "audience": "owner-only",
   "appointmentReviewBatches": [
@@ -35,6 +35,7 @@
     "v73-person-identity-suppressions.json",
     "v75-person-identity-suppressions.json",
     "v80-person-identity-suppressions.json",
-    "v85-person-identity-suppressions.json"
+    "v85-person-identity-suppressions.json",
+    "v90-person-identity-review.json"
   ]
 }

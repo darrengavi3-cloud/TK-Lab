@@ -58,10 +58,7 @@ export const JinshiWorkbench = {
   },
   template: `<main v-if="moduleVisited&&moduleReady" v-show="active" class="module-page jinshi-workbench">
       <div class="module-page-inner">
-        <header class="v67-module-masthead">
-
-          <div class="v67-masthead-meta"><strong>{{epigraphicMetrics.current}}</strong><span>当前</span><strong>{{epigraphicMetrics.withInscription}}</strong><span>有释文</span></div>
-        </header>
+        <div class="v67-jinshi-masthead"><strong>{{epigraphicMetrics.current}}</strong><span>当前</span><strong>{{epigraphicMetrics.withInscription}}</strong><span>有释文</span></div>
         <section v-if="!filteredEpigraphicRecords.length" class="jinshi-empty-panel">
           <div class="seal">金</div>
           <h2>暂无符合条件的金石材料</h2>

@@ -63,7 +63,13 @@ const consolidatedCssPaths = [
   'tokens.css', 'base.css', 'components.css', 'modules.css', 'responsive.css'
 ].map(fileName => path.join(root, 'assets', 'ui', fileName));
 const uiModulePaths = ['shell', 'persistence', 'people', 'fangzhen', 'jinshi']
-  .map(moduleName => ({ moduleName, filePath: path.join(root, 'assets', 'app', `${moduleName}.js`) }));
+  .map(moduleName => ({ moduleName, filePath: path.join(root, 'assets', 'app', `${moduleName}.js`) }))
+  .concat(['people', 'fangzhen', 'jinshi', 'shihuo', 'battle', 'map', 'offices'].map(shortName => ({
+    // 阶段一重构把各模块的界面模板拆到 assets/app/ui/*-ui.js，与上面 people/fangzhen/jinshi
+    // 三个既有的资料层模块同名但目录不同；用 -ui 后缀区分命名空间，避免互相覆盖。
+    moduleName: `${shortName}-ui`,
+    filePath: path.join(root, 'assets', 'app', 'ui', `${shortName}-ui.js`)
+  })));
 const persistenceCorePath = path.join(root, 'assets', 'app', 'persistence-core.js');
 const exportPath = path.join(root, 'exports', '三国职官谱-单文件版.html');
 const lightExportPath = path.join(root, 'exports', '观史台-轻量单文件版.html');
@@ -549,6 +555,40 @@ function scriptSafe(source) {
   return String(source).replace(/<\/script/gi, '<\\/script');
 }
 
+// 阶段一重构把界面模板改成动态 import('./assets/app/ui/*-ui.js')；单文件版没有
+// 那些独立文件可供 fetch，故与轻量单 HTML 一样把它们内嵌为经典脚本并改写加载表。
+const legacyUiModuleScripts = uiModulePaths
+  .filter(({ moduleName }) => moduleName.endsWith('-ui'))
+  .map(({ moduleName, filePath }) => {
+    if (!fs.existsSync(filePath)) throw new Error(`便携导出缺少界面模块：${path.relative(root, filePath)}`);
+    return `<script>\n${scriptSafe(classicUiModule(moduleName, fs.readFileSync(filePath, 'utf8')))}\n</script>`;
+  });
+if (legacyUiModuleScripts.length) {
+  // 注入到 </body> 之前而非 </head>：verify-project.mjs 的“规范阅读界面”模板提取
+  // 靠“文档中第一个 template: ` 字面量”定位，注入到 <head> 会把它错认成某个界面
+  // 模块自身（含审校专用文案）的模板，而非原有的画布外壳模板。
+  html = html.replace('</body>', `${legacyUiModuleScripts.join('\n')}\n</body>`);
+}
+const legacySgzUiUnitLoadersLiteral = `const sgzUiUnitLoaders={
+  people:()=>import('./assets/app/ui/people-ui.js'),
+  fangzhen:()=>import('./assets/app/ui/fangzhen-ui.js'),
+  jinshi:()=>import('./assets/app/ui/jinshi-ui.js'),
+  shihuo:()=>import('./assets/app/ui/shihuo-ui.js'),
+  battle:()=>import('./assets/app/ui/battle-ui.js'),
+  map:()=>import('./assets/app/ui/map-ui.js'),
+  offices:()=>import('./assets/app/ui/offices-ui.js')
+};`;
+if (!html.includes(legacySgzUiUnitLoadersLiteral)) throw new Error('便携版未找到界面单元加载表字面量，标记可能已过期');
+html = html.replace(legacySgzUiUnitLoadersLiteral, `const sgzUiUnitLoaders={
+  people:()=>Promise.resolve(window.SGZ_UI_MODULES['people-ui']),
+  fangzhen:()=>Promise.resolve(window.SGZ_UI_MODULES['fangzhen-ui']),
+  jinshi:()=>Promise.resolve(window.SGZ_UI_MODULES['jinshi-ui']),
+  shihuo:()=>Promise.resolve(window.SGZ_UI_MODULES['shihuo-ui']),
+  battle:()=>Promise.resolve(window.SGZ_UI_MODULES['battle-ui']),
+  map:()=>Promise.resolve(window.SGZ_UI_MODULES['map-ui']),
+  offices:()=>Promise.resolve(window.SGZ_UI_MODULES['offices-ui'])
+};`);
+
 function classicUiModule(moduleName, source) {
   // Shared route imports and re-exports resolve to one classic declaration.
   const reexportNames = [], dependencies = new Map();
@@ -610,6 +650,29 @@ function buildReaderLightHtml() {
     return `<script>\n${scriptSafe(source)}\n</script>`;
   });
   result = result.replace('</head>', `${moduleScripts.concat(lazyReaderPayloads).join('\n')}\n<meta name="sgz-build" content="reader-light" />\n</head>`);
+  // 阶段一重构把八模块的界面模板改成动态 import('./assets/app/ui/*-ui.js')；单文件导出
+  // 没有那些独立文件可供 fetch，故上面已把它们连同其余模块脚本一并内嵌为经典脚本
+  // （写入 window.SGZ_UI_MODULES['*-ui']）。这里把加载表本身也改写成直接读取内嵌结果，
+  // 不再尝试网络 import()。
+  const sgzUiUnitLoadersLiteral = `const sgzUiUnitLoaders={
+  people:()=>import('./assets/app/ui/people-ui.js'),
+  fangzhen:()=>import('./assets/app/ui/fangzhen-ui.js'),
+  jinshi:()=>import('./assets/app/ui/jinshi-ui.js'),
+  shihuo:()=>import('./assets/app/ui/shihuo-ui.js'),
+  battle:()=>import('./assets/app/ui/battle-ui.js'),
+  map:()=>import('./assets/app/ui/map-ui.js'),
+  offices:()=>import('./assets/app/ui/offices-ui.js')
+};`;
+  if (!result.includes(sgzUiUnitLoadersLiteral)) throw new Error('轻量单 HTML 未找到界面单元加载表字面量，标记可能已过期');
+  result = result.replace(sgzUiUnitLoadersLiteral, `const sgzUiUnitLoaders={
+  people:()=>Promise.resolve(window.SGZ_UI_MODULES['people-ui']),
+  fangzhen:()=>Promise.resolve(window.SGZ_UI_MODULES['fangzhen-ui']),
+  jinshi:()=>Promise.resolve(window.SGZ_UI_MODULES['jinshi-ui']),
+  shihuo:()=>Promise.resolve(window.SGZ_UI_MODULES['shihuo-ui']),
+  battle:()=>Promise.resolve(window.SGZ_UI_MODULES['battle-ui']),
+  map:()=>Promise.resolve(window.SGZ_UI_MODULES['map-ui']),
+  offices:()=>Promise.resolve(window.SGZ_UI_MODULES['offices-ui'])
+};`);
   result = result
     .replace("script.src='./assets/vendor/xlsx/xlsx.full.min.js';script.async=true;", "script.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';script.async=true;")
     .replace('const HISTORY_MAP_URL = "./assets/map/history-embed.html";', 'const HISTORY_MAP_URL = "https://workbuddy-space-static.codebuddy.work/page/q71T7ZIe9O6xmZrTj3ldoy/1/index.html";')

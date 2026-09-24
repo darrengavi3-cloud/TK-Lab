@@ -12,7 +12,10 @@ export async function bootstrap(env:CatalogueEnv){
     const compressed=Uint8Array.from(atob(seed),c=>c.charCodeAt(0));
     const stream=new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip') as unknown as ReadableWritablePair<Uint8Array,Uint8Array>);
     const bytes=new Uint8Array(await new Response(stream).arrayBuffer());
-    const object=await upload(env,bytes,'v86-seed.json','application/json');
+    // V90: the embedded baseline seed now decompresses past the normal admin-upload
+    // ceiling; this is a trusted internal payload, not an end-user file, so it gets
+    // its own headroom instead of raising the public upload() limit.
+    const object=await upload(env,bytes,'v86-seed.json','application/json',64*1024*1024);
     check(object.hash===manifest.sha256,'基線封包核驗失敗。',409);
   }
   return createImport(env,manifest.sha256,{kind:'person',columns:{},allowUnmapped:false});

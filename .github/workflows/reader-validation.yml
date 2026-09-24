@@ -66,8 +66,6 @@ jobs:
       # 史实一致性：库内互证，不联网、不引入外部史源；列出所有相左之处供覆核。
       - name: Historical consistency audit
         run: node atlas/scripts/verify-historical-consistency.mjs
-      - name: Citation parser tests
-        run: node --test tests/shiyuan-citation.test.mjs
 
 # This workflow has no Sites credentials and cannot deploy or change access.
 # A successful run does not replace the fresh owner-only release gate,

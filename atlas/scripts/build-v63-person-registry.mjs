@@ -22,6 +22,9 @@ const statusValues = new Set(['verified', 'review-only', 'suppressed']);
 
 const v60 = readJson('v60-person-workbook-import.json');
 const v61 = readJson('v61-person-supplements.json');
+const v90 = fs.existsSync(path.join(dataDir, 'v90-person-workbook-import.json'))
+  ? readJson('v90-person-workbook-import.json')
+  : { people: [] };
 const sourceIndex = readJson('person-source-index.json');
 const v62 = readJson('v62-people-offices.json');
 const portraits = readJson('portrait-manifest.json');
@@ -32,7 +35,7 @@ const identitySuppressions = { records: identityBatches.flatMap(batch => batch.r
 const readerScopeRows = reviewedReaderScope(v62ReaderScope, ...identityBatches);
 for (const review of identityBatches) validateIdentitySources(review, {
   appointments: sourceIndex.appointments, sourcePeople: sourceIndex.people,
-  snapshot260: v61.snapshots260, v62: v62.people
+  snapshot260: v61.snapshots260, v62: v62.people, v90: v90.people
 });
 const v70PortraitCandidates = fs.existsSync(path.join(dataDir, 'v70-portrait-candidates.json'))
   ? readJson('v70-portrait-candidates.json')
@@ -359,6 +362,23 @@ for (const row of v60.people || []) {
   addCandidate(entry, 'birthYear', row.birthYear, 'review-only', sourceRecordId);
   addCandidate(entry, 'deathYear', row.deathYear, 'review-only', sourceRecordId);
   addCandidate(entry, 'dynastyTags', row.polity ? [row.polity] : [], 'review-only', sourceRecordId);
+}
+
+// V90：上传人物总表已在导入脚本里完成查重（命中既有身份库则沿用原 personId，
+// 否则新建 person:v90:<hash>），此处不再重复 V60/V61 那套按表字冲突隔离的逻辑。
+for (const row of v90.people || []) {
+  const sourceRecordId = row.sourceRecordId;
+  if (isExcludedSourceRecord(row.personId, row.name)) continue;
+  const entry = ensure(row.personId, row.name);
+  entry.datasets.add('v90-workbook');
+  entry.readerDatasets.add('v90');
+  entry.sourceRecordIds.add(sourceRecordId);
+  addCandidate(entry, 'zi', row.zi, 'review-only', sourceRecordId);
+  addCandidate(entry, 'birthplace', row.birthplace, 'review-only', sourceRecordId);
+  addCandidate(entry, 'birthYear', row.birthYear, 'review-only', sourceRecordId);
+  addCandidate(entry, 'deathYear', row.deathYear, 'review-only', sourceRecordId);
+  addCandidate(entry, 'dynastyTags', row.polity ? [row.polity] : [], 'review-only', sourceRecordId);
+  addCandidate(entry, 'bio', row.bioRaw, 'review-only', sourceRecordId);
 }
 
 for (const person of v61.people || []) {

@@ -54,14 +54,14 @@ for (const row of rows) {
   assert(peopleById.get(row.personId)?.portraitIds?.includes(portraitId), `${portraitId} 未进入人物记读者投影`);
 }
 
-assert(reader.people?.length === 2074, `当前审定读者人物应为 2074，实际 ${reader.people?.length || 0}`);
+assert(reader.people?.length === 3621, `当前审定读者人物应为 3621，实际 ${reader.people?.length || 0}`);
 assert(!reader.people.some(row => row.name === '安国' || row.personId === 'person:source:032cc177a216'), '官号误抽取人物安国仍在读者人物表');
 assert(!manifest.byName?.['安国'] && !manifest.byPersonId?.['person:source:032cc177a216'], '安国仍在立绘 manifest');
 assert(!fs.existsSync(path.join(root, 'assets/portraits/v51/person-source-032cc177a216.png')), '安国旧立绘文件仍存在');
 assert((registry.excludedPeople || []).some(row => row.name === '安国' && row.publicationStatus === 'suppressed'), '安国未进入已排除台账');
 
 const expectedLedger = {
-  '人物实体': [2074, 327, 14, 29, 370],
+  '人物实体': [3621, 1599, 14, 29, 1642], // V90: 新增身份复核批次纳入统计
   '任官事实': [263, 507, 2, 79, 588], // V86: three unpublished parser errors excluded
   '州镇职任': [45, 408, 70, 0, 503],
   '金石记录': [31, 127, 8, 0, 105]
@@ -79,5 +79,5 @@ if (failures.length) {
   console.error(JSON.stringify({ ok: false, version: 'V73', failures }, null, 2));
   process.exitCode = 1;
 } else {
-  console.log(JSON.stringify({ ok: true, version: 'V73', readerPeople: 2074, portraits: { added: 100, total: 500 }, figma: { page: 'V73 / Portraits', nodes: 100 }, reviewModules: 4, removedNonPerson: '安国' }, null, 2));
+  console.log(JSON.stringify({ ok: true, version: 'V73', readerPeople: 3621, portraits: { added: 100, total: 500 }, figma: { page: 'V73 / Portraits', nodes: 100 }, reviewModules: 4, removedNonPerson: '安国' }, null, 2));
 }

@@ -122,16 +122,15 @@ const failures = [];
 const seenNames = new Map();
 
 for (const file of files) {
-  const full = path.join(uiDir, file);
-  let module;
+  let uiModule;
   try {
-    module = await import(new URL(`../atlas/assets/app/ui/${file}`, import.meta.url).href);
+    uiModule = await import(new URL(`../atlas/assets/app/ui/${file}`, import.meta.url).href);
   } catch (error) {
     failures.push(`${file}：模块加载失败 — ${error.message}`);
     continue;
   }
 
-  const units = module.ui;
+  const units = uiModule.ui;
   if (!units || typeof units !== 'object') {
     failures.push(`${file}：未导出 ui 登记表`);
     continue;

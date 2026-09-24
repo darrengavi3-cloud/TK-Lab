@@ -56,8 +56,9 @@ test("packages the current court, reader people, and map assets", async () => {
 
 test("packages the V63 field-gated full people reader projection", async () => {
   const legacyRoot = new URL("../dist/client/legacy/", import.meta.url);
-  const [legacy, readerPeopleSource, readerManifestRaw] = await Promise.all([
+  const [legacy, battleUi, readerPeopleSource, readerManifestRaw] = await Promise.all([
     readFile(new URL("index.html", legacyRoot), "utf8"),
+    readFile(new URL("assets/app/ui/battle-ui.js", legacyRoot), "utf8"),
     readFile(new URL("data/v63-reader-people.js", legacyRoot), "utf8"),
     readFile(new URL("reader-bundle.json", legacyRoot), "utf8"),
   ]);
@@ -69,7 +70,8 @@ test("packages the V63 field-gated full people reader projection", async () => {
   const readerManifest = JSON.parse(readerManifestRaw);
 
   assert.doesNotMatch(legacy, /V60 全量人物|260 年人物纪|曹魏封爵人物|peopleDataset/);
-  assert.match(legacy, /battle-chronology-list|v66-battle-anchors/);
+  // 阶段一重构把战事纪模板从 index.html 拆到独立的 assets/app/ui/battle-ui.js。
+  assert.match(legacy + battleUi, /battle-chronology-list|v66-battle-anchors/);
   assert.match(legacy, /v63-reader-people\.js/);
   assert.equal(readerManifest.build, "reader");
   assertReaderPeople(people);

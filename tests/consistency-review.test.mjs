@@ -58,7 +58,13 @@ test('all 59 baseline candidates have a disposition; new or changed findings req
   assert.equal(review.records.length, 59);
   assert.equal(new Set(review.records.map(r => r.id)).size, 59);
   assert.ok(review.records.every(r => r.reason && r.evidence.length && ['fixed', 'false-positive', 'already-reviewed', 'source-review'].includes(r.disposition)));
+  // V90: findings that only exist because of the V90 workbook import are reviewed
+  // separately, since they never appeared in the frozen V86 baseline candidates list.
+  const v90Review = read('../research/v90-product/consistency-review.json');
+  assert.ok(v90Review.records.every(r => r.reason && r.evidence.length && ['fixed', 'false-positive', 'already-reviewed', 'source-review'].includes(r.disposition)));
   const output = execFileSync(process.execPath, ['atlas/scripts/verify-historical-consistency.mjs', '--json'], { cwd: new URL('..', import.meta.url), encoding: 'utf8' });
   const current = JSON.parse(output).findings;
-  assert.deepEqual(current.map(r => r.id).sort(), review.records.filter(r => r.disposition === 'source-review').map(r => r.currentFindingId).sort());
+  const expectedSourceReviewIds = [...review.records, ...v90Review.records]
+    .filter(r => r.disposition === 'source-review').map(r => r.currentFindingId);
+  assert.deepEqual(current.map(r => r.id).sort(), expectedSourceReviewIds.sort());
 });

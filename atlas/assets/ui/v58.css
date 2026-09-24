@@ -107,7 +107,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v56-jinshi-row { padding-inline-start: 20px; }
 .v56-jinshi-row-title { color: var(--v58-ink); }
 .v56-jinshi-row-meta { color: var(--v58-muted); }
-.v58-jinshi-status { margin-top: 5px; display: block; color: var(--v58-accent); font-size: 10px; font-weight: 700; }
+.v58-jinshi-status { margin-top: 5px; display: block; color: var(--v58-muted); font-size: 10px; font-weight: 500; }
 .v56-jinshi-reader { padding: 18px; }
 .v56-jinshi-reader header { border-bottom-color: var(--v58-line); }
 .v56-jinshi-reader h2 { color: var(--v58-ink); }

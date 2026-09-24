@@ -2,7 +2,7 @@
  * 战事纪（battle）模块界面单元。
  *
  * 由 atlas/index.html 的模块模板中迁出，模板内容逐字保持，不改动结构、类名与文案。
- * 契约与 shihuo / shiyuan 一致：`state` 代理只读 + 事件上行。
+ * 契约与 shihuo 一致：`state` 代理只读 + 事件上行。
  *
  * 本模块的工具栏情境条仅为一行静态注释（`<span class="v66-context-note">`），
  * 不含可交互控件，故不单独拆出 Context 单元，留在 index.html。
@@ -66,7 +66,7 @@ export const BattleWorkbench = {
               </div>
               <div v-if="personLinksFor(item).length" class="v69-battle-people" aria-label="涉及人物">
                 <span>涉及人物</span>
-                <button v-for="link in personLinksFor(item).slice(0,6)" :key="link.linkId" type="button" @click="openPerson(link)">{{link.personName}}</button>
+                <button v-for="link in personLinksFor(item).slice(0,6)" :key="link.linkId" type="button" class="person-link" @click="openPerson(link)">{{link.personName}}</button>
                 <small v-if="personLinksFor(item).length>6">另 {{personLinksFor(item).length-6}} 人</small>
               </div>
               <div class="battle-item-actions">

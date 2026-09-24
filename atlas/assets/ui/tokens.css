@@ -24,5 +24,14 @@
   --sgz-space-panel: clamp(18px, 2vw, 32px);
   --sgz-space-row: 14px;
   --sgz-radius: 8px;
+  --sgz-radius-sm: 4px;
+  --sgz-radius-md: var(--sgz-radius);
+  --sgz-radius-lg: 14px;
+  --sgz-shadow-1: 0 1px 2px rgba(27, 43, 46, .06);
+  --sgz-shadow-2: 0 4px 12px rgba(27, 43, 46, .10);
+  --sgz-shadow-3: 0 12px 32px rgba(27, 43, 46, .18);
+  --sgz-success: var(--v56-green, #4e6961);
+  --sgz-warning: var(--sgz-dossier-gold);
+  --sgz-danger: #7a2a1f;
   --sgz-selected: color-mix(in srgb, var(--sgz-accent) 7%, var(--sgz-surface));
 }

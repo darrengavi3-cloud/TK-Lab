@@ -39,8 +39,16 @@
         <div v-if="person.zi"><dt>表字</dt><dd>{{person.zi}}</dd></div>
         <div class="v69-person-lifespan"><dt>生卒</dt><dd>{{lifespan}}</dd></div>
         <div v-if="person.birthplace"><dt>籍贯</dt><dd>{{person.birthplace}}</dd></div>
-        <div v-if="office"><dt>官职</dt><dd>{{office}}</dd></div>
-        <div v-if="peerage"><dt>爵位</dt><dd>{{peerage}}</dd></div>
+        <div v-if="office&&office.length"><dt>官职</dt><dd>
+          <details class="v69-person-fact-list"><summary>{{office.length}} 任</summary>
+            <div class="person-card-badges"><span v-for="item in office" :key="item" class="person-pill office">{{item}}</span></div>
+          </details>
+        </dd></div>
+        <div v-if="peerage&&peerage.length"><dt>爵位</dt><dd>
+          <details class="v69-person-fact-list"><summary>{{peerage.length}} 爵</summary>
+            <div class="person-card-badges"><span v-for="item in peerage" :key="item" class="person-pill noble">{{item}}</span></div>
+          </details>
+        </dd></div>
         <div v-if="person.isRuler&&person.templeName"><dt>庙号</dt><dd>{{person.templeName}}</dd></div>
         <div v-if="person.posthumousTitle"><dt>谥号</dt><dd>{{person.posthumousTitle}}</dd></div>
       </dl>`

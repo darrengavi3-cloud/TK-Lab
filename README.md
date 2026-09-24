@@ -51,12 +51,12 @@ V76 已通过 [PR #10](https://github.com/darrengavi3-cloud/TK-Lab/pull/10) 于 
 <!-- current-reviewed-counts:start -->
 | 项目 | 当前审定数量 |
 | --- | ---: |
-| 读者人物 | 2074 人 |
+| 读者人物 | 3621 人 |
 | 任官已核 | 263 条 |
 | 任官待补核 | 507 条 |
 | 任官存疑 | 2 条 |
 | 任官排除 | 79 条 |
-| 实质小传 | 96 篇 |
+| 实质小传 | 101 篇 |
 | 正式立绘 | 500 项 |
 <!-- current-reviewed-counts:end -->
 

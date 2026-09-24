@@ -29,7 +29,12 @@ function loadRuntime(files){
   return context;
 }
 
-const html=read('index.html');
+// 阶段一重构把州镇表／金石录模板从 index.html 拆到 assets/app/ui/*.js；本文件的
+// 既有断言仍按“整页模板字符串”检查，因此把两者拼接后再匹配，不动断言本身的判断逻辑。
+const html=read('index.html')+fs.readdirSync(path.join(root,'assets/app/ui'))
+  .filter(name=>name.endsWith('.js'))
+  .map(name=>read('assets/app/ui/'+name))
+  .join('\n');
 const modulesCss=read('assets/ui/modules.css');
 const design=read('DESIGN.md');
 const ux=read('UX-CONTRACT.md');
@@ -81,18 +86,21 @@ const malicious='<img src=x onerror=alert(1)>曹全碑';
 const fragments=highlightTextFragments(malicious,'曹全');
 assert(fragments.map(row=>row.text).join('')===malicious&&fragments.some(row=>row.hit&&row.text==='曹全'),'金石高亮没有保持恶意字符串为纯文本片段');
 
-assert((html.match(/class="v67-module-masthead"/g)||[]).length===2,'州镇表与金石录未各自使用一个墨色题签');
+// V90：金石录顶部改用安静说明行（.v67-jinshi-masthead），不再与州镇表共用深色题签，
+// 避免为金石录改样式时误动方镇视觉；州镇表自身的墨色题签保留不变。
+assert((html.match(/class="v67-module-masthead"/g)||[]).length===1,'州镇表墨色题签缺失或被误动');
+assert(html.includes('class="v67-jinshi-masthead"'),'金石录顶部安静说明行缺失');
 assert(html.includes("period:'all',polity:'all'")&&html.includes("fangzhen.js?v=67")&&html.includes("jinshi.js?v=71.1"),'综合州镇范围或当前模块缓存键未更新');
 assert(html.includes('class="v67-fangzhen-workbench"')&&html.includes('class="v56-jinshi-workbench-grid"'),'双卷工作台主布局缺失');
 assert(html.includes('const fangzhenPageSize = 12')&&html.includes('const epigraphicPageSize = 12'),'双卷分页没有固定为每页 12 条');
 assert(html.includes('const rows=fangzhenVisibleRecords.value;')&&html.includes('const rows=fangzhenArchiveRows.value;'),'州镇异步模块计算未先登记响应式数据依赖');
 assert(html.includes('v-if="jinshiMediaAssets.length"')&&html.includes('normalizeEpigraphicMediaAssets'),'金石媒体区未按已核资产条件渲染');
 assert(!html.includes('v-html')&&!html.includes('.innerHTML'),'页面重新引入了可执行 HTML 渲染');
-const fangzhenStart=html.indexOf('<main v-if="moduleVisited.fangzhen&&moduleLoadState.fangzhen===\'ready\'"');
-const jinshiStart=html.indexOf('<main v-if="moduleVisited.jinshi&&moduleLoadState.jinshi===\'ready\'"');
-const shihuoStart=html.indexOf('<main v-if="moduleVisited.shihuo&&moduleLoadState.shihuo===\'ready\'"');
-const fangzhenMarkup=html.slice(fangzhenStart,jinshiStart);
-const jinshiMarkup=html.slice(jinshiStart,shihuoStart);
+// 阶段一重构把州镇表／金石录模板从 index.html 的相邻 <main v-if="moduleVisited..."> 区块
+// 拆到独立的 assets/app/ui/{fangzhen,jinshi}-ui.js；这两个文件本身即各自模板的完整边界，
+// 不再需要用旧的相邻模块 <main v-if> 标记切片。
+const fangzhenMarkup=read('assets/app/ui/fangzhen-ui.js');
+const jinshiMarkup=read('assets/app/ui/jinshi-ui.js');
 assert(!fangzhenMarkup.includes('治所未详'),'州镇读者模板仍显示“治所未详”');
 assert(!/placeholder="[^\"]*(?:搜索|检索)/.test(fangzhenMarkup+jinshiMarkup),'双卷内容区新增了第二套文本搜索框');
 assert(jinshiMarkup.includes("workspaceMode==='review'&&jinshiPrimaryDetail.note"),'金石内部备注未限制在审校态');

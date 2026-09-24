@@ -26,7 +26,12 @@ const registry = json('data/v63-person-registry.json');
 const reader = json('data/v63-reader-people.json');
 const fangzhen = json('data/v69-fangzhen-reader.json');
 const fangzhenRuntime = read('assets/app/fangzhen.js');
-const html = read('index.html');
+// 阶段一重构把各模块模板从 index.html 拆到 assets/app/ui/*.js；本文件的既有断言
+// 仍按“整页模板字符串”检查，因此把两者拼接后再匹配，不动断言本身的判断逻辑。
+const html = read('index.html') + fs.readdirSync(path.join(root, 'assets/app/ui'))
+  .filter(name => name.endsWith('.js'))
+  .map(name => read('assets/app/ui/' + name))
+  .join('\n');
 const candidateRows = candidates.records || [];
 const assets = Object.values(manifest.assetsById || {});
 const v70Assets = assets.filter(row => row.portraitKind === 'ui-illustration-v70');

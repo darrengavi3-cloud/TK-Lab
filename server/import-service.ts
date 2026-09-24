@@ -10,8 +10,8 @@ const XLSX=sheetJS as unknown as {read:(bytes:Uint8Array|string,options:Record<s
 interface Mapping {kind:CatalogueRecord['kind'];columns:Record<string,string>;allowUnmapped:boolean}
 interface Prepared {rows:{data:CatalogueRecord;baseVersion:number;digest:string}[];warnings:string[];baseline:boolean;readerBaseline?:unknown;errors:{row:number;message:string}[]}
 export interface ImportJob {id:string;filename:string;original_hash:string;mapping:string;mapping_hash:string;state:string;total:number;at:string;commit_seq:number|null}
-export async function upload(env:CatalogueEnv,bytes:Uint8Array,filename:string,mediaType:string){
-  const {db,bucket}=storage(env);check(bytes.length>0&&bytes.length<=24*1024*1024,'檔案需介於 1 位元組與 24 MB。',413);
+export async function upload(env:CatalogueEnv,bytes:Uint8Array,filename:string,mediaType:string,maxBytes=24*1024*1024){
+  const {db,bucket}=storage(env);check(bytes.length>0&&bytes.length<=maxBytes,`檔案需介於 1 位元組與 ${Math.floor(maxBytes/1024/1024)} MB。`,413);
   const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes as BufferSource))).map(v=>v.toString(16).padStart(2,'0')).join('');
   await bucket.put('originals/'+hash,bytes,{httpMetadata:{contentType:'application/octet-stream'}});
   await db.prepare('INSERT INTO catalogue_objects(hash,filename,bytes,media_type,at) VALUES(?,?,?,?,?) ON CONFLICT(hash) DO NOTHING').bind(hash,filename.slice(0,200),bytes.length,mediaType,new Date().toISOString()).run();
@@ -89,7 +89,10 @@ export async function createImport(env:CatalogueEnv,hash:string,mapping:Mapping)
     for(const [name,entry] of Object.entries(baseline.manifest)){
       const archive=document.archives[name];
       check(archive&&await sha256(archive.text)===entry.sha256,'基線原檔核驗失敗：'+name,409);
-      await upload(env,new TextEncoder().encode(archive.text),name,'application/json');
+      // V90: individual archived baseline files (e.g. the person registry) can now
+      // exceed the normal admin-upload ceiling; these are checksum-verified trusted
+      // baseline bytes, not end-user files, so they get the same internal headroom.
+      await upload(env,new TextEncoder().encode(archive.text),name,'application/json',64*1024*1024);
     }
   }
   await bucket.put('imports/'+id+'.json',JSON.stringify(prepared));
