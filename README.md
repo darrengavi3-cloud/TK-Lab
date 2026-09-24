@@ -1,12 +1,12 @@
 # 观史台私密网站
 
-> 2026-09-24 仓库快照：`main@8177038` 已包含 V90 人物数据（读者人物 3,621）、V91 界面覆核及 PR #27 州镇表修复；[Reader validation 35949161019](https://github.com/darrengavi3-cloud/TK-Lab/actions/runs/35949161019) 两项工作均成功。最后有明确成功回执的站点程序仍为第 45 版（2026-09-17）；真实 iPhone／完整人工验收未完成。仓库、阅读内容快照与线上程序状态详见 [CURRENT-STATE.md](CURRENT-STATE.md)。
+> 2026-09-24 站点程序**第 50 版已成功部署**，纳入 V90 的 3,621 位读者人物、V91 界面覆核及 PR #27 州镇表修复；访问权限仍仅所有者。生产 D1 阅读内容快照未在本次操作中发布或核实；真实 iPhone／完整人工验收未完成。源码、时间、检查与数据边界见 [CURRENT-STATE.md](CURRENT-STATE.md)。
 
-州镇修复已通过 [PR #27](https://github.com/darrengavi3-cloud/TK-Lab/pull/27) 合并；本地 37 项浏览器回归与 110 项应用测试通过。旧 PR #24 已关闭；站点部署另计。
+州镇修复已通过 [PR #27](https://github.com/darrengavi3-cloud/TK-Lab/pull/27) 合并；本地 37 项浏览器回归与 110 项应用测试通过。旧 PR #24 已关闭。
 
 本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 保留 V86 迁移来源、尚未迁移领域和阅读资产的规范输入；后台初始化后，人物身份、任官及引用史料由 D1 修订核心维护；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
-## 觀史台當前產品：管理後台與任官閱讀關聯，第 45 版部署
+## 第 45 版管理後台與任官閱讀關聯（歷史）
 
 第 45 版於 **2026-09-17 16:53 UTC** 部署成功，沿用 owner-only 私密站點。你可在[管理後台](https://zhiguanpu-private.darrengavi3.chatgpt.site/admin)編輯、匯入及修訂人物、任官與引用史料，選定官職及州鎮關聯，再預覽並統一發布。一份任官修訂同步到人物履歷、選定的官職任職者與州鎮條目；詳見[實作與邊界](docs/catalogue-reader-links.md)。
 
