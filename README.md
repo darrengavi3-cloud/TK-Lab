@@ -1,6 +1,49 @@
-# 观史台私密网站
+# 观史台 · Guanshitai Research Platform
 
-本仓库保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 保留 V86 迁移来源、尚未迁移领域和阅读资产的规范输入；后台初始化后，人物身份、任官及引用史料由 D1 修订核心维护；`public/legacy` 是构建生成物，不得手工编辑或提交。
+> An open-source research engineering repository for historical prosopography, offices, source evidence, and reproducible publication workflows, with the Three Kingdoms and Jin periods as its primary working corpus.
+
+观史台（Guanshitai）面向历史研究与数字人文工作流，重点处理人物身份、动态任官、官僚制度、州镇关系、史料引证、版本修订与读者发布之间的可追溯关系。TK-Lab 公开保存可复用的研究模型、构建与验证工具、读者应用以及版本化审定资料；实际生产管理后台仍保持 owner-only，**公开仓库不等于公开生产站点或开放生产数据**。
+
+## Open-source scope
+
+当前可复用的工程重点包括：
+
+- **Prosopography / 人物志模型**：稳定人物标识、同名异人处理、人物与事件的时序关联；
+- **任官与制度模型**：将官职、任官、兼领、都督／州镇等关系拆分为可追踪事实；
+- **证据与修订链**：保留来源、审定状态、更正理由与发布投影，避免用最终展示覆盖研究过程；
+- **研究层／读者层分离**：研究台账、审校状态与公开阅读字段采用不同边界；
+- **确定性构建与验证**：通过脚本、测试和发布清单检查数据结构、引用关系与部署产物；
+- **历史数据产品化**：把人物、职官、州镇、金石、食货等研究对象组织为可持续演进的数据与阅读模块。
+
+生产站点、所有者后台、凭据与生产数据库不属于开放访问范围。当前产品、数据、部署与验收事实以 [CURRENT-STATE.md](CURRENT-STATE.md) 为唯一状态入口。
+
+## Quick start
+
+要求 Node.js `>=22.13.0`。
+
+```bash
+npm ci
+npm run test:source
+npm run typecheck
+```
+
+完整发布检查还包含 owner-only 权限快照，因此外部贡献者通常不需要也不应尝试访问生产环境。需要验证公开代码与研究逻辑时，优先使用源码测试、类型检查及文档中标注的离线构建命令。
+
+## Contributing
+
+欢迎提交代码改进、文档修正、数据模型讨论和有明确史料依据的历史数据更正。提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。涉及历史事实的更改应给出可定位的来源依据；涉及安全问题请按照 [SECURITY.md](SECURITY.md) 处理，不要在公开 Issue 中披露敏感利用细节。
+
+项目路线见 [ROADMAP.md](ROADMAP.md)。
+
+## Licensing
+
+本仓库采用分层授权：**原创源代码以 MIT License 开放**；史料转录、研究数据、图片、字体、地图、第三方材料与生成物不自动随代码授权。具体边界见 [LICENSING.md](LICENSING.md) 与各文件／目录中的来源说明。
+
+---
+
+## 私密产品与当前部署
+
+本仓库同时保存观史台的版本化规范源与私密 Sites 壳层。`atlas/` 保留 V86 迁移来源、尚未迁移领域和阅读资产的规范输入；后台初始化后，人物身份、任官及引用史料由 D1 修订核心维护；`public/legacy` 是构建生成物，不得手工编辑或提交。
 
 ## 觀史台當前產品：管理後台與任官閱讀關聯，第 45 版部署
 
