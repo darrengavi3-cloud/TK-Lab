@@ -1,0 +1,12 @@
+# 观史台：构建脚本与规范源按字节比较，必须锁定 LF。
+# atlas/index.html 被 scripts/reader-reference-inputs.mjs 以 \n 锚点切分，
+# CRLF 检出会导致构建直接失败。此文件为跨平台一致性所必需。
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary

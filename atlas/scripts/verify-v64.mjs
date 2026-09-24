@@ -24,6 +24,28 @@ function sha256(value) {
   return crypto.createHash('sha256').update(value).digest('hex');
 }
 
+// 与 build-reader-bundle.mjs 的同名函数保持一致：review-only/audit-only 作为
+// CSS 类名出现在 assets/app/ui/*.js 的类名属性里时是安全的（这些区块由
+// workspaceMode==='review' 控制，读者包构建会强制改写为 'reader' 并移除审校切换
+// 按钮，静态不可达）；只有出现在类名属性之外（真正的状态值）才算泄漏。
+function findAuditStatusValue(contents) {
+  const occurrencePattern = /\b(?:audit-only|review-only)\b/g;
+  const classAttributePattern = /(?:^|[^\w-])(?::?class|class-name)\s*=\s*(["'])([\s\S]*?)\1/g;
+  const classRanges = [];
+  let classMatch;
+  while ((classMatch = classAttributePattern.exec(contents)) !== null) {
+    const valueStart = classMatch.index + classMatch[0].length - classMatch[2].length - 1;
+    classRanges.push([valueStart, valueStart + classMatch[2].length]);
+  }
+  const withinClassAttribute = index => classRanges.some(([start, end]) => index >= start && index < end);
+  let match;
+  while ((match = occurrencePattern.exec(contents)) !== null) {
+    if (withinClassAttribute(match.index)) continue;
+    return match[0];
+  }
+  return '';
+}
+
 function readJson(relative) {
   return JSON.parse(fs.readFileSync(path.join(root, relative), 'utf8'));
 }
@@ -206,7 +228,8 @@ for (const filePath of readerFiles) {
       assert(!/window\.SGZ_(?:V60_PERSON_WORKBOOK_IMPORT|V61_PERSON_SUPPLEMENTS|V60_RESEARCH_LEDGER|V61_EPIGRAPHY_RESEARCH|V63_PERSON_REGISTRY|PERSON_SOURCE_INDEX)\s*=/.test(contents), `例外文件内嵌审校全局对象 ${relative}`);
     }
     if (!thirdPartyCode && !codeIdentifierExceptions.has(relative)) {
-      assert(!/["'](?:audit-only|review-only)["']/.test(contents), `读者文件包含审校状态 ${relative}`);
+      const auditStatusValue = findAuditStatusValue(contents);
+      assert(!auditStatusValue, `读者文件包含审校状态 ${relative}（${auditStatusValue}）`);
     }
     if (!thirdPartyCode) {
       for (const identifier of mapAuditIdentifiers) assert(!contents.includes(identifier), `读者文件泄露地图审校标识 ${identifier}: ${relative}`);

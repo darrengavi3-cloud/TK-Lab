@@ -63,3 +63,8 @@ export function comparePeople(a,b,options={}){
     ||String(a.name||'').localeCompare(String(b.name||''),'zh-CN')
     ||String(a.personId||'').localeCompare(String(b.personId||''));
 }
+
+/* 界面单元登记：模块被 loadSgzUiModule 载入后，本模块以 ui 字段暴露需要注册为
+ * 全局组件的界面单元，由 registerSgzUiModuleComponents 统一登记。界面实现放在
+ * ui/ 子目录，此处只做转发，保持「模块 → ui 单元」的单一入口。 */
+export { ui } from './ui/people-ui.js';

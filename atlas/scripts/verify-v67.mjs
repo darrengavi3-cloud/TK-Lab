@@ -29,7 +29,12 @@ function loadRuntime(files){
   return context;
 }
 
-const html=read('index.html');
+// 阶段一重构把州镇表／金石录模板从 index.html 拆到 assets/app/ui/*.js；本文件的
+// 既有断言仍按“整页模板字符串”检查，因此把两者拼接后再匹配，不动断言本身的判断逻辑。
+const html=read('index.html')+fs.readdirSync(path.join(root,'assets/app/ui'))
+  .filter(name=>name.endsWith('.js'))
+  .map(name=>read('assets/app/ui/'+name))
+  .join('\n');
 const modulesCss=read('assets/ui/modules.css');
 const design=read('DESIGN.md');
 const ux=read('UX-CONTRACT.md');
@@ -91,11 +96,11 @@ assert(html.includes('const fangzhenPageSize = 12')&&html.includes('const epigra
 assert(html.includes('const rows=fangzhenVisibleRecords.value;')&&html.includes('const rows=fangzhenArchiveRows.value;'),'州镇异步模块计算未先登记响应式数据依赖');
 assert(html.includes('v-if="jinshiMediaAssets.length"')&&html.includes('normalizeEpigraphicMediaAssets'),'金石媒体区未按已核资产条件渲染');
 assert(!html.includes('v-html')&&!html.includes('.innerHTML'),'页面重新引入了可执行 HTML 渲染');
-const fangzhenStart=html.indexOf('<main v-if="moduleVisited.fangzhen&&moduleLoadState.fangzhen===\'ready\'"');
-const jinshiStart=html.indexOf('<main v-if="moduleVisited.jinshi&&moduleLoadState.jinshi===\'ready\'"');
-const shihuoStart=html.indexOf('<main v-if="moduleVisited.shihuo&&moduleLoadState.shihuo===\'ready\'"');
-const fangzhenMarkup=html.slice(fangzhenStart,jinshiStart);
-const jinshiMarkup=html.slice(jinshiStart,shihuoStart);
+// 阶段一重构把州镇表／金石录模板从 index.html 的相邻 <main v-if="moduleVisited..."> 区块
+// 拆到独立的 assets/app/ui/{fangzhen,jinshi}-ui.js；这两个文件本身即各自模板的完整边界，
+// 不再需要用旧的相邻模块 <main v-if> 标记切片。
+const fangzhenMarkup=read('assets/app/ui/fangzhen-ui.js');
+const jinshiMarkup=read('assets/app/ui/jinshi-ui.js');
 assert(!fangzhenMarkup.includes('治所未详'),'州镇读者模板仍显示“治所未详”');
 assert(!/placeholder="[^\"]*(?:搜索|检索)/.test(fangzhenMarkup+jinshiMarkup),'双卷内容区新增了第二套文本搜索框');
 assert(jinshiMarkup.includes("workspaceMode==='review'&&jinshiPrimaryDetail.note"),'金石内部备注未限制在审校态');

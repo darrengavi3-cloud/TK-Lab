@@ -390,9 +390,10 @@ assert(hashSortedLines(battleReaderRows.map(row => row.id)) === '723c4d4a4a006d9
 const battleLogicStart = html.indexOf('const battleEntryList = computed');
 const battleLogicEnd = html.indexOf('function officeClassOf', battleLogicStart + 1);
 const battleLogic = battleLogicStart >= 0 && battleLogicEnd > battleLogicStart ? html.slice(battleLogicStart, battleLogicEnd) : '';
-const battleTemplateStart = html.indexOf('<main v-if="moduleVisited.battle&&moduleLoadState.battle===\'ready\'"');
-const battleTemplateEnd = html.indexOf('<main v-if="moduleVisited.fangzhen&&moduleLoadState.fangzhen===\'ready\'"', battleTemplateStart + 1);
-const battleTemplate = battleTemplateStart >= 0 && battleTemplateEnd > battleTemplateStart ? html.slice(battleTemplateStart, battleTemplateEnd) : '';
+// 阶段一重构把战事纪模板从 index.html 的 <main v-if="moduleVisited.battle..."> 区块
+// 拆到独立的 assets/app/ui/battle-ui.js；该文件本身即战事纪模板的完整边界，不再需要
+// 用旧的相邻模块 <main v-if> 标记切片。
+const battleTemplate = read('assets/app/ui/battle-ui.js');
 assert(battleLogic.includes('BATTLE_ERA_ANCHORS') && battleLogic.includes('battleChronologyRows') && battleTemplate.includes('battle-chronology-list'), '战事纪 V66 单根编年导线或三个时代锚点未接入');
 assert(!/battle(?:BranchGroups|CampaignGroups|ProvinceGroups|PeriodId|Density|View|Query)/.test(battleLogic + battleTemplate), '战事纪仍保留类别／交战关系／时期／局部密度等旧控件');
 assert(!/battleRelationChain|按交战方|按战役链|全部交战关系|伪战役链|前因|后续/.test(battleLogic + battleTemplate), '战事读者投影仍含字符串推断的交战关系、战役链或因果');

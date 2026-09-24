@@ -57,3 +57,7 @@ next-env.d.ts
 /server/generated/
 /public/admin-client.mjs
 /.sites-runtime/
+
+# WorkBuddy 会话数据与本地构建缓存
+/.workbuddy/
+/tsconfig.tsbuildinfo

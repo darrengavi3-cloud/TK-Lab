@@ -13,7 +13,13 @@ const assert = (condition, message) => {
 const registry = JSON.parse(read('data/map-period-registry.json'));
 const audit = JSON.parse(read('data/historical-audit.json'));
 const releaseManifest = JSON.parse(read('data/v41-release-manifest.json'));
-const html = read('index.html');
+// 主线重构（阶段一）把各模块模板从 index.html 拆分到 assets/app/ui/*.js；
+// 本文件的既有断言仍按"整页模板字符串"检查，因此把两者拼接后再匹配，
+// 不动断言本身的判断逻辑。
+const html = read('index.html') + fs.readdirSync(path.join(root, 'assets/app/ui'))
+  .filter(name => name.endsWith('.js'))
+  .map(name => read('assets/app/ui/' + name))
+  .join('\n');
 const portable = read('exports/三国职官谱-单文件版.html');
 const historyEmbed = read('assets/map/history-embed.html');
 const researchModelSource = read('data/research-model.js');

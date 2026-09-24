@@ -18,7 +18,13 @@ function runtime(relative, globalName) {
   return context.window[globalName];
 }
 
-const html = read('index.html');
+// 阶段一重构把各模块模板从 index.html 拆分到 assets/app/ui/*.js（后汉官职结构图
+// 现随 offices-ui.js 迁出）；本文件的既有断言仍按“整页模板字符串”检查，因此把
+// 两者拼接后再匹配，不动断言本身的判断逻辑。
+const html = read('index.html') + fs.readdirSync(path.join(root, 'assets/app/ui'))
+  .filter(name => name.endsWith('.js'))
+  .map(name => read('assets/app/ui/' + name))
+  .join('\n');
 const modulesCss = read('assets/ui/modules.css');
 const hanRecords = runtime('data/han-bai-guan-zhi.js', 'SGZ_HAN_BAI_GUAN_ZHI');
 const residences = runtime('data/office-residences.js', 'SGZ_OFFICE_RESIDENCES');
