@@ -237,16 +237,16 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-fangzhen-table-panel .el-table { --el-table-current-row-bg-color: color-mix(in srgb, var(--v58-gold) 15%, var(--v58-raised)); }
 .v67-fangzhen-table-panel .el-table__row { cursor: pointer; }
 .fz-jurisdiction-kind { display: block; margin-top: 2px; color: var(--v58-muted); font-size: 12px; }
-.v67-pagination { display: flex; align-items: center; justify-content: space-between; min-height: 42px; padding: 6px 10px; border-top: 1px solid var(--v58-line); color: var(--v58-muted); font-size: 12px; }
-.v67-pagination button,
+.sgz-pagination { display: flex; align-items: center; justify-content: space-between; min-height: 42px; padding: 6px 10px; border-top: 1px solid var(--v58-line); color: var(--v58-muted); font-size: 12px; }
+.sgz-pagination button,
 .v67-dossier-actions button { min-height: 30px; padding: 5px 10px; border: 1px solid var(--v58-line); border-radius: 4px; background: var(--v58-raised); color: var(--v58-ink); cursor: pointer; }
-.v67-pagination button:hover:not(:disabled),
+.sgz-pagination button:hover:not(:disabled),
 .v67-dossier-actions button:hover { border-color: var(--v58-accent); color: var(--v58-accent); }
-.v67-pagination button:focus-visible,
+.sgz-pagination button:focus-visible,
 .v67-dossier-actions button:focus-visible,
 .v67-fangzhen-related td button:focus-visible,
 .v67-fangzhen-person button:focus-visible { outline: none; box-shadow: var(--v58-focus); }
-.v67-pagination button:disabled { opacity: .42; cursor: default; }
+.sgz-pagination button:disabled { opacity: .42; cursor: default; }
 .v67-fangzhen-dossier { min-width: 0; padding: 15px 16px 17px; }
 .v67-fangzhen-dossier > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--v58-line); }
 .v67-fangzhen-dossier > header small { color: var(--v58-muted); font-size: 12px; }
@@ -2461,7 +2461,7 @@ body, #app, .shell { color: var(--v58-ink); }
   }
 
   .v67-masthead-tabs button,
-  .v67-pagination button,
+  .sgz-pagination button,
   .v67-dossier-actions button,
   .v67-jinshi-reader-head nav button {
     min-height: 44px;
@@ -2573,7 +2573,7 @@ body, #app, .shell { color: var(--v58-ink); }
 .v67-fangzhen-dossier { padding:22px;border-radius:var(--sgz-radius);border-top:3px solid var(--sgz-dossier-gold); }
 .v67-fangzhen-person { padding-block:14px; }
 .v67-dossier-actions { gap:8px;flex-wrap:wrap; }
-.v67-dossier-actions button,.v67-pagination button,.people-pagination button { min-height:40px;padding-inline:14px;font-size:13px; }
+.v67-dossier-actions button,.sgz-pagination button,.people-pagination button { min-height:40px;padding-inline:14px;font-size:13px; }
 .jinshi-workbench .v56-jinshi-workbench-grid { grid-template-columns:minmax(260px,30%) minmax(0,1fr);gap:24px; }
 .jinshi-workbench .v56-jinshi-row { padding:18px 16px;min-height:88px; }
 .v56-jinshi-row-title { font:600 16px/1.6 var(--sgz-font-heading); }

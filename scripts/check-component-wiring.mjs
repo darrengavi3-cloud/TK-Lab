@@ -79,6 +79,13 @@ if (fs.existsSync(readerComponentsPath)) {
 if (!readerTags.size) fail('未能从 reader-components.js 解析出共享组件清单');
 /* 逐个断言：模板用到的自定义标签都必须有登记来源。 */
 const isExempt = tag => tag.startsWith('el-') || readerTags.has(tag);
+// 模块模板与共享模板也会引用共享组件，不能只校验 index.html 的直接子标签。
+for (const fileName of uiFiles) {
+  const source = fs.readFileSync(path.join(uiDir, fileName), 'utf8');
+  for (const match of source.matchAll(/<([a-z][a-z0-9]*(?:-[a-z0-9]+)+)[\s/>]/g)) customTags.add(match[1]);
+}
+const sharedSource = fs.readFileSync(readerComponentsPath, 'utf8');
+for (const match of sharedSource.matchAll(/<([a-z][a-z0-9]*(?:-[a-z0-9]+)+)[\s/>]/g)) customTags.add(match[1]);
 const missing = [...customTags].filter(tag => !registeredTags.has(tag) && !isExempt(tag)).sort();
 const unused = [...registeredTags].filter(tag => !customTags.has(tag) && tag !== 'ui').sort();
 

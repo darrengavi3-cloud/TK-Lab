@@ -1,0 +1,32 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 release:access
+> REQUIRE_FRESH_SITE_ACCESS=1 node --test tests/access-policy.test.mjs
+
+✖ records an owner-only Sites access check; release requires freshness (5.796989ms)
+✔ release access rejects expired, future, malformed and widened snapshots (3.589331ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.820495
+
+✖ failing tests:
+
+test at tests/access-policy.test.mjs:9:1
+✖ records an owner-only Sites access check; release requires freshness (5.796989ms)
+  AssertionError [ERR_ASSERTION]: access check is stale: 1210956779ms
+      at validateSiteAccess (file:///workspace/scratch/a34a63caee20/TK-Lab/scripts/validate-site-access.mjs:14:28)
+      at TestContext.<anonymous> (file:///workspace/scratch/a34a63caee20/TK-Lab/tests/access-policy.test.mjs:12:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

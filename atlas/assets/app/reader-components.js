@@ -1,6 +1,11 @@
 (function (global) {
   'use strict';
   global.SGZ_READER_COMPONENTS = Object.freeze({
+    SgzPagination: {
+      props: { page: Number, pageCount: Number, label: String },
+      emits: ['page-delta'],
+      template: `<nav class="sgz-pagination" :aria-label="label"><button type="button" :disabled="page<=1" @click="$emit('page-delta',-1)">上一页</button><span><slot /></span><button type="button" :disabled="page>=pageCount" @click="$emit('page-delta',1)">下一页</button></nav>`
+    },
     ShihuoReadingDetail: {
       props: ['record'],
       template: `<article class="v83-food-detail">

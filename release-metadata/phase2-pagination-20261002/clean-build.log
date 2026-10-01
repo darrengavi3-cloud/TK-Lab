@@ -1,0 +1,203 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:site
+> npm run build:catalogue && WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build && node scripts/prune-site-build.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:catalogue
+> node scripts/build-catalogue.mjs
+
+{"baselineRecords":7155,"seedBytes":41501793,"codeId":"71fa9ba61105b7697fcd5b7b0a8efb94f1708f7913dc46c927ce9df22089b20e"}
+
+  vinext build  (Vite 8.0.16)
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+[1/5] analyze client references...
+[2Ktransforming...✓ 272 modules transformed.
+rendering chunks...
+✓ built in 2.12s
+[2/5] analyze server references...
+[2Ktransforming...✓ 90 modules transformed.
+rendering chunks...
+✓ built in 207ms
+[3/5] build rsc environment...
+[2Ktransforming...✓ 263 modules transformed.
+rendering chunks...
+computing gzip size...
+[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - rsc:load-environment-module (20%)
+  - rsc:virtual-client-package (12%)
+  - vinext:og-inline-fetch-assets (12%)
+  - alias (9%)
+  - vinext:middleware-server-only (4%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+
+✓ built in 3.15s
+[4/5] build client environment...
+[2Ktransforming...✓ 134 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 764ms
+[5/5] build ssr environment...
+[2Ktransforming...✓ 96 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 484ms
+[0m
+  Route (app)
+  ─ ? /
+
+  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+Sites build pruned: kept 500 runtime portraits; removed 0 files (0 bytes); optimized 485 portraits (153013704 bytes); optimized 1 ui decorations (1951200 bytes); deployment manifest 2133 files (37457f2ddb54d4b0e54d66c1ec48959f847f4318f5da328661a4f8ec9c4878a1).
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 test:built
+> node --test tests/*.test.mjs
+
+✔ records an owner-only Sites access check; release requires freshness (10.358399ms)
+✔ release access rejects expired, future, malformed and widened snapshots (5.83385ms)
+✔ candidate visibility, workflow and factual verification remain independent (1.726418ms)
+✔ unknown endpoints and inferred years never make certain tenure claims (1.28322ms)
+✔ same-name people remain distinct; identity cycles and alias collisions fail (0.36068ms)
+✔ evidence binds an immutable source version and rejects a dangling or duplicate link (0.478119ms)
+✔ duplicate corroboration retains evidence but is neither false nor counted twice (1.105029ms)
+✔ revision conflict preserves original history and caller input is detached (19.389696ms)
+✔ editing a verified assertion requires review of the exact new bytes (7.308079ms)
+✔ import identity is stable across mapping key order but changes with file, mapping or importer (7.380481ms)
+✔ reader whitelist excludes working notes; source quotes retain exact whitespace (1.463339ms)
+✔ a fixed candidate ignores later edits; changed artifacts invalidate approval; success needs matching receipt (7.573764ms)
+✔ canonical hashing rejects lossy or non-JSON values (0.969417ms)
+✔ a pending alias never inherits the verified name decision (0.901193ms)
+✔ reader projection merges duplicate evidence without adding a second appointment (0.162532ms)
+✔ candidate manifest includes the older source revision actually cited (20.637116ms)
+✔ additive migration preserves owner and one saved fact feeds person, office, state and pinned quotations (1706.948565ms)
+✔ unknown and non-held tenures stay out of snapshots; withdrawing removes every managed view (1212.316396ms)
+✔ cross-polity, wrong-person, conflicting state claims and invalid unit links fail without partial facts (916.4298ms)
+✔ backup v3 includes ownership links and the restore verifier still admits exact v2 backups (586.391278ms)
+✔ explicit state power kinds publish without changing jurisdiction semantics (405.838963ms)
+✔ civil and military power combinations remain data, not a combined-office flag (428.710261ms)
+✔ shadow import closes the frozen V86 appointment status counts without promoting candidates (2.133798ms)
+✔ every original byte, including full registry and superseded decisions, is retained (203.215762ms)
+✔ person and appointment IDs are mapped one for one, not merely counted (435.898835ms)
+✔ existing reader payloads, peerage relation keys and identity maps survive unchanged (337.528843ms)
+✔ source excerpts and supporting quotes are preserved without trimming or normalization (24.913514ms)
+✔ unresolved identity links are explicit and do not invent people or erase facts (3.802515ms)
+✔ non-person exclusions stay as terms without fabricated person IDs (291.268167ms)
+✔ actual D1 persists immutable revisions and rolls back a stale CAS (1018.035481ms)
+✔ idempotent save retry does not append another revision and rejects another payload (363.161887ms)
+✔ owner and mutation guards reject unsigned, non-owner, cross-origin and action requests (2.481849ms)
+✔ original file is retained and staged imports stay invisible until one complete commit (592.892411ms)
+✔ fixed publication uses cited source revision, switches atomically, and rollback retains drafts (2047.012498ms)
+✔ real baseline records pass domain and relational import validation (448.507043ms)
+✔ backup restores D1 history, originals and published snapshots into an empty database (1824.419782ms)
+✔ complete baseline bootstrap commits 7155 records once and reproduces all reader facts (106992.987101ms)
+✔ all sixteen reported simplified names match through the actual reader search (10.454921ms)
+✔ reviewed epigraphy preserves source text and unknown years, and rejects stale decisions (9.468286ms)
+✔ all 59 baseline candidates have a disposition; new or changed findings require reassessment (658.493814ms)
+✖ post-prune deployment manifest matches every packaged file (64.209734ms)
+✔ cold map initialization cannot replace the requested battle period (4.215076ms)
+✔ map period messages reject foreign frames and invalid indices (2.082286ms)
+✔ twenty representative journeys retain reviewed identities, appointments and matching timeline facts (15.934277ms)
+✔ reviewed succession replaces stale cached dates and preserves separate acting/restoration events (3.285279ms)
+✔ succession preserves unknown years, acting office names and independent institution history (0.656807ms)
+✔ public office projection fails closed for missing identities or citations (5.52844ms)
+✔ deployed responsive portraits preserve source identity and actual dimensions (3013.539634ms)
+✔ deploys only the field-gated reader projection (355.105852ms)
+✔ renders imported text only through text bindings (17.191767ms)
+✔ keeps the synchronous first-view payload within 800 KiB compressed (105.547642ms)
+✔ reader manifest entries remain internally self-consistent before site optimization (2.993785ms)
+✔ all visible modules share host routes and reading return (2.268241ms)
+✔ boot timeout accepts late readiness and ignores disposed timers (0.602703ms)
+✔ host rejects foreign readiness and prevents handshake loops (1.665955ms)
+✔ retry restores selected detail without reporting stale failure (1.418625ms)
+✔ single HTML resolves shared imports once and retains navigation (4.230739ms)
+✔ identity and portrait gates reject same-count replacements (16.46172ms)
+✔ global search prepares lazy domains, opens stable records and keeps pending records visible by default (1.405517ms)
+✔ food withdrawal is closed across records, events and metrics while source is preserved (10.992233ms)
+✔ food facts retain independent source and uncertain dates without silently upgrading estimates (21.717567ms)
+✔ cross-module reading trail restores exact filtered context and rejects external destinations (1.783108ms)
+✔ food pagination reacts when its lazy module and records finish loading (33.153895ms)
+✔ actual reading-return handler uses browser history even when editor history exists (7.742185ms)
+✔ office-holder handler ignores a late load after navigation changes (7.077493ms)
+✔ food all-period scope and explicit candidate inclusion survive actual URL handlers (8.240256ms)
+✔ shared filters count, name and clear only active conditions across reader modules (7.435825ms)
+✔ V75 removes five false people and consolidates corroboration without losing source evidence (572.536556ms)
+✔ V74 chancellery evidence preserves refutations, corrected subjects and unknown dates (55.618763ms)
+✔ reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate (410.147817ms)
+✔ identity resolution cannot publish an unreviewed appointment; source edits invalidate review (0.487509ms)
+✔ all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild (5.06483ms)
+✔ snapshots contain confirmed, bounded tenures only, including inclusive endpoints (4.111474ms)
+✔ verified administrative tenures resolve into person timelines; candidates do not (26.182897ms)
+✔ person links switch module, await data, and prevent stale results from replacing a later selection (0.571397ms)
+✔ host routes require the expected frame and origin, and preserve archive context (0.593873ms)
+✔ a history restore within people cancels an older in-flight person link (0.399242ms)
+✔ canonical, portable scripts and shared reader templates compile (575.193521ms)
+✔ all existing inscriptions, sections and variants are preserved verbatim (5.909662ms)
+✔ the final reader retains all six reviewed transcriptions and variants without legacy overlays (16.614139ms)
+✔ reviewed Wei texts reach the final reader with lacunae and provenance intact (3.687205ms)
+✔ epigraphy publication rejects changed sources, edited text and overwrites (11.60217ms)
+✔ epigraphy dates do not coerce unknown years into the Han period (3.830777ms)
+✔ the inscription filter includes transmitted and fragmentary texts without rewriting their status (3.837216ms)
+✔ reviewed old commentary retains its text and rejects altered apparatus (2.164038ms)
+✔ reviewed biographies pin identities and evidence without replacing existing biographies (44.410728ms)
+✔ Tai Shi corrections preserve source years and reject stale or ambiguous reviews (15.575061ms)
+✔ the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate (4.861406ms)
+✔ V76 corrects succession chronology and requires explicit guards for revised reviews (367.86299ms)
+✔ V76 biography corrections preserve old wording and reject stale or unreviewed replacements (32.042183ms)
+✔ V80 withdraws seven false identities while freezing all ten associated sources and original portrait files (253.34538ms)
+✔ server-renders the historical atlas shell (422.465353ms)
+✔ packages the current court, reader people, and map assets (19.139667ms)
+✔ packages the V63 field-gated full people reader projection (25.194954ms)
+✔ packages all retained production portraits and the V73 reader records (61.352514ms)
+✔ research triage remains unapproved and preserves exact input evidence (14.586036ms)
+✔ all 59 existing inscriptions retain exact text including variants (8.351679ms)
+✔ first source-review batch resolves 19 candidates without changing the 197 published facts (11.742321ms)
+✔ reviewed annals preserve retrospective dates, Wei polity stages, refusal subjects and office transitions (6.994121ms)
+✔ second source-review batch preserves all 213 published facts and freezes its 20 decisions (13.562877ms)
+✔ second batch fixes subjects, preserves qualifications and refuses ambiguous or unregistered assignments (7.006429ms)
+✔ third source-review batch freezes 20 decisions and preserves all 225 previously published facts (15.032618ms)
+✔ fourth batch reviews exactly frozen rows 61–80 and preserves prior facts except one guarded citation correction (41.304092ms)
+✔ fourth batch keeps corrected subjects, East Palace scope, full offices and unknown end dates (12.88252ms)
+✔ V81 prior-review corrections pin immutable decisions and reconcile the 80-item queue without double counting (12.247643ms)
+✔ fifth batch reviews exactly frozen rows 81–100 while preserving all 251 prior facts and identity boundaries (36.546173ms)
+✔ fifth batch distinguishes refusal, exemption from bowing, posthumous titles and complete offices (403.588865ms)
+✔ V82 closes the frozen queue as 66 approved, 25 excluded and 9 pending without rewriting prior checkpoints (7.779931ms)
+✔ patched esbuild remains compatible with the Drizzle TypeScript loader (2.720277ms)
+✔ read-only Worker rejects unused image and action endpoints before consuming a body (6.522219ms)
+ℹ tests 110
+ℹ suites 0
+ℹ pass 109
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115424.883617
+
+✖ failing tests:
+
+test at tests/deployment-integrity.test.mjs:20:1
+✖ post-prune deployment manifest matches every packaged file (64.209734ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2133 !== 2134
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/a34a63caee20/TK-Lab/tests/deployment-integrity.test.mjs:36:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2133,
+    expected: 2134,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,71 @@
+已同步读者版：594 个文件，来源哈希 7674eec96c233b8e819b3bf68b3c2d06a3b0e6b4a5922d2b38b01cd276bb0b3b
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:site
+> npm run build:catalogue && WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build && node scripts/prune-site-build.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:catalogue
+> node scripts/build-catalogue.mjs
+
+{"baselineRecords":7155,"seedBytes":41501793,"codeId":"71fa9ba61105b7697fcd5b7b0a8efb94f1708f7913dc46c927ce9df22089b20e"}
+
+  vinext build  (Vite 8.0.16)
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+[1/5] analyze client references...
+[2Ktransforming...✓ 272 modules transformed.
+rendering chunks...
+✓ built in 1.99s
+[2/5] analyze server references...
+[2Ktransforming...✓ 90 modules transformed.
+rendering chunks...
+✓ built in 165ms
+[3/5] build rsc environment...
+[2Ktransforming...✓ 263 modules transformed.
+rendering chunks...
+computing gzip size...
+[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - rsc:load-environment-module (20%)
+  - rsc:virtual-client-package (13%)
+  - vinext:middleware-server-only (10%)
+  - vinext:og-inline-fetch-assets (10%)
+  - vinext:require-condition-resolution (5%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+
+✓ built in 3.11s
+[4/5] build client environment...
+[2Ktransforming...✓ 134 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 784ms
+[5/5] build ssr environment...
+[2Ktransforming...✓ 96 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 498ms
+[0m
+  Route (app)
+  ─ ? /
+
+  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+Sites build pruned: kept 500 runtime portraits; removed 0 files (0 bytes); optimized 485 portraits (153013704 bytes); optimized 1 ui decorations (1951200 bytes); deployment manifest 2133 files (026f8c8a9645d003df3599d434cc7f1a3c49f15351bf688fe3161c97c81fdaf3).
+✔ post-prune deployment manifest matches every packaged file (655.449072ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 752.472452

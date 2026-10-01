@@ -89,7 +89,7 @@ export const ShihuoWorkbench = {
             <button v-for="record in state.shihuoPagination.rows" :key="record.id" type="button" class="v83-food-row" :aria-pressed="isCurrentRecord(record)" @click="openRecord(record)">
               <span>{{record.yearText||record.year||'年代未详'}} · {{record.polity}}</span><strong>{{record.title}}</strong><small>{{record.category}}<template v-if="record.readingClass==='discussion'"> · 推算与讨论</template></small>
             </button>
-            <nav class="v67-pagination" aria-label="食货分页"><button type="button" :disabled="state.shihuoPagination.page<=1" @click="stepPage(-1)">上一页</button><span>{{state.shihuoPagination.page}} / {{state.shihuoPagination.pages}}</span><button type="button" :disabled="state.shihuoPagination.page>=state.shihuoPagination.pages" @click="stepPage(1)">下一页</button></nav>
+            <sgz-pagination :page="state.shihuoPagination.page" :page-count="state.shihuoPagination.pages" label="食货分页" @page-delta="stepPage">{{state.shihuoPagination.page}} / {{state.shihuoPagination.pages}}</sgz-pagination>
           </div>
           <shihuo-reading-detail v-if="state.shihuoPrimaryDetail&&state.viewportWidth>980" :record="state.shihuoPrimaryDetail"/>
         </section>
