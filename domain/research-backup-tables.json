@@ -1,0 +1,5 @@
+{
+  "catalogue_research_revisions": ["person_id","version","request_id","request_hash","catalogue_watermark","graph","graph_digest","manifest","manifest_digest","actor","reason","at","guard"],
+  "catalogue_research_members": ["person_id","version","kind","id","payload"],
+  "catalogue_research_pins": ["person_id","version","record_id","record_version","kind","digest"]
+}

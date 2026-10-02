@@ -1,0 +1,52 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 test:visual
+> node --test tests/visual/*.test.mjs
+
+✔ appointment link selectors preserve layout, no-results and keyboard at 390px (1359.535276ms)
+✔ appointment link selectors preserve layout, no-results and keyboard at 1280px (1510.251168ms)
+✔ appointment link selectors preserve layout, no-results and keyboard at 1440px (1196.716295ms)
+✔ shihuo: shared pagination preserves main DOM, disabled boundaries and parent event forwarding (294.845584ms)
+✔ fangzhen: shared pagination preserves main DOM, disabled boundaries and parent event forwarding (144.631894ms)
+✔ 1440 阅读 兰台清昼 · offices (1999.329853ms)
+✔ 1440 阅读 兰台清昼 · people (2453.534988ms)
+✔ 1440 阅读 兰台清昼 · battle (2407.457379ms)
+✔ 1440 阅读 兰台清昼 · fangzhen (2116.331322ms)
+✔ 1440 阅读 兰台清昼 · jinshi (2116.071727ms)
+✔ 1440 阅读 兰台清昼 · shihuo (2153.84966ms)
+✔ 1440 阅读 兰台清昼 · map (4594.014081ms)
+✔ 1440 阅读 青灯夜校 · offices (1383.637539ms)
+✔ 1440 阅读 青灯夜校 · people (2728.3629ms)
+✔ 1440 阅读 青灯夜校 · battle (2176.900608ms)
+✔ 1440 阅读 青灯夜校 · fangzhen (2165.319819ms)
+✔ 1440 阅读 青灯夜校 · jinshi (1809.530622ms)
+✔ 1440 阅读 青灯夜校 · shihuo (1830.639533ms)
+✔ 1440 阅读 青灯夜校 · map (5067.243ms)
+✔ 1280 审校 兰台清昼 · offices (6259.144155ms)
+✔ 1280 审校 兰台清昼 · people (4381.957762ms)
+✔ 1280 审校 兰台清昼 · battle (3337.248762ms)
+✔ 1280 审校 兰台清昼 · fangzhen (3803.85825ms)
+✔ 1280 审校 兰台清昼 · jinshi (2825.837228ms)
+✔ 1280 审校 兰台清昼 · shihuo (2286.476275ms)
+✔ 1280 审校 兰台清昼 · map (3913.115847ms)
+✔ 390 阅读 兰台清昼 · offices (1669.239448ms)
+✔ 390 阅读 兰台清昼 · people (2607.273226ms)
+✔ 390 阅读 兰台清昼 · battle (1668.898698ms)
+✔ 390 阅读 兰台清昼 · fangzhen (2169.552822ms)
+✔ 390 阅读 兰台清昼 · jinshi (1821.97956ms)
+✔ 390 阅读 兰台清昼 · shihuo (2346.784974ms)
+✔ 390 阅读 兰台清昼 · map (1497.843904ms)
+✔ fangzhen V2 view controls persist across reload at 390px (9107.572738ms)
+✔ fangzhen V2 view controls persist across reload at 1280px (6479.316938ms)
+✔ fangzhen V2 view controls persist across reload at 1440px (6462.860261ms)
+✔ cold battle-to-map navigation preserves the requested period and return detail (5115.152119ms)
+✔ food lazy navigation renders records and paginates instead of caching an empty result (2421.96403ms)
+✔ cold global search loads jinshi and opens the exact stable record (3856.90605ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 109547.739611

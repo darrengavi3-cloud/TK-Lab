@@ -84,16 +84,21 @@ test('cross-polity, wrong-person, conflicting state claims and invalid unit link
   assert.equal((await db.prepare("SELECT count(*) AS n FROM catalogue_records WHERE id IN ('appointment:competing-a','appointment:competing-b')").first()).n,1);
   assert.deepEqual((await db.prepare('PRAGMA foreign_key_check').all()).results,[]);
 });
-test('backup v3 includes ownership links and the restore verifier still admits exact v2 backups',async()=>{
+test('backup v4 retains ownership links and exact v2/v3 backups remain readable',async()=>{
   const text=await new Response(await service.backup(env)).text();
   const current=verifyBackup(gzipSync(text));
-  assert.equal(current.manifest.format,'guanshitai-backup-3');assert.equal(current.data.catalogue_reader_links.length,2);
-  const lines=text.trimEnd().split('\n').map(JSON.parse),oldRows={...current.data};delete oldRows.catalogue_reader_links;
-  const older=lines.filter(line=>line.table!=='catalogue_reader_links');
-  older[0].format='guanshitai-backup-2';older[0].tables=Object.keys(oldRows);
-  const last=older.at(-1);last.rows-=current.data.catalogue_reader_links.length;last.rowsDigest=createHash('sha256').update(JSON.stringify(oldRows)).digest('hex');
-  const restored=verifyBackup(gzipSync(older.map(r=>JSON.stringify(r)).join('\n')+'\n'));
-  assert.deepEqual(restored.data.catalogue_reader_links,[]);
+  assert.equal(current.manifest.format,'guanshitai-backup-4');assert.equal(current.data.catalogue_reader_links.length,2);
+  const baseTables=JSON.parse(fs.readFileSync('domain/backup-tables.json','utf8'));
+  for(const version of [2,3]){
+    const names=Object.keys(baseTables).filter(name=>version!==2||name!=='catalogue_reader_links');
+    const oldRows=Object.fromEntries(names.map(name=>[name,current.data[name]]));
+    const older=text.trimEnd().split('\n').map(JSON.parse).filter(line=>line.type!=='row'||names.includes(line.table));
+    older[0].format='guanshitai-backup-'+version;older[0].tables=names;
+    const last=older.at(-1);last.rows=Object.values(oldRows).reduce((n,rows)=>n+rows.length,0);last.rowsDigest=createHash('sha256').update(JSON.stringify(oldRows)).digest('hex');
+    const restored=verifyBackup(gzipSync(older.map(r=>JSON.stringify(r)).join('\n')+'\n'));
+    assert.deepEqual(restored.data.catalogue_reader_links,version===2?[]:current.data.catalogue_reader_links);
+    assert.deepEqual(restored.data.catalogue_research_revisions,[]);
+  }
 });
 
 test('explicit state power kinds publish without changing jurisdiction semantics',async()=>{

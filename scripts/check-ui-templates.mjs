@@ -173,6 +173,17 @@ for (const file of files) {
   }
 }
 
+// 共享读者组件使用同步全局登记，仍需经过同一个实际 Vue 编译器。
+vm.runInContext(fs.readFileSync(path.join(root, 'atlas/assets/app/reader-components.js'), 'utf8'), sandbox);
+for (const [name, component] of Object.entries(sandbox.SGZ_READER_COMPONENTS)) {
+  try {
+    Vue.compile(component.template, { onError(error) { throw error; } });
+    checked += 1;
+  } catch (error) {
+    failures.push(`reader-components.js → ${name}：${error.message}`);
+  }
+}
+
 if (failures.length) {
   console.error('✗ 界面单元模板校验未通过：');
   failures.forEach(item => console.error(`  - ${item}`));

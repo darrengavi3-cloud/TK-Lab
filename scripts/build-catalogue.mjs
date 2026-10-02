@@ -38,4 +38,5 @@ fs.writeFileSync('server/generated/reader-profiles.json',JSON.stringify(context.
 const xlsx=fs.readFileSync('atlas/assets/vendor/xlsx/xlsx.full.min.js','utf8')+'\nexport default XLSX;\n';
 await build({stdin:{contents:xlsx,loader:'js',resolveDir:process.cwd()},bundle:true,platform:'browser',format:'esm',define:{require:'undefined',module:'undefined',exports:'undefined'},minify:true,outfile:'server/generated/xlsx.mjs',logLevel:'silent'});
 if(fs.existsSync('admin/client.ts'))await build({entryPoints:['admin/client.ts'],bundle:true,format:'esm',platform:'browser',minify:true,outfile:'public/admin-client.mjs',logLevel:'silent'});
+if(fs.existsSync('admin/research-client.ts'))await build({entryPoints:['admin/research-client.ts'],bundle:true,format:'esm',platform:'browser',minify:true,outfile:'public/research-client.mjs',logLevel:'silent'});
 console.log(JSON.stringify({baselineRecords:seed.records.length,seedBytes:Buffer.byteLength(seedText),codeId}));
