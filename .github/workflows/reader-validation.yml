@@ -59,8 +59,13 @@ jobs:
         run: npm ci
       - name: Install Chromium for the visual gate
         run: npx playwright install --with-deps chromium
+      - name: Prepare pinned comparison and research UI inputs
+        run: |
+          git fetch --no-tags --depth=1 origin 1af7a8a4078a5142a784b81ee1d8d414ed017077
+          npm run sync:reader
+          npm run build:catalogue
       # 渲染门禁：字面硬切、触控目标、文字对比、短标签竖排、横向溢出。
-      # 以 atlas/ 源码树直接伺服，不依赖 dist/ 产物，故与上一个 job 并行。
+      # 读者直接伺服 atlas/，后台使用本 job 生成的清单；不依赖另一 job 的产物。
       - name: Reader visual gate
         run: npm run test:visual
       # 史实一致性：库内互证，不联网、不引入外部史源；列出所有相左之处供覆核。
