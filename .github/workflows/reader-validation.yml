@@ -62,6 +62,7 @@ jobs:
       - name: Prepare pinned comparison and research UI inputs
         run: |
           git fetch --no-tags --depth=1 origin 1af7a8a4078a5142a784b81ee1d8d414ed017077
+          npm run build:atlas
           npm run sync:reader
           npm run build:catalogue
       # 渲染门禁：字面硬切、触控目标、文字对比、短标签竖排、横向溢出。
