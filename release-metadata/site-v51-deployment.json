@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "projectId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+  "versionNumber": 51,
+  "versionId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_5657df99a0ec8191b612dddff3d855b4",
+  "deploymentId": "appgdep_6abfd83874ec819196eb462ddd7122ec",
+  "status": "succeeded",
+  "deployedAt": "2026-10-02T16:13:56.323645+00:00",
+  "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+  "sourceCommit": "3d0c69f028fbe02157f7a031c52f52eddcd0d071",
+  "githubReviewedHead": "b62789e1a3dd67f778a0bc19b3ee4a4956df2180",
+  "githubMergeCommit": "15a05331db5bb4ac1735382e1e781d6e98309cc4",
+  "ci": {
+    "runId": 37031742537,
+    "offlineValidation": "success",
+    "readerVisual": "success"
+  },
+  "access": {
+    "mode": "custom",
+    "ownerOnly": true,
+    "allowedUsers": 1,
+    "externalVisitors": 0,
+    "allowedGroups": 0,
+    "environmentRevision": 1,
+    "checkedAt": "2026-10-02T16:16:41.909Z"
+  },
+  "deploymentManifest": {
+    "files": 2137,
+    "aggregateSha256": "239894cb52594f8cb250524d3ed4f61c4ec5c3a43fc2fbfdbd4b7e7292f0a069"
+  },
+  "archive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000d15c81fd9331d7ec901844e3",
+    "content_hash": "sha256:43c19c1db0a3d9434c3ad2abe8f6a2aec332749bb7074ef49e36c4d3e97937a0",
+    "size_bytes": 74567680,
+    "file_count": 2138
+  },
+  "migration": {
+    "name": "0003_research_journal",
+    "priorFilesUnchanged": true,
+    "productionTablesVerified": [
+      "catalogue_research_revisions",
+      "catalogue_research_members",
+      "catalogue_research_pins"
+    ]
+  },
+  "productionD1ContentPublishedByThisDeployment": false,
+  "privateMaterialsImported": false,
+  "productionResearchEndToEndVerified": false,
+  "realDeviceAcceptanceVerified": false
+}
