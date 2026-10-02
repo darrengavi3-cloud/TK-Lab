@@ -1,0 +1,9 @@
+interface VueBridge {toRefs:<T extends object>(value:T)=>Record<keyof T,unknown>;createApp:(options:Record<string,unknown>)=>{use:(plugin:unknown,options?:unknown)=>{mount:(selector:string)=>void}};reactive:<T extends object>(value:T)=>T;computed:<T>(getter:()=>T)=>{value:T};watch:(getter:()=>unknown,callback:()=>void,options?:Record<string,unknown>)=>void;onMounted:(fn:()=>void|Promise<void>)=>void;nextTick:()=>Promise<void>}
+declare global {interface Window {Vue:VueBridge;ElementPlus:{ElMessageBox:{confirm:(message:string,title:string,options?:Record<string,unknown>)=>Promise<unknown>}}}}
+export class ApiError extends Error {status:number;constructor(status:number,message:string){super(message);this.status=status;}}
+export const randomId=()=>Array.from(crypto.getRandomValues(new Uint8Array(16))).map(v=>v.toString(16).padStart(2,'0')).join('');
+export async function api<T>(path:string,method='GET',value?:unknown):Promise<T>{
+  const response=await fetch('/api/admin'+path,{method,signal:AbortSignal.timeout(60000),cache:'no-store',credentials:'same-origin',headers:method==='GET'?{}:{'Content-Type':'application/json','X-Catalogue-Request':'1'},body:value===undefined?undefined:JSON.stringify(value)});
+  const data=await response.json() as {error?:string};if(!response.ok)throw new ApiError(response.status,data.error||'請求未完成。');return data as T;
+}
+export const locale={name:'zh-tw',el:{select:{loading:'載入中',noMatch:'沒有符合的記錄',noData:'尚無記錄',placeholder:'請選擇'},table:{emptyText:'尚無資料',confirmFilter:'確認',resetFilter:'重設',clearFilter:'全部',sumText:'合計'},pagination:{goto:'前往',pagesize:'筆／頁',total:'共 {total} 筆',pageClassifier:'頁',page:'頁',prev:'上一頁',next:'下一頁',currentPage:'第 {pager} 頁',prevPages:'向前 {pager} 頁',nextPages:'向後 {pager} 頁'},messagebox:{title:'提示',confirm:'確認',cancel:'取消',error:'資料無效',close:'關閉'},inputNumber:{decrease:'減少',increase:'增加'}}};

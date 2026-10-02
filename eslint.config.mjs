@@ -20,6 +20,7 @@ const eslintConfig = defineConfig([
     "drizzle/**",
     "server/generated/**",
     "public/admin-client.mjs",
+    "public/research-client.mjs",
     "work/**",
   ]),
 ]);

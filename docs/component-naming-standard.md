@@ -1,6 +1,6 @@
 # 观史台组件命名规范（重设计目标态）
 
-> 本文件定义重构**完成后**的命名与组件规范。现有 171 个版本化类名（320 处）按此收敛。
+> 本文件定义重构**完成后**的命名与组件规范。171 个版本化类名（320 处）为重构前估算，当前范围以 `module-contract-redesign.md` 为准。
 > 规范依据：`DESIGN.md` 已确立的语义（兰台案牍／册府索引台）与五层 CSS 架构。
 >
 > 核心原则：**类名描述"它是什么"，不描述"哪个版本加的"。**
@@ -15,7 +15,7 @@
 
 - 同一概念随版本分裂成多个类（如 `v56-person-row` / `v69-person-profile`）；
 - 后人无法判断该用哪个；
-- 归档样式被删除后，类名成为孤儿。
+- 若未核对在线与离线消费者就删除样式，可能破坏导出。
 
 **规则：所有面向运行时的类名一律不含 `vNN-` 前缀。**
 
@@ -87,7 +87,6 @@ sgz-{token}                         令牌层（已存在，不动）
 | `v56-person-directory` `v56-person-row` `v56-person-row-name` `v56-person-row-meta` `v56-person-row-count` `v56-people-master-detail` `v56-person-dossier` `v56-person-dossier-head` `v56-person-dossier-meta` `v69-person-profiles` `v69-person-life-*` `v69-life-type` `v62-person-match` `v62-people-offices` `v63-person-registry` `v63-reader-people` `v63-reader-person-relations` | `people-directory` `people-row` `people-row__name` `people-row__meta` `people-row__count` `people-master-detail` `people-dossier` `people-dossier__head` `people-dossier__meta` `people-profiles` `people-life-year` … `people-match` … | people |
 | `v56-jinshi-directory` `v56-jinshi-row` `v56-jinshi-row-title` `v56-jinshi-row-meta` `v56-jinshi-reader` `v56-jinshi-inscription` `v56-jinshi-fields` `v56-jinshi-workbench-grid` `v67-jinshi-media` `v67-jinshi-facts` `v67-jinshi-related` `v67-jinshi-thumbnails` `v67-jinshi-reader-head` `v67-jinshi-directory-head` `v62-transcription*` `v62-jinshi-*` `v61-jinshi-*` `v61-epigraphy-research` `v58-jinshi-status` `v69-epigraphic-*` `v69-epigraphy-audit` | `jinshi-directory` `jinshi-row` … `jinshi-reader` … `jinshi-transcription` `jinshi-variant-label` … | jinshi |
 | `v67-module-masthead` `v67-masthead-tabs` `v67-masthead-meta` `v67-fangzhen-related` `v67-fangzhen-person` `v67-fangzhen-dossier` `v67-fact-grid` `v67-dossier-actions` `v69-fangzhen-statuses` `v69-fangzhen-reader` `v66-administrative-seat-periods` | `fangzhen-masthead` `fangzhen-masthead__tabs` … `fangzhen-dossier` … | fangzhen |
-| `v56-shiyuan-*`（10 个） | `shiyuan-*` | shiyuan |
 | `v66-battle-*` `v69-battle-*` | `battle-*` | battle |
 | `v66-peerage-stages` | `offices-peerage-stages` | offices |
 | `v83-food-*` `v83-discussion` | `shihuo-*` | shihuo |
@@ -97,9 +96,9 @@ sgz-{token}                         令牌层（已存在，不动）
 
 ## 三、组件目录（重设计后的共享组件层）
 
-现有 5 个组件不足以消除重复。重设计后组件层 = **6 个现有 + 6 个新增**：
+现有 6 个共享组件；以下为候选目录，不能用组件数量代替实际重复核查。本轮仅新增 SgzPagination。
 
-### 3.1 保留并规范化（现有 5 个）
+### 3.1 保留并规范化（现有 6 个）
 
 | 组件 | 变更 |
 |---|---|
@@ -121,7 +120,7 @@ sgz-{token}                         令牌层（已存在，不动）
 | `SgzStatusLine` | `state, text` | 状态徽标（释文状态／审定状态／岗位状态） | 6+ |
 | `SgzEmptyPanel` | `seal, title, hint` | 空状态面板（`jinshi-empty-panel` 等） | 3 |
 
-> **判断**：提取这 6 个组件可消除约 **25 处模板重复**，并让 `index.html` 减少约 200 行。
+> 这些次数是重构前估算，须逐项重查当前 ESM 模板；不承诺全部提取或固定减少行数。
 > 收益真实但非颠覆性——真正的收益在于**风格一致性由组件保证，而非靠人工对齐**。
 
 ---
@@ -147,16 +146,14 @@ assets/ui/
     ├─ 3. battle
     ├─ 4. fangzhen
     ├─ 5. jinshi
-    ├─ 6. shiyuan
-    ├─ 7. shihuo
-    └─ 8. map（只保留 iframe 外框）
+    ├─ 6. shihuo
+    └─ 7. map（只保留 iframe 外框）
   responsive.css    # 断点：760 / 980 / 1280
 ```
 
-**删除**：`v55.css` `v56.css` `v57.css` `v58.css` `v60.css` `v61.css` `v62.css`（2,817 行，零引用）
+**保留**：`v55.css` `v56.css` `v57.css` `v58.css` `v60.css` `v61.css` `v62.css`。
 
-> 该删除已由 `DESIGN.md` V64 条款授权（"只作历史档案"）。但**删除前须再次全量核对零引用**，
-> 包括 `tests/` 与 `scripts/` 中的字符串引用。
+PR #25 已验证这些文件仍被 `build-portable-export.mjs` 使用并受来源锁追踪。V64 只冻结在线五层级联，不授权删除离线依赖；史源表已移除，不再纳入命名或组件提取工作项。
 
 ---
 
@@ -175,8 +172,8 @@ assets/ui/
 | 项 | 目标值 | 验证方式 |
 |---|---|---|
 | 版本化类名 | **0 个** | `grep -o '\bv[0-9][0-9]-[a-z-]*' atlas/index.html \| wc -l` == 0 |
-| 归档 CSS 文件 | **0 个** | `ls atlas/assets/ui/v*.css` 为空 |
-| 共享组件数 | **12 个** | `reader-components.js` 内组件计数 |
+| 历史 CSS 文件 | **保留 7 个** | 离线导出、来源锁与确定性构建通过 |
+| 共享组件数 | 按实际重复决定 | 提取前核实当前模板，验证行为等价 |
 | `index.html` 行数 | **≤ 8,500** | `wc -l` |
 | 测试 | **全绿** | `npm test` + `npm run test:source` + `npm run test:visual` |
 | 发布检查 | **通过** | `npm run release:check` |

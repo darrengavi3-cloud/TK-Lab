@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-02",
+  "baseCommit": "1af7a8a4078a5142a784b81ee1d8d414ed017077",
+  "integratedHeads": {
+    "20": "3a47d31490846616cc38dbb7e42845ead9860c9a",
+    "28": "15771c77f58bd8e42f463f55656267cbc8d3310a"
+  },
+  "checks": {
+    "verifySource": "passed",
+    "releaseCheck": {
+      "passed": true,
+      "builtTests": 247,
+      "accessTests": 2
+    },
+    "visual": {
+      "passed": true,
+      "tests": 41
+    },
+    "finalAdminStyleChecks": {
+      "passed": true,
+      "tests": 5
+    },
+    "finalPackage": {
+      "passed": true,
+      "tests": 6
+    },
+    "builtWorkerRuntime": "passed",
+    "typecheck": "passed",
+    "lint": {
+      "errors": 0,
+      "warnings": 3,
+      "notes": "Existing unused eslint-disable directives in generated Cloudflare type definitions."
+    }
+  },
+  "sequence": "After release:check, the shared admin button-label contrast and selector focus styling were refined. The affected browser tests, full production build, packaged-file integrity and rendered-reader tests were rerun. The Worker harness was updated to assert the current v4 backup contract and exercise the new routes.",
+  "deploymentManifest": {
+    "aggregateSha256": "df852d3a132e09f5f46fc4d6d5ec1ad990b90ecca426074b5783123babfad77d",
+    "files": 2137
+  },
+  "logSha256": {
+    "release-check": "27900d8b5568fcf829a0d1b711cbcb005f5c1eeeee27cf8fd5b5358125fa7bfb",
+    "visual": "85626b23c70809f5c304d997b9a6a9cb14f5cb14e29d54eda8156d896ba74507",
+    "final-admin-visual": "261063e8d8eb40a665302543a64899f59826ea0f74291d479eb430da9c908e42",
+    "final-package": "d96abf4571eb0bee9034926cf89e3fd167a012e1cc94a288e5676860e1cb2533",
+    "worker-runtime": "ef4f7255d0aa6fa8caf684d0196cf1c112960358b41bd930f870509758d6db73"
+  },
+  "privateMaterials": {
+    "originalUnchanged": true,
+    "sheets": 6,
+    "nonEmptyCells": 1074,
+    "events": 45,
+    "dateClaims": 47,
+    "sources": 59,
+    "committedToRepository": false,
+    "importedToProduction": false
+  },
+  "hosting": {
+    "verifiedCurrentVersion": 50,
+    "ownerOnly": true,
+    "sourceOpen": "blocked",
+    "reason": "The official Site source Git fetch returned malformed shallow-history protocol responses, including expected ACK/NAK. Reproduced with a clean checkout; source was not overwritten.",
+    "published": false
+  },
+  "limits": [
+    "Browser tests use Chromium with synthetic material, actual application routes and a SQLite D1-shaped adapter plus in-memory object storage.",
+    "Built Worker smoke tests and existing storage tests use Miniflare; no claim of production D1 validation.",
+    "Physical-device touch testing and complete advanced-form coverage remain outside this increment.",
+    "Research journal migration must be applied by the normal private deployment workflow."
+  ]
+}

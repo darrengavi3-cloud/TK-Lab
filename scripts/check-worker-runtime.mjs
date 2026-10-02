@@ -18,6 +18,12 @@ try {
   for (const [url, init, expected] of [
     ['/', {}, 200],
     ['/admin', {}, 401],
+    ['/admin/research', {}, 401],
+    ['/admin/research', { headers: { 'oai-authenticated-user-id': 'runtime-owner-fixture' } }, 200],
+    ['/api/admin/research/dossiers/person%3Aruntime-fixture', {}, 401],
+    ['/api/admin/research/dossiers/person%3Aruntime-fixture', { headers: { 'oai-authenticated-user-id': 'runtime-owner-fixture' } }, 200],
+    ['/research-client.mjs', {}, 200],
+    ['/research.css', {}, 200],
     ['/api/admin/session', {}, 401],
     ['/api/admin/session', { headers: { 'oai-authenticated-user-id': 'other-fixture' } }, 403],
     ['/api/admin/session', { headers: { 'oai-authenticated-user-id': 'runtime-owner-fixture' } }, 200],
@@ -46,7 +52,9 @@ try {
     }
     if (url === '/api/admin/backup') {
       const lines = body.trimEnd().split('\n');
-      assert.equal(JSON.parse(lines[0]).format, 'guanshitai-backup-3');
+      assert.equal(JSON.parse(lines[0]).format, 'guanshitai-backup-4');
+      assert.ok(JSON.parse(lines[0]).tables.includes('catalogue_research_revisions'));
+      assert.ok(JSON.parse(lines[0]).tables.includes('catalogue_research_pins'));
       assert.equal(JSON.parse(lines.at(-1)).type, 'complete', 'the built Worker must stream a complete compressed backup');
       assert.match(response.headers.get('content-disposition'), /attachment/);
     }

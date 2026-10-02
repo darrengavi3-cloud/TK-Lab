@@ -53,3 +53,19 @@ test("post-prune deployment manifest matches every packaged file", async () => {
     .digest("hex");
   assert.equal(manifest.aggregateSha256, aggregate);
 });
+
+
+test("optimized decoration keeps a declared, byte-exact fallback for older reader CSS", async () => {
+  const [original, fallback, optimized, css, rawManifest] = await Promise.all([
+    readFile(new URL("../public/legacy/assets/ui/court-ink-palace.png", import.meta.url)),
+    readFile(new URL("client/legacy/assets/ui/court-ink-palace.png", distRoot)),
+    readFile(new URL("client/legacy/assets/ui/court-ink-palace.webp", distRoot)),
+    readFile(new URL("client/legacy/assets/ui/base.css", distRoot), "utf8"),
+    readFile(new URL("deployment-manifest.json", distRoot), "utf8"),
+  ]);
+  assert.deepEqual(fallback, original);
+  assert.ok(optimized.length < original.length);
+  assert.match(css, /court-ink-palace\.webp/);
+  const entries = JSON.parse(rawManifest).files;
+  for (const extension of ["png", "webp"]) assert.ok(entries.some(row => row.path === "client/legacy/assets/ui/court-ink-palace." + extension));
+});

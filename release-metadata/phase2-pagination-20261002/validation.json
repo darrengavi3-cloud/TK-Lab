@@ -1,0 +1,41 @@
+{
+  "baseline": "1af7a8a4078a5142a784b81ee1d8d414ed017077",
+  "batch": "B1a shared pagination",
+  "historicalCssPreserved": [
+    55,
+    56,
+    57,
+    58,
+    60,
+    61,
+    62
+  ],
+  "businessBehaviorChange": false,
+  "templateCopyFragments": [
+    30,
+    66,
+    41
+  ],
+  "visual": {
+    "tests": 39,
+    "pass": 39,
+    "fail": 0
+  },
+  "built": {
+    "tests": 110,
+    "pass": 109,
+    "fail": 1
+  },
+  "releaseOffline": "failed-deployment-manifest-extra-palace-png",
+  "releaseCheck": "failed-offline-gate",
+  "releaseAccess": "failed-stale-evidence",
+  "mainControlBuilt": {
+    "tests": 110,
+    "pass": 110,
+    "fail": 0
+  },
+  "standalonePortableColdFood": "existing-main-and-batch-error",
+  "exportedReaderLocalHttpExternalNetworkBlocked": "passed-food-pagination",
+  "deployment": false,
+  "realDeviceAcceptance": "unverified"
+}

@@ -110,7 +110,7 @@
   .module-page .el-input__wrapper,.module-page .el-select__wrapper,.v56-segmented button { min-height:var(--sgz-touch-target); }
   .v56-context-bar .el-select .el-input__wrapper,.v56-context-bar .el-select__wrapper { min-height:var(--sgz-touch-target); }
   .v56-context-bar .el-input__inner,.module-page .el-input__inner { font-size:16px; }
-  .v67-dossier-actions button,.v67-pagination button,.people-pagination button { min-height:44px; }
+  .v67-dossier-actions button,.sgz-pagination button,.people-pagination button { min-height:44px; }
   .people-detail-head { display:block; }
   .people-detail-head .people-detail-portrait { float:right;margin:0 0 18px 18px; }
   .people-detail-main .v69-person-facts { clear:both; }

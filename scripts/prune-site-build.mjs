@@ -144,7 +144,8 @@ fs.writeFileSync(path.join(legacyRoot, 'data/portrait-variants.js'),
 
 // 界面装饰图此前不在压缩范围内：court-ink-palace.png 有 1.9 MB，却只作为
 // 低透明度题头底纹压在 78—96% 不透明的渐层之下。按其实际可见度转成 webp，
-// 并同步改写产物 CSS 中的引用；规范源保留原 PNG 不动。
+// 并同步改写产物 CSS 中的引用。保留原 PNG 供历史快照／缓存旧样式兼容，
+// 两种资源都进入最终清单；当前样式仅加载体积更小的 WebP。
 let optimizedDecorations = 0;
 let optimizedDecorationBytes = 0;
 const decorationRoot = path.join(legacyRoot, 'assets', 'ui');
@@ -163,7 +164,6 @@ if (fs.existsSync(decorationRoot)) {
       .toBuffer();
     if (output.length >= input.length) continue;
     fs.writeFileSync(path.join(decorationRoot, webpName), output);
-    fs.rmSync(filePath);
     for (const cssPath of cssFiles) {
       const before = fs.readFileSync(cssPath, 'utf8');
       const after = before.split(name).join(webpName);
@@ -174,7 +174,7 @@ if (fs.existsSync(decorationRoot)) {
   }
   const stillReferenced = cssFiles.some(cssPath => /\.png\b/i.test(fs.readFileSync(cssPath, 'utf8')));
   if (stillReferenced) {
-    throw new Error('产物 CSS 仍引用已移除的 PNG 装饰图，检查 url() 改写。');
+    throw new Error('产物 CSS 未切换到压缩装饰图，检查 url() 改写。');
   }
 }
 
