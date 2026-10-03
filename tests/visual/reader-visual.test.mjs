@@ -234,6 +234,7 @@ for (const scenario of CASES) {
         await Promise.all(document.getAnimations().filter(animation => animation.effect?.getComputedTiming().iterations !== Infinity).map(animation => animation.finished.catch(() => {})));
       });
 
+      if(scenario.width>760){const bounds=await page.evaluate(()=>{const nav=document.querySelector('.v56-spine-nav').getBoundingClientRect();const moduleBounds=[...document.querySelectorAll('.module-page')].find(n=>n.getBoundingClientRect().height>0)?.getBoundingClientRect();return {right:nav.right,left:moduleBounds?.left};});if(bounds.left!==undefined)assert.ok(bounds.left>=bounds.right-1,'侧栏不得遮挡模块内容');}
       const result = await page.evaluate(AUDIT);
       await context.close();
 
@@ -372,4 +373,9 @@ test('cold global search loads jinshi and opens the exact stable record', async 
     assert.equal(route.q, null, 'result opening must not degrade into a title re-search');
     assert.deepEqual(pageErrors, []);
   } finally { await context.close(); }
+});
+
+
+test('person sections restore from a stable URL on desktop and in the phone drawer',async()=>{
+ for(const width of [1440,390]){const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'}),page=await context.newPage();try{await page.goto(origin+'#people');await page.locator('.shell[data-active-module="people"][data-module-state="ready"]').waitFor();await page.locator('.v56-person-row').first().click();const scope=width===390?page.locator('.el-drawer:visible'):page.locator('.v56-person-dossier');await scope.getByRole('button',{name:'史料',exact:true}).click();await page.waitForFunction(()=>new URLSearchParams(location.hash.split('?')[1]).get('section')==='sources');const saved=page.url();await page.reload();const again=width===390?page.locator('.el-drawer:visible'):page.locator('.v56-person-dossier');await again.getByRole('button',{name:'史料',exact:true}).waitFor();assert.equal(await again.getByRole('button',{name:'史料',exact:true}).getAttribute('aria-pressed'),'true');assert.equal(page.url(),saved);const link=again.getByRole('link',{name:'进入人物研究案卷 →'});const href=new URL(await link.getAttribute('href'),'http://localhost');assert.ok(href.searchParams.get('person'));assert.ok(href.searchParams.get('return').includes('section=sources'));await again.getByRole('button',{name:'生平',exact:true}).press('ArrowRight');assert.equal(await again.getByRole('button',{name:'仕宦',exact:true}).getAttribute('aria-pressed'),'true');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);await page.screenshot({path:`work/validation/blue-atlas/person-${width}.png`,fullPage:true});}finally{await context.close();}}
 });

@@ -108,9 +108,9 @@
     "firstScreenSheetJs": 0,
     "explicitCodeIdentifierExceptions": 3
   },
-  "fileCount": 593,
-  "totalBytes": 202061326,
-  "aggregateSha256": "1b5eab2d24edfe2ad93b9f8141d6aabf9470829cbac4005dbb09cca62aae0f4d",
+  "fileCount": 594,
+  "totalBytes": 202068760,
+  "aggregateSha256": "cfd2dd68d0763b1557e206c5a0ea2d1907b0cc1fa942f8aabbe1d3f383d015fd",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -149,8 +149,13 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 6014,
-      "sha256": "80482f5be9aeb0df7a038b9840e4f38d16ad5cbc996c0613b5648e7ff2cbd4ba"
+      "bytes": 10510,
+      "sha256": "3e74bf0ac37d9cfed3d0cfd43d00bec110d63a2a9e6cdf17b1fc2602d111dd52"
+    },
+    {
+      "path": "assets/app/reading-history.js",
+      "bytes": 1836,
+      "sha256": "5c6fb8c7afe9cae43fdff9208bf126c3803723eea4495277769a256a7564139e"
     },
     {
       "path": "assets/app/route-contract.js",
@@ -194,8 +199,8 @@
     },
     {
       "path": "assets/app/ui/people-ui.js",
-      "bytes": 18569,
-      "sha256": "a796fa944de6d8e68d3e4b16c50e5c5e14d8e6e95b7806d7b04c8c2b48f9a25b"
+      "bytes": 17763,
+      "sha256": "0a9c4a82a12be909fc03bbaeeefc2b81d3a12a04c1cee275a3d2ae582d6ddb4e"
     },
     {
       "path": "assets/app/ui/shihuo-ui.js",
@@ -2884,8 +2889,8 @@
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 52997,
-      "sha256": "26b552101b89a0e9e9eb188e18b6fa5265dc16383bd0478b999bb1538fc00347"
+      "bytes": 54940,
+      "sha256": "87231d63741965d9eb3a3a511f778d1577dcecf3ede76d2f3e5f5d20ee4205b9"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -3074,8 +3079,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 694475,
-      "sha256": "78dec7ae8d48549983d30d7ef42b6f7a3334d63435ba43ab950cbbfc88b057ad"
+      "bytes": 694440,
+      "sha256": "18d25056bf6e4582ba895b70f2b24f126f907894d75c43483f8bf194d133bdf3"
     }
   ]
 }

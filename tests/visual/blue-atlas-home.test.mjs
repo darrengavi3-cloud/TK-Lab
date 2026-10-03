@@ -18,10 +18,10 @@ async function host(t){
     const p=new URL(req.url,'http://localhost').pathname;state.requests.push(p);
     if(p==='/reader/current'){res.writeHead(302,{Location:`/reader/snapshot/${snapshot}/index.html`}).end();return;}
     if(p===`/reader/snapshot/${snapshot}/data/v63-reader-people.json`){res.writeHead(state.fail?503:200,{'content-type':'application/json'}).end(JSON.stringify(fixture));return;}
-    if(p===`/reader/snapshot/${snapshot}/index.html`){res.writeHead(200,{'content-type':'text/html'}).end(`<script>window.addEventListener('message',e=>{window.received=e.data});parent.postMessage({type:'guanshitai:ready'},location.origin);</script>`);return;}
+    if(p===`/reader/snapshot/${snapshot}/index.html`){res.writeHead(200,{'content-type':'text/html;charset=utf-8'}).end(`<div class="shell" data-module-state="loading"><div class="people-workbench" style="height:300px;overflow:auto"><div style="height:2400px">fixture reader</div></div></div><script>window.addEventListener('message',e=>{if(!/^#(people|offices)/.test(e.data.hash||''))return;window.received=e.data;history.replaceState(null,"",e.data.hash);document.querySelector('.shell').dataset.moduleState='ready';parent.postMessage({type:'guanshitai:route',mode:'replace',hash:e.data.hash,title:'山涛 · 人物记'},location.origin)});parent.postMessage({type:'guanshitai:ready'},location.origin);</script>`);return;}
     if(p==='/bundle.js'){res.writeHead(200,{'content-type':'text/javascript'}).end(compiled.outputFiles[0].contents);return;}
     if(p.endsWith('.css')){try{const file=path.resolve('.'+p);if(!file.startsWith(process.cwd()+path.sep))throw Error();res.writeHead(200,{'content-type':'text/css'}).end(await fs.readFile(file));return;}catch{res.writeHead(404).end();return;}}
-    res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><html lang="zh-CN"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/app/globals.css"></head><body><div id="root"></div><script src="/bundle.js"></script></body></html>');
+    res.writeHead(200,{'content-type':'text/html;charset=utf-8'}).end('<!doctype html><html lang="zh-CN"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/app/globals.css"></head><body><div id="root"></div><script src="/bundle.js"></script></body></html>');
   });
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));
   return {...state,state,url:'http://127.0.0.1:'+server.address().port};
@@ -43,7 +43,7 @@ test('homepage searches the active snapshot and keeps homonyms on distinct stabl
 test('phone search, shortcut, clear and browser Back preserve the exploration query',async t=>{
   const h=await host(t),context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});t.after(()=>context.close());const page=await context.newPage();await page.goto(h.url+'/?q=山涛');await page.getByText('找到 2 位人物',{exact:true}).waitFor();
   await noOverflow(page);await page.keyboard.press('Control+k');assert.equal(await page.getByLabel('搜索人物',{exact:true}).evaluate(n=>n===document.activeElement),true);
-  await page.locator('.atlas-result-links a').first().click();await page.locator('iframe').waitFor();await page.goBack();await page.getByText('找到 2 位人物',{exact:true}).waitFor();assert.equal(await page.getByLabel('搜索人物',{exact:true}).inputValue(),'山涛');
+  await page.locator('.atlas-result-links a').first().click();await page.locator('iframe').waitFor();await page.goBack({waitUntil:"commit"});await page.getByText('找到 2 位人物',{exact:true}).waitFor();assert.equal(await page.getByLabel('搜索人物',{exact:true}).inputValue(),'山涛');
   await page.getByRole('button',{name:'清除人物搜索',exact:true}).click();assert.equal(await page.getByLabel('搜索人物',{exact:true}).inputValue(),'');assert.equal(new URL(page.url()).search,'');await noOverflow(page);
   await page.screenshot({path:'work/validation/blue-atlas/home-mobile.png',fullPage:true});
 });
@@ -52,4 +52,14 @@ test('snapshot failure has an honest error and retry, rather than candidate or z
   const h=await host(t);h.state.fail=true;const context=await browser.newContext({viewport:{width:390,height:844}});t.after(()=>context.close());const page=await context.newPage();await page.goto(h.url);await page.getByRole('alert').waitFor();
   await page.getByLabel('搜索人物',{exact:true}).fill('山涛');assert.equal(await page.getByText('找到 2 位人物',{exact:true}).count(),0);assert.equal(await page.getByText('没有匹配的人物，请尝试别名或其他写法。',{exact:true}).count(),0);
   h.state.fail=false;await page.getByRole('button',{name:'重新载入',exact:true}).click();await page.getByText('找到 2 位人物',{exact:true}).waitFor();await noOverflow(page);
+});
+
+
+test('device reading history resumes the stable record and scroll position, and can be cleared',async t=>{
+ const h=await host(t),context=await browser.newContext({viewport:{width:390,height:844}});t.after(()=>context.close());const page=await context.newPage();await page.goto(h.url);await page.getByLabel('搜索人物',{exact:true}).fill('山涛');await page.locator('.atlas-result-links a').first().click();await page.waitForFunction(()=>document.querySelector('iframe')?.contentWindow.received?.hash?.includes('shan-a'));
+ await page.locator('iframe').evaluate(f=>f.contentDocument.querySelector('.people-workbench').scrollTop=640);await page.goto(h.url);await page.getByRole('navigation',{name:'最近阅读记录'}).getByRole('link',{name:'山涛 · 人物记'}).click();await page.waitForFunction(()=>document.querySelector('iframe')?.contentDocument.querySelector('.people-workbench').scrollTop===640);assert.equal(new URL(page.url()).hash,'#people?person=person%3Atest%3Ashan-a');await page.goto(h.url);await page.getByRole('button',{name:'清除最近阅读',exact:true}).click();assert.equal(await page.getByRole('navigation',{name:'最近阅读记录'}).count(),0);await noOverflow(page);
+});
+
+test('recent reading rejects malformed stored entries and never exposes them as links',async t=>{
+ const h=await host(t),context=await browser.newContext();t.after(()=>context.close());await context.addInitScript(()=>localStorage.setItem('guanshitai:recent-reading',JSON.stringify([{hash:'javascript:alert(1)',title:'unsafe',scroll:0},{hash:'#people',title:'invalid scroll',scroll:-1}])));const page=await context.newPage();await page.goto(h.url);await page.getByRole('link',{name:'浏览人物档案'}).waitFor();assert.equal(await page.getByRole('navigation',{name:'最近阅读记录'}).count(),0);
 });

@@ -1070,3 +1070,13 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
 *{scrollbar-color:color-mix(in srgb,var(--sgz-muted) 55%,transparent) transparent;scrollbar-width:thin}
 *::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--sgz-muted) 55%,transparent);border-radius:100px}
 @media(forced-colors:active){button:focus-visible,a:focus-visible{outline:3px solid Highlight}.v56-spine-item.active{border:2px solid Highlight}}
+
+/* R2 shared person reading sections; used in the desktop dossier and phone drawer. */
+.sgz-person-sections{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}.sgz-person-sections button{min-height:48px;border:1px solid var(--sgz-rule);border-radius:14px;background:var(--sgz-surface);color:var(--sgz-ink);font:600 16px var(--sgz-font-body);cursor:pointer}.sgz-person-sections button:hover{background:var(--sgz-pale)}.sgz-person-sections button[aria-pressed=true]{background:var(--sgz-accent);color:var(--sgz-on-accent);border-color:var(--sgz-accent)}
+.sgz-person-panel{min-height:180px}.sgz-person-panel h3{font:700 22px var(--sgz-font-heading)}.sgz-biography{white-space:pre-wrap;font:18px/1.9 var(--sgz-font-body)}.sgz-research-link{display:inline-flex;align-items:center;min-height:48px;margin-top:24px;padding:12px 18px;background:var(--sgz-pale);color:var(--sgz-accent);border-radius:14px;text-decoration:none;font:600 16px var(--sgz-font-body)}.sgz-person-reading button:focus-visible,.sgz-research-link:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:3px}
+.sgz-person-panel .reader-citations{margin:0;padding:20px}.sgz-person-panel .v69-person-life-events small{font-size:14px}.v56-topbar-brand a{min-width:44px}
+@media(prefers-reduced-motion:no-preference){.sgz-person-panel{animation:sgz-person-reveal var(--sgz-motion) ease-out}}@keyframes sgz-person-reveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Extracted workbenches put module-page and module-page-inner on one root. */
+@media screen and (min-width:761px){.shell>.module-page.module-page-inner{margin-left:var(--v56-current-spine);margin-right:var(--v56-current-evidence);width:auto;max-width:none;padding:24px;}}
+@media screen and (max-width:760px){.shell>.module-page.module-page-inner{margin:0;width:auto;max-width:none;padding:20px 16px calc(84px + env(safe-area-inset-bottom));}}

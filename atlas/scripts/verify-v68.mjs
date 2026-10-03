@@ -32,7 +32,8 @@ assert(projected.filter(row=>row.dynastyLabel==='季汉').length===6,'季汉记�
 assert(projected.filter(row=>row.dynastyLabel==='汉').length===0,'已有稳定键的汉记录仍未完成后汉／季汉拆分');
 
 assert((reader.people||[]).filter(person=>person.bio).length===101,'读者人物小传数量异常');
-assert(html.includes('人物小传')&&html.includes('class="person-biography"'),'人物详情缺少人物小传卡片');
+const personReading=fs.readFileSync(path.join(root,'assets/app/reader-components.js'),'utf8');
+assert(html.includes('<person-reading-sections')&&personReading.includes('人物生平')&&personReading.includes('{{person.bio}}')&&personReading.includes('v-if="readableBio()"'),'人物详情缺少人物小传阅读区');
 assert(!html.includes('相关历任长官'),'州镇页仍渲染重复的相关历任长官模块');
 // 阶段一重构把州镇表上下文栏拆到 fangzhen-ui.js 作为独立组件，v-model 相应分解为
 // :model-value/@update:model-value，label 属性也改为 aria-label；语义不变，仅更新

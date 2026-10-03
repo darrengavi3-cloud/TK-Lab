@@ -277,6 +277,7 @@ function prepareSgzReviewData(){
   ]);
 }
 const SGZ_UI_CORE_READY=Promise.all([
+  import('./assets/app/reading-history.js').then(module=>{window.SGZ_READING_HISTORY=module;}),
   loadSgzUiModule('shell'),
   loadSgzUiModule('persistence'),
   // offices／map 的 moduleLoadState 初始值即为 'ready'（无需经过懒加载状态机），
@@ -2861,6 +2862,8 @@ const app = createApp({
     const showHistoryAudit = ref(false);
     const historyAuditSelection = ref(null);
     const activePersonName = ref('');
+    const peopleReadingSection=ref('life');
+    function setPeopleReadingSection(key){if(['life','career','relations','sources'].includes(key)){peopleReadingSection.value=key;scheduleUrlState('replace');}}
     const peopleQuery = ref('');
     const peopleSearchComposing = ref(false);
     const peopleKeyboardIndex = ref(0);
@@ -7181,6 +7184,7 @@ const app = createApp({
       peoplePolity, peopleKind, peopleContent, peopleOnlyPortrait,
       peopleEra, peopleYear, peopleSource, peopleEvidence,
       peopleServiceDomain, peopleInstitutionType,
+      get peopleReadingSection(){return peopleReadingSection.value;},
       get peopleView(){return peopleView.value;},
       get peopleQuery(){return peopleQuery.value;},
       get peopleKeyboardIndex(){return peopleKeyboardIndex.value;},
@@ -8484,6 +8488,7 @@ const app = createApp({
     function currentUrlState(){
       const params=new URLSearchParams();
       if(activeModule.value==='people'){
+        if(peopleReadingSection.value!=='life')params.set('section',peopleReadingSection.value);
         if(peopleQuery.value)params.set('q',peopleQuery.value);
         if(peoplePolity.value!=='all')params.set('dynasty',peoplePolity.value);
         if(peopleKind.value!=='all')params.set('kind',peopleKind.value);
@@ -8564,6 +8569,7 @@ const app = createApp({
         if(generation!==urlApplyGeneration)return;
         const p=state.params;
         if(module==='people'){
+          peopleReadingSection.value=['life','career','relations','sources'].includes(p.get('section'))?p.get('section'):'life';
           peopleQuery.value=p.get('q')||'';
           if(['all',...PERSON_DYNASTY_ORDER].includes(p.get('dynasty')||'all'))peoplePolity.value=p.get('dynasty')||'all';
           peopleKind.value=p.get('kind')||'all';
@@ -8836,7 +8842,7 @@ const app = createApp({
 
     return {
       factions, activeModule, moduleLoadState, moduleVisited, prefetchModule, viewportWidth, moduleContextLabel, v56ModuleItems, v56ModuleMeta, moduleSearchScope, switchModule, currentFaction, treeType, viewMode, officePresentation, setOfficePresentation, validationEnabled, zoomPct,
-      showReadingFilters, readingQuery, readingFilterTags, clearReadingFilters, handleReadingQueryKey, closeReadingDetail, readingReturn, returnToReading, primaryModuleItems, secondaryModuleItems, rankReferenceTab, officialsTab, openOfficeHolders, peopleContent, shihuoSort, shihuoIncludeDiscussion, shihuoPage, activeShihuoId, showShihuoDetail, shihuoPagination, shihuoPrimaryDetail, openShihuoRecord, shihuoUiState, setShihuoUiState, stepShihuoPage, jinshiUiState, setJinshiUiState, stepJinshiPage, peopleUiState, setPeopleUiState, stepPeoplePage, peopleUiOptions,
+      peopleReadingSection, setPeopleReadingSection, showReadingFilters, readingQuery, readingFilterTags, clearReadingFilters, handleReadingQueryKey, closeReadingDetail, readingReturn, returnToReading, primaryModuleItems, secondaryModuleItems, rankReferenceTab, officialsTab, openOfficeHolders, peopleContent, shihuoSort, shihuoIncludeDiscussion, shihuoPage, activeShihuoId, showShihuoDetail, shihuoPagination, shihuoPrimaryDetail, openShihuoRecord, shihuoUiState, setShihuoUiState, stepShihuoPage, jinshiUiState, setJinshiUiState, stepJinshiPage, peopleUiState, setPeopleUiState, stepPeoplePage, peopleUiOptions,
       showLog, showStats, showVersions, showOfficials, showSearch, showBatch, showArchives, showCompare, showPalette, showTheme, showTongdian, showGeneralTitles, generalTitlePolity,
       themeKey, densityMode, motionMode, workspaceMode, themeOptions, setTheme, setDensity, setMotion, setWorkspaceMode,
       spineCollapsed, evidenceRailCollapsed, showMobileModules, toggleSpine, toggleEvidenceRail, openMobileModules, closeMobileModules, handleMobileModulesKeydown, v56ActiveRecord, selectV56Record,
@@ -9061,6 +9067,7 @@ const app = createApp({
       :state="peopleUiState"
       :workspace-mode="workspaceMode"
       :active="activeModule==='people'"
+      :fn-change-section="setPeopleReadingSection"
       :fn-open-detail="openPeopleDetail"
       :fn-open-life-event="openPersonLifeEvent"
       :fn-open-meta-editor="openPersonMetaEditor"
@@ -9281,7 +9288,6 @@ const app = createApp({
             <p v-if="workspaceMode==='review'&&activePeopleDetail.homonymStatus" class="homonym-note review-only">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
             <p v-if="workspaceMode==='review'&&activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note review-only">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
             <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length?activePeopleDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span></div>
-            <section v-if="activePeopleDetail.bio" class="person-biography" aria-label="人物小传"><h3>人物小传</h3><p>{{activePeopleDetail.bio}}</p></section>
             <div class="people-detail-tags"><span v-for="pol in activePeopleDetail.dynastyTags" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
             <person-identity-facts :person="activePeopleDetail" :lifespan="personLifespanLabel(activePeopleDetail)" :office="peoplePrimaryOfficeSummary" :peerage="peoplePrimaryPeerageSummary" />
             <p v-if="activePeopleDetail.historicalAffiliations&&activePeopleDetail.historicalAffiliations.length" class="v62-historical-affiliations">历史归属：{{activePeopleDetail.historicalAffiliations.join('、')}}</p>
@@ -9289,16 +9295,7 @@ const app = createApp({
             <div v-if="workspaceMode==='review'" class="review-only" style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.personId)">编辑人物档案</el-button></div>
           </div>
         </div>
-        <reader-citations :citations="personCitations(activePeopleDetail)" />
-        <h4 v-if="peoplePrimaryLifeTimeline.length" class="v56-dossier-section-title">人物经历</h4>
-        <div v-if="peoplePrimaryLifeTimeline.length" class="v69-person-life-timeline v69-person-life-timeline--drawer">
-          <section v-for="group in peoplePrimaryLifeTimeline" :key="'drawer-'+group.year" class="v69-person-life-year">
-            <time>{{group.year}}</time>
-            <div class="v69-person-life-events">
-              <button v-for="event in group.events" :key="'drawer-'+event.eventId" type="button" @click="openPersonLifeEvent(event)"><span class="v69-life-type">{{personLifeEventTypeLabel(event)}}</span><strong>{{event.title}}</strong><small v-if="event.detail">{{event.detail}}</small></button>
-            </div>
-          </section>
-        </div>
+        <person-reading-sections :person="activePeopleDetail" :timeline="peoplePrimaryLifeTimeline" :citations="personCitations(activePeopleDetail)" :section="peopleReadingSection" :on-section="setPeopleReadingSection" :on-open-event="openPersonLifeEvent" :type-label="personLifeEventTypeLabel" />
       </template>
     </el-drawer>
 

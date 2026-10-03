@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 834,
-  "totalBytes": 350764417,
-  "aggregateSha256": "edd957b29a8cc642f8a0cc67c59ed873a51cb876458913d9e994aa3c379938c0",
+  "fileCount": 836,
+  "totalBytes": 350772340,
+  "aggregateSha256": "48f174fe9cfbdcdccd5e7c2f592057e4b6a48dd55e4de57165909a4fecd37f2a",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -43,8 +43,18 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 6014,
-      "sha256": "80482f5be9aeb0df7a038b9840e4f38d16ad5cbc996c0613b5648e7ff2cbd4ba"
+      "bytes": 10510,
+      "sha256": "3e74bf0ac37d9cfed3d0cfd43d00bec110d63a2a9e6cdf17b1fc2602d111dd52"
+    },
+    {
+      "path": "assets/app/reading-history.d.ts",
+      "bytes": 454,
+      "sha256": "848c7265f18b9da62aee24ffb8eb7a8494ea59071c9d3a9e3cd9d8a493c1860e"
+    },
+    {
+      "path": "assets/app/reading-history.js",
+      "bytes": 1836,
+      "sha256": "5c6fb8c7afe9cae43fdff9208bf126c3803723eea4495277769a256a7564139e"
     },
     {
       "path": "assets/app/release-version.js",
@@ -93,8 +103,8 @@
     },
     {
       "path": "assets/app/ui/people-ui.js",
-      "bytes": 18569,
-      "sha256": "a796fa944de6d8e68d3e4b16c50e5c5e14d8e6e95b7806d7b04c8c2b48f9a25b"
+      "bytes": 17763,
+      "sha256": "0a9c4a82a12be909fc03bbaeeefc2b81d3a12a04c1cee275a3d2ae582d6ddb4e"
     },
     {
       "path": "assets/app/ui/shihuo-ui.js",
@@ -3203,8 +3213,8 @@
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 52997,
-      "sha256": "26b552101b89a0e9e9eb188e18b6fa5265dc16383bd0478b999bb1538fc00347"
+      "bytes": 54940,
+      "sha256": "87231d63741965d9eb3a3a511f778d1577dcecf3ede76d2f3e5f5d20ee4205b9"
     },
     {
       "path": "assets/ui/court-ink-palace.png",

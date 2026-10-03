@@ -31,7 +31,7 @@ test("server-renders the exploration homepage before loading the requested reade
 
   const html = await response.text();
   assert.match(html, /<title>观史台 · 历史资料库<\/title>/);
-  assert.match(html, /从一个人物，/);
+  assert.match(html, /从人物开始研究。/);
   assert.match(html, /id="person-search"/);
   assert.doesNotMatch(html, /<iframe\b/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);

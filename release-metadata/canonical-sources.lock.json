@@ -3,9 +3,9 @@
   "modelId": "sgz-deterministic-source-lock-v64",
   "sourceDateEpoch": 1788019200,
   "sourceDate": "2026-08-29T16:00:00.000Z",
-  "fileCount": 936,
-  "totalBytes": 367903334,
-  "aggregateSha256": "b08aaf532bc162167d2d13cb3b695e9e53103c97f930cc71e1c77158a3e3cc71",
+  "fileCount": 938,
+  "totalBytes": 367912415,
+  "aggregateSha256": "3ed431e0d2d176679c2e5a99bafb60196cbfef5b7507f4e05346e7688a560785",
   "files": [
     {
       "path": "DESIGN.md",
@@ -14,8 +14,8 @@
     },
     {
       "path": "UX-CONTRACT.md",
-      "bytes": 38108,
-      "sha256": "6b1dbdbabedc411e2f6151427db66362f985a840bc44d9f2939425f143cd2d55"
+      "bytes": 38988,
+      "sha256": "7bc1f7c9c49404682b0ebf44c1cc40b292b906772ea2efcde110f472bf4d4c9f"
     },
     {
       "path": "assets/app/fangzhen.js",
@@ -54,8 +54,18 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 6014,
-      "sha256": "80482f5be9aeb0df7a038b9840e4f38d16ad5cbc996c0613b5648e7ff2cbd4ba"
+      "bytes": 10510,
+      "sha256": "3e74bf0ac37d9cfed3d0cfd43d00bec110d63a2a9e6cdf17b1fc2602d111dd52"
+    },
+    {
+      "path": "assets/app/reading-history.d.ts",
+      "bytes": 454,
+      "sha256": "848c7265f18b9da62aee24ffb8eb7a8494ea59071c9d3a9e3cd9d8a493c1860e"
+    },
+    {
+      "path": "assets/app/reading-history.js",
+      "bytes": 1836,
+      "sha256": "5c6fb8c7afe9cae43fdff9208bf126c3803723eea4495277769a256a7564139e"
     },
     {
       "path": "assets/app/release-version.js",
@@ -104,8 +114,8 @@
     },
     {
       "path": "assets/app/ui/people-ui.js",
-      "bytes": 18569,
-      "sha256": "a796fa944de6d8e68d3e4b16c50e5c5e14d8e6e95b7806d7b04c8c2b48f9a25b"
+      "bytes": 17763,
+      "sha256": "0a9c4a82a12be909fc03bbaeeefc2b81d3a12a04c1cee275a3d2ae582d6ddb4e"
     },
     {
       "path": "assets/app/ui/shihuo-ui.js",
@@ -3204,8 +3214,8 @@
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 52997,
-      "sha256": "26b552101b89a0e9e9eb188e18b6fa5265dc16383bd0478b999bb1538fc00347"
+      "bytes": 54940,
+      "sha256": "87231d63741965d9eb3a3a511f778d1577dcecf3ede76d2f3e5f5d20ee4205b9"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -4174,8 +4184,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 703325,
-      "sha256": "85a444f39a4ab04edb246bd9628b0e42d78a8db0034c8f528a66be4179da5d8e"
+      "bytes": 703290,
+      "sha256": "a27b68e0b9d7066100cb20b1af6a1aafb30d77d3c3210fed5209b784eaa46b83"
     },
     {
       "path": "scripts/appointment-publication.mjs",
@@ -4489,8 +4499,8 @@
     },
     {
       "path": "scripts/verify-project.mjs",
-      "bytes": 37002,
-      "sha256": "23cb4c752a67aa1c9e31e1122799c80043c6da605e3a1f67180c917f918f3a79"
+      "bytes": 37058,
+      "sha256": "9689d5aa353c094d2df46908312614f431d0c595766c375c4a0878dd64d69881"
     },
     {
       "path": "scripts/verify-reader-diction.mjs",
@@ -4664,8 +4674,8 @@
     },
     {
       "path": "scripts/verify-v68.mjs",
-      "bytes": 3987,
-      "sha256": "8e277dc64418497e9fd3caf66ddd2f8540f1189859af1a242a82e56c0f2bf500"
+      "bytes": 4184,
+      "sha256": "27d85c87566cc42f2565f18fffd3d1c9ca90727518871f186e0c2217bb708247"
     },
     {
       "path": "scripts/verify-v69.mjs",
@@ -4674,8 +4684,8 @@
     },
     {
       "path": "scripts/verify-v70.mjs",
-      "bytes": 7944,
-      "sha256": "e354c389073d82a924522b455d8b844fa5ff94eda78981c6c5570271d7ff7a06"
+      "bytes": 8004,
+      "sha256": "097dc081674a39ceac501e0acacd36f868fd81fe6e5711de66cd2a37c83d377d"
     },
     {
       "path": "scripts/verify-v71.mjs",

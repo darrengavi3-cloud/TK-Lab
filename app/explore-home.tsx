@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import {readingHistorySnapshot, parseReadingHistory, clearReadingHistory} from "../atlas/assets/app/reading-history.js";
 
 type Person = { personId: string; name: string; aliases?: string[]; zi?: string; dynastyTags?: string[] };
 const modules = [
@@ -16,6 +17,11 @@ function subscribeQuery(notify: () => void) {
   window.addEventListener("guanshitai:home-query", notify);
   return () => { window.removeEventListener("popstate", notify); window.removeEventListener("guanshitai:home-query", notify); };
 }
+function subscribeReading(notify: () => void) {
+  window.addEventListener("storage", notify);
+  window.addEventListener("guanshitai:reading-history", notify);
+  return () => {window.removeEventListener("storage", notify);window.removeEventListener("guanshitai:reading-history", notify);};
+}
 
 export function ExploreHome() {
   const [people, setPeople] = useState<Person[]>([]);
@@ -23,6 +29,9 @@ export function ExploreHome() {
   const [attempt, setAttempt] = useState(0);
   const query = useSyncExternalStore(subscribeQuery, () => new URLSearchParams(location.search).get("q") || "", () => "");
   const search = useRef<HTMLInputElement>(null);
+  const recentSnapshot = useSyncExternalStore(subscribeReading, readingHistorySnapshot, () => "[]");
+  const recent = useMemo(() => parseReadingHistory(recentSnapshot), [recentSnapshot]);
+  const resume = () => {const url=new URL(location.href);url.searchParams.set("resume","1");history.replaceState(null,"",url.pathname+url.search+url.hash);};
   useEffect(() => {
     const saved = new URLSearchParams(location.search).get("q") || "";
     if (saved) search.current?.focus();
@@ -84,7 +93,7 @@ export function ExploreHome() {
       <main id="explore-main" className="atlas-main">
         <section className="atlas-explore" aria-labelledby="explore-title">
           <p className="atlas-eyebrow">人物 · 制度 · 史料</p>
-          <h1 id="explore-title">从一个人物，<br/>走进一个时代。</h1>
+          <h1 id="explore-title">从人物开始研究。</h1>
           <div className="atlas-search"><label htmlFor="person-search">搜索人物</label><div className="atlas-search-control"><span aria-hidden="true">⌕</span><input id="person-search" ref={search} value={query} onChange={e => changeQuery(e.target.value)} placeholder="姓名、表字或别名" type="search" autoComplete="off"/>{query && <button type="button" onClick={() => { changeQuery(""); search.current?.focus(); }} aria-label="清除人物搜索">清除</button>}<kbd>⌘ K</kbd></div></div>
           <div className="atlas-results" aria-live="polite" aria-busy={state === "loading"}>
             {state === "loading" && <p role="status">正在载入已发布的人物资料…</p>}
@@ -92,6 +101,7 @@ export function ExploreHome() {
             {state === "ready" && query.trim() && <><p>{matches.length ? `找到 ${matches.length} 位人物` : "没有匹配的人物，请尝试别名或其他写法。"}</p><div className="atlas-result-links">{matches.slice(0, 8).map(p => <a key={p.personId} href={personHref(p.personId)}><strong>{p.name}</strong><span>{[p.zi ? "字 " + p.zi : "", ...(p.dynastyTags || [])].filter(Boolean).join(" · ")}</span></a>)}</div>{matches.length > 8 && <a href={"#people?q=" + encodeURIComponent(query)}>查看全部匹配人物</a>}</>}
           </div>
         </section>
+        {recent.length > 0 && <section className="atlas-recent atlas-panel" aria-label="最近阅读"><div><h2>继续上次阅读</h2><button type="button" className="atlas-button atlas-button-secondary" onClick={clearReadingHistory}>清除最近阅读</button></div><p>阅读位置仅保存在本设备。</p><nav aria-label="最近阅读记录">{recent.map(entry=><a key={entry.hash} href={entry.hash} onClick={resume}>{entry.title}</a>)}</nav></section>}
         <div className="atlas-home-cards">
           <section className="atlas-panel" aria-labelledby="people-entry"><p className="atlas-eyebrow">人物探索</p><h2 id="people-entry">沿着生平，寻找线索。</h2><div className="atlas-featured">{featured.map(p => <a key={p.personId} href={personHref(p.personId)}><strong>{p.name}</strong><span>{(p.dynastyTags || []).join(" · ")}</span></a>)}</div><a className="atlas-button" href="#people">浏览人物档案</a></section>
           <section className="atlas-panel atlas-research-entry"><p className="atlas-eyebrow">私人研究</p><h2>把不同说法，<br/>放回原始证据中。</h2><p>整理事件、并读材料、保存你的判断。</p><a className="atlas-button atlas-button-secondary" href="/admin/research">打开研究案卷</a></section>
