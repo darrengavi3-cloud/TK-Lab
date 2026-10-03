@@ -4,8 +4,28 @@ import { useEffect, useRef, useState } from "react";
 import { createReaderBootMonitor, type ReaderBootState } from "./reader-boot";
 import { validRouteHash, acceptedRouteMessage } from "../atlas/assets/app/route-contract.js";
 import { RELEASE_VERSION } from "../atlas/assets/app/release-version.js";
+import { ExploreHome } from "./explore-home";
 
 export default function Home() {
+  const [reading, setReading] = useState(false);
+  useEffect(() => {
+    const sync = () => {
+      const active = validRouteHash(location.hash);
+      setReading(active);
+      if (!active) document.title = "探索 · 观史台";
+    };
+    sync();
+    window.addEventListener("hashchange", sync);
+    window.addEventListener("popstate", sync);
+    return () => {
+      window.removeEventListener("hashchange", sync);
+      window.removeEventListener("popstate", sync);
+    };
+  }, []);
+  return reading ? <Reader /> : <ExploreHome />;
+}
+
+function Reader() {
   const frame = useRef<HTMLIFrameElement>(null);
   const [bootState, setBootState] = useState<ReaderBootState>("loading");
   const [attempt, setAttempt] = useState(0);

@@ -2686,3 +2686,28 @@ body, #app, .shell { color: var(--v58-ink); }
 .fangzhen-territory-grid dt,.fangzhen-territory-grid dd{margin:0}.fangzhen-territory-grid dd{color:var(--v58-muted);font-size:12px}
 @media(max-width:1199px){.fangzhen-territory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fangzhen-territory-grid article:first-child{grid-column:1/-1}}
 @media(max-width:767px){.fangzhen-section-tabs{position:sticky;top:0;z-index:2;background:var(--v58-surface);gap:0}.fangzhen-section-tabs button{flex:1;min-height:44px}.fangzhen-territory-panel>header{display:block}.fangzhen-territory-panel>header p{margin-top:7px}.fangzhen-territory-grid{display:block}.fangzhen-territory-grid article{margin-top:18px}.fangzhen-territory-grid article:first-child{margin-top:0}}
+
+
+/* Blue Atlas reading surfaces; factual order and full transcriptions are untouched. */
+.shell .module-page:not(.history-map-page){background:var(--sgz-paper)}
+.shell .module-page:not(.history-map-page) .module-page-inner{padding:24px;max-width:1680px}
+.shell .module-page h1,.shell .module-page h2,.shell .people-detail-name,.shell .v56-person-dossier-name{font-family:var(--sgz-font-heading);letter-spacing:0}
+.shell .v56-people-master-detail{grid-template-columns:minmax(280px,30%) minmax(0,1fr);gap:24px}
+.shell .v56-person-directory,.shell .v56-person-dossier,.shell .v56-jinshi-directory,.shell .v56-jinshi-reader,.shell .v67-fangzhen-dossier,.shell .fangzhen-table-card,.shell .v83-food-directory,.shell .v83-food-reader{border:0;border-radius:var(--sgz-radius-lg);background:var(--sgz-surface);box-shadow:none}
+.shell .v56-person-dossier,.shell .v56-jinshi-reader{padding:28px}
+.shell .v56-person-row,.shell .v56-jinshi-row{min-height:80px;border-bottom:1px solid var(--sgz-rule);padding:16px 20px;border-left:0}
+.shell .v56-person-row.active,.shell .v56-jinshi-row.active{background:var(--sgz-pale)}
+.shell .v56-person-row strong,.shell .v56-person-row-name{font-size:18px}
+.shell .v56-person-row small,.shell .v56-jinshi-row small,.shell .people-detail-zi,.shell .people-source-note,.shell .reader-quiet-note{font-size:14px;color:var(--sgz-muted)}
+.shell .reader-citations{padding:20px;background:var(--sgz-pale);border-radius:20px}
+.shell .reader-citations blockquote{font-family:var(--sgz-font-body);font-size:18px;line-height:1.9;border-left:0;padding:12px 0}
+.shell .v69-person-life-year{border:0;gap:20px}.shell .v69-person-life-events button{border-radius:16px;background:var(--sgz-pale);padding:16px}
+.shell .person-biography,.shell .jinshi-text,.shell .inscription-text,.shell .v56-jinshi-reader blockquote{font-family:var(--sgz-font-body);font-size:18px;line-height:1.9}
+.shell .v67-module-masthead{background:var(--sgz-nav);border-radius:20px;padding:24px;margin-bottom:24px}
+.shell .v67-module-masthead h2,.shell .v67-module-masthead strong{font-family:var(--sgz-font-data)}
+.shell .battle-timeline-card,.shell .battle-card{border:0;border-radius:20px;padding:24px;background:var(--sgz-surface)}
+.shell .el-tabs__item{font-family:var(--sgz-font-body);font-size:16px;min-height:48px}
+.shell[data-sgz-motion="standard"] .module-page-inner{animation:sgz-atlas-enter var(--sgz-motion) ease-out}
+@keyframes sgz-atlas-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+:root[data-sgz-motion="reduced"] .module-page-inner{animation:none!important}
+@media(prefers-reduced-motion:reduce){.shell *, .shell *::before,.shell *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

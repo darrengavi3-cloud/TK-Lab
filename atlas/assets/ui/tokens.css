@@ -1,37 +1,29 @@
-/* 观史台稳定令牌层：V64 起不再按版本追加视觉变量。 */
+/* Blue Atlas canonical tokens: the SGZ names are the runtime source of truth. */
 :root {
-  --sgz-paper: var(--v56-paper, #eef0eb);
-  --sgz-surface: var(--v56-sheet, #fafbf7);
-  --sgz-surface-raised: var(--v56-sheet-raised, #ffffff);
-  --sgz-ink: var(--v56-ink, #1b2b2e);
-  --sgz-muted: var(--v56-muted, #64716e);
-  --sgz-rule: var(--v56-rule, #d5d9d3);
-  --sgz-accent: var(--v56-vermilion, #a34738);
-  --sgz-focus: var(--v56-focus, 0 0 0 3px rgba(163, 71, 56, .22));
-  --sgz-touch-target: 44px;
-  --sgz-reading-measure: 44em;
-  --sgz-dossier-masthead: #171a18;
-  --sgz-dossier-masthead-ink: #f3ead5;
-  --sgz-dossier-masthead-muted: #bdb5a2;
-  --sgz-dossier-gold: var(--v56-gold, #9b7a3b);
-  --sgz-font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-  --sgz-font-heading: "Noto Serif SC", "Songti SC", "SimSun", serif;
-  --sgz-text-body: 16px;
-  --sgz-text-control: 14px;
-  --sgz-text-meta: 12px;
-  --sgz-text-title: clamp(24px, 2.2vw, 32px);
-  --sgz-space-section: 28px;
-  --sgz-space-panel: clamp(18px, 2vw, 32px);
-  --sgz-space-row: 14px;
-  --sgz-radius: 8px;
-  --sgz-radius-sm: 4px;
-  --sgz-radius-md: var(--sgz-radius);
-  --sgz-radius-lg: 14px;
-  --sgz-shadow-1: 0 1px 2px rgba(27, 43, 46, .06);
-  --sgz-shadow-2: 0 4px 12px rgba(27, 43, 46, .10);
-  --sgz-shadow-3: 0 12px 32px rgba(27, 43, 46, .18);
-  --sgz-success: var(--v56-green, #4e6961);
-  --sgz-warning: var(--sgz-dossier-gold);
-  --sgz-danger: #7a2a1f;
-  --sgz-selected: color-mix(in srgb, var(--sgz-accent) 7%, var(--sgz-surface));
+  --sgz-paper:#f1f5fc; --sgz-surface:#ffffff; --sgz-surface-raised:#ffffff;
+  --sgz-ink:#111b32; --sgz-muted:#536480; --sgz-rule:#d7e1f2; --sgz-accent:#2457e7;
+  --sgz-nav:#12275c; --sgz-on-accent:#ffffff; --sgz-pale:#e6eeff;
+  --sgz-evidence:#eee9ff; --sgz-uncertain:#fff0d9;
+  --sgz-focus:0 0 0 3px color-mix(in srgb,var(--sgz-accent) 34%,transparent);
+  --sgz-touch-target:44px; --sgz-reading-measure:44em;
+  --sgz-dossier-masthead:var(--sgz-nav); --sgz-dossier-masthead-ink:#ffffff;
+  --sgz-dossier-masthead-muted:#ccd9f7; --sgz-dossier-gold:#66518c;
+  --sgz-font-body:"Noto Sans TC","Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  --sgz-font-heading:var(--sgz-font-body); --sgz-font-data:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  --sgz-text-body:1.125rem; --sgz-text-control:1rem; --sgz-text-meta:.875rem;
+  --sgz-text-title:clamp(1.75rem,2.5vw,2rem);
+  --sgz-space-section:28px; --sgz-space-panel:clamp(20px,2vw,32px); --sgz-space-row:16px;
+  --sgz-radius:14px; --sgz-radius-sm:10px; --sgz-radius-md:var(--sgz-radius); --sgz-radius-lg:24px;
+  --sgz-shadow-1:0 1px 3px rgb(17 27 50 / .04); --sgz-shadow-2:0 8px 24px rgb(17 27 50 / .08); --sgz-shadow-3:0 20px 60px rgb(17 27 50 / .18);
+  --sgz-success:#226748; --sgz-warning:#805218; --sgz-danger:#ac2c42;
+  --sgz-selected:var(--sgz-pale); --sgz-motion-fast:120ms; --sgz-motion:180ms; --sgz-motion-panel:220ms;
+}
+:root[data-sgz-theme="review-paper"] {
+  --sgz-paper:#f2f1fa; --sgz-pale:#eae5ff; --sgz-accent:#5a3ad1; --sgz-nav:#29214e;
+}
+:root[data-sgz-theme="lamp-night"] {
+  --sgz-paper:#10192e; --sgz-surface:#182641; --sgz-surface-raised:#223352;
+  --sgz-ink:#f1f5fc; --sgz-muted:#bdcbe3; --sgz-rule:#3b5076; --sgz-accent:#a4beff;
+  --sgz-on-accent:#102047; --sgz-pale:#293e67; --sgz-evidence:#3b315c; --sgz-uncertain:#4a3623;
+  --sgz-nav:#0e1831; --sgz-success:#8bd8b2; --sgz-warning:#efc17c; --sgz-danger:#ffb0c0;
 }

@@ -228,6 +228,11 @@ for (const scenario of CASES) {
         await page.locator(`${moduleSelector}.workspace-mode-review`).waitFor({ state: 'visible', timeout: 30_000 });
       }
       await page.evaluate(() => document.fonts.ready);
+      // Theme changes now animate; audit their settled colors rather than a transition frame.
+      await page.evaluate(async () => {
+        await new Promise(requestAnimationFrame);
+        await Promise.all(document.getAnimations().filter(animation => animation.effect?.getComputedTiming().iterations !== Infinity).map(animation => animation.finished.catch(() => {})));
+      });
 
       const result = await page.evaluate(AUDIT);
       await context.close();

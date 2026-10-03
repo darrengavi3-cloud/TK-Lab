@@ -17,3 +17,22 @@
 .save-panel{margin-top:32px;padding:24px;background:var(--sgz-surface);border-top:2px solid var(--sgz-accent)}.save-panel h2{margin-bottom:8px}.save-panel>.el-checkbox{margin-top:12px}.advanced-editor{margin-top:24px}.advanced-editor textarea{font:14px/1.6 ui-monospace,monospace}.research-shell input[type=file]:focus-visible,.research-shell summary:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:3px}.research-shell button:disabled{cursor:not-allowed;opacity:.65}
 @media(max-width:1100px){.research-layout{grid-template-columns:180px minmax(0,1fr);gap:22px}.research-split{grid-template-columns:210px minmax(0,1fr)}.research-editor{padding:20px}.source-comparison{grid-template-columns:1fr}.research-editor .field-grid{grid-template-columns:1fr}}
 @media(max-width:760px){.research-shell{padding:20px 16px}.research-layout{display:block}.people-index{padding:0 0 20px;margin-bottom:24px;border-right:0;border-bottom:1px solid var(--sgz-rule)}.person-results{max-height:190px}.person-search .el-input{flex:1;min-width:140px}.people-index .quiet{margin:6px 0}.research-empty{padding:20px 0}.research-split{display:block}.research-split .event-list{border-right:0;max-height:none}.research-split.detail-open>.event-list{display:none}.research-split:not(.detail-open)>.research-editor{display:none}.research-editor{padding:18px}.research-editor .mobile-back{display:block}.event-toolbar{flex-wrap:wrap}.event-toolbar .el-input{flex-basis:100%}.event-toolbar .el-select{flex:1;min-width:0}.source-sheet{padding:18px}.revision-comparison{grid-template-columns:1fr}.save-panel{padding:20px 16px}.dossier-tools{gap:8px}.draft-state{margin-left:0;display:block}.year-query{flex-wrap:wrap}.year-query .el-input{flex-basis:100%}.revision-list li{align-items:flex-start}.revision-list li>div{min-width:0;overflow-wrap:anywhere}.research-shell h1{font-size:27px}.dossier-tabs .el-tabs__item{padding:0 14px}.research-editor .field-grid{grid-template-columns:1fr}}
+
+
+/* Blue Atlas research: events stay separate from claims and fixed-version source reading. */
+.research-shell{padding:28px 32px}.research-layout{grid-template-columns:220px minmax(0,1fr);gap:28px}
+.people-index{border:0;padding:20px;background:var(--sgz-surface);border-radius:var(--sgz-radius-lg);align-self:start}
+.person-row{border-radius:14px;margin-bottom:8px;border:0;padding:16px}.person-row small,.source-pin,.event-row small{font-size:14px}
+.research-split{border:0;border-radius:var(--sgz-radius-lg);background:transparent;gap:24px;grid-template-columns:minmax(250px,30%) minmax(0,1fr)}
+.event-list{border:0;background:var(--sgz-surface);border-radius:var(--sgz-radius-lg);padding:20px}
+.event-row{padding:18px 16px;margin-bottom:12px;border:0;border-radius:16px;background:var(--sgz-paper)}
+.event-row[aria-current]{background:var(--sgz-pale);box-shadow:none}.event-year{font:700 22px var(--sgz-font-data)}
+.research-editor{padding:28px;background:var(--sgz-surface);border-radius:var(--sgz-radius-lg)}
+.claim-editor{background:var(--sgz-pale);padding:20px;border:0;border-radius:20px;margin-top:20px}
+.source-sheet{border:0;border-radius:var(--sgz-radius-lg);padding:28px;background:var(--sgz-surface)}
+.source-transcription{font:18px/1.9 var(--sgz-font-body);white-space:pre-wrap}
+.save-panel{border:0;border-radius:var(--sgz-radius-lg);background:var(--sgz-pale);padding:28px}
+.dossier-tabs .el-tabs__nav-wrap::after{height:1px}.dossier-tabs .el-tabs__item{font-size:16px}
+.research-empty{background:var(--sgz-pale);border-radius:var(--sgz-radius-lg);padding:40px}
+@media(max-width:1100px){.research-layout{grid-template-columns:180px minmax(0,1fr)}.research-split{grid-template-columns:210px minmax(0,1fr)}.source-comparison{grid-template-columns:1fr}}
+@media(max-width:760px){.research-shell{padding:20px 16px}.research-layout{display:block}.people-index{margin-bottom:24px;padding:16px}.research-split{display:block}.event-list{padding:16px}.research-editor,.source-sheet{padding:20px}.save-panel{padding:20px}.claim-editor{padding:16px}.source-transcription{font-size:18px}}

@@ -1,3 +1,11 @@
+## Blue Atlas 首页与视觉迁移（2026-10-03）
+
+- `/` 无模块 hash 时进入人物探索，合法模块 hash 沿用 `route-contract.js` 与稳定 ID 恢复。品牌链接回首页；浏览器前进／后退继续恢复原模块和筛选。首页标题为「探索 · 观史台」。
+- 首页搜索只检索发布人物投影的姓名、表字、别名；请求跟随 `/reader/current` 的固定快照，同源校验，20秒超时和离开取消。输入未就绪时显示载入，不把候选层当搜索回退。首页 Ctrl/Cmd+K 聚焦搜索；进入读者后仍打开既有跨模块面板。
+- 所有 Figma 示例人物、日期、引文和保存回馈均为设计素材，不写入生产资料。研究页仍由 `admin/research-client.ts`、ResearchGraph 与不可变 Journal 负责真实保存、并读固定版本、重试和冲突恢复；此轮仅修改其视觉。
+- canonical owners：导航和状态为既有模块/route contract；Form/Select/Table/Toast 为 Element Plus；全局滚动样式为 `components.css`；首页本地搜索为原生 input + 真实链接，无 authored combobox。没有新增日期、CRUD或持久化行为。
+- 保留四个主模块与更多入口；Figma 对页面顺序的探索不覆盖资料发布边界与研究／阅读分层。
+
 ## 私人研究案卷首轮契约（2026-10-02）
 
 - 业务与数据来源见 `docs/research-workspace.md` 及其指向的 ResearchGraph／Journal／授权模块。案卷保存与阅读发布分别处理。

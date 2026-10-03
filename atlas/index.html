@@ -2795,9 +2795,9 @@ const app = createApp({
     let urlStateTimer = null;
     const viewportWidth = ref(typeof window==='undefined'?1280:window.innerWidth);
     const themeOptions = [
-      {key:'laitai-day',label:'兰台清昼',note:'冷纸灰 · 青墨 · 朱印',swatches:['#E9ECE8','#17252D','#A13E31']},
-      {key:'review-paper',label:'朱批纸本',note:'暖白 · 炭墨 · 铜金',swatches:['#F4EEE2','#2E2925','#9E3F32']},
-      {key:'lamp-night',label:'青灯夜校',note:'深青黑 · 纸白 · 湖绿',swatches:['#152128','#E9EFEA','#79A79A']}
+      {key:'laitai-day',label:'蓝图清昼',note:'冷白 · 深蓝 · 钴蓝',swatches:['#F1F5FC','#111B32','#2457E7']},
+      {key:'review-paper',label:'紫调对读',note:'冷白 · 紫蓝 · 对读',swatches:['#F2F1FA','#111B32','#5A3AD1']},
+      {key:'lamp-night',label:'深蓝夜读',note:'深蓝 · 冷白 · 浅蓝',swatches:['#10192E','#F1F5FC','#A4BEFF']}
     ];
     function applyInterfacePreferences(){
       const root=document.documentElement;
@@ -8935,7 +8935,7 @@ const app = createApp({
     <header class="topbar">
       <div class="seal-mark serif" aria-hidden="true">觀</div>
       <div class="brand">
-        <div class="t1">观史台</div>
+        <div class="t1"><a href="/" target="_top" aria-label="返回观史台首页">观史台</a></div>
 
       </div>
 
