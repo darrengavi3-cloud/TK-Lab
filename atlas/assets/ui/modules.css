@@ -2711,3 +2711,8 @@ body, #app, .shell { color: var(--v58-ink); }
 @keyframes sgz-atlas-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 :root[data-sgz-motion="reduced"] .module-page-inner{animation:none!important}
 @media(prefers-reduced-motion:reduce){.shell *, .shell *::before,.shell *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* R3 career records keep full citations outside the record-opening button. */
+.sgz-career-record{min-width:0}
+.sgz-career-record>button{width:100%}
+.sgz-career-record .reader-citations{margin-top:12px}

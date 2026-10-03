@@ -42,12 +42,13 @@
       props: {person:Object,timeline:{type:Array,default:()=>[]},citations:{type:Array,default:()=>[]},section:{type:String,default:'life'},onSection:Function,onOpenEvent:Function,typeLabel:Function},
       computed: {
         sections(){return [['life','生平'],['career','仕宦'],['relations','关系'],['sources','史料']];},
-        career(){return this.timeline.map(group=>({...group,events:group.events.filter(event=>['appointment','peerage'].includes(event.eventType))})).filter(group=>group.events.length);},
+        career(){return this.timeline.map(group=>({...group,events:group.events.filter(event=>['appointment','peerage','fangzhen'].includes(event.eventType))})).filter(group=>group.events.length);},
         researchHref(){try{if(location.protocol==='file:')return '';let search='';if(parent!==window&&parent.location.origin===location.origin)search=parent.location.search;return '/admin/research?person='+encodeURIComponent(this.person.personId)+'&return='+encodeURIComponent('/'+search+location.hash);}catch{return '';}}
       },
       methods: {
         readableBio(){return !/^(?:—|-|未详|不详|待定|待考|\?|？)$/u.test(String(this.person.bio||'').trim())&&String(this.person.bio||'').trim();},
         choose(key){this.onSection?.(key);},
+        tenure(event){const start=Number.isInteger(event.startYear)?event.startYear+'年':'？';const end=Number.isInteger(event.endYear)?event.endYear+'年':'？';return start==='？'&&end==='？'?'任期未详':start===end?start:start+'—'+end;},
         keyboard(event,index){if(event.isComposing)return;let next;if(event.key==='ArrowRight')next=(index+1)%4;else if(event.key==='ArrowLeft')next=(index+3)%4;else if(event.key==='Home')next=0;else if(event.key==='End')next=3;else return;event.preventDefault();this.choose(this.sections[next][0]);this.$nextTick(()=>this.$el.querySelectorAll('.sgz-person-sections button')[next]?.focus());},
         remember(){const selector={people:'.people-workbench',offices:'.court-scroll'}[location.hash.slice(1).split('?')[0]];global.SGZ_READING_HISTORY?.rememberReading({hash:location.hash,title:this.person.name+' · 人物记',scroll:document.querySelector(selector)?.scrollTop||0,drawerScroll:document.querySelector('.el-drawer__body')?.scrollTop||0});}
       },
@@ -56,8 +57,8 @@
         <section v-if="section==='life'" class="sgz-person-panel" aria-label="生平"><h3>人物生平</h3><p v-if="readableBio()" class="sgz-biography">{{person.bio}}</p><p v-else class="reader-quiet-note">独立小传尚待补充。</p>
           <div v-if="timeline.length" class="v69-person-life-timeline"><section v-for="group in timeline" :key="group.year" class="v69-person-life-year"><time>{{group.year}}</time><div class="v69-person-life-events"><button v-for="event in group.events" :key="event.eventId" type="button" @click="onOpenEvent(event)"><span class="v69-life-type">{{typeLabel(event)}}</span><strong>{{event.title}}</strong><small v-if="event.detail">{{event.detail}}</small></button></div></section></div>
         </section>
-        <section v-else-if="section==='career'" class="sgz-person-panel" aria-label="仕宦"><h3>仕宦轨迹</h3><p class="reader-quiet-note">起讫、兼领与迁转按原记录显示；年代未定的经历另列。</p>
-          <div v-if="career.length" class="v69-person-life-timeline"><section v-for="group in career" :key="group.year" class="v69-person-life-year"><time>{{group.year}}</time><div class="v69-person-life-events"><button v-for="event in group.events" :key="event.eventId" type="button" @click="onOpenEvent(event)"><span class="v69-life-type">{{typeLabel(event)}}</span><strong>{{event.title}}</strong><small v-if="event.detail">{{event.detail}}</small><small>打开原记录与证据</small></button></div></section></div><p v-else class="reader-quiet-note">尚无可展开的仕宦经历。</p>
+        <section v-else-if="section==='career'" class="sgz-person-panel" aria-label="仕宦"><h3>仕宦轨迹</h3><p class="reader-quiet-note">任官、封爵与州镇职任按原记录列出。起讫未详不推定连续任期；兼领与迁转以原文为据。</p>
+          <div v-if="career.length" class="v69-person-life-timeline"><section v-for="group in career" :key="group.year" class="v69-person-life-year"><time>{{group.year}}</time><div class="v69-person-life-events"><article v-for="event in group.events" :key="event.eventId" class="sgz-career-record"><button type="button" @click="onOpenEvent(event)"><span class="v69-life-type">{{typeLabel(event)}}</span><strong>{{event.title}}</strong><small>{{tenure(event)}}</small><small v-if="event.detail">{{event.detail}}</small><small>打开原记录与证据</small></button><reader-citations :citations="event.citations||[]"/></article></div></section></div><p v-else class="reader-quiet-note">尚无可展开的仕宦经历。</p>
         </section>
         <section v-else-if="section==='relations'" class="sgz-person-panel" aria-label="关系"><h3>关系与归属</h3><p v-if="person.historicalAffiliations?.length">历史归属：{{person.historicalAffiliations.join('、')}}</p><p class="reader-quiet-note">宗族、师友与同僚关系尚无独立的公开记录。</p></section>
         <section v-else class="sgz-person-panel" aria-label="史料"><h3>史料与出处</h3><reader-citations :citations="citations"/><p v-if="!citations.length" class="reader-quiet-note">本人物尚无可展开的原文引证。</p></section>

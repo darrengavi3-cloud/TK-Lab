@@ -88,3 +88,11 @@ html,body{font-family:var(--sgz-font-body);color:var(--sgz-ink);scrollbar-color:
 /* R2 exploration prioritizes the search and the user's own reading continuation. */
 .atlas-explore h1{font-size:clamp(28px,3vw,40px);line-height:1.35;margin:0 0 28px}.atlas-explore{padding:28px 32px}.atlas-main{gap:24px}.atlas-recent>div{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.atlas-recent h2{margin:0}.atlas-recent>p{font-size:14px;color:var(--sgz-muted)}.atlas-recent nav{display:flex;gap:12px;flex-wrap:wrap}.atlas-recent nav a{display:flex;align-items:center;min-height:44px;padding:10px 16px;background:var(--sgz-pale);border-radius:14px;color:var(--sgz-accent);text-decoration:none;overflow-wrap:anywhere}
 @media(max-width:760px){.atlas-explore{padding:24px}.atlas-explore h1{font-size:28px}.atlas-recent>div{align-items:flex-start}}
+
+/* Intrinsic sizing must also reflow with fallback fonts and enlarged text. */
+.atlas-main{grid-template-columns:minmax(0,1fr)}
+.atlas-main>*,.atlas-search,.atlas-search-control,.atlas-results,.atlas-result-links a{min-width:0}
+.atlas-search-control input{width:0}
+.atlas-search-control button{flex-shrink:0;white-space:nowrap}
+.atlas-result-links a>*,.atlas-panel,.atlas-directory a{overflow-wrap:anywhere}
+@media(max-width:760px){.atlas-header{flex-wrap:wrap}.atlas-header>.atlas-button{max-width:100%}.atlas-explore{padding:24px 20px}}
