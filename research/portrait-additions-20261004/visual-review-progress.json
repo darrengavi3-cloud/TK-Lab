@@ -170,6 +170,54 @@
       }
     },
     {
+      "kind": "new",
+      "order": 15,
+      "personId": "person:workbook:8e2e8fcc9f31f01e",
+      "sha256": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "new",
+      "order": 16,
+      "personId": "person:workbook:12dd658503315d90",
+      "sha256": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "new",
+      "order": 17,
+      "personId": "person:workbook:5b1def2d8b8c8c49",
+      "sha256": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "new",
+      "order": 18,
+      "personId": "person:workbook:cf54dfebd647ab02",
+      "sha256": "1099e85a2c1de66ca62e835f736f0dd9a913b2fff951d2ad00651989cff948cc",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
       "kind": "existing",
       "order": 1,
       "personId": "person:source:653eea8eb9c6",
@@ -258,6 +306,54 @@
       "order": 8,
       "personId": "person:wei:jia-xu",
       "sha256": "b88786f44d8aa2cc1eae3278d8b00ab5dad70126b6fef47b36ad4d6fd184193f",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 9,
+      "personId": "person:source:2a7e68aa7262",
+      "sha256": "e66338dc33ec6ef94e7e3e04264ce733840436267363c8d3a63c09b300e3b1aa",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 10,
+      "personId": "person:wei:cao-ren",
+      "sha256": "951df6c9fa8891c369d427af0a141b5e5daccfe3a1aca3450013f64aa3e1a6e9",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 11,
+      "personId": "person:wei:hua-xin",
+      "sha256": "83031361d1cd00ffa65ecf06eba605f43956d515eed963848d607b84eaaf855a",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 12,
+      "personId": "person:source:11e5afb2df97",
+      "sha256": "a086e1a38608de04d0b22666f2afca5841c7b1a98b2cd2ec3cf72b3093cf5a7f",
       "visualReview": {
         "frontal": true,
         "directGaze": true,
