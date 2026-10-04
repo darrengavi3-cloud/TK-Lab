@@ -1,0 +1,44 @@
+{
+  "reviewedAt": "2026-10-04",
+  "reviewLevel": "electronic-primary-text-read",
+  "editionImageChecked": false,
+  "items": [
+    {
+      "id": "yuan-shao-silk-headcloth",
+      "personName": "袁绍",
+      "personId": "person:source:653eea8eb9c6",
+      "sourceTitle": "晋书卷二十五·舆服志",
+      "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷025",
+      "sourceLocator": "汉末王公名士与幅巾、缣巾段",
+      "claim": "文献将袁绍和崔钧列为虽任将帅仍着缣巾的人物例子。",
+      "claimType": "explicit-literary-record",
+      "promptUse": "据文献线索设计朴素缣帛头巾，避免为袁绍自动分配通用高冠或巨型金冠。",
+      "uncertainty": ["未限定该记载对应其生平的精确日期", "服装全套与具体巾的形态尚需实物或图像互证", "电子文本待核原刊影像"],
+      "strictReconstruction": false
+    },
+    {
+      "id": "xun-yu-headcloth-fork-folklore",
+      "personName": "荀彧",
+      "sourceTitle": "晋书卷二十五·舆服志",
+      "sourceUrl": "https://zh.wikisource.org/wiki/晉書/卷025",
+      "sourceLocator": "徐爰所记荀文若巾触树枝成岐段",
+      "claim": "文本用俗说限定该故事，不能将故事直接转为确定的造型事实。",
+      "claimType": "reported-folklore",
+      "promptUse": "不强制凭这一故事绘制双岐巾；保留头饰结构待考。",
+      "strictReconstruction": false
+    },
+    {
+      "id": "uninitiated-youth-ze",
+      "personName": null,
+      "sourceTitle": "后汉书志第三十·舆服下",
+      "sourceUrl": "https://zh.wikisource.org/wiki/後漢書/卷120",
+      "sourceLocator": "帻制、未冠童子段",
+      "claim": "文献区分未冠童子帻与成人冠帻。",
+      "claimType": "institutional-description-with-condition",
+      "condition": "人物处于未冠状态；不能单凭现代年龄判断，尤其不能忽略帝王元服等个案。",
+      "promptUse": "后续少年立绘先核对冠礼状态，避免自动复制成年人冠式。",
+      "uncertainty": ["每位少年是否已冠尚需逐人核实", "具体形态需图像或专门研究互证", "电子文本待核原刊影像"],
+      "strictReconstruction": false
+    }
+  ]
+}
