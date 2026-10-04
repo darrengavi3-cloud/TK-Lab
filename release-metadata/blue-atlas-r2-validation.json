@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-03",
+  "visualTests": {
+    "passed": 49,
+    "failed": 0
+  },
+  "offlineRelease": {
+    "canonicalInvariants": 20,
+    "deterministicDoubleBuild": true,
+    "readerFiles": 595
+  },
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 3
+  },
+  "designAudit": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "sourceChecks": [
+    "check:atlas",
+    "check:ui",
+    "check:wiring",
+    "git diff --check"
+  ],
+  "figma": "https://www.figma.com/design/dq8Bp5utRVLhaPxCbtjwSm",
+  "figmaPage": "R2 · 阅读与研究流程",
+  "dataChanged": false,
+  "readerSnapshotPublished": false,
+  "limitations": [
+    "real iPhone Safari and manual 200% browser zoom not verified",
+    "production research end-to-end not exercised"
+  ],
+  "repairs": [
+    "v52 runtime sources and published archive reconciled",
+    "desktop extracted-module root margins restored",
+    "phone reader-return label remains visible"
+  ],
+  "verificationScope": [
+    "stable person sections and reload",
+    "device reading history and actual scroll resume",
+    "three research themes at phone width",
+    "fixed-version source comparison without losing unsaved edits",
+    "save retry and revision conflict",
+    "keyboard controls and sidebar non-overlap"
+  ],
+  "builtTests": {
+    "passed": 247,
+    "failed": 0,
+    "evidence": "Full suite: 246 passed and one isolated handshake harness failed; after adding the new restore callback to the harness, the reader-product suite passed. No runtime source changed after the full suite."
+  },
+  "workerRuntime": {
+    "passed": 24,
+    "failed": 0
+  }
+}

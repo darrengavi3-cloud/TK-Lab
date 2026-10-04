@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-03",
+  "builtTests": {
+    "passed": 247,
+    "failed": 0
+  },
+  "visualTests": {
+    "passed": 44,
+    "failed": 0,
+    "evidence": "37 homepage/reader tests rerun after final fixes; 7 unchanged admin/pagination/research tests passed in full-matrix run"
+  },
+  "offlineRelease": {
+    "canonicalInvariants": 20,
+    "deterministicDoubleBuild": true,
+    "readerFiles": 594
+  },
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 3
+  },
+  "workerRuntime": "passed",
+  "sourceChecks": [
+    "check:atlas",
+    "check:ui",
+    "check:wiring",
+    "git diff --check"
+  ],
+  "designAudit": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "limitations": [
+    "real iPhone Safari and manual 200% zoom not verified",
+    "production research end-to-end not exercised"
+  ],
+  "dataChanged": false,
+  "figma": "https://www.figma.com/design/dq8Bp5utRVLhaPxCbtjwSm"
+}

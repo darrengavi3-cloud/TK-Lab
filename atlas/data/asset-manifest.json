@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedAt": "2026-08-29T16:00:00.000Z",
   "offlineRuntime": true,
-  "fileCount": 834,
-  "totalBytes": 350754374,
-  "aggregateSha256": "9f1dd24a053ec327a610a2b749d0f31f97ea220e159626f04f6a5a7e72465a67",
+  "fileCount": 836,
+  "totalBytes": 350775071,
+  "aggregateSha256": "ee6680326004f5464898575fa3e4e6dd79997adf49b010f48ee39e5840f7a8a5",
   "files": [
     {
       "path": "assets/app/fangzhen.js",
@@ -43,8 +43,18 @@
     },
     {
       "path": "assets/app/reader-components.js",
-      "bytes": 6014,
-      "sha256": "80482f5be9aeb0df7a038b9840e4f38d16ad5cbc996c0613b5648e7ff2cbd4ba"
+      "bytes": 12043,
+      "sha256": "e9ca4c62a7872a5078957ad433d0b4e6c305d68b963496a24d7502af378fe33a"
+    },
+    {
+      "path": "assets/app/reading-history.d.ts",
+      "bytes": 454,
+      "sha256": "848c7265f18b9da62aee24ffb8eb7a8494ea59071c9d3a9e3cd9d8a493c1860e"
+    },
+    {
+      "path": "assets/app/reading-history.js",
+      "bytes": 1836,
+      "sha256": "5c6fb8c7afe9cae43fdff9208bf126c3803723eea4495277769a256a7564139e"
     },
     {
       "path": "assets/app/release-version.js",
@@ -93,8 +103,8 @@
     },
     {
       "path": "assets/app/ui/people-ui.js",
-      "bytes": 18569,
-      "sha256": "a796fa944de6d8e68d3e4b16c50e5c5e14d8e6e95b7806d7b04c8c2b48f9a25b"
+      "bytes": 17955,
+      "sha256": "3ea7a6c8c8237b5b1498a27e0ee5d30cb19a6bdcd8d9bf6e8d1c272c0f8c6e18"
     },
     {
       "path": "assets/app/ui/shihuo-ui.js",
@@ -3203,8 +3213,8 @@
     },
     {
       "path": "assets/ui/components.css",
-      "bytes": 48427,
-      "sha256": "213a2b9e968b1a8d73843bcfd288af1d5fd088b10d36ad460078ae699199980b"
+      "bytes": 54955,
+      "sha256": "db4b21e284a86fe3dab1ee6b83043f6397e6a62f98f6cef72808a13eee49fbcd"
     },
     {
       "path": "assets/ui/court-ink-palace.png",
@@ -3213,18 +3223,18 @@
     },
     {
       "path": "assets/ui/modules.css",
-      "bytes": 95421,
-      "sha256": "c49aa1ec9495e8c034aa69d07879c524852955343ad25d6973acc96ad1be4875"
+      "bytes": 99167,
+      "sha256": "93d5c929c6796e4a2234c7c0b63b4e75221dc2572aa59f083f3d8304580c2287"
     },
     {
       "path": "assets/ui/responsive.css",
-      "bytes": 8376,
-      "sha256": "43104eca59b416c5a0691d6816917fa4a15bcd92f413da666774bf2f0e837517"
+      "bytes": 10610,
+      "sha256": "ccec12125b9d0b2a5865f005ea9a35737ab82fdd911f54d1ae72370664636699"
     },
     {
       "path": "assets/ui/tokens.css",
-      "bytes": 1534,
-      "sha256": "39d296c261870861a58da72982ed2d8a21ec9dde20d115820300ecd7f6719eb9"
+      "bytes": 2018,
+      "sha256": "7f260592b5899e56a1df909830892afc217399bea3068d6bb43e390db2281935"
     },
     {
       "path": "assets/ui/v55.css",

@@ -14,7 +14,7 @@
 <script type="module" src="/admin-client.mjs"></script>
 </head>
 <body><div id="catalogue" v-cloak>
-<header class="admin-header"><a class="wordmark" href="/">觀史台</a><span class="header-note">資料管理</span><div class="header-actions"><el-select v-model="theme" aria-label="外觀主題" @change="setTheme"><el-option label="蘭臺清晝" value="laitai-day"></el-option><el-option label="朱批紙本" value="review-paper"></el-option><el-option label="青燈夜校" value="lamp-night"></el-option></el-select><a href="/" target="_blank" rel="noopener">閱讀版 ↗</a></div></header>
+<header class="admin-header"><a class="wordmark" href="/">觀史台</a><span class="header-note">資料管理</span><div class="header-actions"><el-select v-model="theme" aria-label="外觀主題" @change="setTheme"><el-option label="藍圖清晝" value="laitai-day"></el-option><el-option label="紫調對讀" value="review-paper"></el-option><el-option label="深藍夜讀" value="lamp-night"></el-option></el-select><a href="/" target="_blank" rel="noopener">閱讀版 ↗</a></div></header>
 <div class="admin-layout">
 <nav class="admin-nav" aria-label="管理後台"><button v-for="item in navigation" :key="item.id" :aria-current="screen===item.id?'page':null" @click="navigate(item.id)"><span>{{item.label}}</span><span aria-hidden="true">›</span></button><p>保存修訂後，<br>由你決定何時發布。</p></nav>
 <main id="admin-main">

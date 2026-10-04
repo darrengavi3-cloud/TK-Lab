@@ -86,6 +86,8 @@ export const PeopleWorkbench = {
     workspaceMode: { type: String, default: 'reader' },
     active: { type: Boolean, default: false },
     /* 函数型依赖以 fn 前缀传入，模板按原名调用 */
+    fnChangeSection: {type:Function,default:null},
+    fnChangeCareerType: {type:Function,default:null},
     fnOpenDetail: { type: Function, default: null },
     fnOpenLifeEvent: { type: Function, default: null },
     fnOpenMetaEditor: { type: Function, default: null },
@@ -108,6 +110,8 @@ export const PeopleWorkbench = {
     peoplePrimaryOfficeSummary() { return this.state.peoplePrimaryOfficeSummary; },
     peoplePrimaryPeerageSummary() { return this.state.peoplePrimaryPeerageSummary; },
     peopleArchiveScope() { return this.state.peopleArchiveScope; },
+    peopleCareerType() {return this.state.peopleCareerType||'all';},
+    peopleReadingSection() {return this.state.peopleReadingSection||'life';},
     peopleView() { return this.state.peopleView; },
     peoplePage() { return this.state.peoplePage; },
     peoplePageCount() { return this.state.peoplePageCount; },
@@ -168,27 +172,11 @@ export const PeopleWorkbench = {
                 <person-identity-facts :person="peoplePrimaryDetail" :lifespan="personLifespanLabel(peoplePrimaryDetail)" :office="peoplePrimaryOfficeSummary" :peerage="peoplePrimaryPeerageSummary" />
                 <div v-if="workspaceMode==='review'&&peoplePrimaryDetail.importCandidate" class="v60-import-candidate review-only"><strong>附件人物候选 · {{peoplePrimaryDetail.researchDisposition}}</strong><template v-if="peoplePrimaryDetail.v60Records&&peoplePrimaryDetail.v60Records.length"><span v-for="record in peoplePrimaryDetail.v60Records" :key="record.workbookSource.row">{{record.workbookSource.sheet}} 第 {{record.workbookSource.row}} 行 · 原名 {{record.rawName||record.name}}<template v-if="record.officeRaw"> · 官职字段 {{record.officeRaw}}</template></span></template><span v-else>{{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.sheet}} 第 {{peoplePrimaryDetail.workbookSource&&peoplePrimaryDetail.workbookSource.row}} 行 · 原名 {{peoplePrimaryDetail.rawName||peoplePrimaryDetail.name}}</span><span v-if="peoplePrimaryDetail.candidateReason">{{peoplePrimaryDetail.candidateReason}}</span></div>
                 <div v-if="workspaceMode==='review'" class="v58-dossier-strip review-only"><strong>档案范围</strong><span>{{peopleArchiveScope.label}}</span><strong>来源卷覆盖</strong><span>{{peoplePrimaryDetail.sourceVolumes.length?peoplePrimaryDetail.sourceVolumes.join('、'):'来源卷次待补'}}</span><span class="v58-status" :class="peoplePrimaryDetail.sourceVolumes.length?'v58-status--ready':'v58-status--pending'">{{peoplePrimaryDetail.sourceVolumes.length?'来源已关联':'来源待补'}}</span></div>
-                <section v-if="readableFact(peoplePrimaryDetail.bio)" class="person-biography" aria-label="人物小传"><h3>人物小传</h3><p>{{peoplePrimaryDetail.bio}}</p></section>
                 <el-button v-if="workspaceMode==='review'" class="review-only" size="small" plain @click="openPersonMetaEditor(peoplePrimaryDetail.personId)">编辑人物档案</el-button>
               </div>
             </header>
             <p v-if="!peoplePrimaryDetail.bio&&!peoplePrimaryLifeTimeline.length" class="reader-quiet-note">已收录身份资料；独立小传与经历尚待补充。</p>
-            <reader-citations :citations="personCitations(peoplePrimaryDetail)" />
-            <section v-if="peoplePrimaryLifeTimeline.length" class="v69-person-life-section">
-              <h3 class="v56-dossier-section-title">人物经历 · {{peoplePrimaryDetail.lifeEvents.length}} 条</h3>
-              <div class="v69-person-life-timeline">
-                <section v-for="group in peoplePrimaryLifeTimeline" :key="group.year" class="v69-person-life-year">
-                  <time>{{group.year}}</time>
-                  <div class="v69-person-life-events">
-                    <button v-for="event in group.events" :key="event.eventId" type="button" @click="openPersonLifeEvent(event)">
-                      <span class="v69-life-type">{{personLifeEventTypeLabel(event)}}</span>
-                      <strong>{{event.title}}</strong>
-                      <small v-if="event.detail">{{event.detail}}</small>
-                    </button>
-                  </div>
-                </section>
-              </div>
-            </section>
+            <person-reading-sections :person="peoplePrimaryDetail" :timeline="peoplePrimaryLifeTimeline" :citations="personCitations(peoplePrimaryDetail)" :section="peopleReadingSection" :career-type="peopleCareerType" :on-career-type="fnChangeCareerType" :on-section="fnChangeSection" :on-open-event="openPersonLifeEvent" :type-label="personLifeEventTypeLabel" />
           </article>
         </div>
         <nav v-if="peoplePageCount>1" class="people-pagination" aria-label="人物档案分页">

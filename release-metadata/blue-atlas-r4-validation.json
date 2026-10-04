@@ -1,0 +1,30 @@
+{
+  "version": "R4",
+  "verifiedAt": "2026-10-04T00:49:16.727Z",
+  "changes": [
+    "URL-restored career type filters shared by desktop and mobile",
+    "Full career quotations retain text with lexical highlights only",
+    "Pinned claim and role context in comparison",
+    "Exact first occurrence of textual variant highlighted and focused without changing source text",
+    "Reduced viewport save/retry and safe-area wrapping",
+    "Figma editable prototype filter states and record return"
+  ],
+  "verification": {
+    "source": 58,
+    "built": 247,
+    "browser": 54,
+    "access": 2,
+    "typecheck": "passed",
+    "lint": "passed with 3 pre-existing warnings",
+    "strictAudit": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "workerRuntime": "passed"
+  },
+  "limitations": [
+    "Real iPhone and iOS keyboard not tested",
+    "Career lexical markers do not establish historical conclusions"
+  ],
+  "figma": "https://www.figma.com/design/dq8Bp5utRVLhaPxCbtjwSm?node-id=10-43"
+}

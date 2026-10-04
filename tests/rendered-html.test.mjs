@@ -2,7 +2,6 @@ import { assertReaderPeople, assertReaderPortraits } from './helpers/reviewed-bo
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
-import { RELEASE_VERSION } from "../atlas/assets/app/release-version.js";
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -25,14 +24,16 @@ async function render() {
   );
 }
 
-test("server-renders the historical atlas shell", async () => {
+test("server-renders the exploration homepage before loading the requested reader", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<title>观史台 · 历史资料库<\/title>/);
-  assert.ok(html.includes(`src="/reader/current?v=${RELEASE_VERSION.slice(1)}"`));
+  assert.match(html, /从人物开始研究。/);
+  assert.match(html, /id="person-search"/);
+  assert.doesNotMatch(html, /<iframe\b/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 

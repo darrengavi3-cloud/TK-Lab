@@ -25,3 +25,17 @@
 :root[data-sgz-theme="lamp-night"] .el-button--primary{--el-button-text-color:var(--sgz-dossier-masthead);--el-button-hover-text-color:var(--sgz-dossier-masthead);--el-button-active-text-color:var(--sgz-dossier-masthead)}
 .el-select__input:focus-visible{outline:none}
 .el-select__wrapper:has(.el-select__input:focus-visible){outline:2px solid var(--sgz-accent);outline-offset:3px}
+
+
+/* Blue Atlas admin shares the same semantic tokens and existing Element Plus behavior. */
+.admin-header{border:0;background:var(--sgz-paper);box-shadow:none;min-height:88px}
+.wordmark,.section-heading h1,.editor h2,.panel h2,.research-shell h1,.source-sheet h2{font-family:var(--sgz-font-heading);letter-spacing:0}
+.wordmark{color:var(--sgz-accent);font-weight:800}
+.admin-nav{margin:8px 16px 24px;border:0;border-radius:var(--sgz-radius-lg);background:var(--sgz-nav);color:#e6eeff;padding:20px 12px}
+.admin-nav button{border:0;border-radius:var(--sgz-radius);min-height:48px;font-size:16px;color:#e6eeff}
+.admin-nav button[aria-current]{background:#2457e7;color:white;box-shadow:none}
+.panel,.workspace-grid{border:0;border-radius:var(--sgz-radius-lg);box-shadow:none}
+.record-row{border-radius:var(--sgz-radius);font-size:16px}.record-row small,.record-id,.save-status,.status-text,.save-bar>span{font-size:14px}
+.editor{padding:28px}.evidence-editor{border-radius:20px;background:var(--sgz-pale);border:0}
+.el-button--primary,:root[data-sgz-theme="lamp-night"] .el-button--primary{--el-button-text-color:var(--sgz-on-accent);--el-button-hover-text-color:var(--sgz-on-accent);--el-button-active-text-color:var(--sgz-on-accent)}
+@media(max-width:760px){.admin-header{min-height:76px}.admin-nav{margin:0 16px;gap:8px;padding:8px;border-radius:16px}.admin-nav button{font-size:14px}#admin-main{padding:24px 16px}.editor{padding:20px}}

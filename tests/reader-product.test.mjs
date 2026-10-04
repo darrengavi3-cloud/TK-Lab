@@ -35,12 +35,12 @@ test('boot timeout accepts late readiness and ignores disposed timers',()=>{
 test('host rejects foreign readiness and prevents handshake loops',()=>{
   const page=fs.readFileSync(new URL('../app/page.tsx',import.meta.url),'utf8');
   const listener=page.slice(page.indexOf('    const receiveRoute ='),page.indexOf('    window.addEventListener("message"'));
-  const inner={},origin='https://reader.test';let ready=0,sent=0;
-  const ctx={frame:{current:{contentWindow:inner}},location:{origin},boot:{ready(){ready++;}},acceptedRouteMessage};
+  const inner={},origin='https://reader.test';let ready=0,sent=0,restored=0;
+  const ctx={frame:{current:{contentWindow:inner}},location:{origin},boot:{ready(){ready++;}},restorePosition(){restored++;},acceptedRouteMessage};
   ctx.sendRoute=()=>{sent++;ctx.receive({source:inner,origin,data:{type:'guanshitai:ready'}});};
   vm.runInNewContext('let frameReady=false;'+listener.replace('(event: MessageEvent)','(event)')+';this.receive=receiveRoute;',ctx);
   ctx.receive({source:{},origin,data:{type:'guanshitai:ready'}});ctx.receive({source:inner,origin:'https://other.test',data:{type:'guanshitai:ready'}});
-  assert.equal(ready,0);ctx.receive({source:inner,origin,data:{type:'guanshitai:ready'}});assert.equal(sent,1);assert.equal(ready,2);
+  assert.equal(ready,0);ctx.receive({source:inner,origin,data:{type:'guanshitai:ready'}});assert.equal(sent,1);assert.equal(ready,2);assert.equal(restored,1);
 });
 
 test('retry restores selected detail without reporting stale failure',async()=>{

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-03T23:11:51.167Z",
+  "revision": "Blue Atlas R3",
+  "figma": {
+    "fileKey": "dq8Bp5utRVLhaPxCbtjwSm",
+    "page": "10:43",
+    "mobileCareer": "10:49",
+    "mobileComparison": "10:51"
+  },
+  "checks": {
+    "releaseOffline": {
+      "pass": 247,
+      "fail": 0,
+      "deterministicBuild": true
+    },
+    "sourceTests": {
+      "pass": 58,
+      "fail": 0
+    },
+    "fullVisual": {
+      "pass": 52,
+      "fail": 0
+    },
+    "latestFocused": {
+      "home": 6,
+      "research": 5,
+      "person": 2
+    },
+    "runtime": "passed",
+    "strictUiAudit": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "typecheck": "passed",
+    "lint": {
+      "errors": 0,
+      "existingWarnings": 3
+    },
+    "designLint": {
+      "errors": 0,
+      "warnings": 1
+    }
+  },
+  "coverage": [
+    "320px homepage, fallback fonts, long labels, 200% text",
+    "Device reading restores module and drawer scroll offsets",
+    "Full career quotations and existing state/provincial offices",
+    "Pinned counter evidence and textual variant source navigation",
+    "Mobile comparison focus, tenure detail and list return",
+    "Lost save acknowledgement, idempotent retry and concurrent conflict recovery"
+  ],
+  "limitations": [
+    "No real iPhone/Safari device verification",
+    "200% text reflow verification does not claim a complete browser zoom matrix",
+    "Synthetic fixtures; no production research records were mutated"
+  ]
+}
