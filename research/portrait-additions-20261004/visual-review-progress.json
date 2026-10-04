@@ -348,6 +348,70 @@
         "shouldersFrontal": true,
         "ageAppropriate": true
       }
+    },
+    {
+      "kind": "existing",
+      "order": 1,
+      "personId": "person:source:653eea8eb9c6",
+      "sha256": "2ffb0aca9f8bb2b8a9de3ee6d9f64085aee3fb13000d88af582f84384cb72dfa",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 2,
+      "personId": "person:source:e078e67a29ef",
+      "sha256": "6e361d1b26fd77195a49eb33e5de2ab4ce99987c2fe96585a092f39f81bbd2a4",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 3,
+      "personId": "person:wei:zhong-yao",
+      "sha256": "9f8fba9f4cf408690151198a6d6006b330ec25065429666f7a08946d51e13455",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 4,
+      "personId": "person:source:cf82fa4d1264",
+      "sha256": "7d0bae328a5721284ce14acdc807556c0078524bea216142248c3d1fe7f54c7d",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      }
     }
   ],
   "revisionReason": "User requests independent recreation of early crop-derived assets; previous frontal-only early edits retained as archived candidates and require new review."
