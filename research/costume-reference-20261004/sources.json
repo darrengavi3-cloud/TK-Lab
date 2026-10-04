@@ -1,0 +1,28 @@
+{
+  "reviewedAt": "2026-10-04",
+  "scope": "汉末、三国、魏晋人物立绘参考资料",
+  "status": "research-reviewed-no-external-images-imported",
+  "repositories": [
+    {"id":"huafu-fidelity","url":"https://github.com/tonggx74-wq/huafu-fidelity","codeLicense":"MIT","suitability":"review-workflow-only","limitation":"规则雏形；缺少汉魏晋专门类型，不能直接用于断代判定"},
+    {"id":"hanfu-bench","url":"https://github.com/hlt-cuhksz/TemporalCulture","paper":"https://aclanthology.org/2025.emnlp-main.1251/","datasetCard":"https://huggingface.co/datasets/lizhou21/hanfu-bench","dataLicense":"CC BY-NC-SA 4.0 plus academic-evaluation-only restrictions","suitability":"feature-organization-concept-only","importImages":false},
+    {"id":"guzhuang-meiren-director","url":"https://github.com/ChengSir404/guzhuang-meiren-director","codeLicense":"MIT","skillInstalled":false,"suitability":"reference-control-and-evidence-workflow-only","limitation":"默认成年女性及20–25岁审美不适用于全站历史人物"},
+    {"id":"hanfu-pattern-database","url":"https://github.com/zifeiyu243165/Hanfu_Pattern_Database","codeLicense":"unverified","imageLicense":"unverified","suitability":"index-structure-concept-only","importImages":false},
+    {"id":"hantingfu","url":"https://github.com/GwanSY/HanTingFu","imageLicense":"unverified","suitability":"exhibition-navigation-reference-only"},
+    {"id":"chinesecostume","url":"https://github.com/ChineseHanfu/ChineseCostume","codeLicense":"BSD-2-Clause","suitability":"watchlist-no-data-at-review"}
+  ],
+  "primaryReferences": [
+    {"id":"nmc-costume-exhibition","title":"中国古代服饰文化","url":"https://www.chnmuseum.cn/portals/0/web/zt/202102gdfsh/","type":"museum-exhibition","imageReuse":"not-cleared"},
+    {"id":"nsm-hanwei","title":"汉魏印象：汉晋南北朝服饰艺术展","url":"https://www.chinasilkmuseum.com/yz/info_18.aspx?itemid=30762","type":"museum-exhibition","imageReuse":"not-cleared","rightsUrl":"https://www.chinasilkmuseum.com/flsm/index_39.aspx"},
+    {"id":"shen-costume","title":"中国古代服饰研究","author":"沈从文","url":"https://www.cp.com.cn/Content/2023/10-19/0901077211.html","type":"publisher-description","bookContentImported":false},
+    {"id":"sun-costume","title":"中国古舆服论丛","author":"孙机","url":"https://www.chnmuseum.cn/yj/xscg/xszz/201903/t20190325_85514.shtml","type":"museum-bibliography","isbn":"9787532569458","bookContentImported":false},
+    {"id":"sun-han-material","title":"汉代物质文化资料图说","author":"孙机","url":"https://www.chnmuseum.cn/yj/xscg/xszz/201903/t20190325_85513.shtml","type":"museum-bibliography","isbn":"9787532560271","bookContentImported":false},
+    {"id":"wang-hanfu","title":"汉服的形成——东周秦汉服饰的考古学研究","author":"王方","url":"https://www.chnmuseum.cn/yj/xscg/xszz/202408/t20240815_269916.shtml","type":"museum-book-introduction","bookContentImported":false}
+  ],
+  "evidenceCardProposal": {
+    "personFields":["personId","depictedAge","ageBasis","depictedDateRange","region","socialIdentity","occasion"],
+    "costumeFields":["headwear","collar","lapel","sleeve","garmentStructure","belt","footwear","material","motif"],
+    "perFeatureEvidenceFields":["referenceId","sourceLocator","evidenceType","applicableDateRange","confidence","uncertainty","imageRights"],
+    "unknownValue":"unsure",
+    "portraitClaim":"项目生成插画；服饰依据不构成真实人物肖像证明"
+  }
+}

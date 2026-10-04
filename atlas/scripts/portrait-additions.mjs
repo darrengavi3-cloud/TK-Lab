@@ -50,7 +50,7 @@ export function applyFrontalPortraits(root, assetsById) {
       checkImage(root,row);
       asset.originalSrc = asset.src;
       asset.src = row.assetPath;
-      asset.frontalArtwork = { interfaceOnly:true, sourceSha256:row.sha256, originalSha256:row.originalSha256, designRef:null };
+      asset.frontalArtwork = { interfaceOnly:true, productionMethod:row.productionMethod || 'frontal-edit', sourceTitle:'2026-10-04 项目生成正面立绘（非史实肖像）', sourceSha256:row.sha256, originalSha256:row.originalSha256, originalPortraitKind:asset.portraitKind, originalSourceTitle:asset.sourceTitle, designRef:null };
     } else if (row.action !== 'retain' || row.visualReview?.frontal !== true || row.visualReview?.directGaze !== true || row.visualReview?.shouldersFrontal !== true) throw new Error('Invalid retained frontal portrait');
     ids.add(row.portraitId);
   }
