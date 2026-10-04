@@ -1,0 +1,167 @@
+{
+  "reviewedAt": "2026-10-04",
+  "status": "four-artworks-accepted-costume-reconstruction-unverified",
+  "strictReconstruction": false,
+  "portraits": [
+    {
+      "personId": "person:workbook:3a76aeaa75dec25c",
+      "order": 30,
+      "name": "逢纪",
+      "artStage": {
+        "age": 47,
+        "basis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。"
+      },
+      "periodScope": "汉末人物艺术表现阶段；具体表现年份尚未锁定",
+      "occasion": "士人艺术形象",
+      "visibleFeatures": [
+        {
+          "feature": "首服",
+          "choice": "朴素深色布质冠巾",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        },
+        {
+          "feature": "领襟",
+          "choice": "交领布帛袍",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        }
+      ],
+      "uncertainty": "暂不认定人物曾穿此具体冠式、衣袍、颜色或甲胄；品阶服制与表现年份需要逐项核证。",
+      "promptRecord": "research/portrait-additions-20261004/generation-prompts-030-033.json",
+      "generationReference": {
+        "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e257541289123b1f8b12-redraw.png",
+        "role": "style-only",
+        "excluded": [
+          "年龄",
+          "容貌",
+          "灰发与灰须",
+          "具体衣服"
+        ]
+      },
+      "status": "artwork-accepted",
+      "imagePath": "atlas/assets/portraits/20261004/030-280b403f232b.png",
+      "imageSha256": "5c6c70aacfe1f7ce17a37ac715f6c85de8ff8eedde5aadb7a57ef993c89469d6"
+    },
+    {
+      "personId": "person:workbook:4af0b66346dbb00a",
+      "order": 31,
+      "name": "郭图",
+      "artStage": {
+        "age": 37,
+        "basis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。"
+      },
+      "periodScope": "汉末人物艺术表现阶段；具体表现年份尚未锁定",
+      "occasion": "士人艺术形象",
+      "visibleFeatures": [
+        {
+          "feature": "首服",
+          "choice": "朴素深色布质冠巾",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        },
+        {
+          "feature": "领襟",
+          "choice": "交领布帛袍",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        }
+      ],
+      "uncertainty": "暂不认定人物曾穿此具体冠式、衣袍、颜色或甲胄；品阶服制与表现年份需要逐项核证。",
+      "promptRecord": "research/portrait-additions-20261004/generation-prompts-030-033.json",
+      "generationReference": {
+        "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e257541289123b1f8b12-redraw.png",
+        "role": "style-only",
+        "excluded": [
+          "年龄",
+          "容貌",
+          "灰发与灰须",
+          "具体衣服"
+        ]
+      },
+      "status": "artwork-accepted",
+      "imagePath": "atlas/assets/portraits/20261004/031-0f45c074a117.png",
+      "imageSha256": "685a59b8032dbab8f6e91798ff9b546996da0aede17d31977f1b08c5b44c4099"
+    },
+    {
+      "personId": "person:workbook:74fe2ebe45acfeba",
+      "order": 32,
+      "name": "许攸",
+      "artStage": {
+        "age": 42,
+        "basis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。"
+      },
+      "periodScope": "汉末人物艺术表现阶段；具体表现年份尚未锁定",
+      "occasion": "士人艺术形象",
+      "visibleFeatures": [
+        {
+          "feature": "首服",
+          "choice": "朴素深色布质冠巾",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        },
+        {
+          "feature": "领襟",
+          "choice": "交领布帛袍",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        }
+      ],
+      "uncertainty": "暂不认定人物曾穿此具体冠式、衣袍、颜色或甲胄；品阶服制与表现年份需要逐项核证。",
+      "promptRecord": "research/portrait-additions-20261004/generation-prompts-030-033.json",
+      "generationReference": {
+        "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e257541289123b1f8b12-redraw.png",
+        "role": "style-only",
+        "excluded": [
+          "年龄",
+          "容貌",
+          "灰发与灰须",
+          "具体衣服"
+        ]
+      },
+      "status": "artwork-accepted",
+      "imagePath": "atlas/assets/portraits/20261004/032-d79507999066.png",
+      "imageSha256": "33c92983ec3dd17d07ba1632f02b029cfd787c70b2754026a78eb6e07cce46d7"
+    },
+    {
+      "personId": "person:workbook:5d464af1fd47c8d6",
+      "order": 33,
+      "name": "颜良",
+      "artStage": {
+        "age": 47,
+        "basis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。"
+      },
+      "periodScope": "汉末人物艺术表现阶段；具体表现年份尚未锁定",
+      "occasion": "军旅艺术形象",
+      "visibleFeatures": [
+        {
+          "feature": "甲胄",
+          "choice": "克制的片状编缀甲与布帛内衣",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        },
+        {
+          "feature": "首服",
+          "choice": "朴素深色首服",
+          "evidenceType": "artistic-choice",
+          "personSpecificEvidence": null
+        }
+      ],
+      "uncertainty": "暂不认定人物曾穿此具体冠式、衣袍、颜色或甲胄；品阶服制与表现年份需要逐项核证。",
+      "promptRecord": "research/portrait-additions-20261004/generation-prompts-030-033.json",
+      "generationReference": {
+        "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e257541289123b1f8b12-redraw.png",
+        "role": "style-only",
+        "excluded": [
+          "年龄",
+          "容貌",
+          "灰发与灰须",
+          "具体衣服"
+        ]
+      },
+      "status": "artwork-accepted",
+      "imagePath": "atlas/assets/portraits/20261004/033-1f7ba11ac744.png",
+      "imageSha256": "c2c732a07451d170d9369de58ff5ea5768495d7fa401a67ac1dcb1f0cf6e9d2e"
+    }
+  ]
+}
