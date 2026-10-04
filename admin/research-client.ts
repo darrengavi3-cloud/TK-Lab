@@ -22,7 +22,7 @@ createApp({setup() {
     person: null as PersonRow | null, original: null as RawPreview | null, graph: null as ResearchGraph | null, loadedGraph: '', baseRevision: 0, watermark: 0,
     inspection: null as Inspection | null, sources: [] as SourceView[], selectedEvent: '', selectedTenure: '', mobileDetail: false, tab: 'events',
     eventFilter: '', eventKind: '', year: '', yearResult: null as Inspection['presence'], reason: '', reviewed: false, saveAvailable: true,
-    compactSources: false, compareActiveKey: '', compareOrigin: 'events', returnPath: '/',
+    compactSources: false, compareActiveKey: '', compareOrigin: 'events', compareClaimId: '', comparePassage: '', compareLocus: '', returnPath: '/',
     compareKeys: [] as string[], revisions: [] as HistoryRow[], nextBefore: null as number | null, conflict: null as Saved | null, historyPreview: null as Saved | null,
     material: null as ResearchMaterialPack | null, materialConfirmed: false, importBusy: false, importJobId: '', advanced: '', advancedDirty: false});
   let listEpoch = 0, pendingSave: {signature: string; input: Record<string, unknown>} | null = null;
@@ -30,6 +30,7 @@ createApp({setup() {
   const title = computed(() => (state.person?.data.name || '人物') + '研究案卷');
   const currentEvent = computed(() => state.graph?.events.find(e => e.id === state.selectedEvent) || null);
   const currentTenure = computed(() => state.graph?.tenures.find(t => t.id === state.selectedTenure) || null);
+  const comparedClaim = computed(() => state.graph?.claims.find(c=>c.id===state.compareClaimId)||null);
   const currentClaims = computed(() => state.graph?.claims.filter(c => c.subject.id === (state.tab === 'tenures' ? state.selectedTenure : state.selectedEvent)) || []);
   const visibleEvents = computed(() => (state.graph?.events || []).filter(e => (!state.eventKind || e.type === state.eventKind) && (!state.eventFilter || [e.original, eventDates(state.graph!, e.id)].join(' ').includes(state.eventFilter))));
   const compareSources = computed(() => state.compareKeys.map(key => state.sources.find(s => sourceKey(s) === key)).filter((s): s is SourceView => !!s));
@@ -72,7 +73,7 @@ createApp({setup() {
     const checked = await inspect(graph, watermark);
     state.person = row; state.original = raw; state.graph = clone(graph); state.loadedGraph = canonicalJson(graph); state.baseRevision = saved?.number || 0; state.watermark = watermark;
     state.inspection = checked; state.sources = checked.sourceRevisions; state.selectedEvent = graph.events[0]?.id || ''; state.selectedTenure = graph.tenures[0]?.id || '';
-    state.compareKeys = []; state.conflict = null; state.historyPreview = null; state.reason = ''; state.reviewed = false; state.material = null; state.materialConfirmed = false; state.importJobId = ''; state.saveAvailable = saveAvailable;
+    state.compareKeys = []; state.compareClaimId='';state.comparePassage='';state.compareLocus=''; state.conflict = null; state.historyPreview = null; state.reason = ''; state.reviewed = false; state.material = null; state.materialConfirmed = false; state.importJobId = ''; state.saveAvailable = saveAvailable;
     state.advanced = JSON.stringify(graph, null, 2); state.advancedDirty = false; state.mobileDetail = false; state.yearResult = null; state.revisions = []; pendingSave = null;
     if (saveAvailable) {try {await loadHistory();} catch {state.error = '案卷已讀取，但修訂列表暫時無法更新。';}}
     state.message = saveAvailable ? (saved ? '已讀取研究修訂 ' + saved.number + '。' : '已建立案卷草稿，可加入材料後保存。') : '目前可閱讀、比較與匯出；研究保存服務尚未就緒。'; syncUrl();
@@ -85,9 +86,10 @@ createApp({setup() {
   function claimSources(claim: Claim) {return (state.graph?.evidence.filter(e => e.claimId === claim.id) || []).map(e => ({evidence: e, source: state.sources.find(s => sourceKey(s) === e.source.id + '@' + e.source.revision)}));}
   function selectEvidence(claim: Claim, keys: string[]) {if (!state.graph) return; const previous = state.graph.evidence.filter(e => e.claimId === claim.id && e.role === 'support'); const other = state.graph.evidence.filter(e => e.claimId !== claim.id || e.role !== 'support'); state.graph.evidence = [...other, ...keys.map(key => {const existing = previous.find(e => e.source.id + '@' + e.source.revision === key); if (existing) return existing; const source = state.sources.find(s => sourceKey(s) === key)!; return {id: 'evidence:' + randomId(), claimId: claim.id, source: source.pin, role: 'support' as const, note: ''};})];}
   function evidenceKeys(claim: Claim) {return state.graph?.evidence.filter(e => e.claimId === claim.id && e.role === 'support').map(e => e.source.id + '@' + e.source.revision) || [];}
-  function compareClaim(claim: Claim) {state.compareOrigin=state.tab==='tenures'?'tenures':'events';state.compareKeys=[...new Set(claimSources(claim).filter(ref=>ref.source).map(ref=>sourceKey(ref.source!)))].slice(0,3);state.compareActiveKey=state.compareKeys[0]||'';state.tab='sources';syncUrl();void nextTick().then(()=>document.getElementById('source-compare-title')?.focus());}
+  function compareClaim(claim: Claim) {state.compareClaimId=claim.id;state.comparePassage='';state.compareLocus='';state.compareOrigin=state.tab==='tenures'?'tenures':'events';state.compareKeys=[...new Set(claimSources(claim).filter(ref=>ref.source).map(ref=>sourceKey(ref.source!)))].slice(0,3);state.compareActiveKey=state.compareKeys[0]||'';state.tab='sources';syncUrl();void nextTick().then(()=>document.getElementById('source-compare-title')?.focus());}
   function returnFromCompare(){state.tab=state.compareOrigin;syncUrl();void nextTick().then(()=>requestAnimationFrame(()=>document.getElementById(state.compareOrigin==='tenures'?'tenure-title':'event-title')?.focus()));}
-  function readEvidence(source: SourceView){if(state.tab==='events'||state.tab==='tenures')state.compareOrigin=state.tab;const key=sourceKey(source);state.compareKeys=[key];state.compareActiveKey=key;state.tab='sources';syncUrl();void nextTick().then(()=>document.getElementById('source-compare-title')?.focus());}
+  function readEvidence(source: SourceView, claim?: Claim, passage='', locus=''){if(claim)state.compareClaimId=claim.id;else if(state.tab!=='sources')state.compareClaimId='';state.comparePassage=passage;state.compareLocus=locus;if(state.tab==='events'||state.tab==='tenures')state.compareOrigin=state.tab;const key=sourceKey(source);state.compareKeys=[key];state.compareActiveKey=key;state.tab='sources';syncUrl();void nextTick().then(()=>requestAnimationFrame(()=>{const target=document.querySelector<HTMLElement>('.source-sheet:not([hidden]) mark')||document.querySelector<HTMLElement>('.source-sheet:not([hidden]) h2');target?.focus();target?.scrollIntoView({block:'center'});}));}
+  function sourceParts(source:SourceView){const text=source.data.text,passage=state.comparePassage;if(sourceKey(source)!==state.compareActiveKey||!passage)return [{text,marked:false}];const at=text.indexOf(passage);if(at<0)return [{text,marked:false}];return [{text:text.slice(0,at),marked:false},{text:passage,marked:true},{text:text.slice(at+passage.length),marked:false}];}
   function switchSource(key:string){state.compareActiveKey=key;void nextTick().then(()=>document.querySelector<HTMLElement>('.source-sheet:not([hidden]) h2')?.focus());}
   function focusSave(){document.querySelector<HTMLTextAreaElement>('[aria-label="本次修訂說明"]')?.focus();document.querySelector('.save-panel')?.scrollIntoView({block:'center',behavior:'auto'});}
   async function returnToReader(){if(await mayReplace())location.assign(state.returnPath);}
@@ -157,7 +159,7 @@ createApp({setup() {
     const p = new URLSearchParams(location.search), requested = p.get('person');state.returnPath=safeReadingReturn(p.get('return'),location.origin); state.query = p.get('q') || ''; state.page = Math.max(1, Number(p.get('page')) || 1);
     try {await api('/session'); state.ready = true; await search(false); if (requested) {const row = await api<Revision<Person>>('/records/' + encodeURIComponent(requested)); if (row.data.kind !== 'person') throw Error('此連結不是人物案卷。'); await loadPerson({id: row.id, version: row.number, data: row.data}); if (p.get('event') && state.graph?.events.some(e => e.id === p.get('event'))) state.selectedEvent = p.get('event')!; if (['events','tenures','sources','history'].includes(p.get('tab') || '')) state.tab = p.get('tab')!; syncUrl();}} catch (e) {report(e);}
   });
-  return {...window.Vue.toRefs(state), dirty, title, currentEvent, currentTenure, currentClaims, visibleEvents, compareSources, contextEvidence, needsReview, conflictRows, assessmentNames, eventNames, presenceNames,
+  return {...window.Vue.toRefs(state), dirty, title, currentEvent, currentTenure, currentClaims, visibleEvents, compareSources, comparedClaim, sourceParts, contextEvidence, needsReview, conflictRows, assessmentNames, eventNames, presenceNames,
     returnToReader, returnFromCompare, readEvidence, switchSource, focusSave, setTheme, search, clearSearch, loadPerson, selectEvent, selectTenure, backToList, addEvent, addDate, dateChanged, claimSources, evidenceKeys, selectEvidence, compareClaim, sourceKey, claimText, eventDates,
     save, checkDraft, useRemoteItem, acceptConflictBase, loadHistory: (reset = true) => run(() => loadHistory(reset)), showRevision, restoreRevision, queryYear, exportFile, chooseMaterial, importMaterial, applyAdvanced, discardAdvanced, syncUrl,
     openFilePicker: () => document.getElementById('research-file-input')?.click(),

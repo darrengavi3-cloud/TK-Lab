@@ -2863,6 +2863,8 @@ const app = createApp({
     const historyAuditSelection = ref(null);
     const activePersonName = ref('');
     const peopleReadingSection=ref('life');
+    const peopleCareerType=ref('all');
+    function setPeopleCareerType(key){if(['all','appointment','peerage','fangzhen'].includes(key)){peopleCareerType.value=key;scheduleUrlState('replace');}}
     function setPeopleReadingSection(key){if(['life','career','relations','sources'].includes(key)){peopleReadingSection.value=key;scheduleUrlState('replace');}}
     const peopleQuery = ref('');
     const peopleSearchComposing = ref(false);
@@ -7185,6 +7187,7 @@ const app = createApp({
       peopleEra, peopleYear, peopleSource, peopleEvidence,
       peopleServiceDomain, peopleInstitutionType,
       get peopleReadingSection(){return peopleReadingSection.value;},
+      get peopleCareerType(){return peopleCareerType.value;},
       get peopleView(){return peopleView.value;},
       get peopleQuery(){return peopleQuery.value;},
       get peopleKeyboardIndex(){return peopleKeyboardIndex.value;},
@@ -8489,6 +8492,7 @@ const app = createApp({
       const params=new URLSearchParams();
       if(activeModule.value==='people'){
         if(peopleReadingSection.value!=='life')params.set('section',peopleReadingSection.value);
+        if(peopleCareerType.value!=='all')params.set('career',peopleCareerType.value);
         if(peopleQuery.value)params.set('q',peopleQuery.value);
         if(peoplePolity.value!=='all')params.set('dynasty',peoplePolity.value);
         if(peopleKind.value!=='all')params.set('kind',peopleKind.value);
@@ -8569,6 +8573,7 @@ const app = createApp({
         if(generation!==urlApplyGeneration)return;
         const p=state.params;
         if(module==='people'){
+          peopleCareerType.value=['appointment','peerage','fangzhen'].includes(p.get('career'))?p.get('career'):'all';
           peopleReadingSection.value=['life','career','relations','sources'].includes(p.get('section'))?p.get('section'):'life';
           peopleQuery.value=p.get('q')||'';
           if(['all',...PERSON_DYNASTY_ORDER].includes(p.get('dynasty')||'all'))peoplePolity.value=p.get('dynasty')||'all';
@@ -8842,7 +8847,7 @@ const app = createApp({
 
     return {
       factions, activeModule, moduleLoadState, moduleVisited, prefetchModule, viewportWidth, moduleContextLabel, v56ModuleItems, v56ModuleMeta, moduleSearchScope, switchModule, currentFaction, treeType, viewMode, officePresentation, setOfficePresentation, validationEnabled, zoomPct,
-      peopleReadingSection, setPeopleReadingSection, showReadingFilters, readingQuery, readingFilterTags, clearReadingFilters, handleReadingQueryKey, closeReadingDetail, readingReturn, returnToReading, primaryModuleItems, secondaryModuleItems, rankReferenceTab, officialsTab, openOfficeHolders, peopleContent, shihuoSort, shihuoIncludeDiscussion, shihuoPage, activeShihuoId, showShihuoDetail, shihuoPagination, shihuoPrimaryDetail, openShihuoRecord, shihuoUiState, setShihuoUiState, stepShihuoPage, jinshiUiState, setJinshiUiState, stepJinshiPage, peopleUiState, setPeopleUiState, stepPeoplePage, peopleUiOptions,
+      peopleReadingSection, setPeopleReadingSection, peopleCareerType, setPeopleCareerType, showReadingFilters, readingQuery, readingFilterTags, clearReadingFilters, handleReadingQueryKey, closeReadingDetail, readingReturn, returnToReading, primaryModuleItems, secondaryModuleItems, rankReferenceTab, officialsTab, openOfficeHolders, peopleContent, shihuoSort, shihuoIncludeDiscussion, shihuoPage, activeShihuoId, showShihuoDetail, shihuoPagination, shihuoPrimaryDetail, openShihuoRecord, shihuoUiState, setShihuoUiState, stepShihuoPage, jinshiUiState, setJinshiUiState, stepJinshiPage, peopleUiState, setPeopleUiState, stepPeoplePage, peopleUiOptions,
       showLog, showStats, showVersions, showOfficials, showSearch, showBatch, showArchives, showCompare, showPalette, showTheme, showTongdian, showGeneralTitles, generalTitlePolity,
       themeKey, densityMode, motionMode, workspaceMode, themeOptions, setTheme, setDensity, setMotion, setWorkspaceMode,
       spineCollapsed, evidenceRailCollapsed, showMobileModules, toggleSpine, toggleEvidenceRail, openMobileModules, closeMobileModules, handleMobileModulesKeydown, v56ActiveRecord, selectV56Record,
@@ -9068,6 +9073,7 @@ const app = createApp({
       :workspace-mode="workspaceMode"
       :active="activeModule==='people'"
       :fn-change-section="setPeopleReadingSection"
+      :fn-change-career-type="setPeopleCareerType"
       :fn-open-detail="openPeopleDetail"
       :fn-open-life-event="openPersonLifeEvent"
       :fn-open-meta-editor="openPersonMetaEditor"
@@ -9295,7 +9301,7 @@ const app = createApp({
             <div v-if="workspaceMode==='review'" class="review-only" style="margin-top:10px;"><el-button size="small" plain @click="openPersonMetaEditor(activePeopleDetail.personId)">编辑人物档案</el-button></div>
           </div>
         </div>
-        <person-reading-sections :person="activePeopleDetail" :timeline="peoplePrimaryLifeTimeline" :citations="personCitations(activePeopleDetail)" :section="peopleReadingSection" :on-section="setPeopleReadingSection" :on-open-event="openPersonLifeEvent" :type-label="personLifeEventTypeLabel" />
+        <person-reading-sections :person="activePeopleDetail" :timeline="peoplePrimaryLifeTimeline" :citations="personCitations(activePeopleDetail)" :section="peopleReadingSection" :career-type="peopleCareerType" :on-career-type="setPeopleCareerType" :on-section="setPeopleReadingSection" :on-open-event="openPersonLifeEvent" :type-label="personLifeEventTypeLabel" />
       </template>
     </el-drawer>
 

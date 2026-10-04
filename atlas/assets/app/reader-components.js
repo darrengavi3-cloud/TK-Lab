@@ -27,22 +27,24 @@
       template: `<img :src="src" :srcset="srcset" :sizes="srcset ? sizes : undefined" :alt="alt" loading="lazy" decoding="async" @error="failedVariant = true" />`
     },
     ReaderCitations: {
-      props: { citations: { type: Array, default: () => [] } },
+      props: { citations: { type: Array, default: () => [] }, highlightCareer: Boolean },
+      methods: {quoteParts(quote){return String(quote).split(/(兼領|兼领|兼任|兼|領|领|遷|迁|轉|转|徙|拜|除|出為|出为)/u).map((text,index)=>({text,marked:this.highlightCareer&&index%2===1}));}},
       template: `<section v-if="citations.length" class="reader-citations" aria-label="原典回查">
         <h3>原典回查 <small>{{citations.length}} 条引文</small></h3>
         <details v-for="(citation,index) in citations" :key="citation.url+'|'+index">
           <summary><span>{{citation.title}}</span><small v-if="citation.role==='counter'">反证</small><small v-if="citation.role==='variant'">异说</small><small class="reader-citation-expand">{{citation.textScope==='full'?'展开原文':'展开节录'}}</small><small class="reader-citation-collapse">收起原文</small></summary>
-          <blockquote v-if="citation.quote">{{citation.quote}}</blockquote>
+          <blockquote v-if="citation.quote"><template v-for="(part,partIndex) in quoteParts(citation.quote)" :key="partIndex"><mark v-if="part.marked">{{part.text}}</mark><template v-else>{{part.text}}</template></template></blockquote>
           <p v-if="citation.note">{{citation.note}}</p>
           <a v-if="/^https?:/.test(citation.url||'')" :href="citation.url" target="_blank" rel="noopener noreferrer">阅读原典全文 ↗</a>
         </details>
       </section>`
     },
     PersonReadingSections: {
-      props: {person:Object,timeline:{type:Array,default:()=>[]},citations:{type:Array,default:()=>[]},section:{type:String,default:'life'},onSection:Function,onOpenEvent:Function,typeLabel:Function},
+      props: {person:Object,timeline:{type:Array,default:()=>[]},citations:{type:Array,default:()=>[]},section:{type:String,default:'life'},careerType:{type:String,default:'all'},onCareerType:Function,onSection:Function,onOpenEvent:Function,typeLabel:Function},
       computed: {
+        careerTypes(){return [['all','全部'],['appointment','任官'],['peerage','封爵'],['fangzhen','州镇']];},
         sections(){return [['life','生平'],['career','仕宦'],['relations','关系'],['sources','史料']];},
-        career(){return this.timeline.map(group=>({...group,events:group.events.filter(event=>['appointment','peerage','fangzhen'].includes(event.eventType))})).filter(group=>group.events.length);},
+        career(){return this.timeline.map(group=>({...group,events:group.events.filter(event=>['appointment','peerage','fangzhen'].includes(event.eventType)&&(this.careerType==='all'||event.eventType===this.careerType))})).filter(group=>group.events.length);},
         researchHref(){try{if(location.protocol==='file:')return '';let search='';if(parent!==window&&parent.location.origin===location.origin)search=parent.location.search;return '/admin/research?person='+encodeURIComponent(this.person.personId)+'&return='+encodeURIComponent('/'+search+location.hash);}catch{return '';}}
       },
       methods: {
@@ -58,7 +60,8 @@
           <div v-if="timeline.length" class="v69-person-life-timeline"><section v-for="group in timeline" :key="group.year" class="v69-person-life-year"><time>{{group.year}}</time><div class="v69-person-life-events"><button v-for="event in group.events" :key="event.eventId" type="button" @click="onOpenEvent(event)"><span class="v69-life-type">{{typeLabel(event)}}</span><strong>{{event.title}}</strong><small v-if="event.detail">{{event.detail}}</small></button></div></section></div>
         </section>
         <section v-else-if="section==='career'" class="sgz-person-panel" aria-label="仕宦"><h3>仕宦轨迹</h3><p class="reader-quiet-note">任官、封爵与州镇职任按原记录列出。起讫未详不推定连续任期；兼领与迁转以原文为据。</p>
-          <div v-if="career.length" class="v69-person-life-timeline"><section v-for="group in career" :key="group.year" class="v69-person-life-year"><time>{{group.year}}</time><div class="v69-person-life-events"><article v-for="event in group.events" :key="event.eventId" class="sgz-career-record"><button type="button" @click="onOpenEvent(event)"><span class="v69-life-type">{{typeLabel(event)}}</span><strong>{{event.title}}</strong><small>{{tenure(event)}}</small><small v-if="event.detail">{{event.detail}}</small><small>打开原记录与证据</small></button><reader-citations :citations="event.citations||[]"/></article></div></section></div><p v-else class="reader-quiet-note">尚无可展开的仕宦经历。</p>
+          <nav class="sgz-career-filters" aria-label="仕宦类型筛选"><button v-for="[key,label] in careerTypes" :key="key" type="button" :aria-pressed="careerType===key" @click="onCareerType?.(key)">{{label}}</button></nav><p class="reader-quiet-note">原文中的任职、兼领与迁转字词以高亮提示，含义须结合上下文核对。</p>
+          <div v-if="career.length" class="v69-person-life-timeline"><section v-for="group in career" :key="group.year" class="v69-person-life-year"><time>{{group.year}}</time><div class="v69-person-life-events"><article v-for="event in group.events" :key="event.eventId" class="sgz-career-record"><button type="button" @click="onOpenEvent(event)"><span class="v69-life-type">{{typeLabel(event)}}</span><strong>{{event.title}}</strong><small>{{tenure(event)}}</small><small v-if="event.detail">{{event.detail}}</small><small>打开原记录与证据</small></button><reader-citations :citations="event.citations||[]" highlight-career/></article></div></section></div><p v-else class="reader-quiet-note">{{careerType==='all'?'尚无可展开的仕宦经历。':'该类型尚无公开仕宦记录，可选择全部。'}}</p>
         </section>
         <section v-else-if="section==='relations'" class="sgz-person-panel" aria-label="关系"><h3>关系与归属</h3><p v-if="person.historicalAffiliations?.length">历史归属：{{person.historicalAffiliations.join('、')}}</p><p class="reader-quiet-note">宗族、师友与同僚关系尚无独立的公开记录。</p></section>
         <section v-else class="sgz-person-panel" aria-label="史料"><h3>史料与出处</h3><reader-citations :citations="citations"/><p v-if="!citations.length" class="reader-quiet-note">本人物尚无可展开的原文引证。</p></section>

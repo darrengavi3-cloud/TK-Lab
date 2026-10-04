@@ -87,6 +87,7 @@ export const PeopleWorkbench = {
     active: { type: Boolean, default: false },
     /* 函数型依赖以 fn 前缀传入，模板按原名调用 */
     fnChangeSection: {type:Function,default:null},
+    fnChangeCareerType: {type:Function,default:null},
     fnOpenDetail: { type: Function, default: null },
     fnOpenLifeEvent: { type: Function, default: null },
     fnOpenMetaEditor: { type: Function, default: null },
@@ -109,6 +110,7 @@ export const PeopleWorkbench = {
     peoplePrimaryOfficeSummary() { return this.state.peoplePrimaryOfficeSummary; },
     peoplePrimaryPeerageSummary() { return this.state.peoplePrimaryPeerageSummary; },
     peopleArchiveScope() { return this.state.peopleArchiveScope; },
+    peopleCareerType() {return this.state.peopleCareerType||'all';},
     peopleReadingSection() {return this.state.peopleReadingSection||'life';},
     peopleView() { return this.state.peopleView; },
     peoplePage() { return this.state.peoplePage; },
@@ -174,7 +176,7 @@ export const PeopleWorkbench = {
               </div>
             </header>
             <p v-if="!peoplePrimaryDetail.bio&&!peoplePrimaryLifeTimeline.length" class="reader-quiet-note">已收录身份资料；独立小传与经历尚待补充。</p>
-            <person-reading-sections :person="peoplePrimaryDetail" :timeline="peoplePrimaryLifeTimeline" :citations="personCitations(peoplePrimaryDetail)" :section="peopleReadingSection" :on-section="fnChangeSection" :on-open-event="openPersonLifeEvent" :type-label="personLifeEventTypeLabel" />
+            <person-reading-sections :person="peoplePrimaryDetail" :timeline="peoplePrimaryLifeTimeline" :citations="personCitations(peoplePrimaryDetail)" :section="peopleReadingSection" :career-type="peopleCareerType" :on-career-type="fnChangeCareerType" :on-section="fnChangeSection" :on-open-event="openPersonLifeEvent" :type-label="personLifeEventTypeLabel" />
           </article>
         </div>
         <nav v-if="peoplePageCount>1" class="people-pagination" aria-label="人物档案分页">

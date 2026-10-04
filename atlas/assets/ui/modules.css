@@ -2716,3 +2716,6 @@ body, #app, .shell { color: var(--v58-ink); }
 .sgz-career-record{min-width:0}
 .sgz-career-record>button{width:100%}
 .sgz-career-record .reader-citations{margin-top:12px}
+
+/* R4 career filters share root URL state on desktop and phone. */
+.sgz-career-filters{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.sgz-career-filters button{min-height:44px;padding:10px 16px;border:1px solid var(--sgz-rule);border-radius:var(--sgz-radius);background:var(--sgz-surface);color:var(--sgz-ink);font:16px var(--sgz-font-body);cursor:pointer}.sgz-career-filters button[aria-pressed=true]{background:var(--sgz-accent);color:var(--sgz-on-accent)}.sgz-career-filters button:hover{border-color:var(--sgz-accent)}.sgz-career-filters button:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:3px}.reader-citations mark{background:var(--sgz-pale);color:var(--sgz-ink);text-decoration:underline;text-decoration-color:var(--sgz-accent);text-underline-offset:4px}

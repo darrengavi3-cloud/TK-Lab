@@ -1048,7 +1048,7 @@ body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hel
 body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-context-identity h1,.v56-person-dossier h2{font-family:var(--sgz-font-body)}
 .shell .topbar{height:var(--v56-topbar-h);min-height:var(--v56-topbar-h);padding:16px 24px;background:var(--sgz-paper);border:0;box-shadow:none;backdrop-filter:none}
 .shell .seal-mark{display:none}.shell .brand .t1{font-size:24px;font-weight:800;letter-spacing:0;color:var(--sgz-accent)}
-.shell .brand a{color:inherit;text-decoration:none;display:flex;align-items:center;min-height:44px}
+.shell .brand a{color:inherit;text-decoration:none;display:flex;align-items:center;min-width:44px;min-height:44px}
 .shell .global-search-trigger,.shell .theme-trigger{min-height:44px;border:0;border-radius:var(--sgz-radius);background:var(--sgz-surface);font-size:16px}
 .shell .v56-spine-nav{top:calc(var(--v56-topbar-h) + 8px);bottom:20px;left:16px;width:calc(var(--v56-current-spine) - 16px);border:0;border-radius:var(--sgz-radius-lg);padding:16px 10px;gap:8px}
 .shell .v56-spine-item{min-height:52px;border:0;border-radius:var(--sgz-radius);padding:12px;grid-template-columns:24px minmax(0,1fr);gap:12px}
