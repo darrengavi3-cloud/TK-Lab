@@ -37,11 +37,16 @@ export function applyFrontalPortraits(root, assetsById) {
   for (const row of ledger.records) {
     const asset = assetsById[row.portraitId];
     if (!asset || asset.portraitKind === portraitAdditionKind || row.personId !== asset.personId || row.originalSrc !== asset.src || ids.has(row.portraitId)) throw new Error('Frontal portrait identity/source mismatch');
+    const sourcePath = path.resolve(root, row.originalSrc);
+    if (!sourcePath.startsWith(path.resolve(root, 'assets/portraits') + path.sep)) throw new Error('Unsafe original portrait path');
+    const original = fs.readFileSync(sourcePath);
+    if (crypto.createHash('sha256').update(original).digest('hex') !== row.originalSha256) throw new Error('Original portrait integrity mismatch');
+    if (!Number.isInteger(row.designAge) || row.designAge < 1 || !row.ageBasis || row.visualReview?.ageAppropriate !== true) throw new Error('Frontal portrait age review missing');
     if (row.action === 'replace') {
       checkImage(root,row);
       asset.originalSrc = asset.src;
       asset.src = row.assetPath;
-      asset.frontalArtwork = { interfaceOnly:true, sourceSha256:row.sha256, designRef:null };
+      asset.frontalArtwork = { interfaceOnly:true, sourceSha256:row.sha256, originalSha256:row.originalSha256, designRef:null };
     } else if (row.action !== 'retain' || row.visualReview?.frontal !== true || row.visualReview?.directGaze !== true) throw new Error('Invalid retained frontal portrait');
     ids.add(row.portraitId);
   }

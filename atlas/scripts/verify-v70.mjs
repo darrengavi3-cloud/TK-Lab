@@ -103,7 +103,7 @@ if (failures.length) {
     ok: true,
     version: 'V70',
     readerPeople: reader.people.length,
-    portraits: { baseline: assets.filter(asset=>!['ui-illustration-v70','ui-illustration-v73'].includes(asset.portraitKind)).length, addedV70: v70Assets.length, addedV73: assets.filter(asset=>asset.portraitKind==='ui-illustration-v73').length, total: assets.length },
+    portraits: { baseline: assets.filter(asset=>!['ui-illustration-v70','ui-illustration-v73',portraitAdditionKind].includes(asset.portraitKind)).length, addedV70: v70Assets.length, addedV73: assets.filter(asset=>asset.portraitKind==='ui-illustration-v73').length, total: assets.length },
     v70: { dynasty: '魏', candidates: candidateRows.length, readyAssets: v70Assets.length, figma: v70Assets.every(asset => asset.designStatus === 'figma-design') ? 'complete' : 'pending-figma-upload' },
     fangzhenTitlesNormalized: true,
   }, null, 2));
