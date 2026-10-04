@@ -1,0 +1,48 @@
+{
+  "runId": 37200715302,
+  "headSha": "fd7eac7aef642b0851d9ac68c264c873c4d090fb",
+  "artifactId": 11302719092,
+  "artifactDigest": "sha256:1cd35c7d89cf14d3bc512a32c883d987398d6dfe20cb74b7ab1b4cfae41c7b94",
+  "verifiedAt": "2026-10-04",
+  "checks": [
+    "PNG signature",
+    "chunk CRCs",
+    "end-of-file completeness",
+    "native dimensions",
+    "9:16 tolerance",
+    "SHA256 original byte binding",
+    "downloaded ZIP digest"
+  ],
+  "images": [
+    {
+      "name": "portrait-asset-de688a2964451c72e17b-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "bytes": 2414440,
+      "sha256": "c81e6ac8f3d54d06bd0faf71a1d0ae6abc67299d9b43b6390e475a1d5b38ea37"
+    },
+    {
+      "name": "portrait-asset-008242744fad9253fdfb-redraw.png",
+      "width": 940,
+      "height": 1672,
+      "bytes": 2483568,
+      "sha256": "61bad608272eb8beba5eb4412b588b6327dcfeb6627573b8b1c2af29fac3cf08"
+    },
+    {
+      "name": "portrait-asset-803dce489c98f4df95a1-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "bytes": 2551123,
+      "sha256": "ef826e567c5448773aa8f2f3faf050a193815d6cdd84d812cfd3e7c1c52699d2"
+    },
+    {
+      "name": "portrait-asset-e257541289123b1f8b12-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "bytes": 2304330,
+      "sha256": "be8e1c1a07741a17632fd7534b08ffee725ce7a572df83817b8f2737855a0635"
+    }
+  ],
+  "visualReviewSeparate": true,
+  "historicalCostumeReconstructionVerified": false
+}

@@ -412,6 +412,106 @@
         "completeHands": true,
         "standingComposition": true
       }
+    },
+    {
+      "kind": "existing",
+      "order": 5,
+      "personId": "person:source:9f7272bc767c",
+      "portraitId": "portrait:asset:de688a2964451c72e17b",
+      "sha256": "c81e6ac8f3d54d06bd0faf71a1d0ae6abc67299d9b43b6390e475a1d5b38ea37",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      },
+      "reviewedAt": "2026-10-04",
+      "reviewBasis": "Root visually inspected these exact SHA256-bound generated PNGs before scratch maintenance; recovered bytes match.",
+      "fileVerification": {
+        "runId": 37200715302,
+        "headSha": "fd7eac7aef642b0851d9ac68c264c873c4d090fb",
+        "artifactId": 11302719092
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 6,
+      "personId": "person:source:b2dc15c2b1f2",
+      "portraitId": "portrait:asset:008242744fad9253fdfb",
+      "sha256": "61bad608272eb8beba5eb4412b588b6327dcfeb6627573b8b1c2af29fac3cf08",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      },
+      "reviewedAt": "2026-10-04",
+      "reviewBasis": "Root visually inspected these exact SHA256-bound generated PNGs before scratch maintenance; recovered bytes match.",
+      "fileVerification": {
+        "runId": 37200715302,
+        "headSha": "fd7eac7aef642b0851d9ac68c264c873c4d090fb",
+        "artifactId": 11302719092
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 7,
+      "personId": "person:source:72237d3083d5",
+      "portraitId": "portrait:asset:803dce489c98f4df95a1",
+      "sha256": "ef826e567c5448773aa8f2f3faf050a193815d6cdd84d812cfd3e7c1c52699d2",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      },
+      "reviewedAt": "2026-10-04",
+      "reviewBasis": "Root visually inspected these exact SHA256-bound generated PNGs before scratch maintenance; recovered bytes match.",
+      "fileVerification": {
+        "runId": 37200715302,
+        "headSha": "fd7eac7aef642b0851d9ac68c264c873c4d090fb",
+        "artifactId": 11302719092
+      }
+    },
+    {
+      "kind": "existing",
+      "order": 8,
+      "personId": "person:wei:jia-xu",
+      "portraitId": "portrait:asset:e257541289123b1f8b12",
+      "sha256": "be8e1c1a07741a17632fd7534b08ffee725ce7a572df83817b8f2737855a0635",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true
+      },
+      "reviewedAt": "2026-10-04",
+      "reviewBasis": "Root visually inspected these exact SHA256-bound generated PNGs before scratch maintenance; recovered bytes match.",
+      "fileVerification": {
+        "runId": 37200715302,
+        "headSha": "fd7eac7aef642b0851d9ac68c264c873c4d090fb",
+        "artifactId": 11302719092
+      }
     }
   ],
   "revisionReason": "User requests independent recreation of early crop-derived assets; previous frontal-only early edits retained as archived candidates and require new review."
