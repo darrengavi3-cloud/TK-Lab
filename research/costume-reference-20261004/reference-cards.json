@@ -1,0 +1,66 @@
+{
+  "reviewedAt": "2026-10-04",
+  "status": "documentary-reference-cards-for-art-direction",
+  "strictReconstruction": false,
+  "cards": [
+    {
+      "id": "robe-east-han-late-jin-yiwang",
+      "title": "对鸟对兽“宜王”锦袍",
+      "periodLabel": "东汉晚期—晋",
+      "referenceId": "nsm-hanwei",
+      "sourceUrl": "https://www.chinasilkmuseum.com/yz/info_18.aspx?itemid=30762",
+      "evidenceType": "museum-exhibited-object",
+      "verifiedClaims": ["馆方展览页标注该名称与时代范围"],
+      "usableDetails": ["服饰细节研究时优先对照这一时代范围的实物，而不是直接套用明清纹章"],
+      "unverifiedClaims": ["具体人物曾穿同一纹样", "适用于所有地域或身份", "精确裁剪结构和配色复原"],
+      "imageRights": "not-cleared-link-only",
+      "imageImported": false
+    },
+    {
+      "id": "textile-han-cloud-bird",
+      "title": "汉代云气立鸟纹锦",
+      "periodLabel": "汉代",
+      "referenceId": "nsm-hanwei",
+      "sourceUrl": "https://www.chinasilkmuseum.com/yz/info_18.aspx?itemid=30762",
+      "evidenceType": "museum-exhibited-textile",
+      "verifiedClaims": ["馆方展览页列出该织物及中国丝绸博物馆收藏信息"],
+      "usableDetails": ["研究汉代织锦纹样的一个入口"],
+      "unverifiedClaims": ["三国每位人物使用该纹样", "魏吴汉各自具有统一服色和纹样"],
+      "imageRights": "not-cleared-link-only",
+      "imageImported": false
+    },
+    {
+      "id": "headwear-period-rank-check",
+      "title": "冠服与身份品阶",
+      "periodLabel": "秦汉及魏晋南北朝分期核查",
+      "referenceId": "nmc-costume-exhibition",
+      "sourceUrl": "https://www.chnmuseum.cn/portals/0/web/zt/202102gdfsh/",
+      "evidenceType": "museum-curatorial-explanation",
+      "verifiedClaims": ["国博分期说明将秦汉冠制与身份、品阶及官职联系起来"],
+      "usableDetails": ["画冠之前核对人物表现阶段、身份与场合"],
+      "unverifiedClaims": ["网页唐代进贤冠三彩俑可无差别用于三国冠式", "某人物的具体冠梁数量"],
+      "imageRights": "not-cleared-link-only",
+      "imageImported": false
+    },
+    {
+      "id": "military-material-research-entry",
+      "title": "武备与服饰研究入口",
+      "periodLabel": "汉代；后续魏晋逐项补证",
+      "referenceId": "sun-han-material",
+      "sourceUrl": "https://www.chnmuseum.cn/yj/xscg/xszz/201903/t20190325_85513.shtml",
+      "evidenceType": "bibliographic-entry-only",
+      "verifiedClaims": ["国博书目说明《汉代物质文化资料图说》包括武备、服饰与纺织内容"],
+      "usableDetails": ["列入查阅书目，实际读到相关章节和实物条目后再确定甲片、兜鍪和带具细节"],
+      "unverifiedClaims": ["已读取书内具体甲胄图版", "某个三国将领的肩甲造型已经核实"],
+      "imageRights": "book-images-not-imported",
+      "imageImported": false
+    }
+  ],
+  "projectArtChoices": [
+    {"id":"sober-headwear","instruction":"冠巾结构和比例克制，未核实品阶时不凭空添加冠梁数或金饰身份标志。","claimType":"conservative-art-direction"},
+    {"id":"sober-military-dress","instruction":"军旅造型避免夸张兽面肩甲与奇幻护具；未找到实物条目时减少特异装饰，不把简化方案标为严格复原。","claimType":"conservative-art-direction"},
+    {"id":"era-coherence","instruction":"同一立绘依据表现年代与场合选择服饰，避免不加说明混用西汉、北朝、唐宋明清的特征。","claimType":"research-workflow"},
+    {"id":"age-individuality","instruction":"保持人物的少年、成年或老年阶段及性别，不套外部成年美女默认年龄。","claimType":"user-requirement"},
+    {"id":"art-provenance","instruction":"人物容貌标为项目生成插画；有服饰依据也不宣称真实肖像。","claimType":"project-provenance"}
+  ]
+}
