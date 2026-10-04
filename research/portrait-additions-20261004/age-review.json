@@ -1,0 +1,10 @@
+{
+  "policy": "designAge is an illustration life-stage choice, never a replacement for historical birth or death data. Preserve individual facial features where compatible with the depicted life stage.",
+  "exceptions": [
+    {"auditOrder":175,"name":"曹冲","personId":"person:workbook:979c9b3883195d31","designAge":12,"appearance":"少年，无胡须；保留原图少年五官","basis":"《三国志》卷20记年十三疾病；采用少年艺术阶段，不把传统记岁转换成确定生年。","source":"https://zh.wikisource.org/wiki/三國志/卷20"},
+    {"auditOrder":184,"name":"曹髦","personId":"person:workbook:7590bd760efbfdc3","designAge":18,"appearance":"青年，无浓密胡须，修正原图中年化表现","basis":"《三国志》卷04记高贵乡公卒年二十；选取18岁青年艺术阶段。","source":"https://zh.wikisource.org/wiki/三國志/卷04"},
+    {"auditOrder":254,"name":"刘辩","personId":"person:workbook:79158bb60d62cfea","designAge":14,"appearance":"少年，无胡须；保留原图冠服与少年五官","basis":"站点既有人物时间字段与原图少年阶段；14为艺术表现年龄，未新增生卒史实。"},
+    {"auditOrder":270,"name":"孙策","personId":"person:workbook:0ea95ef714324dbf","designAge":20,"appearance":"年轻成人，不画中老年皱纹或灰白长须","basis":"站点既有人物生卒范围；20为成年早期艺术阶段，未新增生卒史实。"},
+    {"auditOrder":157,"name":"蔡琰","personId":"person:workbook:e3f9a6640cb1080e","designAge":30,"appearance":"成年女性，保留原图女性五官、汉代发髻、红褐衣袍","basis":"原图成年女性艺术阶段；30为艺术表现年龄，未新增生卒史实。"}
+  ]
+}

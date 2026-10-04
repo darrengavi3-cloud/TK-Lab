@@ -136,6 +136,17 @@
       "width": 941,
       "height": 1672,
       "status": "ready"
+    },
+    {
+      "order": 14,
+      "portraitId": "portrait:new:014-1f3b42f2b141",
+      "personId": "person:workbook:0d601c62c3e0381c",
+      "name": "张角",
+      "path": "atlas/assets/portraits/20261004/014-1f3b42f2b141.png",
+      "sha256": "c124167b05b8e186fba8a065d94b74883fd33c5b1b1dfb59e9cbf09ddbe49202",
+      "width": 941,
+      "height": 1672,
+      "status": "ready"
     }
   ],
   "existing": [
@@ -148,7 +159,156 @@
       "sha256": "bf17132fe7e51d0859d705a81c012014f4caacd2b9b942021d144f5a487313aa",
       "width": 1254,
       "height": 1254,
-      "status": "ready"
+      "status": "ready",
+      "originalSha256": "9f5fb7eeb9907b43265da54ef794f2b079830eaca35735a12d8dde9b55e62e94",
+      "designAge": 45,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 2,
+      "portraitId": "portrait:asset:e5e0e72fc32b5929579a",
+      "personId": "person:source:e078e67a29ef",
+      "name": "毕谌",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e5e0e72fc32b5929579a.png",
+      "sha256": "ffa7bec4593f0834aa1fff98bab0e10f616778fcdd07e99dd5b3046e72f9771b",
+      "width": 1254,
+      "height": 1254,
+      "status": "ready",
+      "originalSha256": "9d9d43176dbb266774f9505b1fc8ee1dd56458d82d7ed595c37f6b540d120dfd",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 3,
+      "portraitId": "portrait:asset:457b78ae1133d63df5e2",
+      "personId": "person:wei:zhong-yao",
+      "name": "钟繇",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-457b78ae1133d63df5e2.png",
+      "sha256": "a5784a45855cc71ad692ecc7d1431918f7bd63e1cd5b1b532c7fcdae5a56cf17",
+      "width": 1037,
+      "height": 1517,
+      "status": "ready",
+      "originalSha256": "30cf4e78f489e1724ca85029445a3324ced9981e256f25651d45e2934072c168",
+      "designAge": 65,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 4,
+      "portraitId": "portrait:asset:44f3fd03e6d293e118a7",
+      "personId": "person:source:cf82fa4d1264",
+      "name": "崔烈",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-44f3fd03e6d293e118a7.png",
+      "sha256": "160c01db1295d3b12be995d54640bbdbde6a4972da85ed9bdca429d48c15ce45",
+      "width": 1254,
+      "height": 1254,
+      "status": "ready",
+      "originalSha256": "d835ca0c99ed590dce1e14c52a7a8346739c45540a9821bc331bae1629e06bb0",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 5,
+      "portraitId": "portrait:asset:de688a2964451c72e17b",
+      "personId": "person:source:9f7272bc767c",
+      "name": "荀攸",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-de688a2964451c72e17b.png",
+      "sha256": "c064e31e9434e9f67910beeae61df0d155094feeb25f5abaff1419f635829886",
+      "width": 1148,
+      "height": 1370,
+      "status": "ready",
+      "originalSha256": "a2ddd77c4d352bcfcdf448f132fc83af1da96583c38f56378b89769e2713e026",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 6,
+      "portraitId": "portrait:asset:008242744fad9253fdfb",
+      "personId": "person:source:b2dc15c2b1f2",
+      "name": "何夔",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-008242744fad9253fdfb.png",
+      "sha256": "513899fbce9ac952c6652223db50aecc1712dfcd92a8411f13e62659adf5eeb4",
+      "width": 1024,
+      "height": 1536,
+      "status": "ready",
+      "originalSha256": "b5e8e00c2b2412a95c3f56c4252b614acb693821de848dd1bce339f00fb4d940",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 7,
+      "portraitId": "portrait:asset:803dce489c98f4df95a1",
+      "personId": "person:source:72237d3083d5",
+      "name": "和洽",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-803dce489c98f4df95a1.png",
+      "sha256": "bd4fbe475673c6415dc10a3ed1854270027aa5db3e8014897eb5243feab9e505",
+      "width": 1254,
+      "height": 1254,
+      "status": "ready",
+      "originalSha256": "d5be55016dd460e07826d2ce14627de206a21ba5cc98764e2e69748d6487fd1c",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
+    },
+    {
+      "order": 8,
+      "portraitId": "portrait:asset:e257541289123b1f8b12",
+      "personId": "person:wei:jia-xu",
+      "name": "贾诩",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e257541289123b1f8b12.png",
+      "sha256": "b88786f44d8aa2cc1eae3278d8b00ab5dad70126b6fef47b36ad4d6fd184193f",
+      "width": 1037,
+      "height": 1517,
+      "status": "ready",
+      "originalSha256": "669574a735e946c9144355ccbedb3dfdedba5f3477d050c807477efcb713fe43",
+      "designAge": 60,
+      "ageBasis": "艺术表现年龄；保留原图所示成年生涯阶段，不作为史实生年或卒年。",
+      "visualReview": {
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true
+      }
     }
   ]
 }
