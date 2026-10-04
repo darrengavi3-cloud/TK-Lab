@@ -26,7 +26,7 @@ test('frontal replacement preserves identity and original reference; incomplete 
       action: 'replace', assetPath: outputPath, sha256: hash, bytes: source.length,
       width: source.readUInt32BE(16), height: source.readUInt32BE(20), designAge: 40,
       ageBasis: 'Art depicts an adult stage; no biographical age assertion.',
-      visualReview: { frontal: true, directGaze: true, ageAppropriate: true },
+      visualReview: { frontal: true, directGaze: true, shouldersFrontal: true, ageAppropriate: true },
     }));
     const ledger = { status: 'complete', expectedCount: 500, records };
     const file = path.join(root, 'data/portrait-frontal-production-20261004.json');
@@ -45,6 +45,7 @@ test('frontal replacement preserves identity and original reference; incomplete 
     for (const alteration of [
       { personId: 'person:wrong' }, { originalSha256: '0'.repeat(64) },
       { visualReview: { frontal: false, directGaze: true, ageAppropriate: true } },
+      { visualReview: { frontal: true, directGaze: true, shouldersFrontal: false, ageAppropriate: true } },
       { action: 'retain', visualReview: { frontal: true, directGaze: true, ageAppropriate: false } },
     ]) {
       assert.throws(() => run({ ...ledger, records: [{ ...records[0], ...alteration }, ...records.slice(1)] }));

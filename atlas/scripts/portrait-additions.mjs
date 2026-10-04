@@ -10,7 +10,7 @@ function checkImage(root, row) {
   const bytes = fs.readFileSync(path.join(root, row.assetPath));
   if (crypto.createHash('sha256').update(bytes).digest('hex') !== row.sha256 || bytes.length !== row.bytes) throw new Error('Portrait integrity mismatch');
   if (bytes.length < 24 || !bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])) || bytes.readUInt32BE(16) !== row.width || bytes.readUInt32BE(20) !== row.height) throw new Error('Invalid portrait PNG');
-  if (row.visualReview?.frontal !== true || row.visualReview?.directGaze !== true || row.visualReview?.ageAppropriate !== true) throw new Error('Portrait visual acceptance missing');
+  if (row.visualReview?.frontal !== true || row.visualReview?.directGaze !== true || row.visualReview?.shouldersFrontal !== true || row.visualReview?.ageAppropriate !== true) throw new Error('Portrait visual acceptance missing');
 }
 export function loadPortraitAdditions(root) {
   const file = path.join(root,'data/portrait-production-20261004.json');
@@ -47,7 +47,7 @@ export function applyFrontalPortraits(root, assetsById) {
       asset.originalSrc = asset.src;
       asset.src = row.assetPath;
       asset.frontalArtwork = { interfaceOnly:true, sourceSha256:row.sha256, originalSha256:row.originalSha256, designRef:null };
-    } else if (row.action !== 'retain' || row.visualReview?.frontal !== true || row.visualReview?.directGaze !== true) throw new Error('Invalid retained frontal portrait');
+    } else if (row.action !== 'retain' || row.visualReview?.frontal !== true || row.visualReview?.directGaze !== true || row.visualReview?.shouldersFrontal !== true) throw new Error('Invalid retained frontal portrait');
     ids.add(row.portraitId);
   }
 }

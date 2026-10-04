@@ -147,6 +147,50 @@
       "width": 941,
       "height": 1672,
       "status": "ready"
+    },
+    {
+      "order": 15,
+      "portraitId": "portrait:new:015-0f4f7a751582",
+      "personId": "person:workbook:8e2e8fcc9f31f01e",
+      "name": "张梁",
+      "path": "atlas/assets/portraits/20261004/015-0f4f7a751582.png",
+      "sha256": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee",
+      "width": 941,
+      "height": 1672,
+      "status": "ready"
+    },
+    {
+      "order": 16,
+      "portraitId": "portrait:new:016-ee60b7d0ed86",
+      "personId": "person:workbook:12dd658503315d90",
+      "name": "张燕",
+      "path": "atlas/assets/portraits/20261004/016-ee60b7d0ed86.png",
+      "sha256": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74",
+      "width": 941,
+      "height": 1672,
+      "status": "ready"
+    },
+    {
+      "order": 17,
+      "portraitId": "portrait:new:017-b82411fa7ce8",
+      "personId": "person:workbook:5b1def2d8b8c8c49",
+      "name": "张邈",
+      "path": "atlas/assets/portraits/20261004/017-b82411fa7ce8.png",
+      "sha256": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51",
+      "width": 941,
+      "height": 1672,
+      "status": "ready"
+    },
+    {
+      "order": 18,
+      "portraitId": "portrait:new:018-dd5189f5cd65",
+      "personId": "person:workbook:cf54dfebd647ab02",
+      "name": "张超",
+      "path": "atlas/assets/portraits/20261004/018-dd5189f5cd65.png",
+      "sha256": "1099e85a2c1de66ca62e835f736f0dd9a913b2fff951d2ad00651989cff948cc",
+      "width": 941,
+      "height": 1672,
+      "status": "ready"
     }
   ],
   "existing": [
@@ -309,6 +353,17 @@
         "shouldersFrontal": true,
         "ageAppropriate": true
       }
+    },
+    {
+      "order": 11,
+      "portraitId": "portrait:asset:fc2102bea4cf1c10ee9c",
+      "personId": "person:wei:hua-xin",
+      "name": "华歆",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-fc2102bea4cf1c10ee9c.png",
+      "sha256": "83031361d1cd00ffa65ecf06eba605f43956d515eed963848d607b84eaaf855a",
+      "width": 1037,
+      "height": 1517,
+      "status": "ready"
     }
   ]
 }
