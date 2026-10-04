@@ -1,3 +1,6 @@
+import { loadPortraitAdditions, portraitAdditionId } from '../../atlas/scripts/portrait-additions.mjs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -24,7 +27,8 @@ assert.equal(removedPortraits.size, 12);
 assert.equal(digest(frozen.portraitResolutions), checkpoint.portraitResolutionsSha256, 'historical portrait fixture changed');
 assert.ok(withdrawals.withdrawnPortraits.every(row => removedPeople.has(row.personId)
   && frozen.portraitResolutions.some(old => old.portraitId === row.portraitId && old.personId === row.personId)));
-export const expectedPortraitResolutions = frozen.portraitResolutions.filter(row => !removedPortraits.has(row.portraitId));
+const newPortraits = loadPortraitAdditions(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../atlas'));
+export const expectedPortraitResolutions = [...frozen.portraitResolutions.filter(row => !removedPortraits.has(row.portraitId)), ...newPortraits.map(row => ({ portraitId:portraitAdditionId(row.order), legacyPersonId:row.personId, personId:row.personId }))];
 assert.ok(expectedPortraitResolutions.every(row => !removedPeople.has(row.personId)), 'a withdrawn identity retains a portrait');
 
 // V90: batches beyond the frozen withdrawal add newly reviewed identities rather than

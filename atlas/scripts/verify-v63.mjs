@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { loadPortraitAdditions, portraitAdditionKind } from './portrait-additions.mjs';
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -119,7 +120,7 @@ const v70PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-
 const v73PortraitAssets = portraitAssets.filter(row => row.portraitKind === 'ui-illustration-v73');
 const withdrawnPortraits = loadIdentityReviewBatches(root).flatMap(batch => batch.withdrawnPortraits || []);
 const expectedBaselinePortraitAssets = (portraitProduction.status === 'complete' ? 374 : 274) - withdrawnPortraits.length;
-const expectedPortraitAssets = expectedBaselinePortraitAssets + v70PortraitAssets.length + v73PortraitAssets.length;
+const expectedPortraitAssets = expectedBaselinePortraitAssets + v70PortraitAssets.length + v73PortraitAssets.length + loadPortraitAdditions(root).length;
 assert(portraitAssets.length === expectedPortraitAssets, `立绘资产不是 ${expectedPortraitAssets} 项，实际 ${portraitAssets.length}`);
 assert(registry.portraitResolutions?.length === expectedPortraitAssets && registry.summary?.unresolvedPortraits === 0, `${expectedPortraitAssets} 项立绘未全部通过正式或兼容 ID 解析`);
 for (const row of registry.portraitResolutions || []) assert(Boolean(registry.byPersonId[row.personId]), `${row.portraitId} 解析到不存在的人物`);

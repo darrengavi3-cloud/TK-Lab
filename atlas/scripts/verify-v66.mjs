@@ -1,3 +1,4 @@
+import { loadPortraitAdditions, portraitAdditionKind } from './portrait-additions.mjs';
 import { loadIdentityReviewBatches } from './release-config.mjs';
 import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import crypto from 'node:crypto';
@@ -129,7 +130,7 @@ assert(people.every(row => !Object.prototype.hasOwnProperty.call(row, 'datasets'
 const portraits = Object.values(portraitManifest?.assetsById || {});
 const v70Portraits = portraits.filter(row => row.portraitKind === 'ui-illustration-v70');
 const v73Portraits = portraits.filter(row => row.portraitKind === 'ui-illustration-v73');
-const baselinePortraits = portraits.filter(row => !['ui-illustration-v70','ui-illustration-v73'].includes(row.portraitKind));
+const baselinePortraits = portraits.filter(row => !['ui-illustration-v70','ui-illustration-v73',portraitAdditionKind].includes(row.portraitKind));
 const portraitBindings = baselinePortraits.map(row => `${row.portraitId}\0${row.personId}`);
 const identityReviewV75 = json('data/v75-person-identity-suppressions.json');
 const identityBatches = loadIdentityReviewBatches(root);
@@ -142,7 +143,7 @@ assert(withdrawnPortraits.length === 24 && new Set(withdrawnPortraits.map(row =>
 assert(withdrawnPortraits.every(row => identityBatches.flatMap(batch => batch.records).some(record => record.personId === row.personId && record.action === 'suppress') && !portraits.some(active => active.portraitId === row.portraitId)), '撤下立绘与身份审定不符');
 const preservedPortraitBindings = [...portraitBindings, ...withdrawnPortraits.map(row => `${row.portraitId}\0${row.personId}`)];
 const expectedBaselinePortraitCount = (portraitProduction?.status === 'complete' ? 374 : 274) - withdrawnPortraits.length;
-const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length + v73Portraits.length;
+const expectedPortraitCount = expectedBaselinePortraitCount + v70Portraits.length + v73Portraits.length + loadPortraitAdditions(root).length;
 const expectedPortraitBindingHash = portraitProduction?.status === 'complete'
   ? 'b931a3a77244b0ddfd917dfc9f085716ab43dd907c366923a2b6f744d01f283f'
   : 'e51441f1bd0135fd70a488742d86c0c7f29bdebd33b410bd2e90babe2fddf833';

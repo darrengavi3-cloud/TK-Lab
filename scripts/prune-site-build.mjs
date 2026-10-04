@@ -25,7 +25,7 @@ for (const personId of manifest.defaultPersonIds || []) {
 }
 registerPortrait(manifest.summary?.dengAiSrc);
 for (const portrait of Object.values(manifest.assetsById || {})) {
-  if (portrait?.status === 'ready') registerPortrait(portrait.assetPath || portrait.src);
+  if (portrait?.status === 'ready') registerPortrait(portrait.src || portrait.assetPath);
 }
 
 const missingBeforePrune = [...runtimePortraits].filter(

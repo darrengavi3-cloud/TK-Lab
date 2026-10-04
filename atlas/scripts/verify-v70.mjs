@@ -1,3 +1,4 @@
+import { loadPortraitAdditions, portraitAdditionKind } from './portrait-additions.mjs';
 import { loadReviewedReaderScope } from './person-identity-publication.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -48,9 +49,11 @@ assert(manifest.summary?.v70PortraitRecords === 50, 'manifest 未登记 50 项 V
   /* 2026-09 第十批：v83 身份审定批次抑制十二条由任官原文误切而成的伪人物
      （权加燮、全尚息、司盐、衡阳、弘农、魏兴、王請观、年就加、于策、于理、
      曹曼、邵信臣），并撤回其十二张立绘。以下计数随之更新。 */
-assert(assets.length === 500, `当前审定总立绘应为 500 项，实际 ${assets.length}`);
-assert((registry.summary?.portraitAssets || 0) === 500, '人物注册表立绘总数未同步为 500');
-assert((registry.portraitResolutions || []).length === 500, '人物注册表立绘解析数未同步为 500');
+const expectedPortraitCount = 500 + loadPortraitAdditions(root).length;
+assert(assets.filter(row => row.portraitKind !== portraitAdditionKind).length === 500, '原有500项立绘不得删减');
+assert(assets.length === expectedPortraitCount, `当前审定总立绘应为 ${expectedPortraitCount} 项，实际 ${assets.length}`);
+assert((registry.summary?.portraitAssets || 0) === expectedPortraitCount, '人物注册表立绘总数未同步为 500');
+assert((registry.portraitResolutions || []).length === expectedPortraitCount, '人物注册表立绘解析数未同步为 500');
 
 const candidateIds = new Set();
 const candidateNames = new Set();

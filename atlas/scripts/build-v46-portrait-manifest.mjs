@@ -1,3 +1,4 @@
+import { loadPortraitAdditions, portraitAdditionId, portraitAdditionKind, applyFrontalPortraits } from './portrait-additions.mjs';
 import fs from 'node:fs';
 import { validateIdentitySources } from './person-identity-publication.mjs';
 import { loadIdentityReviewBatches } from './release-config.mjs';
@@ -544,11 +545,24 @@ function v62BuildManifest() {
     portraitsByCanonicalPersonId.set(personId, [asset]);
   }
 
+  for (const row of loadPortraitAdditions(root)) {
+    const personId = v62CanonicalPersonId(row.personId);
+    if (personId !== row.personId || suppressedNonPeople.has(personId) || portraitsByCanonicalPersonId.has(personId)) throw new Error(`新增立绘身份冲突：${row.name}`);
+    const portraitId = portraitAdditionId(row.order);
+    const asset = { portraitId, personId, name:row.name, aliases:[row.name], zi:'', src:row.assetPath, assetPath:row.assetPath,
+      polity:row.polity, color:polityColors[row.polity] || '#665483', sourceTitle:'新增正面站姿界面立绘（非史实肖像）', sourceUrl:'',
+      portraitKind:portraitAdditionKind, status:'ready', designStatus:'generated', designRef:null, interfaceOnly:true,
+      catalogOrder:Object.keys(assetsById).length+1, legacyPersonIds:[] };
+    assetsById[portraitId] = asset;
+    portraitsByCanonicalPersonId.set(personId,[asset]);
+  }
+  applyFrontalPortraits(root, assetsById);
+
   const canonicalByPersonId = {};
   const canonicalByName = {};
   portraitsByCanonicalPersonId.forEach((assets, personId) => {
     const preferredSrc = v62PrimaryPortraitSrc[personId] || '';
-    const primary = assets.find(item => item.src === preferredSrc) || assets[0];
+    const primary = assets.find(item => (item.originalSrc || item.src) === preferredSrc) || assets[0];
     const portraitIds = assets.map(item => item.portraitId);
     const aliases = Array.from(new Set(assets.flatMap(item => [item.name, ...(item.aliases || [])]).filter(Boolean)));
     const legacyPersonIds = Array.from(new Set(assets.flatMap(item => item.legacyPersonIds || [])));
@@ -599,6 +613,7 @@ function v62BuildManifest() {
       v58PortraitMapped: (v58Board.records || []).filter(item => canonicalByPersonId[v62CanonicalPersonId(item.personId)]).length,
       v70PortraitRecords: assets.filter(item => item.portraitKind === 'ui-illustration-v70').length,
       v73PortraitRecords: assets.filter(item => item.portraitKind === 'ui-illustration-v73').length,
+      added20261004PortraitRecords: assets.filter(item => item.portraitKind === portraitAdditionKind).length,
       dengAiSrc: canonicalByName['邓艾']?.src || ''
     }
   };

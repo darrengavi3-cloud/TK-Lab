@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { loadPortraitAdditions, portraitAdditionKind } from './portrait-additions.mjs';
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -40,8 +41,10 @@ assert(v73Assets.length === 100 && manifest.summary?.v73PortraitRecords === 100,
   /* 2026-09 第十批：v83 身份审定批次抑制十二条由任官原文误切而成的伪人物
      （权加燮、全尚息、司盐、衡阳、弘农、魏兴、王請观、年就加、于策、于理、
      曹曼、邵信臣），并撤回其十二张立绘。以下计数随之更新。 */
-assert(assets.length === 500, `当前审定总立绘应为 500 项，实际 ${assets.length}`);
-assert(registry.summary?.portraitAssets === 500 && registry.portraitResolutions?.length === 500, '人物注册表立绘总数未同步为 500');
+const expectedPortraitCount = 500 + loadPortraitAdditions(root).length;
+assert(assets.filter(row => row.portraitKind !== portraitAdditionKind).length === 500, '原有500项立绘不得删减');
+assert(assets.length === expectedPortraitCount, `当前审定总立绘应为 ${expectedPortraitCount} 项，实际 ${assets.length}`);
+assert(registry.summary?.portraitAssets === expectedPortraitCount && registry.portraitResolutions?.length === expectedPortraitCount, '人物注册表立绘总数未同步为 500');
 
 for (const row of rows) {
   const portraitId = `portrait:v73:${String(row.order).padStart(3, '0')}`;
@@ -79,5 +82,5 @@ if (failures.length) {
   console.error(JSON.stringify({ ok: false, version: 'V73', failures }, null, 2));
   process.exitCode = 1;
 } else {
-  console.log(JSON.stringify({ ok: true, version: 'V73', readerPeople: 3621, portraits: { added: 100, total: 500 }, figma: { page: 'V73 / Portraits', nodes: 100 }, reviewModules: 4, removedNonPerson: '安国' }, null, 2));
+  console.log(JSON.stringify({ ok: true, version: 'V73', readerPeople: 3621, portraits: { added: 100, total: expectedPortraitCount }, figma: { page: 'V73 / Portraits', nodes: 100 }, reviewModules: 4, removedNonPerson: '安国' }, null, 2));
 }
