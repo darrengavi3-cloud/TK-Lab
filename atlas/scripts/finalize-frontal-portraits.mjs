@@ -16,6 +16,7 @@ const newImages = read(path.join(input, 'production.json'));
 const oldImages = read(path.join(input, 'frontal-production.json')).records;
 const manifest = read(path.join(root, 'data/portrait-manifest.json'));
 const oldAssets = Object.values(manifest.assetsById).filter(row => row.portraitKind !== portraitAdditionKind);
+const redrawIds = new Set(read(path.join(root, 'data/portrait-independent-redraw-20261004.json')).records.map(row => row.portraitId));
 if (newImages.length !== 100 || oldImages.length !== 500 || oldAssets.length !== 500 || reviewed.size !== 600) {
   throw new Error('Finalization requires100 new images,500 original revisions, and600 visual acceptances');
 }
@@ -53,9 +54,11 @@ const revisions = oldAssets.map(asset => {
   if (!/^[a-z0-9-]+\.png$/.test(filename)) throw new Error('Unsafe portrait identity');
   const retain = row.action === 'retain';
   if (retain && row.sha256 !== originalSha256) throw new Error('Retained image differs from original');
-  return { ...prepared(row, 'existing', row.order, asset.personId, retain ? originalSrc : `./assets/portraits/20261004/frontal/${filename}`, !retain),
+  const result = { ...prepared(row, 'existing', row.order, asset.personId, retain ? originalSrc : `./assets/portraits/20261004/frontal/${filename}`, !retain),
     order: row.order, portraitId: asset.portraitId, personId: asset.personId, name: asset.name,
-    action: retain ? 'retain' : 'replace', originalSrc, originalSha256, designAge: row.designAge, ageBasis: row.ageBasis };
+    action: retain ? 'retain' : 'replace', productionMethod: row.productionMethod || 'frontal-edit', originalSrc, originalSha256, designAge: row.designAge, ageBasis: row.ageBasis };
+  if (redrawIds.has(asset.portraitId) && (retain || result.productionMethod !== 'independent-redraw' || Math.abs(result.width / result.height - 9 / 16) > 0.03 || ['independentSinglePerson','completeCrown','completeHands','standingComposition'].some(key => result.visualReview[key] !== true))) throw new Error('Early portrait has not been independently recreated');
+  return result;
 });
 // Validate every record before writing either completed ledger.
 for (const copy of copies) {

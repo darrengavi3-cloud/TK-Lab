@@ -33,6 +33,9 @@ export function applyFrontalPortraits(root, assetsById) {
   const ledger = JSON.parse(fs.readFileSync(file,'utf8'));
   const old = Object.values(assetsById).filter(row => row.portraitKind !== portraitAdditionKind);
   if (ledger.status !== 'complete' || ledger.expectedCount !== 500 || ledger.records?.length !== 500 || old.length !== 500) throw new Error('Requires full 500-portrait frontal review');
+  const redrawPlan = JSON.parse(fs.readFileSync(path.join(root, 'data/portrait-independent-redraw-20261004.json'), 'utf8'));
+  const redrawIds = new Set(redrawPlan.records.map(row => row.portraitId));
+  if (redrawPlan.expectedCount !== 150 || redrawIds.size !== 150 || [...redrawIds].some(id => !assetsById[id])) throw new Error('Invalid independent redraw scope');
   const ids = new Set();
   for (const row of ledger.records) {
     const asset = assetsById[row.portraitId];
@@ -42,6 +45,7 @@ export function applyFrontalPortraits(root, assetsById) {
     const original = fs.readFileSync(sourcePath);
     if (crypto.createHash('sha256').update(original).digest('hex') !== row.originalSha256) throw new Error('Original portrait integrity mismatch');
     if (!Number.isInteger(row.designAge) || row.designAge < 1 || !row.ageBasis || row.visualReview?.ageAppropriate !== true) throw new Error('Frontal portrait age review missing');
+    if (redrawIds.has(row.portraitId) && (row.action !== 'replace' || row.productionMethod !== 'independent-redraw' || row.width < 512 || Math.abs(row.width / row.height - 9 / 16) > 0.03 || row.visualReview?.independentSinglePerson !== true || row.visualReview?.completeCrown !== true || row.visualReview?.completeHands !== true || row.visualReview?.standingComposition !== true)) throw new Error('Early cropped portrait requires independent standing redraw');
     if (row.action === 'replace') {
       checkImage(root,row);
       asset.originalSrc = asset.src;

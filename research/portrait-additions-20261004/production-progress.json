@@ -477,6 +477,39 @@
         "shouldersFrontal": true,
         "ageAppropriate": true
       }
+    },
+    {
+      "order": 13,
+      "portraitId": "portrait:asset:dc4e9faf139f2e161845",
+      "personId": "person:wei:cao-zhen",
+      "name": "曹真",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-dc4e9faf139f2e161845.png",
+      "sha256": "fc1264381a95039ba6760ac5568da7b37d7cb556629674a5dddf48c39973c508",
+      "width": 1199,
+      "height": 1312,
+      "status": "ready"
+    },
+    {
+      "order": 14,
+      "portraitId": "portrait:asset:b6358b65b764a773276b",
+      "personId": "person:source:6d19a25fbe7e",
+      "name": "董昭",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-b6358b65b764a773276b.png",
+      "sha256": "0c36bb5efe9fee816dd3d8051783e03209f7d915cba1ba171a899653c4ee0268",
+      "width": 1024,
+      "height": 1536,
+      "status": "ready"
+    },
+    {
+      "order": 15,
+      "portraitId": "portrait:asset:0286a3b0675d19a9222e",
+      "personId": "person:source:f70e8bb46940",
+      "name": "陈矫",
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-0286a3b0675d19a9222e.png",
+      "sha256": "d05eddca1abb0a0b8968112919c05b948ac52b5350c188c243341fc685cd9548",
+      "width": 1121,
+      "height": 1403,
+      "status": "ready"
     }
   ]
 }

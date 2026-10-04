@@ -23,11 +23,12 @@ test('frontal replacement preserves identity and original reference; incomplete 
     }]));
     const records = Object.values(assets).map(asset => ({
       portraitId: asset.portraitId, personId: asset.personId, originalSrc: sourcePath, originalSha256: hash,
-      action: 'replace', assetPath: outputPath, sha256: hash, bytes: source.length,
+      action: 'replace', productionMethod: 'independent-redraw', assetPath: outputPath, sha256: hash, bytes: source.length,
       width: source.readUInt32BE(16), height: source.readUInt32BE(20), designAge: 40,
       ageBasis: 'Art depicts an adult stage; no biographical age assertion.',
-      visualReview: { frontal: true, directGaze: true, shouldersFrontal: true, ageAppropriate: true },
+      visualReview: { frontal: true, directGaze: true, shouldersFrontal: true, ageAppropriate: true, independentSinglePerson: true, completeCrown: true, completeHands: true, standingComposition: true },
     }));
+    fs.writeFileSync(path.join(root, 'data/portrait-independent-redraw-20261004.json'), JSON.stringify({ expectedCount: 150, records: records.slice(0, 150).map(row => ({ portraitId: row.portraitId })) }));
     const ledger = { status: 'complete', expectedCount: 500, records };
     const file = path.join(root, 'data/portrait-frontal-production-20261004.json');
     const run = data => {
@@ -44,6 +45,7 @@ test('frontal replacement preserves identity and original reference; incomplete 
     assert.throws(() => run({ ...ledger, records: records.slice(1) }), /full 500/);
     for (const alteration of [
       { personId: 'person:wrong' }, { originalSha256: '0'.repeat(64) },
+      { productionMethod: 'frontal-edit' }, { width: 1000, height: 1000 },
       { visualReview: { frontal: false, directGaze: true, ageAppropriate: true } },
       { visualReview: { frontal: true, directGaze: true, shouldersFrontal: false, ageAppropriate: true } },
       { action: 'retain', visualReview: { frontal: true, directGaze: true, ageAppropriate: false } },
