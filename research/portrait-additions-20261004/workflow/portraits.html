@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>人物立绘 · 观史台</title>
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="./assets/ui/tokens.css" />
+<style>
+*{box-sizing:border-box}body{margin:0;background:var(--sgz-bg,#f3f6ff);color:var(--sgz-ink,#142754);font:16px/1.6 var(--sgz-font-body,system-ui,sans-serif)}main{max-width:1040px;margin:auto;padding:24px}header{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:24px}h1{font-size:28px;margin:0 0 8px}p{margin:8px 0 16px}a,button,input{font:inherit}a.control{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;border:1px solid #cbd6ee;border-radius:14px;background:#fff;color:#183f95;text-decoration:none}a:focus-visible,input:focus-visible{outline:3px solid #2457e9;outline-offset:3px}.portrait-viewer{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:32px;padding:24px;background:white;border:1px solid #d5def1;border-radius:20px}.people-detail-portrait{width:100%;max-width:380px}.people-detail-portrait img{display:block;width:100%;height:auto;object-fit:contain;border-radius:12px;background:#f4efe4}.reader-quiet-note{font-size:14px;color:#4d6083}.portrait-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}.portrait-gallery a{padding:12px;background:white;border:1px solid #d5def1;border-radius:14px;color:#142754;text-decoration:none}.portrait-gallery img{display:block;width:100%;aspect-ratio:9/16;object-fit:contain}.portrait-gallery span{display:block;margin-top:8px;font-weight:600}input{width:100%;min-height:44px;border:1px solid #cbd6ee;border-radius:14px;padding:8px 14px;margin-bottom:20px}@media(max-width:760px){main{padding:16px}.portrait-viewer{grid-template-columns:minmax(0,1fr);gap:20px;padding:16px}.people-detail-portrait{max-width:320px;margin:auto}h1{font-size:24px}}[hidden]{display:none!important}
+</style>
+<script defer src="./data/portrait-variants.js"></script>
+<script defer src="./assets/app/portrait-viewer.js"></script>
+</head>
+<body><main><header><a class="control" href="./index.html#people">返回人物</a><a class="control" href="./portraits.html">立绘图册</a></header><div id="portrait-viewer" role="status">正在加载立绘…</div></main></body>
+</html>

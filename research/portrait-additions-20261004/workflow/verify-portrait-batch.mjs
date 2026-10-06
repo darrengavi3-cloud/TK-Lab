@@ -8,6 +8,7 @@ const built=process.argv.includes('--built');
 const root=path.resolve(built?'dist/client/legacy':'atlas/exports/观史台-读者版');
 const kind=process.argv[3]==='redraw'?'redraw':'new';
 const ledger=JSON.parse(fs.readFileSync(kind==='redraw'?'atlas/data/accepted-independent-redraws-20261004.json':'atlas/data/accepted-portrait-additions-20261004.json','utf8'));
+const readerIds=new Set(JSON.parse(fs.readFileSync(path.join(root,'data/v63-reader-people.json'),'utf8')).people.map(person=>person.personId));
 const orders=process.argv[2]?.split(',').map(Number);
 if(orders) ledger.records=ledger.records.filter(row=>orders.includes(row.order));
 assert.ok(ledger.records.length,'Empty batch');
@@ -19,7 +20,11 @@ try{
  for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   const context=await browser.newContext({viewport});const page=await context.newPage();
   for(const row of ledger.records){
-   await page.goto(`http://127.0.0.1:${server.address().port}/index.html#people?person=${encodeURIComponent(row.personId)}`);
+   const pageKind=readerIds.has(row.personId)?'person-detail':'artwork-only-viewer';
+   const pagePath=pageKind==='person-detail'?`/index.html#people?person=${encodeURIComponent(row.personId)}`:`/portraits.html?portrait=${encodeURIComponent(row.portraitId)}`;
+   await page.goto(`http://127.0.0.1:${server.address().port}${pagePath}`);
+   if(pageKind==='person-detail')await page.waitForFunction(id=>[...document.querySelectorAll('.sgz-person-portrait-panel')].some(panel=>panel.getClientRects().length&&panel.dataset.personId===id),row.personId);
+   else{const panel=page.locator('.portrait-viewer');await panel.waitFor();assert.equal(await panel.getAttribute('data-person-id'),row.personId);assert.equal(await panel.getAttribute('data-portrait-id'),row.portraitId);assert.equal(await panel.locator('h1').innerText(),'艺术立绘');await panel.locator('.portrait-scope-note').waitFor();assert.equal(await panel.getByRole('link',{name:'查看人物条目'}).count(),0);}
    if(row.portraitId){const selector=page.locator('[data-portrait-id=\"'+row.portraitId+'\"]:visible').first();if(await selector.count())await selector.click();}
    const image=page.locator('.people-detail-portrait:visible img').first();await image.waitFor({timeout:30000});
    await page.waitForFunction(()=>{const im=[...document.querySelectorAll('.people-detail-portrait img')].find(im=>im.getClientRects().length && getComputedStyle(im).visibility!=='hidden');return im?.complete&&im.naturalWidth>0;});
@@ -32,12 +37,13 @@ try{
    if(!built){assert.equal(actual.width,row.width);assert.equal(actual.height,row.height);}
    await page.locator('.reader-quiet-note:visible').filter({hasText:'人物艺术立绘；表现年龄为设计选择，服饰细节待考。'}).first().waitFor();
    await image.evaluate(async im=>{await im.decode();await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
-   const rendering=await image.evaluate(im=>{const c=getComputedStyle(im),r=im.getBoundingClientRect();return {display:c.display,visibility:c.visibility,opacity:c.opacity,width:r.width,height:r.height,currentSrc:im.currentSrc};});
+   const rendering=await image.evaluate(im=>{const c=getComputedStyle(im),r=im.getBoundingClientRect();return {display:c.display,visibility:c.visibility,opacity:c.opacity,width:r.width,height:r.height,objectFit:c.objectFit,currentSrc:im.currentSrc};});
    assert.ok(rendering.width>0&&rendering.height>0&&Number(rendering.opacity)>0,JSON.stringify(rendering));
+   assert.equal(rendering.objectFit,'contain','Full portrait must be displayed without cropping');
    fs.mkdirSync('work/validation/screenshots',{recursive:true});
-   const screenshot='work/validation/screenshots/portrait-'+kind+'-'+row.order+'-'+viewport.width+'.png';
+   const screenshot='work/validation/screenshots/portrait-'+kind+'-'+row.order+'-'+viewport.width+(built?'-built':'')+'.png';
    await page.screenshot({path:screenshot,fullPage:false});
-   results.push({order:row.order,name:row.name,personId:row.personId,portraitId:row.portraitId||('portrait:additional:20261004:'+String(row.order).padStart(3,'0')),viewport,...actual,originalDimensions:original,testSurface:built?'deployment-build':'reader-export',rendering,screenshot,evidenceLabel:'待考',passed:true});
+   results.push({order:row.order,name:row.name,personId:row.personId,portraitId:row.portraitId||('portrait:additional:20261004:'+String(row.order).padStart(3,'0')),viewport,...actual,pageKind,pagePath,originalDimensions:original,testSurface:built?'deployment-build':'reader-export',rendering,screenshot,evidenceLabel:'待考',passed:true});
   }
   await context.close();
  }

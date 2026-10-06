@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "order": 115,
+      "name": "乐綝",
+      "personId": "person:wei:le-chen",
+      "portraitId": "portrait:asset:00fde7cd2086e996375b",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "src": "./assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "pageKind": "artwork-only-viewer",
+      "pagePath": "/portraits.html?portrait=portrait%3Aasset%3A00fde7cd2086e996375b",
+      "originalDimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "testSurface": "reader-export",
+      "rendering": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "width": 380,
+        "height": 675.1875,
+        "objectFit": "contain",
+        "currentSrc": "http://127.0.0.1:42625/assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png"
+      },
+      "screenshot": "work/validation/screenshots/portrait-redraw-115-1440.png",
+      "evidenceLabel": "待考",
+      "passed": true
+    },
+    {
+      "order": 116,
+      "name": "成济",
+      "personId": "person:wei:cheng-ji",
+      "portraitId": "portrait:asset:d86bc13a318bd6c7d47f",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "src": "./assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "pageKind": "artwork-only-viewer",
+      "pagePath": "/portraits.html?portrait=portrait%3Aasset%3Ad86bc13a318bd6c7d47f",
+      "originalDimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "testSurface": "reader-export",
+      "rendering": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "width": 380,
+        "height": 675.1875,
+        "objectFit": "contain",
+        "currentSrc": "http://127.0.0.1:42625/assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png"
+      },
+      "screenshot": "work/validation/screenshots/portrait-redraw-116-1440.png",
+      "evidenceLabel": "待考",
+      "passed": true
+    },
+    {
+      "order": 115,
+      "name": "乐綝",
+      "personId": "person:wei:le-chen",
+      "portraitId": "portrait:asset:00fde7cd2086e996375b",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "src": "./assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "pageKind": "artwork-only-viewer",
+      "pagePath": "/portraits.html?portrait=portrait%3Aasset%3A00fde7cd2086e996375b",
+      "originalDimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "testSurface": "reader-export",
+      "rendering": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "width": 320,
+        "height": 568.578125,
+        "objectFit": "contain",
+        "currentSrc": "http://127.0.0.1:42625/assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png"
+      },
+      "screenshot": "work/validation/screenshots/portrait-redraw-115-390.png",
+      "evidenceLabel": "待考",
+      "passed": true
+    },
+    {
+      "order": 116,
+      "name": "成济",
+      "personId": "person:wei:cheng-ji",
+      "portraitId": "portrait:asset:d86bc13a318bd6c7d47f",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "src": "./assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png",
+      "width": 941,
+      "height": 1672,
+      "pageKind": "artwork-only-viewer",
+      "pagePath": "/portraits.html?portrait=portrait%3Aasset%3Ad86bc13a318bd6c7d47f",
+      "originalDimensions": {
+        "width": 941,
+        "height": 1672
+      },
+      "testSurface": "reader-export",
+      "rendering": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "width": 320,
+        "height": 568.578125,
+        "objectFit": "contain",
+        "currentSrc": "http://127.0.0.1:42625/assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png"
+      },
+      "screenshot": "work/validation/screenshots/portrait-redraw-116-390.png",
+      "evidenceLabel": "待考",
+      "passed": true
+    }
+  ]
+}

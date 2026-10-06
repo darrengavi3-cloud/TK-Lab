@@ -1,0 +1,75 @@
+diff --git a/atlas/UX-CONTRACT.md b/atlas/UX-CONTRACT.md
+index b867fa7..f80c371 100644
+--- a/atlas/UX-CONTRACT.md
++++ b/atlas/UX-CONTRACT.md
+@@ -340,3 +340,7 @@ V71 人物身份收口：`v62-reader-scope.json` 的 2096 个稳定 ID 与原文
+ ## 人物立绘资源访问（2026-10-06）
+ 
+ 桌面档案与手机详情共用 `PersonPortraitPanel`，内部复用 `ReaderPortrait`。多立绘只取manifest的稳定personID及其portraitIDs，按assetsById核对personID、ready及本地路径，不根据姓名或面貌猜配。默认仍显示原主立绘；显式按钮切换，当前personID的选择仅为内存临时阅读状态，桌面/手机共享，不写URL或数据库。每张提供本地原图链接，完整全身可查看；不增加史实或改变衣冠“待考”边界。原生按钮和链接有44px目标、焦点、悬停和按下反馈，加载失败给出重试。没有新增动效，沿用全局主题和减少动态效果规则。
++
++当前立绘的艺术设计与服饰待考说明由 PersonPortraitPanel 根据实际显示的 src 提供；切换同一人物的独立资源时仍须显示对应说明，不依赖默认肖像路径。
++
++人物详情中的立绘使用 contain 展示完整画幅；全身查看进入只读艺术素材图册。图册按 portraitId 和 personId 绑定既有资源，姓名及人物条目链接只取已开放的读者人物数据。未开放的史料人物仅显示“艺术立绘”及尚未开放说明，不提升人物历史发布状态或展示被隐藏的姓名、传记与生卒资料。图册原图保留生成PNG字节，服饰细节待考。
+diff --git a/atlas/assets/app/reader-components.js b/atlas/assets/app/reader-components.js
+index 3dd17eb..6f19377 100644
+--- a/atlas/assets/app/reader-components.js
++++ b/atlas/assets/app/reader-components.js
+@@ -34,7 +34,8 @@
+         personId() { const raw=this.person?.personId||'';return global.SGZ_PERSON_PORTRAIT_MANIFEST?.legacyPersonIdAliases?.[raw]||raw; },
+         choices() { const m=global.SGZ_PERSON_PORTRAIT_MANIFEST||{};return (m.byPersonId?.[this.personId]?.portraitIds||[]).map(id=>m.assetsById?.[id]).filter(a=>a?.personId===this.personId&&a.status==='ready'&&/^\.\/assets\/portraits\//.test(a.src||'')); },
+         selected() { return this.choices.find(a=>a.portraitId===portraitSelection[this.personId]); },
+-        src() { return this.selected?.src||this.person?.portrait||''; }
++        src() { return this.selected?.src||this.person?.portrait||''; },
++        viewerHref() { const asset=this.choices.find(a=>a.src===this.src);return asset?'./portraits.html?portrait='+encodeURIComponent(asset.portraitId):''; }
+       },
+       watch: { src() { this.loading=true;this.failed=false;this.retry=0; } },
+       methods: {
+@@ -43,11 +44,13 @@
+         errored() { this.loading=false;this.failed=true; },
+         retryImage() { this.loading=true;this.failed=false;this.retry++; }
+       },
+-      template: `<section class="sgz-person-portrait-panel" :aria-label="person.name+'立绘'">
+-        <div class="people-detail-portrait" :style="frameStyle" :aria-busy="Boolean(src)&&loading"><reader-portrait v-if="src" :key="src+'|'+retry" :src="src" :alt="person.name+'立绘'" detail @load="loaded" @error="errored"/><button v-if="failed" type="button" class="sgz-portrait-control sgz-portrait-retry" @click="retryImage">重试立绘</button><span v-else>{{person.name.slice(0,1)}}</span></div>
++      template: `<section class="sgz-person-portrait-panel" :data-person-id="personId" :aria-label="person.name+'立绘'">
++        <div class="people-detail-portrait" :style="frameStyle" :aria-busy="Boolean(src)&&loading"><reader-portrait v-if="src" :key="src+'|'+retry" :src="src" :alt="person.name+'立绘'" detail @load="loaded" @error="errored"/><button v-if="failed" type="button" class="sgz-portrait-control sgz-portrait-retry" @click="retryImage">重试立绘</button><span v-if="!src">{{person.name.slice(0,1)}}</span></div>
+         <p v-if="src" class="sgz-portrait-status" role="status">{{failed?'立绘未能加载。':loading?'加载立绘…':''}}</p>
+         <nav v-if="choices.length>1" class="sgz-portrait-choices" aria-label="切换人物立绘"><button v-for="(asset,index) in choices" :key="asset.portraitId" type="button" class="sgz-portrait-control" :data-portrait-id="asset.portraitId" :aria-pressed="src===asset.src" @click="choose(asset.portraitId)">立绘{{index+1}}</button></nav>
+         <a v-if="src" class="sgz-portrait-control sgz-portrait-original" :href="src" target="_blank" rel="noopener">查看原图</a>
++        <a v-if="viewerHref" class="sgz-portrait-control sgz-portrait-original" :href="viewerHref">全身查看</a>
++        <p v-if="src.includes('/20261004/')" class="reader-quiet-note sgz-portrait-evidence-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
+       </section>`
+     },
+     ReaderCitations: {
+diff --git a/atlas/assets/ui/components.css b/atlas/assets/ui/components.css
+index 973b8df..1b0a5b6 100644
+--- a/atlas/assets/ui/components.css
++++ b/atlas/assets/ui/components.css
+@@ -1087,3 +1087,8 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
+ .sgz-person-portrait-panel .people-detail-portrait{position:relative}.sgz-portrait-retry{position:absolute;bottom:4px;left:4px;right:4px;z-index:1}.sgz-portrait-status{height:3em;overflow-wrap:anywhere}
+ 
+ .people-detail-head .sgz-person-portrait-panel{width:112px}@media(max-width:760px){.people-detail-head .sgz-person-portrait-panel{width:80px}}
++
++.sgz-person-portrait-panel .sgz-portrait-evidence-note{font-size:12px;line-height:1.5;overflow-wrap:anywhere;margin:8px 0 0;}
++
++.people-detail-head .sgz-person-portrait-panel .people-detail-portrait{float:none;margin:0;}
++.sgz-person-portrait-panel .people-detail-portrait img{object-fit:contain;}
+diff --git a/atlas/scripts/build-reader-bundle.mjs b/atlas/scripts/build-reader-bundle.mjs
+index afffe0c..9658251 100644
+--- a/atlas/scripts/build-reader-bundle.mjs
++++ b/atlas/scripts/build-reader-bundle.mjs
+@@ -1018,6 +1018,7 @@ html = html.replace('</head>', `${readerBootstrap}\n<meta name="sgz-build" conte
+ html = html.replace("  if (typeof XLSX === 'undefined') missing.push('SheetJS(xlsx)');\n", '');
+ html = html.replace(/<script\b[^>]*\ssrc=["']\.\/assets\/vendor\/xlsx\/xlsx\.full\.min\.js["'][^>]*><\/script>\s*/g, '');
+ writeText(path.join(stagingPath, 'index.html'), html);
++writeText(path.join(stagingPath, 'portraits.html'), fs.readFileSync(path.join(root, 'portraits.html'), 'utf8'));
+ 
+ for (const relative of mapRuntimeSourceFiles) {
+   let contents = projectionOverrides.get(relative);
+@@ -1068,6 +1069,7 @@ for (const relative of [...portraitPaths].sort()) {
+ }
+ 
+ const localReferences = new Set();
++localReferences.add('assets/app/portrait-viewer.js');
+ for (const match of html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)=["']([^"']+)["'][^>]*>/g)) {
+   const reference = normalizeLocalReference(match[1]);
+   if (!reference || /^(?:https?:|data:|#)/.test(reference)) continue;
