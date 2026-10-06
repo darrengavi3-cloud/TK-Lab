@@ -1,0 +1,16 @@
+{
+  "savedSiteVersion": 58,
+  "sourceCommit": "fac348865dfccb39b7aa9b35bfcad6976db8ee0e",
+  "versionId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_12f78ec6240c8191b60c880934136b67",
+  "status": "saved-recoverable-checkpoint",
+  "deploymentId": null,
+  "newCount": 57,
+  "independentRedrawCount": 16,
+  "tests": {
+    "source": 58,
+    "built": 247,
+    "portraitViewportChecks": 24,
+    "failures": 0
+  },
+  "archivePackaging": "Local tar.gz validates at production then becomes truncated on later read, including after fsync; source-only checkpoint is durable."
+}
