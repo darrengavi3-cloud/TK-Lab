@@ -18,5 +18,20 @@
     "screenshot_url": null,
     "deployment_id": null
   },
-  "status": "archive-backed saved checkpoint; deployment not requested whileV60building"
+  "status": "private publication succeeded",
+  "deployment": {
+    "id": "appgdep_6ac4dcd4b32c8191824d18fa1fc7575f",
+    "project_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+    "title": "观史台",
+    "version_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_1b229867c2948191a00d04a1ca73afa3",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "darrengavi3--zhiguanpu-private",
+    "failure_message": null,
+    "env_set_revision": 1,
+    "updated_at": "2026-10-06T11:34:57.003504+00:00"
+  }
 }
