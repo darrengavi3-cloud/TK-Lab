@@ -26,9 +26,9 @@ commands.append(('diff', ['git', 'diff', '--check']))
 save()
 for label, command in commands:
     log = SITE / f'work/validation/{key}-{label}.log'
-    with log.open('w') as stream:
-        result = subprocess.run(command, cwd=SITE, stdout=stream, stderr=subprocess.STDOUT)
-    output = log.read_text(errors='replace')
+    result = subprocess.run(command, cwd=SITE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors='replace')
+    output = result.stdout
+    log.write_text(output)
     state['steps'].append({'phase': label, 'command': command, 'exitCode': result.returncode, 'log': str(log.relative_to(SITE))})
     print(json.dumps({'phase': label, 'exitCode': result.returncode}), flush=True)
     print('\n'.join(output.splitlines()[-8:]), flush=True)
