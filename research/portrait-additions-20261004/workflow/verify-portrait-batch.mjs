@@ -18,6 +18,7 @@ try{
   const context=await browser.newContext({viewport});const page=await context.newPage();
   for(const row of ledger.records){
    await page.goto(`http://127.0.0.1:${server.address().port}/index.html#people?person=${encodeURIComponent(row.personId)}`);
+   if(row.portraitId){const selector=page.locator('[data-portrait-id=\"'+row.portraitId+'\"]:visible').first();if(await selector.count())await selector.click();}
    const image=page.locator('.people-detail-portrait:visible img').first();await image.waitFor({timeout:30000});
    await page.waitForFunction(()=>{const im=[...document.querySelectorAll('.people-detail-portrait img')].find(im=>im.getClientRects().length && getComputedStyle(im).visibility!=='hidden');return im?.complete&&im.naturalWidth>0;});
    const actual=await image.evaluate(im=>({src:im.getAttribute('src'),width:im.naturalWidth,height:im.naturalHeight}));

@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "newIntegrated": 97,
+  "independentRedrawIntegrated": 60,
+  "steps": [
+    {
+      "phase": "source",
+      "command": [
+        "npm",
+        "run",
+        "verify:source"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/097-060-source.log"
+    },
+    {
+      "phase": "release",
+      "command": [
+        "npm",
+        "run",
+        "release:offline"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/097-060-release.log"
+    },
+    {
+      "phase": "new-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "94,95,96,97"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/097-060-new-pages.log"
+    },
+    {
+      "phase": "redraw-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "57,58,59,60",
+        "redraw"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/097-060-redraw-pages.log"
+    },
+    {
+      "phase": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/097-060-diff.log"
+    }
+  ],
+  "costumeEvidenceStatus": "待考",
+  "sourceTests": 58,
+  "builtSuiteTests": 247,
+  "pipelineExitCode": 0,
+  "portraitViewportChecks": 16,
+  "failures": 0,
+  "reports": [
+    "portrait-new-batch-94-95-96-97.json",
+    "portrait-redraw-batch-57-58-59-60.json"
+  ],
+  "supersededReason": "096 first attempt was bound by old staging helper; corrected reviewed edit revalidated in 100/64 checkpoint before publication"
+}

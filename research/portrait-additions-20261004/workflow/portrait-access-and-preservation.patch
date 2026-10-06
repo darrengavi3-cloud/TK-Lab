@@ -1,0 +1,129 @@
+diff --git a/atlas/UX-CONTRACT.md b/atlas/UX-CONTRACT.md
+index 6162d60..b867fa7 100644
+--- a/atlas/UX-CONTRACT.md
++++ b/atlas/UX-CONTRACT.md
+@@ -336,3 +336,7 @@ V71 人物身份收口：`v62-reader-scope.json` 的 2096 个稳定 ID 与原文
+ 人物仕宦的全部／任官／封爵／州镇筛选由根状态管理，`career` URL 参数恢复桌面与手机同一状态；空类型可返回全部。兼领与迁转仅高亮原引文中已有任职字词，完整上下文保持不变，不据此生成新的事实。
+ 
+ 并读保留当前说法、状态与全部引用角色；异文定位按固定原文首次逐字命中高亮并聚焦，明确标注异文位置，不改写或拼接底本。返回原事件或任职仍保留未保存草稿。手机控件自然换行、保存状态依据实际请求，页面自然滚动以配合键盘；真实 iPhone 键盘验收另行记录。
++
++## 人物立绘资源访问（2026-10-06）
++
++桌面档案与手机详情共用 `PersonPortraitPanel`，内部复用 `ReaderPortrait`。多立绘只取manifest的稳定personID及其portraitIDs，按assetsById核对personID、ready及本地路径，不根据姓名或面貌猜配。默认仍显示原主立绘；显式按钮切换，当前personID的选择仅为内存临时阅读状态，桌面/手机共享，不写URL或数据库。每张提供本地原图链接，完整全身可查看；不增加史实或改变衣冠“待考”边界。原生按钮和链接有44px目标、焦点、悬停和按下反馈，加载失败给出重试。没有新增动效，沿用全局主题和减少动态效果规则。
+diff --git a/atlas/assets/app/reader-components.js b/atlas/assets/app/reader-components.js
+index 88dda0d..3dd17eb 100644
+--- a/atlas/assets/app/reader-components.js
++++ b/atlas/assets/app/reader-components.js
+@@ -1,5 +1,6 @@
+ (function (global) {
+   'use strict';
++  const portraitSelection = global.Vue.reactive({});
+   global.SGZ_READER_COMPONENTS = Object.freeze({
+     SgzPagination: {
+       props: { page: Number, pageCount: Number, label: String },
+@@ -26,6 +27,29 @@
+       },
+       template: `<img :src="src" :srcset="srcset" :sizes="srcset ? sizes : undefined" :alt="alt" loading="lazy" decoding="async" @error="failedVariant = true" />`
+     },
++    PersonPortraitPanel: {
++      props: { person: Object, frameStyle: Object },
++      data() { return { loading: true, failed: false, retry: 0 }; },
++      computed: {
++        personId() { const raw=this.person?.personId||'';return global.SGZ_PERSON_PORTRAIT_MANIFEST?.legacyPersonIdAliases?.[raw]||raw; },
++        choices() { const m=global.SGZ_PERSON_PORTRAIT_MANIFEST||{};return (m.byPersonId?.[this.personId]?.portraitIds||[]).map(id=>m.assetsById?.[id]).filter(a=>a?.personId===this.personId&&a.status==='ready'&&/^\.\/assets\/portraits\//.test(a.src||'')); },
++        selected() { return this.choices.find(a=>a.portraitId===portraitSelection[this.personId]); },
++        src() { return this.selected?.src||this.person?.portrait||''; }
++      },
++      watch: { src() { this.loading=true;this.failed=false;this.retry=0; } },
++      methods: {
++        choose(id) { if(this.choices.some(a=>a.portraitId===id))portraitSelection[this.personId]=id; },
++        loaded() { this.loading=false;this.failed=false; },
++        errored() { this.loading=false;this.failed=true; },
++        retryImage() { this.loading=true;this.failed=false;this.retry++; }
++      },
++      template: `<section class="sgz-person-portrait-panel" :aria-label="person.name+'立绘'">
++        <div class="people-detail-portrait" :style="frameStyle" :aria-busy="Boolean(src)&&loading"><reader-portrait v-if="src" :key="src+'|'+retry" :src="src" :alt="person.name+'立绘'" detail @load="loaded" @error="errored"/><button v-if="failed" type="button" class="sgz-portrait-control sgz-portrait-retry" @click="retryImage">重试立绘</button><span v-else>{{person.name.slice(0,1)}}</span></div>
++        <p v-if="src" class="sgz-portrait-status" role="status">{{failed?'立绘未能加载。':loading?'加载立绘…':''}}</p>
++        <nav v-if="choices.length>1" class="sgz-portrait-choices" aria-label="切换人物立绘"><button v-for="(asset,index) in choices" :key="asset.portraitId" type="button" class="sgz-portrait-control" :data-portrait-id="asset.portraitId" :aria-pressed="src===asset.src" @click="choose(asset.portraitId)">立绘{{index+1}}</button></nav>
++        <a v-if="src" class="sgz-portrait-control sgz-portrait-original" :href="src" target="_blank" rel="noopener">查看原图</a>
++      </section>`
++    },
+     ReaderCitations: {
+       props: { citations: { type: Array, default: () => [] }, highlightCareer: Boolean },
+       methods: {quoteParts(quote){return String(quote).split(/(兼領|兼领|兼任|兼|領|领|遷|迁|轉|转|徙|拜|除|出為|出为)/u).map((text,index)=>({text,marked:this.highlightCareer&&index%2===1}));}},
+diff --git a/atlas/assets/app/ui/people-ui.js b/atlas/assets/app/ui/people-ui.js
+index da725da..79851c1 100644
+--- a/atlas/assets/app/ui/people-ui.js
++++ b/atlas/assets/app/ui/people-ui.js
+@@ -163,7 +163,7 @@ export const PeopleWorkbench = {
+           </section>
+           <article v-if="peoplePrimaryDetail" class="v56-person-dossier" :data-person-id="peoplePrimaryDetail.personId">
+             <header class="v56-person-dossier-head">
+-              <div class="people-detail-portrait" :style="portraitStyleFor(peoplePrimaryDetail)"><reader-portrait v-if="peoplePrimaryDetail.portrait" :src="peoplePrimaryDetail.portrait" :alt="peoplePrimaryDetail.name+'立绘'" detail/><span v-else>{{peoplePrimaryDetail.name.slice(0,1)}}</span></div>
++              <person-portrait-panel :person="peoplePrimaryDetail" :frame-style="portraitStyleFor(peoplePrimaryDetail)"/>
+               <div>
+                 <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2><p v-if="peoplePrimaryDetail.portrait && peoplePrimaryDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
+                 <div class="v56-person-dossier-meta"><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
+diff --git a/atlas/assets/ui/components.css b/atlas/assets/ui/components.css
+index fb08b19..afb1b37 100644
+--- a/atlas/assets/ui/components.css
++++ b/atlas/assets/ui/components.css
+@@ -1080,3 +1080,8 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
+ /* Extracted workbenches put module-page and module-page-inner on one root. */
+ @media screen and (min-width:761px){.shell>.module-page.module-page-inner{margin-left:var(--v56-current-spine);margin-right:var(--v56-current-evidence);width:auto;max-width:none;padding:24px;}}
+ @media screen and (max-width:760px){.shell>.module-page.module-page-inner{margin:0;width:auto;max-width:none;padding:20px 16px calc(84px + env(safe-area-inset-bottom));}}
++
++/* Shared portrait access; uses the canonical Blue Atlas control tokens. */
++.sgz-person-portrait-panel{flex:0 0 auto;width:100px;min-width:0}.sgz-person-portrait-panel .people-detail-portrait{float:none;margin:0}.sgz-portrait-choices{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.sgz-portrait-control{display:inline-flex;align-items:center;justify-content:center;min-height:var(--sgz-touch-target);min-width:var(--sgz-touch-target);max-width:100%;padding:4px 8px;border:1px solid var(--sgz-rule);border-radius:var(--sgz-radius);background:var(--sgz-surface);color:var(--sgz-ink);font:600 var(--sgz-text-meta) var(--sgz-font-body);cursor:pointer;text-decoration:none;box-sizing:border-box}.sgz-portrait-control:hover{background:var(--sgz-pale)}.sgz-portrait-control:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:2px}.sgz-portrait-control:active,.sgz-portrait-control[aria-pressed=true]{background:var(--sgz-accent);color:var(--sgz-on-accent);border-color:var(--sgz-accent)}.sgz-portrait-original{margin-top:8px;width:100%}.sgz-portrait-status{font:var(--sgz-text-meta) var(--sgz-font-body);color:var(--sgz-muted);margin:4px 0;min-height:1.5em}.people-detail-head .sgz-person-portrait-panel{float:right;margin:0 0 18px 18px;width:80px}
++
++.sgz-person-portrait-panel .people-detail-portrait{position:relative}.sgz-portrait-retry{position:absolute;bottom:4px;left:4px;right:4px;z-index:1}.sgz-portrait-status{height:3em;overflow-wrap:anywhere}
+diff --git a/atlas/index.html b/atlas/index.html
+index e1b5604..03ea5df 100644
+--- a/atlas/index.html
++++ b/atlas/index.html
+@@ -9287,7 +9287,7 @@ const app = createApp({
+     <el-drawer v-model="showPeopleDetail" :title="'人物履历 · '+(activePeopleDetail?activePeopleDetail.name:'')" :size="viewportWidth<=980?'100%':'720px'" :show-close="false" class="v84-reading-detail"><template #header="{titleId}"><div class="v84-detail-heading"><button type="button" class="v84-button v84-button--text" @click="closeReadingDetail('people')">← 返回人物列表</button><strong :id="titleId">{{activePeopleDetail?activePeopleDetail.name:'人物详情'}}</strong></div></template>
+       <template v-if="activePeopleDetail">
+         <div class="people-detail-head">
+-          <div class="people-detail-portrait" :style="portraitStyleFor(activePeopleDetail)"><reader-portrait v-if="activePeopleDetail.portrait" :src="activePeopleDetail.portrait" :alt="activePeopleDetail.name+'立绘'" detail/><span v-else>{{activePeopleDetail.name.slice(0,1)}}</span></div>
++          <person-portrait-panel :person="activePeopleDetail" :frame-style="portraitStyleFor(activePeopleDetail)"/>
+           <div class="people-detail-main">
+             <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}</h3><p v-if="activePeopleDetail.portrait && activePeopleDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
+ 
+diff --git a/atlas/scripts/accepted-portrait-additions.mjs b/atlas/scripts/accepted-portrait-additions.mjs
+index 937c964..b572151 100644
+--- a/atlas/scripts/accepted-portrait-additions.mjs
++++ b/atlas/scripts/accepted-portrait-additions.mjs
+@@ -17,5 +17,6 @@ export const acceptedPortraitAdditions = ledger.records.map(row => {
+   if(width<512 || Math.abs(width/height-9/16)>.03 || width!==row.width || height!==row.height) throw new Error('Invalid accepted portrait dimensions');
+   const required=['strictFrontal','directGaze','shouldersFrontal','ageAppropriate','independentSinglePerson','completeCrown','completeHands','standingComposition'];
+   if(!required.every(key=>row.visualReview?.[key]===true) || !Number.isInteger(row.designAge) || !row.ageBasis || row.evidenceStatus!=='待考') throw new Error('Portrait acceptance or evidence boundary missing');
++  if(row.originalSrc){if(!/^\.\/assets\/portraits\/20261004\/\d{3}-[0-9a-f]{12}\.png$/.test(row.originalSrc)||createHash('sha256').update(fs.readFileSync(path.join(root,row.originalSrc))).digest('hex')!==row.originalSha256)throw new Error('Preserved portrait original SHA mismatch');}
+   return {...row,portraitId:`portrait:additional:20261004:${String(row.order).padStart(3,'0')}`};
+ });
+diff --git a/atlas/scripts/build-reader-bundle.mjs b/atlas/scripts/build-reader-bundle.mjs
+index 41da540..afffe0c 100644
+--- a/atlas/scripts/build-reader-bundle.mjs
++++ b/atlas/scripts/build-reader-bundle.mjs
+@@ -1054,7 +1054,7 @@ const portraitPaths = new Set(
+ // active portraits and retain separate accounting from the current bindings.
+ const retainedPortraitOriginalPaths = new Set(
+   Object.values(portraitManifest.assetsById || {})
+-    .filter(item => item?.productionMethod === 'independent-redraw' && item.originalSrc)
++    .filter(item => item?.originalSrc && (item.productionMethod === 'independent-redraw' || item.portraitKind === 'ui-illustration-additional-20261004'))
+     .map(item => normalizeLocalReference(item.originalSrc))
+     .filter(item => item.startsWith('assets/portraits/'))
+ );
+diff --git a/atlas/scripts/build-v46-portrait-manifest.mjs b/atlas/scripts/build-v46-portrait-manifest.mjs
+index 8a6f6b0..bb93cc6 100644
+--- a/atlas/scripts/build-v46-portrait-manifest.mjs
++++ b/atlas/scripts/build-v46-portrait-manifest.mjs
+@@ -549,7 +549,7 @@ function v62BuildManifest() {
+   // Explicit SHA-bound additions preserve every historical resource and identity.
+   for (const row of acceptedPortraitAdditions) {
+     const personId=v62CanonicalPersonId(row.personId);
+-    const asset={portraitId:row.portraitId,personId,name:row.name,aliases:[row.name],zi:'',src:row.assetPath,assetPath:row.assetPath,polity:row.polity,color:polityColors[row.polity]||'#77736B',sourceTitle:'正面艺术立绘；服饰细节待考（非史实肖像）',sourceUrl:'',portraitKind:additionalPortraitKind,status:'ready',designStatus:'pending',designRef:null,interfaceOnly:true,catalogOrder:Object.keys(assetsById).length+1,legacyPersonIds:[],designAge:row.designAge,ageBasis:row.ageBasis,evidenceStatus:'待考',sha256:row.sha256};
++    const asset={portraitId:row.portraitId,personId,name:row.name,aliases:[row.name],zi:'',src:row.assetPath,assetPath:row.assetPath,polity:row.polity,color:polityColors[row.polity]||'#77736B',sourceTitle:'正面艺术立绘；服饰细节待考（非史实肖像）',sourceUrl:'',portraitKind:additionalPortraitKind,status:'ready',designStatus:'pending',designRef:null,interfaceOnly:true,catalogOrder:Object.keys(assetsById).length+1,legacyPersonIds:[],designAge:row.designAge,ageBasis:row.ageBasis,evidenceStatus:'待考',sha256:row.sha256,...(row.originalSrc?{originalSrc:row.originalSrc,originalSha256:row.originalSha256,revisionReason:row.revisionReason}: {})};
+     if(assetsById[asset.portraitId]) throw new Error('Duplicate additional portrait');
+     assetsById[asset.portraitId]=asset;
+     if(!portraitsByCanonicalPersonId.has(personId)) portraitsByCanonicalPersonId.set(personId,[]);
