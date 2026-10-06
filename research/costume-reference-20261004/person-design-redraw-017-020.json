@@ -1,0 +1,70 @@
+{
+  "status": "待考",
+  "boundary": "成年艺术表现阶段，服饰形制颜色与面貌不作为史实复原",
+  "records": [
+    {
+      "order": 17,
+      "portraitId": "portrait:asset:9dc98ee30e4c27e42f97",
+      "personId": "person:wei:wei-zhen",
+      "name": "卫臻",
+      "originalSrc": "./assets/portraits/generated/wei-zhen.png",
+      "originalKind": "ai-illustration",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "2984a893c0f771d32d2983ad3f6ea012117ae411b63ece3d9b2f3c41e9daa78d",
+      "outputStem": "portrait-asset-9dc98ee30e4c27e42f97-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：卫臻，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：修长脸、直眉、修整短须，深灰外袍与暗红内领。"
+    },
+    {
+      "order": 18,
+      "portraitId": "portrait:asset:dc2096ec2558bca1feaf",
+      "personId": "person:source:a80a9d39a6e9",
+      "name": "陈群",
+      "originalSrc": "./assets/portraits/v51/person-source-a80a9d39a6e9.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "5959a8eed5948178230ba626c27c6b8233c9809cd178ee56986389df4a1942a1",
+      "outputStem": "portrait-asset-dc2096ec2558bca1feaf-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：陈群，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方圆脸、黑短须，赭红外袍与深蓝交领。"
+    },
+    {
+      "order": 19,
+      "portraitId": "portrait:asset:1f02af1b00d2822c01e8",
+      "personId": "person:source:5da0dd364783",
+      "name": "公孙渊",
+      "originalSrc": "./assets/portraits/v51/person-source-5da0dd364783.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "aad2c924bc09d6eadddbb7c7f2f5900d6b59b91d294efa98b6dd4b977598f041",
+      "outputStem": "portrait-asset-1f02af1b00d2822c01e8-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：公孙渊，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方脸宽颌、黑短须，暗红外袍与深褐内领。"
+    },
+    {
+      "order": 20,
+      "portraitId": "portrait:asset:712f4828384810e966c8",
+      "personId": "person:wei:cui-lin",
+      "name": "崔林",
+      "originalSrc": "./assets/portraits/v51/person-source-e91b523e72ad.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "c7b2d202add35f68cdf6c26d1b0ec3b8f09d35e729e2d343b3653669d5469ad5",
+      "outputStem": "portrait-asset-712f4828384810e966c8-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：崔林，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：椭圆脸、平直眉、细黑须，深蓝外袍与赭色内领。"
+    }
+  ]
+}
