@@ -2671,6 +2671,94 @@
       },
       "reviewedAt": "2026-10-06",
       "reviewBasis": "Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition."
+    },
+    {
+      "kind": "existing",
+      "order": 45,
+      "portraitId": "portrait:asset:7a785ebf895149f6f1e0",
+      "personId": "person:source:4e121ec2c327",
+      "sha256": "49f2a58f80f04e0092773161b8e32a89ab9a712d835f0a1b01715b2ecc71668e",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 46,
+      "portraitId": "portrait:asset:c2c9a2992410b0bab743",
+      "personId": "person:source:3615e33dea42",
+      "sha256": "124b77dfc3dcfad7ed3bbb3d97e109b122d70bc0679b44b47947878acc30a8cd",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 47,
+      "portraitId": "portrait:asset:29cd19a33fa95dcc28d0",
+      "personId": "person:source:035be51454ba",
+      "sha256": "1d8d1cde5cdcf7a08b10d16c42a0e97a00b372ee2837ac09d00dfa9e01a586eb",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 48,
+      "portraitId": "portrait:asset:0a7ff1ca88a2b12c92a4",
+      "personId": "person:source:004770996fff",
+      "sha256": "1e8686748b2940ad7a2295ed7244242bfd54ef346f60596cad7bed4ed3352b47",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
     }
   ],
   "revisionReason": "User requests independent recreation of early crop-derived assets; previous frontal-only early edits retained as archived candidates and require new review."
