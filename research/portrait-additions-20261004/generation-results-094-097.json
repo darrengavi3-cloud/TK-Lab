@@ -44,14 +44,20 @@
     "polity": "晋",
     "prompt": "Use case: historical-scene. Asset type: 观史台人物立绘，一张独立PNG，不是拼图或图表。\nSubject: 左芬，女性，无胡须，端庄发髻与简单簪饰。艺术表现年龄约40岁（人物成年生涯阶段，不宣称真实肖像）。椭圆脸，下颌较窄，沉静眼神。文官或士人，汉魏晋交领袍与合宜冠巾，非明清服装。\nStyle: 半写实中国历史人物游戏插画，细腻水墨淡彩，温暖象牙纸肌理，细致面部骨骼与布帛材质，克制庄重，与同批立绘风格统一。\nComposition: 9:16竖幅独立站姿，头冠到膝下或全身，冠与双手完整。头、肩膀、身体严格正对画面，鼻与胸骨居中，双眼直视观众，两侧耳朵/肩膀对称，不侧脸、不转头、不三分之二视角。双手自然垂放或交叠于腰前。\nBackdrop: 淡雅温暖纸本，极淡远景水墨山峦，不抢人物。Avoid: 书卷、书本、扇子遮挡，文字、名字、印章、水印，现代装饰、清代辫子、夸张奇幻盔甲，网格拼图，多个人物。",
     "outputStem": "096-270a8f21d621",
-    "actualPrompt": "Use case: historical-scene. Asset type: 观史台人物立绘，一张独立PNG，不是拼图或图表。\nSubject: 左芬，女性，无胡须，端庄发髻与简单簪饰。艺术表现年龄约40岁（人物成年生涯阶段，不宣称真实肖像）。椭圆脸，下颌较窄，沉静眼神。文官或士人，汉魏晋交领袍与合宜冠巾，非明清服装。\nStyle: 半写实中国历史人物游戏插画，细腻水墨淡彩，温暖象牙纸肌理，细致面部骨骼与布帛材质，克制庄重，与同批立绘风格统一。\nComposition: 9:16竖幅独立站姿，头冠到膝下或全身，冠与双手完整。头、肩膀、身体严格正对画面，鼻与胸骨居中，双眼直视观众，两侧耳朵/肩膀对称，不侧脸、不转头、不三分之二视角。双手自然垂放或交叠于腰前。\nBackdrop: 淡雅温暖纸本，极淡远景水墨山峦，不抢人物。Avoid: 书卷、书本、扇子遮挡，文字、名字、印章、水印，现代装饰、清代辫子、夸张奇幻盔甲，网格拼图，多个人物。\nAdditional production constraints: 全身从完整冠巾到双脚鞋底，头顶鞋底留安全边距，双手自然垂放完整可见。正面平视站立，头肩躯干全部严格正对镜头，双眼直视观众。朴素汉魏晋衣冠，禁止兽首肩甲、胸镜、尖刺、披风、王冠、明清服装。背景极淡水墨纸本。按40岁刻画面部，不宣称真实肖像。衣冠形制、颜色及纹样为艺术设计，史料不足待考，不在图中写字。\nFemale subject constraint: 左芬为40岁成年女性，面部表现成熟，端庄发髻与素簪，无男性冠巾与胡须。朴素交领长衣，具体裙袍形制与簪饰为艺术设计待考，无现代妆容。",
-    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-79f22b1e-8747-482e-95c8-0ed88ca7dbe0.png",
-    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/new-images/096-270a8f21d621.png",
-    "sha256": "59e1b30e8263935400660c9ea3a741ffba822e626593aee714efe32303b7b101",
+    "actualPrompt": "Use case: identity-preserve. Asset type: 观史台左芬人物立绘年龄修订。一张独立PNG。Input image: 原图是左芬，绑定personId保持原记录，不根据面貌重新配身份。Primary request: 只编辑这张原图人物的面部年龄特征，艺术表现年龄约40岁，非史实肖像。保留同一个人的具体面貌身份、正面直视姿态、发髻冠饰、完整双手、紫灰色外袍和象牙色内衣及其原纹样、衣色、全身站姿、完整鞋底、纸本水墨背景、原有半写实水墨淡彩风格与构图。给面部增加自然成熟40岁特征：眼角和眉间轻细纹，稍成熟的眼睑与面部结构，适度自然皮肤纹理和法令纹，避免20多岁少女感，不做过度衰老。头肩躯干保持严格正面平视，双眼直视观众；完整发髻到双脚鞋底，头顶鞋底安全边距，双手交叠保持完整可见。只修改面部成熟年龄，不改变原来的身份、五官基本形状与神态，不更换衣冠，不新增人物或道具，不写文字、名字、印章或水印。衣冠形制、颜色及纹样仍为艺术设计，史料不足待考，禁止新增史实服饰断言。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98d9a140-5efa-42c5-bcac-8242c93884d2.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/new-images/096-270a8f21d621-age40-edit-v2.png",
+    "sha256": "565e5f2c6b268f507c3e7944a9086fd919ed98ff0596d5bd5da8f8bf5f17414e",
     "dimensions": [
       941,
       1672
-    ]
+    ],
+    "originalActualPrompt": "Use case: historical-scene. Asset type: 观史台人物立绘，一张独立PNG，不是拼图或图表。\nSubject: 左芬，女性，无胡须，端庄发髻与简单簪饰。艺术表现年龄约40岁（人物成年生涯阶段，不宣称真实肖像）。椭圆脸，下颌较窄，沉静眼神。文官或士人，汉魏晋交领袍与合宜冠巾，非明清服装。\nStyle: 半写实中国历史人物游戏插画，细腻水墨淡彩，温暖象牙纸肌理，细致面部骨骼与布帛材质，克制庄重，与同批立绘风格统一。\nComposition: 9:16竖幅独立站姿，头冠到膝下或全身，冠与双手完整。头、肩膀、身体严格正对画面，鼻与胸骨居中，双眼直视观众，两侧耳朵/肩膀对称，不侧脸、不转头、不三分之二视角。双手自然垂放或交叠于腰前。\nBackdrop: 淡雅温暖纸本，极淡远景水墨山峦，不抢人物。Avoid: 书卷、书本、扇子遮挡，文字、名字、印章、水印，现代装饰、清代辫子、夸张奇幻盔甲，网格拼图，多个人物。\nAdditional production constraints: 全身从完整冠巾到双脚鞋底，头顶鞋底留安全边距，双手自然垂放完整可见。正面平视站立，头肩躯干全部严格正对镜头，双眼直视观众。朴素汉魏晋衣冠，禁止兽首肩甲、胸镜、尖刺、披风、王冠、明清服装。背景极淡水墨纸本。按40岁刻画面部，不宣称真实肖像。衣冠形制、颜色及纹样为艺术设计，史料不足待考，不在图中写字。\nFemale subject constraint: 左芬为40岁成年女性，面部表现成熟，端庄发髻与素簪，无男性冠巾与胡须。朴素交领长衣，具体裙袍形制与簪饰为艺术设计待考，无现代妆容。",
+    "generationMethod": "identity-preserving-age-edit",
+    "referenceImagePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-79f22b1e-8747-482e-95c8-0ed88ca7dbe0.png",
+    "referenceImageSha256": "59e1b30e8263935400660c9ea3a741ffba822e626593aee714efe32303b7b101",
+    "previousAttemptRecord": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/result-096-attempt-01.json",
+    "acceptanceStatus": "pending-root-review"
   },
   {
     "order": 97,
