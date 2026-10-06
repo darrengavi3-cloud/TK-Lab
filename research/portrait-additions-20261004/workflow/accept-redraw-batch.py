@@ -9,7 +9,7 @@ flags={key:True for key in ['frontal','strictFrontal','directGaze','shouldersFro
 pending=[]
 for r in prompts:
  if r['order'] not in orders:continue
- src=work/'redraw-images'/(r['outputStem']+'.png');data=src.read_bytes();sha=hashlib.sha256(data).hexdigest()
+ generation=next(x for x in json.loads((work/f'redraw-results-{batch}.json').read_text()) if x['order']==r['order']);assert generation['personId']==r['personId'] and generation['portraitId']==r['portraitId'];src=Path(generation['outputPath']);data=src.read_bytes();sha=hashlib.sha256(data).hexdigest();assert sha==generation['sha256'];assert Path(generation['sourcePath']).read_bytes()==data
  with Image.open(src) as im:
   width,height=im.size;assert im.format=='PNG';im.verify()
  assert width>=512 and abs(width/height-9/16)<=.03
@@ -17,7 +17,7 @@ for r in prompts:
  if dest.exists():assert dest.read_bytes()==data,'Refusing to overwrite accepted redraw'
  else:shutil.copy2(src,dest)
  row={k:r[k] for k in ['order','portraitId','personId','name','originalSrc','originalSha256','designAge','ageBasis']}
- row.update(path=path,status='complete',sha256=sha,width=width,height=height,productionMethod='independent-redraw',visualReview=flags,reviewedAt='2026-10-06',evidenceStatus='待考',promptRecord=f'research/portrait-additions-20261004/redraw-prompts-{batch}.json')
+ row.update(path=path,status='complete',sha256=sha,width=width,height=height,productionMethod='independent-redraw',visualReview=flags,reviewedAt='2026-10-06',evidenceStatus='待考',generationSource=generation['sourcePath'],generationRecord=f'research/portrait-additions-20261004/redraw-results-{batch}.json',promptRecord=f'research/portrait-additions-20261004/redraw-prompts-{batch}.json')
  progress['existing']=[x for x in progress['existing'] if x['portraitId']!=r['portraitId']]+[row]
  review['accepted']=[x for x in review['accepted'] if not (x.get('kind')=='existing' and x.get('portraitId')==r['portraitId'])]+[dict(kind='existing',order=r['order'],portraitId=r['portraitId'],personId=r['personId'],sha256=sha,visualReview=flags,reviewedAt='2026-10-06',reviewBasis='Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet.')]
  index[path]=sha;pending.append(dict(path=path,sha256=sha,bytes=len(data),base64Length=((len(data)+2)//3)*4,gitSha=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()))
