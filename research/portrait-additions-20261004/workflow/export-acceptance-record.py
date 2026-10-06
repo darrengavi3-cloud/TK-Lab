@@ -19,8 +19,9 @@ for file in research.glob('portrait-*-batch-*.json'):
     report=json.loads(file.read_text())
     for check in report.get('checks',[]):
         if check.get('passed'):
-            reports.setdefault((check['personId'],check['src']),set()).add(check['viewport']['width'])
-fields=['kind','order','name','personId','portraitId','file','sha256','hashVerified','width','height','designAge','ageBasis','front','ageAppropriate','fullBody','completeHands','completeFeet','costumeEvidence','desktopVerified','mobileVerified','promptRecord','generationMethod','generationRecord','generationSource','sourceEvidenceNote','legacyPortraitId']
+            surface=check.get('testSurface','reader-export')
+            reports.setdefault((check['personId'],check['src'],surface),set()).add(check['viewport']['width'])
+fields=['kind','order','name','personId','portraitId','file','sha256','hashVerified','width','height','designAge','ageBasis','front','ageAppropriate','fullBody','completeHands','completeFeet','costumeEvidence','desktopVerified','mobileVerified','promptRecord','generationMethod','generationRecord','generationSource','sourceEvidenceNote','legacyPortraitId','desktopBuiltVerified','mobileBuiltVerified']
 rows=[]
 for kind, records in [('new',progress['new']),('independent-redraw',progress['existing'])]:
     for row in records:
@@ -41,8 +42,9 @@ for kind, records in [('new',progress['new']),('independent-redraw',progress['ex
             source_record='research/portrait-additions-20261004/git-verification-081-040.json'
             source_note='Existing accepted bytes verified against Git commit 0d1692fa37862aced43bdf54f6bbe26667d06955; original generation call log unavailable. Identity retained from accepted ID record.'
         src='./'+row['path'].removeprefix('atlas/')
-        checks=reports.get((row['personId'],src),set())
-        rows.append(dict(kind=kind,order=row['order'],name=row['name'],personId=row['personId'],portraitId=(f"portrait:additional:20261004:{row['order']:03d}" if kind=='new' else row['portraitId']),file=row['path'],sha256=sha,hashVerified=True,width=width,height=height,designAge=row.get('designAge',''),ageBasis=row.get('ageBasis',''),front=review.get('strictFrontal',review.get('frontal','')),ageAppropriate=review.get('ageAppropriate',''),fullBody=review.get('fullBody',''),completeHands=review.get('completeHands',''),completeFeet=review.get('completeFeet',''),costumeEvidence='待考',desktopVerified=1440 in checks,mobileVerified=390 in checks,promptRecord=row.get('promptRecord',''),generationMethod=row.get('productionMethod',''),generationRecord=source_record,generationSource=source_path,sourceEvidenceNote=source_note,legacyPortraitId=(row.get('portraitId','') if kind=='new' else '')))
+        checks=reports.get((row['personId'],src,'reader-export'),set())
+        built_checks=reports.get((row['personId'],src,'deployment-build'),set())
+        rows.append(dict(kind=kind,order=row['order'],name=row['name'],personId=row['personId'],portraitId=(f"portrait:additional:20261004:{row['order']:03d}" if kind=='new' else row['portraitId']),file=row['path'],sha256=sha,hashVerified=True,width=width,height=height,designAge=row.get('designAge',''),ageBasis=row.get('ageBasis',''),front=review.get('strictFrontal',review.get('frontal','')),ageAppropriate=review.get('ageAppropriate',''),fullBody=review.get('fullBody',''),completeHands=review.get('completeHands',''),completeFeet=review.get('completeFeet',''),costumeEvidence='待考',desktopVerified=1440 in checks,mobileVerified=390 in checks,promptRecord=row.get('promptRecord',''),generationMethod=row.get('productionMethod',''),generationRecord=source_record,generationSource=source_path,sourceEvidenceNote=source_note,legacyPortraitId=(row.get('portraitId','') if kind=='new' else ''),desktopBuiltVerified=1440 in built_checks,mobileBuiltVerified=390 in built_checks))
 with (research/'portrait-acceptance-record.csv').open('w',encoding='utf-8-sig',newline='') as f:
     writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(rows)
 print(json.dumps({'records':len(rows),'hashFailures':0,'desktopVerified':sum(r['desktopVerified'] for r in rows),'mobileVerified':sum(r['mobileVerified'] for r in rows),'fullBodyVerified':sum(r['fullBody'] is True for r in rows)}))

@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {chromium} from 'playwright';
-const root=path.resolve('atlas/exports/观史台-读者版');
+const built=process.argv.includes('--built');
+const root=path.resolve(built?'dist/client/legacy':'atlas/exports/观史台-读者版');
 const kind=process.argv[3]==='redraw'?'redraw':'new';
 const ledger=JSON.parse(fs.readFileSync(kind==='redraw'?'atlas/data/accepted-independent-redraws-20261004.json':'atlas/data/accepted-portrait-additions-20261004.json','utf8'));
 const orders=process.argv[2]?.split(',').map(Number);
@@ -23,7 +25,11 @@ try{
    await page.waitForFunction(()=>{const im=[...document.querySelectorAll('.people-detail-portrait img')].find(im=>im.getClientRects().length && getComputedStyle(im).visibility!=='hidden');return im?.complete&&im.naturalWidth>0;});
    const actual=await image.evaluate(im=>({src:im.getAttribute('src'),width:im.naturalWidth,height:im.naturalHeight}));
    assert.ok(actual.src.endsWith(row.assetPath.replace('./','/')),JSON.stringify(actual));
-   assert.equal(actual.width,row.width);assert.equal(actual.height,row.height);
+   const originalBytes=fs.readFileSync(path.join(root,row.assetPath.replace('./','')));
+   assert.equal(createHash('sha256').update(originalBytes).digest('hex'),row.sha256);
+   const original=await page.evaluate(src=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve({width:im.naturalWidth,height:im.naturalHeight});im.onerror=()=>reject(new Error('Original PNG failed to decode'));im.src=src;}),row.assetPath);
+   assert.equal(original.width,row.width);assert.equal(original.height,row.height);
+   if(!built){assert.equal(actual.width,row.width);assert.equal(actual.height,row.height);}
    await page.locator('.reader-quiet-note:visible').filter({hasText:'人物艺术立绘；表现年龄为设计选择，服饰细节待考。'}).first().waitFor();
    await image.evaluate(async im=>{await im.decode();await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
    const rendering=await image.evaluate(im=>{const c=getComputedStyle(im),r=im.getBoundingClientRect();return {display:c.display,visibility:c.visibility,opacity:c.opacity,width:r.width,height:r.height,currentSrc:im.currentSrc};});
@@ -31,10 +37,10 @@ try{
    fs.mkdirSync('work/validation/screenshots',{recursive:true});
    const screenshot='work/validation/screenshots/portrait-'+kind+'-'+row.order+'-'+viewport.width+'.png';
    await page.screenshot({path:screenshot,fullPage:false});
-   results.push({order:row.order,name:row.name,personId:row.personId,portraitId:row.portraitId||('portrait:additional:20261004:'+String(row.order).padStart(3,'0')),viewport,...actual,rendering,screenshot,evidenceLabel:'待考',passed:true});
+   results.push({order:row.order,name:row.name,personId:row.personId,portraitId:row.portraitId||('portrait:additional:20261004:'+String(row.order).padStart(3,'0')),viewport,...actual,originalDimensions:original,testSurface:built?'deployment-build':'reader-export',rendering,screenshot,evidenceLabel:'待考',passed:true});
   }
   await context.close();
  }
- fs.mkdirSync('work/validation',{recursive:true});fs.writeFileSync('work/validation/portrait-'+kind+'-batch-'+(orders?.join('-')||'all')+'.json',JSON.stringify({status:'passed',checks:results},null,2)+'\n');
+ fs.mkdirSync('work/validation',{recursive:true});fs.writeFileSync('work/validation/portrait-'+kind+'-batch-'+(orders?.join('-')||'all')+(built?'-built':'')+'.json',JSON.stringify({status:'passed',checks:results},null,2)+'\n');
  console.log(JSON.stringify({status:'passed',portraits:ledger.records.length,viewportChecks:results.length}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

@@ -32,7 +32,7 @@ for kind, count, filename in [('new', 100, 'accepted-portrait-additions-20261004
             assert image.size == (row['width'], row['height'])
             image.verify()
         csv_row = csv_rows[('new' if kind == 'new' else 'independent-redraw', order)]
-        reasons = [field for field in ['front', 'ageAppropriate', 'fullBody', 'completeHands', 'completeFeet', 'desktopVerified', 'mobileVerified'] if csv_row[field] != 'True']
+        reasons = [field for field in ['front', 'ageAppropriate', 'fullBody', 'completeHands', 'completeFeet', 'desktopVerified', 'mobileVerified', 'desktopBuiltVerified', 'mobileBuiltVerified'] if csv_row[field] != 'True']
         if order not in site_rows:
             reasons.append('not-integrated')
         else:
