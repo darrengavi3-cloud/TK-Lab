@@ -1,0 +1,70 @@
+{
+  "status": "待考",
+  "boundary": "形貌、年龄阶段、衣冠颜色形制纹样均为艺术选择，不作为史实复原。",
+  "records": [
+    {
+      "order": 37,
+      "portraitId": "portrait:asset:02cf025776b8cfbfe432",
+      "personId": "person:source:b429e221c1e7",
+      "name": "郭建",
+      "originalSrc": "./assets/portraits/v51/person-source-b429e221c1e7.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄40岁，选取成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "935baa889a528bfc4dd8cd85763013fa3496910dd34c3aa1bcc2340380467f12",
+      "outputStem": "portrait-asset-02cf025776b8cfbfe432-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：郭建，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方圆脸、修整短须，墨灰外袍与赭色内领。"
+    },
+    {
+      "order": 38,
+      "portraitId": "portrait:asset:53e90100874056f65c73",
+      "personId": "person:han:dong-min",
+      "name": "董旻",
+      "originalSrc": "./assets/portraits/v51/person-source-97a50d999831.png",
+      "originalKind": "ai-illustration-v52-reassigned",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄40岁，选取成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "f09ebc5a43f7b7644d752e9016b99d98889842943359901193df2ef6107cf83f",
+      "outputStem": "portrait-asset-53e90100874056f65c73-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：董旻，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：长方脸、浓眉、黑短须，暗红外袍与深蓝交领。"
+    },
+    {
+      "order": 39,
+      "portraitId": "portrait:asset:e389c7a44fbffbec0a02",
+      "personId": "person:source:c14b0af3e85f",
+      "name": "袁隗",
+      "originalSrc": "./assets/portraits/v51/person-source-c14b0af3e85f.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 50,
+      "ageBasis": "艺术表现年龄50岁，选取成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "674880cc54d24a3d1a1792d46ef258d291d669949971bae7c9c46c36441af303",
+      "outputStem": "portrait-asset-e389c7a44fbffbec0a02-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：袁隗，男性，艺术表现年龄50岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：宽额方脸、细皱纹、少量灰黑须，赭红外袍与深蓝内领。"
+    },
+    {
+      "order": 40,
+      "portraitId": "portrait:asset:8bb6ff5c2bc92f2365c7",
+      "personId": "person:source:779b07352932",
+      "name": "皇甫嵩",
+      "originalSrc": "./assets/portraits/v51/person-source-779b07352932.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 50,
+      "ageBasis": "艺术表现年龄50岁，选取成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "c0402c03bef2ec8e0c01a7fe8cf9cd67c0b2c1ff73fd78e0a7693b3e2f9bbaa9",
+      "outputStem": "portrait-asset-8bb6ff5c2bc92f2365c7-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：皇甫嵩，男性，艺术表现年龄50岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：长方脸、坚毅表情、灰黑短须，深蓝外袍与暗红内领。"
+    }
+  ]
+}
