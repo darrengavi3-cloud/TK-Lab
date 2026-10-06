@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "newIntegrated": 100,
+  "independentRedrawIntegrated": 72,
+  "steps": [
+    {
+      "phase": "source",
+      "command": [
+        "npm",
+        "run",
+        "verify:source"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/100-072-source.log"
+    },
+    {
+      "phase": "release",
+      "command": [
+        "npm",
+        "run",
+        "release:offline"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/100-072-release.log"
+    },
+    {
+      "phase": "redraw-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "65,66,67,68,69,70,71,72",
+        "redraw"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/100-072-redraw-pages.log"
+    },
+    {
+      "phase": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/100-072-diff.log"
+    }
+  ],
+  "costumeEvidenceStatus": "待考",
+  "sourceTests": 58,
+  "builtSuiteTests": 247,
+  "pipelineExitCode": 0,
+  "portraitViewportChecks": 16,
+  "failures": 0,
+  "reports": [
+    "portrait-redraw-batch-65-66-67-68-69-70-71-72.json"
+  ]
+}

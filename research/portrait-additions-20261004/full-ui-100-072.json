@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "command": "npm run test:visual",
+  "tests": 54,
+  "passed": 54,
+  "failed": 0,
+  "log": "/tmp/guanshitai-ui-100-072.log",
+  "siteNewCount": 100,
+  "siteRedrawCount": 72,
+  "scope": "Browser layout, navigation, keyboard, themes, narrowed/enlarged content and mock failure paths; not real-device or CJK glyph inspection"
+}
