@@ -1,0 +1,67 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 test:visual
+> node --test tests/visual/*.test.mjs
+
+✔ homepage searches the active snapshot and keeps homonyms on distinct stable links (706.599658ms)
+✔ phone search, shortcut, clear and browser Back preserve the exploration query (610.149395ms)
+✔ snapshot failure has an honest error and retry, rather than candidate or zero-result fallback (596.601491ms)
+✔ device reading history resumes the stable record and scroll position, and can be cleared (817.248399ms)
+✔ recent reading rejects malformed stored entries and never exposes them as links (239.697392ms)
+✔ phone search reflows with fallback fonts, long labels and 200 percent text (625.385885ms)
+✔ appointment link selectors preserve layout, no-results and keyboard at 390px (1476.000177ms)
+✔ appointment link selectors preserve layout, no-results and keyboard at 1280px (1355.306609ms)
+✔ appointment link selectors preserve layout, no-results and keyboard at 1440px (1417.981301ms)
+✔ shihuo: shared pagination preserves main DOM, disabled boundaries and parent event forwarding (264.478225ms)
+✔ fangzhen: shared pagination preserves main DOM, disabled boundaries and parent event forwarding (190.775661ms)
+✔ 1440 阅读 兰台清昼 · offices (2140.650854ms)
+✔ 1440 阅读 兰台清昼 · people (2377.996833ms)
+✔ 1440 阅读 兰台清昼 · battle (1803.880023ms)
+✔ 1440 阅读 兰台清昼 · fangzhen (3147.487302ms)
+✔ 1440 阅读 兰台清昼 · jinshi (2616.563562ms)
+✔ 1440 阅读 兰台清昼 · shihuo (1646.985077ms)
+✔ 1440 阅读 兰台清昼 · map (3532.626736ms)
+✔ 1440 阅读 青灯夜校 · offices (1495.899671ms)
+✔ 1440 阅读 青灯夜校 · people (1917.7161ms)
+✔ 1440 阅读 青灯夜校 · battle (1503.837409ms)
+✔ 1440 阅读 青灯夜校 · fangzhen (1749.469372ms)
+✔ 1440 阅读 青灯夜校 · jinshi (1566.444573ms)
+✔ 1440 阅读 青灯夜校 · shihuo (1581.503979ms)
+✔ 1440 阅读 青灯夜校 · map (2909.396871ms)
+✔ 1280 审校 兰台清昼 · offices (1688.822056ms)
+✔ 1280 审校 兰台清昼 · people (3855.061765ms)
+✔ 1280 审校 兰台清昼 · battle (2143.727032ms)
+✔ 1280 审校 兰台清昼 · fangzhen (2657.747565ms)
+✔ 1280 审校 兰台清昼 · jinshi (1714.116295ms)
+✔ 1280 审校 兰台清昼 · shihuo (1765.059081ms)
+✔ 1280 审校 兰台清昼 · map (2748.856388ms)
+✔ 390 阅读 兰台清昼 · offices (1344.596493ms)
+✔ 390 阅读 兰台清昼 · people (1661.521705ms)
+✔ 390 阅读 兰台清昼 · battle (1362.474531ms)
+✔ 390 阅读 兰台清昼 · fangzhen (1458.934817ms)
+✔ 390 阅读 兰台清昼 · jinshi (1279.30563ms)
+✔ 390 阅读 兰台清昼 · shihuo (1419.297712ms)
+✔ 390 阅读 兰台清昼 · map (2593.204761ms)
+✔ fangzhen V2 view controls persist across reload at 390px (6173.916899ms)
+✔ fangzhen V2 view controls persist across reload at 1280px (4656.700247ms)
+✔ fangzhen V2 view controls persist across reload at 1440px (4736.313023ms)
+✔ cold battle-to-map navigation preserves the requested period and return detail (3763.55653ms)
+✔ food lazy navigation renders records and paginates instead of caching an empty result (1763.679148ms)
+✔ cold global search loads jinshi and opens the exact stable record (2866.742839ms)
+✔ person sections restore from a stable URL on desktop and in the phone drawer (7186.988363ms)
+✔ phone career citations retain full long quotations and reflow at enlarged text (1979.487692ms)
+✔ career type filters restore the same root URL on desktop and phone (6893.533466ms)
+✔ real browser imports, compares, saves after lost response, reloads, resolves conflict and exports (4811.621887ms)
+✔ mobile master/detail, IME-safe search, keyboard selectors and all three themes remain usable (5372.551455ms)
+✔ phone compares one fixed source at a time and returns to the same unsaved event (2007.69263ms)
+✔ return to reader protects unsaved edits and restricts the return destination (1290.919956ms)
+✔ counter evidence and textual variants locate their pinned source and preserve the tenure return target (2221.379866ms)
+✔ phone reduced viewport keeps revision input, save feedback and retry reachable (1316.990468ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 54
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98699.323307
