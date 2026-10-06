@@ -3,7 +3,7 @@
   "sourceCommit": "b75ec58add19f6189419a4b2b96d3ecfb9f9707f",
   "deploymentId": "appgdep_6ac4c78c91d08191a8b625346a3c7958",
   "versionId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_f704d9e3a31c81919772a943413aa87d",
-  "deploymentStatus": "building",
+  "deploymentStatus": "succeeded",
   "newCount": 49,
   "independentRedrawCount": 12,
   "localTests": {
@@ -14,5 +14,6 @@
     "portraitViewports": 122,
     "failures": 0
   },
-  "archiveRecovery": "Two locally validated tar.gz files became truncated before later reads; native private publication accepted same pushed source for remote build."
+  "archiveRecovery": "Two locally validated tar.gz files became truncated before later reads; native private publication accepted same pushed source for remote build.",
+  "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site"
 }
