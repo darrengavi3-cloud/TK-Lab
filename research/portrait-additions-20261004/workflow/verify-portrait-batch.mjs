@@ -8,6 +8,7 @@ const built=process.argv.includes('--built');
 const root=path.resolve(built?'dist/client/legacy':'atlas/exports/观史台-读者版');
 const kind=process.argv[3]==='redraw'?'redraw':'new';
 const ledger=JSON.parse(fs.readFileSync(kind==='redraw'?'atlas/data/accepted-independent-redraws-20261004.json':'atlas/data/accepted-portrait-additions-20261004.json','utf8'));
+if(kind==='new')ledger.records=ledger.records.map(row=>({...row,legacyPortraitId:row.portraitId,portraitId:'portrait:additional:20261004:'+String(row.order).padStart(3,'0')}));
 const readerIds=new Set(JSON.parse(fs.readFileSync(path.join(root,'data/v63-reader-people.json'),'utf8')).people.map(person=>person.personId));
 const orders=process.argv[2]?.split(',').map(Number);
 if(orders) ledger.records=ledger.records.filter(row=>orders.includes(row.order));

@@ -1,915 +1,2025 @@
 {
   "status": "passed",
-  "verifiedAvailableGeneratedOriginals": 151,
-  "transientSourcesUnavailable": 0,
-  "sourceHashErrors": 0,
-  "checked": [
+  "checkedSourceRecords": 224,
+  "sourceByteFailures": 0,
+  "unavailableSourcePaths": 0,
+  "note": "Checks all recovered generation source records; early baseline generation logs unavailable and explicitly recorded as Git checkpoint provenance in acceptance CSV.",
+  "records": [
     {
+      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
+      "order": 82,
       "personId": "person:workbook:35bbf550ad7968bc",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9f92b4d9-8a2b-4f9e-b737-997f7f48d5a7.png",
       "sha256": "7f5fb8f6c8bb96da18e30486a8c7fe97e980dec72f2c940077216a6d8ebecb15",
-      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9f92b4d9-8a2b-4f9e-b737-997f7f48d5a7.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
+      "order": 83,
       "personId": "person:workbook:3e284e15d34ba295",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c672fe7d-ac19-486b-99b6-784d2a8ac85f.png",
       "sha256": "564743493d22b8396a6af97fdf6f0706c7f40f0c5498e56cdd5d0b78fbfaab38",
-      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c672fe7d-ac19-486b-99b6-784d2a8ac85f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
+      "order": 84,
       "personId": "person:workbook:7182bbd15133a164",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9c9c0bd7-ce0d-4570-addd-04c1e8763190.png",
       "sha256": "ca90e687cfc5eedb11090b408d28b8fab69dc78951f9fce5646c5c84f334f422",
-      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9c9c0bd7-ce0d-4570-addd-04c1e8763190.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
+      "order": 85,
       "personId": "person:workbook:a37e4245804cb36e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0c65ef91-6d1a-4e97-a5d1-006ff25fbd1a.png",
       "sha256": "2b8f15f2be0f09e3b4125bae7e884d20b3db65eec2d9d2bdc30c83e466eb78a6",
-      "record": "research/portrait-additions-20261004/generation-results-082-085.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0c65ef91-6d1a-4e97-a5d1-006ff25fbd1a.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
+      "order": 74,
       "personId": "person:workbook:4c0984b2976dcc8c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fe43bc35-dee2-451a-9b3c-70d420bde813.png",
       "sha256": "320675b8d2257549da1329d96a2648ca4cdc0125080d8763a99a605277eb4fa2",
-      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fe43bc35-dee2-451a-9b3c-70d420bde813.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
+      "order": 75,
       "personId": "person:workbook:55d46dfb6301bfdd",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ac4ace62-ac1d-42f6-bfac-3413a298e631.png",
       "sha256": "5e40aece60707852c96c676e509f473947bb1605036350b9faea19595eecb78e",
-      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ac4ace62-ac1d-42f6-bfac-3413a298e631.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
+      "order": 76,
       "personId": "person:workbook:15cc2c9abb43d5f6",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a4ea0d97-992d-4d69-a455-cf6a04f372e9.png",
       "sha256": "042663920e01aa11b7241f7b07fbb1eaef1143fe6ee35f33af8867e4a23bcf0a",
-      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a4ea0d97-992d-4d69-a455-cf6a04f372e9.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
+      "order": 77,
       "personId": "person:workbook:46e0830a1559b223",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-aef2049a-8b84-45a3-948a-b782d3c3e0b9.png",
       "sha256": "85bcfbd4710eee259bdf41e758bc56ca911e319e0184602f9607c17ba043dea8",
-      "record": "research/portrait-additions-20261004/generation-results-074-077.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-aef2049a-8b84-45a3-948a-b782d3c3e0b9.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
+      "order": 62,
       "personId": "person:workbook:9cd8b6c498989e72",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7fbb77ce-4bc9-474e-9dec-94775d127f97.png",
       "sha256": "c3fe4045427d36ce74139df30980d4d335d21a88a347cf47600e3c08f2f65369",
-      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7fbb77ce-4bc9-474e-9dec-94775d127f97.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
+      "order": 63,
       "personId": "person:workbook:4a32f37ae441be36",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6c165815-9dc0-499c-b32b-d202ab0879f7.png",
       "sha256": "3b095cf41a6a5e0252a7e9cbf7844dc4e6c7b3291d2c90cad86814746fa5f520",
-      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6c165815-9dc0-499c-b32b-d202ab0879f7.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
+      "order": 64,
       "personId": "person:workbook:21aed21fb2a7475e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ee935f5f-c3b9-404e-be14-e6ef8c621fe2.png",
       "sha256": "82633cd10928eb2b8d52d8dc70fda60c7e7875b339cae2388e0b57545944ca16",
-      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ee935f5f-c3b9-404e-be14-e6ef8c621fe2.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
+      "order": 65,
       "personId": "person:workbook:90b82f85f8ff8cc7",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a9648bc3-b295-41da-8112-65607bd08639.png",
       "sha256": "85cbacd27912d0b020e8861ede035976c761db7436dcee40f0233e4e2643a02e",
-      "record": "research/portrait-additions-20261004/generation-results-062-065.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a9648bc3-b295-41da-8112-65607bd08639.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
+      "order": 70,
       "personId": "person:workbook:182be3d9bdbc4f2a",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-31d47221-2c26-4912-a0aa-2f49b858e8c9.png",
       "sha256": "a3a80227485e56f12b21996a2072f0c7fb593ddd49743260602c3ab419158818",
-      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-31d47221-2c26-4912-a0aa-2f49b858e8c9.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
+      "order": 71,
       "personId": "person:workbook:cf1de8869c231965",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d20d8879-a271-4a42-935f-bf81e66f0138.png",
       "sha256": "d5ef2aee9fe94e0838295484df4b3d5a63b8cf12fe5f6d0798e285d9775fe4df",
-      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d20d8879-a271-4a42-935f-bf81e66f0138.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
+      "order": 72,
       "personId": "person:workbook:c9f68e50aa7b85f2",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9d33e77c-e81e-437f-a771-4999a46a291a.png",
       "sha256": "e7029b7e4eff1c176132bb1b9127a5fed33bec482215b0187f4799f9b1517d12",
-      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9d33e77c-e81e-437f-a771-4999a46a291a.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
+      "order": 73,
       "personId": "person:workbook:c3e763dc1ca36797",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f856a621-5a0e-4d50-b9e7-bad9b0e92913.png",
       "sha256": "f9fe68ef3a9a27f56ef9fc7af45a8a942879f1ca909c81cccfc50ff3dc02a5fa",
-      "record": "research/portrait-additions-20261004/generation-results-070-073.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f856a621-5a0e-4d50-b9e7-bad9b0e92913.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
+      "order": 86,
       "personId": "person:workbook:6a07964d2b98d65b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d90d4252-efc1-4814-af9f-dbd72840f7f1.png",
       "sha256": "d3b172e1ed861a161f6fa4a629c192c0c8b6c73f8acce217d2f8044e2bc971fd",
-      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d90d4252-efc1-4814-af9f-dbd72840f7f1.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
+      "order": 87,
       "personId": "person:workbook:1ff6f09d8bbd7441",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-edb9a943-ca76-4faa-a78a-ef7939b00dfb.png",
       "sha256": "31abcdbdb0504d57bcab47329c6dadc3c7c924c202dc4474bdc0e0aaa1584187",
-      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-edb9a943-ca76-4faa-a78a-ef7939b00dfb.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
+      "order": 88,
       "personId": "person:workbook:c65da5e6d003b316",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f77c77eb-763f-4520-a3b6-fa061ea216cd.png",
       "sha256": "578bbb10c9b8e008be4b894f0602834926f328d02b6bc97a9c04dfa96c6fbcf1",
-      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f77c77eb-763f-4520-a3b6-fa061ea216cd.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
+      "order": 89,
       "personId": "person:workbook:073b3ff1ff6fa01f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-65206cbd-abdf-4f80-8b00-1e284a877bdd.png",
       "sha256": "44a12b4793540206e111d8e3e3ae2bd82e890cd4a216444d905d469cdd19eab0",
-      "record": "research/portrait-additions-20261004/generation-results-086-089.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-65206cbd-abdf-4f80-8b00-1e284a877bdd.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
+      "order": 50,
       "personId": "person:workbook:0f4643754992bf8b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a5819f03-30df-4011-bb6b-c148c928dc49.png",
       "sha256": "edbbc4855990a006fdef7705ceefc55589ebdd0b21bf70eeeaec8e317347a5d2",
-      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a5819f03-30df-4011-bb6b-c148c928dc49.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
+      "order": 51,
       "personId": "person:workbook:13d67596ded2f122",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-48583e34-9fcc-4b69-a191-42206efa5797.png",
       "sha256": "b3528181ba4dd940309204b5a99e7222c8456e7b000c9f46c7765f2fbf472e81",
-      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-48583e34-9fcc-4b69-a191-42206efa5797.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
+      "order": 52,
       "personId": "person:workbook:ce048756b79ed50b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a817c4ed-69a7-49de-9c85-970552c2d672.png",
       "sha256": "b0ba3b5f942a9fecc441167c28f883c54785864a37d71a8ac61cf222cfdf12bb",
-      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a817c4ed-69a7-49de-9c85-970552c2d672.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
+      "order": 53,
       "personId": "person:workbook:27d6e41cb67d1fd1",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9ad8b37f-9c28-4b5c-b332-2da36770d164.png",
       "sha256": "acf3798fc83a37f997b4bd44d2894af796e916308701e237c9ea134021327bfe",
-      "record": "research/portrait-additions-20261004/generation-results-050-053.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9ad8b37f-9c28-4b5c-b332-2da36770d164.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
+      "order": 78,
       "personId": "person:workbook:d251e91a3dce0c1f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bc9fe520-7223-4660-885f-87ec77b68c23.png",
       "sha256": "74433632efc26096fb8f189f741ef7b1f097af6ab2f3070b4dc7eafa41d4a8c6",
-      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bc9fe520-7223-4660-885f-87ec77b68c23.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
+      "order": 79,
       "personId": "person:workbook:9534045162a7b975",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7c5ef7eb-e5a1-4f27-bc3b-33c2361b503f.png",
       "sha256": "70c6ccf652e69188c5179821264c2aa656db1b70d48ddffeafa59ffc4adf8bc8",
-      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7c5ef7eb-e5a1-4f27-bc3b-33c2361b503f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
+      "order": 80,
       "personId": "person:workbook:00220381566bc841",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-dd2966df-e9f8-4118-8c4d-a78cceb5d018.png",
       "sha256": "8fd9445a79f8653f10b9b28216fc52128d0384c984379d7479cf97637c431e3f",
-      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-dd2966df-e9f8-4118-8c4d-a78cceb5d018.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
+      "order": 81,
       "personId": "person:workbook:49f72876745d0b23",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-8b43059a-18ee-4fa5-ba6b-9cc8bd9bee48.png",
       "sha256": "88e8a9c155d0b5fb99bcc2f3b9cf3f61a64a78b4cbcfeb2856ac574bedecc48f",
-      "record": "research/portrait-additions-20261004/generation-results-078-081.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-8b43059a-18ee-4fa5-ba6b-9cc8bd9bee48.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-098-100.json",
+      "order": 98,
       "personId": "person:workbook:bdd656a6c5068a7e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a7a645d1-2b54-4a9f-9393-2e5568b2cb89.png",
       "sha256": "a8cc96a56c22e4458a2bbafcbc3ede158affcde7b31cf18ea0df88b67c6fce12",
-      "record": "research/portrait-additions-20261004/generation-results-098-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a7a645d1-2b54-4a9f-9393-2e5568b2cb89.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-098-100.json",
+      "order": 99,
       "personId": "person:workbook:2285f2367012c01d",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-be57e3e3-4ff6-4724-b94e-b7e656428931.png",
       "sha256": "f294152ffdc1cee02f4e52d4ba78679954a0aa053ff34c86bf858c5b18ca7900",
-      "record": "research/portrait-additions-20261004/generation-results-098-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-be57e3e3-4ff6-4724-b94e-b7e656428931.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-098-100.json",
+      "order": 100,
       "personId": "person:workbook:2da887ae5ef36983",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d50e22b0-4321-4a3a-bfb3-e93500b2951f.png",
       "sha256": "9b771cda0761c31b7eba2bd7f89728b4f70c9469b757037928fae9afb83d10c4",
-      "record": "research/portrait-additions-20261004/generation-results-098-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d50e22b0-4321-4a3a-bfb3-e93500b2951f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
+      "order": 66,
       "personId": "person:workbook:de3f8ec33d59845c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-69a2a620-1a67-4d1f-b2b0-ade436e4d8a1.png",
       "sha256": "a4ac3892f67b865d12083ef7e0e30acba14b4cfe4a43331ed69899cdf0b39904",
-      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-69a2a620-1a67-4d1f-b2b0-ade436e4d8a1.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
+      "order": 67,
       "personId": "person:workbook:794a3b04ce375d77",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-805ceebf-38e0-4711-bdd9-f5bb3a5d19e6.png",
       "sha256": "07aaff2090252553fca566075d281bbcdd6057ec175ad4e06151d56e870d4bd7",
-      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-805ceebf-38e0-4711-bdd9-f5bb3a5d19e6.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
+      "order": 68,
       "personId": "person:workbook:53ea5d2a4f67b698",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5ed8c2d4-d519-46f6-98bb-6fda65bc46a5.png",
       "sha256": "62835c502503563edbf03cf9b138df08d15ecbd9a891286b15c41444a6ef2715",
-      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5ed8c2d4-d519-46f6-98bb-6fda65bc46a5.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
+      "order": 69,
       "personId": "person:workbook:44031635faac10b3",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-184309b1-4d22-4e4a-870b-84fd49c8b867.png",
       "sha256": "e46255c5497d58494aa963e6169d7dc96879ed99e126ac65a8cff2ecc8143658",
-      "record": "research/portrait-additions-20261004/generation-results-066-069.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-184309b1-4d22-4e4a-870b-84fd49c8b867.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
+      "order": 54,
       "personId": "person:workbook:6c03776739f1ff96",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-aa6ba097-1f5f-4dd8-afaf-1a7675f6a394.png",
       "sha256": "d6d54fd518097ab7a4e43daf484a0fd02b0081f1c4531980a2447977203b3971",
-      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-aa6ba097-1f5f-4dd8-afaf-1a7675f6a394.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
+      "order": 55,
       "personId": "person:workbook:acf96f0df79b9763",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c3fe7038-fbca-4f51-b672-9c09e0e9b5f1.png",
       "sha256": "e64bb39774b2bc76cbd2f05d31f545aac292e3a966638f17a4d84a679b1b4810",
-      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c3fe7038-fbca-4f51-b672-9c09e0e9b5f1.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
+      "order": 56,
       "personId": "person:workbook:8f4a4f3c4e74590e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-39ef1210-3791-4af4-a96f-825cd5d9781b.png",
       "sha256": "0cfab5a59c7062af62533fd4747238bd1e59243545465ef0e9c8bb323a1cc6d2",
-      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-39ef1210-3791-4af4-a96f-825cd5d9781b.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
+      "order": 57,
       "personId": "person:workbook:1af8c813e42c593a",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6b3ad737-eeb8-401d-abce-85bf3242aede.png",
       "sha256": "4af5ab278bc3acc2418662d37c07a233f88adb08644bd214ccf15ebd0b3d187d",
-      "record": "research/portrait-additions-20261004/generation-results-054-057.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6b3ad737-eeb8-401d-abce-85bf3242aede.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
+      "order": 58,
       "personId": "person:workbook:0030636331d737d4",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c4ae27a0-1314-467f-a854-4544875c00b3.png",
       "sha256": "9121240a40bbd1ccb2133958eeee0122f06fd3f3d6710f9460ce55c26f97ac62",
-      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c4ae27a0-1314-467f-a854-4544875c00b3.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
+      "order": 59,
       "personId": "person:workbook:3125dd45a905b027",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-259458f1-1d63-402a-afe8-8839d626d4c1.png",
       "sha256": "744967a200737495eb4120089500f5070067c59acb66193128ba547667488dca",
-      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-259458f1-1d63-402a-afe8-8839d626d4c1.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
+      "order": 60,
       "personId": "person:workbook:5e368746bf7e5223",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2d8788ea-a592-4f4f-9f11-4efe2d3fd504.png",
       "sha256": "9ee946dddf281a5947470a6d705e2481871f9d6d2a53eabcf1f18637df8644ef",
-      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2d8788ea-a592-4f4f-9f11-4efe2d3fd504.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
+      "order": 61,
       "personId": "person:workbook:574f37ff5239fb0e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f9e8c9b8-9e02-4636-b64c-b147aa29ee6f.png",
       "sha256": "b66fb1722c981276cf0a295e045fa4e2c5e1fa8814b694fa959c5f96002c82db",
-      "record": "research/portrait-additions-20261004/generation-results-058-061.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f9e8c9b8-9e02-4636-b64c-b147aa29ee6f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
+      "order": 38,
       "personId": "person:workbook:4b3450339ee33091",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/raw-result-038/builtin-result-2d2ba84a5a3dc0cd.png",
       "sha256": "2d2ba84a5a3dc0cdb6bd95761678957269715258394200679634d056230450c4",
-      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/raw-result-038/builtin-result-2d2ba84a5a3dc0cd.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
+      "order": 39,
       "personId": "person:workbook:1c8f6afebe234727",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e0cc2f7c-f4ad-4b5d-9501-08ba769b0563.png",
       "sha256": "217e8f9ec7a4de54532c83c41233434b07b4a76406256e6ab54f9c0ab0d7c559",
-      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e0cc2f7c-f4ad-4b5d-9501-08ba769b0563.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
+      "order": 40,
       "personId": "person:workbook:20a9a3d1ddebc15d",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-92c12f17-bcb3-40b5-a94c-58b595a1d156.png",
       "sha256": "54ea68c4e6552ef27656e64bd2e60deb25e00acea295d56a384eef46ef2c70a5",
-      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-92c12f17-bcb3-40b5-a94c-58b595a1d156.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
+      "order": 41,
       "personId": "person:workbook:2d392b39c126e909",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fd4ac114-6426-44d4-8bab-143ff84ffd4b.png",
       "sha256": "93b40540b88bc151ee0a6c9381ffef082f0f87f50b672b7101fa7caad27bdfb6",
-      "record": "research/portrait-additions-20261004/generation-results-038-041.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fd4ac114-6426-44d4-8bab-143ff84ffd4b.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
+      "order": 46,
       "personId": "person:workbook:b7511af5ab5d731c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9885af59-8446-4455-b0fe-2a05f4d06dd4.png",
       "sha256": "e6fbbebe047a11a485bb63e2beb862cdcf1464d9fa27b0d15436bf626e83cd77",
-      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9885af59-8446-4455-b0fe-2a05f4d06dd4.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
+      "order": 47,
       "personId": "person:workbook:ae69a0a24aca858b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6f884da9-309d-4b43-8b7d-3580576473dc.png",
       "sha256": "1bad1d9accdcf0b01880ea030a5ba6fa69fae3205c44c4cb12db6fa8826fc11d",
-      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6f884da9-309d-4b43-8b7d-3580576473dc.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
+      "order": 48,
       "personId": "person:workbook:3db3ee573c9576cb",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6405cefa-1045-470b-a8ed-62230f6b7df6.png",
       "sha256": "b4aef739a58a4695fecb82c2af6d65f8fc9e59898ae658ec3d2847d4a7e9c29d",
-      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6405cefa-1045-470b-a8ed-62230f6b7df6.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
+      "order": 49,
       "personId": "person:workbook:58a7ffb760aa6ed9",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4f1c3132-3651-4273-aaba-fa8bde56b59f.png",
       "sha256": "5be84535d966fbe5ca52bd4a3872a8887313679691b20f5219120f8a27f0fd0e",
-      "record": "research/portrait-additions-20261004/generation-results-046-049.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4f1c3132-3651-4273-aaba-fa8bde56b59f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
+      "order": 90,
       "personId": "person:workbook:1c70c39869c886a5",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-b3e64a23-e72d-4ecf-9c6b-68aa24884a26.png",
       "sha256": "90f140f0f44d40cbd6465644ddef4a5699922f78be7e16ecdc0a6aae1cf0bd89",
-      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-b3e64a23-e72d-4ecf-9c6b-68aa24884a26.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
+      "order": 91,
       "personId": "person:workbook:02c69025c5f8b08e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-72ccc416-865b-4f2d-b7a0-ddfd04edb3f3.png",
       "sha256": "1d5e9c9c13dd6e4f95829962de30bd516f94c2171f38b481896faf4d7ae9dae3",
-      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-72ccc416-865b-4f2d-b7a0-ddfd04edb3f3.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
+      "order": 92,
       "personId": "person:workbook:ab3f11c9fd37c550",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fef52b4a-b315-4e03-990a-1ed4a7e43c31.png",
       "sha256": "e91015bc5c0ddd0eb05e977fd100df93efe7c0560271155f4e52460600cfb944",
-      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fef52b4a-b315-4e03-990a-1ed4a7e43c31.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
+      "order": 93,
       "personId": "person:workbook:57ac183051da8908",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ec817321-d6bf-4595-9351-dfdd9ccac449.png",
       "sha256": "db8adf37d97520de757d86e10e47794c07051bb6fb42e08d34ff6a70f1418048",
-      "record": "research/portrait-additions-20261004/generation-results-090-093.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ec817321-d6bf-4595-9351-dfdd9ccac449.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
+      "order": 94,
       "personId": "person:workbook:48fbdc0cbca0a40f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98d45379-d3c2-4e03-8cb4-c9998e195fdc.png",
       "sha256": "0c7c79dd594639da9779a9fcfa0fc63f4d3990ddadd5414c37d4824529af36f4",
-      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98d45379-d3c2-4e03-8cb4-c9998e195fdc.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
+      "order": 95,
       "personId": "person:workbook:3cffb00ce8178af9",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7c5d58ac-9367-4b72-9f09-dd3d9378d902.png",
       "sha256": "042b85392c39fd7ccd228e7f65b0506ef2f81ad06ad76450dd3af448e599c249",
-      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7c5d58ac-9367-4b72-9f09-dd3d9378d902.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
+      "order": 96,
       "personId": "person:workbook:43b05016ff560d0c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98d9a140-5efa-42c5-bcac-8242c93884d2.png",
       "sha256": "565e5f2c6b268f507c3e7944a9086fd919ed98ff0596d5bd5da8f8bf5f17414e",
-      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98d9a140-5efa-42c5-bcac-8242c93884d2.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
+      "order": 97,
       "personId": "person:workbook:7d4b02d65ae41ff2",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-759ac998-8bf9-472a-996c-695c09f6258f.png",
       "sha256": "5561d2e4b42a90cf8b6de24d955b5f5ffcca8a718d8b1a77787b535952fb1e44",
-      "record": "research/portrait-additions-20261004/generation-results-094-097.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-759ac998-8bf9-472a-996c-695c09f6258f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
+      "order": 61,
       "personId": "person:shu:fei-yi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9023b9db-65b2-4305-89eb-19a6387be236.png",
       "sha256": "469e0cdeb1c1d5e455b571860e4eee04b30db26f312f6e6fa3650f46e6ef329b",
-      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9023b9db-65b2-4305-89eb-19a6387be236.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
+      "order": 62,
       "personId": "person:shu:jiang-wei",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e4efd660-27f0-4d0a-8c03-c170777fedf6.png",
       "sha256": "7af46efb6d4a98e161cc921f02a5429d40c674c572ee56f68d1cd85d0d75096f",
-      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e4efd660-27f0-4d0a-8c03-c170777fedf6.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
+      "order": 63,
       "personId": "person:shu:chen-zhi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-089aaff3-1d4d-42a4-8b6e-0f6c9e8cb7b9.png",
       "sha256": "c0f9b14b05bcbf0262ca54b00a6f452335f6c964bae3a3ffc819f3b1c43b63e7",
-      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-089aaff3-1d4d-42a4-8b6e-0f6c9e8cb7b9.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
+      "order": 64,
       "personId": "person:han:tao-qian",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-35def494-8f11-40f1-81dc-530cb5856c3a.png",
       "sha256": "6d42dac9986cc00b2f0e884c03506380cd77978a0adcab5d9d57059466eaa63c",
-      "record": "research/portrait-additions-20261004/redraw-results-061-064.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-35def494-8f11-40f1-81dc-530cb5856c3a.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
+      "order": 53,
       "personId": "person:wei:wei-kang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ed91f54a-311d-43f5-a4f0-2ffc49b94da0.png",
       "sha256": "6773085896ffd7bfa9af45506873ac0f230b308f943af177101bf657b7ff62ec",
-      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ed91f54a-311d-43f5-a4f0-2ffc49b94da0.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
+      "order": 54,
       "personId": "person:source:bdf065c626f6",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-cf6ea998-f81d-4b88-a4c1-edca744cd4ad.png",
       "sha256": "4787ef92c9f4a2e110299e521dfc6c40f82b257a24062e5f3540d96e76254baa",
-      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-cf6ea998-f81d-4b88-a4c1-edca744cd4ad.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
+      "order": 55,
       "personId": "person:source:ab031a3e252f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bb8f28f6-c940-451b-8e82-d4c5d49dca3f.png",
       "sha256": "f025a8d9b11a0d88bc76f85e907af4dde607b7339feb067ba68f865de155f68d",
-      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bb8f28f6-c940-451b-8e82-d4c5d49dca3f.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
+      "order": 56,
       "personId": "person:shu:zhuge-liang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3aa5b407-6d2b-4c34-8960-21824f86ca90.png",
       "sha256": "34586353c3f2a07f9a04a1679168545dd4437c3bdb38e5ddf4779a0c8b8fdad3",
-      "record": "research/portrait-additions-20261004/redraw-results-053-056.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3aa5b407-6d2b-4c34-8960-21824f86ca90.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
+      "order": 13,
       "personId": "person:wei:cao-zhen",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-23e9c6f7-1dca-4681-8d57-f581eb3cb175.png",
       "sha256": "e4b3b1bfe981e036a4649e25cd4d8d76b981cb7e451621d3e72a2acf5924967a",
-      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-23e9c6f7-1dca-4681-8d57-f581eb3cb175.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
+      "order": 14,
       "personId": "person:source:6d19a25fbe7e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3a174c9c-fbda-4759-9bb2-5b9c2fe7a721.png",
       "sha256": "9744abe295934cab833dc30bf855cec98c604d1de70195ee8e50ac8e17d80a0c",
-      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3a174c9c-fbda-4759-9bb2-5b9c2fe7a721.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
+      "order": 15,
       "personId": "person:source:f70e8bb46940",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-47b59082-8037-4706-8368-4dddcd511c56.png",
       "sha256": "3d0f3cdbc9a01e84c3b90e72017394f8275d949f88407146a2fedae2d4224d81",
-      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-47b59082-8037-4706-8368-4dddcd511c56.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
+      "order": 16,
       "personId": "person:source:57f563d7a1ce",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a094258e-ab0b-426e-a23e-a8f0353012ac.png",
       "sha256": "891f0f3d555957b94cc9db3de46c77c1e14180939a692db76a87dee62eb94000",
-      "record": "research/portrait-additions-20261004/redraw-results-013-016.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a094258e-ab0b-426e-a23e-a8f0353012ac.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-109-112.json",
+      "order": 109,
+      "personId": "person:workbook:02e2cbcc648a104b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-330bf603-906a-4c9b-b7ba-d5ff3b42745f.png",
+      "sha256": "9b991871431db2e6189891b566660de3fa36b187290726fc515dd018cf17dc48",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-109-112.json",
+      "order": 110,
+      "personId": "person:workbook:c2b23952ed4f6f1f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9d6ac310-7fc5-489f-8bd3-29c68aa82129.png",
+      "sha256": "4d299eac9c7a5f38f820028826f9e76defa648f1e232dd49c1a8825ffa4fbed4",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-109-112.json",
+      "order": 111,
+      "personId": "person:workbook:51e7b15708c569d0",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2eebf378-78e3-4347-a9d8-80554ea18ac5.png",
+      "sha256": "a3ff2ed291ba245a4b0f2baab6bdf62594fcff247b03676f5038d066df9ca5cd",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-109-112.json",
+      "order": 112,
+      "personId": "person:workbook:1eddacb9a6aa34cc",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-80354292-859d-4b6b-8b7a-c4f83de54fc9.png",
+      "sha256": "7fde119150e33cdf89cba5b51ececdcf8751129dcede570ff9a43c19f1aba39f",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
+      "order": 77,
       "personId": "person:wu:sun-quan",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-11c5b84d-859a-48b8-9302-ff6c54e1f02d.png",
       "sha256": "4241e18b88fcf41ec7a5213178bd977612fa14ff58ad63d32588aaa48dd63a57",
-      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-11c5b84d-859a-48b8-9302-ff6c54e1f02d.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
+      "order": 78,
       "personId": "person:wu:zhuge-ke",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2ab0c39d-cb96-46f5-8757-3779155b3cf0.png",
       "sha256": "866b92be674d4cec8d7a035a061a8553f23df17e2c5a3ae1fe708e472f604c38",
-      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2ab0c39d-cb96-46f5-8757-3779155b3cf0.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
+      "order": 79,
       "personId": "person:source:64b99027de6f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a8713cee-226b-4fd8-9af0-7832c8e76006.png",
       "sha256": "5fa765f0a8193e3498606cc27f0a1e3989cba4d7d345e4574c5630b6caa26b06",
-      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a8713cee-226b-4fd8-9af0-7832c8e76006.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
+      "order": 80,
       "personId": "person:wu:puyang-xing",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-01a81bb2-22f9-4b37-8faf-675b5fb512a7.png",
       "sha256": "47ec65fee263d767fda2b887d5263a07e4b6437ffd8694e44390cf978cbd1920",
-      "record": "research/portrait-additions-20261004/redraw-results-077-080.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-01a81bb2-22f9-4b37-8faf-675b5fb512a7.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
+      "order": 57,
       "personId": "person:shu:wei-yan",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-860f8873-d8cd-435f-b579-21f2295e5fd4.png",
       "sha256": "ff3e9840e96511c5c39277df4ceb03ee297909c15c658391bdb23fea758c240b",
-      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-860f8873-d8cd-435f-b579-21f2295e5fd4.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
+      "order": 58,
       "personId": "person:shu:xu-jing",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6a06d5c7-4e3d-4e57-89b3-433c40489931.png",
       "sha256": "1a653f8da3794490914fe24fe696fb80671700e24ded5dacbb398c8ff0498884",
-      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6a06d5c7-4e3d-4e57-89b3-433c40489931.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
+      "order": 59,
       "personId": "person:source:d66a7f3fda55",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-80a01da5-ec01-4b84-a00a-4ec6bcf90621.png",
       "sha256": "45f410599842604d638d6eac556a9081ac50070d62cf5690079cf43c798dda92",
-      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-80a01da5-ec01-4b84-a00a-4ec6bcf90621.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
+      "order": 60,
       "personId": "person:shu:jiang-wan",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-24c16d44-b84a-4164-906e-f6ce5d20fd8b.png",
       "sha256": "2a4da66ff270061f1c290622843a87918af59bc7fc93abb5b4fdad363c00ef80",
-      "record": "research/portrait-additions-20261004/redraw-results-057-060.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-24c16d44-b84a-4164-906e-f6ce5d20fd8b.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
+      "order": 93,
       "personId": "person:wu:shi-kuang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9e7acd8f-ca5c-42d5-9697-159f29a2785b.png",
       "sha256": "4f4a897045216906db7900b6ceb8f3f66a56a6305be40c556bffe5f93e61c1c6",
-      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9e7acd8f-ca5c-42d5-9697-159f29a2785b.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
+      "order": 94,
       "personId": "person:wu:sun-ben",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a02f2037-4d00-4dbb-b96f-4d823850c3dd.png",
       "sha256": "cdaee2209994235ca15f428a3246ab5a96a1ba5360c63217609341bf5b622a49",
-      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a02f2037-4d00-4dbb-b96f-4d823850c3dd.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
+      "order": 95,
       "personId": "person:wu:sun-shao",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-31f0f27f-8ff3-41d5-b655-afeff65849e4.png",
       "sha256": "2d1aaa49b465725a8fcca666967f6bf238333b76275a527d1c74da26da3f2895",
-      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-31f0f27f-8ff3-41d5-b655-afeff65849e4.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
+      "order": 96,
       "personId": "person:source:458e5685f88a",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-42429490-f33f-4884-848a-8b1c5f315542.png",
       "sha256": "79f18e4ad531c1f2812727f1a9cc3a2ed4f2a6a31b08cc0d3a96f37d854cb5db",
-      "record": "research/portrait-additions-20261004/redraw-results-093-096.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-42429490-f33f-4884-848a-8b1c5f315542.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
+      "order": 17,
       "personId": "person:wei:wei-zhen",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-94746f40-5a33-4727-9b4c-0ced860d7c98.png",
       "sha256": "4ebde7f57f3bd7cb13e6a6e1b8d2888633a0aca248fd58873327de2ff17f3eb8",
-      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-94746f40-5a33-4727-9b4c-0ced860d7c98.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
+      "order": 18,
       "personId": "person:source:a80a9d39a6e9",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-00f2dc30-dbaa-43d4-9e8d-941d3b894ccb.png",
       "sha256": "2384aecb06555e01e136e019c23a494ffe51896fd4c5c164fd20ae0a8329756c",
-      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-00f2dc30-dbaa-43d4-9e8d-941d3b894ccb.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
+      "order": 19,
       "personId": "person:source:5da0dd364783",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9b1f9a22-3d20-4726-ba25-5bb8761735a1.png",
       "sha256": "73367c6d9171e1a0b07ff5da8b39290183bf96524494a0d4f2ccc0129f56a856",
-      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9b1f9a22-3d20-4726-ba25-5bb8761735a1.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
+      "order": 20,
       "personId": "person:wei:cui-lin",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-975f24f1-04d3-49ea-a039-b12eefd5271e.png",
       "sha256": "d384318507153dde3e02ad763c749fa74887de128c6054887830a0f0b55277ed",
-      "record": "research/portrait-additions-20261004/redraw-results-017-020.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-975f24f1-04d3-49ea-a039-b12eefd5271e.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
+      "order": 25,
       "personId": "person:wei:sun-li",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-cdca81af-17ee-4d6b-9cb5-6e9070deb87d.png",
       "sha256": "a0c9749865fe4774a17710265d6023c64f2cf9d2fcc769343900e3ac87a2637e",
-      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-cdca81af-17ee-4d6b-9cb5-6e9070deb87d.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
+      "order": 26,
       "personId": "person:source:ef20cd1a60a8",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4b3c72ac-0120-4203-806a-1f80b54bfa24.png",
       "sha256": "9257e2ad1256aaaca3b546919f5dca80ac5ecd4b7d28fdd3e64ce6d53d38fdba",
-      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4b3c72ac-0120-4203-806a-1f80b54bfa24.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
+      "order": 27,
       "personId": "person:jin:sima-fu",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-34f6a1bd-ddf2-4dfc-8307-95a6e3dc5aac.png",
       "sha256": "d899e3b551832df47fd17817e26d39eff65dc70cc54f267a24fad90e3f4add15",
-      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-34f6a1bd-ddf2-4dfc-8307-95a6e3dc5aac.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
+      "order": 28,
       "personId": "person:jin:zheng-chong",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9da17a55-1062-4d25-bc5c-7dc8ac06afc9.png",
       "sha256": "e08935ebaac4a38b9526c3f367fa9dc0a97fd22343498bebec9502227cf766e7",
-      "record": "research/portrait-additions-20261004/redraw-results-025-028.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9da17a55-1062-4d25-bc5c-7dc8ac06afc9.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
+      "order": 41,
       "personId": "person:source:c9b3bc9bb023",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-270f48ab-057d-4041-b63f-0f37476a92c8.png",
       "sha256": "e6de8c77bac72fa7cbb1847afedfb494de269c8f4adb25311f8354b6dc46c8b2",
-      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-270f48ab-057d-4041-b63f-0f37476a92c8.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
+      "order": 42,
       "personId": "person:source:b1b81e555a99",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-566a3d66-500f-4576-81db-fb361004ccc5.png",
       "sha256": "485b71c415e65502621e8a6a756d689d6373180d336ba41274054268ee1a738a",
-      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-566a3d66-500f-4576-81db-fb361004ccc5.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
+      "order": 43,
       "personId": "person:han:zhang-lu",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-86c9fb6c-19e1-44dc-b327-0ae10b0d304a.png",
       "sha256": "aa8abafcf1c40155c203ac263439b0aad9304933f6b0a748f1870218673e93ad",
-      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-86c9fb6c-19e1-44dc-b327-0ae10b0d304a.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
+      "order": 44,
       "personId": "person:wei:li-feng",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-20e5a350-0e21-4972-a1fd-16ee211555ec.png",
       "sha256": "938a8979174ff345afc3792ab0891b498fb49a1a33f9139295ec4af52c28b690",
-      "record": "research/portrait-additions-20261004/redraw-results-041-044.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-20e5a350-0e21-4972-a1fd-16ee211555ec.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
+      "order": 49,
       "personId": "person:wei:zou-qi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d78596f6-96d9-4e06-954d-b1e562012088.png",
       "sha256": "b05f57dfa66a386d7930d39de0a2dd3ee2ec9f3a22f118e7e793dfc20b6e5575",
-      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d78596f6-96d9-4e06-954d-b1e562012088.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
+      "order": 50,
       "personId": "person:source:b88e0c05cd6b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a204f787-b835-4663-abd6-42f48cda68a1.png",
       "sha256": "30866a2588e1d3e5ffe4d63cad5372046961d6fb3252cfc81f5180b61d5e6ec6",
-      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a204f787-b835-4663-abd6-42f48cda68a1.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
+      "order": 51,
       "personId": "person:han:liu-biao",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c7b41324-44ec-47a6-870c-1c62542c4a63.png",
       "sha256": "055cf9c34ad2a20e249c4718dc2f4986788478381321df135b7804b74ccbb7e5",
-      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c7b41324-44ec-47a6-870c-1c62542c4a63.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
+      "order": 52,
       "personId": "person:wei:cao-shuang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-99c7c835-09ee-450a-a7f8-661883807ea7.png",
       "sha256": "27eeffe32118b01185d7b75d3484f84505d5f47ddc419a7d11e91b38a2fb5f02",
-      "record": "research/portrait-additions-20261004/redraw-results-049-052.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-99c7c835-09ee-450a-a7f8-661883807ea7.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:source:f64651d5146e",
-      "sha256": "a540c7be8af781bb9772d4d86d0bfe6ef9bb75c2310d01c1e156bc80ec50e4a7",
-      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98703bb8-5fd8-4eb0-9a06-58f95e877417.png"
+      "record": "research/portrait-additions-20261004/redraw-results-113-116.json",
+      "order": 113,
+      "personId": "person:workbook:9deda736cce490ae",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5b050484-df6f-41db-9a58-11e85fb2d878.png",
+      "sha256": "f57fd2b1e4fd4d77d7996761d885627bff5569ac549b8e4623ca89f4b02076f6",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:wu:quan-cong",
-      "sha256": "c2d57b1d726a231aa13dbc7c885738baf4d19cc94a39d232facdf7fd633afaa5",
-      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d980f429-9d9a-469e-bdbc-173e7dbcfd28.png"
+      "record": "research/portrait-additions-20261004/redraw-results-113-116.json",
+      "order": 114,
+      "personId": "person:workbook:3b15f7d60a56d977",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-260dfb65-1a56-4a4c-9c8c-acfbd35a4c76.png",
+      "sha256": "c4b4487122fd441ab93c13b2f90ec239d166c0be58d955e5f8086c07e22bdc1c",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:wu:lu-xun",
-      "sha256": "fc2c0cb4bc963c6fc9b0312ac959f94d2ee8c1b77faead21fe76a7968879d9c9",
-      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-69ee20ad-f23e-4a08-9fa0-f58b5c8bd3ce.png"
+      "record": "research/portrait-additions-20261004/redraw-results-113-116.json",
+      "order": 115,
+      "personId": "person:wei:le-chen",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7a99efe9-36c0-4c77-8a09-f11652c62dc9.png",
+      "sha256": "ebbc6938a24db074616474488fccc313f62a272973ae5cd4cecad2a50e68dd30",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:wu:bu-zhi",
-      "sha256": "1379dec5629c1f2aead9ab4aecd963613c9508f07471ecd79ef0fa522283c6b1",
-      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-83af1889-29f4-48d8-bc93-02a2c220f43e.png"
+      "record": "research/portrait-additions-20261004/redraw-results-113-116.json",
+      "order": 116,
+      "personId": "person:wei:cheng-ji",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7defde54-47e4-4fea-9b04-69f6e14c5faa.png",
+      "sha256": "22cc538be9b53a563c396dbda36bc159433ff64a18dd2f0e99720444765c389d",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:source:2a7e68aa7262",
-      "sha256": "bb85f7a1a1563d8ab2aa2a975f22ef3b5ee10a79fbe4aa8d1221a6865295d1b6",
-      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7638a783-368e-4a33-a8aa-6d0396e1cb2f.png"
+      "record": "research/portrait-additions-20261004/redraw-results-145-148.json",
+      "order": 145,
+      "personId": "person:source:e2ef6eff3eba",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e3bd31da-413a-4b8a-8319-e5e293802c5b.png",
+      "sha256": "cf2ef0e1df74e25277b0b9c1ece6971dcdca7be774904087b3ef7ada0ba10357",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:wei:cao-ren",
-      "sha256": "17b5cabe69f4fedbce4114dccd55d3e989b2849d2180210d78b6d6fc95571cde",
-      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5fc173b8-a995-4e17-9d2a-f52f83338f4f.png"
+      "record": "research/portrait-additions-20261004/redraw-results-145-148.json",
+      "order": 146,
+      "personId": "person:source:a93c1fafbcd4",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f920b987-015f-4acf-aef9-c98441da49ea.png",
+      "sha256": "901fb962e05e812731b53341a020150caec47199dbe0b4100c90b8cb88cfdf6a",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:wei:hua-xin",
-      "sha256": "84eae5249a44df365370f7b620a6aa8b08217d39b37dd8db948e66b5a39de83e",
-      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-70c44034-35ca-4ebe-bbc5-8784249364a7.png"
+      "record": "research/portrait-additions-20261004/redraw-results-145-148.json",
+      "order": 147,
+      "personId": "person:jin:xi-jian",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bf390949-05ea-46c7-a569-e7664abf022d.png",
+      "sha256": "ca6133237e5e0b50c9e230dce096770c8b890ac4e4ce5622f7bbda7d755abca9",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:source:11e5afb2df97",
-      "sha256": "91a4fcbfe40687b109c18d979072466d2b63bda64d51cafcc0d05e27391033a7",
-      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5d31757c-53be-46f8-b85e-9a2498d85845.png"
+      "record": "research/portrait-additions-20261004/redraw-results-145-148.json",
+      "order": 148,
+      "personId": "person:jin:huan-wen",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-a67740de-b01a-4d5b-be17-064ae68283a3.png",
+      "sha256": "9a698ec03974aceac94178736eb3262d839807764f578d2b7761b9435910b16e",
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:source:b429e221c1e7",
-      "sha256": "0e1c2a1a57dd13a2dffd5615cab013c43d197de72ff5aff5f2e8dfb72f9eb486",
-      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e91f6215-a336-4493-b30c-718f5376d983.png"
-    },
-    {
-      "personId": "person:han:dong-min",
-      "sha256": "2904492335a706a667d287cab2e9b32e9f8ba431078e81bbd37ef6546986101f",
-      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-b5d1096f-23c1-45e4-9f0d-d260d51b5c8c.png"
-    },
-    {
-      "personId": "person:source:c14b0af3e85f",
-      "sha256": "45da5efcbe9c5285946d6ff0346e6789f4767e74b9e0c7d0fe83c65e2f0c6c37",
-      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-19817835-22b1-4658-baaa-c3e390ccf5c0.png"
-    },
-    {
-      "personId": "person:source:779b07352932",
-      "sha256": "54389398545fa565e26c11bb6f19b9ec167359b6119a0feb25f11abd595e949d",
-      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4de92887-585d-42a2-90ce-7f20e485b053.png"
-    },
-    {
-      "personId": "person:source:6bea1ab8f79e",
-      "sha256": "943686833f471ca39da83bce2df72b0d27b51a0a2f6bcd097f357e784377f061",
-      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-da85932c-c307-4e56-9130-93a31fb877d4.png"
-    },
-    {
-      "personId": "person:jin:xun-yi",
-      "sha256": "c10ceb6a63afd110b87296c2246e972c3bdb8cd87ed631579786ec735474de36",
-      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-28989892-c914-487b-9b22-5c12fe75044e.png"
-    },
-    {
-      "personId": "person:source:536f3eca900e",
-      "sha256": "c342758fb6428c7b14b6f661f5515cec5029c4f77f424909d144ab7dd049092b",
-      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-972a949e-3cc9-431e-a888-bd1e451b678d.png"
-    },
-    {
-      "personId": "person:shu:liu-shan",
-      "sha256": "12b4ac381bb282b63a9ba4c83959652a687524bf4aeadd44a4343954a267acb9",
-      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5a5a0c9c-45d7-4d85-b658-6064400fd693.png"
-    },
-    {
-      "personId": "person:han:liu-zhang",
-      "sha256": "a47ed4016c996aa1affb9e4bb1adf4900958b48bf4f2d3cad6cd5f38a4b6af51",
-      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fb65bf9d-bdac-4128-b07c-8995687401bb.png"
-    },
-    {
-      "personId": "person:shu:fa-zheng",
-      "sha256": "2569bfa4ab25f4b74ecf1195de7fd61fefd8e7e48d7b8225413a8d96135d4325",
-      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-11a09c71-085b-478f-ae65-1ea14f5dbc32.png"
-    },
-    {
-      "personId": "person:shu:dong-yun",
-      "sha256": "e2e7c6766dd744f9294b886292e9f7fcb1939132dd7128176387d508e86faed8",
-      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4cdae6e5-a9dd-44a8-a8b8-14d9abfe9f02.png"
-    },
-    {
-      "personId": "person:source:c9065395c9a7",
-      "sha256": "feb4f6df2f3bb135dd6df22253a60470987bf89590ad7f79c47088efe76faefe",
-      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-75e6a1a4-85ee-4235-b355-8f08be43ca2d.png"
-    },
-    {
-      "personId": "person:source:ab32fb630e93",
-      "sha256": "c30c5a2936fda57ecd5cd4cd656e03ccdd96baa4955ae3088131eee7d89d2323",
-      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-01ec268b-539b-49b3-ba47-28093fc1dbd9.png"
-    },
-    {
-      "personId": "person:wu:sun-hao",
-      "sha256": "faf7ec9bad9d0d1aa9552f2cc96abdb15d46c84be773c77dde6f3c7dfea3e917",
-      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-56e1c346-683f-4957-8333-ea135c2fceee.png"
-    },
-    {
-      "personId": "person:source:541aa70629a7",
-      "sha256": "e617108258d2c02ab165ff127256b91c540a843f46ba953779b7451498b9af59",
-      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-1c5b7027-3b06-4588-9464-d18fa2824886.png"
-    },
-    {
-      "personId": "person:wu:dai-liang",
-      "sha256": "d076ff1241ef85c8750b364bf343e5d70345d73e67e8b747bbe2deb5727d341a",
-      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ec9be149-46dd-4f57-be55-e5a5807e2036.png"
-    },
-    {
-      "personId": "person:wu:sun-he",
-      "sha256": "71f2d4c4087d1d5918805ad0f069ff8efee7c1a2e4304e3314ce4c1216b6244e",
-      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6369d4e7-862b-4003-9bb0-802e0769d87d.png"
-    },
-    {
-      "personId": "person:source:e3995aefcddc",
-      "sha256": "346cbcff6b4341d059986a2618e6b4a951c95f8d73a33a0ad17cce7c11ab2c6e",
-      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-13adbdf8-ab98-4b5e-889f-883a9311e87c.png"
-    },
-    {
-      "personId": "person:workbook:d40ea13e6aeb4ac3",
-      "sha256": "04d21c4de123b2bc1f914df9c43ae972f1f04481c6b63b7386cc08f4a080f2c2",
-      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-26ad3331-08f4-4dde-a32d-43a2928a4ce7.png"
-    },
-    {
-      "personId": "person:jin:jia-chong",
-      "sha256": "360f93e381163f63bd91644e7812d3c5c19bf5b75976647bc6663ee08c9323d2",
-      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ba47af5b-ff65-431e-ba21-490ec664125d.png"
-    },
-    {
+      "record": "research/portrait-additions-20261004/redraw-results-137-140.json",
+      "order": 137,
       "personId": "person:source:74484c7b8050",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7b05669f-13de-4f9e-a512-c5559ba92c18.png",
+      "sha256": "e4f80b331bffe269e3fc51864322dbfb7d981c06163bd30da58ccfa1149af9f9",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-137-140.json",
+      "order": 138,
+      "personId": "person:workbook:52107cd52f541ec4",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3a547578-7fba-4845-a8ca-d6cabdcd8b39.png",
+      "sha256": "f6ecb41e64abce6f089e7a669d7c9c986941ff0e999b63167bb0269821b78d18",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-137-140.json",
+      "order": 139,
+      "personId": "person:workbook:af953fe35ee88d6e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-036b5112-6e4d-49c5-a0e3-8c84fc9f19ec.png",
+      "sha256": "3c1aac27307b11ca0b0c681fe93c82477996fe6a3dc27c7901b9c11f7ca53ddd",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-137-140.json",
+      "order": 140,
+      "personId": "person:workbook:3efd0606e6263df4",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6f63940f-7a60-4a92-81a2-46c392b967eb.png",
+      "sha256": "63fd60fafa41821a67bd96ca600818f524918bd6f241d02be2628f23648dbe8e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-101-104.json",
+      "order": 101,
+      "personId": "person:source:6bea1ab8f79e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-48a71c06-5974-42f7-aa98-5e43241b7910.png",
+      "sha256": "a5a2499c1277760d23e2aea935f7dc9d9c4c4de97563dff3bb28ea4717731248",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-101-104.json",
+      "order": 102,
+      "personId": "person:jin:xun-xu",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-37735596-e618-48b7-92ec-95baa1359e2e.png",
+      "sha256": "fe84a2870742046749f1f8d8e2464abc2db009fdca8cc4b8315864bfecd27040",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-101-104.json",
+      "order": 103,
+      "personId": "person:jin:pei-xiu",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-aeeb368d-a8d9-4875-a99d-a2c6ae69273b.png",
+      "sha256": "c63ecffdfaef02dc2608a04f5443fa37ddda9ed8f41a40b2fc5be7837d820130",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-101-104.json",
+      "order": 104,
+      "personId": "person:jin:yang-hu",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f2385d4b-885d-4b7c-8692-016d118e741f.png",
+      "sha256": "3eb05e4e909a6170867b97941d797cbb6f284040ad1b0cf5ddec6c1edc82e392",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
+      "order": 73,
+      "personId": "person:source:f64651d5146e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98703bb8-5fd8-4eb0-9a06-58f95e877417.png",
+      "sha256": "a540c7be8af781bb9772d4d86d0bfe6ef9bb75c2310d01c1e156bc80ec50e4a7",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
+      "order": 74,
+      "personId": "person:wu:quan-cong",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d980f429-9d9a-469e-bdbc-173e7dbcfd28.png",
+      "sha256": "c2d57b1d726a231aa13dbc7c885738baf4d19cc94a39d232facdf7fd633afaa5",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
+      "order": 75,
+      "personId": "person:wu:lu-xun",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-69ee20ad-f23e-4a08-9fa0-f58b5c8bd3ce.png",
+      "sha256": "fc2c0cb4bc963c6fc9b0312ac959f94d2ee8c1b77faead21fe76a7968879d9c9",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-073-076.json",
+      "order": 76,
+      "personId": "person:wu:bu-zhi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-83af1889-29f4-48d8-bc93-02a2c220f43e.png",
+      "sha256": "1379dec5629c1f2aead9ab4aecd963613c9508f07471ecd79ef0fa522283c6b1",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
+      "order": 9,
+      "personId": "person:source:2a7e68aa7262",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7638a783-368e-4a33-a8aa-6d0396e1cb2f.png",
+      "sha256": "bb85f7a1a1563d8ab2aa2a975f22ef3b5ee10a79fbe4aa8d1221a6865295d1b6",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
+      "order": 10,
+      "personId": "person:wei:cao-ren",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5fc173b8-a995-4e17-9d2a-f52f83338f4f.png",
+      "sha256": "17b5cabe69f4fedbce4114dccd55d3e989b2849d2180210d78b6d6fc95571cde",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
+      "order": 11,
+      "personId": "person:wei:hua-xin",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-70c44034-35ca-4ebe-bbc5-8784249364a7.png",
+      "sha256": "84eae5249a44df365370f7b620a6aa8b08217d39b37dd8db948e66b5a39de83e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-009-012.json",
+      "order": 12,
+      "personId": "person:source:11e5afb2df97",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5d31757c-53be-46f8-b85e-9a2498d85845.png",
+      "sha256": "91a4fcbfe40687b109c18d979072466d2b63bda64d51cafcc0d05e27391033a7",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-105-108.json",
+      "order": 105,
+      "personId": "person:jin:he-zeng",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-35fa4e09-927a-436b-8cc2-3660d1a0052c.png",
+      "sha256": "8237add47088fdbc3a9a130e8ac65d6ac92850fee97eda646d2ce1fdfcd86457",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-105-108.json",
+      "order": 106,
+      "personId": "person:jin:wang-chen",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c5b56d16-29b8-48c1-bdbe-c4384073aeb0.png",
+      "sha256": "d2432c73d69ab4f3719c2775220d8e19883ec8219768c0113869cbdda7520b25",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-105-108.json",
+      "order": 107,
+      "personId": "person:workbook:8bd63f6483bc253f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4fe41f7b-83b0-4c43-b78b-01acf74901e9.png",
+      "sha256": "45e3c2b926d6fbb7ebdf2a650487d969d3b413e532305600e1814d4aaccfd6da",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-105-108.json",
+      "order": 108,
+      "personId": "person:workbook:72594c927185e28d",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e8f6c03e-d299-4d22-bd19-76c09af5b5b6.png",
+      "sha256": "60de59e70c76a0be9ad084985f70acea803b0bc6e5903cd4c10d5916e07d7bbb",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-125-128.json",
+      "order": 125,
+      "personId": "person:workbook:a905207ace5bd181",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e4123195-6afa-4549-98bc-dcf78668c777.png",
+      "sha256": "4ef9ca132e6436497ce1aa45fe64e5b3808cc90aecaa0d8daa2ab28dfa77437c",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-125-128.json",
+      "order": 126,
+      "personId": "person:workbook:70152738b6dbc7c0",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-684a86ad-106f-4ffb-b1d8-93e895e2aaf2.png",
+      "sha256": "fef3c18514b076685126462db45070b6fd09226c1e38d1f91f7e8437d2e02db4",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-125-128.json",
+      "order": 127,
+      "personId": "person:shu:lai-min",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-98174e29-e3fe-45c1-bac5-1a7a8e0d9102.png",
+      "sha256": "3d7a11898ef0fdd8447a2a4a8ac9289245ff04aa874ba69cccd9ec0ad53c2f9e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-125-128.json",
+      "order": 128,
+      "personId": "person:workbook:957381792af51e59",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6ddfd71c-6caa-4d0d-b4d3-ffb5d292c311.png",
+      "sha256": "47b45f34e8e47dd3cf17f5b4526fd652a36ee91ac1a1a4ddb485562a7f348c5b",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
+      "order": 37,
+      "personId": "person:source:b429e221c1e7",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e91f6215-a336-4493-b30c-718f5376d983.png",
+      "sha256": "0e1c2a1a57dd13a2dffd5615cab013c43d197de72ff5aff5f2e8dfb72f9eb486",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
+      "order": 38,
+      "personId": "person:han:dong-min",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-b5d1096f-23c1-45e4-9f0d-d260d51b5c8c.png",
+      "sha256": "2904492335a706a667d287cab2e9b32e9f8ba431078e81bbd37ef6546986101f",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
+      "order": 39,
+      "personId": "person:source:c14b0af3e85f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-19817835-22b1-4658-baaa-c3e390ccf5c0.png",
+      "sha256": "45da5efcbe9c5285946d6ff0346e6789f4767e74b9e0c7d0fe83c65e2f0c6c37",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-037-040.json",
+      "order": 40,
+      "personId": "person:source:779b07352932",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4de92887-585d-42a2-90ce-7f20e485b053.png",
+      "sha256": "54389398545fa565e26c11bb6f19b9ec167359b6119a0feb25f11abd595e949d",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
+      "order": 33,
+      "personId": "person:source:6bea1ab8f79e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-da85932c-c307-4e56-9130-93a31fb877d4.png",
+      "sha256": "943686833f471ca39da83bce2df72b0d27b51a0a2f6bcd097f357e784377f061",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
+      "order": 34,
+      "personId": "person:jin:xun-yi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-28989892-c914-487b-9b22-5c12fe75044e.png",
+      "sha256": "c10ceb6a63afd110b87296c2246e972c3bdb8cd87ed631579786ec735474de36",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
+      "order": 35,
+      "personId": "person:source:536f3eca900e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-972a949e-3cc9-431e-a888-bd1e451b678d.png",
+      "sha256": "c342758fb6428c7b14b6f661f5515cec5029c4f77f424909d144ab7dd049092b",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-033-036.json",
+      "order": 36,
+      "personId": "person:shu:liu-shan",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5a5a0c9c-45d7-4d85-b658-6064400fd693.png",
+      "sha256": "12b4ac381bb282b63a9ba4c83959652a687524bf4aeadd44a4343954a267acb9",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-129-132.json",
+      "order": 129,
+      "personId": "person:shu:dong-jue",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-769b25ed-b5f8-4c4c-a14b-685970c3f8a4.png",
+      "sha256": "cafc0a40d9de25946a349baf8ee4860b957d7c10577a6d95171d8fb8e37e8947",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-129-132.json",
+      "order": 130,
+      "personId": "person:workbook:261c3244950d8e2a",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-9053463b-94f1-4948-ba38-a92f96215bf5.png",
+      "sha256": "21d0be7942f18865b90057de401fc217582e96ee961c9e1fe1ba420032086f87",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-129-132.json",
+      "order": 131,
+      "personId": "person:wei:cao-cao",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-93f8e105-2181-42e7-949a-00762a554dc4.png",
+      "sha256": "3ecc032354d125beb2e1b03d7486dc1920a23d6c232d6c3f8be0cc128633f549",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-129-132.json",
+      "order": 132,
+      "personId": "person:shu:liu-bei",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2b78b92b-6015-4e1a-960e-eea0dcccde9e.png",
+      "sha256": "af3362660f283955944048f8ebe0dee684db488b9039a9fd8a50ea841d7b86e4",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
+      "order": 65,
+      "personId": "person:han:liu-zhang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fb65bf9d-bdac-4128-b07c-8995687401bb.png",
+      "sha256": "a47ed4016c996aa1affb9e4bb1adf4900958b48bf4f2d3cad6cd5f38a4b6af51",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
+      "order": 66,
+      "personId": "person:shu:fa-zheng",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-11a09c71-085b-478f-ae65-1ea14f5dbc32.png",
+      "sha256": "2569bfa4ab25f4b74ecf1195de7fd61fefd8e7e48d7b8225413a8d96135d4325",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
+      "order": 67,
+      "personId": "person:shu:dong-yun",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4cdae6e5-a9dd-44a8-a8b8-14d9abfe9f02.png",
+      "sha256": "e2e7c6766dd744f9294b886292e9f7fcb1939132dd7128176387d508e86faed8",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-065-068.json",
+      "order": 68,
+      "personId": "person:source:c9065395c9a7",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-75e6a1a4-85ee-4235-b355-8f08be43ca2d.png",
+      "sha256": "feb4f6df2f3bb135dd6df22253a60470987bf89590ad7f79c47088efe76faefe",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-133-136.json",
+      "order": 133,
+      "personId": "person:jin:sima-yan",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-464ab457-9cb8-46d0-8a63-1585e2506a54.png",
+      "sha256": "75e9754f3db432f71362bd3fa4c35fa93af2c0e053701b29a85a53cc9bbb384a",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-133-136.json",
+      "order": 134,
+      "personId": "person:wei:sima-yi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-662254ea-378d-45b9-9b38-cff361e83ce9.png",
+      "sha256": "b5472d30225bc9e79345503b2336d001bc6bb13436f48cb74758f4baca00a46b",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-133-136.json",
+      "order": 135,
+      "personId": "person:workbook:948a0bb7fcb5757c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-498531f9-f959-4895-9c1a-3a52e2422aaa.png",
+      "sha256": "5d834873992c8878eabe70d1db0242ff0a35a3faf2161674ebedd2e290639447",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-133-136.json",
+      "order": 136,
+      "personId": "person:workbook:65c2d1dfcc0f0bbc",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e8cc50d1-d998-4a66-9b48-e5d6bcadb55c.png",
+      "sha256": "c54e8299d4439c1d82d6901c521df56876af836d169cd3eca86512fd4fcc61a4",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
+      "order": 89,
+      "personId": "person:source:ab32fb630e93",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-01ec268b-539b-49b3-ba47-28093fc1dbd9.png",
+      "sha256": "c30c5a2936fda57ecd5cd4cd656e03ccdd96baa4955ae3088131eee7d89d2323",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
+      "order": 90,
+      "personId": "person:wu:sun-hao",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-56e1c346-683f-4957-8333-ea135c2fceee.png",
+      "sha256": "faf7ec9bad9d0d1aa9552f2cc96abdb15d46c84be773c77dde6f3c7dfea3e917",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
+      "order": 91,
+      "personId": "person:source:541aa70629a7",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-1c5b7027-3b06-4588-9464-d18fa2824886.png",
+      "sha256": "e617108258d2c02ab165ff127256b91c540a843f46ba953779b7451498b9af59",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-089-092.json",
+      "order": 92,
+      "personId": "person:wu:dai-liang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ec9be149-46dd-4f57-be55-e5a5807e2036.png",
+      "sha256": "d076ff1241ef85c8750b364bf343e5d70345d73e67e8b747bbe2deb5727d341a",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-149-150.json",
+      "order": 149,
+      "personId": "person:jin:liu-shi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-132fb4e3-5b84-453d-bdeb-efc22ebcd856.png",
+      "sha256": "4196fa37a9792d65891f9f8c91ef2ecc4e336fa39f9b3694f552960f5545e86d",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-149-150.json",
+      "order": 150,
+      "personId": "person:jin:liu-yu",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-444b51f2-320b-4e16-a5fa-c99aaf22238f.png",
+      "sha256": "45df448a4ded9c935a65b558222b96c85bcabbd503d250fe194b8524005912da",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-121-124.json",
+      "order": 121,
+      "personId": "person:workbook:85cbb6f1a2590033",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5c33c88f-08c6-4599-ab9c-94f18bf28cf3.png",
+      "sha256": "c674c603643c6e36245ab6a3cfdcf0f5ca91f50f4cb8c31d3a4162194a9bb368",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-121-124.json",
+      "order": 122,
+      "personId": "person:workbook:3ddbdd5eabe3b3d8",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-b99440c3-8acf-4fa0-ac29-27195c63d185.png",
+      "sha256": "eea28f8efe3f035a32f5be1214e12e1251d5b3746b5b02970d7082f22dca5b17",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-121-124.json",
+      "order": 123,
+      "personId": "person:workbook:467af8a161400901",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-013109fb-f49a-46f3-9c80-df5fc0299cf0.png",
+      "sha256": "d38184d8817dcf25b26e21ff99bde012913506a08977b7b7f08515f954f61f6b",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-121-124.json",
+      "order": 124,
+      "personId": "person:workbook:4628d13c3024011b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-43a4f1d6-8891-4178-bad6-88d9c8a5a641.png",
+      "sha256": "a86dc08647785765ebec3cfde376e9cec09fcb152f3b2f8af5703d1b9a477723",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
+      "order": 97,
+      "personId": "person:wu:sun-he",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6369d4e7-862b-4003-9bb0-802e0769d87d.png",
+      "sha256": "71f2d4c4087d1d5918805ad0f069ff8efee7c1a2e4304e3314ce4c1216b6244e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
+      "order": 98,
+      "personId": "person:source:e3995aefcddc",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-13adbdf8-ab98-4b5e-889f-883a9311e87c.png",
+      "sha256": "346cbcff6b4341d059986a2618e6b4a951c95f8d73a33a0ad17cce7c11ab2c6e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
+      "order": 99,
+      "personId": "person:workbook:d40ea13e6aeb4ac3",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-26ad3331-08f4-4dde-a32d-43a2928a4ce7.png",
+      "sha256": "04d21c4de123b2bc1f914df9c43ae972f1f04481c6b63b7386cc08f4a080f2c2",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-097-100.json",
+      "order": 100,
+      "personId": "person:jin:jia-chong",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ba47af5b-ff65-431e-ba21-490ec664125d.png",
+      "sha256": "360f93e381163f63bd91644e7812d3c5c19bf5b75976647bc6663ee08c9323d2",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
+      "order": 85,
+      "personId": "person:source:74484c7b8050",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f9ef692d-880d-4dc9-8f5b-a4cb30b3f15c.png",
       "sha256": "aca2355f4d9d0b2919d5725ecdf381712ff7734027c01de530266e7f418b6745",
-      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f9ef692d-880d-4dc9-8f5b-a4cb30b3f15c.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
+      "order": 86,
       "personId": "person:source:85fd3c81396f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c3d584c2-731d-4edd-b0a5-9e0a6c3124b2.png",
       "sha256": "e7498c225a25ad4ce5f1c483eb170cad84d56df5b6f07a011b3648967ac12e12",
-      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-c3d584c2-731d-4edd-b0a5-9e0a6c3124b2.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
+      "order": 87,
       "personId": "person:source:87282926790c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-069fdd1d-57a9-4e8b-ba8d-d878b91231c9.png",
       "sha256": "67c54ee154ee59a892ea59742937767a2bce59777dbfe06f8914e85a412eea04",
-      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-069fdd1d-57a9-4e8b-ba8d-d878b91231c9.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
+      "order": 88,
       "personId": "person:wu:he-zhi",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7f7994b6-7842-4c73-8455-1010b1bc8667.png",
       "sha256": "4c93bb2cdce4b078558d288ea3513c6260c9097ad30b2298d4724a15c0ff1bfd",
-      "record": "research/portrait-additions-20261004/redraw-results-085-088.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7f7994b6-7842-4c73-8455-1010b1bc8667.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
+      "order": 81,
       "personId": "person:source:8a094c46b36a",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2798703e-337e-42f0-9b02-7a1012bc9d11.png",
       "sha256": "c7e96294382066d34a6e13e9dcff105a69df6f21bdfdb710aeb24677667822f3",
-      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-2798703e-337e-42f0-9b02-7a1012bc9d11.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
+      "order": 82,
       "personId": "person:wu:lu-kang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5435beaf-536e-4b0f-a1ec-a4770c3dbab6.png",
       "sha256": "a5351516d1eac5b6f524a88fb2937959fc833a4044329d4618ebbccf3aa49dfe",
-      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5435beaf-536e-4b0f-a1ec-a4770c3dbab6.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
+      "order": 83,
       "personId": "person:wu:zhang-ti",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ee4e2ec9-6393-4f39-9ede-587a95bdc695.png",
       "sha256": "e3f70637e00ea7fb17262c86b4d2fd7653209bf80f0a7dc2fae7bed3f56847fd",
-      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ee4e2ec9-6393-4f39-9ede-587a95bdc695.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
+      "order": 84,
       "personId": "person:wu:teng-yin",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f764dc23-a1f1-4aa8-acac-ce7cabfdcf37.png",
       "sha256": "187089ff29943d0b228d9fc4c01b13b31f01f44f32e90f871f186edc988aa960",
-      "record": "research/portrait-additions-20261004/redraw-results-081-084.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f764dc23-a1f1-4aa8-acac-ce7cabfdcf37.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-141-144.json",
+      "order": 141,
+      "personId": "person:workbook:4ca6a0b48b2aefbf",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-11e50422-43f0-4266-a1b4-901a739b380e.png",
+      "sha256": "6f3a9e5290cb116995181a06d72b05af47bd9085bec4683fd954b67f8fad28c7",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-141-144.json",
+      "order": 142,
+      "personId": "person:source:b948df238097",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-94022114-30a3-4913-8797-aed237390c99.png",
+      "sha256": "87ed89c8a790240c08aa3956eb90bab454a8d6ecb4bb31d4286c3dffdbf7b76f",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-141-144.json",
+      "order": 143,
+      "personId": "person:jin:shi-bao",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d8e2a1d4-fdd5-429a-b553-eaed0d7ccae4.png",
+      "sha256": "64809fa1dc7a6722d6d74eb69a75e26629bd6b6c1e6e34049b9e47ddabc06d3b",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-141-144.json",
+      "order": 144,
+      "personId": "person:jin:yang-jun",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-85dad9d5-8b2e-4458-b66a-a28826985799.png",
+      "sha256": "58a0ca5520f7efae9c2248754a84456b2218cc2a613ede0784650c939f41342c",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
+      "order": 69,
       "personId": "person:source:c2d2b4c0325c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bd75905f-5168-4b2f-9946-c72fa6a7bcc3.png",
       "sha256": "32ddd68a4d6659a14fae1e04b2b7626c8ce59b95fd37a375976b2c4a6e8f90dc",
-      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bd75905f-5168-4b2f-9946-c72fa6a7bcc3.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
+      "order": 70,
       "personId": "person:source:6f24577154e3",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e2a922aa-12b8-4b21-8e8f-c64d26ec6098.png",
       "sha256": "235ad2216667df6d4209961e182e0541dafa2a9324361f0eee6a0a53b3f44ef5",
-      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e2a922aa-12b8-4b21-8e8f-c64d26ec6098.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
+      "order": 71,
       "personId": "person:source:6787527ab62b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bb2155fd-f3cc-4f3e-8c4b-3b88b793fe04.png",
       "sha256": "70e15e476a5e6166d084337cfac2912481cffce108da332a5a3054e656c1a9cf",
-      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-bb2155fd-f3cc-4f3e-8c4b-3b88b793fe04.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
+      "order": 72,
       "personId": "person:wu:lu-su",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-69b43369-2fb0-4e38-9299-caf1477da934.png",
       "sha256": "1b317f3b7e5dfa62113428b6af88bdb46695b253ce568cf32cf9484a01eec9e5",
-      "record": "research/portrait-additions-20261004/redraw-results-069-072.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-69b43369-2fb0-4e38-9299-caf1477da934.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
+      "order": 45,
       "personId": "person:source:4e121ec2c327",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e3edf607-b582-45af-b3b7-851b2c9a5017.png",
       "sha256": "49f2a58f80f04e0092773161b8e32a89ab9a712d835f0a1b01715b2ecc71668e",
-      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-e3edf607-b582-45af-b3b7-851b2c9a5017.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
+      "order": 46,
       "personId": "person:source:3615e33dea42",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-91e0bdf6-c091-48ce-b51f-a1b0c3f775b8.png",
       "sha256": "124b77dfc3dcfad7ed3bbb3d97e109b122d70bc0679b44b47947878acc30a8cd",
-      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-91e0bdf6-c091-48ce-b51f-a1b0c3f775b8.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
+      "order": 47,
       "personId": "person:source:035be51454ba",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7081b8ea-aaba-44b3-b7de-ccda6283a460.png",
       "sha256": "1d8d1cde5cdcf7a08b10d16c42a0e97a00b372ee2837ac09d00dfa9e01a586eb",
-      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7081b8ea-aaba-44b3-b7de-ccda6283a460.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
+      "order": 48,
       "personId": "person:source:004770996fff",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0cc6e015-5c6d-4227-8215-cc7fdba2f380.png",
       "sha256": "1e8686748b2940ad7a2295ed7244242bfd54ef346f60596cad7bed4ed3352b47",
-      "record": "research/portrait-additions-20261004/redraw-results-045-048.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0cc6e015-5c6d-4227-8215-cc7fdba2f380.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
+      "order": 29,
       "personId": "person:wei:xiahou-xuan",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3096e150-34c2-4b42-80d3-f79bd900fcd0.png",
       "sha256": "e998570236335cd2142fa4fea5f07583663c3bbfebb3ec0a1d297b1d21ba1e17",
-      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3096e150-34c2-4b42-80d3-f79bd900fcd0.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
+      "order": 30,
       "personId": "person:jin:sima-wang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4ec3dea1-f643-4bdf-8549-eeba55043055.png",
       "sha256": "84a30b642c92c5f108b3b60392643a16e54ca4dc7f88e745ae3c8ebb3717287f",
-      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-4ec3dea1-f643-4bdf-8549-eeba55043055.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
+      "order": 31,
       "personId": "person:wei:xu-miao",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-76d72ecd-ea58-42dd-ab79-cc94c1898756.png",
       "sha256": "0911fde12d2e8cad6770b0b29a354a5f7c7cd8ae4e465b72dcd048e81241d324",
-      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-76d72ecd-ea58-42dd-ab79-cc94c1898756.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
+      "order": 32,
       "personId": "person:source:0e535702e1a5",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-084ab4f0-2b62-45a8-92fb-7558470761a0.png",
       "sha256": "3c03a60f48f1df574d4593f668318987972c9a5a2a46fe97ed56a27a7d12cd79",
-      "record": "research/portrait-additions-20261004/redraw-results-029-032.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-084ab4f0-2b62-45a8-92fb-7558470761a0.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-117-120.json",
+      "order": 117,
+      "personId": "person:workbook:10602094ff4cb2ed",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-05f9f79d-8b33-4443-a2fb-79c4c000d1dc.png",
+      "sha256": "be45ebcf9bf1d53430c1e7901b95c58967e71569db24ff02e2b5e6436f16a095",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-117-120.json",
+      "order": 118,
+      "personId": "person:workbook:232a9f6a939d9949",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0b1cd5ea-566c-4a39-91ff-ecef617511cd.png",
+      "sha256": "02551a374ce56406928b03c29cfb0108ff09dea999d2224167ba97074fb6679c",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-117-120.json",
+      "order": 119,
+      "personId": "person:source:4f57385c8b1c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-78604af0-98ec-4995-9e15-5b79b46326c8.png",
+      "sha256": "cd36713e3e30ef28181d3e8215810f8f6b0092e71ded1e1be53f0fc8201af796",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-117-120.json",
+      "order": 120,
+      "personId": "person:workbook:699340a4a842aeda",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-22b6a7ba-d0fe-4b89-94a2-13f10d7da116.png",
+      "sha256": "6ebd9c7bffc42758fa8ba7cb9fbf2a657d2e7e932dd6881286877b047cbcbd5a",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
+      "order": 21,
       "personId": "person:source:272c8716cddb",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-1cd15bf8-4e14-4242-9406-ef25cdd9d82b.png",
       "sha256": "322eec68c117c0b360d4debce9a059f176990ce8544106b3a6b7758255c8bc62",
-      "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-1cd15bf8-4e14-4242-9406-ef25cdd9d82b.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
+      "order": 22,
       "personId": "person:source:182106820ab7",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-660ebb96-988e-4828-9690-77a7079f3b94.png",
       "sha256": "744b59d595f97c186539d31bb6e883baa305744763c9d77e6b601262565e125e",
-      "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-660ebb96-988e-4828-9690-77a7079f3b94.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
+      "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
+      "order": 23,
       "personId": "person:source:c9646b99be7a",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ec2f64fa-9d76-4beb-ad6b-e2b2791c635c.png",
       "sha256": "e0cf9d96da566226994d75b1d1d1a975370256def24c45663a2adbfbcd9b2c2a",
-      "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ec2f64fa-9d76-4beb-ad6b-e2b2791c635c.png"
+      "sourceExists": true,
+      "byteExact": true
     },
     {
-      "personId": "person:wei:liu-fang",
-      "sha256": "ff66776efa834185a769edcee3581bedfa5dbe5f84632f917f3ed6926537234b",
       "record": "research/portrait-additions-20261004/redraw-results-021-024.json",
-      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3ad9fe74-1fec-4f13-9f19-e87b8dd599fa.png"
+      "order": 24,
+      "personId": "person:wei:liu-fang",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-3ad9fe74-1fec-4f13-9f19-e87b8dd599fa.png",
+      "sha256": "ff66776efa834185a769edcee3581bedfa5dbe5f84632f917f3ed6926537234b",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-007.json",
+      "order": 7,
+      "personId": "person:workbook:2dfe7b6919d86a30",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-7f48a275-91f0-492d-86a3-a7ae3b741a89.png",
+      "sha256": "c1c1c2c42c23fde870feddca94eef4c3dc1da39ab85285cb6b5d54c6441bda0c",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-012.json",
+      "order": 12,
+      "personId": "person:workbook:5a2ab5f4afb46d7d",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-26a1e15f-55b9-4a40-afbe-151b7221fcab.png",
+      "sha256": "036fe0de189cb253944e92930b52df707ca133f84338563b1d4aa24201ca7867",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-020.json",
+      "order": 20,
+      "personId": "person:workbook:2c0685e0e0e0ae8f",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fd7bf9fe-93d9-4fa3-bf9d-959af9eae1af.png",
+      "sha256": "a1fd73e8e609191345960596c448756993a1d735b93e97987bb58bfacfb6d102",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-005.json",
+      "order": 5,
+      "personId": "person:workbook:89859ca6be315566",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-8eca425e-bf40-45a4-b2e9-0d4d2f4ed3de.png",
+      "sha256": "d4d877ce11c771e900d462ffd7a8541f694bb64d3f9457e2778a87b22b174b2e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-017.json",
+      "order": 17,
+      "personId": "person:workbook:5b1def2d8b8c8c49",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0021c080-9659-4299-9289-88e10e48f808.png",
+      "sha256": "d7ad581a59452d60bbe8d72e0b38268b3997588bfa0733642b815f98d505307d",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-028.json",
+      "order": 28,
+      "personId": "person:workbook:c7d16dc8399a9f0b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d98ea671-20d8-43f4-b9a0-a4911bf0b682.png",
+      "sha256": "78ebfc5f9ae04df9fb634f02a18ab80dcf0259e413adb65028d8dc83b7b04147",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-025.json",
+      "order": 25,
+      "personId": "person:workbook:29c85389eff26b03",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-869c587d-3d9a-4417-836a-3c0643c6495f.png",
+      "sha256": "3e44d574063f0be435ffebd05883692d6c3b5219e614b009957c9a789b269b0e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-027.json",
+      "order": 27,
+      "personId": "person:workbook:8069bc34357f1f29",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6602fc98-5642-4c85-9dc9-1d1eddb11b1c.png",
+      "sha256": "000e2cad2d8bf9f5655b29fd147415b91dd9f306d82048e4419b08375b3a1d97",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-029.json",
+      "order": 29,
+      "personId": "person:workbook:35f65ce0ec867b73",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-51804d98-a60f-4b36-bef3-3c406e89bf75.png",
+      "sha256": "7bf01f26021483dee6bb0c8d5e42b088a04520e27533a7ab7d640cf18a7acb44",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-001.json",
+      "order": 1,
+      "personId": "person:workbook:270feaef9ea4faae",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-5f3fee88-a60f-4678-8e56-19343fa2608f.png",
+      "sha256": "f304bf80e3544b6209a64121a276378a19c5a51962fdbc4684ed216df8b9a7b2",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-022.json",
+      "order": 22,
+      "personId": "person:workbook:65f5118d20de2114",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d11ff0a0-0151-4bcf-af83-983dc2aebdef.png",
+      "sha256": "c759299255462443168e347b37a7d95fd7adf6496781cbcb5a0c9cb1bca94ca4",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-010.json",
+      "order": 10,
+      "personId": "person:workbook:6ffd9222fdc98da9",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-cff460ab-bf1f-4cab-af94-084c297aa49f.png",
+      "sha256": "1aa55d87e8105c63ce3079df164091b069d59e5bb4d628d059bfd733b6a79678",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-026.json",
+      "order": 26,
+      "personId": "person:workbook:ba3f1bafab3e4732",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6b223dc1-442c-4537-8aae-6456ed451729.png",
+      "sha256": "e87d9d46ebb6b93a5df9a6a23a660a0204a12033eef344cccdd63c4317c1e18e",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-018.json",
+      "order": 18,
+      "personId": "person:workbook:cf54dfebd647ab02",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f63831d1-9d69-4f2f-8f9d-c5baa6348899.png",
+      "sha256": "d88b0ba918a6b85b91e30677f4f0a5e1729c3aa247ed88550edd51177ef63868",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-002.json",
+      "order": 2,
+      "personId": "person:workbook:026eaa65f4403bf0",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-b9ca02d2-70dd-4973-a2fd-67b465d9e40c.png",
+      "sha256": "8adaef405947e332484511cce28f0a9750d9a0ad8b693fe60beabc1e947a8ab8",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-013.json",
+      "order": 13,
+      "personId": "person:workbook:67afb87f3ecd38e6",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-332eebc0-d722-459f-bd55-45936988f059.png",
+      "sha256": "366ee59ea3eeaed2e886029df15aa5c50e18fc4efd942ccaeef0b5c1390d875a",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-019.json",
+      "order": 19,
+      "personId": "person:workbook:ce01d032ba214e9e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-1cf1365b-e090-4d2c-a02c-df854732a68e.png",
+      "sha256": "f9d91e379c1f6cd775e959e346dc1fa93bb3d821c848e546b1af6f459c21b222",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-021.json",
+      "order": 21,
+      "personId": "person:workbook:33c13252ee4a2b76",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-88d32dc4-e186-43d3-9a85-2d786683526b.png",
+      "sha256": "dc8fa0df16745a6e6f6e3bdd119da5538d573455d9c91009e181138cf0c7f2d5",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-011.json",
+      "order": 11,
+      "personId": "person:workbook:a9af256c99ce1150",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-707b0769-3ec9-44e2-b870-5461b57e8a2c.png",
+      "sha256": "15eee5508200afecebdfabe89de51ab1ceb16167cb837fbec6b99a92d1e9abd8",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-015.json",
+      "order": 15,
+      "personId": "person:workbook:8e2e8fcc9f31f01e",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ac32a84e-52cf-4f31-9c9f-fcb7763095c6.png",
+      "sha256": "14690ff83ca1f668385dcfc10664f38cbf2f9a4a7851e95ef36f31b0b36a5b67",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-009.json",
+      "order": 9,
+      "personId": "person:workbook:0bdcb6183ed6311b",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d6425fff-8465-45b1-b30a-117758d2801d.png",
+      "sha256": "d7a32572c52e9547e34726afa35b51d2494764e00dec606cfe235e0da267d419",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-016.json",
+      "order": 16,
+      "personId": "person:workbook:12dd658503315d90",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f1802f5f-8ff6-42d7-9b35-42f1cc264ca5.png",
+      "sha256": "55cfc268b0d467fea6ac29380bcba8db8097b12a672beb6b0eccfec8a3b5ae1a",
+      "sourceExists": true,
+      "byteExact": true
+    },
+    {
+      "record": "research/portrait-additions-20261004/fullbody-result-023.json",
+      "order": 23,
+      "personId": "person:workbook:523c12b46171de5c",
+      "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d5de23c5-ad49-4b68-83e1-c8e3c5d3fb30.png",
+      "sha256": "aa7b85d004ac293cdedb8ac3e97c6b3eef660ba2e3924eb4c5e999c7ce6c3a86",
+      "sourceExists": true,
+      "byteExact": true
     }
-  ],
-  "missingTransientSources": []
+  ]
 }
