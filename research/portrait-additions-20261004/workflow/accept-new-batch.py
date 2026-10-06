@@ -35,11 +35,11 @@ for r in prompts:
     assert previous is None or previous['order']==r['order']
     row={'order':r['order'],'personId':r['personId'],'name':r['name'],'polity':r['polity'],'path':path,'status':'complete','sha256':sha,'width':width,'height':height,'designAge':r['designAge'],'ageBasis':r['ageBasis'],'productionMethod':'independent-generation','visualReview':checks,'reviewedAt':'2026-10-06','promptRecord':'research/portrait-additions-20261004/generation-prompts-'+batch+'.json','evidenceStatus':'待考'}
     progress['new']=[x for x in progress['new'] if x['personId']!=r['personId']]+[row]
-    review['accepted']=[x for x in review['accepted'] if x['personId']!=r['personId']]+[{'kind':'new','order':r['order'],'personId':r['personId'],'sha256':sha,'visualReview':checks,'reviewedAt':'2026-10-06','reviewBasis':'Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition.'}]
+    review['accepted']=[x for x in review['accepted'] if not (x['kind']=='new' and x['personId']==r['personId'])]+[{'kind':'new','order':r['order'],'personId':r['personId'],'sha256':sha,'visualReview':checks,'reviewedAt':'2026-10-06','reviewBasis':'Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition.'}]
     index[path]=sha
     pending.append({'path':path,'sha256':sha,'bytes':len(data),'base64Length':((len(data)+2)//3)*4,'gitSha':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
 progress['new'].sort(key=lambda x:x['order'])
-assert len({x['personId'] for x in review['accepted']})==len(review['accepted'])
+assert len({(x['kind'],x.get('portraitId') if x['kind']=='existing' else x['personId']) for x in review['accepted']})==len(review['accepted'])
 status=json.loads((research/'production-status.json').read_text())
 status.update({'newProduced':len(progress['new']),'newAccepted':sum(x['kind']=='new' for x in review['accepted'])})
 for filename,data in [('production-progress.json',progress),('visual-review-progress.json',review),('checkpoint-images.json',index),('production-status.json',status)]:
