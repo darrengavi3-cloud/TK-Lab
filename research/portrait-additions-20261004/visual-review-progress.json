@@ -3309,27 +3309,6 @@
     },
     {
       "kind": "new",
-      "order": 96,
-      "personId": "person:workbook:43b05016ff560d0c",
-      "sha256": "59e1b30e8263935400660c9ea3a741ffba822e626593aee714efe32303b7b101",
-      "visualReview": {
-        "frontal": true,
-        "strictFrontal": true,
-        "directGaze": true,
-        "shouldersFrontal": true,
-        "ageAppropriate": true,
-        "independentSinglePerson": true,
-        "completeCrown": true,
-        "completeHands": true,
-        "standingComposition": true,
-        "completeFeet": true,
-        "fullBody": true
-      },
-      "reviewedAt": "2026-10-06",
-      "reviewBasis": "Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition."
-    },
-    {
-      "kind": "new",
       "order": 98,
       "personId": "person:workbook:bdd656a6c5068a7e",
       "sha256": "a8cc96a56c22e4458a2bbafcbc3ede158affcde7b31cf18ea0df88b67c6fce12",
@@ -3375,6 +3354,27 @@
       "order": 100,
       "personId": "person:workbook:2da887ae5ef36983",
       "sha256": "9b771cda0761c31b7eba2bd7f89728b4f70c9469b757037928fae9afb83d10c4",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition."
+    },
+    {
+      "kind": "new",
+      "order": 96,
+      "personId": "person:workbook:43b05016ff560d0c",
+      "sha256": "565e5f2c6b268f507c3e7944a9086fd919ed98ff0596d5bd5da8f8bf5f17414e",
       "visualReview": {
         "frontal": true,
         "strictFrontal": true,

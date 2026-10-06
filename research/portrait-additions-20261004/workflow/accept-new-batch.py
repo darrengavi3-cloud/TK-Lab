@@ -16,15 +16,18 @@ pending=[]
 for r in prompts:
     if r['order'] not in requested:
         continue
-    src=work/'new-images'/(r['outputStem']+'.png')
+    generation=next(x for x in json.loads((work/('results-'+batch+'.json')).read_text()) if x['order']==r['order'])
+    assert generation['personId']==r['personId'], 'Generation identity mismatch'
+    src=Path(generation['outputPath'])
     data=src.read_bytes()
     sha=hashlib.sha256(data).hexdigest()
+    assert sha==generation['sha256'], 'Generation SHA mismatch'
     with Image.open(src) as im:
         width,height=im.size
         assert im.format=='PNG'
         im.verify()
     assert width>=512 and abs(width/height-9/16)<=.03
-    path='atlas/assets/portraits/20261004/'+r['outputStem']+'.png'
+    path='atlas/assets/portraits/20261004/'+str(r['order']).zfill(3)+'-'+sha[:12]+'.png'
     dest=root/path
     dest.parent.mkdir(parents=True,exist_ok=True)
     if dest.exists():
@@ -33,7 +36,7 @@ for r in prompts:
         shutil.copy2(src,dest)
     previous=next((x for x in progress['new'] if x['personId']==r['personId']),None)
     assert previous is None or previous['order']==r['order']
-    row={'order':r['order'],'personId':r['personId'],'name':r['name'],'polity':r['polity'],'path':path,'status':'complete','sha256':sha,'width':width,'height':height,'designAge':r['designAge'],'ageBasis':r['ageBasis'],'productionMethod':'independent-generation','visualReview':checks,'reviewedAt':'2026-10-06','promptRecord':'research/portrait-additions-20261004/generation-prompts-'+batch+'.json','evidenceStatus':'待考'}
+    row={'order':r['order'],'personId':r['personId'],'name':r['name'],'polity':r['polity'],'path':path,'status':'complete','sha256':sha,'width':width,'height':height,'designAge':r['designAge'],'ageBasis':r['ageBasis'],'productionMethod':generation.get('generationMethod','independent-generation'),'generationSource':generation['sourcePath'],'generationRecord':'research/portrait-additions-20261004/generation-results-'+batch+'.json','visualReview':checks,'reviewedAt':'2026-10-06','promptRecord':'research/portrait-additions-20261004/generation-prompts-'+batch+'.json','evidenceStatus':'待考'}
     progress['new']=[x for x in progress['new'] if x['personId']!=r['personId']]+[row]
     review['accepted']=[x for x in review['accepted'] if not (x['kind']=='new' and x['personId']==r['personId'])]+[{'kind':'new','order':r['order'],'personId':r['personId'],'sha256':sha,'visualReview':checks,'reviewedAt':'2026-10-06','reviewBasis':'Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition.'}]
     index[path]=sha
