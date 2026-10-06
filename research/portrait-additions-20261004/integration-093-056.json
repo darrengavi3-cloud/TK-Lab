@@ -1,0 +1,6 @@
+{
+  "status": "invalid-old-placeholder",
+  "canonicalRecord": "research/portrait-additions-20261004/integration-checkpoint-093-056.json",
+  "reason": "Earlier checkpoint helper silently created an empty blob for a mistyped filename. The canonical, completed verification record is preserved under its actual filename. This placeholder is not verification evidence.",
+  "historyPreserved": true
+}

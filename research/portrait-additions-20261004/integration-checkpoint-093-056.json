@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "newIntegrated": 93,
+  "independentRedrawIntegrated": 56,
+  "steps": [
+    {
+      "phase": "source",
+      "command": [
+        "npm",
+        "run",
+        "verify:source"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/093-056-source.log"
+    },
+    {
+      "phase": "release",
+      "command": [
+        "npm",
+        "run",
+        "release:offline"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/093-056-release.log"
+    },
+    {
+      "phase": "new-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "90,91,92,93"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/093-056-new-pages.log"
+    },
+    {
+      "phase": "redraw-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "53,54,55,56",
+        "redraw"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/093-056-redraw-pages.log"
+    },
+    {
+      "phase": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/093-056-diff.log"
+    }
+  ],
+  "costumeEvidenceStatus": "待考",
+  "sourceTests": 58,
+  "builtSuiteTests": 247,
+  "pipelineExitCode": 0,
+  "portraitViewportChecks": 16,
+  "failures": 0,
+  "reports": [
+    "portrait-new-batch-90-91-92-93.json",
+    "portrait-redraw-batch-53-54-55-56.json"
+  ]
+}
