@@ -1,0 +1,13 @@
+{
+  "status": "needs-byte-exact-text-recommit",
+  "verifiedFiles": 461,
+  "mismatches": [
+    {
+      "path": "research/portrait-additions-20261004/portrait-acceptance-record.csv",
+      "localBytes": 177060,
+      "remoteBytes": 176809,
+      "crlfCount": 251
+    }
+  ],
+  "activePortraitMismatches": 0
+}
