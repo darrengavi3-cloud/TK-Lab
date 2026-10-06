@@ -79,25 +79,6 @@
     },
     {
       "kind": "new",
-      "order": 13,
-      "personId": "person:workbook:67afb87f3ecd38e6",
-      "sha256": "ebf39b7367298394ad52172b9d7992609a461cb9b6dc3bedc59a2527bd62c073",
-      "visualReview": {
-        "frontal": true,
-        "directGaze": true,
-        "shouldersFrontal": true,
-        "ageAppropriate": true,
-        "strictFrontal": true,
-        "independentSinglePerson": true,
-        "completeCrown": true,
-        "completeHands": true,
-        "standingComposition": true,
-        "fullBody": false,
-        "completeFeet": false
-      }
-    },
-    {
-      "kind": "new",
       "order": 14,
       "personId": "person:workbook:0d601c62c3e0381c",
       "sha256": "c124167b05b8e186fba8a065d94b74883fd33c5b1b1dfb59e9cbf09ddbe49202",
@@ -113,63 +94,6 @@
         "standingComposition": true,
         "fullBody": true,
         "completeFeet": true
-      }
-    },
-    {
-      "kind": "new",
-      "order": 15,
-      "personId": "person:workbook:8e2e8fcc9f31f01e",
-      "sha256": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee",
-      "visualReview": {
-        "frontal": true,
-        "directGaze": true,
-        "shouldersFrontal": true,
-        "ageAppropriate": true,
-        "strictFrontal": true,
-        "independentSinglePerson": true,
-        "completeCrown": true,
-        "completeHands": true,
-        "standingComposition": true,
-        "fullBody": false,
-        "completeFeet": false
-      }
-    },
-    {
-      "kind": "new",
-      "order": 16,
-      "personId": "person:workbook:12dd658503315d90",
-      "sha256": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74",
-      "visualReview": {
-        "frontal": true,
-        "directGaze": true,
-        "shouldersFrontal": true,
-        "ageAppropriate": true,
-        "strictFrontal": true,
-        "independentSinglePerson": true,
-        "completeCrown": true,
-        "completeHands": true,
-        "standingComposition": true,
-        "fullBody": false,
-        "completeFeet": false
-      }
-    },
-    {
-      "kind": "new",
-      "order": 17,
-      "personId": "person:workbook:5b1def2d8b8c8c49",
-      "sha256": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51",
-      "visualReview": {
-        "frontal": true,
-        "directGaze": true,
-        "shouldersFrontal": true,
-        "ageAppropriate": true,
-        "strictFrontal": true,
-        "independentSinglePerson": true,
-        "completeCrown": true,
-        "completeHands": true,
-        "standingComposition": true,
-        "fullBody": false,
-        "completeFeet": false
       }
     },
     {
@@ -5386,6 +5310,90 @@
       },
       "reviewedAt": "2026-10-06",
       "reviewBasis": "Root visually inspected the edited original PNG: identity reference, front, design age, complete crown, hands and both shoe soles."
+    },
+    {
+      "kind": "new",
+      "order": 13,
+      "personId": "person:workbook:67afb87f3ecd38e6",
+      "sha256": "366ee59ea3eeaed2e886029df15aa5c50e18fc4efd942ccaeef0b5c1390d875a",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root visually inspected the edited original PNG: identity reference, front, design age, complete crown, hands and both shoe soles."
+    },
+    {
+      "kind": "new",
+      "order": 15,
+      "personId": "person:workbook:8e2e8fcc9f31f01e",
+      "sha256": "14690ff83ca1f668385dcfc10664f38cbf2f9a4a7851e95ef36f31b0b36a5b67",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root visually inspected the edited original PNG: identity reference, front, design age, complete crown, hands and both shoe soles."
+    },
+    {
+      "kind": "new",
+      "order": 16,
+      "personId": "person:workbook:12dd658503315d90",
+      "sha256": "55cfc268b0d467fea6ac29380bcba8db8097b12a672beb6b0eccfec8a3b5ae1a",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root visually inspected the edited original PNG: identity reference, front, design age, complete crown, hands and both shoe soles."
+    },
+    {
+      "kind": "new",
+      "order": 17,
+      "personId": "person:workbook:5b1def2d8b8c8c49",
+      "sha256": "d7ad581a59452d60bbe8d72e0b38268b3997588bfa0733642b815f98d505307d",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root visually inspected the edited original PNG: identity reference, front, design age, complete crown, hands and both shoe soles."
     }
   ],
   "revisionReason": "User requests independent recreation of early crop-derived assets; previous frontal-only early edits retained as archived candidates and require new review.",
@@ -5528,6 +5536,82 @@
       "order": 12,
       "personId": "person:workbook:5a2ab5f4afb46d7d",
       "sha256": "f3ba4d4f0396e1f8bb1740ed57aa5be1b1d7697c8b1957dbf0e1c45d21afd83e",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "strictFrontal": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "fullBody": false,
+        "completeFeet": false
+      }
+    },
+    {
+      "kind": "new",
+      "order": 13,
+      "personId": "person:workbook:67afb87f3ecd38e6",
+      "sha256": "ebf39b7367298394ad52172b9d7992609a461cb9b6dc3bedc59a2527bd62c073",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "strictFrontal": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "fullBody": false,
+        "completeFeet": false
+      }
+    },
+    {
+      "kind": "new",
+      "order": 15,
+      "personId": "person:workbook:8e2e8fcc9f31f01e",
+      "sha256": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "strictFrontal": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "fullBody": false,
+        "completeFeet": false
+      }
+    },
+    {
+      "kind": "new",
+      "order": 16,
+      "personId": "person:workbook:12dd658503315d90",
+      "sha256": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74",
+      "visualReview": {
+        "frontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "strictFrontal": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "fullBody": false,
+        "completeFeet": false
+      }
+    },
+    {
+      "kind": "new",
+      "order": 17,
+      "personId": "person:workbook:5b1def2d8b8c8c49",
+      "sha256": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51",
       "visualReview": {
         "frontal": true,
         "directGaze": true,
