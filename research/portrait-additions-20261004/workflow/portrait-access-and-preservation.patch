@@ -65,10 +65,10 @@ index da725da..79851c1 100644
                  <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2><p v-if="peoplePrimaryDetail.portrait && peoplePrimaryDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
                  <div class="v56-person-dossier-meta"><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
 diff --git a/atlas/assets/ui/components.css b/atlas/assets/ui/components.css
-index fb08b19..afb1b37 100644
+index fb08b19..973b8df 100644
 --- a/atlas/assets/ui/components.css
 +++ b/atlas/assets/ui/components.css
-@@ -1080,3 +1080,8 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
+@@ -1080,3 +1080,10 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
  /* Extracted workbenches put module-page and module-page-inner on one root. */
  @media screen and (min-width:761px){.shell>.module-page.module-page-inner{margin-left:var(--v56-current-spine);margin-right:var(--v56-current-evidence);width:auto;max-width:none;padding:24px;}}
  @media screen and (max-width:760px){.shell>.module-page.module-page-inner{margin:0;width:auto;max-width:none;padding:20px 16px calc(84px + env(safe-area-inset-bottom));}}
@@ -77,6 +77,8 @@ index fb08b19..afb1b37 100644
 +.sgz-person-portrait-panel{flex:0 0 auto;width:100px;min-width:0}.sgz-person-portrait-panel .people-detail-portrait{float:none;margin:0}.sgz-portrait-choices{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.sgz-portrait-control{display:inline-flex;align-items:center;justify-content:center;min-height:var(--sgz-touch-target);min-width:var(--sgz-touch-target);max-width:100%;padding:4px 8px;border:1px solid var(--sgz-rule);border-radius:var(--sgz-radius);background:var(--sgz-surface);color:var(--sgz-ink);font:600 var(--sgz-text-meta) var(--sgz-font-body);cursor:pointer;text-decoration:none;box-sizing:border-box}.sgz-portrait-control:hover{background:var(--sgz-pale)}.sgz-portrait-control:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:2px}.sgz-portrait-control:active,.sgz-portrait-control[aria-pressed=true]{background:var(--sgz-accent);color:var(--sgz-on-accent);border-color:var(--sgz-accent)}.sgz-portrait-original{margin-top:8px;width:100%}.sgz-portrait-status{font:var(--sgz-text-meta) var(--sgz-font-body);color:var(--sgz-muted);margin:4px 0;min-height:1.5em}.people-detail-head .sgz-person-portrait-panel{float:right;margin:0 0 18px 18px;width:80px}
 +
 +.sgz-person-portrait-panel .people-detail-portrait{position:relative}.sgz-portrait-retry{position:absolute;bottom:4px;left:4px;right:4px;z-index:1}.sgz-portrait-status{height:3em;overflow-wrap:anywhere}
++
++.people-detail-head .sgz-person-portrait-panel{width:112px}@media(max-width:760px){.people-detail-head .sgz-person-portrait-panel{width:80px}}
 diff --git a/atlas/index.html b/atlas/index.html
 index e1b5604..03ea5df 100644
 --- a/atlas/index.html

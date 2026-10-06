@@ -1,0 +1,5 @@
+{
+  "reason": "lint扫描到之前失败sync遗留public/.legacy-reader-stage-961内的Leaflet压缩文件；生成暂存包已移至work/validation/quarantined-build-stages保留原字节，不改正式源码或数据库",
+  "next": "rerun complete 100/72 pipeline",
+  "previousFailure": "lint @typescript-eslint/no-this-alias"
+}
