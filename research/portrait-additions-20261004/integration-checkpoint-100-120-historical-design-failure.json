@@ -1,0 +1,30 @@
+{
+  "status": "failed",
+  "newIntegrated": 100,
+  "independentRedrawIntegrated": 120,
+  "steps": [
+    {
+      "phase": "source",
+      "command": [
+        "npm",
+        "run",
+        "verify:source"
+      ],
+      "exitCode": 0,
+      "log": "work/validation/100-120-source.log"
+    },
+    {
+      "phase": "release",
+      "command": [
+        "npm",
+        "run",
+        "release:offline"
+      ],
+      "exitCode": 1,
+      "log": "work/validation/100-120-release.log"
+    }
+  ],
+  "costumeEvidenceStatus": "待考",
+  "sourceTests": 58,
+  "failedPhase": "release"
+}
