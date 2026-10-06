@@ -3218,6 +3218,94 @@
       },
       "reviewedAt": "2026-10-06",
       "reviewBasis": "Root visually inspected the original generated PNG, including face, eyes, shoulders, age, headwear, hands and standing composition."
+    },
+    {
+      "kind": "existing",
+      "order": 57,
+      "portraitId": "portrait:asset:73fbe9c36fa0ff4bf6ec",
+      "personId": "person:shu:wei-yan",
+      "sha256": "ff3e9840e96511c5c39277df4ceb03ee297909c15c658391bdb23fea758c240b",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 58,
+      "portraitId": "portrait:asset:7afd636a0f36e619e1ea",
+      "personId": "person:shu:xu-jing",
+      "sha256": "1a653f8da3794490914fe24fe696fb80671700e24ded5dacbb398c8ff0498884",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 59,
+      "portraitId": "portrait:asset:c287a48cd80e314b6852",
+      "personId": "person:source:d66a7f3fda55",
+      "sha256": "45f410599842604d638d6eac556a9081ac50070d62cf5690079cf43c798dda92",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 60,
+      "portraitId": "portrait:asset:0b6752a1b02a1b62b3a7",
+      "personId": "person:shu:jiang-wan",
+      "sha256": "2a4da66ff270061f1c290622843a87918af59bc7fc93abb5b4fdad363c00ef80",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
     }
   ],
   "revisionReason": "User requests independent recreation of early crop-derived assets; previous frontal-only early edits retained as archived candidates and require new review."
