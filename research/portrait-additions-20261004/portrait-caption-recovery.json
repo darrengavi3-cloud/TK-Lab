@@ -1,0 +1,20 @@
+{
+  "status": "identified-and-fixed-retesting",
+  "failedBatch": [
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88
+  ],
+  "firstMissingCaptionOrder": 85,
+  "personId": "person:source:74484c7b8050",
+  "portraitId": "portrait:asset:d29566b59bedbdb204e7",
+  "cause": "Parent caption used default person.portrait path. Explicit selection switched to 085 redraw while default portrait remained 137 original, so parent caption was hidden.",
+  "fix": "Shared PersonPortraitPanel renders evidence note from actually displayed src. Desktop/mobile parent notes removed to avoid duplicate text.",
+  "overwrittenImages": 0,
+  "fullPipelineRerun": true
+}

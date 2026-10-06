@@ -1,0 +1,48 @@
+diff --git a/atlas/assets/app/reader-components.js b/atlas/assets/app/reader-components.js
+index 3dd17eb..3d15706 100644
+--- a/atlas/assets/app/reader-components.js
++++ b/atlas/assets/app/reader-components.js
+@@ -48,6 +48,7 @@
+         <p v-if="src" class="sgz-portrait-status" role="status">{{failed?'立绘未能加载。':loading?'加载立绘…':''}}</p>
+         <nav v-if="choices.length>1" class="sgz-portrait-choices" aria-label="切换人物立绘"><button v-for="(asset,index) in choices" :key="asset.portraitId" type="button" class="sgz-portrait-control" :data-portrait-id="asset.portraitId" :aria-pressed="src===asset.src" @click="choose(asset.portraitId)">立绘{{index+1}}</button></nav>
+         <a v-if="src" class="sgz-portrait-control sgz-portrait-original" :href="src" target="_blank" rel="noopener">查看原图</a>
++        <p v-if="src.includes('/20261004/')" class="reader-quiet-note sgz-portrait-evidence-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
+       </section>`
+     },
+     ReaderCitations: {
+diff --git a/atlas/assets/app/ui/people-ui.js b/atlas/assets/app/ui/people-ui.js
+index 79851c1..662c215 100644
+--- a/atlas/assets/app/ui/people-ui.js
++++ b/atlas/assets/app/ui/people-ui.js
+@@ -165,7 +165,7 @@ export const PeopleWorkbench = {
+             <header class="v56-person-dossier-head">
+               <person-portrait-panel :person="peoplePrimaryDetail" :frame-style="portraitStyleFor(peoplePrimaryDetail)"/>
+               <div>
+-                <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2><p v-if="peoplePrimaryDetail.portrait && peoplePrimaryDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
++                <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2>
+                 <div class="v56-person-dossier-meta"><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
+                 <div class="people-detail-tags"><span v-for="pol in peoplePrimaryDetail.dynastyTags" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
+                 <p v-if="peoplePrimaryDetail.historicalAffiliations.length" class="v62-historical-affiliations">历史归属：{{peoplePrimaryDetail.historicalAffiliations.join('、')}}</p>
+diff --git a/atlas/assets/ui/components.css b/atlas/assets/ui/components.css
+index 973b8df..5d32eae 100644
+--- a/atlas/assets/ui/components.css
++++ b/atlas/assets/ui/components.css
+@@ -1087,3 +1087,5 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
+ .sgz-person-portrait-panel .people-detail-portrait{position:relative}.sgz-portrait-retry{position:absolute;bottom:4px;left:4px;right:4px;z-index:1}.sgz-portrait-status{height:3em;overflow-wrap:anywhere}
+ 
+ .people-detail-head .sgz-person-portrait-panel{width:112px}@media(max-width:760px){.people-detail-head .sgz-person-portrait-panel{width:80px}}
++
++.sgz-person-portrait-panel .sgz-portrait-evidence-note{font-size:12px;line-height:1.5;overflow-wrap:anywhere;margin:8px 0 0;}
+diff --git a/atlas/index.html b/atlas/index.html
+index 03ea5df..ba4c66b 100644
+--- a/atlas/index.html
++++ b/atlas/index.html
+@@ -9289,7 +9289,7 @@ const app = createApp({
+         <div class="people-detail-head">
+           <person-portrait-panel :person="activePeopleDetail" :frame-style="portraitStyleFor(activePeopleDetail)"/>
+           <div class="people-detail-main">
+-            <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}</h3><p v-if="activePeopleDetail.portrait && activePeopleDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
++            <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}</h3>
+ 
+             <p v-if="workspaceMode==='review'&&activePeopleDetail.homonymStatus" class="homonym-note review-only">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
+             <p v-if="workspaceMode==='review'&&activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note review-only">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
