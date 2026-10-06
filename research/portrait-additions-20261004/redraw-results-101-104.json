@@ -1,0 +1,94 @@
+[
+  {
+    "order": 101,
+    "portraitId": "portrait:asset:dbdc8967d172373add90",
+    "personId": "person:source:6bea1ab8f79e",
+    "name": "钟会",
+    "originalSrc": "./assets/portraits/jin/zhong-hui.png",
+    "originalKind": "existing",
+    "reason": "explicit-reference-crop",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 32,
+    "ageBasis": "艺术表现年龄32岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "f53e5dd09ecfc38c7f17109a3dcc147634c3195c1512630c8ed5c7a935adc577",
+    "outputStem": "portrait-asset-dbdc8967d172373add90-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：钟会，男性，艺术表现年龄32岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：修长脸、平眉、细短须，墨青外袍与灰白内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-48a71c06-5974-42f7-aa98-5e43241b7910.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-dbdc8967d172373add90-redraw.png",
+    "sha256": "a5a2499c1277760d23e2aea935f7dc9d9c4c4de97563dff3bb28ea4717731248",
+    "dimensions": [
+      941,
+      1672
+    ]
+  },
+  {
+    "order": 102,
+    "portraitId": "portrait:asset:8aa07e9bb838c9205054",
+    "personId": "person:jin:xun-xu",
+    "name": "荀勖",
+    "originalSrc": "./assets/portraits/jin/xun-xu.png",
+    "originalKind": "existing",
+    "reason": "explicit-reference-crop",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 40,
+    "ageBasis": "艺术表现年龄40岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "995e7d6f4af5905c8394969959d5cbe6d478b5ac1ab90ff0c364df7fa1891d72",
+    "outputStem": "portrait-asset-8aa07e9bb838c9205054-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：荀勖，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方脸、浓眉、修整短须，深褐外袍与暗红内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-37735596-e618-48b7-92ec-95baa1359e2e.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-8aa07e9bb838c9205054-redraw.png",
+    "sha256": "fe84a2870742046749f1f8d8e2464abc2db009fdca8cc4b8315864bfecd27040",
+    "dimensions": [
+      941,
+      1672
+    ]
+  },
+  {
+    "order": 103,
+    "portraitId": "portrait:asset:5d0c9bea5f08689da2ad",
+    "personId": "person:jin:pei-xiu",
+    "name": "裴秀",
+    "originalSrc": "./assets/portraits/jin/pei-xiu.png",
+    "originalKind": "existing",
+    "reason": "explicit-reference-crop",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 40,
+    "ageBasis": "艺术表现年龄40岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "b442648f6703df0b03744199916afd78c0c30ddf71945fbef7bb57f60f6e81e5",
+    "outputStem": "portrait-asset-5d0c9bea5f08689da2ad-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：裴秀，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：高颧骨、长方脸、细短须，蓝灰外袍与赭色内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-aeeb368d-a8d9-4875-a99d-a2c6ae69273b.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-5d0c9bea5f08689da2ad-redraw.png",
+    "sha256": "c63ecffdfaef02dc2608a04f5443fa37ddda9ed8f41a40b2fc5be7837d820130",
+    "dimensions": [
+      941,
+      1672
+    ]
+  },
+  {
+    "order": 104,
+    "portraitId": "portrait:asset:60bc148d9c4c1439d431",
+    "personId": "person:jin:yang-hu",
+    "name": "羊祜",
+    "originalSrc": "./assets/portraits/jin/yang-hu.png",
+    "originalKind": "existing",
+    "reason": "explicit-reference-crop",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 50,
+    "ageBasis": "艺术表现年龄50岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "45fe0895546b6de03b0b2539667756f1dba3b90d8b39db064d8631b4ea220464",
+    "outputStem": "portrait-asset-60bc148d9c4c1439d431-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：羊祜，男性，艺术表现年龄50岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：椭圆脸、直眉、短须，墨黑外袍与深青内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f2385d4b-885d-4b7c-8692-016d118e741f.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-60bc148d9c4c1439d431-redraw.png",
+    "sha256": "3eb05e4e909a6170867b97941d797cbb6f284040ad1b0cf5ddec6c1edc82e392",
+    "dimensions": [
+      941,
+      1672
+    ]
+  }
+]
