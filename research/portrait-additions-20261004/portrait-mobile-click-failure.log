@@ -1,0 +1,36 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-portrait-id="portrait:asset:d29566b59bedbdb204e7"]:visible').first()[22m
+[2m    - locator resolved to <button type="button" aria-pressed="false" class="sgz-portrait-control" data-portrait-id="portrait:asset:d29566b59bedbdb204e7">立绘1</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <img alt="呂岱立绘" loading="lazy" decoding="async" src="./assets/portraits/v58/lu-dai.png"/> from <div aria-busy="false" class="people-detail-portrait">…</div> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <img alt="呂岱立绘" loading="lazy" decoding="async" src="./assets/portraits/v58/lu-dai.png"/> from <div aria-busy="false" class="people-detail-portrait">…</div> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    58 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <img alt="呂岱立绘" loading="lazy" decoding="async" src="./assets/portraits/v58/lu-dai.png"/> from <div aria-busy="false" class="people-detail-portrait">…</div> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at /workspace/scratch/ea3fed8f4c52/site-recovery/work/verify-portrait-batch.mjs:23:153 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0
