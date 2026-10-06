@@ -1,5 +1,5 @@
 {
-  "status": "needs-byte-exact-text-recommit",
+  "status": "recovered-and-native-Git-byte-verified",
   "verifiedFiles": 461,
   "mismatches": [
     {
@@ -9,5 +9,7 @@
       "crlfCount": 251
     }
   ],
-  "activePortraitMismatches": 0
+  "activePortraitMismatches": 0,
+  "recoveryCommit": "9857696bb1ca16af314b5ad304a5f938fc17b4a6",
+  "mismatchesRemaining": 0
 }
