@@ -1,8 +1,8 @@
 {
   "status": "in-progress",
   "expectedNew": 100,
-  "newProduced": 89,
-  "newAccepted": 89,
+  "newProduced": 93,
+  "newAccepted": 93,
   "expectedExisting": 500,
   "expectedIndependentRedraw": 150,
   "existingIndependentRedrawProduced": 52,
@@ -101,5 +101,9 @@
   "latestSavedSiteSource": "e93741275485dce7167ba282f1222bde81e43d42",
   "latestDeploymentStatus": "building",
   "publishedNewCount": 77,
-  "publishedIndependentRedrawCount": 40
+  "publishedIndependentRedrawCount": 40,
+  "sourceValidatedNew": 85,
+  "sourceValidatedRedraw": 48,
+  "localIntegratedNew": 85,
+  "localIntegratedRedraw": 48
 }

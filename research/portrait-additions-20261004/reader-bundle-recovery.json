@@ -3,6 +3,10 @@
   "observedError": "ENOTEMPTY during generated reader-bundle replacement",
   "source": "site-recovery/atlas/scripts/build-reader-bundle.mjs",
   "change": "rmSync maxRetries=3, retryDelay=100 ms; only existing generated output replacement",
-  "status": "verification-running",
-  "originalAcceptedFilesUnchanged": true
+  "status": "passed",
+  "originalAcceptedFilesUnchanged": true,
+  "sourceTests": 58,
+  "builtSuiteTests": 247,
+  "portraitViewportChecks": 16,
+  "pipelineExitCode": 0
 }
