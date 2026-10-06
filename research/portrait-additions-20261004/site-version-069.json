@@ -1,0 +1,26 @@
+{
+  "newCount": 100,
+  "independentRedrawCount": 80,
+  "sourceCommit": "c2796125c0b7207e71d17d3de8e128576ceebe2f",
+  "savedVersion": {
+    "id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_267b6ddd149c81919006e4233a7a7ecb",
+    "project_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+    "version_number": 69,
+    "source": {
+      "commit_sha": "c2796125c0b7207e71d17d3de8e128576ceebe2f"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000008d14820e8ee74dd4e1c8b7a5",
+      "content_hash": "sha256:41897935b7a5ee61fce3fceee0562d53a57765f2dd79f8e4cd34eac71913dc1b",
+      "size_bytes": 90050560,
+      "file_count": 2558
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": null,
+  "deliveryStatus": "Saved recoverable checkpoint; live owner-private version remains V68",
+  "verification": "58 source tests, 247 built tests, 16 batch viewport checks",
+  "archiveStatus": "Local package separately passed gzip integrity; native stored archive"
+}
