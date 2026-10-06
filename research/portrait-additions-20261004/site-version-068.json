@@ -1,0 +1,39 @@
+{
+  "newCount": 100,
+  "independentRedrawCount": 72,
+  "sourceCommit": "2118745f3525e1a1967921dfcdea190ef07085af",
+  "savedVersion": {
+    "id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_c67a163744208191a1cc7d934fd51252",
+    "project_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+    "version_number": 68,
+    "source": {
+      "commit_sha": "2118745f3525e1a1967921dfcdea190ef07085af"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000006bb081f4a61f903bb8dd5798",
+      "content_hash": "sha256:8f0fb0719aa250e6c438004bd3e7654969d6e4ea893219981c21bc259ff6c94e",
+      "size_bytes": 90439680,
+      "file_count": 2572
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ac4f9cbca8c8191924a1bf9eb42e96c",
+    "project_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+    "title": "观史台",
+    "version_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_c67a163744208191a1cc7d934fd51252",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "darrengavi3--zhiguanpu-private",
+    "failure_message": null,
+    "env_set_revision": 1,
+    "updated_at": "2026-10-06T13:38:38.990059+00:00"
+  },
+  "archiveStatus": "Local package passed separate gzip integrity; native stored archive",
+  "verification": "58 source tests, 247 built tests, 16 batch viewport checks, 54 full UI checks, 9 portrait interaction checks"
+}
