@@ -716,5 +716,9 @@
       "storedAt": "same path on codex/frontal-portraits-20261004"
     }
   ],
-  "recovery": "Read-only restore exact V69 source commit; create non-main branch; apply source.patch or exact snapshot files; add image files from their unchanged canonical paths in codex/frontal-portraits-20261004; verify SHA-256; reuse final checks only while source/build remains byte-identical. Do not push main without explicit authorization."
+  "recovery": "Read-only restore exact V69 source commit; create non-main branch; apply source.patch or exact snapshot files; add image files from their unchanged canonical paths in codex/frontal-portraits-20261004; verify SHA-256; reuse final checks only while source/build remains byte-identical. Do not push main without explicit authorization.",
+  "finalEvidenceCommit": "19f64c456242dd1ef5737d21ed0897671f2cc532",
+  "finalEvidenceTree": "2b418379d7fcfb956494304d9642168429f74634",
+  "finalEvidencePath": "research/portrait-additions-20261004/integration-final-100-150.json",
+  "finalEvidenceSha256": "72519c8e7eb8ab73ccb97852d1148d8cf25e38bc5d197e6187703efec78610e6"
 }

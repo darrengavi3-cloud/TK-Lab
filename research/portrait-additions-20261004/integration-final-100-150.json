@@ -1,0 +1,129 @@
+{
+  "status": "passed",
+  "newIntegrated": 100,
+  "independentRedrawIntegrated": 150,
+  "sourceTests": 58,
+  "builtSuiteTests": 247,
+  "steps": [
+    {
+      "phase": "source",
+      "command": [
+        "npm",
+        "run",
+        "verify:source"
+      ],
+      "exitCode": 0,
+      "log": "final-source.log"
+    },
+    {
+      "phase": "release",
+      "command": [
+        "npm",
+        "run",
+        "release:offline"
+      ],
+      "exitCode": 0,
+      "log": "final-release.log"
+    },
+    {
+      "phase": "new-built-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100",
+        "--built"
+      ],
+      "exitCode": 0,
+      "log": "final-new-built-pages.log"
+    },
+    {
+      "phase": "new-source-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100"
+      ],
+      "exitCode": 0,
+      "log": "final-new-source-pages.log"
+    },
+    {
+      "phase": "redraw-built-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150",
+        "redraw",
+        "--built"
+      ],
+      "exitCode": 0,
+      "log": "final-redraw-built-pages.log"
+    },
+    {
+      "phase": "redraw-source-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150",
+        "redraw"
+      ],
+      "exitCode": 0,
+      "log": "final-redraw-source-pages.log"
+    },
+    {
+      "phase": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "log": "final-diff.log"
+    }
+  ],
+  "coreEvidence": "integration-final-core-passed-before-report-key-fix.json",
+  "coreReusedBecause": "Only QA report filename keys changed; source, assets and build inputs stayed frozen.",
+  "inputFingerprint": {
+    "atlas/sources.lock.json": "4f48573a3e438e702153f156ebef00771e7a5d735b6aa31a738ab711e6d2d35d",
+    "release-metadata/canonical-sources.lock.json": "4f48573a3e438e702153f156ebef00771e7a5d735b6aa31a738ab711e6d2d35d",
+    "release-metadata/reader-bundle.json": "8d82f2904724987860c828a7a30e89dc3025f9df32ed5dd2a6cd4f264afa6004",
+    "atlas/data/accepted-portrait-additions-20261004.json": "686a3842aaf775524bd1051ca4fe971458fcae7ff31415f1f5feb7c569c91fa7",
+    "atlas/data/accepted-independent-redraws-20261004.json": "c3bf2c2b0e4bda066b612e2a78f40a1f041faa11783a2c9969c680319424a701",
+    "dist/client/legacy/data/portrait-manifest.json": "8298336e19b9e082bb9c25c364404c8a3961b8d2571ea0277e746c9ad6310875"
+  },
+  "costumeEvidenceStatus": "待考",
+  "startedAt": "2026-10-06T15:21:43.345946+00:00",
+  "portraitViewportChecks": 1000,
+  "reports": [
+    "portrait-new-batch-1-100-all-built.json",
+    "portrait-new-batch-1-100-all.json",
+    "portrait-redraw-batch-1-150-all-built.json",
+    "portrait-redraw-batch-1-150-all.json"
+  ],
+  "failures": 0,
+  "inputFingerprintUnchanged": true,
+  "completedAt": "2026-10-06T15:22:46.790249+00:00",
+  "supersededReportKeyFailures": [
+    {
+      "phase": "new-built-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100",
+        "--built"
+      ],
+      "exitCode": 1,
+      "log": "final-new-built-pages.log"
+    },
+    {
+      "phase": "new-source-pages",
+      "command": [
+        "node",
+        "work/verify-portrait-batch.mjs",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100"
+      ],
+      "exitCode": 1,
+      "log": "final-new-source-pages.log"
+    }
+  ],
+  "reportAggregationCorrection": "Only source/release core steps reused; superseded report-key failures retained separately. All four final page runs and final diff passed."
+}

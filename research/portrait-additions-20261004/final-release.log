@@ -1,0 +1,1264 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 release:offline
+> node atlas/scripts/release-check.mjs && npm run sync:reader && npm run build:catalogue && npm run typecheck && npm run lint && npm run build:site && npm run test:built
+
+
+▶ build-all.mjs
+V60 工作簿未提供；使用已提交且受 sources.lock.json 保护的生成结果。
+V61 工作簿未全部提供；使用已提交且受 sources.lock.json 保护的生成结果。
+
+▶ build-v46-portrait-manifest.mjs
+{"defaultPeople":123,"assetRecords":600,"indexedPersonIds":598,"specificPortraits":600,"designOnlyPortraits":0,"fallbackPortraits":0,"v62PortraitRecords":100,"peopleWithMultiplePortraits":2,"legacyPersonIdAliases":31,"figmaBoardRecords":50,"figmaBoardMapped":50,"v58PortraitRecords":20,"v58PortraitMapped":20,"v70PortraitRecords":50,"v73PortraitRecords":100,"dengAiSrc":"./assets/portraits/20261004/frontal/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png","plannedV62Portraits":100,"readyV62Portraits":100}
+
+▶ build-v63-person-registry.mjs
+{
+  "ok": true,
+  "people": 5234,
+  "readerPeople": 3621,
+  "readerScopeVersion": "V90",
+  "readerScopePeople": 3621,
+  "scopeExcludedPeople": 29,
+  "nonPersonExclusions": 29,
+  "legacyMappings": 1140,
+  "sourceRecordMappings": 2013,
+  "ziConflicts": 17,
+  "isolatedSnapshotRecords": 18,
+  "addedJinLegacyMappings": 9,
+  "protectedExistingPeople": 10,
+  "portraitAssets": 600,
+  "portraitPersonIds": 598,
+  "unresolvedPortraits": 0,
+  "verifiedFieldCounts": {
+    "name": 3621,
+    "aliases": 499,
+    "zi": 122,
+    "birthplace": 71,
+    "birthYear": 38,
+    "deathYear": 61,
+    "bio": 102,
+    "bioCitations": 28,
+    "bioClassical": 0,
+    "dynastyTags": 3209,
+    "historicalAffiliations": 46,
+    "appointments": 146,
+    "peerage": 371,
+    "portraits": 598
+  }
+}
+
+▶ build-v66-peerage-stages.mjs
+{
+  "sourceReaderVisibleEvents": 525,
+  "sourceReaderVisibleRelations": 542,
+  "sourceReaderVisiblePeople": 374,
+  "closedEvents": 525,
+  "linkedEvents": 194,
+  "hanPredecessorEvents": 79,
+  "rankAmbiguousEvents": 22,
+  "dynastyReviewEvents": 2,
+  "postWeiReviewEvents": 2,
+  "missingYearEvents": 227,
+  "stageMisalignedEvents": 1,
+  "partiallyLinkedEvents": 1,
+  "rankStages": 603,
+  "titleStages": 641,
+  "multiRankEvents": 50,
+  "stageAlignmentReviewEvents": 29,
+  "linkedRelations": 194,
+  "linkedPeople": 166,
+  "dispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 194,
+    "missing-year": 227,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "phaseCounts": {
+    "han-predecessor": 79,
+    "missing-year-review": 227,
+    "mixed-stages": 1,
+    "post-wei-review": 2,
+    "wei-inherited-han": 159,
+    "wei-xianxi-five-rank": 57
+  },
+  "stageDispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 195,
+    "missing-year": 304,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "titleClassifiedMarquisStages": 289,
+  "xianxiFiveRankMarquisStages": 16
+}
+
+▶ build-v66-fangzhen-seats.mjs
+{
+  "totalRecords": 533,
+  "v65ReaderVisible": 45,
+  "seatVerified": 27,
+  "readerVisible": 45,
+  "reviewOnly": 488,
+  "readerVisibleWithSeat": 27,
+  "readerVisibleWithoutSeat": 18,
+  "upstreamReviewOnly": 488,
+  "upstreamVisibleSeatUnresolved": 18,
+  "v62JinTotal": 29,
+  "v62JinReaderVisible": 29,
+  "v62JinSeatVisible": 25,
+  "v62JinSeatSuppressed": 4,
+  "bySeatResolution": {
+    "not-assessed-upstream-review-only": 488,
+    "unresolved": 18,
+    "verified": 27
+  },
+  "byPublication": {
+    "reader-visible": 45,
+    "review-only": 488
+  }
+}
+
+▶ build-reader-bundle.mjs --relations-only
+已生成 V63 纯净读者人物关联：任官 263，封爵关系 535
+
+▶ build-office-succession.mjs
+已生成 3 个职官的同源历任投影。
+
+▶ build-v69-data.mjs
+{
+  "ok": true,
+  "people": {
+    "people": 3621,
+    "rulers": 16,
+    "peopleWithLifeEvents": 514,
+    "lifeEvents": 947
+  },
+  "portraitCandidates": {
+    "candidates": 100,
+    "existingPortraitAssets": 600,
+    "expectedAfterProduction": 375
+  },
+  "battles": {
+    "records": 62,
+    "linkedRecords": 49,
+    "noExplicitPersonRecords": 12,
+    "ambiguousRecords": 1,
+    "links": 106
+  },
+  "fangzhen": {
+    "records": 523,
+    "verified": 45,
+    "candidate": 478,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 99,
+      "魏": 173,
+      "吴": 213,
+      "西晋": 31,
+      "东晋": 1
+    }
+  },
+  "epigraphy": {
+    "records": 166,
+    "withInscription": 59,
+    "withoutInscription": 107,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 8,
+      "魏": 20,
+      "吴": 15,
+      "西晋": 56,
+      "东晋": 61
+    }
+  },
+  "aggregate": "f068bb462860511734ba315eb39053f57e93a5a41132a13937582b948eaaa2e3"
+}
+
+▶ build-v73-review-status-ledger.mjs
+{
+  "ok": true,
+  "totals": {
+    "verified": 3960,
+    "pending": 2641,
+    "disputed": 94,
+    "suppressed": 108
+  },
+  "modules": [
+    {
+      "label": "人物实体",
+      "verified": 3621,
+      "pending": 1599,
+      "disputed": 14,
+      "suppressed": 29,
+      "excludedFromStatistics": 1642
+    },
+    {
+      "label": "任官事实",
+      "verified": 263,
+      "pending": 507,
+      "disputed": 2,
+      "suppressed": 79,
+      "excludedFromStatistics": 588
+    },
+    {
+      "label": "州镇职任",
+      "verified": 45,
+      "pending": 408,
+      "disputed": 70,
+      "suppressed": 0,
+      "excludedFromStatistics": 503
+    },
+    {
+      "label": "金石记录",
+      "verified": 31,
+      "pending": 127,
+      "disputed": 8,
+      "suppressed": 0,
+      "excludedFromStatistics": 105
+    }
+  ]
+}
+
+▶ build-release-summary.mjs
+{"people":3621,"appointments":{"verified":263,"pending":507,"disputed":2,"suppressed":79},"biographies":101,"portraitAssets":600,"peopleWithPortraits":593,"peopleWithEvents":514}
+
+▶ build-local-data.mjs
+已校验并生成十六期注册表脚本：huangjin → shaodi → dongzhuo → xingping → jianbing → guandu → chibi → xiangfan → sanguo → beifa → guijin → hanwang → jinchu → taikang → hui_di → yongjia
+已校验并生成本地州郡几何脚本：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/assets/map/data/All_Provinces.json
+已校验并生成 V7 历史证据脚本：16 期、19 条来源
+确定性写入：0 个产物发生变化，4 个产物与规范源已一致
+
+▶ build-reader-bundle.mjs
+已生成 V69 读者 Web 包：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-读者版
+读者包：871 文件，922860318 字节，3621 人，600 张立绘
+泄露扫描：本机绝对路径0，审校运行文件0，禁止投影字段0
+
+▶ build-portable-export.mjs
+已生成轻量联网单文件：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-轻量单文件版.html（52674809 字节）
+已更新兼容便携路径：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/三国职官谱-单文件版.html
+单文件立绘：内嵌 8/598 张，原图预算 18867998/18874368 字节
+已生成真离线 ZIP：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-离线版.zip（871 个文件，908605747 字节，远程运行依赖 0）
+
+▶ build-asset-manifest.mjs
+已生成资源清单：1113 个文件，1072432381 字节
+
+▶ build-deployment-manifest.mjs
+已生成部署清单：873 个文件，1884304213 字节
+部署聚合哈希：d6ecbd91065ee3ac2ed26e83e1d9739d171327d95134aed11fa5a7df9f7e0818
+
+V90 build-all 已完成。
+输入锁：ef1a9f1622912f96833d78afd2d4161f770487fef5e7afc8b4866d17e292cb37
+产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单
+
+▶ build-all.mjs
+V60 工作簿未提供；使用已提交且受 sources.lock.json 保护的生成结果。
+V61 工作簿未全部提供；使用已提交且受 sources.lock.json 保护的生成结果。
+
+▶ build-v46-portrait-manifest.mjs
+{"defaultPeople":123,"assetRecords":600,"indexedPersonIds":598,"specificPortraits":600,"designOnlyPortraits":0,"fallbackPortraits":0,"v62PortraitRecords":100,"peopleWithMultiplePortraits":2,"legacyPersonIdAliases":31,"figmaBoardRecords":50,"figmaBoardMapped":50,"v58PortraitRecords":20,"v58PortraitMapped":20,"v70PortraitRecords":50,"v73PortraitRecords":100,"dengAiSrc":"./assets/portraits/20261004/frontal/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png","plannedV62Portraits":100,"readyV62Portraits":100}
+
+▶ build-v63-person-registry.mjs
+{
+  "ok": true,
+  "people": 5234,
+  "readerPeople": 3621,
+  "readerScopeVersion": "V90",
+  "readerScopePeople": 3621,
+  "scopeExcludedPeople": 29,
+  "nonPersonExclusions": 29,
+  "legacyMappings": 1140,
+  "sourceRecordMappings": 2013,
+  "ziConflicts": 17,
+  "isolatedSnapshotRecords": 18,
+  "addedJinLegacyMappings": 9,
+  "protectedExistingPeople": 10,
+  "portraitAssets": 600,
+  "portraitPersonIds": 598,
+  "unresolvedPortraits": 0,
+  "verifiedFieldCounts": {
+    "name": 3621,
+    "aliases": 499,
+    "zi": 122,
+    "birthplace": 71,
+    "birthYear": 38,
+    "deathYear": 61,
+    "bio": 102,
+    "bioCitations": 28,
+    "bioClassical": 0,
+    "dynastyTags": 3209,
+    "historicalAffiliations": 46,
+    "appointments": 146,
+    "peerage": 371,
+    "portraits": 598
+  }
+}
+
+▶ build-v66-peerage-stages.mjs
+{
+  "sourceReaderVisibleEvents": 525,
+  "sourceReaderVisibleRelations": 542,
+  "sourceReaderVisiblePeople": 374,
+  "closedEvents": 525,
+  "linkedEvents": 194,
+  "hanPredecessorEvents": 79,
+  "rankAmbiguousEvents": 22,
+  "dynastyReviewEvents": 2,
+  "postWeiReviewEvents": 2,
+  "missingYearEvents": 227,
+  "stageMisalignedEvents": 1,
+  "partiallyLinkedEvents": 1,
+  "rankStages": 603,
+  "titleStages": 641,
+  "multiRankEvents": 50,
+  "stageAlignmentReviewEvents": 29,
+  "linkedRelations": 194,
+  "linkedPeople": 166,
+  "dispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 194,
+    "missing-year": 227,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "phaseCounts": {
+    "han-predecessor": 79,
+    "missing-year-review": 227,
+    "mixed-stages": 1,
+    "post-wei-review": 2,
+    "wei-inherited-han": 159,
+    "wei-xianxi-five-rank": 57
+  },
+  "stageDispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 195,
+    "missing-year": 304,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "titleClassifiedMarquisStages": 289,
+  "xianxiFiveRankMarquisStages": 16
+}
+
+▶ build-v66-fangzhen-seats.mjs
+{
+  "totalRecords": 533,
+  "v65ReaderVisible": 45,
+  "seatVerified": 27,
+  "readerVisible": 45,
+  "reviewOnly": 488,
+  "readerVisibleWithSeat": 27,
+  "readerVisibleWithoutSeat": 18,
+  "upstreamReviewOnly": 488,
+  "upstreamVisibleSeatUnresolved": 18,
+  "v62JinTotal": 29,
+  "v62JinReaderVisible": 29,
+  "v62JinSeatVisible": 25,
+  "v62JinSeatSuppressed": 4,
+  "bySeatResolution": {
+    "not-assessed-upstream-review-only": 488,
+    "unresolved": 18,
+    "verified": 27
+  },
+  "byPublication": {
+    "reader-visible": 45,
+    "review-only": 488
+  }
+}
+
+▶ build-reader-bundle.mjs --relations-only
+已生成 V63 纯净读者人物关联：任官 263，封爵关系 535
+
+▶ build-office-succession.mjs
+已生成 3 个职官的同源历任投影。
+
+▶ build-v69-data.mjs
+{
+  "ok": true,
+  "people": {
+    "people": 3621,
+    "rulers": 16,
+    "peopleWithLifeEvents": 514,
+    "lifeEvents": 947
+  },
+  "portraitCandidates": {
+    "candidates": 100,
+    "existingPortraitAssets": 600,
+    "expectedAfterProduction": 375
+  },
+  "battles": {
+    "records": 62,
+    "linkedRecords": 49,
+    "noExplicitPersonRecords": 12,
+    "ambiguousRecords": 1,
+    "links": 106
+  },
+  "fangzhen": {
+    "records": 523,
+    "verified": 45,
+    "candidate": 478,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 99,
+      "魏": 173,
+      "吴": 213,
+      "西晋": 31,
+      "东晋": 1
+    }
+  },
+  "epigraphy": {
+    "records": 166,
+    "withInscription": 59,
+    "withoutInscription": 107,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 8,
+      "魏": 20,
+      "吴": 15,
+      "西晋": 56,
+      "东晋": 61
+    }
+  },
+  "aggregate": "f068bb462860511734ba315eb39053f57e93a5a41132a13937582b948eaaa2e3"
+}
+
+▶ build-v73-review-status-ledger.mjs
+{
+  "ok": true,
+  "totals": {
+    "verified": 3960,
+    "pending": 2641,
+    "disputed": 94,
+    "suppressed": 108
+  },
+  "modules": [
+    {
+      "label": "人物实体",
+      "verified": 3621,
+      "pending": 1599,
+      "disputed": 14,
+      "suppressed": 29,
+      "excludedFromStatistics": 1642
+    },
+    {
+      "label": "任官事实",
+      "verified": 263,
+      "pending": 507,
+      "disputed": 2,
+      "suppressed": 79,
+      "excludedFromStatistics": 588
+    },
+    {
+      "label": "州镇职任",
+      "verified": 45,
+      "pending": 408,
+      "disputed": 70,
+      "suppressed": 0,
+      "excludedFromStatistics": 503
+    },
+    {
+      "label": "金石记录",
+      "verified": 31,
+      "pending": 127,
+      "disputed": 8,
+      "suppressed": 0,
+      "excludedFromStatistics": 105
+    }
+  ]
+}
+
+▶ build-release-summary.mjs
+{"people":3621,"appointments":{"verified":263,"pending":507,"disputed":2,"suppressed":79},"biographies":101,"portraitAssets":600,"peopleWithPortraits":593,"peopleWithEvents":514}
+
+▶ build-local-data.mjs
+已校验并生成十六期注册表脚本：huangjin → shaodi → dongzhuo → xingping → jianbing → guandu → chibi → xiangfan → sanguo → beifa → guijin → hanwang → jinchu → taikang → hui_di → yongjia
+已校验并生成本地州郡几何脚本：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/assets/map/data/All_Provinces.json
+已校验并生成 V7 历史证据脚本：16 期、19 条来源
+确定性写入：0 个产物发生变化，4 个产物与规范源已一致
+
+▶ build-reader-bundle.mjs
+已生成 V69 读者 Web 包：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-读者版
+读者包：871 文件，922860318 字节，3621 人，600 张立绘
+泄露扫描：本机绝对路径0，审校运行文件0，禁止投影字段0
+
+▶ build-portable-export.mjs
+已生成轻量联网单文件：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-轻量单文件版.html（52674809 字节）
+已更新兼容便携路径：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/三国职官谱-单文件版.html
+单文件立绘：内嵌 8/598 张，原图预算 18867998/18874368 字节
+已生成真离线 ZIP：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-离线版.zip（871 个文件，908605747 字节，远程运行依赖 0）
+
+▶ build-asset-manifest.mjs
+已生成资源清单：1113 个文件，1072432381 字节
+
+▶ build-deployment-manifest.mjs
+已生成部署清单：873 个文件，1884304213 字节
+部署聚合哈希：d6ecbd91065ee3ac2ed26e83e1d9739d171327d95134aed11fa5a7df9f7e0818
+
+V90 build-all 已完成。
+输入锁：ef1a9f1622912f96833d78afd2d4161f770487fef5e7afc8b4866d17e292cb37
+产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单
+
+✓ 连续两次构建哈希一致：bdd49fa3eb415eb9149e9adbf9832c79d089c25e9891aaf30b2faf1d5d19a243
+
+▶ verify-project.mjs
+项目验证通过
+十六期：184、189、190、194、199、200、208、219、220、228、263、264、266、280、290、311
+184/189/190 十三州、194/200 河西雍州、263 魏汉吴、264 魏吴、266 晋吴、280 十九州均已锁定
+职官谱｜州镇表｜金石录｜形势图命名、官品规则与东晋扩展边界已锁定
+
+▶ verify-v71.mjs
+✔ V75 removes five false people and consolidates corroboration without losing source evidence (326.74266ms)
+✔ V74 chancellery evidence preserves refutations, corrected subjects and unknown dates (29.109987ms)
+✔ reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate (202.317124ms)
+✔ identity resolution cannot publish an unreviewed appointment; source edits invalidate review (0.520502ms)
+✔ all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild (4.130521ms)
+✔ snapshots contain confirmed, bounded tenures only, including inclusive endpoints (2.879103ms)
+✔ verified administrative tenures resolve into person timelines; candidates do not (17.606853ms)
+✔ person links switch module, await data, and prevent stale results from replacing a later selection (0.375658ms)
+✔ host routes require the expected frame and origin, and preserve archive context (0.612539ms)
+✔ a history restore within people cancels an older in-flight person link (0.340706ms)
+✔ canonical, portable scripts and shared reader templates compile (432.802351ms)
+✔ all existing inscriptions, sections and variants are preserved verbatim (6.435583ms)
+✔ the final reader retains all six reviewed transcriptions and variants without legacy overlays (14.027991ms)
+✔ reviewed Wei texts reach the final reader with lacunae and provenance intact (3.049878ms)
+✔ epigraphy publication rejects changed sources, edited text and overwrites (10.246589ms)
+✔ epigraphy dates do not coerce unknown years into the Han period (3.915362ms)
+✔ the inscription filter includes transmitted and fragmentary texts without rewriting their status (3.922642ms)
+✔ reviewed old commentary retains its text and rejects altered apparatus (3.027754ms)
+✔ reviewed biographies pin identities and evidence without replacing existing biographies (35.272614ms)
+✔ Tai Shi corrections preserve source years and reject stale or ambiguous reviews (11.937839ms)
+✔ the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate (3.821532ms)
+✔ V76 corrects succession chronology and requires explicit guards for revised reviews (274.145878ms)
+✔ V76 biography corrections preserve old wording and reject stale or unreviewed replacements (37.802028ms)
+✔ V80 withdraws seven false identities while freezing all ten associated sources and original portrait files (196.995866ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1782.286089
+
+▶ verify-map-data.mjs
+地图几何验证通过
+184/190 州级结构：并州、扬州、豫州、兖州、青州、徐州、司隶、荆州、益州、凉州、交州、幽州、冀州
+263 郡级政权：wei、wu、shu
+264 郡级政权：wei、wu
+266 郡级政权：jin、wu
+郡级快照：200 年 99 郡；208 年 105 郡；220 年 125 郡
+V41 郡名锚点：十六期全部郡块均已生成
+280 十九州：并州、扬州、豫州、兖州、青州、徐州、司州、荆州、宁州、益州、梁州、秦州、交州、广州、平州、幽州、凉州、雍州、冀州
+十六期势力完整性、189 年官员注记、190 年分郡势力、194 兴平节点与 263/264 年状态已通过审计
+
+▶ verify-historical-model.mjs
+历史数据模型验证通过
+默认州镇职任：504 条；东晋扩展：2 条
+职官、爵位、人物、任官、辖区与史料关联字段完整
+
+▶ verify-research-model.mjs
+统一研究数据模型验证通过
+研究模型 v10；开府资格 5 类；行政沿革事件 51 条；V7时期快照 16 期、来源 19 条
+
+▶ verify-historical-consistency.mjs
+【年号与西元不符（州镇）】3 条
+    夏侯尚·荆州刺史｜约黄初六年（226年 → 黄初六年应为 225
+    裴潜·荆州刺史｜约黄初六年（226年 → 黄初六年应为 225
+    毌丘俭·都督豫州诸军事｜约嘉平四年（253年 → 嘉平四年应为 252
+【重复内容来源行对应多个人物（身份待核）】3 条
+    陆冲：person:snapshot260:056f9b6079050dd7 与 person:snapshot260:0d591cd61c9e314f（内容指纹 source:v61:snapshot260:8c8009d09b44e77b）
+    毛炅：person:snapshot260:470bd67ea96e7af6 与 person:snapshot260:4b3d9f3bec838e73（内容指纹 source:v61:snapshot260:0eeaaede9dc88b74）
+    杨欣：person:snapshot260:216ff0075f32fed8 与 person:snapshot260:9edcff995d08a5dc（内容指纹 source:v61:snapshot260:eabd7ca0d80f82b8）
+【任期文字无确切讫年而 endYear 有值】2 条
+    吴景·太守｜文「吴郡钱塘人，汉初平年间在任」 endYear=194
+    蔡遗·太守｜文「籍贯不详，约建安年间任」 endYear=219
+【人物名目是集合表述而非单一人物】2 条
+    庞氏三人｜person:peerage:41585dcf53dc6543
+    王昶子二人｜person:peerage:6662a44d6153b23a
+【人物名目含问号或自陈名失载】2 条
+    张?｜person:shu:0hwd4rt
+    虞君(名失载)｜person:wu:07mmfhv
+【人物名目含斜线（疑异写并列或解析残留）】2 条
+    丁固（密/宓）｜person:v90:3c415bbb9b5540ea
+    姚陶/旧｜person:wu:0g9k8rm
+【同名碑目且朝代相左】1 条
+    羊瑾碑 ×2｜jinshi-v55-8daa4af8f7a69945/东晋/第1801段  jinshi-v55-85ed7fb9382f60b4/西晋/第440段
+
+共 15 条候选待覆核；启发式命中不等于已确认错误，不得自动改写原文或提升审定状态。
+
+▶ verify-v63.mjs
+{
+  "ok": true,
+  "registryPeople": 5234,
+  "readerPeople": 3621,
+  "legacyMappings": 1140,
+  "sourceRecordMappings": 2013,
+  "originalZiConflicts": 14,
+  "additionalZiConflicts": 3,
+  "isolatedSnapshotRecords": 18,
+  "addedJinLegacyMappings": 9,
+  "protectedExistingPeople": 10,
+  "portraitAssets": 600,
+  "unresolvedPortraits": 0
+}
+
+▶ verify-v64.mjs
+{
+  "ok": true,
+  "v63": {
+    "registryPeople": 5234,
+    "readerPeople": 3621
+  },
+  "readerBundle": {
+    "files": 871,
+    "bytes": 922860318,
+    "aggregateSha256": "8be613c5f4660dab6731c9f262715a90f947866621b4a76e1ae2ac89f054a267"
+  },
+  "firstScreen": {
+    "files": 26,
+    "gzipBytes": 737089,
+    "limit": 819200
+  },
+  "lightHtml": {
+    "bytes": 52674809,
+    "limit": 83886080
+  },
+  "offlineZip": {
+    "bytes": 908605747
+  },
+  "deployment": {
+    "files": 873,
+    "aggregateSha256": "d6ecbd91065ee3ac2ed26e83e1d9739d171327d95134aed11fa5a7df9f7e0818"
+  },
+  "leakScan": "ok",
+  "jsonJsEquivalence": "ok",
+  "mapInvariant": [
+    "huangjin",
+    "shaodi",
+    "dongzhuo",
+    "xingping",
+    "jianbing",
+    "guandu",
+    "chibi",
+    "xiangfan",
+    "sanguo",
+    "beifa",
+    "guijin",
+    "hanwang",
+    "jinchu",
+    "taikang",
+    "hui_di",
+    "yongjia"
+  ]
+}
+
+▶ verify-v65-battle-shihuo.mjs
+{
+  "version": "V65",
+  "battlefields": {
+    "total": 12,
+    "coordinatesUnchanged": true,
+    "sourceClosed": 12
+  },
+  "shihuo": {
+    "total": 8,
+    "chartEligible": 4,
+    "notComparable": 4,
+    "explicitNoCandidate": 1
+  },
+  "checks": "passed"
+}
+
+▶ verify-v65-epigraphy.mjs
+{
+  "ok": true,
+  "baseline": {
+    "records": 188,
+    "withInscription": 50,
+    "withoutInscription": 138
+  },
+  "v65": {
+    "audited": 138,
+    "adopted": 2,
+    "adoptedIds": [
+      "wei-kongxian-stele",
+      "wu-liangxiu-stele"
+    ],
+    "remainingBlank": 136,
+    "sourceLevels": {
+      "individual-discovery": 136,
+      "金石目录录文": 2
+    }
+  },
+  "deterministic": true
+}
+
+▶ verify-v65-fangzhen.mjs
+V65 州镇验证通过
+州镇 533 条；Wikipedia 候选 182（原典已核 1，discovery-only 181）
+原缺定位 200 条；原典收口 19；reader-visible 45；review-only 488
+
+▶ verify-v65-research.mjs
+{
+  "status": "passed",
+  "generalTitles": {
+    "total": 154,
+    "byPolity": {
+      "wei": 46,
+      "shu": 35,
+      "wu": 51,
+      "jin": 22
+    },
+    "byDisposition": {
+      "确定": 89,
+      "推定": 20,
+      "明确无候选": 35,
+      "存疑": 1,
+      "排除": 6,
+      "争议": 3
+    },
+    "verifiedCount": 89,
+    "reviewOnlyCount": 65,
+    "openSearchCount": 0,
+    "exactHitCount": 4153,
+    "recordsWithExactHits": 137,
+    "recordsWithoutExactHits": 17,
+    "noExactHitKeys": [
+      "wei:112:安众将军",
+      "wei:113:安夷将军",
+      "wei:171:殄吴将军",
+      "wei:178:翼卫将军",
+      "wei:179:讨夷将军",
+      "wei:180:怀远将军",
+      "wei:182:忠义将军",
+      "wei:184:绥边将军",
+      "shu:180:中郎将系统",
+      "wu:70:威东将军",
+      "wu:72:威西将军",
+      "wu:131:威武将军",
+      "wu:180:中郎将系统",
+      "wu:181:校尉系统",
+      "wu:182:都尉系统",
+      "jin:150:中郎将系统",
+      "jin:152:都尉系统"
+    ]
+  },
+  "volumes": {
+    "reviewedVolumeCount": 6,
+    "volumesWithCandidates": 5,
+    "volumesWithoutInScopeCandidates": 1,
+    "candidateCount": 40,
+    "exclusionCount": 6,
+    "dispositionCounts": {
+      "确定": 5,
+      "排除": 1
+    }
+  },
+  "hashes": {
+    "generalTitleJson": "c995be26a4f94804e09a17c30c40dc4fb7bb4ff2b6e99321d5729280b6702528",
+    "volumeReviewJson": "eae8f2adeb974df4e3c4dc419c644a683cde94c22f447f3fac48022025095f8c"
+  }
+}
+
+▶ verify-v66-han-court-ui.mjs
+后汉官职结构图验收通过：规范数据未改，单一专题、东宫府属、全局检索边界与移动详情契约完整。
+
+▶ verify-v66-runtime-init.mjs
+V66 运行时初始化验证通过：持久化核心同步注册、接口门禁与 iframe 缓存键完整。
+
+▶ verify-v66.mjs
+{
+  "ok": true,
+  "version": "V66",
+  "people": 3621,
+  "portraits": 600,
+  "map": {
+    "periods": 16,
+    "files": 36,
+    "bytes": 7507925
+  },
+  "peerage": {
+    "events": 525,
+    "nodes": 13
+  },
+  "fangzhen": {
+    "audit": 533,
+    "reader": 45
+  },
+  "battle": {
+    "canonical": 84,
+    "reader": 62
+  }
+}
+
+▶ verify-v67.mjs
+{
+  "ok": true,
+  "fangzhen": {
+    "records": 45,
+    "verifiedSeats": 27,
+    "hiddenSeats": 18,
+    "linkedSeatPeriods": 17,
+    "canonicalSeatPeriods": 19
+  },
+  "epigraphy": {
+    "records": 188,
+    "withInscription": 52,
+    "withoutInscription": 136,
+    "pageSize": 12
+  },
+  "safeHighlight": true
+}
+
+▶ verify-v68.mjs
+{
+  "ok": true,
+  "biographies": 101,
+  "fangzhen": {
+    "records": 45,
+    "levels": {
+      "州": 36,
+      "方镇": 9
+    },
+    "dynasties": {
+      "后汉": 5,
+      "季汉": 6
+    }
+  },
+  "removedRelatedOfficials": true
+}
+
+▶ verify-v69.mjs
+{
+  "ok": true,
+  "people": 3621,
+  "lifeEvents": 947,
+  "portraitCandidates": 100,
+  "portraitCompleted": 100,
+  "portraitAdditionsV70": 50,
+  "battleLinks": 106,
+  "fangzhen": {
+    "records": 523,
+    "verified": 45,
+    "candidate": 478,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 99,
+      "魏": 173,
+      "吴": 213,
+      "西晋": 31,
+      "东晋": 1
+    }
+  },
+  "epigraphy": {
+    "records": 166,
+    "withInscription": 59,
+    "withoutInscription": 107,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 8,
+      "魏": 20,
+      "吴": 15,
+      "西晋": 56,
+      "东晋": 61
+    }
+  },
+  "figma": "complete"
+}
+
+▶ verify-v70.mjs
+{
+  "ok": true,
+  "version": "V70",
+  "readerPeople": 3621,
+  "portraits": {
+    "baseline": 350,
+    "addedV70": 50,
+    "addedV73": 100,
+    "total": 600
+  },
+  "v70": {
+    "dynasty": "魏",
+    "candidates": 50,
+    "readyAssets": 50,
+    "figma": "pending-figma-upload"
+  },
+  "fangzhenTitlesNormalized": true
+}
+
+▶ verify-v73.mjs
+{
+  "ok": true,
+  "version": "V73",
+  "readerPeople": 3621,
+  "portraits": {
+    "addedV73": 100,
+    "acceptedAdditional": 100,
+    "total": 600
+  },
+  "figma": {
+    "page": "V73 / Portraits",
+    "nodes": 100
+  },
+  "reviewModules": 4,
+  "removedNonPerson": "安国"
+}
+
+V90 release:check 全部通过。
+双重构建哈希：bdd49fa3eb415eb9149e9adbf9832c79d089c25e9891aaf30b2faf1d5d19a243
+当前不变量验证：20 项
+历史快照验证：未执行（使用 --include-historical 单独审计）
+注意：本命令不调用 Sites，也不修改站点权限。
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 sync:reader
+> node scripts/sync-reader-bundle.mjs
+
+已同步读者版：871 个文件，来源哈希 8be613c5f4660dab6731c9f262715a90f947866621b4a76e1ae2ac89f054a267
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:catalogue
+> node scripts/build-catalogue.mjs
+
+{"baselineRecords":7155,"seedBytes":41591093,"codeId":"9477b2bd58aa5de9d043f2911b61261114583f6a5d3687789b46ebcb45f7817a"}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 typecheck
+> tsc --noEmit --incremental false
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 lint
+> eslint . --ignore-pattern dist --ignore-pattern .next
+
+
+/workspace/scratch/ea3fed8f4c52/site-recovery/types/cloudflare.d.ts
+      1:1   warning  Unused eslint-disable directive (no problems were reported)
+  10014:44  warning  Unused eslint-disable directive (no problems were reported)
+  10031:70  warning  Unused eslint-disable directive (no problems were reported)
+
+✖ 3 problems (0 errors, 3 warnings)
+  0 errors and 3 warnings potentially fixable with the `--fix` option.
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:site
+> npm run build:catalogue && WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build && node scripts/prune-site-build.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:catalogue
+> node scripts/build-catalogue.mjs
+
+{"baselineRecords":7155,"seedBytes":41591093,"codeId":"9477b2bd58aa5de9d043f2911b61261114583f6a5d3687789b46ebcb45f7817a"}
+
+  vinext build  (Vite 8.0.16)
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+[1/5] analyze client references...
+[2K
+transforming...✓ 283 modules transformed.
+rendering chunks...
+✓ built in 1.83s
+[2/5] analyze server references...
+[2K
+transforming...✓ 145 modules transformed.
+rendering chunks...
+✓ built in 324ms
+[3/5] build rsc environment...
+[2K
+transforming...✓ 274 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 2.65s
+[4/5] build client environment...
+[2K
+transforming...✓ 150 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 866ms
+[5/5] build ssr environment...
+[2K
+transforming...✓ 143 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 499ms
+[0m
+  Route (app)
+  ─ ? /
+
+  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+Sites build pruned: kept 600 runtime portraits; removed 174 files (123943711 bytes); optimized 350 portraits (102388084 bytes); optimized 1 ui decorations (1951200 bytes); deployment manifest 2829 files (9167934a45ccd0e1a3b8e5b6661195bc530e72c7e82624f118c5213059164c72).
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 test:built
+> node --test tests/*.test.mjs
+
+✔ records an owner-only Sites access check; release requires freshness (3.771218ms)
+✔ release access rejects expired, future, malformed and widened snapshots (3.53752ms)
+✔ candidate visibility, workflow and factual verification remain independent (0.957201ms)
+✔ unknown endpoints and inferred years never make certain tenure claims (1.477553ms)
+✔ same-name people remain distinct; identity cycles and alias collisions fail (0.333956ms)
+✔ evidence binds an immutable source version and rejects a dangling or duplicate link (0.37083ms)
+✔ duplicate corroboration retains evidence but is neither false nor counted twice (0.343951ms)
+✔ revision conflict preserves original history and caller input is detached (9.084514ms)
+✔ editing a verified assertion requires review of the exact new bytes (1.611271ms)
+✔ import identity is stable across mapping key order but changes with file, mapping or importer (1.02417ms)
+✔ reader whitelist excludes working notes; source quotes retain exact whitespace (0.584728ms)
+✔ a fixed candidate ignores later edits; changed artifacts invalidate approval; success needs matching receipt (3.589739ms)
+✔ canonical hashing rejects lossy or non-JSON values (0.346414ms)
+✔ a pending alias never inherits the verified name decision (0.659509ms)
+✔ reader projection merges duplicate evidence without adding a second appointment (0.131836ms)
+✔ candidate manifest includes the older source revision actually cited (10.524792ms)
+✔ additive migration preserves owner and one saved fact feeds person, office, state and pinned quotations (1917.384461ms)
+✔ unknown and non-held tenures stay out of snapshots; withdrawing removes every managed view (1220.792855ms)
+✔ cross-polity, wrong-person, conflicting state claims and invalid unit links fail without partial facts (973.269538ms)
+✔ backup v4 retains ownership links and exact v2/v3 backups remain readable (666.273328ms)
+✔ explicit state power kinds publish without changing jurisdiction semantics (391.806588ms)
+✔ civil and military power combinations remain data, not a combined-office flag (440.716591ms)
+✔ shadow import closes the frozen V86 appointment status counts without promoting candidates (2.865593ms)
+✔ every original byte, including full registry and superseded decisions, is retained (106.753484ms)
+✔ person and appointment IDs are mapped one for one, not merely counted (235.385658ms)
+✔ existing reader payloads, peerage relation keys and identity maps survive unchanged (183.984117ms)
+✔ source excerpts and supporting quotes are preserved without trimming or normalization (20.992279ms)
+✔ unresolved identity links are explicit and do not invent people or erase facts (3.18027ms)
+✔ non-person exclusions stay as terms without fabricated person IDs (194.422471ms)
+✔ identical original fields match without changing inputs (0.904312ms)
+✔ rewritten officeNameOriginal does not authenticate with the old pin (0.142251ms)
+✔ rewritten natureOriginal does not authenticate with the old pin (0.074931ms)
+✔ rewritten polityOriginal does not authenticate with the old pin (0.083775ms)
+✔ rewritten jurisdictionOriginal does not authenticate with the old pin (0.072007ms)
+✔ trimming whitespace is a change, not a harmless normalization (0.102232ms)
+✔ Unicode normalization is not applied to original text (0.089753ms)
+✔ missing values are not treated as matching unknowns (0.068762ms)
+✔ numeric fields cannot impersonate original text (0.328347ms)
+✔ empty original jurisdiction is preserved when both records have it (0.274698ms)
+✔ null objects do not match (0.133337ms)
+✔ inspect service invokes original-text guard after origin identity and before accepting graph (5.831316ms)
+✔ owner guard precedes /admin/research (7.755762ms)
+✔ owner guard precedes /api/admin/research/people/person%3Afixture (0.714771ms)
+✔ owner guard precedes /api/admin/research/inspect (0.510057ms)
+✔ non-owner cannot open the research page (0.569295ms)
+✔ owner opens the actual HTML and finds its link in existing navigation (2.706938ms)
+✔ page HEAD is bodyless and uncached (0.354886ms)
+✔ page does not accept POST (0.618338ms)
+✔ existing core preview route remains intact (1.796877ms)
+✔ inspect preserves guard {"origin":"https://other.test"} (0.708962ms)
+✔ inspect preserves guard {"sec-fetch-site":"cross-site"} (2.363848ms)
+✔ inspect preserves guard {"x-catalogue-request":"0"} (0.412041ms)
+✔ existing inspect keeps readOnly and persisted:false (1.312608ms)
+✔ malformed JSON remains 400 (0.589495ms)
+✔ existing ResearchError remains 422 (0.733199ms)
+✔ inherited 1 MiB body limit remains active (1.776136ms)
+✔ action headers remain rejected before the new page (0.304111ms)
+✔ unrelated public route remains delegated (0.156352ms)
+✔ unknown time preserves original words and null endpoints (2.252093ms)
+✔ BCE years are supported with no invented year zero (0.342549ms)
+✔ one-sided chronological bounds remain ranges, not complete tenures (0.186396ms)
+✔ invalid historical time rejected: zero (0.57893ms)
+✔ invalid historical time rejected: fraction (0.192927ms)
+✔ invalid historical time rejected: out of range (0.128961ms)
+✔ invalid historical time rejected: reversed (0.120779ms)
+✔ invalid historical time rejected: year with unequal endpoints (0.113649ms)
+✔ invalid historical time rejected: unknown with numbers (0.134099ms)
+✔ invalid historical time rejected: known with unknown certainty (0.254358ms)
+✔ invalid historical time rejected: inferred without basis (0.134941ms)
+✔ invalid historical time rejected: missing era field (0.130754ms)
+✔ invalid historical time rejected: invalid precision (0.135321ms)
+✔ invalid historical time rejected: null time (0.08066ms)
+✔ continuous tenure requires separate holding, bounds and continuity evidence (21.965903ms)
+✔ known start with unknown end never extends indefinitely (2.977589ms)
+✔ attestation supports only the evidenced year, not surrounding years (11.080517ms)
+✔ uncertain endpoint ranges yield only the common definite interval (4.432188ms)
+✔ inferred dates cannot establish definite occupancy (6.794605ms)
+✔ pending holding stays research-visible but not definite (1.297165ms)
+✔ disputed holding stays research-visible but not definite (1.337295ms)
+✔ workflow ready does not upgrade pending research assessment (1.87942ms)
+✔ excluded records remain in research results and are not counted (1.352958ms)
+✔ not-held is not actual tenure (3.234251ms)
+✔ posthumous is not actual tenure (1.201864ms)
+✔ not-held with an actual tenure selection is rejected, not silently published (0.878274ms)
+✔ impossible adopted endpoints must become alternatives (0.881018ms)
+✔ counter-evidence blocks a definite claim without deleting either source (1.20597ms)
+✔ competing factual claims are preserved and not averaged into one date (1.360309ms)
+✔ source marked excluded cannot establish a definite claim (1.517252ms)
+✔ capture and surrender events do not fabricate a death or an end date (1.325788ms)
+✔ event date cannot be used as the tenure start without an independent claim (1.514763ms)
+✔ relative chronology allows unknown dates but rejects cycles (0.774419ms)
+✔ one event can refer to multiple concurrent tenures without merging their IDs (8.467558ms)
+✔ duplicate stable IDs and missing foreign keys fail (1.728757ms)
+✔ adoption cannot point to another tenure or question (0.596325ms)
+✔ the same source can support several claims but not duplicate the same link (5.864645ms)
+✔ raw text and whitespace are verified byte-for-byte through the source digest (1.684179ms)
+✔ missing pinned source never falls back to a newer source version (0.879305ms)
+✔ future sources are excluded by the captured catalogue watermark (0.70061ms)
+✔ the same revision cannot carry contradictory digests (2.068561ms)
+✔ textual variants keep the exact reading in each fixed witness (4.862307ms)
+✔ a textual variant requires different pinned witnesses (0.909119ms)
+✔ legacy preview preserves IDs and raw dates without inventing events or tenure (3.818787ms)
+✔ preview includes exact source text and actual old source revision (2.23039ms)
+✔ later record edits do not alter an earlier preview manifest (12.14762ms)
+✔ different data at a new watermark changes the manifest (2.349257ms)
+✔ corrupt origin payload cannot produce a preview (0.985783ms)
+✔ same-name people do not share career records (1.05794ms)
+✔ legacy variant flags are not automatically reclassified as textual variants (2.396397ms)
+✔ a known duplicate remains auditable and excluded, not a second real tenure (2.432891ms)
+✔ person-level evidence is pinned even before identity claims are split (3.070983ms)
+✔ inspection is read-only and checks origins before producing presence results (13.129468ms)
+✔ request captures the watermark once before loading sources (6.058893ms)
+✔ watermark parser rejects "" (0.434735ms)
+✔ watermark parser rejects "-1" (0.144965ms)
+✔ watermark parser rejects "1.5" (0.11398ms)
+✔ watermark parser rejects "03" (0.080209ms)
+✔ watermark parser rejects "Infinity" (0.070435ms)
+✔ watermark parser rejects "9007199254740992" (0.087721ms)
+✔ zero watermark is explicit, not a request for latest (0.1481ms)
+✔ future requested watermarks are rejected (2.723021ms)
+✔ source fan-out limit fails before reading hundreds of individual revisions (2.47906ms)
+✔ research HTTP route rejects unauthorized actor before any data read: null (7.02657ms)
+✔ research HTTP route rejects unauthorized actor before any data read: other (1.635317ms)
+✔ owner can fetch the actual research preview route with no-store headers (8.078731ms)
+✔ cross-origin inspect is blocked before repository reads (1.822816ms)
+✔ same-origin inspect uses validation, not save or publish routes (4.693876ms)
+✔ malformed JSON is a client error, not an internal failure (3.888642ms)
+✔ invalid research structure produces 422 without changing data (1.501354ms)
+✔ research has no anonymous public route (0.631797ms)
+✔ malformed encoded IDs are rejected by the real router (1.777098ms)
+✔ an adopted attestation cannot fall outside the adopted tenure bounds (1.01413ms)
+✔ all source revisions are detached before asynchronous digest verification (1.583991ms)
+✔ caller edits cannot change graph selections during verification (0.917101ms)
+✔ presence queries reject zero, fractional and nonnumeric years (0.678207ms)
+✔ saves a complete private revision and fixed relational indexes, not reader facts (67.337499ms)
+✔ idempotent retries return original version even after a later save (32.764632ms)
+✔ request ID cannot be reused {"reason":"另一內容"} (19.632721ms)
+✔ request ID cannot be reused {"actor":"other"} (42.359123ms)
+✔ transaction CAS rejects a concurrent stale save without partial indexes (40.602807ms)
+✔ a failure in the last INSERT rolls back the revision and every member (21.686879ms)
+✔ pins are rechecked inside the transaction, not only in the preflight (28.233818ms)
+✔ journal tables reject UPDATE and DELETE at the database boundary (14.458771ms)
+✔ rejects rewritten legacy date (9.973714ms)
+✔ rejects rewritten legacy pin (19.17372ms)
+✔ rejects rewritten legacy raw (5.612481ms)
+✔ a changed inspected graph needs a new exact digest (8.562579ms)
+✔ adopting a verified claim requires explicit exact-content acknowledgement (15.47536ms)
+✔ caller mutation during asynchronous validation cannot change stored bytes (8.01018ms)
+✔ missing migration fails explicitly without auto-creating tables (2.549114ms)
+✔ history pagination returns all revisions without duplicates (353.903634ms)
+✔ backup v4 restores exact research, indexes, original text and history into an empty SQL database (32.005896ms)
+✔ v3 remains readable before the research migration and v2 remains restorable (8.544332ms)
+✔ backup detects index omission even when transport digest was recalculated (14.154229ms)
+✔ partial migrations cannot silently omit research from backups (3.376862ms)
+✔ HTTP journal rejects unauthorized or cross-origin writes {"oai-authenticated-user-id":""} (9.384429ms)
+✔ HTTP journal rejects unauthorized or cross-origin writes {"oai-authenticated-user-id":"other"} (7.116423ms)
+✔ HTTP journal rejects unauthorized or cross-origin writes {"origin":"https://other.test"} (4.382666ms)
+✔ HTTP journal rejects unauthorized or cross-origin writes {"sec-fetch-site":"cross-site"} (4.682451ms)
+✔ HTTP journal rejects unauthorized or cross-origin writes {"x-catalogue-request":"0"} (4.576092ms)
+✔ actual owner HTTP save/read/history keep publication separate and HEAD bodyless (20.645344ms)
+✔ HTTP stale edit and malformed payload cannot create partial versions (12.338423ms)
+✔ material dates remain independent pending claims without implied tenure or adoption (30.140948ms)
+✔ pack validation rejects cross-file source identities and dangling evidence (11.073265ms)
+✔ real import, inspection, save and reload preserve every source pin and original text (46.994344ms)
+✔ exports escape executable markup and formulas, retain exact text in HTML and separate draft status (13.678863ms)
+✔ actual D1 persists immutable revisions and rolls back a stale CAS (1211.365974ms)
+✔ idempotent save retry does not append another revision and rejects another payload (381.736441ms)
+✔ owner and mutation guards reject unsigned, non-owner, cross-origin and action requests (4.664443ms)
+✔ original file is retained and staged imports stay invisible until one complete commit (606.573826ms)
+✔ fixed publication uses cited source revision, switches atomically, and rollback retains drafts (2132.742146ms)
+✔ real baseline records pass domain and relational import validation (388.858487ms)
+✔ backup restores D1 history, originals and published snapshots into an empty database (1969.144472ms)
+✔ complete baseline bootstrap commits 7155 records once and reproduces all reader facts (95476.060169ms)
+✔ all sixteen reported simplified names match through the actual reader search (14.380355ms)
+✔ reviewed epigraphy preserves source text and unknown years, and rejects stale decisions (15.729106ms)
+✔ all 59 baseline candidates have a disposition; new or changed findings require reassessment (535.503983ms)
+✔ post-prune deployment manifest matches every packaged file (2591.660716ms)
+✔ optimized decoration keeps a declared, byte-exact fallback for older reader CSS (9.594852ms)
+✔ cold map initialization cannot replace the requested battle period (4.741347ms)
+✔ map period messages reject foreign frames and invalid indices (1.384956ms)
+✔ twenty representative journeys retain reviewed identities, appointments and matching timeline facts (16.162981ms)
+✔ reviewed succession replaces stale cached dates and preserves separate acting/restoration events (4.998439ms)
+✔ succession preserves unknown years, acting office names and independent institution history (0.67388ms)
+✔ public office projection fails closed for missing identities or citations (5.452213ms)
+✔ deployed responsive portraits preserve source identity and actual dimensions (4212.892454ms)
+✔ deploys only the field-gated reader projection (253.755333ms)
+✔ renders imported text only through text bindings (6.933642ms)
+✔ keeps the synchronous first-view payload within 800 KiB compressed (63.830814ms)
+✔ reader manifest entries remain internally self-consistent before site optimization (2.763823ms)
+✔ all visible modules share host routes and reading return (1.972948ms)
+✔ boot timeout accepts late readiness and ignores disposed timers (0.353565ms)
+✔ host rejects foreign readiness and prevents handshake loops (1.61743ms)
+✔ retry restores selected detail without reporting stale failure (1.21939ms)
+✔ single HTML resolves shared imports once and retains navigation (3.03171ms)
+✔ identity and portrait gates reject same-count replacements (11.464526ms)
+✔ global search prepares lazy domains, opens stable records and keeps pending records visible by default (1.182305ms)
+✔ food withdrawal is closed across records, events and metrics while source is preserved (6.56202ms)
+✔ food facts retain independent source and uncertain dates without silently upgrading estimates (10.310424ms)
+✔ cross-module reading trail restores exact filtered context and rejects external destinations (1.247021ms)
+✔ food pagination reacts when its lazy module and records finish loading (23.009322ms)
+✔ actual reading-return handler uses browser history even when editor history exists (6.11692ms)
+✔ office-holder handler ignores a late load after navigation changes (5.961158ms)
+✔ food all-period scope and explicit candidate inclusion survive actual URL handlers (7.817443ms)
+✔ shared filters count, name and clear only active conditions across reader modules (7.932575ms)
+✔ V75 removes five false people and consolidates corroboration without losing source evidence (407.952704ms)
+✔ V74 chancellery evidence preserves refutations, corrected subjects and unknown dates (39.144572ms)
+✔ reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate (259.145379ms)
+✔ identity resolution cannot publish an unreviewed appointment; source edits invalidate review (0.622253ms)
+✔ all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild (5.075494ms)
+✔ snapshots contain confirmed, bounded tenures only, including inclusive endpoints (3.523771ms)
+✔ verified administrative tenures resolve into person timelines; candidates do not (20.297543ms)
+✔ person links switch module, await data, and prevent stale results from replacing a later selection (0.401887ms)
+✔ host routes require the expected frame and origin, and preserve archive context (0.685507ms)
+✔ a history restore within people cancels an older in-flight person link (0.288378ms)
+✔ canonical, portable scripts and shared reader templates compile (431.097307ms)
+✔ all existing inscriptions, sections and variants are preserved verbatim (4.386261ms)
+✔ the final reader retains all six reviewed transcriptions and variants without legacy overlays (10.584361ms)
+✔ reviewed Wei texts reach the final reader with lacunae and provenance intact (3.026162ms)
+✔ epigraphy publication rejects changed sources, edited text and overwrites (8.242714ms)
+✔ epigraphy dates do not coerce unknown years into the Han period (2.62082ms)
+✔ the inscription filter includes transmitted and fragmentary texts without rewriting their status (2.504117ms)
+✔ reviewed old commentary retains its text and rejects altered apparatus (1.660264ms)
+✔ reviewed biographies pin identities and evidence without replacing existing biographies (28.829321ms)
+✔ Tai Shi corrections preserve source years and reject stale or ambiguous reviews (9.420923ms)
+✔ the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate (3.279988ms)
+✔ V76 corrects succession chronology and requires explicit guards for revised reviews (227.822452ms)
+✔ V76 biography corrections preserve old wording and reject stale or unreviewed replacements (28.443959ms)
+✔ V80 withdraws seven false identities while freezing all ten associated sources and original portrait files (171.851013ms)
+✔ server-renders the exploration homepage before loading the requested reader (225.940442ms)
+✔ packages the current court, reader people, and map assets (10.007454ms)
+✔ packages the V63 field-gated full people reader projection (22.259129ms)
+✔ packages all retained production portraits and the V73 reader records (40.233074ms)
+✔ research triage remains unapproved and preserves exact input evidence (13.922746ms)
+✔ all 59 existing inscriptions retain exact text including variants (5.560774ms)
+✔ first source-review batch resolves 19 candidates without changing the 197 published facts (13.914744ms)
+✔ reviewed annals preserve retrospective dates, Wei polity stages, refusal subjects and office transitions (5.730896ms)
+✔ second source-review batch preserves all 213 published facts and freezes its 20 decisions (10.012621ms)
+✔ second batch fixes subjects, preserves qualifications and refuses ambiguous or unregistered assignments (5.379044ms)
+✔ third source-review batch freezes 20 decisions and preserves all 225 previously published facts (9.311952ms)
+✔ fourth batch reviews exactly frozen rows 61–80 and preserves prior facts except one guarded citation correction (32.595451ms)
+✔ fourth batch keeps corrected subjects, East Palace scope, full offices and unknown end dates (5.63256ms)
+✔ V81 prior-review corrections pin immutable decisions and reconcile the 80-item queue without double counting (9.407474ms)
+✔ fifth batch reviews exactly frozen rows 81–100 while preserving all 251 prior facts and identity boundaries (25.190681ms)
+✔ fifth batch distinguishes refusal, exemption from bowing, posthumous titles and complete offices (264.152171ms)
+✔ V82 closes the frozen queue as 66 approved, 25 excluded and 9 pending without rewriting prior checkpoints (4.710142ms)
+✔ patched esbuild remains compatible with the Drizzle TypeScript loader (3.00449ms)
+✔ read-only Worker rejects unused image and action endpoints before consuming a body (5.707922ms)
+ℹ tests 247
+ℹ suites 0
+ℹ pass 247
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104445.552089

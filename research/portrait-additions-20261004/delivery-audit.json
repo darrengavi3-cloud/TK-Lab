@@ -1,675 +1,25 @@
 {
-  "status": "in-progress",
+  "status": "passed",
   "newAccepted": 100,
-  "independentRedrawAccepted": 100,
-  "activeHashAndDimensionsChecked": 200,
-  "preservedOriginalFilesChecked": 89,
-  "unfinishedCount": 93,
-  "unfinished": [
-    {
-      "kind": "new",
-      "order": 1,
-      "personId": "person:workbook:270feaef9ea4faae",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 2,
-      "personId": "person:workbook:026eaa65f4403bf0",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 5,
-      "personId": "person:workbook:89859ca6be315566",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 7,
-      "personId": "person:workbook:2dfe7b6919d86a30",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 9,
-      "personId": "person:workbook:0bdcb6183ed6311b",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 10,
-      "personId": "person:workbook:6ffd9222fdc98da9",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 11,
-      "personId": "person:workbook:a9af256c99ce1150",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 12,
-      "personId": "person:workbook:5a2ab5f4afb46d7d",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 13,
-      "personId": "person:workbook:67afb87f3ecd38e6",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 15,
-      "personId": "person:workbook:8e2e8fcc9f31f01e",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 16,
-      "personId": "person:workbook:12dd658503315d90",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 17,
-      "personId": "person:workbook:5b1def2d8b8c8c49",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 18,
-      "personId": "person:workbook:cf54dfebd647ab02",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 19,
-      "personId": "person:workbook:ce01d032ba214e9e",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 20,
-      "personId": "person:workbook:2c0685e0e0e0ae8f",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 21,
-      "personId": "person:workbook:33c13252ee4a2b76",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 22,
-      "personId": "person:workbook:65f5118d20de2114",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 23,
-      "personId": "person:workbook:523c12b46171de5c",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 25,
-      "personId": "person:workbook:29c85389eff26b03",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 26,
-      "personId": "person:workbook:ba3f1bafab3e4732",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 27,
-      "personId": "person:workbook:8069bc34357f1f29",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 28,
-      "personId": "person:workbook:c7d16dc8399a9f0b",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "new",
-      "order": 29,
-      "personId": "person:workbook:35f65ce0ec867b73",
-      "reasons": [
-        "fullBody",
-        "completeFeet"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 81,
-      "personId": "person:source:8a094c46b36a",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 82,
-      "personId": "person:wu:lu-kang",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 83,
-      "personId": "person:wu:zhang-ti",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 84,
-      "personId": "person:wu:teng-yin",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 85,
-      "personId": "person:source:74484c7b8050",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 86,
-      "personId": "person:source:85fd3c81396f",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 87,
-      "personId": "person:source:87282926790c",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 88,
-      "personId": "person:wu:he-zhi",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 89,
-      "personId": "person:source:ab32fb630e93",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 90,
-      "personId": "person:wu:sun-hao",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 91,
-      "personId": "person:source:541aa70629a7",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 92,
-      "personId": "person:wu:dai-liang",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 93,
-      "personId": "person:wu:shi-kuang",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 94,
-      "personId": "person:wu:sun-ben",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 95,
-      "personId": "person:wu:sun-shao",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 96,
-      "personId": "person:source:458e5685f88a",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 97,
-      "personId": "person:wu:sun-he",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 98,
-      "personId": "person:source:e3995aefcddc",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 99,
-      "personId": "person:workbook:d40ea13e6aeb4ac3",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 100,
-      "personId": "person:jin:jia-chong",
-      "reasons": [
-        "desktopVerified",
-        "mobileVerified",
-        "not-integrated"
-      ]
-    },
-    {
-      "kind": "existing",
-      "order": 101,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 102,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 103,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 104,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 105,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 106,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 107,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 108,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 109,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 110,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 111,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 112,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 113,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 114,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 115,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 116,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 117,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 118,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 119,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 120,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 121,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 122,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 123,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 124,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 125,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 126,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 127,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 128,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 129,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 130,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 131,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 132,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 133,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 134,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 135,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 136,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 137,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 138,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 139,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 140,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 141,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 142,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 143,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 144,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 145,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 146,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 147,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 148,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 149,
-      "reason": "not-produced"
-    },
-    {
-      "kind": "existing",
-      "order": 150,
-      "reason": "not-produced"
-    }
-  ],
+  "independentRedrawAccepted": 150,
+  "activeHashAndDimensionsChecked": 250,
+  "preservedOriginalFilesChecked": 174,
+  "unfinishedCount": 0,
+  "unfinished": [],
   "activeRecords": [
     {
       "kind": "new",
       "order": 1,
       "personId": "person:workbook:270feaef9ea4faae",
-      "file": "atlas/assets/portraits/20261004/001-2eff13255f25.png",
-      "sha256": "b42295f97b50fd17ec8e1438f1873e5f6d2fa861bde492377862ee0bf32a4ca1"
+      "file": "atlas/assets/portraits/20261004/001-f304bf80e354.png",
+      "sha256": "f304bf80e3544b6209a64121a276378a19c5a51962fdbc4684ed216df8b9a7b2"
     },
     {
       "kind": "new",
       "order": 2,
       "personId": "person:workbook:026eaa65f4403bf0",
-      "file": "atlas/assets/portraits/20261004/002-eddb2b1d73b6.png",
-      "sha256": "f8334bb07835da0279568e498bdfd4c4fcc6c41789b4d8e57adf7419d65911c5"
+      "file": "atlas/assets/portraits/20261004/002-8adaef405947.png",
+      "sha256": "8adaef405947e332484511cce28f0a9750d9a0ad8b693fe60beabc1e947a8ab8"
     },
     {
       "kind": "new",
@@ -689,8 +39,8 @@
       "kind": "new",
       "order": 5,
       "personId": "person:workbook:89859ca6be315566",
-      "file": "atlas/assets/portraits/20261004/005-1499ed95fea7.png",
-      "sha256": "3077c80d8028dc41b06de0b977258f65c4cc75ad9b439a9a8657286ab1463e7e"
+      "file": "atlas/assets/portraits/20261004/005-d4d877ce11c7.png",
+      "sha256": "d4d877ce11c771e900d462ffd7a8541f694bb64d3f9457e2778a87b22b174b2e"
     },
     {
       "kind": "new",
@@ -703,8 +53,8 @@
       "kind": "new",
       "order": 7,
       "personId": "person:workbook:2dfe7b6919d86a30",
-      "file": "atlas/assets/portraits/20261004/007-2fce4ef434f3.png",
-      "sha256": "8bf7c7779bc51c3be82fc8ccaed2a8835063c4ccec18e3d072ba7eacbabc9e75"
+      "file": "atlas/assets/portraits/20261004/007-c1c1c2c42c23.png",
+      "sha256": "c1c1c2c42c23fde870feddca94eef4c3dc1da39ab85285cb6b5d54c6441bda0c"
     },
     {
       "kind": "new",
@@ -717,36 +67,36 @@
       "kind": "new",
       "order": 9,
       "personId": "person:workbook:0bdcb6183ed6311b",
-      "file": "atlas/assets/portraits/20261004/009-4bff4a2b550e.png",
-      "sha256": "e59499c4d8fee669a5429a026b3128b8952d8ad2821d42bca580fbd9899f7975"
+      "file": "atlas/assets/portraits/20261004/009-d7a32572c52e.png",
+      "sha256": "d7a32572c52e9547e34726afa35b51d2494764e00dec606cfe235e0da267d419"
     },
     {
       "kind": "new",
       "order": 10,
       "personId": "person:workbook:6ffd9222fdc98da9",
-      "file": "atlas/assets/portraits/20261004/010-6928517c449e.png",
-      "sha256": "d3e0a52e30cfa4a5dec4ae3eb360b3b1f6bb83c5b0ecc4dde958baa093b4e786"
+      "file": "atlas/assets/portraits/20261004/010-1aa55d87e810.png",
+      "sha256": "1aa55d87e8105c63ce3079df164091b069d59e5bb4d628d059bfd733b6a79678"
     },
     {
       "kind": "new",
       "order": 11,
       "personId": "person:workbook:a9af256c99ce1150",
-      "file": "atlas/assets/portraits/20261004/011-5ce092c2bcbb.png",
-      "sha256": "1014933ceca57745b94a74152c422108e7def28469d62b6a16dc6fd41d63b63d"
+      "file": "atlas/assets/portraits/20261004/011-15eee5508200.png",
+      "sha256": "15eee5508200afecebdfabe89de51ab1ceb16167cb837fbec6b99a92d1e9abd8"
     },
     {
       "kind": "new",
       "order": 12,
       "personId": "person:workbook:5a2ab5f4afb46d7d",
-      "file": "atlas/assets/portraits/20261004/012-a9c3e1f0ac81.png",
-      "sha256": "f3ba4d4f0396e1f8bb1740ed57aa5be1b1d7697c8b1957dbf0e1c45d21afd83e"
+      "file": "atlas/assets/portraits/20261004/012-036fe0de189c.png",
+      "sha256": "036fe0de189cb253944e92930b52df707ca133f84338563b1d4aa24201ca7867"
     },
     {
       "kind": "new",
       "order": 13,
       "personId": "person:workbook:67afb87f3ecd38e6",
-      "file": "atlas/assets/portraits/20261004/013-33cbd55b42dc.png",
-      "sha256": "ebf39b7367298394ad52172b9d7992609a461cb9b6dc3bedc59a2527bd62c073"
+      "file": "atlas/assets/portraits/20261004/013-366ee59ea3ee.png",
+      "sha256": "366ee59ea3eeaed2e886029df15aa5c50e18fc4efd942ccaeef0b5c1390d875a"
     },
     {
       "kind": "new",
@@ -759,64 +109,64 @@
       "kind": "new",
       "order": 15,
       "personId": "person:workbook:8e2e8fcc9f31f01e",
-      "file": "atlas/assets/portraits/20261004/015-0f4f7a751582.png",
-      "sha256": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee"
+      "file": "atlas/assets/portraits/20261004/015-14690ff83ca1.png",
+      "sha256": "14690ff83ca1f668385dcfc10664f38cbf2f9a4a7851e95ef36f31b0b36a5b67"
     },
     {
       "kind": "new",
       "order": 16,
       "personId": "person:workbook:12dd658503315d90",
-      "file": "atlas/assets/portraits/20261004/016-ee60b7d0ed86.png",
-      "sha256": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74"
+      "file": "atlas/assets/portraits/20261004/016-55cfc268b0d4.png",
+      "sha256": "55cfc268b0d467fea6ac29380bcba8db8097b12a672beb6b0eccfec8a3b5ae1a"
     },
     {
       "kind": "new",
       "order": 17,
       "personId": "person:workbook:5b1def2d8b8c8c49",
-      "file": "atlas/assets/portraits/20261004/017-b82411fa7ce8.png",
-      "sha256": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51"
+      "file": "atlas/assets/portraits/20261004/017-d7ad581a5945.png",
+      "sha256": "d7ad581a59452d60bbe8d72e0b38268b3997588bfa0733642b815f98d505307d"
     },
     {
       "kind": "new",
       "order": 18,
       "personId": "person:workbook:cf54dfebd647ab02",
-      "file": "atlas/assets/portraits/20261004/018-dd5189f5cd65.png",
-      "sha256": "1099e85a2c1de66ca62e835f736f0dd9a913b2fff951d2ad00651989cff948cc"
+      "file": "atlas/assets/portraits/20261004/018-d88b0ba918a6.png",
+      "sha256": "d88b0ba918a6b85b91e30677f4f0a5e1729c3aa247ed88550edd51177ef63868"
     },
     {
       "kind": "new",
       "order": 19,
       "personId": "person:workbook:ce01d032ba214e9e",
-      "file": "atlas/assets/portraits/20261004/019-381b06bf180c.png",
-      "sha256": "2ba3ce17220dd4160313c4ef9d64086a7cf0a9ea225b21167857ae27ab6c86c4"
+      "file": "atlas/assets/portraits/20261004/019-f9d91e379c1f.png",
+      "sha256": "f9d91e379c1f6cd775e959e346dc1fa93bb3d821c848e546b1af6f459c21b222"
     },
     {
       "kind": "new",
       "order": 20,
       "personId": "person:workbook:2c0685e0e0e0ae8f",
-      "file": "atlas/assets/portraits/20261004/020-4962ed454e1d.png",
-      "sha256": "457eb38d90f338b3d795a1e585bafeb299474ff790fdb66e4584a5a4248e732c"
+      "file": "atlas/assets/portraits/20261004/020-a1fd73e8e609.png",
+      "sha256": "a1fd73e8e609191345960596c448756993a1d735b93e97987bb58bfacfb6d102"
     },
     {
       "kind": "new",
       "order": 21,
       "personId": "person:workbook:33c13252ee4a2b76",
-      "file": "atlas/assets/portraits/20261004/021-174fda6db2fc.png",
-      "sha256": "876e653dc11238a1091b33bf2ae04016c33410841961136c23dcf7c1d00051b6"
+      "file": "atlas/assets/portraits/20261004/021-dc8fa0df1674.png",
+      "sha256": "dc8fa0df16745a6e6f6e3bdd119da5538d573455d9c91009e181138cf0c7f2d5"
     },
     {
       "kind": "new",
       "order": 22,
       "personId": "person:workbook:65f5118d20de2114",
-      "file": "atlas/assets/portraits/20261004/022-5fb60fb701d5.png",
-      "sha256": "0cd5fc9db73990d08d140e091bf13ad1525ec3746d08390cef6e41ce6eccf5d4"
+      "file": "atlas/assets/portraits/20261004/022-c75929925546.png",
+      "sha256": "c759299255462443168e347b37a7d95fd7adf6496781cbcb5a0c9cb1bca94ca4"
     },
     {
       "kind": "new",
       "order": 23,
       "personId": "person:workbook:523c12b46171de5c",
-      "file": "atlas/assets/portraits/20261004/023-51f9c8181c5a.png",
-      "sha256": "3ff977acff723c89f6c9b2ea96a376389fcc6d745fa77ea8129714fed3ec23df"
+      "file": "atlas/assets/portraits/20261004/023-aa7b85d004ac.png",
+      "sha256": "aa7b85d004ac293cdedb8ac3e97c6b3eef660ba2e3924eb4c5e999c7ce6c3a86"
     },
     {
       "kind": "new",
@@ -829,36 +179,36 @@
       "kind": "new",
       "order": 25,
       "personId": "person:workbook:29c85389eff26b03",
-      "file": "atlas/assets/portraits/20261004/025-c166c1bf15cd.png",
-      "sha256": "32c08d417e801a3691e0644ad35b2a184d9c44ec86c9db5970ad9a314f5fe5e8"
+      "file": "atlas/assets/portraits/20261004/025-3e44d574063f.png",
+      "sha256": "3e44d574063f0be435ffebd05883692d6c3b5219e614b009957c9a789b269b0e"
     },
     {
       "kind": "new",
       "order": 26,
       "personId": "person:workbook:ba3f1bafab3e4732",
-      "file": "atlas/assets/portraits/20261004/026-b7485426113b.png",
-      "sha256": "3d7e918fe0ebf5da1ec34e763badbf4dc7b1ed8744f95c205e709daeae6434d5"
+      "file": "atlas/assets/portraits/20261004/026-e87d9d46ebb6.png",
+      "sha256": "e87d9d46ebb6b93a5df9a6a23a660a0204a12033eef344cccdd63c4317c1e18e"
     },
     {
       "kind": "new",
       "order": 27,
       "personId": "person:workbook:8069bc34357f1f29",
-      "file": "atlas/assets/portraits/20261004/027-539c524df9ce.png",
-      "sha256": "2bbd3a1bc141f912212ccc5cc97f5d0ce917de8d274967b21f00f84b6f8c88cb"
+      "file": "atlas/assets/portraits/20261004/027-000e2cad2d8b.png",
+      "sha256": "000e2cad2d8bf9f5655b29fd147415b91dd9f306d82048e4419b08375b3a1d97"
     },
     {
       "kind": "new",
       "order": 28,
       "personId": "person:workbook:c7d16dc8399a9f0b",
-      "file": "atlas/assets/portraits/20261004/028-7ce6d643565b.png",
-      "sha256": "cbf5514e63a0bb166a65a87e9068bdf6eb8d4e31d4b9f13a31dc6b696c87ec74"
+      "file": "atlas/assets/portraits/20261004/028-78ebfc5f9ae0.png",
+      "sha256": "78ebfc5f9ae04df9fb634f02a18ab80dcf0259e413adb65028d8dc83b7b04147"
     },
     {
       "kind": "new",
       "order": 29,
       "personId": "person:workbook:35f65ce0ec867b73",
-      "file": "atlas/assets/portraits/20261004/029-1b062757edbb.png",
-      "sha256": "efa449eba1459b6a7ef7b0a5d5fd00ab787a53b864d16e4debdf79ecfb755986"
+      "file": "atlas/assets/portraits/20261004/029-7bf01f260214.png",
+      "sha256": "7bf01f26021483dee6bb0c8d5e42b088a04520e27533a7ab7d640cf18a7acb44"
     },
     {
       "kind": "new",
@@ -2056,9 +1406,382 @@
       "personId": "person:jin:jia-chong",
       "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-96da7f86d617b33b0424-redraw.png",
       "sha256": "360f93e381163f63bd91644e7812d3c5c19bf5b75976647bc6663ee08c9323d2"
+    },
+    {
+      "kind": "existing",
+      "order": 101,
+      "personId": "person:source:6bea1ab8f79e",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-dbdc8967d172373add90-redraw.png",
+      "sha256": "a5a2499c1277760d23e2aea935f7dc9d9c4c4de97563dff3bb28ea4717731248"
+    },
+    {
+      "kind": "existing",
+      "order": 102,
+      "personId": "person:jin:xun-xu",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-8aa07e9bb838c9205054-redraw.png",
+      "sha256": "fe84a2870742046749f1f8d8e2464abc2db009fdca8cc4b8315864bfecd27040"
+    },
+    {
+      "kind": "existing",
+      "order": 103,
+      "personId": "person:jin:pei-xiu",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-5d0c9bea5f08689da2ad-redraw.png",
+      "sha256": "c63ecffdfaef02dc2608a04f5443fa37ddda9ed8f41a40b2fc5be7837d820130"
+    },
+    {
+      "kind": "existing",
+      "order": 104,
+      "personId": "person:jin:yang-hu",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-60bc148d9c4c1439d431-redraw.png",
+      "sha256": "3eb05e4e909a6170867b97941d797cbb6f284040ad1b0cf5ddec6c1edc82e392"
+    },
+    {
+      "kind": "existing",
+      "order": 105,
+      "personId": "person:jin:he-zeng",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-b2a211553241a8d3bbb2-redraw.png",
+      "sha256": "8237add47088fdbc3a9a130e8ac65d6ac92850fee97eda646d2ce1fdfcd86457"
+    },
+    {
+      "kind": "existing",
+      "order": 106,
+      "personId": "person:jin:wang-chen",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-774eea78a498a031245f-redraw.png",
+      "sha256": "d2432c73d69ab4f3719c2775220d8e19883ec8219768c0113869cbdda7520b25"
+    },
+    {
+      "kind": "existing",
+      "order": 107,
+      "personId": "person:workbook:8bd63f6483bc253f",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-663ea18b42ad108dfff5-redraw.png",
+      "sha256": "45e3c2b926d6fbb7ebdf2a650487d969d3b413e532305600e1814d4aaccfd6da"
+    },
+    {
+      "kind": "existing",
+      "order": 108,
+      "personId": "person:workbook:72594c927185e28d",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-157b8f70d9c76098ec13-redraw.png",
+      "sha256": "60de59e70c76a0be9ad084985f70acea803b0bc6e5903cd4c10d5916e07d7bbb"
+    },
+    {
+      "kind": "existing",
+      "order": 109,
+      "personId": "person:workbook:02e2cbcc648a104b",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-7f1ffc3b0f7512c159cf-redraw.png",
+      "sha256": "9b991871431db2e6189891b566660de3fa36b187290726fc515dd018cf17dc48"
+    },
+    {
+      "kind": "existing",
+      "order": 110,
+      "personId": "person:workbook:c2b23952ed4f6f1f",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-8d1d0aabc4d2055b7554-redraw.png",
+      "sha256": "4d299eac9c7a5f38f820028826f9e76defa648f1e232dd49c1a8825ffa4fbed4"
+    },
+    {
+      "kind": "existing",
+      "order": 111,
+      "personId": "person:workbook:51e7b15708c569d0",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-1cd8e8199688df5bf428-redraw.png",
+      "sha256": "a3ff2ed291ba245a4b0f2baab6bdf62594fcff247b03676f5038d066df9ca5cd"
+    },
+    {
+      "kind": "existing",
+      "order": 112,
+      "personId": "person:workbook:1eddacb9a6aa34cc",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-5aca5754adbc64146e42-redraw.png",
+      "sha256": "7fde119150e33cdf89cba5b51ececdcf8751129dcede570ff9a43c19f1aba39f"
+    },
+    {
+      "kind": "existing",
+      "order": 113,
+      "personId": "person:workbook:9deda736cce490ae",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-3571118f503c42d920d3-redraw.png",
+      "sha256": "f57fd2b1e4fd4d77d7996761d885627bff5569ac549b8e4623ca89f4b02076f6"
+    },
+    {
+      "kind": "existing",
+      "order": 114,
+      "personId": "person:workbook:3b15f7d60a56d977",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-a4ae22f8d3c68d018991-redraw.png",
+      "sha256": "c4b4487122fd441ab93c13b2f90ec239d166c0be58d955e5f8086c07e22bdc1c"
+    },
+    {
+      "kind": "existing",
+      "order": 115,
+      "personId": "person:wei:le-chen",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png",
+      "sha256": "ebbc6938a24db074616474488fccc313f62a272973ae5cd4cecad2a50e68dd30"
+    },
+    {
+      "kind": "existing",
+      "order": 116,
+      "personId": "person:wei:cheng-ji",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png",
+      "sha256": "22cc538be9b53a563c396dbda36bc159433ff64a18dd2f0e99720444765c389d"
+    },
+    {
+      "kind": "existing",
+      "order": 117,
+      "personId": "person:workbook:10602094ff4cb2ed",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-12d23c4bb0e34a35af89-redraw.png",
+      "sha256": "be45ebcf9bf1d53430c1e7901b95c58967e71569db24ff02e2b5e6436f16a095"
+    },
+    {
+      "kind": "existing",
+      "order": 118,
+      "personId": "person:workbook:232a9f6a939d9949",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-4c884e41880ba524cce7-redraw.png",
+      "sha256": "02551a374ce56406928b03c29cfb0108ff09dea999d2224167ba97074fb6679c"
+    },
+    {
+      "kind": "existing",
+      "order": 119,
+      "personId": "person:source:4f57385c8b1c",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png",
+      "sha256": "cd36713e3e30ef28181d3e8215810f8f6b0092e71ded1e1be53f0fc8201af796"
+    },
+    {
+      "kind": "existing",
+      "order": 120,
+      "personId": "person:workbook:699340a4a842aeda",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-b6adac4a2c1d32628af3-redraw.png",
+      "sha256": "6ebd9c7bffc42758fa8ba7cb9fbf2a657d2e7e932dd6881286877b047cbcbd5a"
+    },
+    {
+      "kind": "existing",
+      "order": 121,
+      "personId": "person:workbook:85cbb6f1a2590033",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-9ab681f0a19b19120c2e-redraw.png",
+      "sha256": "c674c603643c6e36245ab6a3cfdcf0f5ca91f50f4cb8c31d3a4162194a9bb368"
+    },
+    {
+      "kind": "existing",
+      "order": 122,
+      "personId": "person:workbook:3ddbdd5eabe3b3d8",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-316b8bdda534edd580c0-redraw.png",
+      "sha256": "eea28f8efe3f035a32f5be1214e12e1251d5b3746b5b02970d7082f22dca5b17"
+    },
+    {
+      "kind": "existing",
+      "order": 123,
+      "personId": "person:workbook:467af8a161400901",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-8305b7ca4f8017cf2643-redraw.png",
+      "sha256": "d38184d8817dcf25b26e21ff99bde012913506a08977b7b7f08515f954f61f6b"
+    },
+    {
+      "kind": "existing",
+      "order": 124,
+      "personId": "person:workbook:4628d13c3024011b",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-6a6b467ea0420a23eced-redraw.png",
+      "sha256": "a86dc08647785765ebec3cfde376e9cec09fcb152f3b2f8af5703d1b9a477723"
+    },
+    {
+      "kind": "existing",
+      "order": 125,
+      "personId": "person:workbook:a905207ace5bd181",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-72b7be8550e2a383c6bf-redraw.png",
+      "sha256": "4ef9ca132e6436497ce1aa45fe64e5b3808cc90aecaa0d8daa2ab28dfa77437c"
+    },
+    {
+      "kind": "existing",
+      "order": 126,
+      "personId": "person:workbook:70152738b6dbc7c0",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-8c93b8476fcfd493a009-redraw.png",
+      "sha256": "fef3c18514b076685126462db45070b6fd09226c1e38d1f91f7e8437d2e02db4"
+    },
+    {
+      "kind": "existing",
+      "order": 127,
+      "personId": "person:shu:lai-min",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-52183266939a0b13e218-redraw.png",
+      "sha256": "3d7a11898ef0fdd8447a2a4a8ac9289245ff04aa874ba69cccd9ec0ad53c2f9e"
+    },
+    {
+      "kind": "existing",
+      "order": 128,
+      "personId": "person:workbook:957381792af51e59",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-074897a0d4627238d99c-redraw.png",
+      "sha256": "47b45f34e8e47dd3cf17f5b4526fd652a36ee91ac1a1a4ddb485562a7f348c5b"
+    },
+    {
+      "kind": "existing",
+      "order": 129,
+      "personId": "person:shu:dong-jue",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-6599c517aab621e23678-redraw.png",
+      "sha256": "cafc0a40d9de25946a349baf8ee4860b957d7c10577a6d95171d8fb8e37e8947"
+    },
+    {
+      "kind": "existing",
+      "order": 130,
+      "personId": "person:workbook:261c3244950d8e2a",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-7f1fb09a9142bb43e72e-redraw.png",
+      "sha256": "21d0be7942f18865b90057de401fc217582e96ee961c9e1fe1ba420032086f87"
+    },
+    {
+      "kind": "existing",
+      "order": 131,
+      "personId": "person:wei:cao-cao",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-dfbd4e1b066dc38bba07-redraw.png",
+      "sha256": "3ecc032354d125beb2e1b03d7486dc1920a23d6c232d6c3f8be0cc128633f549"
+    },
+    {
+      "kind": "existing",
+      "order": 132,
+      "personId": "person:shu:liu-bei",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-9c249912be1cc03722eb-redraw.png",
+      "sha256": "af3362660f283955944048f8ebe0dee684db488b9039a9fd8a50ea841d7b86e4"
+    },
+    {
+      "kind": "existing",
+      "order": 133,
+      "personId": "person:jin:sima-yan",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-eff08e8447facfba84ba-redraw.png",
+      "sha256": "75e9754f3db432f71362bd3fa4c35fa93af2c0e053701b29a85a53cc9bbb384a"
+    },
+    {
+      "kind": "existing",
+      "order": 134,
+      "personId": "person:wei:sima-yi",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-eb3a8424ced78bc8c52d-redraw.png",
+      "sha256": "b5472d30225bc9e79345503b2336d001bc6bb13436f48cb74758f4baca00a46b"
+    },
+    {
+      "kind": "existing",
+      "order": 135,
+      "personId": "person:workbook:948a0bb7fcb5757c",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-e78b47708f1ef0fee0af-redraw.png",
+      "sha256": "5d834873992c8878eabe70d1db0242ff0a35a3faf2161674ebedd2e290639447"
+    },
+    {
+      "kind": "existing",
+      "order": 136,
+      "personId": "person:workbook:65c2d1dfcc0f0bbc",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-346035e7d08ab26f111e-redraw.png",
+      "sha256": "c54e8299d4439c1d82d6901c521df56876af836d169cd3eca86512fd4fcc61a4"
+    },
+    {
+      "kind": "existing",
+      "order": 137,
+      "personId": "person:source:74484c7b8050",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-fc1ff7570bd97c9e5065-redraw.png",
+      "sha256": "e4f80b331bffe269e3fc51864322dbfb7d981c06163bd30da58ccfa1149af9f9"
+    },
+    {
+      "kind": "existing",
+      "order": 138,
+      "personId": "person:workbook:52107cd52f541ec4",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-42ef631b40fb64a4c042-redraw.png",
+      "sha256": "f6ecb41e64abce6f089e7a669d7c9c986941ff0e999b63167bb0269821b78d18"
+    },
+    {
+      "kind": "existing",
+      "order": 139,
+      "personId": "person:workbook:af953fe35ee88d6e",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-0d744b63815e5f8d5082-redraw.png",
+      "sha256": "3c1aac27307b11ca0b0c681fe93c82477996fe6a3dc27c7901b9c11f7ca53ddd"
+    },
+    {
+      "kind": "existing",
+      "order": 140,
+      "personId": "person:workbook:3efd0606e6263df4",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-0f535947a0c5f16afb39-redraw.png",
+      "sha256": "63fd60fafa41821a67bd96ca600818f524918bd6f241d02be2628f23648dbe8e"
+    },
+    {
+      "kind": "existing",
+      "order": 141,
+      "personId": "person:workbook:4ca6a0b48b2aefbf",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-7fb1c6768c5fb20cfff1-redraw.png",
+      "sha256": "6f3a9e5290cb116995181a06d72b05af47bd9085bec4683fd954b67f8fad28c7"
+    },
+    {
+      "kind": "existing",
+      "order": 142,
+      "personId": "person:source:b948df238097",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-bd22518ff815b99bc433-redraw.png",
+      "sha256": "87ed89c8a790240c08aa3956eb90bab454a8d6ecb4bb31d4286c3dffdbf7b76f"
+    },
+    {
+      "kind": "existing",
+      "order": 143,
+      "personId": "person:jin:shi-bao",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-7d6b9f5fd01b61d79090-redraw.png",
+      "sha256": "64809fa1dc7a6722d6d74eb69a75e26629bd6b6c1e6e34049b9e47ddabc06d3b"
+    },
+    {
+      "kind": "existing",
+      "order": 144,
+      "personId": "person:jin:yang-jun",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-16466f040cb14fef0184-redraw.png",
+      "sha256": "58a0ca5520f7efae9c2248754a84456b2218cc2a613ede0784650c939f41342c"
+    },
+    {
+      "kind": "existing",
+      "order": 145,
+      "personId": "person:source:e2ef6eff3eba",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-ec9b416c75c3d12c1670-redraw.png",
+      "sha256": "cf2ef0e1df74e25277b0b9c1ece6971dcdca7be774904087b3ef7ada0ba10357"
+    },
+    {
+      "kind": "existing",
+      "order": 146,
+      "personId": "person:source:a93c1fafbcd4",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-b6b11233a0385d65b47a-redraw.png",
+      "sha256": "901fb962e05e812731b53341a020150caec47199dbe0b4100c90b8cb88cfdf6a"
+    },
+    {
+      "kind": "existing",
+      "order": 147,
+      "personId": "person:jin:xi-jian",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-77b09e9e6ae35b51f546-redraw.png",
+      "sha256": "ca6133237e5e0b50c9e230dce096770c8b890ac4e4ce5622f7bbda7d755abca9"
+    },
+    {
+      "kind": "existing",
+      "order": 148,
+      "personId": "person:jin:huan-wen",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-91eb288b8929974c5576-redraw.png",
+      "sha256": "9a698ec03974aceac94178736eb3262d839807764f578d2b7761b9435910b16e"
+    },
+    {
+      "kind": "existing",
+      "order": 149,
+      "personId": "person:jin:liu-shi",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-05e2cf3d2f4356d6b47a-redraw.png",
+      "sha256": "4196fa37a9792d65891f9f8c91ef2ecc4e336fa39f9b3694f552960f5545e86d"
+    },
+    {
+      "kind": "existing",
+      "order": 150,
+      "personId": "person:jin:liu-yu",
+      "file": "atlas/assets/portraits/20261004/frontal/portrait-asset-dbfa7443b5224eb80aaf-redraw.png",
+      "sha256": "45df448a4ded9c935a65b558222b96c85bcabbd503d250fe194b8524005912da"
     }
   ],
   "preservedOriginals": {
+    "atlas/assets/portraits/20261004/001-2eff13255f25.png": "b42295f97b50fd17ec8e1438f1873e5f6d2fa861bde492377862ee0bf32a4ca1",
+    "atlas/assets/portraits/20261004/002-eddb2b1d73b6.png": "f8334bb07835da0279568e498bdfd4c4fcc6c41789b4d8e57adf7419d65911c5",
+    "atlas/assets/portraits/20261004/005-1499ed95fea7.png": "3077c80d8028dc41b06de0b977258f65c4cc75ad9b439a9a8657286ab1463e7e",
+    "atlas/assets/portraits/20261004/007-2fce4ef434f3.png": "8bf7c7779bc51c3be82fc8ccaed2a8835063c4ccec18e3d072ba7eacbabc9e75",
+    "atlas/assets/portraits/20261004/009-4bff4a2b550e.png": "e59499c4d8fee669a5429a026b3128b8952d8ad2821d42bca580fbd9899f7975",
+    "atlas/assets/portraits/20261004/010-6928517c449e.png": "d3e0a52e30cfa4a5dec4ae3eb360b3b1f6bb83c5b0ecc4dde958baa093b4e786",
+    "atlas/assets/portraits/20261004/011-5ce092c2bcbb.png": "1014933ceca57745b94a74152c422108e7def28469d62b6a16dc6fd41d63b63d",
+    "atlas/assets/portraits/20261004/012-a9c3e1f0ac81.png": "f3ba4d4f0396e1f8bb1740ed57aa5be1b1d7697c8b1957dbf0e1c45d21afd83e",
+    "atlas/assets/portraits/20261004/013-33cbd55b42dc.png": "ebf39b7367298394ad52172b9d7992609a461cb9b6dc3bedc59a2527bd62c073",
+    "atlas/assets/portraits/20261004/015-0f4f7a751582.png": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee",
+    "atlas/assets/portraits/20261004/016-ee60b7d0ed86.png": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74",
+    "atlas/assets/portraits/20261004/017-b82411fa7ce8.png": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51",
+    "atlas/assets/portraits/20261004/018-dd5189f5cd65.png": "1099e85a2c1de66ca62e835f736f0dd9a913b2fff951d2ad00651989cff948cc",
+    "atlas/assets/portraits/20261004/019-381b06bf180c.png": "2ba3ce17220dd4160313c4ef9d64086a7cf0a9ea225b21167857ae27ab6c86c4",
+    "atlas/assets/portraits/20261004/020-4962ed454e1d.png": "457eb38d90f338b3d795a1e585bafeb299474ff790fdb66e4584a5a4248e732c",
+    "atlas/assets/portraits/20261004/021-174fda6db2fc.png": "876e653dc11238a1091b33bf2ae04016c33410841961136c23dcf7c1d00051b6",
+    "atlas/assets/portraits/20261004/022-5fb60fb701d5.png": "0cd5fc9db73990d08d140e091bf13ad1525ec3746d08390cef6e41ce6eccf5d4",
+    "atlas/assets/portraits/20261004/023-51f9c8181c5a.png": "3ff977acff723c89f6c9b2ea96a376389fcc6d745fa77ea8129714fed3ec23df",
+    "atlas/assets/portraits/20261004/025-c166c1bf15cd.png": "32c08d417e801a3691e0644ad35b2a184d9c44ec86c9db5970ad9a314f5fe5e8",
+    "atlas/assets/portraits/20261004/026-b7485426113b.png": "3d7e918fe0ebf5da1ec34e763badbf4dc7b1ed8744f95c205e709daeae6434d5",
+    "atlas/assets/portraits/20261004/027-539c524df9ce.png": "2bbd3a1bc141f912212ccc5cc97f5d0ce917de8d274967b21f00f84b6f8c88cb",
+    "atlas/assets/portraits/20261004/028-7ce6d643565b.png": "cbf5514e63a0bb166a65a87e9068bdf6eb8d4e31d4b9f13a31dc6b696c87ec74",
+    "atlas/assets/portraits/20261004/029-1b062757edbb.png": "efa449eba1459b6a7ef7b0a5d5fd00ab787a53b864d16e4debdf79ecfb755986",
     "atlas/assets/portraits/20261004/096-270a8f21d621.png": "59e1b30e8263935400660c9ea3a741ffba822e626593aee714efe32303b7b101",
     "atlas/assets/portraits/v51/person-source-653eea8eb9c6.png": "9f5fb7eeb9907b43265da54ef794f2b079830eaca35735a12d8dde9b55e62e94",
     "atlas/assets/portraits/v51/person-source-e078e67a29ef.png": "9d9d43176dbb266774f9505b1fc8ee1dd56458d82d7ed595c37f6b540d120dfd",
@@ -2147,7 +1870,69 @@
     "atlas/assets/portraits/v51/person-source-74484c7b8050.png": "485e8065e799bbbb96261c6e30f3f79affc389c0d1d4076dbf5883833ab31d50",
     "atlas/assets/portraits/v51/person-source-85fd3c81396f.png": "b8fb87da8763cefe6b163c898b2287bebb233cde878504a304ed963fd2ec6770",
     "atlas/assets/portraits/v51/person-source-87282926790c.png": "23ea847b4510bf7631b4973b26c4a508c75b5c0320fc6cc5381aad66c190b719",
-    "atlas/assets/portraits/v51/person-source-64713c14be03.png": "f34d2563f2fed029f7b7d3e071b78743876df21382ade3c3608602a92e2d1786"
+    "atlas/assets/portraits/v51/person-source-64713c14be03.png": "f34d2563f2fed029f7b7d3e071b78743876df21382ade3c3608602a92e2d1786",
+    "atlas/assets/portraits/v51/person-source-ab32fb630e93.png": "06c5fe7fe2f1fb0b305ca6db701cfba1522752291a2401c2f1d23bc622a1f742",
+    "atlas/assets/portraits/v51/person-wu-sun-hao.png": "19002330678d58dd911ef9b2f8689642f9f5085abdd0a3e0b9e4cdf4ff75b120",
+    "atlas/assets/portraits/v51/person-source-e273223cc622.png": "66b17e271172e78b9883ff87f73a61d72d633d70c67eb6c77b267e5850a80d19",
+    "atlas/assets/portraits/v51/person-source-b13a3444a2dd.png": "78ce746269b43ae50d0550e30f5920ca6f571b22addcac555b129cf89a75759f",
+    "atlas/assets/portraits/v51/person-source-1bcaa4035aed.png": "44c40b08b7f65ce0ed19418b30f71266953443244feb6e3df01f655dd2496103",
+    "atlas/assets/portraits/v51/person-source-143edb2d791d.png": "9065cf6a3e00a1782049aa89b50b75b0c2c3a8db4122515268e0eec9c5035812",
+    "atlas/assets/portraits/v51/person-source-d19aff65e0f7.png": "0d82e25a5a30ca359f1194c545dac314dd2a633129cbfb52497512d601e9467c",
+    "atlas/assets/portraits/v51/person-source-10a2fc810200.png": "f4c968d61e5d18f86f55864ee658bfa8ca3126f060324c354d8c336822df204e",
+    "atlas/assets/portraits/v51/person-source-35a5246521f7.png": "6f4141f4ca07522536fa972080e40b80e8e0655e6b0aabf654e8871410b196f4",
+    "atlas/assets/portraits/v51/person-source-e3995aefcddc.png": "e3df7e902a1149eaf2254dcae5878d10defb1d236794df5cf27d986310fdc592",
+    "atlas/assets/portraits/jin/sima-zhao.png": "04c476a2723369d0d5f7255d712eb81788bdb83a5f1cfc90ccb4b7697c64ebb8",
+    "atlas/assets/portraits/jin/jia-chong.png": "92c7e0e7dfab4a938498bfd9364c0d518e4401fc370eedd988622fbaf1cbe7a6",
+    "atlas/assets/portraits/jin/zhong-hui.png": "f53e5dd09ecfc38c7f17109a3dcc147634c3195c1512630c8ed5c7a935adc577",
+    "atlas/assets/portraits/jin/xun-xu.png": "995e7d6f4af5905c8394969959d5cbe6d478b5ac1ab90ff0c364df7fa1891d72",
+    "atlas/assets/portraits/jin/pei-xiu.png": "b442648f6703df0b03744199916afd78c0c30ddf71945fbef7bb57f60f6e81e5",
+    "atlas/assets/portraits/jin/yang-hu.png": "45fe0895546b6de03b0b2539667756f1dba3b90d8b39db064d8631b4ea220464",
+    "atlas/assets/portraits/jin/he-zeng.png": "1c9163d6e2bdc5be9633461569475533f4b5c3de88055f9a27af978f6727a7fb",
+    "atlas/assets/portraits/jin/wang-chen.png": "b9f3c574f82594e50b267ff2f842f8c2277c53d4247b5343f4031fe0c363531f",
+    "atlas/assets/portraits/jin/chen-tai.png": "d839cf1df9786e5b2caff94a578128a560e011509ef11f6b54552aa08e5e940e",
+    "atlas/assets/portraits/generated/xi-lu.png": "7081722f3f2e94ee936f2cbdcfad95f618974a05412f73ad39b4d4ae4faa09a7",
+    "atlas/assets/portraits/generated/kuai-yue.png": "5b5c354c67520ae177c301c113a0bd0b44c487a7fda30ce06420d515737044c9",
+    "atlas/assets/portraits/generated/xin-pi.png": "545494262b05a992ca3012a8cf0237875fbed2dd037cc8b71ed8743aac3b7ba4",
+    "atlas/assets/portraits/generated/wei-ji.png": "5578fa34ae6284c82cf253a10c7b7a1a1fd5102504f114909d23a3783e1b6f7c",
+    "atlas/assets/portraits/wei/zhuge-dan.png": "966f628b5cc30c974806f9bd54507ecb58ef4aadda3e50aacf16041af72b6298",
+    "atlas/assets/portraits/wei/wen-qin.png": "3e6656d95623f18e2d9225e6e7ff6856033d5afdf436f1567522c07f9d139378",
+    "atlas/assets/portraits/wei/guanqiu-jian.png": "f9dc6feae83feaafeebba81a46b9c9ff8defb115d672fd7f0ef2781eb1b884a9",
+    "atlas/assets/portraits/wei/le-lin.png": "036214a21c8ac781fd5b45803831228de1d5f8c08adc0a0cd9cee7debd46e34b",
+    "atlas/assets/portraits/wei/cheng-ji.png": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251",
+    "atlas/assets/portraits/wei/wang-ji.png": "8ca6ffd0f7508e2fe7f85427705c53af6bc7e8d2b00b227dd6c25f4e3828c54b",
+    "atlas/assets/portraits/wei/qian-zhao.png": "36521a7a505e742f206faf6ff19badac37476c08f7c713971602d6fec574d16d",
+    "atlas/assets/portraits/wei/deng-ai-v2.png": "4073b2e250ee524b8fcc1273dfc4238273e213c80c3c218e2eae80661c367588",
+    "atlas/assets/portraits/v42/诸葛瞻.png": "0dd039923d5a99bceb237d8214652df9c6a376a7d5df9eb255a09d314cb5bfc4",
+    "atlas/assets/portraits/v42/廖化.png": "d073a126a3604c4aebcc1602f1cba572d001ea717324973e51ffd819f8926a5a",
+    "atlas/assets/portraits/v42/张翼.png": "59d0e61563d9a8c13d8bd0504893ff64d29154b28cb3d317580d9596bca94f5f",
+    "atlas/assets/portraits/shu/luo-xian.png": "d1fc773d02e75e14f5096737ddcadef865f574c6f2a46a5f00979bbc65d571ed",
+    "atlas/assets/portraits/v42/马谡.png": "c97a07b4a1838244609759edee7aadc270477716cdebfb646cc79b7eef1f2e69",
+    "atlas/assets/portraits/v42/杨仪.png": "e631a94ae1e130541a3136bf0fb1fcff653c1e568aa168d445e97078efaa4217",
+    "atlas/assets/portraits/shu/ma-liang.png": "de84d2c48f4563128a4a44ceec6cd7b2cc0f4fa4fec8f156f0f7ee2e60daee6d",
+    "atlas/assets/portraits/shu/lai-min.png": "f2506c57ff5cd521c2a02891b3ea1235ba841379444a5c91761318d145f81a0a",
+    "atlas/assets/portraits/shu/wang-ping.png": "95cb9fcb385d78c6afb5f2c75c8671b38a1f1ca794f46663daf6551318e4db7a",
+    "atlas/assets/portraits/shu/dong-jue.png": "f24f693006a5153fa97580d65d481b363b03d84af29aeee8d27b74def9d3cdf4",
+    "atlas/assets/portraits/wu/zhou-chu.png": "1f3d8ab319e38f71db0bae948283750a95a10361b9035cdf4c97b882593bcce5",
+    "atlas/assets/portraits/v58/cao-cao.png": "3649f3f7c13322d8c0cd1fbb439f438cd50ea4ccb68cc306130fa23679f04d34",
+    "atlas/assets/portraits/v58/liu-bei.png": "af341ece53a9a05d4a66c529526ea57c8afc9f804882c03b9019a41f76407e66",
+    "atlas/assets/portraits/v58/sima-yan.png": "896f69cd862cd5d55ad301b42d638100c98b228f97107266eb4e2d9672839b8d",
+    "atlas/assets/portraits/v58/sima-yi.png": "0fcfc7a8d4bb981ac8ee232cd7d31966ca8d0fb7db049df372c4f8171ef14dd2",
+    "atlas/assets/portraits/v58/sima-shi.png": "4d9e8795ee96942d7427fe1b8b1f6c818818c6268e767bd099f4c709bee3c0d3",
+    "atlas/assets/portraits/v58/zhuge-jin.png": "cdfcd8ccebb04786d09b5bad6734a985a13e1c3a0551d287b195119452a01e68",
+    "atlas/assets/portraits/v58/lu-dai.png": "5cb6aacd83e6260fe0da884981e345ee43249525fc2eb226f93653236fc0127e",
+    "atlas/assets/portraits/v58/ding-feng.png": "3d70d7cb8e535fde644028231555929bf42eb327c2018204d78dea978fe3b7c3",
+    "atlas/assets/portraits/v58/zhou-yu.png": "b7fc53756ab8260febac8eba1b7491e9825b8745ef90897f2028b238f2c83e0f",
+    "atlas/assets/portraits/v58/lu-meng.png": "ac5c40ec0baafb4196945e727804d8e9cd0af60a474da7c39595a1ff100928fd",
+    "atlas/assets/portraits/v58/wang-jun.png": "079a03f59bff2c786667ea49195cf74f7f8758ecf0b4153f3622254aa20a898e",
+    "atlas/assets/portraits/v58/du-yu.png": "7dc902eb5a1cd9031e14d1603fbf380ed20aee2808f8c457b1bf81a9c4836fff",
+    "atlas/assets/portraits/v58/shi-bao.png": "87fdf272fe9fa54764dfdfb42db25df1404057ee845018a591e2b63772e00b21",
+    "atlas/assets/portraits/v58/yang-jun.png": "5a5156799f55ff516ce6230e135f9971c17cf9efe3d5b5552b066fd84a3ea2cb",
+    "atlas/assets/portraits/v58/zhang-hua.png": "8af4faafde3c53b37afba722212fafbe190dc0787d168bf40d4200a527db6363",
+    "atlas/assets/portraits/v58/wang-dao.png": "0ad72ef10b1e6e67ed21e6765b5af2fbae164983363cd2bc6dbac266e6349184",
+    "atlas/assets/portraits/v58/xi-jian.png": "3102ee3122c38539542028aebbabf1f0698859745df87f19b767d8dff64a7eda",
+    "atlas/assets/portraits/v58/huan-wen.png": "cfdc070b6eb6e0c768a72787e50a4fbc898c58f1734a749588ab2bd13a147c66",
+    "atlas/assets/portraits/v58/liu-shi.png": "73c68cc3fc5c41c0d2b088f1296efd46a1633ab120692103b3f16ac3caefcf2f",
+    "atlas/assets/portraits/v58/liu-yu.png": "c6a1e6e063fb5fd29e4bc07a1b8ccc07dd507ab17080ad29f0bd067e56e811b8"
   },
   "costumeEvidence": "待考",
   "note": "Visual flags refer to recorded original-image reviews; page checks refer to exact active file. Does not infer historical appearance or source calls from faces."
