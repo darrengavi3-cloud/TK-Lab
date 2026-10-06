@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "newIntegrated": 49,
+  "independentRedrawIntegrated": 12,
+  "sourceTests": 58,
+  "builtTests": 247,
+  "failures": 0,
+  "viewportReports": [
+    {
+      "file": "portrait-redraw-batch-9-10-11-12.json",
+      "status": "passed",
+      "checks": 8
+    },
+    {
+      "file": "portrait-new-batch-all.json",
+      "status": "passed",
+      "checks": 82
+    },
+    {
+      "file": "portrait-redraw-batch-1-2-3-4-5-6-7-8.json",
+      "status": "passed",
+      "checks": 16
+    },
+    {
+      "file": "portrait-new-batch-42-43-44-45.json",
+      "status": "passed",
+      "checks": 8
+    },
+    {
+      "file": "portrait-new-batch-46-47-48-49.json",
+      "status": "passed",
+      "checks": 8
+    }
+  ],
+  "costumeEvidenceStatus": "待考",
+  "publishedSiteVersion": 56,
+  "nextUnintegratedNewOrders": [
+    50,
+    51,
+    52,
+    53
+  ],
+  "nextUnintegratedRedrawOrders": [
+    13,
+    14,
+    15,
+    16
+  ],
+  "visualTests": 54,
+  "accessTests": 2,
+  "diffWhitespaceCheck": "passed"
+}
