@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 lint
+> eslint . --ignore-pattern dist --ignore-pattern .next
+
+
+/workspace/scratch/ea3fed8f4c52/site-recovery/types/cloudflare.d.ts
+      1:1   warning  Unused eslint-disable directive (no problems were reported)
+  10014:44  warning  Unused eslint-disable directive (no problems were reported)
+  10031:70  warning  Unused eslint-disable directive (no problems were reported)
+
+✖ 3 problems (0 errors, 3 warnings)
+  0 errors and 3 warnings potentially fixable with the `--fix` option.
+

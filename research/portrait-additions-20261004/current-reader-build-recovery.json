@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "sourceTestsAlreadyPassed": 58,
+  "builtSuiteTests": 247,
+  "builtPassed": 247,
+  "builtFailed": 0,
+  "recoveryCommands": [
+    "npm run lint",
+    "npm run build:site",
+    "npm run test:built"
+  ],
+  "failureEvidence": "integration-checkpoint-100-150-stale-static-failure.json",
+  "fix": "Verify and atomically replace only generated dist reader snapshot from current public reader source before derivatives",
+  "newIntegrated": 100,
+  "redrawIntegrated": 150,
+  "fullbodyRevisionsIntegrated": [
+    1,
+    2,
+    5,
+    7
+  ],
+  "originalPNGsUnchanged": true
+}
