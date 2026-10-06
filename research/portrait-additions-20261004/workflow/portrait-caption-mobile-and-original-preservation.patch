@@ -1,0 +1,111 @@
+diff --git a/atlas/UX-CONTRACT.md b/atlas/UX-CONTRACT.md
+index b867fa7..47817ae 100644
+--- a/atlas/UX-CONTRACT.md
++++ b/atlas/UX-CONTRACT.md
+@@ -340,3 +340,5 @@ V71 人物身份收口：`v62-reader-scope.json` 的 2096 个稳定 ID 与原文
+ ## 人物立绘资源访问（2026-10-06）
+ 
+ 桌面档案与手机详情共用 `PersonPortraitPanel`，内部复用 `ReaderPortrait`。多立绘只取manifest的稳定personID及其portraitIDs，按assetsById核对personID、ready及本地路径，不根据姓名或面貌猜配。默认仍显示原主立绘；显式按钮切换，当前personID的选择仅为内存临时阅读状态，桌面/手机共享，不写URL或数据库。每张提供本地原图链接，完整全身可查看；不增加史实或改变衣冠“待考”边界。原生按钮和链接有44px目标、焦点、悬停和按下反馈，加载失败给出重试。没有新增动效，沿用全局主题和减少动态效果规则。
++
++当前立绘的艺术设计与服饰待考说明由 PersonPortraitPanel 根据实际显示的 src 提供；切换同一人物的独立资源时仍须显示对应说明，不依赖默认肖像路径。
+diff --git a/atlas/assets/app/reader-components.js b/atlas/assets/app/reader-components.js
+index 3dd17eb..8a0d04e 100644
+--- a/atlas/assets/app/reader-components.js
++++ b/atlas/assets/app/reader-components.js
+@@ -44,10 +44,11 @@
+         retryImage() { this.loading=true;this.failed=false;this.retry++; }
+       },
+       template: `<section class="sgz-person-portrait-panel" :aria-label="person.name+'立绘'">
+-        <div class="people-detail-portrait" :style="frameStyle" :aria-busy="Boolean(src)&&loading"><reader-portrait v-if="src" :key="src+'|'+retry" :src="src" :alt="person.name+'立绘'" detail @load="loaded" @error="errored"/><button v-if="failed" type="button" class="sgz-portrait-control sgz-portrait-retry" @click="retryImage">重试立绘</button><span v-else>{{person.name.slice(0,1)}}</span></div>
++        <div class="people-detail-portrait" :style="frameStyle" :aria-busy="Boolean(src)&&loading"><reader-portrait v-if="src" :key="src+'|'+retry" :src="src" :alt="person.name+'立绘'" detail @load="loaded" @error="errored"/><button v-if="failed" type="button" class="sgz-portrait-control sgz-portrait-retry" @click="retryImage">重试立绘</button><span v-if="!src">{{person.name.slice(0,1)}}</span></div>
+         <p v-if="src" class="sgz-portrait-status" role="status">{{failed?'立绘未能加载。':loading?'加载立绘…':''}}</p>
+         <nav v-if="choices.length>1" class="sgz-portrait-choices" aria-label="切换人物立绘"><button v-for="(asset,index) in choices" :key="asset.portraitId" type="button" class="sgz-portrait-control" :data-portrait-id="asset.portraitId" :aria-pressed="src===asset.src" @click="choose(asset.portraitId)">立绘{{index+1}}</button></nav>
+         <a v-if="src" class="sgz-portrait-control sgz-portrait-original" :href="src" target="_blank" rel="noopener">查看原图</a>
++        <p v-if="src.includes('/20261004/')" class="reader-quiet-note sgz-portrait-evidence-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
+       </section>`
+     },
+     ReaderCitations: {
+diff --git a/atlas/assets/app/ui/people-ui.js b/atlas/assets/app/ui/people-ui.js
+index 79851c1..662c215 100644
+--- a/atlas/assets/app/ui/people-ui.js
++++ b/atlas/assets/app/ui/people-ui.js
+@@ -165,7 +165,7 @@ export const PeopleWorkbench = {
+             <header class="v56-person-dossier-head">
+               <person-portrait-panel :person="peoplePrimaryDetail" :frame-style="portraitStyleFor(peoplePrimaryDetail)"/>
+               <div>
+-                <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2><p v-if="peoplePrimaryDetail.portrait && peoplePrimaryDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
++                <h2>{{peoplePrimaryDetail.canonicalName||peoplePrimaryDetail.name}}</h2>
+                 <div class="v56-person-dossier-meta"><span class="review-only" v-if="workspaceMode==='review'">ID：{{peoplePrimaryDetail.personId}}</span></div>
+                 <div class="people-detail-tags"><span v-for="pol in peoplePrimaryDetail.dynastyTags" :key="pol" class="person-pill" :class="polityPillClass(pol)">{{pol}}</span></div>
+                 <p v-if="peoplePrimaryDetail.historicalAffiliations.length" class="v62-historical-affiliations">历史归属：{{peoplePrimaryDetail.historicalAffiliations.join('、')}}</p>
+diff --git a/atlas/assets/ui/components.css b/atlas/assets/ui/components.css
+index 973b8df..c2182fa 100644
+--- a/atlas/assets/ui/components.css
++++ b/atlas/assets/ui/components.css
+@@ -1087,3 +1087,7 @@ body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-con
+ .sgz-person-portrait-panel .people-detail-portrait{position:relative}.sgz-portrait-retry{position:absolute;bottom:4px;left:4px;right:4px;z-index:1}.sgz-portrait-status{height:3em;overflow-wrap:anywhere}
+ 
+ .people-detail-head .sgz-person-portrait-panel{width:112px}@media(max-width:760px){.people-detail-head .sgz-person-portrait-panel{width:80px}}
++
++.sgz-person-portrait-panel .sgz-portrait-evidence-note{font-size:12px;line-height:1.5;overflow-wrap:anywhere;margin:8px 0 0;}
++
++.people-detail-head .sgz-person-portrait-panel .people-detail-portrait{float:none;margin:0;}
+diff --git a/atlas/index.html b/atlas/index.html
+index 03ea5df..ba4c66b 100644
+--- a/atlas/index.html
++++ b/atlas/index.html
+@@ -9289,7 +9289,7 @@ const app = createApp({
+         <div class="people-detail-head">
+           <person-portrait-panel :person="activePeopleDetail" :frame-style="portraitStyleFor(activePeopleDetail)"/>
+           <div class="people-detail-main">
+-            <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}</h3><p v-if="activePeopleDetail.portrait && activePeopleDetail.portrait.includes('/20261004/')" class="reader-quiet-note">人物艺术立绘；表现年龄为设计选择，服饰细节待考。</p>
++            <h3>{{activePeopleDetail.canonicalName||activePeopleDetail.name}}</h3>
+ 
+             <p v-if="workspaceMode==='review'&&activePeopleDetail.homonymStatus" class="homonym-note review-only">同名消歧：{{activePeopleDetail.homonymStatus}}</p>
+             <p v-if="workspaceMode==='review'&&activePeopleDetail.sourceVolumes&&activePeopleDetail.sourceVolumes.length" class="people-source-note review-only">来源卷次：{{activePeopleDetail.sourceVolumes.join('、')}}</p>
+diff --git a/scripts/prune-site-build.mjs b/scripts/prune-site-build.mjs
+index 344c288..7fe3551 100644
+--- a/scripts/prune-site-build.mjs
++++ b/scripts/prune-site-build.mjs
+@@ -38,10 +38,11 @@ if (missingBeforePrune.length) {
+ let removedFiles = 0;
+ let removedBytes = 0;
+ const removeFile = (filePath) => {
+-  const stat = fs.statSync(filePath);
++  const stat = fs.statSync(filePath, { throwIfNoEntry: false });
++  if (!stat) return;
+   removedBytes += stat.size;
+   removedFiles += 1;
+-  fs.rmSync(filePath);
++  fs.rmSync(filePath, { force: true });
+ };
+ 
+ const walkFiles = (directory) => {
+@@ -128,6 +129,9 @@ for (const relativePath of runtimePortraits) {
+     sourceSha256: createHash('sha256').update(input).digest('hex'),
+     srcset: variants.map(row => `${row.src} ${row.width}w`).join(', '), variants
+   };
++  // Accepted production portraits are also the downloadable originals. Keep
++  // their exact generated bytes; responsive WebP variants serve the reader.
++  if (relativePath.split(path.sep).join('/').startsWith('assets/portraits/20261004/')) continue;
+   const maxDimension = Math.max(metadata.width || 0, metadata.height || 0);
+   if (maxDimension <= 192) continue;
+ 
+diff --git a/tests/portrait-variants.test.mjs b/tests/portrait-variants.test.mjs
+index a2cb0a0..a2c8228 100644
+--- a/tests/portrait-variants.test.mjs
++++ b/tests/portrait-variants.test.mjs
+@@ -31,6 +31,12 @@ test('deployed responsive portraits preserve source identity and actual dimensio
+       expectedSrcset.push(`${variant.src} ${variant.width}w`);
+     }
+     assert.equal(record.srcset, expectedSrcset.join(', '));
+-    await readFile(new URL(src, root)); // Original PNG remains a valid fallback.
++    const packaged = await readFile(new URL(src, root));
++    if (src.startsWith('./assets/portraits/20261004/')) {
++      assert.deepEqual(packaged, original, `Accepted original changed in deployment: ${src}`);
++      const packagedDimensions = await sharp(packaged).metadata();
++      assert.equal(packagedDimensions.width, dimensions.width, src);
++      assert.equal(packagedDimensions.height, dimensions.height, src);
++    }
+   }
+ });

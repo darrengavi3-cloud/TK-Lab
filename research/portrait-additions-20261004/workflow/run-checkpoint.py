@@ -22,6 +22,8 @@ for kind, orders in [('new', new_orders), ('redraw', redraw_orders)]:
         continue
     commands.append((kind + '-pages', ['node', 'work/verify-portrait-batch.mjs', orders] + (['redraw'] if kind == 'redraw' else [])))
     reports.append(f'portrait-{kind}-batch-{orders.replace(",", "-")}.json')
+    commands.append((kind + '-built-pages', ['node', 'work/verify-portrait-batch.mjs', orders] + (['redraw'] if kind == 'redraw' else []) + ['--built']))
+    reports.append(f'portrait-{kind}-batch-{orders.replace(",", "-")}-built.json')
 commands.append(('diff', ['git', 'diff', '--check']))
 save()
 for label, command in commands:

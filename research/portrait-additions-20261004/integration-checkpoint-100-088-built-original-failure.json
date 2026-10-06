@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "phase": "deployment-build-original-byte-check",
+  "command": [
+    "node",
+    "work/verify-portrait-batch.mjs",
+    "81,82,83,84,85,86,87,88",
+    "redraw",
+    "--built"
+  ],
+  "exitCode": 1,
+  "firstOrder": 81,
+  "name": "范慎",
+  "expectedSha256": "c7e96294382066d34a6e13e9dcff105a69df6f21bdfdb710aeb24677667822f3",
+  "actualBuiltSha256": "6da87d619cb982c135c25b1a83ca759f03e672254a621914ad15c0859451cb7a",
+  "evidence": "Original PNG 2651765 bytes in accepted source/export; old build optimizer rewrites PNG to 46491 bytes. Root/source original retained. New byte/dimension browser check exposed old resizing.",
+  "resolution": "Preserve byte-exact accepted 20261004 PNGs in build while retaining responsive WebP derivatives; re-run release and actual built viewport checks."
+}

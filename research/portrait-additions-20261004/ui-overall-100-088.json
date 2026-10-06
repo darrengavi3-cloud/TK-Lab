@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "command": [
+    "npm",
+    "run",
+    "test:visual"
+  ],
+  "exitCode": 0,
+  "tests": 54,
+  "passed": 54,
+  "failed": 0,
+  "sourceState": "100 new / 88 redraw; actual selected portrait caption, phone float and empty fallback fixes",
+  "observedFrom": "Actual tool session 44362 completed successfully",
+  "fontEnvironment": "Linux无已安装CJK字体；不宣称汉字字形或真实设备验收"
+}
