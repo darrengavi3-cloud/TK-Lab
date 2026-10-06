@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "newIntegrated": 100,
+  "independentRedrawIntegrated": 88,
+  "failedPhase": "redraw-pages",
+  "sourceTests": 58,
+  "builtSuiteTests": 247,
+  "evidence": "research/portrait-additions-20261004/portrait-caption-failure.log",
+  "recordBasis": "Actual completed tool output and preserved page test log; failed checkpoints were only written in Site work/validation, not automatically copied to root. Prior empty Git placeholder is invalid and replaced by this explicit failure record."
+}

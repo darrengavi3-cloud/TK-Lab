@@ -1,0 +1,262 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 release:offline
+> node atlas/scripts/release-check.mjs && npm run sync:reader && npm run build:catalogue && npm run typecheck && npm run lint && npm run build:site && npm run test:built
+
+
+▶ build-all.mjs
+V60 工作簿未提供；使用已提交且受 sources.lock.json 保护的生成结果。
+V61 工作簿未全部提供；使用已提交且受 sources.lock.json 保护的生成结果。
+
+▶ build-v46-portrait-manifest.mjs
+{"defaultPeople":123,"assetRecords":600,"indexedPersonIds":598,"specificPortraits":600,"designOnlyPortraits":0,"fallbackPortraits":0,"v62PortraitRecords":100,"peopleWithMultiplePortraits":2,"legacyPersonIdAliases":31,"figmaBoardRecords":50,"figmaBoardMapped":50,"v58PortraitRecords":20,"v58PortraitMapped":20,"v70PortraitRecords":50,"v73PortraitRecords":100,"dengAiSrc":"./assets/portraits/wei/deng-ai-v2.png","plannedV62Portraits":100,"readyV62Portraits":100}
+
+▶ build-v63-person-registry.mjs
+{
+  "ok": true,
+  "people": 5234,
+  "readerPeople": 3621,
+  "readerScopeVersion": "V90",
+  "readerScopePeople": 3621,
+  "scopeExcludedPeople": 29,
+  "nonPersonExclusions": 29,
+  "legacyMappings": 1140,
+  "sourceRecordMappings": 2013,
+  "ziConflicts": 17,
+  "isolatedSnapshotRecords": 18,
+  "addedJinLegacyMappings": 9,
+  "protectedExistingPeople": 10,
+  "portraitAssets": 600,
+  "portraitPersonIds": 598,
+  "unresolvedPortraits": 0,
+  "verifiedFieldCounts": {
+    "name": 3621,
+    "aliases": 499,
+    "zi": 122,
+    "birthplace": 71,
+    "birthYear": 38,
+    "deathYear": 61,
+    "bio": 102,
+    "bioCitations": 28,
+    "bioClassical": 0,
+    "dynastyTags": 3209,
+    "historicalAffiliations": 46,
+    "appointments": 146,
+    "peerage": 371,
+    "portraits": 598
+  }
+}
+
+▶ build-v66-peerage-stages.mjs
+{
+  "sourceReaderVisibleEvents": 525,
+  "sourceReaderVisibleRelations": 542,
+  "sourceReaderVisiblePeople": 374,
+  "closedEvents": 525,
+  "linkedEvents": 194,
+  "hanPredecessorEvents": 79,
+  "rankAmbiguousEvents": 22,
+  "dynastyReviewEvents": 2,
+  "postWeiReviewEvents": 2,
+  "missingYearEvents": 227,
+  "stageMisalignedEvents": 1,
+  "partiallyLinkedEvents": 1,
+  "rankStages": 603,
+  "titleStages": 641,
+  "multiRankEvents": 50,
+  "stageAlignmentReviewEvents": 29,
+  "linkedRelations": 194,
+  "linkedPeople": 166,
+  "dispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 194,
+    "missing-year": 227,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "phaseCounts": {
+    "han-predecessor": 79,
+    "missing-year-review": 227,
+    "mixed-stages": 1,
+    "post-wei-review": 2,
+    "wei-inherited-han": 159,
+    "wei-xianxi-five-rank": 57
+  },
+  "stageDispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 195,
+    "missing-year": 304,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "titleClassifiedMarquisStages": 289,
+  "xianxiFiveRankMarquisStages": 16
+}
+
+▶ build-v66-fangzhen-seats.mjs
+{
+  "totalRecords": 533,
+  "v65ReaderVisible": 45,
+  "seatVerified": 27,
+  "readerVisible": 45,
+  "reviewOnly": 488,
+  "readerVisibleWithSeat": 27,
+  "readerVisibleWithoutSeat": 18,
+  "upstreamReviewOnly": 488,
+  "upstreamVisibleSeatUnresolved": 18,
+  "v62JinTotal": 29,
+  "v62JinReaderVisible": 29,
+  "v62JinSeatVisible": 25,
+  "v62JinSeatSuppressed": 4,
+  "bySeatResolution": {
+    "not-assessed-upstream-review-only": 488,
+    "unresolved": 18,
+    "verified": 27
+  },
+  "byPublication": {
+    "reader-visible": 45,
+    "review-only": 488
+  }
+}
+
+▶ build-reader-bundle.mjs --relations-only
+已生成 V63 纯净读者人物关联：任官 263，封爵关系 535
+
+▶ build-office-succession.mjs
+已生成 3 个职官的同源历任投影。
+
+▶ build-v69-data.mjs
+{
+  "ok": true,
+  "people": {
+    "people": 3621,
+    "rulers": 16,
+    "peopleWithLifeEvents": 514,
+    "lifeEvents": 947
+  },
+  "portraitCandidates": {
+    "candidates": 100,
+    "existingPortraitAssets": 600,
+    "expectedAfterProduction": 375
+  },
+  "battles": {
+    "records": 62,
+    "linkedRecords": 49,
+    "noExplicitPersonRecords": 12,
+    "ambiguousRecords": 1,
+    "links": 106
+  },
+  "fangzhen": {
+    "records": 523,
+    "verified": 45,
+    "candidate": 478,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 99,
+      "魏": 173,
+      "吴": 213,
+      "西晋": 31,
+      "东晋": 1
+    }
+  },
+  "epigraphy": {
+    "records": 166,
+    "withInscription": 59,
+    "withoutInscription": 107,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 8,
+      "魏": 20,
+      "吴": 15,
+      "西晋": 56,
+      "东晋": 61
+    }
+  },
+  "aggregate": "f068bb462860511734ba315eb39053f57e93a5a41132a13937582b948eaaa2e3"
+}
+
+▶ build-v73-review-status-ledger.mjs
+{
+  "ok": true,
+  "totals": {
+    "verified": 3960,
+    "pending": 2641,
+    "disputed": 94,
+    "suppressed": 108
+  },
+  "modules": [
+    {
+      "label": "人物实体",
+      "verified": 3621,
+      "pending": 1599,
+      "disputed": 14,
+      "suppressed": 29,
+      "excludedFromStatistics": 1642
+    },
+    {
+      "label": "任官事实",
+      "verified": 263,
+      "pending": 507,
+      "disputed": 2,
+      "suppressed": 79,
+      "excludedFromStatistics": 588
+    },
+    {
+      "label": "州镇职任",
+      "verified": 45,
+      "pending": 408,
+      "disputed": 70,
+      "suppressed": 0,
+      "excludedFromStatistics": 503
+    },
+    {
+      "label": "金石记录",
+      "verified": 31,
+      "pending": 127,
+      "disputed": 8,
+      "suppressed": 0,
+      "excludedFromStatistics": 105
+    }
+  ]
+}
+
+▶ build-release-summary.mjs
+{"people":3621,"appointments":{"verified":263,"pending":507,"disputed":2,"suppressed":79},"biographies":101,"portraitAssets":600,"peopleWithPortraits":593,"peopleWithEvents":514}
+file:///workspace/scratch/ea3fed8f4c52/site-recovery/atlas/scripts/build-all.mjs:183
+    throw new Error(`规范源与 sources.lock.json 不一致：\n${changes.slice(0, 40).join('\n')}${changes.length > 40 ? `\n…共 ${changes.length} 项` : ''}\n请先审查变更，再显式执行 --refresh-lock。`);
+          ^
+
+Error: 规范源与 sources.lock.json 不一致：
+~ UX-CONTRACT.md
+请先审查变更，再显式执行 --refresh-lock。
+    at file:///workspace/scratch/ea3fed8f4c52/site-recovery/atlas/scripts/build-all.mjs:183:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /workspace/scratch/ea3fed8f4c52/site-recovery/atlas/scripts/build-all.mjs
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at run (file:///workspace/scratch/ea3fed8f4c52/site-recovery/atlas/scripts/release-check.mjs:100:3)
+    at file:///workspace/scratch/ea3fed8f4c52/site-recovery/atlas/scripts/release-check.mjs:132:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 406,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.19.0
