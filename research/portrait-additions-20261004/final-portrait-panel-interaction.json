@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "width": 1440,
+      "theme": "laitai-day",
+      "keyboard": true,
+      "touchTarget": true,
+      "exactIdBinding": true,
+      "originalLink": true,
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "theme": "review-paper",
+      "keyboard": true,
+      "touchTarget": true,
+      "exactIdBinding": true,
+      "originalLink": true,
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "theme": "lamp-night",
+      "keyboard": true,
+      "touchTarget": true,
+      "exactIdBinding": true,
+      "originalLink": true,
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "loading": true,
+      "error": true,
+      "retry": true,
+      "sharedAcrossResponsive": true,
+      "enlargedText": true,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "laitai-day",
+      "keyboard": true,
+      "touchTarget": true,
+      "exactIdBinding": true,
+      "originalLink": true,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "review-paper",
+      "keyboard": true,
+      "touchTarget": true,
+      "exactIdBinding": true,
+      "originalLink": true,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "lamp-night",
+      "keyboard": true,
+      "touchTarget": true,
+      "exactIdBinding": true,
+      "originalLink": true,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "loading": true,
+      "error": true,
+      "retry": true,
+      "sharedAcrossResponsive": true,
+      "enlargedText": true,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "empty": true,
+      "passed": true
+    }
+  ],
+  "fontEnvironment": "Linux无已安装CJK字体；不宣称汉字字形或真实设备验收"
+}

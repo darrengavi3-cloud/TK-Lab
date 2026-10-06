@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "testSurface": "reader-export",
+  "checks": [
+    {
+      "width": 1440,
+      "galleryCount": 250,
+      "exactPortraitSet": true,
+      "search": true,
+      "emptySearch": true,
+      "clearSearch": true,
+      "artworkOnlyScope": [
+        115,
+        116
+      ],
+      "invalidId": true,
+      "rawLinks": true,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "galleryCount": 250,
+      "exactPortraitSet": true,
+      "search": true,
+      "emptySearch": true,
+      "clearSearch": true,
+      "artworkOnlyScope": [
+        115,
+        116
+      ],
+      "invalidId": true,
+      "rawLinks": true,
+      "passed": true
+    }
+  ]
+}

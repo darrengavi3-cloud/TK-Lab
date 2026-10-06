@@ -6,6 +6,8 @@ import {chromium} from 'playwright';
 const root=path.resolve(process.argv.includes('--built')?'dist/client/legacy':'atlas/exports/观史台-读者版');
 const built=process.argv.includes('--built');
 const ledger=['accepted-portrait-additions-20261004.json','accepted-independent-redraws-20261004.json'].flatMap((name,index)=>JSON.parse(fs.readFileSync('atlas/data/'+name)).records.map(row=>index?row:{...row,portraitId:'portrait:additional:20261004:'+String(row.order).padStart(3,'0')}));
+const people=JSON.parse(fs.readFileSync(path.join(root,'data/v63-reader-people.json'))).people;
+const queryName=people.find(person=>person.personId===ledger[0].personId).name;
 const ids=ledger.map(row=>row.portraitId||'portrait:additional:20261004:'+String(row.order).padStart(3,'0')).sort();
 const mime={'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp'};
 const server=createServer((req,res)=>{const target=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(!target.startsWith(root+path.sep)||!fs.existsSync(target)||fs.statSync(target).isDirectory()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':mime[path.extname(target)]||'application/octet-stream'});fs.createReadStream(target).pipe(res);});
@@ -16,7 +18,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:1000}});const page=await context.newPage();const base=`http://127.0.0.1:${server.address().port}`;
   await page.goto(base+'/portraits.html');await page.locator('.portrait-gallery a').first().waitFor();
   assert.deepEqual((await page.locator('.portrait-gallery a').evaluateAll(cards=>cards.map(card=>card.dataset.portraitId))).sort(),ids);
-  const search=page.getByRole('searchbox',{name:'搜索人物立绘'});await search.fill('钟会');assert.ok(await page.locator('.portrait-gallery a').count()>0);assert.ok((await page.locator('.portrait-gallery').innerText()).includes('钟会'));
+  const search=page.getByRole('searchbox',{name:'搜索人物立绘'});await search.fill(queryName);assert.ok(await page.locator('.portrait-gallery a').count()>0);assert.ok((await page.locator('.portrait-gallery').innerText()).includes(queryName));
   await search.fill('不存在的测试人物xyz');await page.getByText('未找到相符的立绘。',{exact:true}).waitFor();assert.equal(await page.locator('.portrait-gallery a').count(),0);
   await search.fill('');assert.equal(await page.locator('.portrait-gallery a').count(),250);
   for(const order of [115,116]){
