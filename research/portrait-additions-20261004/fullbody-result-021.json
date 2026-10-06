@@ -1,0 +1,22 @@
+{
+  "order": 21,
+  "name": "张绣",
+  "personId": "person:workbook:33c13252ee4a2b76",
+  "designAge": 40,
+  "referenceImagePath": "/workspace/scratch/ea3fed8f4c52/atlas/assets/portraits/20261004/021-174fda6db2fc.png",
+  "referenceImageSha256": "876e653dc11238a1091b33bf2ae04016c33410841961136c23dcf7c1d00051b6",
+  "previousPath": "atlas/assets/portraits/20261004/021-174fda6db2fc.png",
+  "outputStem": "021-174fda6db2fc-fullbody-v2",
+  "evidenceStatus": "待考",
+  "operation": "identity-preserving-fullbody-edit",
+  "prompt": "Use case: identity-preserve. 观史台张绣立绘编辑。唯一身份绑定personId person:workbook:33c13252ee4a2b76，直接以此原图为参考，不猜配身份。保持同一人物的原有面貌、艺术表现年龄约40岁、发冠、衣色和纹样、水墨淡彩半写实纸本风格。主要修改：把被裁去的下半身及双脚延展为完整全身站立构图，完整发冠、双手、袍下摆和两只鞋底都必须在画面内，冠顶和脚底保留安全边距。9:16竖幅，头肩身体严格正面，眼睛直视观众；不侧身，不改变原有基本五官。保留原衣冠设计，不添加新道具、兵器、兽首肩甲、胸镜、王冠、尖刺等装饰；若原图已有装饰不扩张其细节。衣冠形制、颜色、纹样及新增鞋履为艺术设计，史料不足待考，不能宣称真实肖像或精确复原。保持冠与双手完整，身体自然站立，不让袍下摆遮蔽鞋底。无文字、姓名、印章、水印、拼图或其他人物。保存新的独立PNG，禁止覆盖参考原图。",
+  "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-88d32dc4-e186-43d3-9a85-2d786683526b.png",
+  "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/fullbody-images/021-174fda6db2fc-fullbody-v2.png",
+  "sha256": "dc8fa0df16745a6e6f6e3bdd119da5538d573455d9c91009e181138cf0c7f2d5",
+  "dimensions": [
+    941,
+    1672
+  ],
+  "actualPrompt": "Use case: identity-preserve. 观史台张绣立绘编辑。唯一身份绑定personId person:workbook:33c13252ee4a2b76，直接以此原图为参考，不猜配身份。保持同一人物的原有面貌、艺术表现年龄约40岁、发冠、衣色和纹样、水墨淡彩半写实纸本风格。主要修改：把被裁去的下半身及双脚延展为完整全身站立构图，完整发冠、双手、袍下摆和两只鞋底都必须在画面内，冠顶和脚底保留安全边距。9:16竖幅，头肩身体严格正面，眼睛直视观众；不侧身，不改变原有基本五官。保留原衣冠设计，不添加新道具、兵器、兽首肩甲、胸镜、王冠、尖刺等装饰；若原图已有装饰不扩张其细节。衣冠形制、颜色、纹样及新增鞋履为艺术设计，史料不足待考，不能宣称真实肖像或精确复原。保持冠与双手完整，身体自然站立，不让袍下摆遮蔽鞋底。无文字、姓名、印章、水印、拼图或其他人物。保存新的独立PNG，禁止覆盖参考原图。",
+  "generationMethod": "builtin-imagegen-identity-preserving-fullbody-edit"
+}
