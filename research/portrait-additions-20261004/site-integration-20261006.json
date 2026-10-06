@@ -1,0 +1,85 @@
+{
+  "completedAt": "2026-10-06T09:21:32.021Z",
+  "status": "partial-batch-published",
+  "newThisRun": [
+    38,
+    39,
+    40,
+    41
+  ],
+  "redrawnExistingThisRun": [],
+  "confirmedPreserved": [
+    34,
+    35,
+    36,
+    37
+  ],
+  "integratedOrders": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "counts": {
+    "newProduced": 41,
+    "newAccepted": 41,
+    "expectedNew": 100,
+    "independentRedrawAccepted": 8,
+    "expectedIndependentRedraw": 150,
+    "readerPortraitAssets": 508
+  },
+  "checks": {
+    "pngSha256AndDimensions": true,
+    "rootVisualReview": true,
+    "stableIdentityAndPrimaryPortraitBinding": true,
+    "sourceTests": 58,
+    "builtTests": 247,
+    "visualTests": 54,
+    "portraitViewportChecks": 16,
+    "offlineRelease": "passed",
+    "ownerOnlyAccess": "passed"
+  },
+  "clothingEvidenceStatus": "待考",
+  "site": {
+    "projectId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+    "version": 56,
+    "versionId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123~appgver_9846b0af3c8081918741763d27d2f62f",
+    "deploymentId": "appgdep_6ac4bd8245288191a2180db7a4920fa1",
+    "status": "succeeded",
+    "url": "https://zhiguanpu-private.darrengavi3.chatgpt.site",
+    "sourceCommit": "9ddcc17075045a63152f5a3f494145966f2a66d8",
+    "archiveSha256": "sha256:be77c5a3a75a7b822f2b32993147aed96f7c954c910e8ba3b876c4d164e3e1c0"
+  },
+  "nextBatch": [
+    {
+      "order": 42,
+      "name": "韩当",
+      "personId": "person:workbook:5b387fa607053fc1",
+      "designAge": 50
+    },
+    {
+      "order": 43,
+      "name": "祖茂",
+      "personId": "person:workbook:09dfe78ad1215e11",
+      "designAge": 37
+    },
+    {
+      "order": 44,
+      "name": "蒋钦",
+      "personId": "person:workbook:48bf624892c13558",
+      "designAge": 42
+    },
+    {
+      "order": 45,
+      "name": "周泰",
+      "personId": "person:workbook:163825c5881056ed",
+      "designAge": 47
+    }
+  ],
+  "all600Complete": false,
+  "unboundEarlierGenerationFiles": "Preserved without person assignment or acceptance; no guessed bindings."
+}
