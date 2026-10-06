@@ -40,7 +40,7 @@ for kind, count in [('new', 100), ('redraw', 150)]:
     for built in [False, True]:
         label = kind + ('-built-pages' if built else '-source-pages')
         command = ['node', 'work/verify-portrait-batch.mjs', orders] + (['redraw'] if kind == 'redraw' else []) + (['--built'] if built else [])
-        report = 'portrait-' + kind + '-batch-' + orders.replace(',', '-') + ('-built' if built else '') + '.json'
+        report = 'portrait-' + kind + '-batch-' + f'1-{count}-all' + ('-built' if built else '') + '.json'
         jobs.append((label, command, report))
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
     futures = {pool.submit(run, label, command): (label, report) for label, command, report in jobs}

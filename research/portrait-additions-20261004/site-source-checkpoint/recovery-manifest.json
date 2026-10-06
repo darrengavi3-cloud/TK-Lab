@@ -1,0 +1,720 @@
+{
+  "status": "saved-local-and-ready-for-durable-Git",
+  "projectId": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+  "baseSavedSiteVersion": 69,
+  "baseSiteSourceCommit": "c2796125c0b7207e71d17d3de8e128576ceebe2f",
+  "checkpointSourceCommit": "2cdf202a323ee071653c9e3ff592b88f10a54d06",
+  "localBranch": "codex/portrait-delivery-100-150-20261006",
+  "mainUnchanged": true,
+  "sourcePushed": false,
+  "newCount": 100,
+  "redrawCount": 150,
+  "fullbodyRevisions": 23,
+  "sourceFiles": [
+    {
+      "path": "atlas/UX-CONTRACT.md",
+      "sha256": "7e03de7d4d981781851402b18420d86824d03c5018a7e34d4c47a3f96fef13b4",
+      "bytes": 41038,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/UX-CONTRACT.md"
+    },
+    {
+      "path": "atlas/assets/app/portrait-viewer.js",
+      "sha256": "0d0aaba2875417d759a9a1832aaef3de9dca6c3d9b08ac597fff5f205e3f9323",
+      "bytes": 3629,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/assets/app/portrait-viewer.js"
+    },
+    {
+      "path": "atlas/assets/app/reader-components.js",
+      "sha256": "5beef752bac6f2993cd8c2475003f616f72d2f7c8412f1052ad1f348e24cfb83",
+      "bytes": 14863,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/assets/app/reader-components.js"
+    },
+    {
+      "path": "atlas/assets/app/ui/people-ui.js",
+      "sha256": "676e2e65732015d4a4a7dddfdffb607ec24d30cf49b2d787bfe2375f1b96a9d5",
+      "bytes": 17776,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/assets/app/ui/people-ui.js"
+    },
+    {
+      "path": "atlas/assets/ui/components.css",
+      "sha256": "4bdf60b54ab0588f061da32b4a0150d1bf84df9245e6a35682234c4cbc342f95",
+      "bytes": 56860,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/assets/ui/components.css"
+    },
+    {
+      "path": "atlas/data/accepted-independent-redraws-20261004.json",
+      "sha256": "c3bf2c2b0e4bda066b612e2a78f40a1f041faa11783a2c9969c680319424a701",
+      "bytes": 230877,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/data/accepted-independent-redraws-20261004.json"
+    },
+    {
+      "path": "atlas/data/accepted-portrait-additions-20261004.json",
+      "sha256": "686a3842aaf775524bd1051ca4fe971458fcae7ff31415f1f5feb7c569c91fa7",
+      "bytes": 135346,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/data/accepted-portrait-additions-20261004.json"
+    },
+    {
+      "path": "atlas/data/asset-manifest.json",
+      "sha256": "a187fd40880e54c8e697a5c6f0084e391438804bdb02493712f745621bcba1e1",
+      "bytes": 201758,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/data/asset-manifest.json"
+    },
+    {
+      "path": "atlas/data/portrait-manifest.js",
+      "sha256": "602f586f3c5f224f8a0f076277a7862f8ec61c0aa49fb80834ec035a473cf968",
+      "bytes": 608420,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/data/portrait-manifest.js"
+    },
+    {
+      "path": "atlas/data/portrait-manifest.json",
+      "sha256": "8dff1b45200bf4f24e96f4e3009962b033b3f7d242641f901eebd50f7ce2ac9f",
+      "bytes": 2084089,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/data/portrait-manifest.json"
+    },
+    {
+      "path": "atlas/index.html",
+      "sha256": "d810cfbf2306c716a36282251f326a238eeae1c1f8e809063b564465232c24ca",
+      "bytes": 703738,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/index.html"
+    },
+    {
+      "path": "atlas/portraits.html",
+      "sha256": "056e3375597d8a23d940f9ad7bba9f19f202aa2772dcdad4c11664918efaebca",
+      "bytes": 2403,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/portraits.html"
+    },
+    {
+      "path": "atlas/scripts/accepted-independent-redraws.mjs",
+      "sha256": "94e354cf47c1df8fee5eac3976b06152bc27fce7e087d49657fcdf6b6de526cc",
+      "bytes": 2720,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/scripts/accepted-independent-redraws.mjs"
+    },
+    {
+      "path": "atlas/scripts/build-reader-bundle.mjs",
+      "sha256": "bd530c22b5cee7950e13a1507a1c29fe00e7777f48799586bfd2cd636d96e371",
+      "bytes": 75575,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/scripts/build-reader-bundle.mjs"
+    },
+    {
+      "path": "atlas/scripts/verify-v63.mjs",
+      "sha256": "3500637bd4a66984044313e574e2d90e69066021d693d1224bf6350970bf54d3",
+      "bytes": 17836,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/scripts/verify-v63.mjs"
+    },
+    {
+      "path": "atlas/sources.lock.json",
+      "sha256": "4f48573a3e438e702153f156ebef00771e7a5d735b6aa31a738ab711e6d2d35d",
+      "bytes": 219100,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/atlas/sources.lock.json"
+    },
+    {
+      "path": "release-metadata/access-policy.json",
+      "sha256": "634e623bc6f828f1b81e475eb182cca34cec94e523aa4bf2eb88bae73858c33a",
+      "bytes": 320,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/release-metadata/access-policy.json"
+    },
+    {
+      "path": "release-metadata/canonical-sources.lock.json",
+      "sha256": "4f48573a3e438e702153f156ebef00771e7a5d735b6aa31a738ab711e6d2d35d",
+      "bytes": 219100,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/release-metadata/canonical-sources.lock.json"
+    },
+    {
+      "path": "release-metadata/deployment-manifest.json",
+      "sha256": "0d8d9d7bcc4392b540f3e685e761d22b714ed0be592434560732de72de0e0e21",
+      "bytes": 569231,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/release-metadata/deployment-manifest.json"
+    },
+    {
+      "path": "release-metadata/reader-bundle.json",
+      "sha256": "8d82f2904724987860c828a7a30e89dc3025f9df32ed5dd2a6cd4f264afa6004",
+      "bytes": 163339,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/release-metadata/reader-bundle.json"
+    },
+    {
+      "path": "research/portrait-additions-20261004/integration-checkpoint-100-088.json",
+      "sha256": "f5c70117705e1e1e2cf2c09ef0d9db58600d74f9306bed4cb9dd179c979dc36e",
+      "bytes": 1165,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/research/portrait-additions-20261004/integration-checkpoint-100-088.json"
+    },
+    {
+      "path": "research/portrait-additions-20261004/portrait-redraw-batch-81-82-83-84-85-86-87-88.json",
+      "sha256": "9c56484cb696d682936c26a67a11e91892083613b845bfe8cb53844eb57838ab",
+      "bytes": 14773,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/research/portrait-additions-20261004/portrait-redraw-batch-81-82-83-84-85-86-87-88.json"
+    },
+    {
+      "path": "scripts/prune-site-build.mjs",
+      "sha256": "429c016fb8e3e9e1eb8fb561c7967f5da6a1a7a3383db9503fab03891b39851b",
+      "bytes": 10686,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/scripts/prune-site-build.mjs"
+    },
+    {
+      "path": "tests/portrait-variants.test.mjs",
+      "sha256": "9b5d2952c3321c7ef585fd16f1e911465d1a895f55f2ad3a75b1585e14fd03a9",
+      "bytes": 2290,
+      "snapshotPath": "research/portrait-additions-20261004/site-source-checkpoint/files/tests/portrait-variants.test.mjs"
+    }
+  ],
+  "newImageFiles": [
+    {
+      "path": "atlas/assets/portraits/20261004/001-f304bf80e354.png",
+      "sha256": "f304bf80e3544b6209a64121a276378a19c5a51962fdbc4684ed216df8b9a7b2",
+      "bytes": 2689463,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/002-8adaef405947.png",
+      "sha256": "8adaef405947e332484511cce28f0a9750d9a0ad8b693fe60beabc1e947a8ab8",
+      "bytes": 2653243,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/005-d4d877ce11c7.png",
+      "sha256": "d4d877ce11c771e900d462ffd7a8541f694bb64d3f9457e2778a87b22b174b2e",
+      "bytes": 2753251,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/007-c1c1c2c42c23.png",
+      "sha256": "c1c1c2c42c23fde870feddca94eef4c3dc1da39ab85285cb6b5d54c6441bda0c",
+      "bytes": 2888279,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/009-d7a32572c52e.png",
+      "sha256": "d7a32572c52e9547e34726afa35b51d2494764e00dec606cfe235e0da267d419",
+      "bytes": 2435065,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/010-1aa55d87e810.png",
+      "sha256": "1aa55d87e8105c63ce3079df164091b069d59e5bb4d628d059bfd733b6a79678",
+      "bytes": 2853972,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/011-15eee5508200.png",
+      "sha256": "15eee5508200afecebdfabe89de51ab1ceb16167cb837fbec6b99a92d1e9abd8",
+      "bytes": 2988730,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/012-036fe0de189c.png",
+      "sha256": "036fe0de189cb253944e92930b52df707ca133f84338563b1d4aa24201ca7867",
+      "bytes": 2990101,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/013-366ee59ea3ee.png",
+      "sha256": "366ee59ea3eeaed2e886029df15aa5c50e18fc4efd942ccaeef0b5c1390d875a",
+      "bytes": 2826257,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/015-14690ff83ca1.png",
+      "sha256": "14690ff83ca1f668385dcfc10664f38cbf2f9a4a7851e95ef36f31b0b36a5b67",
+      "bytes": 3031727,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/016-55cfc268b0d4.png",
+      "sha256": "55cfc268b0d467fea6ac29380bcba8db8097b12a672beb6b0eccfec8a3b5ae1a",
+      "bytes": 2887057,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/017-d7ad581a5945.png",
+      "sha256": "d7ad581a59452d60bbe8d72e0b38268b3997588bfa0733642b815f98d505307d",
+      "bytes": 2840198,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/018-d88b0ba918a6.png",
+      "sha256": "d88b0ba918a6b85b91e30677f4f0a5e1729c3aa247ed88550edd51177ef63868",
+      "bytes": 2870267,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/019-f9d91e379c1f.png",
+      "sha256": "f9d91e379c1f6cd775e959e346dc1fa93bb3d821c848e546b1af6f459c21b222",
+      "bytes": 3051329,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/020-a1fd73e8e609.png",
+      "sha256": "a1fd73e8e609191345960596c448756993a1d735b93e97987bb58bfacfb6d102",
+      "bytes": 3063110,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/021-dc8fa0df1674.png",
+      "sha256": "dc8fa0df16745a6e6f6e3bdd119da5538d573455d9c91009e181138cf0c7f2d5",
+      "bytes": 2879549,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/022-c75929925546.png",
+      "sha256": "c759299255462443168e347b37a7d95fd7adf6496781cbcb5a0c9cb1bca94ca4",
+      "bytes": 2941581,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/023-aa7b85d004ac.png",
+      "sha256": "aa7b85d004ac293cdedb8ac3e97c6b3eef660ba2e3924eb4c5e999c7ce6c3a86",
+      "bytes": 2957481,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/025-3e44d574063f.png",
+      "sha256": "3e44d574063f0be435ffebd05883692d6c3b5219e614b009957c9a789b269b0e",
+      "bytes": 2694167,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/026-e87d9d46ebb6.png",
+      "sha256": "e87d9d46ebb6b93a5df9a6a23a660a0204a12033eef344cccdd63c4317c1e18e",
+      "bytes": 2750324,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/027-000e2cad2d8b.png",
+      "sha256": "000e2cad2d8bf9f5655b29fd147415b91dd9f306d82048e4419b08375b3a1d97",
+      "bytes": 2773351,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/028-78ebfc5f9ae0.png",
+      "sha256": "78ebfc5f9ae04df9fb634f02a18ab80dcf0259e413adb65028d8dc83b7b04147",
+      "bytes": 2825093,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/029-7bf01f260214.png",
+      "sha256": "7bf01f26021483dee6bb0c8d5e42b088a04520e27533a7ab7d640cf18a7acb44",
+      "bytes": 2856368,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png",
+      "sha256": "ebbc6938a24db074616474488fccc313f62a272973ae5cd4cecad2a50e68dd30",
+      "bytes": 2720088,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-05e2cf3d2f4356d6b47a-redraw.png",
+      "sha256": "4196fa37a9792d65891f9f8c91ef2ecc4e336fa39f9b3694f552960f5545e86d",
+      "bytes": 2403761,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-074897a0d4627238d99c-redraw.png",
+      "sha256": "47b45f34e8e47dd3cf17f5b4526fd652a36ee91ac1a1a4ddb485562a7f348c5b",
+      "bytes": 2661196,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-0c7623bcf89c4d0e5172-redraw.png",
+      "sha256": "e3f70637e00ea7fb17262c86b4d2fd7653209bf80f0a7dc2fae7bed3f56847fd",
+      "bytes": 2704483,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-0d744b63815e5f8d5082-redraw.png",
+      "sha256": "3c1aac27307b11ca0b0c681fe93c82477996fe6a3dc27c7901b9c11f7ca53ddd",
+      "bytes": 2734642,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-0f535947a0c5f16afb39-redraw.png",
+      "sha256": "63fd60fafa41821a67bd96ca600818f524918bd6f241d02be2628f23648dbe8e",
+      "bytes": 2699665,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-12d23c4bb0e34a35af89-redraw.png",
+      "sha256": "be45ebcf9bf1d53430c1e7901b95c58967e71569db24ff02e2b5e6436f16a095",
+      "bytes": 2611730,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-157b8f70d9c76098ec13-redraw.png",
+      "sha256": "60de59e70c76a0be9ad084985f70acea803b0bc6e5903cd4c10d5916e07d7bbb",
+      "bytes": 2592281,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-16466f040cb14fef0184-redraw.png",
+      "sha256": "58a0ca5520f7efae9c2248754a84456b2218cc2a613ede0784650c939f41342c",
+      "bytes": 2511436,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-1cd8e8199688df5bf428-redraw.png",
+      "sha256": "a3ff2ed291ba245a4b0f2baab6bdf62594fcff247b03676f5038d066df9ca5cd",
+      "bytes": 2554792,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-1e52725acf4d5abff94b-redraw.png",
+      "sha256": "71f2d4c4087d1d5918805ad0f069ff8efee7c1a2e4304e3314ce4c1216b6244e",
+      "bytes": 2701739,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-29af5bab21a464996fa0-redraw.png",
+      "sha256": "187089ff29943d0b228d9fc4c01b13b31f01f44f32e90f871f186edc988aa960",
+      "bytes": 2506109,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-2d412fe0f52ff84b73fb-redraw.png",
+      "sha256": "cdaee2209994235ca15f428a3246ab5a96a1ba5360c63217609341bf5b622a49",
+      "bytes": 2465959,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-316b8bdda534edd580c0-redraw.png",
+      "sha256": "eea28f8efe3f035a32f5be1214e12e1251d5b3746b5b02970d7082f22dca5b17",
+      "bytes": 2598330,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-33c0a0fab505ac719578-redraw.png",
+      "sha256": "4c93bb2cdce4b078558d288ea3513c6260c9097ad30b2298d4724a15c0ff1bfd",
+      "bytes": 2654956,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-346035e7d08ab26f111e-redraw.png",
+      "sha256": "c54e8299d4439c1d82d6901c521df56876af836d169cd3eca86512fd4fcc61a4",
+      "bytes": 2503500,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-3503a1c7adf65836efd6-redraw.png",
+      "sha256": "79f18e4ad531c1f2812727f1a9cc3a2ed4f2a6a31b08cc0d3a96f37d854cb5db",
+      "bytes": 2613889,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-3571118f503c42d920d3-redraw.png",
+      "sha256": "f57fd2b1e4fd4d77d7996761d885627bff5569ac549b8e4623ca89f4b02076f6",
+      "bytes": 2605354,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-42ef631b40fb64a4c042-redraw.png",
+      "sha256": "f6ecb41e64abce6f089e7a669d7c9c986941ff0e999b63167bb0269821b78d18",
+      "bytes": 2718084,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-48cbe8850e8416f25f00-redraw.png",
+      "sha256": "faf7ec9bad9d0d1aa9552f2cc96abdb15d46c84be773c77dde6f3c7dfea3e917",
+      "bytes": 2558620,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-4c884e41880ba524cce7-redraw.png",
+      "sha256": "02551a374ce56406928b03c29cfb0108ff09dea999d2224167ba97074fb6679c",
+      "bytes": 2704276,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-502454ae6d367468aeaa-redraw.png",
+      "sha256": "d076ff1241ef85c8750b364bf343e5d70345d73e67e8b747bbe2deb5727d341a",
+      "bytes": 2599991,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-52183266939a0b13e218-redraw.png",
+      "sha256": "3d7a11898ef0fdd8447a2a4a8ac9289245ff04aa874ba69cccd9ec0ad53c2f9e",
+      "bytes": 2561973,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-570a6e18664c7c1ab068-redraw.png",
+      "sha256": "e7498c225a25ad4ce5f1c483eb170cad84d56df5b6f07a011b3648967ac12e12",
+      "bytes": 2539978,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-5aca5754adbc64146e42-redraw.png",
+      "sha256": "7fde119150e33cdf89cba5b51ececdcf8751129dcede570ff9a43c19f1aba39f",
+      "bytes": 2571732,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-5d0c9bea5f08689da2ad-redraw.png",
+      "sha256": "c63ecffdfaef02dc2608a04f5443fa37ddda9ed8f41a40b2fc5be7837d820130",
+      "bytes": 2603859,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-60bc148d9c4c1439d431-redraw.png",
+      "sha256": "3eb05e4e909a6170867b97941d797cbb6f284040ad1b0cf5ddec6c1edc82e392",
+      "bytes": 2504001,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-6599c517aab621e23678-redraw.png",
+      "sha256": "cafc0a40d9de25946a349baf8ee4860b957d7c10577a6d95171d8fb8e37e8947",
+      "bytes": 2549407,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-663ea18b42ad108dfff5-redraw.png",
+      "sha256": "45e3c2b926d6fbb7ebdf2a650487d969d3b413e532305600e1814d4aaccfd6da",
+      "bytes": 2601676,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-6a6b467ea0420a23eced-redraw.png",
+      "sha256": "a86dc08647785765ebec3cfde376e9cec09fcb152f3b2f8af5703d1b9a477723",
+      "bytes": 2574699,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-72b7be8550e2a383c6bf-redraw.png",
+      "sha256": "4ef9ca132e6436497ce1aa45fe64e5b3808cc90aecaa0d8daa2ab28dfa77437c",
+      "bytes": 2753869,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-72c5a5df25b38c54c0eb-redraw.png",
+      "sha256": "04d21c4de123b2bc1f914df9c43ae972f1f04481c6b63b7386cc08f4a080f2c2",
+      "bytes": 2525796,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-774eea78a498a031245f-redraw.png",
+      "sha256": "d2432c73d69ab4f3719c2775220d8e19883ec8219768c0113869cbdda7520b25",
+      "bytes": 2493682,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-77b09e9e6ae35b51f546-redraw.png",
+      "sha256": "ca6133237e5e0b50c9e230dce096770c8b890ac4e4ce5622f7bbda7d755abca9",
+      "bytes": 2666345,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-7d6b9f5fd01b61d79090-redraw.png",
+      "sha256": "64809fa1dc7a6722d6d74eb69a75e26629bd6b6c1e6e34049b9e47ddabc06d3b",
+      "bytes": 2602910,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-7e35546afa85bc276c80-redraw.png",
+      "sha256": "346cbcff6b4341d059986a2618e6b4a951c95f8d73a33a0ad17cce7c11ab2c6e",
+      "bytes": 2553786,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-7e69ec59671b8d3bbbd3-redraw.png",
+      "sha256": "2d1aaa49b465725a8fcca666967f6bf238333b76275a527d1c74da26da3f2895",
+      "bytes": 2676321,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-7f1fb09a9142bb43e72e-redraw.png",
+      "sha256": "21d0be7942f18865b90057de401fc217582e96ee961c9e1fe1ba420032086f87",
+      "bytes": 2554589,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-7f1ffc3b0f7512c159cf-redraw.png",
+      "sha256": "9b991871431db2e6189891b566660de3fa36b187290726fc515dd018cf17dc48",
+      "bytes": 2613760,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-7fb1c6768c5fb20cfff1-redraw.png",
+      "sha256": "6f3a9e5290cb116995181a06d72b05af47bd9085bec4683fd954b67f8fad28c7",
+      "bytes": 2731202,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-8305b7ca4f8017cf2643-redraw.png",
+      "sha256": "d38184d8817dcf25b26e21ff99bde012913506a08977b7b7f08515f954f61f6b",
+      "bytes": 2512607,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-8aa07e9bb838c9205054-redraw.png",
+      "sha256": "fe84a2870742046749f1f8d8e2464abc2db009fdca8cc4b8315864bfecd27040",
+      "bytes": 2477538,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-8c93b8476fcfd493a009-redraw.png",
+      "sha256": "fef3c18514b076685126462db45070b6fd09226c1e38d1f91f7e8437d2e02db4",
+      "bytes": 2481532,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-8d1d0aabc4d2055b7554-redraw.png",
+      "sha256": "4d299eac9c7a5f38f820028826f9e76defa648f1e232dd49c1a8825ffa4fbed4",
+      "bytes": 2635121,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-91eb288b8929974c5576-redraw.png",
+      "sha256": "9a698ec03974aceac94178736eb3262d839807764f578d2b7761b9435910b16e",
+      "bytes": 2630331,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-96da7f86d617b33b0424-redraw.png",
+      "sha256": "360f93e381163f63bd91644e7812d3c5c19bf5b75976647bc6663ee08c9323d2",
+      "bytes": 2387164,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-9ab681f0a19b19120c2e-redraw.png",
+      "sha256": "c674c603643c6e36245ab6a3cfdcf0f5ca91f50f4cb8c31d3a4162194a9bb368",
+      "bytes": 2724100,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-9c249912be1cc03722eb-redraw.png",
+      "sha256": "af3362660f283955944048f8ebe0dee684db488b9039a9fd8a50ea841d7b86e4",
+      "bytes": 2583913,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-a4ae22f8d3c68d018991-redraw.png",
+      "sha256": "c4b4487122fd441ab93c13b2f90ec239d166c0be58d955e5f8086c07e22bdc1c",
+      "bytes": 2703357,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-aa99abba63b147896610-redraw.png",
+      "sha256": "c7e96294382066d34a6e13e9dcff105a69df6f21bdfdb710aeb24677667822f3",
+      "bytes": 2651765,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-b2a211553241a8d3bbb2-redraw.png",
+      "sha256": "8237add47088fdbc3a9a130e8ac65d6ac92850fee97eda646d2ce1fdfcd86457",
+      "bytes": 2478662,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-b4ef2b677bdb597c311f-redraw.png",
+      "sha256": "67c54ee154ee59a892ea59742937767a2bce59777dbfe06f8914e85a412eea04",
+      "bytes": 2546712,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png",
+      "sha256": "cd36713e3e30ef28181d3e8215810f8f6b0092e71ded1e1be53f0fc8201af796",
+      "bytes": 2654771,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-b6adac4a2c1d32628af3-redraw.png",
+      "sha256": "6ebd9c7bffc42758fa8ba7cb9fbf2a657d2e7e932dd6881286877b047cbcbd5a",
+      "bytes": 2552528,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-b6b11233a0385d65b47a-redraw.png",
+      "sha256": "901fb962e05e812731b53341a020150caec47199dbe0b4100c90b8cb88cfdf6a",
+      "bytes": 2611665,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-bd22518ff815b99bc433-redraw.png",
+      "sha256": "87ed89c8a790240c08aa3956eb90bab454a8d6ecb4bb31d4286c3dffdbf7b76f",
+      "bytes": 2777558,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-c2e1d293be0f219581ff-redraw.png",
+      "sha256": "a5351516d1eac5b6f524a88fb2937959fc833a4044329d4618ebbccf3aa49dfe",
+      "bytes": 2588543,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-d29566b59bedbdb204e7-redraw.png",
+      "sha256": "aca2355f4d9d0b2919d5725ecdf381712ff7734027c01de530266e7f418b6745",
+      "bytes": 2481697,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png",
+      "sha256": "22cc538be9b53a563c396dbda36bc159433ff64a18dd2f0e99720444765c389d",
+      "bytes": 2584169,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-dbbf27ee004f637bfbbd-redraw.png",
+      "sha256": "c30c5a2936fda57ecd5cd4cd656e03ccdd96baa4955ae3088131eee7d89d2323",
+      "bytes": 2728875,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-dbdc8967d172373add90-redraw.png",
+      "sha256": "a5a2499c1277760d23e2aea935f7dc9d9c4c4de97563dff3bb28ea4717731248",
+      "bytes": 2575639,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-dbfa7443b5224eb80aaf-redraw.png",
+      "sha256": "45df448a4ded9c935a65b558222b96c85bcabbd503d250fe194b8524005912da",
+      "bytes": 2684233,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-dfbd4e1b066dc38bba07-redraw.png",
+      "sha256": "3ecc032354d125beb2e1b03d7486dc1920a23d6c232d6c3f8be0cc128633f549",
+      "bytes": 2748540,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e10fe47225241bc02b16-redraw.png",
+      "sha256": "4f4a897045216906db7900b6ceb8f3f66a56a6305be40c556bffe5f93e61c1c6",
+      "bytes": 2693370,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-e78b47708f1ef0fee0af-redraw.png",
+      "sha256": "5d834873992c8878eabe70d1db0242ff0a35a3faf2161674ebedd2e290639447",
+      "bytes": 2682816,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-eb3a8424ced78bc8c52d-redraw.png",
+      "sha256": "b5472d30225bc9e79345503b2336d001bc6bb13436f48cb74758f4baca00a46b",
+      "bytes": 2652280,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-ec9b416c75c3d12c1670-redraw.png",
+      "sha256": "cf2ef0e1df74e25277b0b9c1ece6971dcdca7be774904087b3ef7ada0ba10357",
+      "bytes": 2415804,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-eff08e8447facfba84ba-redraw.png",
+      "sha256": "75e9754f3db432f71362bd3fa4c35fa93af2c0e053701b29a85a53cc9bbb384a",
+      "bytes": 2538301,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-f597744de01ee7692269-redraw.png",
+      "sha256": "e617108258d2c02ab165ff127256b91c540a843f46ba953779b7451498b9af59",
+      "bytes": 2577606,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    },
+    {
+      "path": "atlas/assets/portraits/20261004/frontal/portrait-asset-fc1ff7570bd97c9e5065-redraw.png",
+      "sha256": "e4f80b331bffe269e3fc51864322dbfb7d981c06163bd30da58ccfa1149af9f9",
+      "bytes": 2583107,
+      "storedAt": "same path on codex/frontal-portraits-20261004"
+    }
+  ],
+  "recovery": "Read-only restore exact V69 source commit; create non-main branch; apply source.patch or exact snapshot files; add image files from their unchanged canonical paths in codex/frontal-portraits-20261004; verify SHA-256; reuse final checks only while source/build remains byte-identical. Do not push main without explicit authorization."
+}

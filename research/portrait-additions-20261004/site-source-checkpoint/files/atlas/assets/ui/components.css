@@ -1,0 +1,1094 @@
+/* 观史台稳定组件层：V56/V57 组件规范收口。 */
+button.tool-btn,
+button.mini-tab,
+button.opt,
+button.person-link,
+button.official-name,
+button.person-pill {
+  font-family: inherit;
+}
+
+button.tool-btn:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+button.person-link,
+button.official-name,
+button.person-pill {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+[role="button"]:focus-visible,
+button.people-period-item:focus-visible {
+  outline: none;
+  box-shadow: var(--sgz-focus);
+}
+
+button.people-period-item {
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.people-period-item > span { display: block; }
+button.people-period-item > .people-period-item-head { display: flex; }
+
+/* 观史台 V56：册府索引台。此文件是生产运行时的唯一 V56 视觉所有者。 */
+:root {
+  --v56-paper: #eef0eb;
+  --v56-sheet: #fafbf7;
+  --v56-sheet-raised: #ffffff;
+  --v56-ink: #1b2b2e;
+  --v56-muted: #5e6b68;
+  --v56-faint: #69746f;
+  --v56-green: #4e6961;
+  --v56-vermilion: #a34738;
+  --v56-vermilion-soft: #f3e6e2;
+  --v56-gold: #84672f;
+  --v56-gold-soft: #f1ebdc;
+  --v56-rule: #d5d9d3;
+  --v56-rule-strong: #b9c0ba;
+  /* 卷脊与状态条是深色导轨表面，与作为正文墨色的 --v56-ink 分离：
+     深色主题下墨色翻转为浅色，导轨若继续借用墨色即整条反白。 */
+  --v56-rail-bg: #1b2b2e;
+  --v56-rail-ink: #fffdf8;
+  /* 双层焦点环：内圈让出纸色间隙，外圈用不透明朱色，
+     使指示器对比达到 WCAG 2.2 SC 1.4.11 对非文字元素的 3:1 要求。 */
+  --v56-focus: 0 0 0 2px var(--v56-sheet), 0 0 0 4px var(--v56-vermilion);
+  --v56-topbar-h: 52px;
+  --v56-context-h: 50px;
+  --v56-spine-w: 104px;
+  --v56-evidence-w: 360px;
+  --v56-motion-fast: 180ms;
+  --v56-motion: 220ms;
+  --v56-z-content: 1;
+  --v56-z-context: 24;
+  --v56-z-spine: 32;
+  --v56-z-evidence: 30;
+  --v56-z-topbar: 40;
+  --v56-z-sheet: 70;
+  /* Element Plus 预设的语义色以浅色背景上的「醒目」为准，未按对比设定：
+     危险色 #F56C6C 压在纸面上只有 2.4:1。以下按 4.5:1 重设。 */
+  --el-color-primary: var(--v56-vermilion);
+  --el-color-danger: #b03a34;
+  --el-color-error: #b03a34;
+  --el-color-success: #3f6650;
+  --el-color-warning: var(--v56-gold);
+}
+
+:root[data-sgz-theme="review-paper"] {
+  --v56-paper: #f2eee5;
+  --v56-sheet: #fbf8f1;
+  --v56-sheet-raised: #fffdf8;
+  --v56-ink: #2e2925;
+  --v56-muted: #675f55;
+  --v56-green: #5b6b60;
+  --v56-vermilion: #9e3f32;
+  --v56-vermilion-soft: #f3e0da;
+  --v56-gold: #836430;
+  --v56-gold-soft: #eee3cd;
+  --v56-rule: #d8cfc0;
+  --v56-rule-strong: #bbae99;
+  --v56-rail-bg: #2e2925;
+  --v56-rail-ink: #fffdf8;
+}
+
+:root[data-sgz-theme="lamp-night"] {
+  color-scheme: dark;
+  /* Element Plus 自带的 --el-* 语义色只有浅色一套，深色主题下表格、下拉与
+     表单的文字仍是 #303133 之类的深墨，压在深色表面上不可读。此处按本站
+     令牌重映射 EP 的文字、表面与边界三组，使第三方组件随主题一同翻转。 */
+  --el-text-color-primary: var(--v56-ink);
+  --el-text-color-regular: var(--v56-ink);
+  --el-text-color-secondary: var(--v56-muted);
+  --el-text-color-placeholder: var(--v56-faint);
+  --el-text-color-disabled: var(--v56-faint);
+  --el-bg-color: var(--v56-sheet);
+  --el-bg-color-overlay: var(--v56-sheet-raised);
+  --el-bg-color-page: var(--v56-paper);
+  --el-fill-color: var(--v56-paper);
+  --el-fill-color-light: color-mix(in srgb, var(--v56-sheet-raised) 70%, var(--v56-paper));
+  --el-fill-color-lighter: var(--v56-sheet);
+  --el-fill-color-extra-light: var(--v56-sheet);
+  --el-fill-color-blank: var(--v56-sheet);
+  --el-border-color: var(--v56-rule-strong);
+  --el-border-color-light: var(--v56-rule);
+  --el-border-color-lighter: var(--v56-rule);
+  --el-border-color-extra-light: var(--v56-rule);
+  --el-mask-color: rgba(17, 26, 31, .82);
+  --el-color-primary: var(--v56-vermilion);
+  --el-color-danger: #e89b93;
+  --el-color-error: #e89b93;
+  --el-color-success: #8fbfa0;
+  --el-color-warning: var(--v56-gold);
+  --v56-paper: #111a1f;
+  --v56-sheet: #172329;
+  --v56-sheet-raised: #1d2d34;
+  --v56-ink: #edf1ec;
+  --v56-muted: #b3c0ba;
+  --v56-faint: #94a29c;
+  --v56-green: #7fa398;
+  --v56-vermilion: #e59a89;
+  --v56-vermilion-soft: #3a2928;
+  --v56-gold: #d0ad68;
+  --v56-gold-soft: #342f25;
+  --v56-rule: #34464d;
+  --v56-rule-strong: #52656c;
+  --v56-rail-bg: #0c1418;
+  --v56-rail-ink: #e7ede8;
+}
+
+* {
+  scrollbar-color: color-mix(in srgb, var(--v56-green) 48%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--v56-green) 38%, transparent);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+
+html,
+body,
+#app,
+.shell {
+  background: var(--v56-paper);
+  color: var(--v56-ink);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.serif,
+.brand .t1,
+.v56-context-identity strong,
+.v56-person-dossier h2,
+.v56-evidence-head strong {
+  font-family: "Songti SC", "Noto Serif SC", SimSun, serif;
+}
+
+.shell {
+  --v56-current-spine: var(--v56-spine-w);
+  --v56-current-evidence: var(--v56-evidence-w);
+  isolation: isolate;
+}
+
+.shell.spine-collapsed { --v56-current-spine: 58px; }
+.shell.evidence-collapsed,
+/* 审校态未选中任何记录时，两栏都只有占位文案：收合为把手，
+   把宽度还给内容栏，选中后自动展开。 */
+.shell.panels-idle { --v56-current-evidence: 44px; }
+.shell.workspace-mode-reader,
+.shell.workspace-mode-reader.evidence-collapsed { --v56-current-evidence: 0px; }
+
+body.v63-modal-open { overflow: hidden; }
+
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+[tabindex]:focus-visible,
+.el-input__wrapper:focus-within,
+.el-select__wrapper:focus-within {
+  outline: none;
+  box-shadow: var(--v56-focus) !important;
+}
+
+/* 顶栏：只承担品牌、当前模块、全局检索、模式与主题。 */
+.topbar {
+  position: relative;
+  z-index: var(--v56-z-topbar);
+  min-height: var(--v56-topbar-h);
+  height: var(--v56-topbar-h);
+  padding: 0 14px;
+  gap: 10px;
+  background: color-mix(in srgb, var(--v56-sheet) 96%, transparent);
+  border-color: var(--v56-rule);
+  box-shadow: 0 2px 10px rgba(27, 43, 46, .045);
+  backdrop-filter: blur(12px);
+}
+
+.seal-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: var(--v56-vermilion);
+  color: #fffaf4;
+  font-size: 15px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+}
+
+.brand {
+  min-width: 100px;
+  margin-right: 2px;
+  gap: 1px;
+}
+
+.brand .t1 {
+  color: var(--v56-ink);
+  font-size: 17px;
+  letter-spacing: .14em;
+}
+
+.brand .t2 {
+  color: var(--v56-muted);
+  font-size: 12px;
+  letter-spacing: .09em;
+}
+
+.v56-current-module {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-left: 12px;
+  border-left: 1px solid var(--v56-rule);
+  color: var(--v56-muted);
+}
+
+.v56-current-module strong { color: var(--v56-ink); font-size: 13px; }
+.v56-current-module span { font-size: 12px; }
+
+.global-header-tools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.global-search-trigger,
+.theme-trigger {
+  height: 32px;
+  border: 1px solid var(--v56-rule);
+  border-radius: 5px;
+  background: var(--v56-sheet-raised);
+  color: var(--v56-ink);
+  transition: border-color var(--v56-motion-fast) ease, box-shadow var(--v56-motion-fast) ease;
+}
+
+.global-search-trigger:hover,
+.theme-trigger:hover { border-color: var(--v56-vermilion); color: var(--v56-vermilion); }
+.global-search-trigger kbd { border-color: var(--v56-rule); background: var(--v56-paper); color: var(--v56-muted); }
+.theme-trigger { color: var(--v56-vermilion); }
+
+.workspace-mode-switch {
+  padding: 2px;
+  border-color: var(--v56-rule);
+  border-radius: 5px;
+  background: var(--v56-paper);
+}
+
+.workspace-mode-switch button { height: 26px; padding: 0 8px; border-radius: 3px; color: var(--v56-muted); }
+.workspace-mode-switch button.active { background: var(--v56-sheet-raised); color: var(--v56-vermilion); box-shadow: 0 1px 4px rgba(27,43,46,.08); }
+
+/* 卷脊导航 */
+.v56-spine-nav {
+  position: fixed;
+  z-index: var(--v56-z-spine);
+  top: var(--v56-topbar-h);
+  bottom: 0;
+  left: 0;
+  width: var(--v56-current-spine);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 7px 10px;
+  background: var(--v56-rail-bg);
+  /* 深色轨内的默认字色必须是轨面色：--v56-ink 与 --v56-rail-bg 恰好同值，
+     子元素一旦 color:inherit 就会与底同色而完全不可见。窄屏的「⋯ 更多」
+     正是如此——桌面下另有规则遮住，窄屏无遮挡便暴露。 */
+  color: var(--v56-rail-ink);
+  border-right: 1px solid color-mix(in srgb, var(--v56-rail-bg) 70%, #000);
+  transition: width var(--v56-motion) ease;
+}
+
+.v56-spine-item,
+.v56-spine-toggle,
+.v56-mobile-more {
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--v56-rail-ink) 88%, transparent);
+  cursor: pointer;
+}
+
+.v56-spine-item {
+  position: relative;
+  min-height: 49px;
+  display: grid;
+  grid-template-columns: 28px minmax(0,1fr);
+  align-items: center;
+  gap: 7px;
+  padding: 5px 7px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  transition: color var(--v56-motion-fast) ease, background-color var(--v56-motion-fast) ease;
+}
+
+.v56-spine-item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: transparent;
+}
+
+.v56-spine-item:hover { color: var(--v56-rail-ink); background: rgba(255,255,255,.05); }
+.v56-spine-item.active { color: var(--v56-rail-ink); background: rgba(255,255,255,.08); }
+.v56-spine-item.active::before { background: var(--v56-vermilion); }
+
+.v56-spine-glyph {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 3px;
+  font: 700 12px/1 "Songti SC", SimSun, serif;
+}
+
+.v56-spine-item.active .v56-spine-glyph { border-color: color-mix(in srgb, var(--v56-vermilion) 78%, #fff); background: var(--v56-vermilion); }
+/* 万一日后再次收窄，以省略号降级，不再中途硬切字面。 */
+.v56-spine-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; letter-spacing: .08em; }
+.v56-spine-toggle { margin-top: auto; height: 34px; border: 1px solid rgba(255,255,255,.14); border-radius: 4px; font-size: 20px; }
+.v56-mobile-more { display: none; }
+.spine-collapsed .v56-spine-label { width: 0; opacity: 0; }
+.spine-collapsed .v56-spine-item { grid-template-columns: 28px; justify-content: center; padding-inline: 7px; }
+
+/* 吸顶上下文栏 */
+.v56-context-bar {
+  position: relative;
+  z-index: var(--v56-z-context);
+  min-height: var(--v56-context-h);
+  margin-left: var(--v56-current-spine);
+  margin-right: var(--v56-current-evidence);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  background: color-mix(in srgb, var(--v56-sheet) 97%, transparent);
+  border-bottom: 1px solid var(--v56-rule);
+  box-shadow: 0 3px 12px rgba(27,43,46,.035);
+  transition: margin var(--v56-motion) ease;
+}
+
+.v56-context-identity {
+  min-width: 170px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.v56-context-identity strong { color: var(--v56-ink); font-size: 15px; letter-spacing: .08em; }
+.v56-context-identity span { overflow: hidden; color: var(--v56-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+
+.v56-context-search,
+.v56-evidence-toggle {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--v56-rule);
+  border-radius: 4px;
+  background: var(--v56-sheet-raised);
+  color: var(--v56-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.v56-context-search:hover,
+.v56-evidence-toggle:hover { border-color: var(--v56-vermilion); color: var(--v56-vermilion); }
+.v56-context-search span { margin-right: 5px; color: var(--v56-vermilion); }
+.v56-context-select { width: 124px; }
+.v56-context-wide { width: 170px; }
+.v56-context-spacer { flex: 1 1 auto; }
+.v56-context-actions { display: flex; align-items: center; gap: 5px; }
+
+.v56-segmented {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--v56-rule);
+  border-radius: 4px;
+  background: var(--v56-paper);
+}
+
+.v56-segmented button {
+  height: 26px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--v56-muted);
+  cursor: pointer;
+}
+
+.v56-segmented button.active { background: var(--v56-ink); color: var(--v56-sheet); }
+.v56-map-period { display: inline-flex; align-items: center; gap: 5px; color: var(--v56-ink); font-size: 12px; }
+.v56-map-period button { width: 28px; height: 28px; border: 1px solid var(--v56-rule); border-radius: 3px; background: var(--v56-sheet-raised); color: var(--v56-ink); cursor: pointer; }
+
+/* 主内容区域 */
+.body-row,
+.module-page,
+.statusbar {
+  margin-left: var(--v56-current-spine);
+  margin-right: var(--v56-current-evidence);
+  transition: margin var(--v56-motion) ease;
+}
+
+.body-row,
+.module-page { position: relative; z-index: var(--v56-z-content); }
+.module-page { padding: 0; background: var(--v56-paper); }
+.module-page-inner { max-width: none; margin: 0; padding: 12px 14px 48px; }
+.page-heading { display: none; }
+.people-view-layout { display: block; }
+.people-view-nav { display: none; }
+.people-view-content { min-width: 0; }
+
+.people-toolbar,
+.fangzhen-toolbar,
+.battle-toolbar,
+.jinshi-toolbar,
+.shihuo-toolbar {
+  min-height: 40px;
+  margin: 0 0 8px;
+  padding: 5px 7px;
+  border: 0;
+  border-bottom: 1px solid var(--v56-rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.people-toolbar::before,
+.fangzhen-toolbar::before,
+.battle-toolbar::before,
+.jinshi-toolbar::before,
+.shihuo-toolbar::before { display: none; }
+.module-page .module-search-handoff { display: none; }
+
+.people-metrics,
+.battle-metrics,
+.fangzhen-metrics { display: none; }
+
+.people-advanced-filters,
+.jinshi-chip-row,
+.shihuo-polity-chips,
+.battle-view-switch,
+.fangzhen-archive-tabs {
+  margin-bottom: 8px;
+}
+
+.fangzhen-context {
+  min-height: 34px;
+  margin-bottom: 7px;
+  padding: 6px 9px;
+  border: 1px solid var(--v56-rule);
+  border-left: 3px solid var(--v56-gold);
+  border-radius: 3px;
+  background: var(--v56-sheet);
+}
+
+.fangzhen-table-card,
+.people-period-panel,
+.battle-timeline-item,
+.jinshi-table-card {
+  border-color: var(--v56-rule);
+  border-radius: 4px;
+  background: var(--v56-sheet);
+  box-shadow: none;
+}
+
+.el-table,
+.el-table tr,
+.el-table td.el-table__cell { background: var(--v56-sheet); color: var(--v56-ink); }
+.el-table th.el-table__cell { background: color-mix(in srgb, var(--v56-paper) 74%, var(--v56-sheet)); color: var(--v56-ink); }
+
+/* 文字与底色同步切换主题，避免过渡中的浅底浅字；保留焦点反馈。 */
+.el-select__wrapper { transition-property: box-shadow; }
+.el-button { transition-property: border-color, box-shadow, transform; }
+.el-table--enable-row-transition .el-table__body td.el-table__cell { transition: none; }
+
+/* 人物记：名录 + 档案详情 */
+.v56-people-master-detail {
+  min-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 92px);
+  display: grid;
+  grid-template-columns: minmax(270px, 34%) minmax(0, 1fr);
+  border: 1px solid var(--v56-rule);
+  background: var(--v56-sheet);
+}
+
+.v56-person-directory {
+  min-width: 0;
+  max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 94px);
+  overflow: auto;
+  border-right: 1px solid var(--v56-rule);
+}
+
+.v56-person-row {
+  position: relative;
+  width: 100%;
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 46px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px 7px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--v56-rule);
+  background: transparent;
+  color: var(--v56-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--v56-motion-fast) ease;
+}
+
+.v56-person-row::before {
+  content: "";
+  position: absolute;
+  inset: 8px auto 8px 0;
+  width: 3px;
+  background: transparent;
+}
+
+.v56-person-row:hover { background: color-mix(in srgb, var(--v56-green) 7%, transparent); }
+.v56-person-row.active { background: color-mix(in srgb, var(--v56-vermilion) 8%, transparent); }
+.v56-person-row.active::before { background: var(--v56-vermilion); }
+.v56-person-row .person-avatar { width: 42px; height: 50px; border-radius: 2px; }
+.v56-person-row-copy { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.v56-person-row-name { display: flex; align-items: baseline; gap: 7px; }
+.v56-person-row-name strong { font: 700 14px/1.2 "Songti SC", SimSun, serif; }
+.v56-person-row-name small { color: var(--v56-muted); font-size: 12px; }
+.v56-person-row-meta { overflow: hidden; color: var(--v56-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.v56-person-row-count { color: var(--v56-faint); font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+
+.v56-person-dossier {
+  min-width: 0;
+  max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 94px);
+  overflow: auto;
+  padding: 18px 20px 34px;
+}
+
+.v56-person-dossier-head { display: grid; grid-template-columns: 78px minmax(0,1fr); gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--v56-rule); }
+.v56-person-dossier-head .people-detail-portrait { width: 74px; height: 88px; border-radius: 3px; }
+.v56-person-dossier h2 { margin: 0 0 5px; color: var(--v56-ink); font-size: 25px; letter-spacing: .08em; }
+.v56-person-dossier h2 small { margin-left: 8px; color: var(--v56-muted); font: 12px/1.3 sans-serif; letter-spacing: 0; }
+.v56-person-dossier-summary { margin: 8px 0 0; color: var(--v56-muted); font-size: 12px; line-height: 1.65; }
+.v56-person-dossier-meta { display: flex; flex-wrap: wrap; gap: 5px 12px; color: var(--v56-muted); font-size: 12px; }
+.v56-dossier-section-title { margin: 16px 0 7px; color: var(--v56-green); font: 700 12px/1.2 "Songti SC", SimSun, serif; letter-spacing: .1em; }
+
+.v56-career-timeline { position: relative; display: flex; flex-direction: column; }
+.v56-career-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px minmax(150px,.7fr) minmax(0,1fr);
+  gap: 10px;
+  padding: 10px 6px 10px 18px;
+  border: 0;
+  border-top: 1px solid var(--v56-rule);
+  background: transparent;
+  text-align: left;
+  color: var(--v56-ink);
+  cursor: pointer;
+}
+.v56-career-row::before { content: ""; position: absolute; left: 3px; top: 15px; width: 7px; height: 7px; border: 2px solid var(--v56-green); border-radius: 50%; background: var(--v56-sheet); }
+.v56-career-row::after { content: ""; position: absolute; left: 7px; top: 24px; bottom: -1px; width: 1px; background: var(--v56-rule-strong); }
+.v56-career-row:last-child::after { display: none; }
+.v56-career-year { color: var(--v56-vermilion); font: 600 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.v56-career-office { font: 700 12px/1.5 "Songti SC", SimSun, serif; }
+.v56-career-evidence { color: var(--v56-muted); font-size: 12px; line-height: 1.55; }
+
+/* 职官谱：品秩／官署分带，宫殿仅作低透明度题头底纹。 */
+.canvas-wrap { background: var(--v56-paper); }
+.canvas-tabs { min-height: 42px; padding: 5px 10px; border-color: var(--v56-rule); background: var(--v56-sheet); }
+.canvas-tabs > .hint,
+.canvas-tabs > .period-select,
+.canvas-tabs > .period-summary-btn,
+.canvas-tabs > .view-switch,
+.canvas-tabs > .tab-sep { display: none; }
+.filter-bar,
+.timeline-bar,
+.classification-strip { border-color: var(--v56-rule); background: color-mix(in srgb, var(--v56-sheet) 88%, transparent); }
+.court-scroll { background: var(--v56-paper); }
+.court-canvas { position: relative; padding: 12px 14px 36px; background: var(--v56-sheet); }
+.court-canvas::before {
+  content: "朝堂官署";
+  position: absolute;
+  top: 5px;
+  right: 24px;
+  color: color-mix(in srgb, var(--v56-green) 8%, transparent);
+  font: 800 76px/1 "Songti SC", SimSun, serif;
+  letter-spacing: .18em;
+  pointer-events: none;
+}
+.court-heading { max-width: 840px; margin-bottom: 10px; text-align: left; }
+.court-heading h2 { color: var(--v56-ink); font-size: 20px; }
+.court-heading p { color: var(--v56-muted); }
+.court-heading-actions { justify-content: flex-start; }
+.court-tier { margin-bottom: 12px; padding: 8px 10px 10px; border: 1px solid var(--v56-rule); border-left: 4px solid var(--v56-gold); background: color-mix(in srgb, var(--v56-sheet-raised) 70%, transparent); }
+.court-tier-title { justify-content: flex-start; margin-bottom: 8px; }
+.court-tier-title::before,
+.court-tier-title::after { display: none; }
+.court-tier-title span { min-width: 92px; padding: 4px 9px; border: 0; background: var(--v56-ink); color: var(--v56-sheet); }
+.court-tier-grid { justify-content: flex-start; gap: 8px; }
+.court-columns { gap: 10px; margin-bottom: 12px; }
+.court-column { border-color: var(--v56-rule); background: var(--v56-sheet); }
+.court-column-title { justify-content: flex-start; background: var(--v56-ink) !important; }
+.court-slot { border-color: var(--v56-rule-strong); border-radius: 3px; background: var(--v56-sheet-raised); box-shadow: none; }
+.court-slot:hover,
+.court-slot.selected { border-color: var(--v56-vermilion); box-shadow: inset 0 0 0 1px var(--v56-vermilion); }
+.court-slot-name { background: var(--v56-ink); }
+.court-slot.civil .court-slot-name { background: var(--v56-vermilion); }
+.court-slot.military .court-slot-name { background: #35617d; }
+.court-residence-badge { border-color: var(--v56-gold); background: var(--v56-gold-soft); color: var(--v56-gold); }
+
+/* 其他案卷改为目录／行优先，不做卡片浮起。 */
+.battle-chronology-list { display: flex; flex-direction: column; gap: 0; }
+.battle-timeline-item { margin: 0; border-width: 0 0 1px 3px; border-left-color: var(--v56-green); border-radius: 0; }
+.battle-timeline-item:hover { transform: none; background: color-mix(in srgb, var(--v56-green) 5%, var(--v56-sheet)); }
+.battle-timeline-year { color: var(--v56-vermilion); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.battle-map-link { color: var(--v56-vermilion); }
+.jinshi-table-card { overflow: hidden; }
+.v56-jinshi-workbench-grid {
+  min-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 86px);
+  display: grid;
+  grid-template-columns: minmax(270px, 35%) minmax(0, 1fr);
+  border: 1px solid var(--v56-rule);
+  background: var(--v56-sheet);
+}
+.v56-jinshi-directory {
+  max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 88px);
+  overflow: auto;
+  border-right: 1px solid var(--v56-rule);
+}
+.v56-jinshi-row {
+  position: relative;
+  width: 100%;
+  min-height: 67px;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 4px 8px;
+  align-items: center;
+  padding: 9px 10px 9px 13px;
+  border: 0;
+  border-bottom: 1px solid var(--v56-rule);
+  background: transparent;
+  color: var(--v56-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.v56-jinshi-row::before { content: ""; position: absolute; inset: 9px auto 9px 0; width: 3px; background: transparent; }
+.v56-jinshi-row:hover { background: color-mix(in srgb, var(--v56-green) 6%, transparent); }
+.v56-jinshi-row.active { background: color-mix(in srgb, var(--v56-vermilion) 7%, transparent); }
+.v56-jinshi-row.active::before { background: var(--v56-vermilion); }
+.v56-jinshi-row-title { overflow: hidden; font: 700 13px/1.35 "Songti SC", SimSun, serif; text-overflow: ellipsis; white-space: nowrap; }
+.v56-jinshi-row-meta { grid-column: 1 / -1; overflow: hidden; color: var(--v56-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.v56-jinshi-reader { max-height: calc(100vh - var(--v56-topbar-h) - var(--v56-context-h) - 88px); overflow: auto; padding: 20px 22px 36px; }
+.v56-jinshi-reader header { padding-bottom: 13px; border-bottom: 1px solid var(--v56-rule); }
+.v56-jinshi-reader h2 { margin: 7px 0 4px; color: var(--v56-ink); font: 700 24px/1.35 "Songti SC", SimSun, serif; }
+.v56-jinshi-reader header p { margin: 0; color: var(--v56-muted); font-size: 12px; }
+.v56-jinshi-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 13px 0; }
+.v56-jinshi-fields div { padding: 8px; border: 1px solid var(--v56-rule); background: color-mix(in srgb, var(--v56-paper) 55%, transparent); }
+.v56-jinshi-fields dt { color: var(--v56-faint); font-size: 12px; }
+.v56-jinshi-fields dd { margin: 4px 0 0; color: var(--v56-ink); font-size: 12px; }
+.v56-jinshi-inscription { padding-top: 8px; border-top: 3px double var(--v56-rule-strong); }
+.v56-jinshi-inscription h3 { color: var(--v56-green); font: 700 13px "Songti SC", SimSun, serif; letter-spacing: .12em; }
+.v56-jinshi-inscription > div { color: var(--v56-ink); font: 15px/2 "Songti SC", SimSun, serif; white-space: pre-wrap; }
+.v56-jinshi-inscription > p { color: var(--v56-muted); font-size: 12px; }
+.shihuo-year-chip { border-color: var(--v56-rule); border-radius: 3px; background: var(--v56-sheet); box-shadow: none; }
+.shihuo-year-chip:hover { transform: none; border-color: var(--v56-vermilion); }
+
+/* 证据案卷 */
+.v56-evidence-rail {
+  position: fixed;
+  z-index: var(--v56-z-evidence);
+  top: calc(var(--v56-topbar-h) + var(--v56-context-h));
+  right: 0;
+  bottom: 0;
+  width: var(--v56-current-evidence);
+  display: flex;
+  flex-direction: column;
+  background: var(--v56-sheet);
+  border-left: 1px solid var(--v56-rule);
+  transition: width var(--v56-motion) ease;
+}
+.v56-evidence-head { min-height: 47px; display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 13px; border-bottom: 1px solid var(--v56-rule); }
+.v56-evidence-head::before { content: ""; width: 3px; align-self: stretch; background: var(--v56-gold); }
+.v56-evidence-head strong { color: var(--v56-ink); font-size: 15px; letter-spacing: .08em; }
+.v56-evidence-head span { color: var(--v56-muted); font-size: 12px; }
+.v56-evidence-head button { margin-left: auto; width: 26px; height: 26px; border: 1px solid var(--v56-rule); border-radius: 3px; background: transparent; color: var(--v56-muted); cursor: pointer; }
+.v56-evidence-body { min-width: 320px; flex: 1; overflow: auto; padding: 12px 14px 30px; }
+.v56-evidence-empty { padding: 34px 10px; color: var(--v56-muted); font-size: 12px; line-height: 1.7; text-align: center; }
+.v56-evidence-title { margin: 0 0 4px; color: var(--v56-ink); font: 700 19px/1.4 "Songti SC", SimSun, serif; }
+.v56-evidence-meta { margin-bottom: 12px; color: var(--v56-muted); font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.v56-evidence-section { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--v56-rule); }
+.v56-evidence-section h4 { margin: 0 0 7px; color: var(--v56-green); font: 700 12px/1.3 "Songti SC", SimSun, serif; letter-spacing: .08em; }
+.v56-evidence-section p { margin: 5px 0; color: var(--v56-muted); font-size: 12px; line-height: 1.65; overflow-wrap: anywhere; }
+.v56-evidence-source { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 6px; padding: 6px 0; border-top: 1px dashed var(--v56-rule); color: var(--v56-muted); font-size: 12px; line-height: 1.55; }
+.v56-evidence-source b { color: var(--v56-ink); }
+.v56-evidence-status { display: inline-flex; align-items: center; gap: 5px; padding: 2px 6px; border: 1px solid var(--v56-rule); border-radius: 3px; color: var(--v56-muted); font-size: 12px; }
+.v56-evidence-status::before { content: "○"; color: var(--v56-green); }
+.v56-evidence-status.pending::before { content: "△"; color: var(--v56-gold); }
+.v56-evidence-status.disputed::before { content: "!"; color: var(--v56-vermilion); }
+.evidence-collapsed .v56-evidence-body,
+.evidence-collapsed .v56-evidence-head strong,
+.evidence-collapsed .v56-evidence-head span,
+.panels-idle .v56-evidence-body,
+.panels-idle .v56-evidence-head span { display: none; }
+.evidence-collapsed .v56-evidence-head,
+.panels-idle .v56-evidence-head { padding: 8px; writing-mode: vertical-rl; }
+.evidence-collapsed .v56-evidence-head::before,
+.panels-idle .v56-evidence-head::before { width: auto; height: 3px; }
+.evidence-collapsed .v56-evidence-head button,
+.panels-idle .v56-evidence-head button { margin: auto 0 0; }
+.panels-idle .v56-evidence-head strong { font-size: 12px; letter-spacing: .14em; }
+
+/* 属性面板同样收合为把手；标题旋转后仍保留可读的模块名。 */
+.panels-idle .right-panel { width: 44px; min-width: 44px; }
+.panels-idle .right-panel .panel-body { display: none; }
+.panels-idle .right-panel .panel-head {
+  padding: 10px 8px;
+  writing-mode: vertical-rl;
+  border-bottom: 0;
+  border-left: 3px solid var(--v56-gold);
+}
+.panels-idle .right-panel .panel-head .name { font-size: 12px; letter-spacing: .14em; }
+.panels-idle .right-panel .panel-head .sub { display: none; }
+.right-panel { transition: width var(--v56-motion) ease; }
+.v56-evidence-rail { transition: width var(--v56-motion) ease; }
+
+.statusbar { background: var(--v56-rail-bg); color: var(--v56-rail-ink); }
+
+.command-palette-drawer .el-drawer { background: var(--v56-sheet); }
+.command-palette-drawer .el-drawer__header { min-height: 52px; margin: 0 !important; padding: 12px 16px; border-bottom: 1px solid var(--v56-rule); }
+.command-palette-drawer .el-drawer__body { padding: 12px 14px 24px; }
+.palette-item { border-radius: 3px; }
+.palette-item.active { background: var(--v56-vermilion-soft); box-shadow: inset 3px 0 var(--v56-vermilion); }
+
+.v56-mobile-module-sheet { display: none; }
+
+@media (max-width: 1320px) {
+  /* 卷脊原在此断点收到 88px，但标签盒只剩 24px 而三个全角字需 39px，
+     overflow:hidden 会把第三字直接切掉且无省略提示。104px 是能完整
+     容纳「职官谱」「形势图」的最小宽度，故此断点只收窄证据案卷。 */
+  :root { --v56-evidence-w: 320px; }
+  .v56-context-identity { min-width: 130px; max-width: 170px; }
+  .v56-context-actions .el-upload { display: none; }
+  .v56-context-select { width: 112px; }
+}
+
+@media (max-width: 1100px) {
+  .v56-current-module span,
+  .brand .t2 { display: none; }
+  .v56-context-identity span { display: none; }
+  .v56-context-identity { min-width: auto; }
+  .v56-person-dossier { padding-inline: 14px; }
+}
+
+@media (max-width: 980px) {
+  .shell { --v56-current-evidence: 0px; }
+  .v56-evidence-rail,
+  .v56-evidence-toggle { display: none; }
+  .el-drawer { width: 100% !important; max-width: none !important; }
+  .v56-context-actions { display: none; }
+}
+
+@media (max-width: 760px) {
+  :root { --v56-topbar-h: 52px; --v56-context-h: 48px; }
+  .shell,
+  .shell.spine-collapsed { --v56-current-spine: 0px; }
+  .topbar { padding: 0 9px; gap: 7px; }
+  .seal-mark { width: 30px; height: 30px; }
+  .brand { min-width: 76px; }
+  .brand .t1 { font-size: 15px; }
+  .v56-current-module { display: none; }
+  .global-search-trigger { width: 34px; padding: 0; justify-content: center; }
+  .global-search-trigger span:nth-child(2),
+  .global-search-trigger kbd { display: none; }
+  .workspace-mode-switch button { padding: 0 6px; font-size: 12px; }
+  .theme-trigger { width: 40px; padding: 0; justify-content: center; font-size: 12px; }
+
+  .v56-spine-nav {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 4px 6px max(4px, env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(255,255,255,.12);
+    border-right: 0;
+  }
+  .v56-spine-item { min-height: 54px; display: flex; flex-direction: column; justify-content: center; gap: 3px; padding: 2px; border: 0; text-align: center; }
+  .v56-spine-item::before { inset: auto 18px -4px; width: auto; height: 3px; }
+  .v56-spine-glyph { width: 23px; height: 23px; font-size: 12px; }
+  .v56-spine-label { width: auto !important; opacity: 1 !important; font-size: 12px; letter-spacing: .03em; }
+  .v56-spine-item.module-fangzhen,
+  .v56-spine-item.module-jinshi,
+  .v56-spine-item.module-shihuo,
+  .v56-spine-toggle { display: none; }
+  .v56-mobile-more { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; }
+  .v56-mobile-more span:first-child { width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 3px; font: 700 12px "Songti SC", SimSun, serif; }
+
+  .v56-context-bar { min-height: var(--v56-context-h); margin: 0; padding: 6px 8px; overflow-x: auto; overflow-y: hidden; }
+  .v56-context-identity { flex: 0 0 auto; }
+  .v56-context-identity strong { font-size: 13px; }
+  .v56-context-search { flex: 0 0 auto; }
+  .v56-context-select { flex: 0 0 110px; width: 110px; }
+  .v56-context-spacer { display: none; }
+
+  .body-row,
+  .module-page,
+  .statusbar { margin: 0; }
+  .body-row,
+  .module-page { padding-bottom: 64px; }
+  .module-page-inner { padding: 8px 8px 84px; }
+  .statusbar { display: none; }
+
+  .people-toolbar,
+  .fangzhen-toolbar,
+  .battle-toolbar,
+  .jinshi-toolbar,
+  .shihuo-toolbar { overflow-x: auto; flex-wrap: nowrap; }
+
+  .v56-people-master-detail { min-height: 0; display: block; border: 0; }
+  .v56-person-directory { max-height: none; border: 1px solid var(--v56-rule); }
+  .v56-person-dossier { display: none; }
+  .v56-person-row { min-height: 64px; }
+  .v56-jinshi-workbench-grid { min-height: 0; display: block; border: 0; }
+  .v56-jinshi-directory { max-height: none; border: 1px solid var(--v56-rule); }
+  .v56-jinshi-reader { display: none; }
+
+  .v56-mobile-module-sheet {
+    position: fixed;
+    z-index: var(--v56-z-sheet);
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(10,18,20,.42);
+  }
+  .v56-mobile-module-sheet section { width: 100%; max-height: min(88dvh, 720px); padding: 14px 14px calc(78px + env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain; border-radius: 12px 12px 0 0; background: var(--v56-sheet); box-shadow: 0 -16px 36px rgba(11,20,22,.18); }
+  .v56-mobile-module-sheet header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .v56-mobile-module-sheet header strong { font: 700 18px "Songti SC", SimSun, serif; }
+  .v56-mobile-module-sheet header button { width: 32px; height: 32px; border: 1px solid var(--v56-rule); border-radius: 50%; background: transparent; color: var(--v56-ink); font-size: 20px; }
+  .v56-mobile-module-sheet section > button:not(:first-child) { width: 100%; min-height: 48px; display: grid; grid-template-columns: 32px 70px minmax(0,1fr); align-items: center; gap: 8px; border: 0; border-top: 1px solid var(--v56-rule); background: transparent; color: var(--v56-ink); text-align: left; }
+  .v56-mobile-module-sheet section > button.active { color: var(--v56-vermilion); }
+  .v56-mobile-module-sheet section > button small { color: var(--v56-muted); }
+
+  .court-canvas { padding-inline: 8px; }
+  .court-canvas::before { font-size: 42px; }
+  .court-tier { padding-inline: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media print {
+  .v56-spine-nav,
+  .v56-context-bar,
+  .v56-evidence-rail { display: none !important; }
+  .body-row,
+  .module-page { margin: 0 !important; }
+}
+
+/* V57 语义色不再自带一份浅色副本：它原先只在 :root 声明一次、
+   没有任何主题覆写，凡以 --v57-* 上色的顶栏、检索／外观触发器与
+   浮层，在朱批纸本与青灯夜校下都会停留在浅色。改为直接别名到
+   已具备三套主题的 --v56-*，一处修正即令全部随主题切换。 */
+:root{
+  --v57-paper: var(--v56-paper);
+  --v57-surface: var(--v56-sheet);
+  --v57-ink: var(--v56-ink);
+  --v57-muted: var(--v56-muted);
+  --v57-green: var(--v56-green);
+  --v57-vermilion: var(--v56-vermilion);
+  --v57-gold: var(--v56-gold);
+  --v57-line: var(--v56-rule);
+  --v57-focus: var(--v56-focus);
+}
+
+body,#app,.shell{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;color:var(--v57-ink);}
+.topbar{height:48px;min-height:48px;background:var(--v57-surface);border-bottom:1px solid var(--v57-line);}
+.global-header-tools{gap:5px;}
+.global-search-trigger,.theme-trigger,.workspace-mode-switch button{
+  height:30px;border-radius:6px;font:600 12px/1 -apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+  letter-spacing:0;padding:0 9px;transition:border-color .18s ease,box-shadow .18s ease;
+}
+.global-search-trigger,.theme-trigger{border:1px solid var(--v57-line);background:var(--v57-surface);color:var(--v57-ink);}
+.global-search-trigger:hover,.theme-trigger:hover{transform:none;border-color:var(--v57-vermilion);background:color-mix(in srgb,var(--v56-vermilion) 8%,var(--v56-sheet));}
+.global-search-trigger:focus-visible,.theme-trigger:focus-visible,.workspace-mode-switch button:focus-visible{outline:none;box-shadow:var(--v57-focus);}
+.global-search-trigger kbd{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--v57-muted);}
+.workspace-mode-switch{height:30px;padding:2px;border:1px solid var(--v57-line);border-radius:6px;background:var(--v56-paper);}
+.workspace-mode-switch button{height:24px;border:0;background:transparent;color:var(--v57-muted);}
+.workspace-mode-switch button.active{background:var(--v57-ink);color:var(--v57-surface);}
+.v56-context-bar{min-height:44px;height:44px;padding:0 14px;background:color-mix(in srgb,var(--v56-sheet) 96%,transparent);border-bottom:1px solid var(--v57-line);}
+.v56-context-identity strong,.v56-context-identity span{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;letter-spacing:0;}
+.v56-context-identity strong{font-size:14px;color:var(--v57-ink);}
+.v56-context-identity span{font-size:12px;color:var(--v57-muted);}
+.v56-segmented{gap:2px;padding:2px;border:1px solid var(--v57-line);border-radius:6px;background:var(--v56-paper);}
+.v56-segmented button,.v56-context-bar .el-button,.v56-context-bar .el-select .el-input__wrapper{font-size:12px;}
+.v56-segmented button{height:26px;padding:0 9px;}
+.v56-context-bar .el-select .el-input__wrapper{min-height:28px;box-shadow:0 0 0 1px var(--v57-line) inset;border-radius:5px;}
+.v56-context-actions .el-button{height:28px;font-size:12px;}
+.v56-evidence-toggle{height:28px;font-size:12px;}
+.v57-appearance-popover{padding:12px!important;border:1px solid var(--v57-line)!important;border-radius:8px!important;box-shadow:0 12px 30px rgba(27,43,46,.14)!important;background:var(--v57-surface)!important;}
+.v57-appearance-popover .appearance-popover-intro{font-size:12px;line-height:1.55;color:var(--v57-muted);margin-bottom:8px;}
+.v57-appearance-popover .field-group-title{margin:10px 0 6px;font:600 12px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:var(--v57-muted);letter-spacing:.04em;}
+.v57-appearance-popover .theme-option{margin:0 0 5px;padding:7px;border-radius:5px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;}
+.v57-appearance-popover .theme-option:hover{transform:none;}
+.v57-appearance-popover .theme-swatches i{width:16px;height:24px;}
+.v57-appearance-popover .theme-option-copy strong{font-size:12px;}
+.v57-appearance-popover .theme-option-copy small{font-size:12px;}
+.v57-appearance-popover .theme-choice-row button{height:28px;font-size:12px;border-radius:5px;}
+.module-page h1,.page-heading h1{letter-spacing:0;font-size:25px;}
+.module-page p,.page-heading p{font-size:12px;line-height:1.65;}
+.el-button,.el-input__inner,.el-select,.el-checkbox,.el-radio,.el-table,.el-form-item__label{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;}
+.el-button{font-size:12px;}
+.el-input__inner{font-size:12px;}
+.el-form-item__label{font-size:12px;}
+.court-tier-title,.court-column-title,.court-department-head{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;letter-spacing:0;}
+.court-tier-title span{font-size:12px;}
+.court-slot-name{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-size:13px;letter-spacing:0;}
+.court-heir-tier{margin-top:0;}
+.jinshi-archive{display:none!important;}
+.jinshi-workbench .page-heading p,.shihuo-workbench .page-heading p{max-width:680px;}
+.shihuo-workbench .battle-metrics{display:none;}
+.shihuo-view-switch{display:flex;gap:2px;margin:10px 0;border-bottom:1px solid var(--v57-line);}
+.shihuo-view-switch button{border:0;border-bottom:2px solid transparent;background:transparent;padding:7px 12px;color:var(--v57-muted);font-size:12px;cursor:pointer;}
+.shihuo-view-switch button.active{color:var(--v57-vermilion);border-bottom-color:var(--v57-vermilion);font-weight:700;}
+@media(max-width:760px){
+  .topbar{height:46px;min-height:46px;}
+  .global-search-trigger span:not([aria-hidden]),.theme-trigger{font-size:0;width:30px;padding:0;}
+  .global-search-trigger span[aria-hidden]{font-size:17px;}
+  .global-search-trigger kbd{display:none;}
+  .v56-context-bar{height:auto;min-height:44px;padding:5px 9px;gap:5px;}
+  .v56-context-identity{min-width:72px;}
+  .v56-context-identity span{display:none;}
+  .v56-context-bar .el-select{max-width:120px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;}
+}
+
+/* Shared archive reading system: hierarchy, references and recovery. */
+.reader-citations { margin-block: var(--sgz-space-section); border-block: 1px solid var(--sgz-rule); }
+.reader-citations h3 { display:flex;align-items:baseline;gap:12px;margin:18px 0;font:600 17px/1.5 var(--sgz-font-heading); }
+.reader-citations h3 small { color:var(--sgz-muted);font:400 var(--sgz-text-meta)/1.5 var(--sgz-font-body); }
+.reader-citations details { border-top:1px solid var(--sgz-rule);padding:0 0 4px; }
+.reader-citations summary { min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:var(--sgz-ink);font-size:var(--sgz-text-control);list-style:none; }
+.reader-citations summary::before { content:'＋';color:var(--sgz-accent); }
+.reader-citations details[open] summary::before { content:'−'; }
+.reader-citations summary span { flex:1;min-width:0;overflow-wrap:anywhere; }
+.reader-citations summary .reader-citation-collapse,.reader-citations details[open] .reader-citation-expand { display:none; }
+.reader-citations details[open] .reader-citation-collapse { display:inline; }
+.reader-citations summary small { color:var(--sgz-muted);font-size:12px;flex-shrink:0; }
+.reader-citations blockquote { margin:4px 0 16px;padding:12px 18px;border-left:2px solid var(--sgz-dossier-gold);background:color-mix(in srgb,var(--sgz-dossier-gold) 5%,transparent);font:16px/2 var(--sgz-font-heading);white-space:pre-wrap;overflow-wrap:anywhere; }
+.reader-citations a { display:inline-flex;align-items:center;min-height:44px;color:var(--sgz-accent);font-size:var(--sgz-text-control);text-underline-offset:4px; }
+.reader-citations p { color:var(--sgz-muted);font-size:var(--sgz-text-control);line-height:1.8; }
+.reader-availability { display:flex;gap:18px;margin-block:24px;padding:24px;border:1px dashed var(--sgz-rule);background:var(--sgz-surface);border-radius:var(--sgz-radius); }
+.reader-availability > span { flex-shrink:0;display:grid;place-items:center;width:36px;height:42px;border:1px solid var(--sgz-dossier-gold);color:var(--sgz-dossier-gold);font:20px var(--sgz-font-heading); }
+.reader-availability h3 { margin:0 0 8px;font:600 17px/1.5 var(--sgz-font-heading); }
+.reader-availability p,.reader-quiet-note { max-width:var(--sgz-reading-measure);color:var(--sgz-muted);font-size:var(--sgz-text-control);line-height:1.8; }
+.reader-filter-summary { display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0; }
+.reader-filter-summary > span { color:var(--sgz-muted);font-size:12px;font-variant-numeric:tabular-nums; }
+.v69-loading-frame.is-error > span { display:none; }
+.v69-loading-frame.is-error { min-height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px; }
+.v69-loading-frame.is-error p { margin:0;text-align:center;color:var(--sgz-muted);font-size:14px;line-height:1.8; }
+.v69-loading-frame .el-button { min-height:44px;padding-inline:24px; }
+.reader-inscription-apparatus { margin-block:var(--sgz-space-section);border-top:1px solid var(--sgz-rule);padding-top:18px; }
+.reader-inscription-apparatus h3 { margin:0 0 12px;font:600 17px/1.5 var(--sgz-font-heading); }
+.reader-inscription-apparatus p,.reader-inscription-apparatus li > span { color:var(--sgz-muted);font:var(--sgz-text-control)/1.8 var(--sgz-font-body); }
+.reader-inscription-apparatus details { border-block:1px solid var(--sgz-rule); }
+.reader-inscription-apparatus details + details { border-top:0; }
+.reader-inscription-apparatus summary { display:flex;align-items:center;gap:12px;min-height:48px;cursor:pointer;color:var(--sgz-ink);font-size:14px;list-style:none; }
+.reader-inscription-apparatus summary::before { content:'＋';color:var(--sgz-accent); }
+.reader-inscription-apparatus details[open] summary::before { content:'−'; }
+.reader-inscription-apparatus pre { margin:0 0 18px;font:16px/2 var(--sgz-font-heading);white-space:pre-wrap;overflow-wrap:anywhere; }
+.reader-inscription-apparatus ul { padding:0;list-style:none; }
+.reader-inscription-apparatus li { margin-block:12px; }
+.reader-inscription-apparatus a { display:inline-flex;align-items:center;min-height:44px;color:var(--sgz-accent);font-size:14px;text-underline-offset:4px; }
+.reader-inscription-apparatus li > span { display:block; }
+
+.reader-inscription-apparatus a,.reader-citations a { max-width:100%;overflow-wrap:anywhere; }
+.v73-status-ledger{margin:14px 0 18px;padding:16px;border:1px solid rgba(111,82,48,.24);border-radius:14px;background:linear-gradient(145deg,rgba(250,246,235,.96),rgba(242,235,217,.92));box-shadow:0 10px 28px rgba(58,42,23,.08)}
+.v73-status-ledger-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.v73-status-ledger-head div{display:grid;gap:3px}.v73-status-ledger-head strong{font-family:var(--font-serif,serif);font-size:18px;color:#3e2d1f}.v73-status-ledger-head span,.v73-status-ledger-head small{font-size:12px;color:#74695d}.v73-status-ledger-head small{padding:3px 7px;border:1px solid rgba(137,86,50,.28);border-radius:999px}
+.v73-status-definitions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.v73-status-definitions article{min-height:112px;padding:11px;border:1px solid rgba(97,82,62,.16);border-radius:10px;background:rgba(255,255,255,.48)}.v73-status-definitions article b{display:block;font:700 22px/1 var(--font-serif,serif);color:#342a21}.v73-status-definitions article strong{display:block;margin:7px 0 4px;font-size:12px}.v73-status-definitions article p{margin:0;font-size:12px;line-height:1.55;color:#72685e}.v73-status-definitions .status-verified{border-top:3px solid #52705b}.v73-status-definitions .status-pending{border-top:3px solid #b3833f}.v73-status-definitions .status-disputed{border-top:3px solid #9b4d42}.v73-status-definitions .status-suppressed{border-top:3px solid #77716a}
+.v73-status-modules{margin-top:12px;border:1px solid rgba(97,82,62,.16);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.42)}.v73-status-row{display:grid;grid-template-columns:minmax(88px,1.4fr) repeat(5,minmax(54px,.72fr));align-items:center;gap:6px;min-height:36px;padding:0 10px;border-top:1px solid rgba(97,82,62,.1);font-size:12px;text-align:right}.v73-status-row:first-child{border-top:0}.v73-status-row b{text-align:left;color:#4a3b2c}.v73-status-row-head{background:rgba(88,68,46,.08);font-size:12px;color:#766b60}.v73-status-note{margin:11px 2px 0;font-size:12px;line-height:1.7;color:#6f6256}
+@media(max-width:760px){.v73-status-definitions{grid-template-columns:repeat(2,minmax(0,1fr))}.v73-status-row{grid-template-columns:minmax(80px,1.2fr) repeat(5,minmax(48px,.7fr));padding:0 7px;gap:4px;font-size:12px;overflow-x:auto}.v73-status-modules{overflow-x:auto;min-width:620px}}
+
+
+/* Blue Atlas compatibility adapter: semantic colors have one owner in tokens.css. */
+:root,:root[data-sgz-theme]{
+ --v54-surface-0:var(--sgz-paper);--v54-surface-1:var(--sgz-surface);--v54-surface-2:var(--sgz-surface-raised);--v54-text-1:var(--sgz-ink);--v54-text-2:var(--sgz-muted);--v54-accent:var(--sgz-accent);--v54-line:var(--sgz-rule);
+ --v55-paper:var(--sgz-paper);--v55-surface:var(--sgz-surface);--v55-surface-raised:var(--sgz-surface-raised);--v55-ink:var(--sgz-ink);--v55-muted:var(--sgz-muted);--v55-vermilion:var(--sgz-accent);--v55-rule:var(--sgz-rule);
+ --v56-paper:var(--sgz-paper);--v56-sheet:var(--sgz-surface);--v56-sheet-raised:var(--sgz-surface-raised);--v56-ink:var(--sgz-ink);--v56-muted:var(--sgz-muted);--v56-faint:var(--sgz-muted);
+ --v56-vermilion:var(--sgz-accent);--v56-vermilion-soft:var(--sgz-pale);--v56-green:var(--sgz-success);--v56-gold:var(--sgz-warning);--v56-gold-soft:var(--sgz-uncertain);
+ --v56-rule:var(--sgz-rule);--v56-rule-strong:var(--sgz-rule);--v56-focus:var(--sgz-focus);--v56-rail-bg:var(--sgz-nav);--v56-rail-ink:#e6eeff;
+ --v56-topbar-h:76px;--v56-context-h:64px;--v56-spine-w:184px;--v56-evidence-w:340px;
+ --v56-motion:var(--sgz-motion-panel);--v56-motion-fast:var(--sgz-motion);--v58-radius:var(--sgz-radius-lg);--v58-radius-small:var(--sgz-radius);
+ --paper:var(--sgz-paper);--card:var(--sgz-surface);--panel:var(--sgz-surface);--ink:var(--sgz-ink);--ink-soft:var(--sgz-muted);--muted:var(--sgz-muted);--rule:var(--sgz-rule);--seal:var(--sgz-accent);--accent:var(--sgz-accent);
+ --el-color-primary:var(--sgz-accent);--el-text-color-primary:var(--sgz-ink);--el-text-color-regular:var(--sgz-ink);--el-border-radius-base:var(--sgz-radius);
+}
+body,#app,.shell,.serif,.brand .t1,.el-drawer__header,.panel-head .name,.v56-context-identity h1,.v56-person-dossier h2{font-family:var(--sgz-font-body)}
+.shell .topbar{height:var(--v56-topbar-h);min-height:var(--v56-topbar-h);padding:16px 24px;background:var(--sgz-paper);border:0;box-shadow:none;backdrop-filter:none}
+.shell .seal-mark{display:none}.shell .brand .t1{font-size:24px;font-weight:800;letter-spacing:0;color:var(--sgz-accent)}
+.shell .brand a{color:inherit;text-decoration:none;display:flex;align-items:center;min-width:44px;min-height:44px}
+.shell .global-search-trigger,.shell .theme-trigger{min-height:44px;border:0;border-radius:var(--sgz-radius);background:var(--sgz-surface);font-size:16px}
+.shell .v56-spine-nav{top:calc(var(--v56-topbar-h) + 8px);bottom:20px;left:16px;width:calc(var(--v56-current-spine) - 16px);border:0;border-radius:var(--sgz-radius-lg);padding:16px 10px;gap:8px}
+.shell .v56-spine-item{min-height:52px;border:0;border-radius:var(--sgz-radius);padding:12px;grid-template-columns:24px minmax(0,1fr);gap:12px}
+.shell .v56-spine-item.active{background:#2457e7;color:#fff;box-shadow:none}
+.shell .v56-spine-item.active::before{display:none}
+.shell .v56-spine-glyph{font:700 18px var(--sgz-font-body)}.shell .v56-spine-label{font:600 16px var(--sgz-font-body);letter-spacing:0;white-space:nowrap}
+.shell .v56-mobile-more{border-radius:var(--sgz-radius);font-size:16px;padding:8px}
+.shell .v56-context-bar{min-height:64px;height:auto;background:var(--sgz-paper);border:0;padding:12px 24px;gap:14px}
+.shell .v56-context-identity h1{font-size:28px;line-height:1.5;margin:0}
+.shell .v84-reading-toolbar{background:var(--sgz-surface);border:0;border-radius:20px;margin-block:8px;padding:16px 24px}
+.shell .v84-button,.shell .v56-segmented button{min-height:44px;border-radius:var(--sgz-radius);font-size:14px;white-space:nowrap}
+.el-button{border-radius:var(--sgz-radius);min-height:44px;font-size:16px}
+.el-button--primary{--el-button-text-color:var(--sgz-on-accent);--el-button-hover-text-color:var(--sgz-on-accent);--el-button-active-text-color:var(--sgz-on-accent)}
+.el-input__wrapper,.el-select__wrapper,.el-textarea__inner{border-radius:var(--sgz-radius);background:var(--sgz-surface)}
+.el-drawer,.el-dialog,.el-message-box,.el-popover{border-radius:var(--sgz-radius-lg)}
+.el-drawer__title,.el-dialog__title{font-family:var(--sgz-font-heading);font-size:22px}
+.v58-status,.v67-status{border-radius:100px;min-height:28px;padding:4px 12px;font-size:14px}
+.v58-status::before{display:none}
+*{scrollbar-color:color-mix(in srgb,var(--sgz-muted) 55%,transparent) transparent;scrollbar-width:thin}
+*::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--sgz-muted) 55%,transparent);border-radius:100px}
+@media(forced-colors:active){button:focus-visible,a:focus-visible{outline:3px solid Highlight}.v56-spine-item.active{border:2px solid Highlight}}
+
+/* R2 shared person reading sections; used in the desktop dossier and phone drawer. */
+.sgz-person-sections{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}.sgz-person-sections button{min-height:48px;border:1px solid var(--sgz-rule);border-radius:14px;background:var(--sgz-surface);color:var(--sgz-ink);font:600 16px var(--sgz-font-body);cursor:pointer}.sgz-person-sections button:hover{background:var(--sgz-pale)}.sgz-person-sections button[aria-pressed=true]{background:var(--sgz-accent);color:var(--sgz-on-accent);border-color:var(--sgz-accent)}
+.sgz-person-panel{min-height:180px}.sgz-person-panel h3{font:700 22px var(--sgz-font-heading)}.sgz-biography{white-space:pre-wrap;font:18px/1.9 var(--sgz-font-body)}.sgz-research-link{display:inline-flex;align-items:center;min-height:48px;margin-top:24px;padding:12px 18px;background:var(--sgz-pale);color:var(--sgz-accent);border-radius:14px;text-decoration:none;font:600 16px var(--sgz-font-body)}.sgz-person-reading button:focus-visible,.sgz-research-link:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:3px}
+.sgz-person-panel .reader-citations{margin:0;padding:20px}.sgz-person-panel .v69-person-life-events small{font-size:14px}.v56-topbar-brand a{min-width:44px}
+@media(prefers-reduced-motion:no-preference){.sgz-person-panel{animation:sgz-person-reveal var(--sgz-motion) ease-out}}@keyframes sgz-person-reveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Extracted workbenches put module-page and module-page-inner on one root. */
+@media screen and (min-width:761px){.shell>.module-page.module-page-inner{margin-left:var(--v56-current-spine);margin-right:var(--v56-current-evidence);width:auto;max-width:none;padding:24px;}}
+@media screen and (max-width:760px){.shell>.module-page.module-page-inner{margin:0;width:auto;max-width:none;padding:20px 16px calc(84px + env(safe-area-inset-bottom));}}
+
+/* Shared portrait access; uses the canonical Blue Atlas control tokens. */
+.sgz-person-portrait-panel{flex:0 0 auto;width:100px;min-width:0}.sgz-person-portrait-panel .people-detail-portrait{float:none;margin:0}.sgz-portrait-choices{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.sgz-portrait-control{display:inline-flex;align-items:center;justify-content:center;min-height:var(--sgz-touch-target);min-width:var(--sgz-touch-target);max-width:100%;padding:4px 8px;border:1px solid var(--sgz-rule);border-radius:var(--sgz-radius);background:var(--sgz-surface);color:var(--sgz-ink);font:600 var(--sgz-text-meta) var(--sgz-font-body);cursor:pointer;text-decoration:none;box-sizing:border-box}.sgz-portrait-control:hover{background:var(--sgz-pale)}.sgz-portrait-control:focus-visible{outline:3px solid var(--sgz-accent);outline-offset:2px}.sgz-portrait-control:active,.sgz-portrait-control[aria-pressed=true]{background:var(--sgz-accent);color:var(--sgz-on-accent);border-color:var(--sgz-accent)}.sgz-portrait-original{margin-top:8px;width:100%}.sgz-portrait-status{font:var(--sgz-text-meta) var(--sgz-font-body);color:var(--sgz-muted);margin:4px 0;min-height:1.5em}.people-detail-head .sgz-person-portrait-panel{float:right;margin:0 0 18px 18px;width:80px}
+
+.sgz-person-portrait-panel .people-detail-portrait{position:relative}.sgz-portrait-retry{position:absolute;bottom:4px;left:4px;right:4px;z-index:1}.sgz-portrait-status{height:3em;overflow-wrap:anywhere}
+
+.people-detail-head .sgz-person-portrait-panel{width:112px}@media(max-width:760px){.people-detail-head .sgz-person-portrait-panel{width:80px}}
+
+.sgz-person-portrait-panel .sgz-portrait-evidence-note{font-size:12px;line-height:1.5;overflow-wrap:anywhere;margin:8px 0 0;}
+
+.people-detail-head .sgz-person-portrait-panel .people-detail-portrait{float:none;margin:0;}
+.sgz-person-portrait-panel .people-detail-portrait img{object-fit:contain;}

@@ -1,0 +1,4467 @@
+{
+  "schemaVersion": 1,
+  "build": "reader",
+  "sourceRegistryModelId": "sgz-v63-person-registry",
+  "sourceReaderModelId": "sgz-v63-reader-people",
+  "personCount": 3621,
+  "portraitCount": 600,
+  "retainedPortraitOriginalCount": 174,
+  "readerProjection": {
+    "mapRuntimeFiles": [
+      "assets/map/css/style.css",
+      "assets/map/data/administrative-events.js",
+      "assets/map/data/administrative-snapshots.js",
+      "assets/map/data/all-provinces-local.js",
+      "assets/map/data/county-registry.js",
+      "assets/map/data/geo-coastline.js",
+      "assets/map/data/geo-water.js",
+      "assets/map/data/history-evidence.js",
+      "assets/map/data/hydronym-reader.js",
+      "assets/map/data/political-snapshots.js",
+      "assets/map/data/strategic-geography.js",
+      "assets/map/data/three-kingdoms.js",
+      "assets/map/history-embed.html",
+      "assets/map/js/app.js",
+      "assets/map/js/base-layer.js",
+      "assets/map/js/bridge.js",
+      "assets/map/js/commanderies.js",
+      "assets/map/js/config.js",
+      "assets/map/js/counties.js",
+      "assets/map/js/hydronyms.js",
+      "assets/map/js/markers.js",
+      "assets/map/js/panel.js",
+      "assets/map/js/routes.js",
+      "assets/map/js/safe-html.js",
+      "assets/map/js/strategic-layers.js",
+      "assets/map/js/territories.js",
+      "assets/map/js/timeline.js",
+      "assets/map/js/wu-commanderies.js",
+      "assets/map/vendor/leaflet/images/layers-2x.png",
+      "assets/map/vendor/leaflet/images/layers.png",
+      "assets/map/vendor/leaflet/images/marker-icon-2x.png",
+      "assets/map/vendor/leaflet/images/marker-icon.png",
+      "assets/map/vendor/leaflet/images/marker-shadow.png",
+      "assets/map/vendor/leaflet/leaflet.css",
+      "assets/map/vendor/leaflet/leaflet.js"
+    ],
+    "projectedDataFiles": [
+      "assets/map/data/administrative-events.js",
+      "assets/map/data/county-registry.js",
+      "assets/map/data/history-evidence.js",
+      "assets/map/data/hydronym-reader.js",
+      "data/administrative-index.js",
+      "data/battle-records.js",
+      "data/general-titles.js",
+      "data/han-bai-guan-zhi.js",
+      "data/history-evidence.js",
+      "data/kaifu-policies.js",
+      "data/map-period-registry.js",
+      "data/office-residences.js",
+      "data/office-seat-policies.js",
+      "data/portrait-manifest.js",
+      "data/portrait-manifest.json",
+      "data/shihuo-records.js",
+      "data/v62-jinshi-display.js",
+      "data/v63-reader-person-relations.js",
+      "data/v63-reader-person-relations.json",
+      "data/v66-peerage-stages.js",
+      "data/v69-battle-person-links.js",
+      "data/v69-epigraphic-records.js",
+      "data/v69-fangzhen-reader.js",
+      "data/v69-person-profiles.js"
+    ],
+    "codeIdentifierExceptions": [
+      "data/jinshi-schema.js",
+      "data/research-model.js",
+      "index.html"
+    ],
+    "thirdPartyCodePrefixes": [
+      "assets/vendor/",
+      "assets/map/vendor/"
+    ],
+    "fangzhenReaderRecordCount": 523,
+    "fangzhenVerifiedRecordCount": 45,
+    "fangzhenCandidateRecordCount": 478,
+    "personProfileCount": 3621,
+    "battlePersonLinkCount": 106,
+    "epigraphicRecordCount": 166,
+    "peerageNodeCount": 13,
+    "peerageLinkedEventCount": 194,
+    "generalTitleReaderCount": 248,
+    "generalTitleLegacyVerifiedCount": 159,
+    "generalTitleV65VerifiedCount": 89,
+    "personAppointmentReferenceCount": 263,
+    "personAppointmentRelationCount": 263,
+    "personPeerageReferenceCount": 535,
+    "personPeerageRelationCount": 535,
+    "personPeerageUniqueEventCount": 518,
+    "epigraphyReaderOverlayCount": 6,
+    "mapPeriodCount": 16,
+    "mapAuditGlobals": 0
+  },
+  "leakScan": {
+    "absolutePaths": 0,
+    "bannedRuntimeFiles": 0,
+    "bannedReaderPayloadKeys": 0,
+    "sensitiveSerializedKeys": 0,
+    "auditStatusValues": 0,
+    "embeddedAuditPayloads": 0,
+    "firstScreenSheetJs": 0,
+    "explicitCodeIdentifierExceptions": 3
+  },
+  "fileCount": 870,
+  "totalBytes": 922860318,
+  "aggregateSha256": "8be613c5f4660dab6731c9f262715a90f947866621b4a76e1ae2ac89f054a267",
+  "files": [
+    {
+      "path": "assets/app/fangzhen.js",
+      "bytes": 12267,
+      "sha256": "9ccba08fc1bbfbfc1fc4ddb319c47314fe260c5e9483706543632163ab4774bb"
+    },
+    {
+      "path": "assets/app/jinshi.js",
+      "bytes": 5595,
+      "sha256": "f7e8681151645a6ce63c23d74dfbde78355932a43537e51f2f991cca00f43851"
+    },
+    {
+      "path": "assets/app/navigation.js",
+      "bytes": 587,
+      "sha256": "444f69c1709aab9092154ab5b1e416a01da03a0f7d0e1fc6926b2c14b17cf285"
+    },
+    {
+      "path": "assets/app/office-succession.js",
+      "bytes": 2239,
+      "sha256": "fba7b6d1c5cb3b103c3a18d4c1906d39ac49de2398f8f3d6e599843de017f739"
+    },
+    {
+      "path": "assets/app/people.js",
+      "bytes": 3795,
+      "sha256": "ec9520c3599a1dbfa947dab9733d948ee50e0895e1f207025a635137cf4df73c"
+    },
+    {
+      "path": "assets/app/persistence-core.js",
+      "bytes": 8040,
+      "sha256": "6c9685532147fecef86279964f42aad95e3cb573cc2433272a5e8c9dc04d16e3"
+    },
+    {
+      "path": "assets/app/persistence.js",
+      "bytes": 317,
+      "sha256": "b189d193c61d91a5305bb3dbe8964f62904f3279b962c5d6f67cc765b6ecf73f"
+    },
+    {
+      "path": "assets/app/portrait-viewer.js",
+      "bytes": 3629,
+      "sha256": "0d0aaba2875417d759a9a1832aaef3de9dca6c3d9b08ac597fff5f205e3f9323"
+    },
+    {
+      "path": "assets/app/reader-components.js",
+      "bytes": 14863,
+      "sha256": "5beef752bac6f2993cd8c2475003f616f72d2f7c8412f1052ad1f348e24cfb83"
+    },
+    {
+      "path": "assets/app/reading-history.js",
+      "bytes": 1836,
+      "sha256": "5c6fb8c7afe9cae43fdff9208bf126c3803723eea4495277769a256a7564139e"
+    },
+    {
+      "path": "assets/app/route-contract.js",
+      "bytes": 629,
+      "sha256": "c613beb24ba895b82f089a1e43a0baa345d1cc13a180c92f77de22f508141679"
+    },
+    {
+      "path": "assets/app/shell.js",
+      "bytes": 1377,
+      "sha256": "f9f2c834fd5fc47f4b7ea0212449c5e1a1ce7d986b14ea1a118a231e2b409c42"
+    },
+    {
+      "path": "assets/app/shihuo.js",
+      "bytes": 1637,
+      "sha256": "8c10657abf4465372c62de29643800e6a75faa2acbbc0076097da38c3b239ad6"
+    },
+    {
+      "path": "assets/app/ui/battle-ui.js",
+      "bytes": 4441,
+      "sha256": "82c663623f5fb44dbb8e23220391560098bec4fb9c24a14f87c0f3fd630fee6c"
+    },
+    {
+      "path": "assets/app/ui/fangzhen-ui.js",
+      "bytes": 24584,
+      "sha256": "2684ad7708e6e3596a08bb05b64d406c151cf2b2f89ef45d0d48bbeb465255ec"
+    },
+    {
+      "path": "assets/app/ui/jinshi-ui.js",
+      "bytes": 15123,
+      "sha256": "69134d44b3cc1860916e0fafb861ac5b37dfca07472471f0aa0041fa5f865f78"
+    },
+    {
+      "path": "assets/app/ui/map-ui.js",
+      "bytes": 5347,
+      "sha256": "598f697a4278b4f9be68e37fb1765fe20138e30f7a9484a4fa14c2a5a22ff1b3"
+    },
+    {
+      "path": "assets/app/ui/offices-ui.js",
+      "bytes": 83045,
+      "sha256": "dad6296d7a6b5c6c16e1efca993c2e8ceb8a709e19d1a0ba5ddaab81b99743ba"
+    },
+    {
+      "path": "assets/app/ui/people-ui.js",
+      "bytes": 17776,
+      "sha256": "676e2e65732015d4a4a7dddfdffb607ec24d30cf49b2d787bfe2375f1b96a9d5"
+    },
+    {
+      "path": "assets/app/ui/shihuo-ui.js",
+      "bytes": 8287,
+      "sha256": "363f946d6bd3eb1a10c63d3a97249fdbbb1391002fa2fafb575c936cc70ae334"
+    },
+    {
+      "path": "assets/map/css/style.css",
+      "bytes": 31343,
+      "sha256": "2063fc44b3e0503cdafd8b78c34c26cc57c7e6fead9f93e5e9372605ba8a826e"
+    },
+    {
+      "path": "assets/map/data/administrative-events.js",
+      "bytes": 8741,
+      "sha256": "86445abbbc2819bfa5f76c558ed0bc86e2fbe58ffefa22a9dda01fd420f4fa70"
+    },
+    {
+      "path": "assets/map/data/administrative-snapshots.js",
+      "bytes": 4583,
+      "sha256": "ff2ed73a537f851215ac2258dbbf11c18ca17fb4fe04e5ad1d352cdf6e440e79"
+    },
+    {
+      "path": "assets/map/data/all-provinces-local.js",
+      "bytes": 3160964,
+      "sha256": "1f042ecfc61db4e8cb24d77dbe1cdceb3be95d3d68948b522fbf22f57cd50e5c"
+    },
+    {
+      "path": "assets/map/data/county-registry.js",
+      "bytes": 13824,
+      "sha256": "12136112990f573c1a1d2f745fb6a979e15672e3cbdfebaa848ccf3c0d8e6fa1"
+    },
+    {
+      "path": "assets/map/data/geo-coastline.js",
+      "bytes": 18008,
+      "sha256": "850b8fdb9943c2c2340be294016eed33dbc74840c5d5161c6e1f51e3c20f9c41"
+    },
+    {
+      "path": "assets/map/data/geo-water.js",
+      "bytes": 415172,
+      "sha256": "09cea6217f84bcdfe25a631111881b580b7592b3de73d35fc0548c9371a1ef3f"
+    },
+    {
+      "path": "assets/map/data/history-evidence.js",
+      "bytes": 21120,
+      "sha256": "950a206a29c00beb43d4f88a6e778a658e296de4d30a4586f9499f1da07615e5"
+    },
+    {
+      "path": "assets/map/data/hydronym-reader.js",
+      "bytes": 48187,
+      "sha256": "1329aa345e01a12b4bb4423570396a3900d0e6cd807b9426c465c764da07d1c4"
+    },
+    {
+      "path": "assets/map/data/political-snapshots.js",
+      "bytes": 10100,
+      "sha256": "0b83cf793cfad1f643a8babef18df1de52019e56842bc76600c75f100772b609"
+    },
+    {
+      "path": "assets/map/data/strategic-geography.js",
+      "bytes": 5658,
+      "sha256": "198873689e722e79867cde7dabab1393c57b148987c748ad34ac2a43632c50e6"
+    },
+    {
+      "path": "assets/map/data/three-kingdoms.js",
+      "bytes": 70540,
+      "sha256": "75d286d93198907d505d74fe4e0b0e311444b6a93dbc8c52a0bfa3ec01012775"
+    },
+    {
+      "path": "assets/map/history-embed.html",
+      "bytes": 112424,
+      "sha256": "26288a2c54c558090d3cbe5747928082aa3ef6f8a12b7672e755bf6c1d76ff95"
+    },
+    {
+      "path": "assets/map/js/app.js",
+      "bytes": 21028,
+      "sha256": "4963e3c183e4a118506044da241dfa034afea372dee3be435be81e43907468d8"
+    },
+    {
+      "path": "assets/map/js/base-layer.js",
+      "bytes": 8765,
+      "sha256": "2c2f03cd17e6bfcbcdf68d8b120ebf9ea758672442c418a76e8563687c83d561"
+    },
+    {
+      "path": "assets/map/js/bridge.js",
+      "bytes": 4170,
+      "sha256": "b3788d46b32c8a1492b5cc7e361aabfab115ef595578f36e0f5ac13e24fc5b45"
+    },
+    {
+      "path": "assets/map/js/commanderies.js",
+      "bytes": 6367,
+      "sha256": "dd0d5f25ab6c0cb8d394089844c0e7ba441570869762806e29eecab506d5ef87"
+    },
+    {
+      "path": "assets/map/js/config.js",
+      "bytes": 22303,
+      "sha256": "fd6596ad59e6584aed1baab869f0340e3cbf54adfabd6f9f9ea96c0c149dde5b"
+    },
+    {
+      "path": "assets/map/js/counties.js",
+      "bytes": 3624,
+      "sha256": "47dda26510da22974409645f5a4011c1d81057b3e6e3d6d4378b9cef0101b6b6"
+    },
+    {
+      "path": "assets/map/js/hydronyms.js",
+      "bytes": 4195,
+      "sha256": "5c93348c6dbc0837b4e56b78b08aeba30848dd6c4e232a699e427680bea886e8"
+    },
+    {
+      "path": "assets/map/js/markers.js",
+      "bytes": 2113,
+      "sha256": "ee157ef835cb8a32debc2600eb1ec9ebe39bcc338ee8e24c2d80692421efa97c"
+    },
+    {
+      "path": "assets/map/js/panel.js",
+      "bytes": 12307,
+      "sha256": "b66fe4535ea9f3945d14e169506fd424b265c62493a4d4f9ffad9499f9a2a829"
+    },
+    {
+      "path": "assets/map/js/routes.js",
+      "bytes": 2237,
+      "sha256": "93cd2055f48a68b7ed561f59639ff006b60f407c7670d263d9c74ad12e64ba71"
+    },
+    {
+      "path": "assets/map/js/safe-html.js",
+      "bytes": 678,
+      "sha256": "1c410ba75da40b2a52d8d2b3e88c7d549ffdf82536519ff194eca463f378a756"
+    },
+    {
+      "path": "assets/map/js/strategic-layers.js",
+      "bytes": 4236,
+      "sha256": "21e1edd14dde3e7100712b05eb96f4769058accf67f676926fe06e62636fb57c"
+    },
+    {
+      "path": "assets/map/js/territories.js",
+      "bytes": 15038,
+      "sha256": "8667220b7f591e7ac6ffd7c88e988978270bbebbefdd8f2e3a4af89436910618"
+    },
+    {
+      "path": "assets/map/js/timeline.js",
+      "bytes": 2949,
+      "sha256": "ab1b1edf82122e0d457bcebedf43cd102c7eee5cd6e43808a85d1b5dbdff3a94"
+    },
+    {
+      "path": "assets/map/js/wu-commanderies.js",
+      "bytes": 5973,
+      "sha256": "eedd3db02eccf50047b6b37838579cd238cfd8dd32ad2359dca4a790bb3edec8"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/layers-2x.png",
+      "bytes": 1259,
+      "sha256": "066daca850d8ffbef007af00b06eac0015728dee279c51f3cb6c716df7c42edf"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/layers.png",
+      "bytes": 696,
+      "sha256": "1dbbe9d028e292f36fcba8f8b3a28d5e8932754fc2215b9ac69e4cdecf5107c6"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/marker-icon-2x.png",
+      "bytes": 2464,
+      "sha256": "00179c4c1ee830d3a108412ae0d294f55776cfeb085c60129a39aa6fc4ae2528"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/marker-icon.png",
+      "bytes": 1466,
+      "sha256": "574c3a5cca85f4114085b6841596d62f00d7c892c7b03f28cbfa301deb1dc437"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/images/marker-shadow.png",
+      "bytes": 618,
+      "sha256": "264f5c640339f042dd729062cfc04c17f8ea0f29882b538e3848ed8f10edb4da"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/leaflet.css",
+      "bytes": 14806,
+      "sha256": "a7837102824184820dfa198d1ebcd109ff6d0ff9a2672a074b9a1b4d147d04c6"
+    },
+    {
+      "path": "assets/map/vendor/leaflet/leaflet.js",
+      "bytes": 147552,
+      "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a"
+    },
+    {
+      "path": "assets/portraits/20261004/001-2eff13255f25.png",
+      "bytes": 2537468,
+      "sha256": "b42295f97b50fd17ec8e1438f1873e5f6d2fa861bde492377862ee0bf32a4ca1"
+    },
+    {
+      "path": "assets/portraits/20261004/001-f304bf80e354.png",
+      "bytes": 2689463,
+      "sha256": "f304bf80e3544b6209a64121a276378a19c5a51962fdbc4684ed216df8b9a7b2"
+    },
+    {
+      "path": "assets/portraits/20261004/002-8adaef405947.png",
+      "bytes": 2653243,
+      "sha256": "8adaef405947e332484511cce28f0a9750d9a0ad8b693fe60beabc1e947a8ab8"
+    },
+    {
+      "path": "assets/portraits/20261004/002-eddb2b1d73b6.png",
+      "bytes": 2530399,
+      "sha256": "f8334bb07835da0279568e498bdfd4c4fcc6c41789b4d8e57adf7419d65911c5"
+    },
+    {
+      "path": "assets/portraits/20261004/003-ca3cbe109912.png",
+      "bytes": 2756453,
+      "sha256": "088682840bb3bfaa2489f31c56280498b29b79c93dc209e617c9e914a533baba"
+    },
+    {
+      "path": "assets/portraits/20261004/004-7fe8f01b907d.png",
+      "bytes": 2687613,
+      "sha256": "8b35f0e121f6f27d7547221f9763d6483de94a5b2a9d57259660563aaacddfd9"
+    },
+    {
+      "path": "assets/portraits/20261004/005-1499ed95fea7.png",
+      "bytes": 2515545,
+      "sha256": "3077c80d8028dc41b06de0b977258f65c4cc75ad9b439a9a8657286ab1463e7e"
+    },
+    {
+      "path": "assets/portraits/20261004/005-d4d877ce11c7.png",
+      "bytes": 2753251,
+      "sha256": "d4d877ce11c771e900d462ffd7a8541f694bb64d3f9457e2778a87b22b174b2e"
+    },
+    {
+      "path": "assets/portraits/20261004/006-1a0cfb5e645a.png",
+      "bytes": 2610159,
+      "sha256": "951879b7ab4e2b0a518dec3b5022d93add07c99f12b5bce46847aeb2b3b48f19"
+    },
+    {
+      "path": "assets/portraits/20261004/007-2fce4ef434f3.png",
+      "bytes": 2643115,
+      "sha256": "8bf7c7779bc51c3be82fc8ccaed2a8835063c4ccec18e3d072ba7eacbabc9e75"
+    },
+    {
+      "path": "assets/portraits/20261004/007-c1c1c2c42c23.png",
+      "bytes": 2888279,
+      "sha256": "c1c1c2c42c23fde870feddca94eef4c3dc1da39ab85285cb6b5d54c6441bda0c"
+    },
+    {
+      "path": "assets/portraits/20261004/008-2202cefe1005.png",
+      "bytes": 2582133,
+      "sha256": "f78146ec6e878b4caf0eb55a3ba5a8ba9b3b3880360a1a19f1e9abc2f8bc02fd"
+    },
+    {
+      "path": "assets/portraits/20261004/009-4bff4a2b550e.png",
+      "bytes": 2456522,
+      "sha256": "e59499c4d8fee669a5429a026b3128b8952d8ad2821d42bca580fbd9899f7975"
+    },
+    {
+      "path": "assets/portraits/20261004/009-d7a32572c52e.png",
+      "bytes": 2435065,
+      "sha256": "d7a32572c52e9547e34726afa35b51d2494764e00dec606cfe235e0da267d419"
+    },
+    {
+      "path": "assets/portraits/20261004/010-1aa55d87e810.png",
+      "bytes": 2853972,
+      "sha256": "1aa55d87e8105c63ce3079df164091b069d59e5bb4d628d059bfd733b6a79678"
+    },
+    {
+      "path": "assets/portraits/20261004/010-6928517c449e.png",
+      "bytes": 2650635,
+      "sha256": "d3e0a52e30cfa4a5dec4ae3eb360b3b1f6bb83c5b0ecc4dde958baa093b4e786"
+    },
+    {
+      "path": "assets/portraits/20261004/011-15eee5508200.png",
+      "bytes": 2988730,
+      "sha256": "15eee5508200afecebdfabe89de51ab1ceb16167cb837fbec6b99a92d1e9abd8"
+    },
+    {
+      "path": "assets/portraits/20261004/011-5ce092c2bcbb.png",
+      "bytes": 2811062,
+      "sha256": "1014933ceca57745b94a74152c422108e7def28469d62b6a16dc6fd41d63b63d"
+    },
+    {
+      "path": "assets/portraits/20261004/012-036fe0de189c.png",
+      "bytes": 2990101,
+      "sha256": "036fe0de189cb253944e92930b52df707ca133f84338563b1d4aa24201ca7867"
+    },
+    {
+      "path": "assets/portraits/20261004/012-a9c3e1f0ac81.png",
+      "bytes": 2730238,
+      "sha256": "f3ba4d4f0396e1f8bb1740ed57aa5be1b1d7697c8b1957dbf0e1c45d21afd83e"
+    },
+    {
+      "path": "assets/portraits/20261004/013-33cbd55b42dc.png",
+      "bytes": 2868598,
+      "sha256": "ebf39b7367298394ad52172b9d7992609a461cb9b6dc3bedc59a2527bd62c073"
+    },
+    {
+      "path": "assets/portraits/20261004/013-366ee59ea3ee.png",
+      "bytes": 2826257,
+      "sha256": "366ee59ea3eeaed2e886029df15aa5c50e18fc4efd942ccaeef0b5c1390d875a"
+    },
+    {
+      "path": "assets/portraits/20261004/014-1f3b42f2b141.png",
+      "bytes": 2830416,
+      "sha256": "c124167b05b8e186fba8a065d94b74883fd33c5b1b1dfb59e9cbf09ddbe49202"
+    },
+    {
+      "path": "assets/portraits/20261004/015-0f4f7a751582.png",
+      "bytes": 2914818,
+      "sha256": "03a6706ac0a61bc0a05bca83e101eb491493218282d1fcc0c5565fa55ae200ee"
+    },
+    {
+      "path": "assets/portraits/20261004/015-14690ff83ca1.png",
+      "bytes": 3031727,
+      "sha256": "14690ff83ca1f668385dcfc10664f38cbf2f9a4a7851e95ef36f31b0b36a5b67"
+    },
+    {
+      "path": "assets/portraits/20261004/016-55cfc268b0d4.png",
+      "bytes": 2887057,
+      "sha256": "55cfc268b0d467fea6ac29380bcba8db8097b12a672beb6b0eccfec8a3b5ae1a"
+    },
+    {
+      "path": "assets/portraits/20261004/016-ee60b7d0ed86.png",
+      "bytes": 2765459,
+      "sha256": "a5f08679c846b0e32747eb000de93d841ea3faa1eb358cffa3168e1d5eecbd74"
+    },
+    {
+      "path": "assets/portraits/20261004/017-b82411fa7ce8.png",
+      "bytes": 2688732,
+      "sha256": "0aa0bc4484a314237aca67bfbe188fc31adc58a3649e1384227eae8d584f8d51"
+    },
+    {
+      "path": "assets/portraits/20261004/017-d7ad581a5945.png",
+      "bytes": 2840198,
+      "sha256": "d7ad581a59452d60bbe8d72e0b38268b3997588bfa0733642b815f98d505307d"
+    },
+    {
+      "path": "assets/portraits/20261004/018-d88b0ba918a6.png",
+      "bytes": 2870267,
+      "sha256": "d88b0ba918a6b85b91e30677f4f0a5e1729c3aa247ed88550edd51177ef63868"
+    },
+    {
+      "path": "assets/portraits/20261004/018-dd5189f5cd65.png",
+      "bytes": 2625907,
+      "sha256": "1099e85a2c1de66ca62e835f736f0dd9a913b2fff951d2ad00651989cff948cc"
+    },
+    {
+      "path": "assets/portraits/20261004/019-381b06bf180c.png",
+      "bytes": 2880396,
+      "sha256": "2ba3ce17220dd4160313c4ef9d64086a7cf0a9ea225b21167857ae27ab6c86c4"
+    },
+    {
+      "path": "assets/portraits/20261004/019-f9d91e379c1f.png",
+      "bytes": 3051329,
+      "sha256": "f9d91e379c1f6cd775e959e346dc1fa93bb3d821c848e546b1af6f459c21b222"
+    },
+    {
+      "path": "assets/portraits/20261004/020-4962ed454e1d.png",
+      "bytes": 2857101,
+      "sha256": "457eb38d90f338b3d795a1e585bafeb299474ff790fdb66e4584a5a4248e732c"
+    },
+    {
+      "path": "assets/portraits/20261004/020-a1fd73e8e609.png",
+      "bytes": 3063110,
+      "sha256": "a1fd73e8e609191345960596c448756993a1d735b93e97987bb58bfacfb6d102"
+    },
+    {
+      "path": "assets/portraits/20261004/021-174fda6db2fc.png",
+      "bytes": 2733731,
+      "sha256": "876e653dc11238a1091b33bf2ae04016c33410841961136c23dcf7c1d00051b6"
+    },
+    {
+      "path": "assets/portraits/20261004/021-dc8fa0df1674.png",
+      "bytes": 2879549,
+      "sha256": "dc8fa0df16745a6e6f6e3bdd119da5538d573455d9c91009e181138cf0c7f2d5"
+    },
+    {
+      "path": "assets/portraits/20261004/022-5fb60fb701d5.png",
+      "bytes": 2760857,
+      "sha256": "0cd5fc9db73990d08d140e091bf13ad1525ec3746d08390cef6e41ce6eccf5d4"
+    },
+    {
+      "path": "assets/portraits/20261004/022-c75929925546.png",
+      "bytes": 2941581,
+      "sha256": "c759299255462443168e347b37a7d95fd7adf6496781cbcb5a0c9cb1bca94ca4"
+    },
+    {
+      "path": "assets/portraits/20261004/023-51f9c8181c5a.png",
+      "bytes": 2808440,
+      "sha256": "3ff977acff723c89f6c9b2ea96a376389fcc6d745fa77ea8129714fed3ec23df"
+    },
+    {
+      "path": "assets/portraits/20261004/023-aa7b85d004ac.png",
+      "bytes": 2957481,
+      "sha256": "aa7b85d004ac293cdedb8ac3e97c6b3eef660ba2e3924eb4c5e999c7ce6c3a86"
+    },
+    {
+      "path": "assets/portraits/20261004/024-7a4dadb6279f.png",
+      "bytes": 2936918,
+      "sha256": "ca5e608fac69a404fd9a1b85a066c2d81e97ae7a9aaee5fbb408d467ce264daf"
+    },
+    {
+      "path": "assets/portraits/20261004/025-3e44d574063f.png",
+      "bytes": 2694167,
+      "sha256": "3e44d574063f0be435ffebd05883692d6c3b5219e614b009957c9a789b269b0e"
+    },
+    {
+      "path": "assets/portraits/20261004/025-c166c1bf15cd.png",
+      "bytes": 2562195,
+      "sha256": "32c08d417e801a3691e0644ad35b2a184d9c44ec86c9db5970ad9a314f5fe5e8"
+    },
+    {
+      "path": "assets/portraits/20261004/026-b7485426113b.png",
+      "bytes": 2649868,
+      "sha256": "3d7e918fe0ebf5da1ec34e763badbf4dc7b1ed8744f95c205e709daeae6434d5"
+    },
+    {
+      "path": "assets/portraits/20261004/026-e87d9d46ebb6.png",
+      "bytes": 2750324,
+      "sha256": "e87d9d46ebb6b93a5df9a6a23a660a0204a12033eef344cccdd63c4317c1e18e"
+    },
+    {
+      "path": "assets/portraits/20261004/027-000e2cad2d8b.png",
+      "bytes": 2773351,
+      "sha256": "000e2cad2d8bf9f5655b29fd147415b91dd9f306d82048e4419b08375b3a1d97"
+    },
+    {
+      "path": "assets/portraits/20261004/027-539c524df9ce.png",
+      "bytes": 2729234,
+      "sha256": "2bbd3a1bc141f912212ccc5cc97f5d0ce917de8d274967b21f00f84b6f8c88cb"
+    },
+    {
+      "path": "assets/portraits/20261004/028-78ebfc5f9ae0.png",
+      "bytes": 2825093,
+      "sha256": "78ebfc5f9ae04df9fb634f02a18ab80dcf0259e413adb65028d8dc83b7b04147"
+    },
+    {
+      "path": "assets/portraits/20261004/028-7ce6d643565b.png",
+      "bytes": 2597051,
+      "sha256": "cbf5514e63a0bb166a65a87e9068bdf6eb8d4e31d4b9f13a31dc6b696c87ec74"
+    },
+    {
+      "path": "assets/portraits/20261004/029-1b062757edbb.png",
+      "bytes": 2577578,
+      "sha256": "efa449eba1459b6a7ef7b0a5d5fd00ab787a53b864d16e4debdf79ecfb755986"
+    },
+    {
+      "path": "assets/portraits/20261004/029-7bf01f260214.png",
+      "bytes": 2856368,
+      "sha256": "7bf01f26021483dee6bb0c8d5e42b088a04520e27533a7ab7d640cf18a7acb44"
+    },
+    {
+      "path": "assets/portraits/20261004/030-280b403f232b.png",
+      "bytes": 2351873,
+      "sha256": "5c6c70aacfe1f7ce17a37ac715f6c85de8ff8eedde5aadb7a57ef993c89469d6"
+    },
+    {
+      "path": "assets/portraits/20261004/031-0f45c074a117.png",
+      "bytes": 2279999,
+      "sha256": "685a59b8032dbab8f6e91798ff9b546996da0aede17d31977f1b08c5b44c4099"
+    },
+    {
+      "path": "assets/portraits/20261004/032-d79507999066.png",
+      "bytes": 2336304,
+      "sha256": "33c92983ec3dd17d07ba1632f02b029cfd787c70b2754026a78eb6e07cce46d7"
+    },
+    {
+      "path": "assets/portraits/20261004/033-1f7ba11ac744.png",
+      "bytes": 2496285,
+      "sha256": "c2c732a07451d170d9369de58ff5ea5768495d7fa401a67ac1dcb1f0cf6e9d2e"
+    },
+    {
+      "path": "assets/portraits/20261004/034-399b45f19eae.png",
+      "bytes": 2833054,
+      "sha256": "33c9eac445bb90f6668252d61567ac102c4bd34652430528a0141c8b8faa1e03"
+    },
+    {
+      "path": "assets/portraits/20261004/035-c46085cf77a1.png",
+      "bytes": 2771827,
+      "sha256": "a026bb32f3cc5bd108e39699ad501ffa00a7595435f3f7a0c5db7b346a5fc6c1"
+    },
+    {
+      "path": "assets/portraits/20261004/036-f7e0e81450d1.png",
+      "bytes": 2724547,
+      "sha256": "77e5e09654c0c69697f0993defca004f9d5771d318a423f2e2df3350725e5bec"
+    },
+    {
+      "path": "assets/portraits/20261004/037-4cb796bf4516.png",
+      "bytes": 2662636,
+      "sha256": "0391d55f8d1c33ab8ef4027fc6760b4b08546fb34a34326710d3e4fa9783d0b0"
+    },
+    {
+      "path": "assets/portraits/20261004/038-fa242cb04426.png",
+      "bytes": 2661584,
+      "sha256": "2d2ba84a5a3dc0cdb6bd95761678957269715258394200679634d056230450c4"
+    },
+    {
+      "path": "assets/portraits/20261004/039-d730d42bc2d6.png",
+      "bytes": 2738158,
+      "sha256": "217e8f9ec7a4de54532c83c41233434b07b4a76406256e6ab54f9c0ab0d7c559"
+    },
+    {
+      "path": "assets/portraits/20261004/040-33169bf33310.png",
+      "bytes": 2594139,
+      "sha256": "54ea68c4e6552ef27656e64bd2e60deb25e00acea295d56a384eef46ef2c70a5"
+    },
+    {
+      "path": "assets/portraits/20261004/041-b0ea3763a2e1.png",
+      "bytes": 2702470,
+      "sha256": "93b40540b88bc151ee0a6c9381ffef082f0f87f50b672b7101fa7caad27bdfb6"
+    },
+    {
+      "path": "assets/portraits/20261004/042-1525f42e5a58.png",
+      "bytes": 2432690,
+      "sha256": "8af901aea13c326e90cc4f1a464155df0a19d536bd1dba2153070ac63b447c74"
+    },
+    {
+      "path": "assets/portraits/20261004/043-4a933a2e6853.png",
+      "bytes": 2726627,
+      "sha256": "07e36e1441f61990367ee047845e242cd6ce4f342900a3579229b7a8b4cf87f2"
+    },
+    {
+      "path": "assets/portraits/20261004/044-8d3d723e5e96.png",
+      "bytes": 2654735,
+      "sha256": "9b2a40687dc2ef3dbfad3e587ca67a50c1f342b487c6068d90c1f09aa8f0e826"
+    },
+    {
+      "path": "assets/portraits/20261004/045-3a57e8d96dfb.png",
+      "bytes": 2606134,
+      "sha256": "2b8d0691a4ca2cfc97c4277296e09f3f306e6481d5395fa3dde57cf1bc96aa41"
+    },
+    {
+      "path": "assets/portraits/20261004/046-b5716f3a7c47.png",
+      "bytes": 2619689,
+      "sha256": "e6fbbebe047a11a485bb63e2beb862cdcf1464d9fa27b0d15436bf626e83cd77"
+    },
+    {
+      "path": "assets/portraits/20261004/047-f83212556ad4.png",
+      "bytes": 2683833,
+      "sha256": "1bad1d9accdcf0b01880ea030a5ba6fa69fae3205c44c4cb12db6fa8826fc11d"
+    },
+    {
+      "path": "assets/portraits/20261004/048-4e754094c0f0.png",
+      "bytes": 2793810,
+      "sha256": "b4aef739a58a4695fecb82c2af6d65f8fc9e59898ae658ec3d2847d4a7e9c29d"
+    },
+    {
+      "path": "assets/portraits/20261004/049-240422bbde90.png",
+      "bytes": 2539810,
+      "sha256": "5be84535d966fbe5ca52bd4a3872a8887313679691b20f5219120f8a27f0fd0e"
+    },
+    {
+      "path": "assets/portraits/20261004/050-ea5aaffd3428.png",
+      "bytes": 2588995,
+      "sha256": "edbbc4855990a006fdef7705ceefc55589ebdd0b21bf70eeeaec8e317347a5d2"
+    },
+    {
+      "path": "assets/portraits/20261004/051-5ad66243e268.png",
+      "bytes": 2573718,
+      "sha256": "b3528181ba4dd940309204b5a99e7222c8456e7b000c9f46c7765f2fbf472e81"
+    },
+    {
+      "path": "assets/portraits/20261004/052-d3ee14e21ec0.png",
+      "bytes": 2642027,
+      "sha256": "b0ba3b5f942a9fecc441167c28f883c54785864a37d71a8ac61cf222cfdf12bb"
+    },
+    {
+      "path": "assets/portraits/20261004/053-8600f246a01e.png",
+      "bytes": 2858612,
+      "sha256": "acf3798fc83a37f997b4bd44d2894af796e916308701e237c9ea134021327bfe"
+    },
+    {
+      "path": "assets/portraits/20261004/054-71adbf014236.png",
+      "bytes": 2874590,
+      "sha256": "d6d54fd518097ab7a4e43daf484a0fd02b0081f1c4531980a2447977203b3971"
+    },
+    {
+      "path": "assets/portraits/20261004/055-c19036f2b4b3.png",
+      "bytes": 2659669,
+      "sha256": "e64bb39774b2bc76cbd2f05d31f545aac292e3a966638f17a4d84a679b1b4810"
+    },
+    {
+      "path": "assets/portraits/20261004/056-d69776c1fcd5.png",
+      "bytes": 2753801,
+      "sha256": "0cfab5a59c7062af62533fd4747238bd1e59243545465ef0e9c8bb323a1cc6d2"
+    },
+    {
+      "path": "assets/portraits/20261004/057-9456711e8afc.png",
+      "bytes": 2576247,
+      "sha256": "4af5ab278bc3acc2418662d37c07a233f88adb08644bd214ccf15ebd0b3d187d"
+    },
+    {
+      "path": "assets/portraits/20261004/058-90eee8b92178.png",
+      "bytes": 2548752,
+      "sha256": "9121240a40bbd1ccb2133958eeee0122f06fd3f3d6710f9460ce55c26f97ac62"
+    },
+    {
+      "path": "assets/portraits/20261004/059-b9f7be2ed2ae.png",
+      "bytes": 2671161,
+      "sha256": "744967a200737495eb4120089500f5070067c59acb66193128ba547667488dca"
+    },
+    {
+      "path": "assets/portraits/20261004/060-39586e4908de.png",
+      "bytes": 2586036,
+      "sha256": "9ee946dddf281a5947470a6d705e2481871f9d6d2a53eabcf1f18637df8644ef"
+    },
+    {
+      "path": "assets/portraits/20261004/061-5ae2af5a0ee9.png",
+      "bytes": 2593050,
+      "sha256": "b66fb1722c981276cf0a295e045fa4e2c5e1fa8814b694fa959c5f96002c82db"
+    },
+    {
+      "path": "assets/portraits/20261004/062-e8a8c1031a68.png",
+      "bytes": 2736021,
+      "sha256": "c3fe4045427d36ce74139df30980d4d335d21a88a347cf47600e3c08f2f65369"
+    },
+    {
+      "path": "assets/portraits/20261004/063-b6a06fc27e1b.png",
+      "bytes": 2605343,
+      "sha256": "3b095cf41a6a5e0252a7e9cbf7844dc4e6c7b3291d2c90cad86814746fa5f520"
+    },
+    {
+      "path": "assets/portraits/20261004/064-9fc6f186e7dc.png",
+      "bytes": 2580390,
+      "sha256": "82633cd10928eb2b8d52d8dc70fda60c7e7875b339cae2388e0b57545944ca16"
+    },
+    {
+      "path": "assets/portraits/20261004/065-9b9782aadf19.png",
+      "bytes": 2707883,
+      "sha256": "85cbacd27912d0b020e8861ede035976c761db7436dcee40f0233e4e2643a02e"
+    },
+    {
+      "path": "assets/portraits/20261004/066-052a89b552de.png",
+      "bytes": 2765753,
+      "sha256": "a4ac3892f67b865d12083ef7e0e30acba14b4cfe4a43331ed69899cdf0b39904"
+    },
+    {
+      "path": "assets/portraits/20261004/067-e90537967611.png",
+      "bytes": 2651041,
+      "sha256": "07aaff2090252553fca566075d281bbcdd6057ec175ad4e06151d56e870d4bd7"
+    },
+    {
+      "path": "assets/portraits/20261004/068-dc5203317187.png",
+      "bytes": 2466685,
+      "sha256": "62835c502503563edbf03cf9b138df08d15ecbd9a891286b15c41444a6ef2715"
+    },
+    {
+      "path": "assets/portraits/20261004/069-ca1537ef8e2b.png",
+      "bytes": 2642724,
+      "sha256": "e46255c5497d58494aa963e6169d7dc96879ed99e126ac65a8cff2ecc8143658"
+    },
+    {
+      "path": "assets/portraits/20261004/070-0253a4bf3e6a.png",
+      "bytes": 2563942,
+      "sha256": "a3a80227485e56f12b21996a2072f0c7fb593ddd49743260602c3ab419158818"
+    },
+    {
+      "path": "assets/portraits/20261004/071-13b0cd9f7fc0.png",
+      "bytes": 2491294,
+      "sha256": "d5ef2aee9fe94e0838295484df4b3d5a63b8cf12fe5f6d0798e285d9775fe4df"
+    },
+    {
+      "path": "assets/portraits/20261004/072-b94d32480ad2.png",
+      "bytes": 2441874,
+      "sha256": "e7029b7e4eff1c176132bb1b9127a5fed33bec482215b0187f4799f9b1517d12"
+    },
+    {
+      "path": "assets/portraits/20261004/073-b7a9839723c3.png",
+      "bytes": 2654290,
+      "sha256": "f9fe68ef3a9a27f56ef9fc7af45a8a942879f1ca909c81cccfc50ff3dc02a5fa"
+    },
+    {
+      "path": "assets/portraits/20261004/074-fa423f682ddd.png",
+      "bytes": 2638167,
+      "sha256": "320675b8d2257549da1329d96a2648ca4cdc0125080d8763a99a605277eb4fa2"
+    },
+    {
+      "path": "assets/portraits/20261004/075-1da4a15a82fc.png",
+      "bytes": 2546218,
+      "sha256": "5e40aece60707852c96c676e509f473947bb1605036350b9faea19595eecb78e"
+    },
+    {
+      "path": "assets/portraits/20261004/076-1a2ecca8dc46.png",
+      "bytes": 2550579,
+      "sha256": "042663920e01aa11b7241f7b07fbb1eaef1143fe6ee35f33af8867e4a23bcf0a"
+    },
+    {
+      "path": "assets/portraits/20261004/077-db48805ee1f5.png",
+      "bytes": 2612478,
+      "sha256": "85bcfbd4710eee259bdf41e758bc56ca911e319e0184602f9607c17ba043dea8"
+    },
+    {
+      "path": "assets/portraits/20261004/078-6ef2c02bb94a.png",
+      "bytes": 2646947,
+      "sha256": "74433632efc26096fb8f189f741ef7b1f097af6ab2f3070b4dc7eafa41d4a8c6"
+    },
+    {
+      "path": "assets/portraits/20261004/079-cd410f2089aa.png",
+      "bytes": 2638387,
+      "sha256": "70c6ccf652e69188c5179821264c2aa656db1b70d48ddffeafa59ffc4adf8bc8"
+    },
+    {
+      "path": "assets/portraits/20261004/080-bd9d6954b2e4.png",
+      "bytes": 2761124,
+      "sha256": "8fd9445a79f8653f10b9b28216fc52128d0384c984379d7479cf97637c431e3f"
+    },
+    {
+      "path": "assets/portraits/20261004/081-5c4bb1d2c7d8.png",
+      "bytes": 2679523,
+      "sha256": "88e8a9c155d0b5fb99bcc2f3b9cf3f61a64a78b4cbcfeb2856ac574bedecc48f"
+    },
+    {
+      "path": "assets/portraits/20261004/082-b1878c4503f8.png",
+      "bytes": 2554427,
+      "sha256": "7f5fb8f6c8bb96da18e30486a8c7fe97e980dec72f2c940077216a6d8ebecb15"
+    },
+    {
+      "path": "assets/portraits/20261004/083-bd3d9ba5f23f.png",
+      "bytes": 2703008,
+      "sha256": "564743493d22b8396a6af97fdf6f0706c7f40f0c5498e56cdd5d0b78fbfaab38"
+    },
+    {
+      "path": "assets/portraits/20261004/084-25ae09d4fd32.png",
+      "bytes": 2733989,
+      "sha256": "ca90e687cfc5eedb11090b408d28b8fab69dc78951f9fce5646c5c84f334f422"
+    },
+    {
+      "path": "assets/portraits/20261004/085-e4a02482c947.png",
+      "bytes": 2453308,
+      "sha256": "2b8f15f2be0f09e3b4125bae7e884d20b3db65eec2d9d2bdc30c83e466eb78a6"
+    },
+    {
+      "path": "assets/portraits/20261004/086-e5459ede24a4.png",
+      "bytes": 2475450,
+      "sha256": "d3b172e1ed861a161f6fa4a629c192c0c8b6c73f8acce217d2f8044e2bc971fd"
+    },
+    {
+      "path": "assets/portraits/20261004/087-b77c7dce1640.png",
+      "bytes": 2458220,
+      "sha256": "31abcdbdb0504d57bcab47329c6dadc3c7c924c202dc4474bdc0e0aaa1584187"
+    },
+    {
+      "path": "assets/portraits/20261004/088-d03668fbdf3e.png",
+      "bytes": 2508833,
+      "sha256": "578bbb10c9b8e008be4b894f0602834926f328d02b6bc97a9c04dfa96c6fbcf1"
+    },
+    {
+      "path": "assets/portraits/20261004/089-b1e99d0e4612.png",
+      "bytes": 2477592,
+      "sha256": "44a12b4793540206e111d8e3e3ae2bd82e890cd4a216444d905d469cdd19eab0"
+    },
+    {
+      "path": "assets/portraits/20261004/090-c96570ff923a.png",
+      "bytes": 2578509,
+      "sha256": "90f140f0f44d40cbd6465644ddef4a5699922f78be7e16ecdc0a6aae1cf0bd89"
+    },
+    {
+      "path": "assets/portraits/20261004/091-72b78863a1a4.png",
+      "bytes": 2510795,
+      "sha256": "1d5e9c9c13dd6e4f95829962de30bd516f94c2171f38b481896faf4d7ae9dae3"
+    },
+    {
+      "path": "assets/portraits/20261004/092-3686b7d9da7d.png",
+      "bytes": 2673128,
+      "sha256": "e91015bc5c0ddd0eb05e977fd100df93efe7c0560271155f4e52460600cfb944"
+    },
+    {
+      "path": "assets/portraits/20261004/093-3c07da22e4c4.png",
+      "bytes": 2657142,
+      "sha256": "db8adf37d97520de757d86e10e47794c07051bb6fb42e08d34ff6a70f1418048"
+    },
+    {
+      "path": "assets/portraits/20261004/094-ad516e2106db.png",
+      "bytes": 2753911,
+      "sha256": "0c7c79dd594639da9779a9fcfa0fc63f4d3990ddadd5414c37d4824529af36f4"
+    },
+    {
+      "path": "assets/portraits/20261004/095-fed08a981284.png",
+      "bytes": 2594260,
+      "sha256": "042b85392c39fd7ccd228e7f65b0506ef2f81ad06ad76450dd3af448e599c249"
+    },
+    {
+      "path": "assets/portraits/20261004/096-270a8f21d621.png",
+      "bytes": 2561512,
+      "sha256": "59e1b30e8263935400660c9ea3a741ffba822e626593aee714efe32303b7b101"
+    },
+    {
+      "path": "assets/portraits/20261004/096-565e5f2c6b26.png",
+      "bytes": 2357351,
+      "sha256": "565e5f2c6b268f507c3e7944a9086fd919ed98ff0596d5bd5da8f8bf5f17414e"
+    },
+    {
+      "path": "assets/portraits/20261004/097-71b640cf4de5.png",
+      "bytes": 2524436,
+      "sha256": "5561d2e4b42a90cf8b6de24d955b5f5ffcca8a718d8b1a77787b535952fb1e44"
+    },
+    {
+      "path": "assets/portraits/20261004/098-faca6c60a817.png",
+      "bytes": 2625065,
+      "sha256": "a8cc96a56c22e4458a2bbafcbc3ede158affcde7b31cf18ea0df88b67c6fce12"
+    },
+    {
+      "path": "assets/portraits/20261004/099-18e8897f257e.png",
+      "bytes": 2458914,
+      "sha256": "f294152ffdc1cee02f4e52d4ba78679954a0aa053ff34c86bf858c5b18ca7900"
+    },
+    {
+      "path": "assets/portraits/20261004/100-e486c7726cf3.png",
+      "bytes": 2575223,
+      "sha256": "9b771cda0761c31b7eba2bd7f89728b4f70c9469b757037928fae9afb83d10c4"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0052ce665990d2acb47a-redraw.png",
+      "bytes": 2553590,
+      "sha256": "6773085896ffd7bfa9af45506873ac0f230b308f943af177101bf657b7ff62ec"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-008242744fad9253fdfb-redraw.png",
+      "bytes": 2483568,
+      "sha256": "61bad608272eb8beba5eb4412b588b6327dcfeb6627573b8b1c2af29fac3cf08"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-00fde7cd2086e996375b-redraw.png",
+      "bytes": 2720088,
+      "sha256": "ebbc6938a24db074616474488fccc313f62a272973ae5cd4cecad2a50e68dd30"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0286a3b0675d19a9222e-redraw.png",
+      "bytes": 2538129,
+      "sha256": "3d0f3cdbc9a01e84c3b90e72017394f8275d949f88407146a2fedae2d4224d81"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-029ff35585d7ef216bc9-redraw.png",
+      "bytes": 2384736,
+      "sha256": "e2e7c6766dd744f9294b886292e9f7fcb1939132dd7128176387d508e86faed8"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-02cf025776b8cfbfe432-redraw.png",
+      "bytes": 2545879,
+      "sha256": "0e1c2a1a57dd13a2dffd5615cab013c43d197de72ff5aff5f2e8dfb72f9eb486"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0445b075c891f99b2a5b-redraw.png",
+      "bytes": 2528134,
+      "sha256": "12b4ac381bb282b63a9ba4c83959652a687524bf4aeadd44a4343954a267acb9"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-05e2cf3d2f4356d6b47a-redraw.png",
+      "bytes": 2403761,
+      "sha256": "4196fa37a9792d65891f9f8c91ef2ecc4e336fa39f9b3694f552960f5545e86d"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-074897a0d4627238d99c-redraw.png",
+      "bytes": 2661196,
+      "sha256": "47b45f34e8e47dd3cf17f5b4526fd652a36ee91ac1a1a4ddb485562a7f348c5b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-076b318f5b67fac393c8-redraw.png",
+      "bytes": 2397915,
+      "sha256": "b05f57dfa66a386d7930d39de0a2dd3ee2ec9f3a22f118e7e793dfc20b6e5575"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-07986b6e9bd30dba0c37-redraw.png",
+      "bytes": 2539913,
+      "sha256": "34586353c3f2a07f9a04a1679168545dd4437c3bdb38e5ddf4779a0c8b8fdad3"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-07d7d551b64b33f8d66e-redraw.png",
+      "bytes": 2776923,
+      "sha256": "feb4f6df2f3bb135dd6df22253a60470987bf89590ad7f79c47088efe76faefe"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-09e49f98b9e35c42773c-redraw.png",
+      "bytes": 2574755,
+      "sha256": "235ad2216667df6d4209961e182e0541dafa2a9324361f0eee6a0a53b3f44ef5"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0a7ff1ca88a2b12c92a4-redraw.png",
+      "bytes": 2543238,
+      "sha256": "1e8686748b2940ad7a2295ed7244242bfd54ef346f60596cad7bed4ed3352b47"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0b6752a1b02a1b62b3a7-redraw.png",
+      "bytes": 2519196,
+      "sha256": "2a4da66ff270061f1c290622843a87918af59bc7fc93abb5b4fdad363c00ef80"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0c7623bcf89c4d0e5172-redraw.png",
+      "bytes": 2704483,
+      "sha256": "e3f70637e00ea7fb17262c86b4d2fd7653209bf80f0a7dc2fae7bed3f56847fd"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0d744b63815e5f8d5082-redraw.png",
+      "bytes": 2734642,
+      "sha256": "3c1aac27307b11ca0b0c681fe93c82477996fe6a3dc27c7901b9c11f7ca53ddd"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-0f535947a0c5f16afb39-redraw.png",
+      "bytes": 2699665,
+      "sha256": "63fd60fafa41821a67bd96ca600818f524918bd6f241d02be2628f23648dbe8e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-12d23c4bb0e34a35af89-redraw.png",
+      "bytes": 2611730,
+      "sha256": "be45ebcf9bf1d53430c1e7901b95c58967e71569db24ff02e2b5e6436f16a095"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-154c2369b5a6fc6d53e1-redraw.png",
+      "bytes": 2672264,
+      "sha256": "2569bfa4ab25f4b74ecf1195de7fd61fefd8e7e48d7b8225413a8d96135d4325"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-157b8f70d9c76098ec13-redraw.png",
+      "bytes": 2592281,
+      "sha256": "60de59e70c76a0be9ad084985f70acea803b0bc6e5903cd4c10d5916e07d7bbb"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-16466f040cb14fef0184-redraw.png",
+      "bytes": 2511436,
+      "sha256": "58a0ca5520f7efae9c2248754a84456b2218cc2a613ede0784650c939f41342c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-180ef6d596fc6873e0ce-redraw.png",
+      "bytes": 2456146,
+      "sha256": "866b92be674d4cec8d7a035a061a8553f23df17e2c5a3ae1fe708e472f604c38"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-1b79188d53ec1517bd63-redraw.png",
+      "bytes": 2452770,
+      "sha256": "c0f9b14b05bcbf0262ca54b00a6f452335f6c964bae3a3ffc819f3b1c43b63e7"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-1cd8e8199688df5bf428-redraw.png",
+      "bytes": 2554792,
+      "sha256": "a3ff2ed291ba245a4b0f2baab6bdf62594fcff247b03676f5038d066df9ca5cd"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-1e52725acf4d5abff94b-redraw.png",
+      "bytes": 2701739,
+      "sha256": "71f2d4c4087d1d5918805ad0f069ff8efee7c1a2e4304e3314ce4c1216b6244e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-1ebb4f5877f4ec62079d-redraw.png",
+      "bytes": 2667330,
+      "sha256": "e08935ebaac4a38b9526c3f367fa9dc0a97fd22343498bebec9502227cf766e7"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-1f02af1b00d2822c01e8-redraw.png",
+      "bytes": 2639469,
+      "sha256": "73367c6d9171e1a0b07ff5da8b39290183bf96524494a0d4f2ccc0129f56a856"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-24986a1dab75f9fd5de8-redraw.png",
+      "bytes": 2547829,
+      "sha256": "744b59d595f97c186539d31bb6e883baa305744763c9d77e6b601262565e125e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-24bd0f21d01c0adac5d9-redraw.png",
+      "bytes": 2500576,
+      "sha256": "055cf9c34ad2a20e249c4718dc2f4986788478381321df135b7804b74ccbb7e5"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-26877c9afcb61494330c-redraw.png",
+      "bytes": 2673171,
+      "sha256": "c10ceb6a63afd110b87296c2246e972c3bdb8cd87ed631579786ec735474de36"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-29af5bab21a464996fa0-redraw.png",
+      "bytes": 2506109,
+      "sha256": "187089ff29943d0b228d9fc4c01b13b31f01f44f32e90f871f186edc988aa960"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-29cd19a33fa95dcc28d0-redraw.png",
+      "bytes": 2501195,
+      "sha256": "1d8d1cde5cdcf7a08b10d16c42a0e97a00b372ee2837ac09d00dfa9e01a586eb"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-2a0f228747b97bf4bbe8-redraw.png",
+      "bytes": 2527360,
+      "sha256": "47ec65fee263d767fda2b887d5263a07e4b6437ffd8694e44390cf978cbd1920"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-2d412fe0f52ff84b73fb-redraw.png",
+      "bytes": 2465959,
+      "sha256": "cdaee2209994235ca15f428a3246ab5a96a1ba5360c63217609341bf5b622a49"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-2d58a6298f82315fc078-redraw.png",
+      "bytes": 2528778,
+      "sha256": "e0cf9d96da566226994d75b1d1d1a975370256def24c45663a2adbfbcd9b2c2a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-2f51741b5184e5c68b90-redraw.png",
+      "bytes": 2453985,
+      "sha256": "1379dec5629c1f2aead9ab4aecd963613c9508f07471ecd79ef0fa522283c6b1"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-316b8bdda534edd580c0-redraw.png",
+      "bytes": 2598330,
+      "sha256": "eea28f8efe3f035a32f5be1214e12e1251d5b3746b5b02970d7082f22dca5b17"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-33c0a0fab505ac719578-redraw.png",
+      "bytes": 2654956,
+      "sha256": "4c93bb2cdce4b078558d288ea3513c6260c9097ad30b2298d4724a15c0ff1bfd"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-346035e7d08ab26f111e-redraw.png",
+      "bytes": 2503500,
+      "sha256": "c54e8299d4439c1d82d6901c521df56876af836d169cd3eca86512fd4fcc61a4"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-3503a1c7adf65836efd6-redraw.png",
+      "bytes": 2613889,
+      "sha256": "79f18e4ad531c1f2812727f1a9cc3a2ed4f2a6a31b08cc0d3a96f37d854cb5db"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-3571118f503c42d920d3-redraw.png",
+      "bytes": 2605354,
+      "sha256": "f57fd2b1e4fd4d77d7996761d885627bff5569ac549b8e4623ca89f4b02076f6"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-36e2a2e03c6bb137b3ed-redraw.png",
+      "bytes": 2733610,
+      "sha256": "ff66776efa834185a769edcee3581bedfa5dbe5f84632f917f3ed6926537234b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-403d161fe69236256a9f-redraw.png",
+      "bytes": 2568197,
+      "sha256": "84a30b642c92c5f108b3b60392643a16e54ca4dc7f88e745ae3c8ebb3717287f"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-42ef631b40fb64a4c042-redraw.png",
+      "bytes": 2718084,
+      "sha256": "f6ecb41e64abce6f089e7a669d7c9c986941ff0e999b63167bb0269821b78d18"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-44f3fd03e6d293e118a7-redraw.png",
+      "bytes": 2798131,
+      "sha256": "7d0bae328a5721284ce14acdc807556c0078524bea216142248c3d1fe7f54c7d"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-457b78ae1133d63df5e2-redraw.png",
+      "bytes": 2702960,
+      "sha256": "9f8fba9f4cf408690151198a6d6006b330ec25065429666f7a08946d51e13455"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-48cbe8850e8416f25f00-redraw.png",
+      "bytes": 2558620,
+      "sha256": "faf7ec9bad9d0d1aa9552f2cc96abdb15d46c84be773c77dde6f3c7dfea3e917"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-496c881354898aa3b874-redraw.png",
+      "bytes": 2590078,
+      "sha256": "4787ef92c9f4a2e110299e521dfc6c40f82b257a24062e5f3540d96e76254baa"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-4a8d7ec65c7bdbaa672d-redraw.png",
+      "bytes": 2843139,
+      "sha256": "2ffb0aca9f8bb2b8a9de3ee6d9f64085aee3fb13000d88af582f84384cb72dfa"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-4c884e41880ba524cce7-redraw.png",
+      "bytes": 2704276,
+      "sha256": "02551a374ce56406928b03c29cfb0108ff09dea999d2224167ba97074fb6679c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-502454ae6d367468aeaa-redraw.png",
+      "bytes": 2599991,
+      "sha256": "d076ff1241ef85c8750b364bf343e5d70345d73e67e8b747bbe2deb5727d341a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-50e9591a5fe4e4d65af4-redraw.png",
+      "bytes": 2735639,
+      "sha256": "17b5cabe69f4fedbce4114dccd55d3e989b2849d2180210d78b6d6fc95571cde"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-52183266939a0b13e218-redraw.png",
+      "bytes": 2561973,
+      "sha256": "3d7a11898ef0fdd8447a2a4a8ac9289245ff04aa874ba69cccd9ec0ad53c2f9e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-53e90100874056f65c73-redraw.png",
+      "bytes": 2592416,
+      "sha256": "2904492335a706a667d287cab2e9b32e9f8ba431078e81bbd37ef6546986101f"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-569f194ddb53d31624b3-redraw.png",
+      "bytes": 2743290,
+      "sha256": "5fa765f0a8193e3498606cc27f0a1e3989cba4d7d345e4574c5630b6caa26b06"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-570a6e18664c7c1ab068-redraw.png",
+      "bytes": 2539978,
+      "sha256": "e7498c225a25ad4ce5f1c483eb170cad84d56df5b6f07a011b3648967ac12e12"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-5aca5754adbc64146e42-redraw.png",
+      "bytes": 2571732,
+      "sha256": "7fde119150e33cdf89cba5b51ececdcf8751129dcede570ff9a43c19f1aba39f"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-5b0cbebc459a0b3ed80e-redraw.png",
+      "bytes": 2728070,
+      "sha256": "91a4fcbfe40687b109c18d979072466d2b63bda64d51cafcc0d05e27391033a7"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-5d0c9bea5f08689da2ad-redraw.png",
+      "bytes": 2603859,
+      "sha256": "c63ecffdfaef02dc2608a04f5443fa37ddda9ed8f41a40b2fc5be7837d820130"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-60bc148d9c4c1439d431-redraw.png",
+      "bytes": 2504001,
+      "sha256": "3eb05e4e909a6170867b97941d797cbb6f284040ad1b0cf5ddec6c1edc82e392"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-63a6fe8d07d7c35ebf32-redraw.png",
+      "bytes": 2596013,
+      "sha256": "f025a8d9b11a0d88bc76f85e907af4dde607b7339feb067ba68f865de155f68d"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-6599c517aab621e23678-redraw.png",
+      "bytes": 2549407,
+      "sha256": "cafc0a40d9de25946a349baf8ee4860b957d7c10577a6d95171d8fb8e37e8947"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-663ea18b42ad108dfff5-redraw.png",
+      "bytes": 2601676,
+      "sha256": "45e3c2b926d6fbb7ebdf2a650487d969d3b413e532305600e1814d4aaccfd6da"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-6a6b467ea0420a23eced-redraw.png",
+      "bytes": 2574699,
+      "sha256": "a86dc08647785765ebec3cfde376e9cec09fcb152f3b2f8af5703d1b9a477723"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-6e35ca62fbccfbb7b4de-redraw.png",
+      "bytes": 2610788,
+      "sha256": "aa8abafcf1c40155c203ac263439b0aad9304933f6b0a748f1870218673e93ad"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-712f4828384810e966c8-redraw.png",
+      "bytes": 2594895,
+      "sha256": "d384318507153dde3e02ad763c749fa74887de128c6054887830a0f0b55277ed"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-72b7be8550e2a383c6bf-redraw.png",
+      "bytes": 2753869,
+      "sha256": "4ef9ca132e6436497ce1aa45fe64e5b3808cc90aecaa0d8daa2ab28dfa77437c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-72c5a5df25b38c54c0eb-redraw.png",
+      "bytes": 2525796,
+      "sha256": "04d21c4de123b2bc1f914df9c43ae972f1f04481c6b63b7386cc08f4a080f2c2"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-72d305f5779f5c07282b-redraw.png",
+      "bytes": 2650442,
+      "sha256": "e6de8c77bac72fa7cbb1847afedfb494de269c8f4adb25311f8354b6dc46c8b2"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-73fbe9c36fa0ff4bf6ec-redraw.png",
+      "bytes": 2740661,
+      "sha256": "ff3e9840e96511c5c39277df4ceb03ee297909c15c658391bdb23fea758c240b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-74dd95ec9c987fbfdde0-redraw.png",
+      "bytes": 2494436,
+      "sha256": "30866a2588e1d3e5ffe4d63cad5372046961d6fb3252cfc81f5180b61d5e6ec6"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-774eea78a498a031245f-redraw.png",
+      "bytes": 2493682,
+      "sha256": "d2432c73d69ab4f3719c2775220d8e19883ec8219768c0113869cbdda7520b25"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-77b09e9e6ae35b51f546-redraw.png",
+      "bytes": 2666345,
+      "sha256": "ca6133237e5e0b50c9e230dce096770c8b890ac4e4ce5622f7bbda7d755abca9"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7a785ebf895149f6f1e0-redraw.png",
+      "bytes": 2545675,
+      "sha256": "49f2a58f80f04e0092773161b8e32a89ab9a712d835f0a1b01715b2ecc71668e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7afd636a0f36e619e1ea-redraw.png",
+      "bytes": 2702997,
+      "sha256": "1a653f8da3794490914fe24fe696fb80671700e24ded5dacbb398c8ff0498884"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7d043ce349c0b33b87c1-redraw.png",
+      "bytes": 2729961,
+      "sha256": "a540c7be8af781bb9772d4d86d0bfe6ef9bb75c2310d01c1e156bc80ec50e4a7"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7d6b9f5fd01b61d79090-redraw.png",
+      "bytes": 2602910,
+      "sha256": "64809fa1dc7a6722d6d74eb69a75e26629bd6b6c1e6e34049b9e47ddabc06d3b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7daceaa85d9775814ad2-redraw.png",
+      "bytes": 2626042,
+      "sha256": "d899e3b551832df47fd17817e26d39eff65dc70cc54f267a24fad90e3f4add15"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7e35546afa85bc276c80-redraw.png",
+      "bytes": 2553786,
+      "sha256": "346cbcff6b4341d059986a2618e6b4a951c95f8d73a33a0ad17cce7c11ab2c6e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7e69ec59671b8d3bbbd3-redraw.png",
+      "bytes": 2676321,
+      "sha256": "2d1aaa49b465725a8fcca666967f6bf238333b76275a527d1c74da26da3f2895"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7f1fb09a9142bb43e72e-redraw.png",
+      "bytes": 2554589,
+      "sha256": "21d0be7942f18865b90057de401fc217582e96ee961c9e1fe1ba420032086f87"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7f1ffc3b0f7512c159cf-redraw.png",
+      "bytes": 2613760,
+      "sha256": "9b991871431db2e6189891b566660de3fa36b187290726fc515dd018cf17dc48"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-7fb1c6768c5fb20cfff1-redraw.png",
+      "bytes": 2731202,
+      "sha256": "6f3a9e5290cb116995181a06d72b05af47bd9085bec4683fd954b67f8fad28c7"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-803dce489c98f4df95a1-redraw.png",
+      "bytes": 2551123,
+      "sha256": "ef826e567c5448773aa8f2f3faf050a193815d6cdd84d812cfd3e7c1c52699d2"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8305b7ca4f8017cf2643-redraw.png",
+      "bytes": 2512607,
+      "sha256": "d38184d8817dcf25b26e21ff99bde012913506a08977b7b7f08515f954f61f6b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8a6f13a96e3146201f05-redraw.png",
+      "bytes": 2609297,
+      "sha256": "c342758fb6428c7b14b6f661f5515cec5029c4f77f424909d144ab7dd049092b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8aa07e9bb838c9205054-redraw.png",
+      "bytes": 2477538,
+      "sha256": "fe84a2870742046749f1f8d8e2464abc2db009fdca8cc4b8315864bfecd27040"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8bb6ff5c2bc92f2365c7-redraw.png",
+      "bytes": 2645796,
+      "sha256": "54389398545fa565e26c11bb6f19b9ec167359b6119a0feb25f11abd595e949d"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8c93b8476fcfd493a009-redraw.png",
+      "bytes": 2481532,
+      "sha256": "fef3c18514b076685126462db45070b6fd09226c1e38d1f91f7e8437d2e02db4"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8d1d0aabc4d2055b7554-redraw.png",
+      "bytes": 2635121,
+      "sha256": "4d299eac9c7a5f38f820028826f9e76defa648f1e232dd49c1a8825ffa4fbed4"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-8d6da92cbcf5e069524a-redraw.png",
+      "bytes": 2591751,
+      "sha256": "0911fde12d2e8cad6770b0b29a354a5f7c7cd8ae4e465b72dcd048e81241d324"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-90d2ef37445c0a469dba-redraw.png",
+      "bytes": 2433234,
+      "sha256": "32ddd68a4d6659a14fae1e04b2b7626c8ce59b95fd37a375976b2c4a6e8f90dc"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-91eb288b8929974c5576-redraw.png",
+      "bytes": 2630331,
+      "sha256": "9a698ec03974aceac94178736eb3262d839807764f578d2b7761b9435910b16e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-94cd4ddd480257a3e94f-redraw.png",
+      "bytes": 2756004,
+      "sha256": "938a8979174ff345afc3792ab0891b498fb49a1a33f9139295ec4af52c28b690"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-9626f32347d22414fd8a-redraw.png",
+      "bytes": 2604183,
+      "sha256": "485b71c415e65502621e8a6a756d689d6373180d336ba41274054268ee1a738a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-96da7f86d617b33b0424-redraw.png",
+      "bytes": 2387164,
+      "sha256": "360f93e381163f63bd91644e7812d3c5c19bf5b75976647bc6663ee08c9323d2"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-9ab681f0a19b19120c2e-redraw.png",
+      "bytes": 2724100,
+      "sha256": "c674c603643c6e36245ab6a3cfdcf0f5ca91f50f4cb8c31d3a4162194a9bb368"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-9c249912be1cc03722eb-redraw.png",
+      "bytes": 2583913,
+      "sha256": "af3362660f283955944048f8ebe0dee684db488b9039a9fd8a50ea841d7b86e4"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-9dc98ee30e4c27e42f97-redraw.png",
+      "bytes": 2561404,
+      "sha256": "4ebde7f57f3bd7cb13e6a6e1b8d2888633a0aca248fd58873327de2ff17f3eb8"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-9e2cc04fbaa598e15679-redraw.png",
+      "bytes": 2534387,
+      "sha256": "943686833f471ca39da83bce2df72b0d27b51a0a2f6bcd097f357e784377f061"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-9e4f2cbc311a9121e6c8-redraw.png",
+      "bytes": 2293554,
+      "sha256": "3c03a60f48f1df574d4593f668318987972c9a5a2a46fe97ed56a27a7d12cd79"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-a4ae22f8d3c68d018991-redraw.png",
+      "bytes": 2703357,
+      "sha256": "c4b4487122fd441ab93c13b2f90ec239d166c0be58d955e5f8086c07e22bdc1c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-a4b5d28705310be88373-redraw.png",
+      "bytes": 2586103,
+      "sha256": "4241e18b88fcf41ec7a5213178bd977612fa14ff58ad63d32588aaa48dd63a57"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-a9434f175a03b05f38fd-redraw.png",
+      "bytes": 2702628,
+      "sha256": "1b317f3b7e5dfa62113428b6af88bdb46695b253ce568cf32cf9484a01eec9e5"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-aa99abba63b147896610-redraw.png",
+      "bytes": 2651765,
+      "sha256": "c7e96294382066d34a6e13e9dcff105a69df6f21bdfdb710aeb24677667822f3"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b2a211553241a8d3bbb2-redraw.png",
+      "bytes": 2478662,
+      "sha256": "8237add47088fdbc3a9a130e8ac65d6ac92850fee97eda646d2ce1fdfcd86457"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b4ef2b677bdb597c311f-redraw.png",
+      "bytes": 2546712,
+      "sha256": "67c54ee154ee59a892ea59742937767a2bce59777dbfe06f8914e85a412eea04"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png",
+      "bytes": 2654771,
+      "sha256": "cd36713e3e30ef28181d3e8215810f8f6b0092e71ded1e1be53f0fc8201af796"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b5de634c2bcdad2173b0-redraw.png",
+      "bytes": 2620048,
+      "sha256": "9257e2ad1256aaaca3b546919f5dca80ac5ecd4b7d28fdd3e64ce6d53d38fdba"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b6358b65b764a773276b-redraw.png",
+      "bytes": 2529416,
+      "sha256": "9744abe295934cab833dc30bf855cec98c604d1de70195ee8e50ac8e17d80a0c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b6adac4a2c1d32628af3-redraw.png",
+      "bytes": 2552528,
+      "sha256": "6ebd9c7bffc42758fa8ba7cb9fbf2a657d2e7e932dd6881286877b047cbcbd5a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b6b11233a0385d65b47a-redraw.png",
+      "bytes": 2611665,
+      "sha256": "901fb962e05e812731b53341a020150caec47199dbe0b4100c90b8cb88cfdf6a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-b9e8fac180c1739d8f86-redraw.png",
+      "bytes": 2693779,
+      "sha256": "bb85f7a1a1563d8ab2aa2a975f22ef3b5ee10a79fbe4aa8d1221a6865295d1b6"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-bd22518ff815b99bc433-redraw.png",
+      "bytes": 2777558,
+      "sha256": "87ed89c8a790240c08aa3956eb90bab454a8d6ecb4bb31d4286c3dffdbf7b76f"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-c06cc0973cb33ed2f15d-redraw.png",
+      "bytes": 2724661,
+      "sha256": "7af46efb6d4a98e161cc921f02a5429d40c674c572ee56f68d1cd85d0d75096f"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-c2874709ca3dff73b714-redraw.png",
+      "bytes": 2617062,
+      "sha256": "c2d57b1d726a231aa13dbc7c885738baf4d19cc94a39d232facdf7fd633afaa5"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-c287a48cd80e314b6852-redraw.png",
+      "bytes": 2634816,
+      "sha256": "45f410599842604d638d6eac556a9081ac50070d62cf5690079cf43c798dda92"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-c2c9a2992410b0bab743-redraw.png",
+      "bytes": 2639562,
+      "sha256": "124b77dfc3dcfad7ed3bbb3d97e109b122d70bc0679b44b47947878acc30a8cd"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-c2e1d293be0f219581ff-redraw.png",
+      "bytes": 2588543,
+      "sha256": "a5351516d1eac5b6f524a88fb2937959fc833a4044329d4618ebbccf3aa49dfe"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-d15f1759fc117ef47fee-redraw.png",
+      "bytes": 2565200,
+      "sha256": "a47ed4016c996aa1affb9e4bb1adf4900958b48bf4f2d3cad6cd5f38a4b6af51"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-d29566b59bedbdb204e7-redraw.png",
+      "bytes": 2481697,
+      "sha256": "aca2355f4d9d0b2919d5725ecdf381712ff7734027c01de530266e7f418b6745"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-d86bc13a318bd6c7d47f-redraw.png",
+      "bytes": 2584169,
+      "sha256": "22cc538be9b53a563c396dbda36bc159433ff64a18dd2f0e99720444765c389d"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-db0a1c99a5fa6f658082-redraw.png",
+      "bytes": 2601535,
+      "sha256": "6d42dac9986cc00b2f0e884c03506380cd77978a0adcab5d9d57059466eaa63c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-db877b6db515e0b95cef-redraw.png",
+      "bytes": 2749703,
+      "sha256": "fc2c0cb4bc963c6fc9b0312ac959f94d2ee8c1b77faead21fe76a7968879d9c9"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-dbbf27ee004f637bfbbd-redraw.png",
+      "bytes": 2728875,
+      "sha256": "c30c5a2936fda57ecd5cd4cd656e03ccdd96baa4955ae3088131eee7d89d2323"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-dbdc8967d172373add90-redraw.png",
+      "bytes": 2575639,
+      "sha256": "a5a2499c1277760d23e2aea935f7dc9d9c4c4de97563dff3bb28ea4717731248"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-dbfa7443b5224eb80aaf-redraw.png",
+      "bytes": 2684233,
+      "sha256": "45df448a4ded9c935a65b558222b96c85bcabbd503d250fe194b8524005912da"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-dc2096ec2558bca1feaf-redraw.png",
+      "bytes": 2467451,
+      "sha256": "2384aecb06555e01e136e019c23a494ffe51896fd4c5c164fd20ae0a8329756c"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-dc4e9faf139f2e161845-redraw.png",
+      "bytes": 2682685,
+      "sha256": "e4b3b1bfe981e036a4649e25cd4d8d76b981cb7e451621d3e72a2acf5924967a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-de688a2964451c72e17b-redraw.png",
+      "bytes": 2414440,
+      "sha256": "c81e6ac8f3d54d06bd0faf71a1d0ae6abc67299d9b43b6390e475a1d5b38ea37"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-dfbd4e1b066dc38bba07-redraw.png",
+      "bytes": 2748540,
+      "sha256": "3ecc032354d125beb2e1b03d7486dc1920a23d6c232d6c3f8be0cc128633f549"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e10fe47225241bc02b16-redraw.png",
+      "bytes": 2693370,
+      "sha256": "4f4a897045216906db7900b6ceb8f3f66a56a6305be40c556bffe5f93e61c1c6"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e257541289123b1f8b12-redraw.png",
+      "bytes": 2304330,
+      "sha256": "be8e1c1a07741a17632fd7534b08ffee725ce7a572df83817b8f2737855a0635"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e2bb806248e3e21e3b46-redraw.png",
+      "bytes": 2440066,
+      "sha256": "27eeffe32118b01185d7b75d3484f84505d5f47ddc419a7d11e91b38a2fb5f02"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e33b5cb8058c99382f84-redraw.png",
+      "bytes": 2471977,
+      "sha256": "322eec68c117c0b360d4debce9a059f176990ce8544106b3a6b7758255c8bc62"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e389c7a44fbffbec0a02-redraw.png",
+      "bytes": 2503374,
+      "sha256": "45da5efcbe9c5285946d6ff0346e6789f4767e74b9e0c7d0fe83c65e2f0c6c37"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e4c0d37d1fe25129e672-redraw.png",
+      "bytes": 2502372,
+      "sha256": "70e15e476a5e6166d084337cfac2912481cffce108da332a5a3054e656c1a9cf"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e5e0e72fc32b5929579a-redraw.png",
+      "bytes": 2694261,
+      "sha256": "6e361d1b26fd77195a49eb33e5de2ab4ce99987c2fe96585a092f39f81bbd2a4"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e772f731bd2578f3648a-redraw.png",
+      "bytes": 2575703,
+      "sha256": "891f0f3d555957b94cc9db3de46c77c1e14180939a692db76a87dee62eb94000"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e78b47708f1ef0fee0af-redraw.png",
+      "bytes": 2682816,
+      "sha256": "5d834873992c8878eabe70d1db0242ff0a35a3faf2161674ebedd2e290639447"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-e89b88c9b5f75db27e42-redraw.png",
+      "bytes": 2492557,
+      "sha256": "469e0cdeb1c1d5e455b571860e4eee04b30db26f312f6e6fa3650f46e6ef329b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-ea84ab90308885835022-redraw.png",
+      "bytes": 2541311,
+      "sha256": "a0c9749865fe4774a17710265d6023c64f2cf9d2fcc769343900e3ac87a2637e"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-eb3a8424ced78bc8c52d-redraw.png",
+      "bytes": 2652280,
+      "sha256": "b5472d30225bc9e79345503b2336d001bc6bb13436f48cb74758f4baca00a46b"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-ec9b416c75c3d12c1670-redraw.png",
+      "bytes": 2415804,
+      "sha256": "cf2ef0e1df74e25277b0b9c1ece6971dcdca7be774904087b3ef7ada0ba10357"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-ed32e81cd45d35581f7e-redraw.png",
+      "bytes": 2624534,
+      "sha256": "e998570236335cd2142fa4fea5f07583663c3bbfebb3ec0a1d297b1d21ba1e17"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-eff08e8447facfba84ba-redraw.png",
+      "bytes": 2538301,
+      "sha256": "75e9754f3db432f71362bd3fa4c35fa93af2c0e053701b29a85a53cc9bbb384a"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-f597744de01ee7692269-redraw.png",
+      "bytes": 2577606,
+      "sha256": "e617108258d2c02ab165ff127256b91c540a843f46ba953779b7451498b9af59"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-fc1ff7570bd97c9e5065-redraw.png",
+      "bytes": 2583107,
+      "sha256": "e4f80b331bffe269e3fc51864322dbfb7d981c06163bd30da58ccfa1149af9f9"
+    },
+    {
+      "path": "assets/portraits/20261004/frontal/portrait-asset-fc2102bea4cf1c10ee9c-redraw.png",
+      "bytes": 2474187,
+      "sha256": "84eae5249a44df365370f7b620a6aa8b08217d39b37dd8db948e66b5a39de83e"
+    },
+    {
+      "path": "assets/portraits/generated/hua-xin.png",
+      "bytes": 16226,
+      "sha256": "dadfe9cf598eb40a236b2c235a1a8e19d3ffdfc5563f959531af99c3552b92bc"
+    },
+    {
+      "path": "assets/portraits/generated/jia-xu.png",
+      "bytes": 16244,
+      "sha256": "669574a735e946c9144355ccbedb3dfdedba5f3477d050c807477efcb713fe43"
+    },
+    {
+      "path": "assets/portraits/generated/kuai-yue.png",
+      "bytes": 16056,
+      "sha256": "5b5c354c67520ae177c301c113a0bd0b44c487a7fda30ce06420d515737044c9"
+    },
+    {
+      "path": "assets/portraits/generated/wei-ji.png",
+      "bytes": 16881,
+      "sha256": "5578fa34ae6284c82cf253a10c7b7a1a1fd5102504f114909d23a3783e1b6f7c"
+    },
+    {
+      "path": "assets/portraits/generated/wei-zhen.png",
+      "bytes": 16047,
+      "sha256": "2984a893c0f771d32d2983ad3f6ea012117ae411b63ece3d9b2f3c41e9daa78d"
+    },
+    {
+      "path": "assets/portraits/generated/xi-lu.png",
+      "bytes": 16235,
+      "sha256": "7081722f3f2e94ee936f2cbdcfad95f618974a05412f73ad39b4d4ae4faa09a7"
+    },
+    {
+      "path": "assets/portraits/generated/xin-pi.png",
+      "bytes": 15639,
+      "sha256": "545494262b05a992ca3012a8cf0237875fbed2dd037cc8b71ed8743aac3b7ba4"
+    },
+    {
+      "path": "assets/portraits/generated/zhong-you.png",
+      "bytes": 16871,
+      "sha256": "30cf4e78f489e1724ca85029445a3324ced9981e256f25651d45e2934072c168"
+    },
+    {
+      "path": "assets/portraits/jin/chen-tai.png",
+      "bytes": 39709,
+      "sha256": "d839cf1df9786e5b2caff94a578128a560e011509ef11f6b54552aa08e5e940e"
+    },
+    {
+      "path": "assets/portraits/jin/he-zeng.png",
+      "bytes": 41951,
+      "sha256": "1c9163d6e2bdc5be9633461569475533f4b5c3de88055f9a27af978f6727a7fb"
+    },
+    {
+      "path": "assets/portraits/jin/jia-chong.png",
+      "bytes": 42132,
+      "sha256": "92c7e0e7dfab4a938498bfd9364c0d518e4401fc370eedd988622fbaf1cbe7a6"
+    },
+    {
+      "path": "assets/portraits/jin/pei-xiu.png",
+      "bytes": 43662,
+      "sha256": "b442648f6703df0b03744199916afd78c0c30ddf71945fbef7bb57f60f6e81e5"
+    },
+    {
+      "path": "assets/portraits/jin/sima-zhao.png",
+      "bytes": 80862,
+      "sha256": "04c476a2723369d0d5f7255d712eb81788bdb83a5f1cfc90ccb4b7697c64ebb8"
+    },
+    {
+      "path": "assets/portraits/jin/wang-chen.png",
+      "bytes": 43102,
+      "sha256": "b9f3c574f82594e50b267ff2f842f8c2277c53d4247b5343f4031fe0c363531f"
+    },
+    {
+      "path": "assets/portraits/jin/xun-xu.png",
+      "bytes": 40764,
+      "sha256": "995e7d6f4af5905c8394969959d5cbe6d478b5ac1ab90ff0c364df7fa1891d72"
+    },
+    {
+      "path": "assets/portraits/jin/yang-hu.png",
+      "bytes": 42130,
+      "sha256": "45fe0895546b6de03b0b2539667756f1dba3b90d8b39db064d8631b4ea220464"
+    },
+    {
+      "path": "assets/portraits/jin/zhong-hui.png",
+      "bytes": 33205,
+      "sha256": "f53e5dd09ecfc38c7f17109a3dcc147634c3195c1512630c8ed5c7a935adc577"
+    },
+    {
+      "path": "assets/portraits/shu/dong-jue.png",
+      "bytes": 308893,
+      "sha256": "f24f693006a5153fa97580d65d481b363b03d84af29aeee8d27b74def9d3cdf4"
+    },
+    {
+      "path": "assets/portraits/shu/fei-yi.png",
+      "bytes": 1961220,
+      "sha256": "d8e0c07be2a6ff08e878f60713bbc69ae111b853888dcc2334cbce5f64f96d4b"
+    },
+    {
+      "path": "assets/portraits/shu/jiang-wan.png",
+      "bytes": 1715332,
+      "sha256": "659f81efa616fcefb866103bee7ae15e0a07e3c6f61c0f0c7a06188c74d0e07a"
+    },
+    {
+      "path": "assets/portraits/shu/jiang-wei.png",
+      "bytes": 1972927,
+      "sha256": "726712bf3caeffabfab29184a9456ef8e05374b7b26551f3e3651d7bea069c85"
+    },
+    {
+      "path": "assets/portraits/shu/lai-min.png",
+      "bytes": 319689,
+      "sha256": "f2506c57ff5cd521c2a02891b3ea1235ba841379444a5c91761318d145f81a0a"
+    },
+    {
+      "path": "assets/portraits/shu/liushan.png",
+      "bytes": 1674506,
+      "sha256": "d32ee95d5a806deb035116d3015247c9989e37bbc14bc43742005e0b9edfa20b"
+    },
+    {
+      "path": "assets/portraits/shu/luo-xian.png",
+      "bytes": 2754462,
+      "sha256": "d1fc773d02e75e14f5096737ddcadef865f574c6f2a46a5f00979bbc65d571ed"
+    },
+    {
+      "path": "assets/portraits/shu/ma-liang.png",
+      "bytes": 328188,
+      "sha256": "de84d2c48f4563128a4a44ceec6cd7b2cc0f4fa4fec8f156f0f7ee2e60daee6d"
+    },
+    {
+      "path": "assets/portraits/shu/wang-ping.png",
+      "bytes": 334391,
+      "sha256": "95cb9fcb385d78c6afb5f2c75c8671b38a1f1ca794f46663daf6551318e4db7a"
+    },
+    {
+      "path": "assets/portraits/shu/zhuge-liang.png",
+      "bytes": 1569188,
+      "sha256": "982dee20facb760e12726875f52d012a3dfb710566bfe45acf05de6344281291"
+    },
+    {
+      "path": "assets/portraits/v42/廖化.png",
+      "bytes": 365664,
+      "sha256": "d073a126a3604c4aebcc1602f1cba572d001ea717324973e51ffd819f8926a5a"
+    },
+    {
+      "path": "assets/portraits/v42/张翼.png",
+      "bytes": 354748,
+      "sha256": "59d0e61563d9a8c13d8bd0504893ff64d29154b28cb3d317580d9596bca94f5f"
+    },
+    {
+      "path": "assets/portraits/v42/杨仪.png",
+      "bytes": 353580,
+      "sha256": "e631a94ae1e130541a3136bf0fb1fcff653c1e568aa168d445e97078efaa4217"
+    },
+    {
+      "path": "assets/portraits/v42/董允.png",
+      "bytes": 352362,
+      "sha256": "b0076e9cc4cde74bcb965181a88c2dd4e858192e1bed308acc8aba87d6e91d7b"
+    },
+    {
+      "path": "assets/portraits/v42/许靖.png",
+      "bytes": 349454,
+      "sha256": "c80888f1ad99d46279b32e381a176025ef0eacc3a9ab9e6d43b93dc01ccf915f"
+    },
+    {
+      "path": "assets/portraits/v42/诸葛瞻.png",
+      "bytes": 358519,
+      "sha256": "0dd039923d5a99bceb237d8214652df9c6a376a7d5df9eb255a09d314cb5bfc4"
+    },
+    {
+      "path": "assets/portraits/v42/马谡.png",
+      "bytes": 353813,
+      "sha256": "c97a07b4a1838244609759edee7aadc270477716cdebfb646cc79b7eef1f2e69"
+    },
+    {
+      "path": "assets/portraits/v42/魏延.png",
+      "bytes": 362526,
+      "sha256": "9ca79c7fc43fffa28a88ed95406b25e341bf32393620b0a55cae77a3442cf657"
+    },
+    {
+      "path": "assets/portraits/v51/person-han-liu-biao.png",
+      "bytes": 277695,
+      "sha256": "e8ed95af058e5239f79bfddf91684b032a6910d25e93134dbe74cba79215541e"
+    },
+    {
+      "path": "assets/portraits/v51/person-han-liu-zhang.png",
+      "bytes": 320861,
+      "sha256": "1bbf7fde43ae6513b6d34277e787260e6ab8ec63699988cffb08dae59a952332"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-004770996fff.png",
+      "bytes": 420267,
+      "sha256": "dea07552d8faaf8b7fd195a28dec90b79b8aaabe096e3ef6efd693a49ed8f6bc"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-035be51454ba.png",
+      "bytes": 320564,
+      "sha256": "cc240e3a4ce627c492158f07bbc05e1e38263434a773e95fbab0f98f10257b6d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-0ac0345962bc.png",
+      "bytes": 328143,
+      "sha256": "caea20b6aff39b40a87b94318401f734a8309b544a68a2a161e2b2b127a6826f"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-0e535702e1a5.png",
+      "bytes": 274485,
+      "sha256": "887230d139fc83dc2fedcb0663febfe00e3dbf4cc478a50c2161988162bc6644"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-10a2fc810200.png",
+      "bytes": 331500,
+      "sha256": "f4c968d61e5d18f86f55864ee658bfa8ca3126f060324c354d8c336822df204e"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-11e5afb2df97.png",
+      "bytes": 375068,
+      "sha256": "213876e336ef9ec0323d8378c9fed347668eb8e7a935e514713d7bedf24c3172"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-121d406fe7d1.png",
+      "bytes": 350282,
+      "sha256": "c2c5589e1d16c99f1c12d2775848c422221fb921fed2cf23b868aa60063b0576"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-12d700a23b77.png",
+      "bytes": 315392,
+      "sha256": "a90f419e06c2dff7b709d20888e3a6d1925cae124df562901cf9abe449c82fcd"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-1341c89829db.png",
+      "bytes": 291220,
+      "sha256": "17d5b6e0edc0c84f0bc1348cd6f3aecc4cbc03251873bcee7ce6ff4588a8c938"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-143edb2d791d.png",
+      "bytes": 432020,
+      "sha256": "9065cf6a3e00a1782049aa89b50b75b0c2c3a8db4122515268e0eec9c5035812"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-182106820ab7.png",
+      "bytes": 283000,
+      "sha256": "b90cc3f5d6541145103d76ed7771b919d21f4e5129e6bd0590fea41a1de0420b"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-1bcaa4035aed.png",
+      "bytes": 326759,
+      "sha256": "44c40b08b7f65ce0ed19418b30f71266953443244feb6e3df01f655dd2496103"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-20b3d8e91af1.png",
+      "bytes": 405325,
+      "sha256": "f7c61ab34568459c7a9b0fb4ebd3db631812712f543d065dd692de9af73511de"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-23b3d654e08b.png",
+      "bytes": 336379,
+      "sha256": "e242eef899bfdd91701c2487f7a322409557b00186999f0d5733dbcce37d01ef"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-26adb3304332.png",
+      "bytes": 336421,
+      "sha256": "7a3877da7f77c3a8b8f604ea64f3964bdea77ca104aa6883211a013df9eff993"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-272c8716cddb.png",
+      "bytes": 274446,
+      "sha256": "65e7dff21b0406c3f0b858204bf7b9d74294250abfdc584604118f587ab7aea6"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-2831848a9591.png",
+      "bytes": 422323,
+      "sha256": "b30b2c1c1d2ca0e82bec846616589258572987a3564dfa62b65bd5fdb7894a12"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-2a7e68aa7262.png",
+      "bytes": 337325,
+      "sha256": "65da26a01634c8bd9f4eec4e4221a7e120399af5be80507c1cdc9bb51988e60e"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-2fde2b673888.png",
+      "bytes": 391346,
+      "sha256": "5083b36a12511b0551f6a45991f0d31e922fe0792108ef5b7745c69f4c97e2b2"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-35a5246521f7.png",
+      "bytes": 433198,
+      "sha256": "6f4141f4ca07522536fa972080e40b80e8e0655e6b0aabf654e8871410b196f4"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-3615e33dea42.png",
+      "bytes": 277634,
+      "sha256": "a1087628980e39688595b0c523a15cfb5a61742ea0f56205ff328ef34ba8a0b1"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-4fe4b9999e27.png",
+      "bytes": 341837,
+      "sha256": "96dfa41eadf54676135aff7e6bdbb250a7558f79c52acda7282eb24c54c6c484"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-536f3eca900e.png",
+      "bytes": 327713,
+      "sha256": "414aeab7fccc17baec775ceecbef68bb124c37729918cf8519c7c49cd95bf78d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-57f563d7a1ce.png",
+      "bytes": 328405,
+      "sha256": "83885ee069f831998666e6990a2af5bd62974b8e5fd7a5c141809ce0da30f577"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-5da0dd364783.png",
+      "bytes": 377079,
+      "sha256": "aad2c924bc09d6eadddbb7c7f2f5900d6b59b91d294efa98b6dd4b977598f041"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-603b840477e3.png",
+      "bytes": 380923,
+      "sha256": "6870736eaf6fa96045da76962cf2a78f7187fa9a26d392fdd158099240e65768"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-64713c14be03.png",
+      "bytes": 399330,
+      "sha256": "f34d2563f2fed029f7b7d3e071b78743876df21382ade3c3608602a92e2d1786"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-64b99027de6f.png",
+      "bytes": 327565,
+      "sha256": "cab86e6fc0400ad59363fd5968b34783eaadd8f3ceecbb2cf59ce421e60f894b"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-653eea8eb9c6.png",
+      "bytes": 437562,
+      "sha256": "9f5fb7eeb9907b43265da54ef794f2b079830eaca35735a12d8dde9b55e62e94"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-6570aa164b2e.png",
+      "bytes": 366329,
+      "sha256": "e2f0d52b24eebeecf5bcbbaae828b2275d88cce0a40a28afbebd310699cea3ab"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-6787527ab62b.png",
+      "bytes": 332398,
+      "sha256": "5a064c173b91f504e5c722eb559cb39b72b90168f4417dff68bed872accf58e5"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-6bea1ab8f79e.png",
+      "bytes": 439390,
+      "sha256": "9a95a0938ad7f7464e8ee4729ea76b529a1bfba417836051293db19d3d12ed41"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-6d19a25fbe7e.png",
+      "bytes": 282794,
+      "sha256": "6ecd988ca811134dcba6f684a0a427106d9a513ce676ab4c222c5ef6be674449"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-6f24577154e3.png",
+      "bytes": 373696,
+      "sha256": "92616f738bba6d8c8e337ce68c9f850a6c476593eed51e0bcd7fb357727c936d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-72237d3083d5.png",
+      "bytes": 432853,
+      "sha256": "d5be55016dd460e07826d2ce14627de206a21ba5cc98764e2e69748d6487fd1c"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-74484c7b8050.png",
+      "bytes": 444663,
+      "sha256": "485e8065e799bbbb96261c6e30f3f79affc389c0d1d4076dbf5883833ab31d50"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-745dc71ccc2c.png",
+      "bytes": 380914,
+      "sha256": "0496d976a31d3a0e227d88f3ebafd41fe2c6d5398ec443782e89c6d2f5f63cb8"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-779b07352932.png",
+      "bytes": 282641,
+      "sha256": "c0402c03bef2ec8e0c01a7fe8cf9cd67c0b2c1ff73fd78e0a7693b3e2f9bbaa9"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-812d000d43b1.png",
+      "bytes": 292292,
+      "sha256": "e4d3778ebc25ceca34e13ef2ab1df83759394b83387bf8d6c10d3546eeb6acf7"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-838b8308032f.png",
+      "bytes": 321500,
+      "sha256": "4d448d79a1b68f88855e2c226d9e642767ce6b98e2897d065e2bec6ea451c473"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-85fd3c81396f.png",
+      "bytes": 399473,
+      "sha256": "b8fb87da8763cefe6b163c898b2287bebb233cde878504a304ed963fd2ec6770"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-87282926790c.png",
+      "bytes": 335272,
+      "sha256": "23ea847b4510bf7631b4973b26c4a508c75b5c0320fc6cc5381aad66c190b719"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-8a094c46b36a.png",
+      "bytes": 316573,
+      "sha256": "2598e976ea9b8f9e7aeebf88111130f6fd3fa0e5a7d69fc93ab43598483ba9e4"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-8dc0bfe19c5d.png",
+      "bytes": 432724,
+      "sha256": "f9dbf2b365594542fa479c367026a5fe8473508f00777775bcae853491fff54d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-8f0533393cfd.png",
+      "bytes": 284499,
+      "sha256": "6cc458e7401aa9627f78a91cf755250d6601b2223f9e4d9fd44202bee5a804da"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-944fbeb67bcc.png",
+      "bytes": 278122,
+      "sha256": "e77e2b69ffea963db0df4c9b083c8a88f87f1b7556b7f036eb25e6a573069379"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-968cfb7fe1b8.png",
+      "bytes": 378374,
+      "sha256": "36f9ea3b3613f613c54c3d866cf51637812fe99de8732a3bb3a2f82e24a266e3"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-97a50d999831.png",
+      "bytes": 340955,
+      "sha256": "f09ebc5a43f7b7644d752e9016b99d98889842943359901193df2ef6107cf83f"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-9f7272bc767c.png",
+      "bytes": 353718,
+      "sha256": "a2ddd77c4d352bcfcdf448f132fc83af1da96583c38f56378b89769e2713e026"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-a3e7a34102f6.png",
+      "bytes": 291767,
+      "sha256": "ed3e2b8aefd46ae3bbebba92ffda1e4e1d6a26a180ceddfb506234468d04c2f2"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-a80a9d39a6e9.png",
+      "bytes": 418276,
+      "sha256": "5959a8eed5948178230ba626c27c6b8233c9809cd178ee56986389df4a1942a1"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-ab031a3e252f.png",
+      "bytes": 381036,
+      "sha256": "656127abdc049cdc38cc44f03ab2281ecdb83f73f76d98c658ee21edc2da9eb6"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-ab32fb630e93.png",
+      "bytes": 283722,
+      "sha256": "06c5fe7fe2f1fb0b305ca6db701cfba1522752291a2401c2f1d23bc622a1f742"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-ab63a1750cf5.png",
+      "bytes": 271138,
+      "sha256": "c9e9ad76b6bc138d809c208d723e3370722422c6e1bd722c0fde780763d9c4fd"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-b13a3444a2dd.png",
+      "bytes": 282697,
+      "sha256": "78ce746269b43ae50d0550e30f5920ca6f571b22addcac555b129cf89a75759f"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-b1b81e555a99.png",
+      "bytes": 428149,
+      "sha256": "941a13f6dbcceaf473a3dbc2a0570d9953790a2f4cfd0062601c26fab213e3bb"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-b2dc15c2b1f2.png",
+      "bytes": 286647,
+      "sha256": "b5e8e00c2b2412a95c3f56c4252b614acb693821de848dd1bce339f00fb4d940"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-b429e221c1e7.png",
+      "bytes": 362302,
+      "sha256": "935baa889a528bfc4dd8cd85763013fa3496910dd34c3aa1bcc2340380467f12"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-bdf065c626f6.png",
+      "bytes": 389118,
+      "sha256": "e3c652afcd847bbe2fe3806bc5cd3b52d3590a0d526dc6eef7d56f512b3ce328"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c10071bc56e7.png",
+      "bytes": 320635,
+      "sha256": "8fafe968d859e22392cd4049a0db362864a332f598a6c7ac5cd76ea7fb28fae2"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c14b0af3e85f.png",
+      "bytes": 275760,
+      "sha256": "674880cc54d24a3d1a1792d46ef258d291d669949971bae7c9c46c36441af303"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c2d2b4c0325c.png",
+      "bytes": 450541,
+      "sha256": "d6ed776cd82983e385abaccd2928b441142265a91a620b8247f4bcb3837b40d9"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c733bdf60002.png",
+      "bytes": 393965,
+      "sha256": "650d3998a18de14b0585403a8d2a6d903486e557bacac3d708c83c46139d526d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c9065395c9a7.png",
+      "bytes": 444731,
+      "sha256": "1aa2c8495c61b44a0b621b908d7ea7775d763be7914ce655ff48f6f90835d22d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c9646b99be7a.png",
+      "bytes": 276402,
+      "sha256": "7907f05b47a9a5c4ad07101fc0c2c0ce1b582bbaf73cdd11d56652e3c0c80537"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-c9b3bc9bb023.png",
+      "bytes": 344421,
+      "sha256": "07fce6780744d9ef42c1d56aa223f4dd287897bb8efc656ba11fc0d9bda98d20"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-cc650c22182b.png",
+      "bytes": 276410,
+      "sha256": "fb398bcc481e0f0ee1445709ce11afac7d4aa1034d2301c506b953a9c1febe0e"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-cca8ae158ffd.png",
+      "bytes": 353641,
+      "sha256": "cfa03fff570e98dac8e21a48dd176c2f79f2d4d867de7f87d3fcb0466425fb13"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-cf82fa4d1264.png",
+      "bytes": 425348,
+      "sha256": "d835ca0c99ed590dce1e14c52a7a8346739c45540a9821bc331bae1629e06bb0"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-d04dd2bef1e2.png",
+      "bytes": 439376,
+      "sha256": "c6b023ad100a8a19c6ca8d0be99116ca0ba1f9eaee21a169b2f18b7100b1b23d"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-d19aff65e0f7.png",
+      "bytes": 355343,
+      "sha256": "0d82e25a5a30ca359f1194c545dac314dd2a633129cbfb52497512d601e9467c"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-d66a7f3fda55.png",
+      "bytes": 431200,
+      "sha256": "c26a0af46307145794bab6c9f8d87823aaa2700172400d433251e9ab04996bd8"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-e078e67a29ef.png",
+      "bytes": 414487,
+      "sha256": "9d9d43176dbb266774f9505b1fc8ee1dd56458d82d7ed595c37f6b540d120dfd"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-e273223cc622.png",
+      "bytes": 285279,
+      "sha256": "66b17e271172e78b9883ff87f73a61d72d633d70c67eb6c77b267e5850a80d19"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-e3995aefcddc.png",
+      "bytes": 346740,
+      "sha256": "e3df7e902a1149eaf2254dcae5878d10defb1d236794df5cf27d986310fdc592"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-e8e51760ad21.png",
+      "bytes": 333603,
+      "sha256": "bdf5ac46da565f689373866cb3e216ba0a6cd09c20266e54ad19ba8b5975bfb1"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-e91b523e72ad.png",
+      "bytes": 285369,
+      "sha256": "c7b2d202add35f68cdf6c26d1b0ec3b8f09d35e729e2d343b3653669d5469ad5"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-ef20cd1a60a8.png",
+      "bytes": 322477,
+      "sha256": "0dea9968743390b4e3c72b918ab97c170cf311997b1c0982b0801173187d7531"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-f64651d5146e.png",
+      "bytes": 391519,
+      "sha256": "160351da05fbe4b73c26cef2517a0f74a9c8bacc986d3ad1cd6b1e5318dc7054"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-f70e8bb46940.png",
+      "bytes": 338792,
+      "sha256": "5199e13b1f0740ce2c58906fe68e59fc606d2c3bf1019bb70383db72fdfe6534"
+    },
+    {
+      "path": "assets/portraits/v51/person-source-f88e20a568d0.png",
+      "bytes": 298074,
+      "sha256": "f8f3acffd49f6623b78da0f168472d3cbdb4f7deb90bf784720cfbc3631b07b9"
+    },
+    {
+      "path": "assets/portraits/v51/person-wei-cao-shuang.png",
+      "bytes": 326928,
+      "sha256": "82e3a288da3d6a2e87e75a1211f582bf260b12733096365e7bb0a464f5ccc76b"
+    },
+    {
+      "path": "assets/portraits/v51/person-wei-liu-fang.png",
+      "bytes": 281791,
+      "sha256": "a138a4538da8bb8bdf60413d78faa85983230d6971db788f05ad394e0bb9c736"
+    },
+    {
+      "path": "assets/portraits/v51/person-wu-sun-hao.png",
+      "bytes": 367362,
+      "sha256": "19002330678d58dd911ef9b2f8689642f9f5085abdd0a3e0b9e4cdf4ff75b120"
+    },
+    {
+      "path": "assets/portraits/v58/cao-cao.png",
+      "bytes": 410177,
+      "sha256": "3649f3f7c13322d8c0cd1fbb439f438cd50ea4ccb68cc306130fa23679f04d34"
+    },
+    {
+      "path": "assets/portraits/v58/ding-feng.png",
+      "bytes": 396412,
+      "sha256": "3d70d7cb8e535fde644028231555929bf42eb327c2018204d78dea978fe3b7c3"
+    },
+    {
+      "path": "assets/portraits/v58/du-yu.png",
+      "bytes": 399021,
+      "sha256": "7dc902eb5a1cd9031e14d1603fbf380ed20aee2808f8c457b1bf81a9c4836fff"
+    },
+    {
+      "path": "assets/portraits/v58/huan-wen.png",
+      "bytes": 377749,
+      "sha256": "cfdc070b6eb6e0c768a72787e50a4fbc898c58f1734a749588ab2bd13a147c66"
+    },
+    {
+      "path": "assets/portraits/v58/liu-bei.png",
+      "bytes": 391756,
+      "sha256": "af341ece53a9a05d4a66c529526ea57c8afc9f804882c03b9019a41f76407e66"
+    },
+    {
+      "path": "assets/portraits/v58/liu-shi.png",
+      "bytes": 387015,
+      "sha256": "73c68cc3fc5c41c0d2b088f1296efd46a1633ab120692103b3f16ac3caefcf2f"
+    },
+    {
+      "path": "assets/portraits/v58/liu-yu.png",
+      "bytes": 391969,
+      "sha256": "c6a1e6e063fb5fd29e4bc07a1b8ccc07dd507ab17080ad29f0bd067e56e811b8"
+    },
+    {
+      "path": "assets/portraits/v58/lu-dai.png",
+      "bytes": 376231,
+      "sha256": "5cb6aacd83e6260fe0da884981e345ee43249525fc2eb226f93653236fc0127e"
+    },
+    {
+      "path": "assets/portraits/v58/lu-meng.png",
+      "bytes": 366508,
+      "sha256": "ac5c40ec0baafb4196945e727804d8e9cd0af60a474da7c39595a1ff100928fd"
+    },
+    {
+      "path": "assets/portraits/v58/shi-bao.png",
+      "bytes": 392381,
+      "sha256": "87fdf272fe9fa54764dfdfb42db25df1404057ee845018a591e2b63772e00b21"
+    },
+    {
+      "path": "assets/portraits/v58/sima-shi.png",
+      "bytes": 384318,
+      "sha256": "4d9e8795ee96942d7427fe1b8b1f6c818818c6268e767bd099f4c709bee3c0d3"
+    },
+    {
+      "path": "assets/portraits/v58/sima-yan.png",
+      "bytes": 377705,
+      "sha256": "896f69cd862cd5d55ad301b42d638100c98b228f97107266eb4e2d9672839b8d"
+    },
+    {
+      "path": "assets/portraits/v58/sima-yi.png",
+      "bytes": 408026,
+      "sha256": "0fcfc7a8d4bb981ac8ee232cd7d31966ca8d0fb7db049df372c4f8171ef14dd2"
+    },
+    {
+      "path": "assets/portraits/v58/wang-dao.png",
+      "bytes": 388583,
+      "sha256": "0ad72ef10b1e6e67ed21e6765b5af2fbae164983363cd2bc6dbac266e6349184"
+    },
+    {
+      "path": "assets/portraits/v58/wang-jun.png",
+      "bytes": 392939,
+      "sha256": "079a03f59bff2c786667ea49195cf74f7f8758ecf0b4153f3622254aa20a898e"
+    },
+    {
+      "path": "assets/portraits/v58/xi-jian.png",
+      "bytes": 398492,
+      "sha256": "3102ee3122c38539542028aebbabf1f0698859745df87f19b767d8dff64a7eda"
+    },
+    {
+      "path": "assets/portraits/v58/yang-jun.png",
+      "bytes": 392484,
+      "sha256": "5a5156799f55ff516ce6230e135f9971c17cf9efe3d5b5552b066fd84a3ea2cb"
+    },
+    {
+      "path": "assets/portraits/v58/zhang-hua.png",
+      "bytes": 374688,
+      "sha256": "8af4faafde3c53b37afba722212fafbe190dc0787d168bf40d4200a527db6363"
+    },
+    {
+      "path": "assets/portraits/v58/zhou-yu.png",
+      "bytes": 389428,
+      "sha256": "b7fc53756ab8260febac8eba1b7491e9825b8745ef90897f2028b238f2c83e0f"
+    },
+    {
+      "path": "assets/portraits/v58/zhuge-jin.png",
+      "bytes": 394057,
+      "sha256": "cdfcd8ccebb04786d09b5bad6734a985a13e1c3a0551d287b195119452a01e68"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-01.png",
+      "bytes": 406592,
+      "sha256": "4783009936a87496def4b8e82d41c23a474d0ed3292d6fcf3970644667db4fb6"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-02.png",
+      "bytes": 392974,
+      "sha256": "f623d439c56cec88b561080df1ead090f8cece7a8ca3a2aaea735d1b5f08316c"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-03.png",
+      "bytes": 387698,
+      "sha256": "e7cf5005c79d62eaf734fd0c27a00c9ddfbc4ed758a789348e1f6682e3629b59"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-04.png",
+      "bytes": 393859,
+      "sha256": "d44ede2ce1d5333d94fcbb2a1414e79df0eefee3860e8faa382bc75b4c45e389"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-05.png",
+      "bytes": 398849,
+      "sha256": "d39054e7554f76b4b23743fe45b46c476528828cd806425a5cdcab89b55428ac"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-06.png",
+      "bytes": 395561,
+      "sha256": "ce2c67d3bac131700ead2ef08c0cb2428d14b91e435a79fa477b1d87c52df483"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-07.png",
+      "bytes": 380376,
+      "sha256": "10109fa16181d668064d558b651d23743b6b5bb5680ca78ad73017023022dd30"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-08.png",
+      "bytes": 389217,
+      "sha256": "8d7e01b8795bd30d2730049150a0f8ac69680021dcfac7d9df6ee7c311530c7a"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-09.png",
+      "bytes": 410980,
+      "sha256": "773f6dd8133cdcdfb91b26424243ef18c8a2af26b7d61dd85adff9e4e1562172"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-10.png",
+      "bytes": 386329,
+      "sha256": "990233d2ec77f4a728bcedf4441919da521c11688eadef20430b2c92aa23bfe6"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-11.png",
+      "bytes": 381775,
+      "sha256": "c6ec435fa854635f52b5191e86bb0f1c8c82004fd56fafb0c7c70f8da5dbbcae"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-12.png",
+      "bytes": 383813,
+      "sha256": "e982584a7c415d932202568a5eac046fe90a2241e7ce23a8647774cb404d188c"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-13.png",
+      "bytes": 391694,
+      "sha256": "b8b17403e2b3b54a24a9006acde2b85484108a99bf0c02cd56e88ba8ef594367"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-14.png",
+      "bytes": 386285,
+      "sha256": "b97d9a645e20cfc9dd766334988c89f1a642810ad1181435914a99f34629f762"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-15.png",
+      "bytes": 373087,
+      "sha256": "e8a78e0b4b331440d929126f8999c2c1227907513501769a97c322839a269f4d"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-16.png",
+      "bytes": 374372,
+      "sha256": "94b988bdab240a5ee1b59f9dfab15981d50568b93bed8894c0c49288371f9b0f"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-17.png",
+      "bytes": 364514,
+      "sha256": "074eb072da7ba146cd1195c013b090c5396eab0312b5f3fc68dafa0212b01bd4"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-18.png",
+      "bytes": 386570,
+      "sha256": "5ac0ad1350a5930f6154d59b82e0db911e0b44eba89328509f6034690c1bff2d"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-19.png",
+      "bytes": 377764,
+      "sha256": "62391bd6bef0c7e9210c252b7e8c842c7f8c028a909520b7d85ace5f6837ba79"
+    },
+    {
+      "path": "assets/portraits/v62/later-han/later-han-20.png",
+      "bytes": 393262,
+      "sha256": "5ce6a12f3cee1e12dbde8441f8680b0e0846588af51836ecea722baf3744862d"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-01.png",
+      "bytes": 420222,
+      "sha256": "ced90ea34e0e40c4d8dc54e5ab0665f24a3a49b6e317f50b0713795f3bf54d28"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-02.png",
+      "bytes": 390272,
+      "sha256": "1f5490982bcf8a28eeb4ff42fd5a3635e2e2e6cf1fb3d21f081bf2d161015039"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-03.png",
+      "bytes": 392322,
+      "sha256": "200711df6e4c5057c6ac0ea3eb25d57407f3838a5ff391064fa64cec1ea33735"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-04.png",
+      "bytes": 378092,
+      "sha256": "4c947d40ffee18e58b5ef0fb64c673d850224f60f62c53f365881aafea59afb9"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-05.png",
+      "bytes": 385690,
+      "sha256": "7c74913c2bcc59875ca31a36875e2acaa52166dabb4e645139151596ae3f9517"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-06.png",
+      "bytes": 414731,
+      "sha256": "a4abe08c74e22be1729096ce097a779de38b8e714d317c1a9b5e532734bfe432"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-07.png",
+      "bytes": 409933,
+      "sha256": "7fd7bd37ef1a35633e2f2ce756310b4b81a878f94f08bd0764cf274ab38cdfc2"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-08.png",
+      "bytes": 404694,
+      "sha256": "e3ed7bc11432696094316e71b8a8ede3e02bdc450cc0ba1d75460dc21fd148db"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-09.png",
+      "bytes": 402588,
+      "sha256": "47f987691903a68cbce54d808fcd786fc532b925ca4483d358cfbe739f6e7850"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-10.png",
+      "bytes": 400295,
+      "sha256": "5ccfd44f32201419caf6a8bf842d555e05b13e93f9d51ee2b5f88ead0d9933ae"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-11.png",
+      "bytes": 412847,
+      "sha256": "ebdd4e1bef10c01259b457a730b5391b7aef49661156ce1ac3eb3e05acd0fa53"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-12.png",
+      "bytes": 374064,
+      "sha256": "b2ba8ef5a43a852e1f02b1e002a33394294cb992759313f08970b9b707d2a97f"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-13.png",
+      "bytes": 394501,
+      "sha256": "d72e8559e1cdf3797b71ad37c877ec5669ad0ce135a33069beaa5a61911a1ed8"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-14.png",
+      "bytes": 397082,
+      "sha256": "4462a260dd8dee362061837ab13bafcb561d42e6a09b8746632d7c682075b2bd"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-15.png",
+      "bytes": 398912,
+      "sha256": "bc54de2e70f993312471554b7be24bc21958e0c69b287a6088fe01e3610347bc"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-16.png",
+      "bytes": 408138,
+      "sha256": "f1c25e0e77c9185cbd12d1da1791da7778124ededef22750db16faaad2baddea"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-17.png",
+      "bytes": 392137,
+      "sha256": "94f12665eb103d26028f0ff099f612ce8ede7ffa361f0113ce4c8d921fdb7d2b"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-18.png",
+      "bytes": 393616,
+      "sha256": "73dda98ab722964a313564588d9a8c5ae7945abfdaa3620cc3e4c4340d7c3a3e"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-19.png",
+      "bytes": 357594,
+      "sha256": "50875c7c313bbb3ff4207de5857227f77812800931df7519ab5dd489e3f0f152"
+    },
+    {
+      "path": "assets/portraits/v62/shuhan/shuhan-20.png",
+      "bytes": 407352,
+      "sha256": "f86f93e22c0c3a311ba0eeca062065729a5963ff4fe7217801dc9de763be79c0"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-01.png",
+      "bytes": 396140,
+      "sha256": "090b74941b4d73c4659fe584b70c3888de3c15697d0a6c05af1844ef74d63192"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-02.png",
+      "bytes": 379636,
+      "sha256": "6ae367b66fb077e138949c4ccc9b72ed7bbdd62a36b8575c444613a1be7aeca1"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-03.png",
+      "bytes": 397112,
+      "sha256": "e3406990474f9e228aea8a1effc509153765db11f951075b292ad4c66419cc16"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-04.png",
+      "bytes": 395336,
+      "sha256": "62f1c030905ea53419ce1dfd519abf3efec2eb78364280182f820353e81d7e42"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-05.png",
+      "bytes": 385365,
+      "sha256": "ac478141b40f5021a909252dad3e1112512d6d3a7d732d9490ee9641c2a9c84b"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-06.png",
+      "bytes": 411663,
+      "sha256": "f8f97999b698d7955b7c6e03d187e7a70555206139a3d3a9ec5c5098b9c9ba91"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-07.png",
+      "bytes": 391398,
+      "sha256": "da2db94bf7c5b491b4f2072675f9a714c7293465097fb574c927ca4cf764ca72"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-08.png",
+      "bytes": 392134,
+      "sha256": "2dfde41230e912ded273b69b69b14a6a837d9489b4fea6ef77e60cf4cff4617d"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-09.png",
+      "bytes": 378012,
+      "sha256": "fc51743f1bcacab1177d05999a0f6fd2b8de1be880d29a4cedec2bb1faa9097d"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-10.png",
+      "bytes": 414881,
+      "sha256": "524b2dba478ea4f6dcb05c5cce442e4c7362e744c54baf77c71e2d6dd1861950"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-11.png",
+      "bytes": 386472,
+      "sha256": "b477dbd73eed7e6abf3ccd0c21dc29f299eb7518e04346286a9696759fc0b9c4"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-12.png",
+      "bytes": 372495,
+      "sha256": "75677d38de65fcd71db20467ddea3a5aaab7c7e1283f428dd8d6329781fb7c99"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-13.png",
+      "bytes": 393457,
+      "sha256": "1a064f7a3755ba91b9ca2ef021b078fcf6fc1e7c892dd46143187769f996dd25"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-14.png",
+      "bytes": 388814,
+      "sha256": "60ae61161576dfb9dc489283b844c4dc4c16e98ee66bd8d265859d63dab4da56"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-15.png",
+      "bytes": 363637,
+      "sha256": "cb9309d93c4a51fc3a77a6f573d32b5be6b635cbef660ec0d13c7ee956e3a3cc"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-16.png",
+      "bytes": 383583,
+      "sha256": "75e84fb7bb816531c6941b0d3241173e09f8a1960ac0edbe1e1b9ee4d8516719"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-17.png",
+      "bytes": 381588,
+      "sha256": "d0e686b81e74de99382f46911502e305d0b415aace44b353c45be5e0298452f6"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-18.png",
+      "bytes": 370255,
+      "sha256": "6a6a31613f2644164d3ba0c2d467e7457c61453c2049ab974b0461177b988714"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-19.png",
+      "bytes": 372738,
+      "sha256": "ed1c3d7edcfa4d0618190d8258fd9a74829648716b9dc64e75b51da1c6efc1ef"
+    },
+    {
+      "path": "assets/portraits/v62/wei/wei-20.png",
+      "bytes": 403067,
+      "sha256": "2a29661bc585cea31f142f836675754119a5526d99cdf88b0440cb2f99f6508e"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-01.png",
+      "bytes": 388892,
+      "sha256": "b2e776536bf4301bc0562ea0b01338e7333b4063185688be7496c7d685bdf571"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-02.png",
+      "bytes": 376704,
+      "sha256": "a89527ab62fd12a4817e846608a247b74f2c16cca53cb1136f4b53a914dbf92a"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-03.png",
+      "bytes": 385428,
+      "sha256": "a3cfb1e31b5cb5ccbd2379f5b4bdcf837632c6e85a75f532eada72bd8e5791b0"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-04.png",
+      "bytes": 389230,
+      "sha256": "d046eb7da64ddb03ef48dcc6934cf4134e7485c3ce5ce19554f48c90b79c7525"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-05.png",
+      "bytes": 395575,
+      "sha256": "6f04c2c851fecf606b5cb2bf0ed239e5c656a608c6fe0c0bcefd52cf8ef2878f"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-06.png",
+      "bytes": 392462,
+      "sha256": "0e5a9af75ae9f8489bd1abf9d213e5c340edf50cd902cebd802d43c498898dc9"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-07.png",
+      "bytes": 384203,
+      "sha256": "86f1809a13eda0b522b5faaae3e77a92a98958c97bf10073bf04a448b9f5584f"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-08.png",
+      "bytes": 399333,
+      "sha256": "31de3e66384679314d331e384abef0077bae9815dfa459f7279928c2c56f2060"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-09.png",
+      "bytes": 395101,
+      "sha256": "0fe02c8f1ea41a212c278c4f5da7c825dde950a8e1f55bfb302f0bc751d1f7f6"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-10.png",
+      "bytes": 411441,
+      "sha256": "0bff79fb723a6c6999684268c41ba992bb78b77b106cd4177286025c2581aaf9"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-11.png",
+      "bytes": 415707,
+      "sha256": "e838ed6d74160e84ea1f198667fe93f61c33de635896a1aa2bca62472a1c5d26"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-12.png",
+      "bytes": 406166,
+      "sha256": "8bad858a95aeb292ad1293a1c09cfddf86628c57ce72c89c6f439538792d8db1"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-13.png",
+      "bytes": 411421,
+      "sha256": "969a1fd87183eb41911378e379a24d7ccdaa95e750dc3410a047e1fec40c7870"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-14.png",
+      "bytes": 411905,
+      "sha256": "f2b6025840aae17a6e70b8d7ffa7d5a59a7f93495d81e179146073690ace8fb4"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-15.png",
+      "bytes": 417093,
+      "sha256": "2de9e1e50ae24b7a76e33e36882507af07f7d9a116f707aa7b454843558c46dd"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-16.png",
+      "bytes": 426487,
+      "sha256": "c35ba89b6eb9e741b981643a95394c339068e1dc3c95bd298ee3b4a2498ec986"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-17.png",
+      "bytes": 433590,
+      "sha256": "9ae387cccf78ccb2bf0a2ff12e13e383c2921e54b40f8e85f054af3d6a59ee81"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-18.png",
+      "bytes": 402036,
+      "sha256": "88c29aa587d0bd11cb0f96e3a9e17370f2e3b2d318d2f6be4a7c2a08c6411fbd"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-19.png",
+      "bytes": 421522,
+      "sha256": "d8f6facd1a76e78533d7dbdff4396e2844f6c0f163a040b40a9a9ac6ecad5722"
+    },
+    {
+      "path": "assets/portraits/v62/western-jin/western-jin-20.png",
+      "bytes": 408010,
+      "sha256": "67ed999c59171bcb4d8df6d78aab7648c4a12106fc9c02d471cd5bb78f5f6d4a"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-01.png",
+      "bytes": 402214,
+      "sha256": "3e59117c89182bfc7796042de2e04d892f1117e28cfe73c4ba4749322b2c0fd2"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-02.png",
+      "bytes": 425877,
+      "sha256": "ea15da3a7994f2cd53aef965bd4b2120ae46035f256ba951b1f3a8dcc7b0277d"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-03.png",
+      "bytes": 397881,
+      "sha256": "99564552e7c165ed6689adc0e3e19fcd5fd7905b0f404f5100b9c94d7f2beaa3"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-04.png",
+      "bytes": 430346,
+      "sha256": "6c5ecc7026c3c6b9429e1f81afab6ed7693e4ff274d199dc81c6900d178a05ae"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-05.png",
+      "bytes": 412746,
+      "sha256": "01219af6796e32b6cb107fff0851193423f5224bfd11dffcb05bfbdb3dc5acf1"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-06.png",
+      "bytes": 396903,
+      "sha256": "4a396facebce6889b1b557889a247058fd5d949dfdbb0055d7ca921cde35e323"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-07.png",
+      "bytes": 428291,
+      "sha256": "771c9cac9735b84ee8af5092a5ca91eafde67f6946388bc7c6842699bb0b7ac7"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-08.png",
+      "bytes": 432044,
+      "sha256": "bb4a916e4b2852bec8b1dc39d4dc85e69ec44c13c7b5959b855ecc293c68f7f1"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-09.png",
+      "bytes": 394913,
+      "sha256": "aff8dac1b25227b9a2464d85c81b92c0f3d75efa279d00a4389760b36dc06e87"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-10.png",
+      "bytes": 418542,
+      "sha256": "d687ca74c88399ab118b2ec11d735ea2f933fbcdd80dc50c638b41c87ba2b845"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-11.png",
+      "bytes": 417398,
+      "sha256": "e66d2b98780aebad4cc012b8691eafca1b28605a763d4740cf202137a030006f"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-12.png",
+      "bytes": 420283,
+      "sha256": "794be8761ad2c86ba4b62ec8a0153a412d34a9751239bda156292079b7127cc0"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-13.png",
+      "bytes": 429993,
+      "sha256": "4c341b63e9b37013fcef9fdec07e54ae4836822e5706f1a96b2c84a04113e904"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-14.png",
+      "bytes": 409249,
+      "sha256": "45a493d6146743115ee506f66dbf8cfdad83c693a4f7a421bd40f7a8411725da"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-15.png",
+      "bytes": 414205,
+      "sha256": "2e5b8f8d724b6a5aff4ba8ed73596f10076f23f1acfb1e5ad87a1a34180b41ae"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-16.png",
+      "bytes": 413099,
+      "sha256": "70387fd586e84ce9290607446669bb8a795eeda28971d1886f5b672fd2d5b1eb"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-17.png",
+      "bytes": 414731,
+      "sha256": "e30225d915787bc96a1196e2029a75850ef2a093eda422b7f6e54573d98f4b46"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-18.png",
+      "bytes": 421723,
+      "sha256": "ccf327984b40b1b574bfbeb273bcd284acb3b3542e1d17c227da826d5938a9fb"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-19.png",
+      "bytes": 434958,
+      "sha256": "333d9876ec3f44d83929aaf66377b59a64bed74ad1ff93c4becf69733fed1255"
+    },
+    {
+      "path": "assets/portraits/v62/wu/wu-20.png",
+      "bytes": 413566,
+      "sha256": "73e0b358420b86c80b3dca78258a9f7b591beb7400d24d1ae73051781638b517"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/73-yang-zhong.png",
+      "bytes": 425660,
+      "sha256": "4de8f98cfdd5f3354884ed077ad0905918264ed2d65240b6624f0279cfa38eb1"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/liu-bian.png",
+      "bytes": 427774,
+      "sha256": "cd589c5d7b7bedd1a610cc4206ecf71fcd758e74009460c5bf703edafcaa4f91"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/liu-hong.png",
+      "bytes": 447842,
+      "sha256": "13b09fc0bc287d670a4ad01a543fba65dcb8e9d1d26841466e64ff2583e395a6"
+    },
+    {
+      "path": "assets/portraits/v69/later-han/liu-xie.png",
+      "bytes": 444600,
+      "sha256": "e1597bd0a1695f31a7510ae7e962e43e81cb4e35d1f481c085468c0d6f1e3a7a"
+    },
+    {
+      "path": "assets/portraits/v69/shuhan/21-guan-yu.png",
+      "bytes": 452483,
+      "sha256": "2532f9e2697c76fe651abbbc52e117e7243fb1b3c272ef575539b2bae2d6cce5"
+    },
+    {
+      "path": "assets/portraits/v69/wei/100-dang-xun.png",
+      "bytes": 407976,
+      "sha256": "b7e814c56d5a95d890f612e302098e0f59b7c43e8e2399e20d186b06b07b28a9"
+    },
+    {
+      "path": "assets/portraits/v69/wei/16-wang-ling.png",
+      "bytes": 446631,
+      "sha256": "cccc40fe6e6e6dea4b0268aa80ececfb81c2e6964adb61815faec1a73f22e8a9"
+    },
+    {
+      "path": "assets/portraits/v69/wei/17-xiahou-yuan.png",
+      "bytes": 452004,
+      "sha256": "d29e9abd074867ae9b73b9b9856219cea56d8016332f4a28d43f440a828ba508"
+    },
+    {
+      "path": "assets/portraits/v69/wei/18-zhang-he.png",
+      "bytes": 464738,
+      "sha256": "26f51d49c38c6d6514d16524859a32f622a9c23ab0ec2155cef4cc141f3a2700"
+    },
+    {
+      "path": "assets/portraits/v69/wei/19-zhang-liao.png",
+      "bytes": 460716,
+      "sha256": "3f291a200bb424b6d308647102fef9a16fc3877dd1a9f3a49603b68f091254d0"
+    },
+    {
+      "path": "assets/portraits/v69/wei/22-yu-jin.png",
+      "bytes": 458875,
+      "sha256": "392b8ce734913905c3f2332497550cd865832cfb447cc2f897658b4994e04ea1"
+    },
+    {
+      "path": "assets/portraits/v69/wei/24-lü-chang.png",
+      "bytes": 424725,
+      "sha256": "ea3d6c403a82e97b69afb948e0929c03469dec66564774fa161e1fb2fb4d5520"
+    },
+    {
+      "path": "assets/portraits/v69/wei/25-guo-huai.png",
+      "bytes": 453965,
+      "sha256": "36534e4d6a910d2da0fdc1b2e849fb27f318e9690db10c9665e0bc21e54e4b24"
+    },
+    {
+      "path": "assets/portraits/v69/wei/26-guo-biao.png",
+      "bytes": 436380,
+      "sha256": "6801798a55b2bb533c2ccb084db2b24bbb0b8509ccb5792d4117b02524efbae0"
+    },
+    {
+      "path": "assets/portraits/v69/wei/28-xu-chu.png",
+      "bytes": 452675,
+      "sha256": "53f2988c298968469403c10717cb8e7589172e9ebf30d9df28932304bc48fbdd"
+    },
+    {
+      "path": "assets/portraits/v69/wei/29-cao-fan.png",
+      "bytes": 432010,
+      "sha256": "0bcb55272194a94a1cb0755223320f41b0f796948b4e54961637ecd9982b6140"
+    },
+    {
+      "path": "assets/portraits/v69/wei/30-cao-yu.png",
+      "bytes": 396098,
+      "sha256": "e088edee206d347600bb7a452aaec312f410a4972eba4f8803adbd52640a3cc0"
+    },
+    {
+      "path": "assets/portraits/v69/wei/31-liu-jing.png",
+      "bytes": 460706,
+      "sha256": "c97c3a75a5692579be801452ddb9e2a74f14558d3f76a06d75024bb5d392d92d"
+    },
+    {
+      "path": "assets/portraits/v69/wei/32-pang-hui.png",
+      "bytes": 446769,
+      "sha256": "5e80159f3431080a57791d649a2c9cc02c09cb52a4dc57d5b7ef5a4c439340dc"
+    },
+    {
+      "path": "assets/portraits/v69/wei/33-you-chu.png",
+      "bytes": 457590,
+      "sha256": "ca6d1a4da2b197ea3a14f424556cc628e0246747ab735277a7dbbf1271074e86"
+    },
+    {
+      "path": "assets/portraits/v69/wei/34-zhao-yan.png",
+      "bytes": 427815,
+      "sha256": "b9503a0fd5faf841c799167f6299c9d62bf8775147569636a0a6719848813729"
+    },
+    {
+      "path": "assets/portraits/v69/wei/36-bian-bing.png",
+      "bytes": 422295,
+      "sha256": "c1a13e469f1aa198027abf762aee7fb9c77ceefd9b201577e9a922a8bb2047ec"
+    },
+    {
+      "path": "assets/portraits/v69/wei/37-cao-cong.png",
+      "bytes": 423903,
+      "sha256": "788b9ec7734d98b5def1bad9429626b815ec27dd62a5a0a9ee4436d9a7f8b0fc"
+    },
+    {
+      "path": "assets/portraits/v69/wei/38-cao-kai.png",
+      "bytes": 418725,
+      "sha256": "5b967bc1c48b9f7105712f3aac2a6ff00218c5a024fd2e2ab91884a121df5ec2"
+    },
+    {
+      "path": "assets/portraits/v69/wei/39-cao-xi.png",
+      "bytes": 418192,
+      "sha256": "c4181af697c5ad194ed53aeda676a2af42ae3910f45d0f51fd5127aa55126290"
+    },
+    {
+      "path": "assets/portraits/v69/wei/40-cao-yi.png",
+      "bytes": 432426,
+      "sha256": "6de7752507c324dd39a1f5d37761325f88f62508f2e5823718800f7828f1ce9c"
+    },
+    {
+      "path": "assets/portraits/v69/wei/41-cheng-yu.png",
+      "bytes": 447543,
+      "sha256": "997a749beac74dfc594577d53affa9c5c504fe0d90b0fb1fc4bfead92294f33a"
+    },
+    {
+      "path": "assets/portraits/v69/wei/42-du-xi.png",
+      "bytes": 422053,
+      "sha256": "9542af2b77de1835b7408303744e253d046c035b39997fe249be548edd2308d6"
+    },
+    {
+      "path": "assets/portraits/v69/wei/43-fu-gu.png",
+      "bytes": 419491,
+      "sha256": "bed34c4113538c51d9390e5595058484e13481e9a6476d1b9212dda53eb7d538"
+    },
+    {
+      "path": "assets/portraits/v69/wei/44-guo-cheng.png",
+      "bytes": 439105,
+      "sha256": "c58189e5e67dc28b7cba3e2be4f6372ef5dd61ae92b3f2b3a80a1b24eb343f60"
+    },
+    {
+      "path": "assets/portraits/v69/wei/45-guo-du.png",
+      "bytes": 432270,
+      "sha256": "84038f6f4b55df11eee0bfbe2ff07531e175c06e58a0728546c84d2ed2417b13"
+    },
+    {
+      "path": "assets/portraits/v69/wei/46-guo-fu.png",
+      "bytes": 450266,
+      "sha256": "809826767ecc3c5c9e1b54363df9ab2e484be9d039a4a29c8e7f73c7e7912dcf"
+    },
+    {
+      "path": "assets/portraits/v69/wei/47-guo-zhi.png",
+      "bytes": 444791,
+      "sha256": "a75ee4646d883d977738207d089f37e6d5ce8c78ea91537614f65e3017bde743"
+    },
+    {
+      "path": "assets/portraits/v69/wei/48-hao-zhao.png",
+      "bytes": 460666,
+      "sha256": "34711fbad7a0333cf8cdb78a3e5ad2d4e44f5e204e8b741def073bbbff70a320"
+    },
+    {
+      "path": "assets/portraits/v69/wei/49-hu-zhi.png",
+      "bytes": 442123,
+      "sha256": "0cded877d4a1bea3e8253f42479211bb76d6123de1606f59c96f6c6d98382972"
+    },
+    {
+      "path": "assets/portraits/v69/wei/50-jia-kui.png",
+      "bytes": 443977,
+      "sha256": "53b6c093d44f91c3fff65ea87b6c4043b990d61dab80fa44d66e6a903a030b66"
+    },
+    {
+      "path": "assets/portraits/v69/wei/51-liu-ye.png",
+      "bytes": 428018,
+      "sha256": "c2e4ed099830152184e96f84654c19404cbc9b3adb4d184063055d0b5dd1f387"
+    },
+    {
+      "path": "assets/portraits/v69/wei/52-man-chong.png",
+      "bytes": 436766,
+      "sha256": "af5f3171db516fe2c08e23e69933366c95985afa6f2d3d1d020cb9764a5bdd02"
+    },
+    {
+      "path": "assets/portraits/v69/wei/53-pang-fu.png",
+      "bytes": 430993,
+      "sha256": "960bdf4f07f0b7607c3481aa37730795c45425ce7ce2241f69918ef974bad4bb"
+    },
+    {
+      "path": "assets/portraits/v69/wei/54-pei-qian.png",
+      "bytes": 423127,
+      "sha256": "163e2e8b3d776acf042a51d74660a4ee95b3699ffdae7eb756bde60a4f3c7c36"
+    },
+    {
+      "path": "assets/portraits/v69/wei/62-wang-chang.png",
+      "bytes": 449401,
+      "sha256": "bcacd66d40a662da07a5f1e890259c57f51c6b57940f23781d6b7ec41d4cacf8"
+    },
+    {
+      "path": "assets/portraits/v69/wei/63-wang-guan.png",
+      "bytes": 446550,
+      "sha256": "0c40517dfc48b5ef83056f5803a66b9a84f83fc8e81662cfa70eac572edb1bcd"
+    },
+    {
+      "path": "assets/portraits/v69/wei/64-wang-lang.png",
+      "bytes": 428538,
+      "sha256": "aaa465edeea918f362a949c77ce20c9d683c8065b3fb800a91523bdd419d0a3c"
+    },
+    {
+      "path": "assets/portraits/v69/wei/65-wen-ping.png",
+      "bytes": 473804,
+      "sha256": "cc9bc4723e94a7e3761f9605fda975b876a61eba43704653d7b4a82d99b4a195"
+    },
+    {
+      "path": "assets/portraits/v69/wei/68-xiahou-shang.png",
+      "bytes": 449369,
+      "sha256": "2bb129e7981073145ad19b356d57860611e94e3f10a7ef88bc948991f11d0b42"
+    },
+    {
+      "path": "assets/portraits/v69/wei/69-xu-huang.png",
+      "bytes": 475143,
+      "sha256": "5fc97cf5a68a013a0f0b1eee8b705bf9fa8295ad199952058f6bb4753c973b38"
+    },
+    {
+      "path": "assets/portraits/v69/wei/70-xu-xuan.png",
+      "bytes": 439689,
+      "sha256": "43a71c49e87da892df7dd6fa1642e8719dc2a838d172e40c991f4e3d784d6054"
+    },
+    {
+      "path": "assets/portraits/v69/wei/71-yan-pu.png",
+      "bytes": 412736,
+      "sha256": "2f00afbd336c5323b141a8b7b2ae67ad154616bd0b551fe3977edcf7052b741f"
+    },
+    {
+      "path": "assets/portraits/v69/wei/74-zang-ba.png",
+      "bytes": 461550,
+      "sha256": "2530cfd21a243884792414e9476c5702c9b75831fd18304ad22ea6599ad65482"
+    },
+    {
+      "path": "assets/portraits/v69/wei/75-zhen-de.png",
+      "bytes": 443398,
+      "sha256": "5cb497e4a05b0054a6a5ccee558a1ebddbb9b9f4e9f620ce075bc62c6e1e8917"
+    },
+    {
+      "path": "assets/portraits/v69/wei/76-zhen-wen.png",
+      "bytes": 435460,
+      "sha256": "d584fcbb849ad75f63e34cb663d536f8a2c7929123cd0f592ce034a0955738f2"
+    },
+    {
+      "path": "assets/portraits/v69/wei/77-zhen-xiang.png",
+      "bytes": 428819,
+      "sha256": "58e73441ea8b19ddb6e3dbb2c79017c22edf581e1570c48948134493c3734455"
+    },
+    {
+      "path": "assets/portraits/v69/wei/78-zhen-yi.png",
+      "bytes": 431753,
+      "sha256": "6971f98cc39a49dcb796e7793565f011a1a563c480105092fe957442a7e7323b"
+    },
+    {
+      "path": "assets/portraits/v69/wei/79-zhu-ling.png",
+      "bytes": 480068,
+      "sha256": "a5d7f71f3e54dc7f10ea137e6b0207585d98ed17e063b8d47a06f4b3ec948ea7"
+    },
+    {
+      "path": "assets/portraits/v69/wei/80-bian-guang.png",
+      "bytes": 439659,
+      "sha256": "137cc072f4e0fb651e90195a4217e6a11ab32392ee6996c2af72f9242d44b674"
+    },
+    {
+      "path": "assets/portraits/v69/wei/81-bian-hui.png",
+      "bytes": 450980,
+      "sha256": "cae77262f4cbdafcca8ff50fe70524694962933cd5cf9bafdf699fc24244d2e2"
+    },
+    {
+      "path": "assets/portraits/v69/wei/82-bian-lan.png",
+      "bytes": 415655,
+      "sha256": "a4dce32acf5ee0eb32edc167602ee6ec500308992b8aac284512eac16a6c4d2e"
+    },
+    {
+      "path": "assets/portraits/v69/wei/83-bian-yuan.png",
+      "bytes": 442153,
+      "sha256": "226195f2748ec86b311799aecb5673b63df4a71f5c0461a4f5c26f66372fe18d"
+    },
+    {
+      "path": "assets/portraits/v69/wei/84-cao-ai.png",
+      "bytes": 428495,
+      "sha256": "b59ca55a0ad7507e3a1e3420d0dcb298570cd8320cbb669896d3ae753585f8a9"
+    },
+    {
+      "path": "assets/portraits/v69/wei/85-cao-bin.png",
+      "bytes": 422672,
+      "sha256": "3dc33c416a24f2a35babfe0b1eba78d751bbf3b9dc1e3a98cea4195209427f92"
+    },
+    {
+      "path": "assets/portraits/v69/wei/86-cao-chu.png",
+      "bytes": 422772,
+      "sha256": "ac2ac2d185783483dcb1a1eda4e8224785f40166ca3d26214dbbd5ac0f32c0bd"
+    },
+    {
+      "path": "assets/portraits/v69/wei/87-cao-kang.png",
+      "bytes": 406108,
+      "sha256": "b1363a1775cb7697f09aef32089f89b5683825347eeb65ad04d8ed59c63ff694"
+    },
+    {
+      "path": "assets/portraits/v69/wei/88-cao-min.png",
+      "bytes": 409520,
+      "sha256": "b4ece7a15a069cfb491742bd360870986434d34a3a50e08ff523e5bfb3c58673"
+    },
+    {
+      "path": "assets/portraits/v69/wei/89-cao-tai.png",
+      "bytes": 420072,
+      "sha256": "07b0cb0494d14302df35c9d957ed2aaf941a391b0bbd8e252cfa2ccd10548df4"
+    },
+    {
+      "path": "assets/portraits/v69/wei/90-cao-xun.png",
+      "bytes": 413507,
+      "sha256": "e5516510f3ab0e531260b8a23d34f2c4d4b0ad447e771445fe6b9735287eacb5"
+    },
+    {
+      "path": "assets/portraits/v69/wei/91-cao-yan.png",
+      "bytes": 422432,
+      "sha256": "57bd47cc5746d4f97bdb4e834448244b4b9416690a36c167b0868f836dbbbd51"
+    },
+    {
+      "path": "assets/portraits/v69/wei/92-cao-yu.png",
+      "bytes": 400380,
+      "sha256": "a526389c9e6883a5365df086e88b1e78edf64b6675a70df19406676daa555fbf"
+    },
+    {
+      "path": "assets/portraits/v69/wei/93-cao-zan.png",
+      "bytes": 422149,
+      "sha256": "1200641785ff03fdb8391a841e992cf7032e2a930c0d49fb7f19d50942c3c746"
+    },
+    {
+      "path": "assets/portraits/v69/wei/94-cao-ze.png",
+      "bytes": 393523,
+      "sha256": "d93d615c78f3e78d1b26bbb84e8cd1499d671a95a687da92647a119f9b530efc"
+    },
+    {
+      "path": "assets/portraits/v69/wei/95-cao-zhen.png",
+      "bytes": 406079,
+      "sha256": "bb54ad093da60ef646c3404d59cdbcd6883a4ffe2a043870cb75dc715a53fae8"
+    },
+    {
+      "path": "assets/portraits/v69/wei/96-cao-zi-zheng.png",
+      "bytes": 416785,
+      "sha256": "03039f48c38919a58cdb35db334dbd25d3cf0791a1063fde5955e69623cb9207"
+    },
+    {
+      "path": "assets/portraits/v69/wei/97-cao-zuan.png",
+      "bytes": 409724,
+      "sha256": "adfa12fc302959990e5e13c1cbc5b60e056c6ab13f4b26f94053ed4dc61c15f6"
+    },
+    {
+      "path": "assets/portraits/v69/wei/98-chen-wen.png",
+      "bytes": 394473,
+      "sha256": "ce8e7eabcf89bde2bb2ec190b3b0febf0e27390879494e31735a00377dfea4fa"
+    },
+    {
+      "path": "assets/portraits/v69/wei/99-cheng-xi.png",
+      "bytes": 430356,
+      "sha256": "be01558e95fa895ffeeeb7e26eb6e0d45ca1e671f559ea3bdc34e6b87334301d"
+    },
+    {
+      "path": "assets/portraits/v69/wei/cao-huan.png",
+      "bytes": 430351,
+      "sha256": "263262cdc41cc4df000435b288a96c2c661051e86a6dc3f53ee473b06d447518"
+    },
+    {
+      "path": "assets/portraits/v69/wei/cao-pi.png",
+      "bytes": 434274,
+      "sha256": "9bab0dea5c3fa9187e054641625b83072e8fa17c1c1e0ee7c9c1cd263d40e0ae"
+    },
+    {
+      "path": "assets/portraits/v69/wei/cao-xiu.png",
+      "bytes": 443895,
+      "sha256": "b9b610dc6c3c3a419c255374f2a2fc487b856b361d53cd7a4a69e96da682ffa6"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/23-luo-shang.png",
+      "bytes": 426236,
+      "sha256": "c208b16ad95360341af89944c1448937bb68b897016eec85b649b0c22b47c013"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/27-lu-zhi.png",
+      "bytes": 440103,
+      "sha256": "ad4d8b42eae42046db39fb9b0aa6c438eea110e64901551eff540bb5bbb3f547"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/35-zheng-mao.png",
+      "bytes": 423993,
+      "sha256": "b320205e9b45600f5e54b7365ac1c43ea787ff726d04cd18c977db9a5075d309"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/55-qiao-zhou.png",
+      "bytes": 443744,
+      "sha256": "24e86971e0f0b7d08da8e140f8f7c26e7fa254ea7ad3be4e6935850dabdd6c49"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/56-si-ma-gan.png",
+      "bytes": 445538,
+      "sha256": "737c93a490335f5f8f3a6ba38fa4a6982ceb1f599d4760fd27602e69bec4021b"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/57-si-ma-jun.png",
+      "bytes": 469026,
+      "sha256": "4150a12268feb2a1630c64e7556fedb639b2c956a53e9381d0e7b119a746765e"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/58-si-ma-liang.png",
+      "bytes": 431556,
+      "sha256": "39c392d310bd4be7f37aa6d8e66abf8391724508b20fa8b0ccd4223ece46bc1e"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/59-si-ma-sui.png",
+      "bytes": 443519,
+      "sha256": "ef854cafb35a727e628b91e661969410125ca83e35779ff24784b5e97b474bdb"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/60-si-ma-xun.png",
+      "bytes": 431103,
+      "sha256": "5c2c998f506fa12b256cd0d7dab2b697b748facc5680987e25f0454d944074c0"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/61-si-ma-zhu.png",
+      "bytes": 449502,
+      "sha256": "6916dcf2a9d1670eb85fb2bfaca75def7d231f031636506c0adf0a3fca3b5e2e"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/66-wu-gai.png",
+      "bytes": 436142,
+      "sha256": "ec1388467df09d73ea672ec0c5d46711c99902cbd4206080a0aaf1746a5b3a15"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/67-xi-zheng.png",
+      "bytes": 441327,
+      "sha256": "73773414f3906a96dcd45c2528405e20e0a9360f594a2586752ce0453444e679"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/72-yang-xiu.png",
+      "bytes": 426676,
+      "sha256": "7cf9677c290645b4073783141487e09bfcf9db4459bf0cddcc9f7ac108cb2cdb"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/chen-qian.png",
+      "bytes": 434359,
+      "sha256": "5029a21c3c24c8af2384e7d47f7084b33585d2bca1c2fe9ba9e9ec069210a619"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/li-xi.png",
+      "bytes": 411999,
+      "sha256": "09b51dd5815a18aa41b551d41f447b794e88588144e28ee6026a20a8340cf242"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/li-yin.png",
+      "bytes": 422843,
+      "sha256": "eec7a4dff7e64966f7035515e5b063297ae1e9379e1afb7b2796e215fd271a48"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/shi-jian.png",
+      "bytes": 450863,
+      "sha256": "8c70ad621499b7d8a679daefe5b7db753a2bbdeae687fb2a712ee1b4413cab58"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/si-ma-zhong.png",
+      "bytes": 427610,
+      "sha256": "84aff12c7a2354aa2b89d5208f9bc7cbea58760a4a87b045a4af8568b76f1eb4"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/wang-xiang.png",
+      "bytes": 434041,
+      "sha256": "f430cea92ba0a99b0a035f6683ec3fa7115f57932432c222dde0250ce4cbcbd9"
+    },
+    {
+      "path": "assets/portraits/v69/western-jin/wei-guan.png",
+      "bytes": 447438,
+      "sha256": "5f4256a1b5073caa41e92539cd95e2c2a9758087b048f7a57e64ec780dc408bb"
+    },
+    {
+      "path": "assets/portraits/v69/wu/20-sun-ce.png",
+      "bytes": 448303,
+      "sha256": "6a043bb71e408320a2ccd797f774c0b05855d98f06531acdb00dbad991d232a1"
+    },
+    {
+      "path": "assets/portraits/v69/wu/sun-liang.png",
+      "bytes": 453744,
+      "sha256": "15f68bbd62ce806940278c1f226e871e522b6ca8cb6f99e9d87dbfd29a1626db"
+    },
+    {
+      "path": "assets/portraits/v69/wu/sun-xiu.png",
+      "bytes": 451133,
+      "sha256": "48165bbae6d5f5b6db1601f1c04dc79f2bdd173dd6909d8f3372b04d76b0b823"
+    },
+    {
+      "path": "assets/portraits/v70/wei/01.png",
+      "bytes": 477200,
+      "sha256": "8c1e0efad01e0a601b286af04118979b4b1435ec2e27019f1b9a5d8450ab5a24"
+    },
+    {
+      "path": "assets/portraits/v70/wei/02.png",
+      "bytes": 486193,
+      "sha256": "c899f8f2afc730d29cc9ad34989b19b1ab882e3febe887a8edabd7901a85f339"
+    },
+    {
+      "path": "assets/portraits/v70/wei/03.png",
+      "bytes": 515483,
+      "sha256": "68c1dabaf1497c776006f16087d094f4dd86944be53e15594ca4fd938f693792"
+    },
+    {
+      "path": "assets/portraits/v70/wei/04.png",
+      "bytes": 487837,
+      "sha256": "f8ffe9c7d894394f51f3233ed3c49c62266bc02cef44e01a392935a5ae70e934"
+    },
+    {
+      "path": "assets/portraits/v70/wei/05.png",
+      "bytes": 456775,
+      "sha256": "d3f7a935a1ba42c7d34d4ef9e1813e7750358e11f4f856d1bdd9a48332494f6a"
+    },
+    {
+      "path": "assets/portraits/v70/wei/06.png",
+      "bytes": 473272,
+      "sha256": "28bd4095bb5c51581ae3a88609834b81ab466a1e021e9daaf4a1ec9c0093e1d7"
+    },
+    {
+      "path": "assets/portraits/v70/wei/07.png",
+      "bytes": 479074,
+      "sha256": "3d8399324cabc66dffbc950224d233aafc5bad69ca02b8c51e2c680a39a9ee88"
+    },
+    {
+      "path": "assets/portraits/v70/wei/08.png",
+      "bytes": 482065,
+      "sha256": "364facefe06aad10797e46b3268c9d34aecf4ec69c696c8aac21d283402416f9"
+    },
+    {
+      "path": "assets/portraits/v70/wei/09.png",
+      "bytes": 520887,
+      "sha256": "155b93f9ce543f3b43208c102d9370d634d100e427a46047905355a2b603c450"
+    },
+    {
+      "path": "assets/portraits/v70/wei/10.png",
+      "bytes": 502906,
+      "sha256": "c6c5bcce6b08213556fd8591f9145ab9ae66e0775337ec8e6761de350565f3bf"
+    },
+    {
+      "path": "assets/portraits/v70/wei/11.png",
+      "bytes": 473891,
+      "sha256": "c47fad555d69e0b0c8cc3d8895d38b08ce77cebea209ca9bbaf73047aea1db7f"
+    },
+    {
+      "path": "assets/portraits/v70/wei/12.png",
+      "bytes": 501391,
+      "sha256": "75ba24059d8b5f1482a701f1f491b300ee9446d9c8da29dc9b56481bae391ffc"
+    },
+    {
+      "path": "assets/portraits/v70/wei/13.png",
+      "bytes": 480526,
+      "sha256": "dfcc0c1751d25a2552698bd617fd24b6ed37d96989ca48d24cc0cb8d7ee13528"
+    },
+    {
+      "path": "assets/portraits/v70/wei/14.png",
+      "bytes": 488663,
+      "sha256": "72dfebf992681c70ced0460a4906104fdb4d216cd5ce8ff88d4eff3f10aed6f3"
+    },
+    {
+      "path": "assets/portraits/v70/wei/15.png",
+      "bytes": 464091,
+      "sha256": "a93cbacbe76826be3e78a1e565a48b5ea3e84e0d819960f732cb43b7a744bd09"
+    },
+    {
+      "path": "assets/portraits/v70/wei/16.png",
+      "bytes": 494499,
+      "sha256": "56502553c3186edca31ff47d957e2a72f0785e477b2947b1ab203ee81c05faf4"
+    },
+    {
+      "path": "assets/portraits/v70/wei/17.png",
+      "bytes": 465999,
+      "sha256": "f8c0411f58e2a2f0c808166e470d18c355eb543f07649124f2ac968cf219c0c4"
+    },
+    {
+      "path": "assets/portraits/v70/wei/18.png",
+      "bytes": 490689,
+      "sha256": "1b424cdd0f9ec4dc7bc4e9bb859bd70a3434a56d9c2e6f7b9196413bec8563ca"
+    },
+    {
+      "path": "assets/portraits/v70/wei/19.png",
+      "bytes": 475723,
+      "sha256": "4a06e7f82f98aba8a7963b1888a6a1342d929e572fe9eb31f4b0731db28aeff9"
+    },
+    {
+      "path": "assets/portraits/v70/wei/20.png",
+      "bytes": 500920,
+      "sha256": "d35e08b54e040568b35b3a7ee64e6fbdcda3252fcd0cbe99e4642a5d60f93989"
+    },
+    {
+      "path": "assets/portraits/v70/wei/21.png",
+      "bytes": 481856,
+      "sha256": "aabc9a942d23c46459fb3c239c0494db6f28e337d0d9bb59656f69bfa17189e8"
+    },
+    {
+      "path": "assets/portraits/v70/wei/22.png",
+      "bytes": 505252,
+      "sha256": "c8d7adbcea2ab648f74fa127de1b68379f90a8bb7a0fa4a8beae52a0d91773ad"
+    },
+    {
+      "path": "assets/portraits/v70/wei/23.png",
+      "bytes": 487514,
+      "sha256": "5122c1dfb8ecf63e35345c2ee1af892403a65472f49b96cc8dc72e4808a64d1a"
+    },
+    {
+      "path": "assets/portraits/v70/wei/24.png",
+      "bytes": 496089,
+      "sha256": "fa157e84b3836eb2a4d8440e2ecf12887a2ffaa86b4ba192c0591e5fc7c12b81"
+    },
+    {
+      "path": "assets/portraits/v70/wei/25.png",
+      "bytes": 475001,
+      "sha256": "4864ba8d2d6e67cf106ff27c32a0263280fd033e4068dd566bac1fc684bc7d1a"
+    },
+    {
+      "path": "assets/portraits/v70/wei/26.png",
+      "bytes": 475052,
+      "sha256": "9e727d5f1bc018e07f1292992634a88f241ebf65f146b4e2427537103b0d8689"
+    },
+    {
+      "path": "assets/portraits/v70/wei/27.png",
+      "bytes": 476330,
+      "sha256": "55fd028c8392477b3c4f961297788c2fab109384e6d7db6efc9aadde5e15cf09"
+    },
+    {
+      "path": "assets/portraits/v70/wei/28.png",
+      "bytes": 506228,
+      "sha256": "34f7d4f75ddb850fd08369734009249d8e97d090b1220468e3e29ec3e0b5564e"
+    },
+    {
+      "path": "assets/portraits/v70/wei/29.png",
+      "bytes": 489690,
+      "sha256": "653e878a4d144dca8278550d67905969b60a3798a5f4fb71a7579ce70fafc425"
+    },
+    {
+      "path": "assets/portraits/v70/wei/30.png",
+      "bytes": 513530,
+      "sha256": "a7599cc72897c0a091b1017c69635b8a9f97bffc27d4f1a062439561eb8b5a3d"
+    },
+    {
+      "path": "assets/portraits/v70/wei/31.png",
+      "bytes": 510131,
+      "sha256": "aeff6aabbe8a0f17f719b0626ad2951ba891a065f913c77f8644216cfaee0109"
+    },
+    {
+      "path": "assets/portraits/v70/wei/32.png",
+      "bytes": 481878,
+      "sha256": "57e57183e8080f9069721cdb22a070012e0eee883d2b7dfe5c52f07d106df1cb"
+    },
+    {
+      "path": "assets/portraits/v70/wei/33.png",
+      "bytes": 539629,
+      "sha256": "d668a987f842ef8a0c8ef82e8d87cb2e6267ae9abc09633bbe12a67caef120c1"
+    },
+    {
+      "path": "assets/portraits/v70/wei/34.png",
+      "bytes": 471336,
+      "sha256": "2f78b5231f67830eb248004c41cb9f8a83fce0bef2c724327fe44f90df515026"
+    },
+    {
+      "path": "assets/portraits/v70/wei/35.png",
+      "bytes": 445357,
+      "sha256": "031795c4f5384048054249c4fe023be94c5ea60430d1ec7d802a7f4c46ee549d"
+    },
+    {
+      "path": "assets/portraits/v70/wei/36.png",
+      "bytes": 492396,
+      "sha256": "1b9fd7d3062c84c04573711ed65b29ca916592b64714af460d39d1a8a37989af"
+    },
+    {
+      "path": "assets/portraits/v70/wei/37.png",
+      "bytes": 477622,
+      "sha256": "f8156a68ff8f31eda7aab487176c46330d100e0c70a7baa178ad651b36d132a7"
+    },
+    {
+      "path": "assets/portraits/v70/wei/38.png",
+      "bytes": 465943,
+      "sha256": "23bacf5ac752c2167d005972a8e8167c24a16d0a230fceaa02387ad662d52595"
+    },
+    {
+      "path": "assets/portraits/v70/wei/39.png",
+      "bytes": 521996,
+      "sha256": "70502373d2cf6103bae03542717e80b8f720857c5b81f51006637f55e95dc49c"
+    },
+    {
+      "path": "assets/portraits/v70/wei/40.png",
+      "bytes": 501613,
+      "sha256": "4c176587ef34779363a8dbd441d1df0e315d01f96e7d65eb4a0811d111d8f5df"
+    },
+    {
+      "path": "assets/portraits/v70/wei/41.png",
+      "bytes": 472219,
+      "sha256": "18bb78b0a1732e0bc193250eef561a151a50297080bbadb3672401ff3a5b639c"
+    },
+    {
+      "path": "assets/portraits/v70/wei/42.png",
+      "bytes": 459164,
+      "sha256": "294556f123ced7fc2bb0f76e23f89aa4e75045305d32d1c76c199e0d230ea9c6"
+    },
+    {
+      "path": "assets/portraits/v70/wei/43.png",
+      "bytes": 500460,
+      "sha256": "6776e94a323989565e5d4eae84cf19b09124ccd7194e9b3593ba3788badeb3c5"
+    },
+    {
+      "path": "assets/portraits/v70/wei/44.png",
+      "bytes": 461975,
+      "sha256": "6ee43b8b22d5053a8ccfdedeab1c0e3f2c91917837836585554fc197f56d5625"
+    },
+    {
+      "path": "assets/portraits/v70/wei/45.png",
+      "bytes": 504855,
+      "sha256": "36713e375820d02bf626cb574a0c096d012ffae6b7451cb6f269a159919a9c7c"
+    },
+    {
+      "path": "assets/portraits/v70/wei/46.png",
+      "bytes": 475733,
+      "sha256": "c5737e19a48917c5ff4c9faa9a7c4943480f17b2e83b9b1062f451c40e5a4f0f"
+    },
+    {
+      "path": "assets/portraits/v70/wei/47.png",
+      "bytes": 492549,
+      "sha256": "f2408b71e28d99b45fbf518ad3c5c7bdc4c70e3f2fb0dcb907c92ebd60a6f221"
+    },
+    {
+      "path": "assets/portraits/v70/wei/48.png",
+      "bytes": 492187,
+      "sha256": "5d2c5ac572255d7b5c7ea6fd9e5b757187a905c56c98d79cb0c2503dff16c248"
+    },
+    {
+      "path": "assets/portraits/v70/wei/49.png",
+      "bytes": 501186,
+      "sha256": "fac0747213398a15155067600f0c73d003ff48c10c6e4cb9213aed356f1d458c"
+    },
+    {
+      "path": "assets/portraits/v70/wei/50.png",
+      "bytes": 477119,
+      "sha256": "8bff59220ab24c9c6f0d2851f9f055a1dea37bfbae2f4861e90de6d3ff16dc1b"
+    },
+    {
+      "path": "assets/portraits/v73/shu/001.png",
+      "bytes": 203141,
+      "sha256": "0ec28d7ce860ec82733b66a34810ccc4e42cf4f5e365bb1ec65b3358c1adae1d"
+    },
+    {
+      "path": "assets/portraits/v73/shu/002.png",
+      "bytes": 199638,
+      "sha256": "e0d32afdbf229e6d904f7a94d69669a478a6420ce0c0f4b7fa25a94b155393d4"
+    },
+    {
+      "path": "assets/portraits/v73/shu/003.png",
+      "bytes": 201968,
+      "sha256": "803476f7e9e9a67c64f1fc704c1374da55dd998898d05351ffbe94cd9b9f7951"
+    },
+    {
+      "path": "assets/portraits/v73/shu/004.png",
+      "bytes": 202159,
+      "sha256": "d887b2a7a62295d90e68f7234863c68c3e269613b85f8fd860cb0be1e78abe12"
+    },
+    {
+      "path": "assets/portraits/v73/shu/005.png",
+      "bytes": 199531,
+      "sha256": "c160076187137424f4af81353e22f40e10b66b2678c6a925414c04fb235f2b19"
+    },
+    {
+      "path": "assets/portraits/v73/shu/006.png",
+      "bytes": 199943,
+      "sha256": "993d6060a5f2dd931ef85cbc9e43e676a299fa3ec7b1cab815d168935c57d3a9"
+    },
+    {
+      "path": "assets/portraits/v73/shu/007.png",
+      "bytes": 199623,
+      "sha256": "4e70eb74d77271cfc98dcc717a48afdf41568ff919281dfb7d3c2261ff127574"
+    },
+    {
+      "path": "assets/portraits/v73/shu/008.png",
+      "bytes": 199991,
+      "sha256": "79d954f73e4f771f6f98d6e38dd3d2e3654764bde9b5612fa67ee7dd056e047c"
+    },
+    {
+      "path": "assets/portraits/v73/shu/009.png",
+      "bytes": 202383,
+      "sha256": "4f55e44a1afbbe364f9483e333b447bfd793621826c4ae06a63a786bd6d7d88f"
+    },
+    {
+      "path": "assets/portraits/v73/shu/010.png",
+      "bytes": 204907,
+      "sha256": "0a2276eeb35e430e8dcbd51f66b21f4cadfa47fffe257642de0895ef8a9c352d"
+    },
+    {
+      "path": "assets/portraits/v73/shu/011.png",
+      "bytes": 201748,
+      "sha256": "4b94e6ea47636f5bc7a9ec1370ec0bc4ea7ebec7a4e1f93a9c5ade4ebeca9c0a"
+    },
+    {
+      "path": "assets/portraits/v73/shu/012.png",
+      "bytes": 211491,
+      "sha256": "39dc9fb8cdcef9805caa4a5f0be07c38865c9b1d7507be4b6012f0fd02ab5f4f"
+    },
+    {
+      "path": "assets/portraits/v73/shu/013.png",
+      "bytes": 204375,
+      "sha256": "a2e06e65ecfa991078112543d413cf0d006e6d29451ad2c73c0f98760015bcdd"
+    },
+    {
+      "path": "assets/portraits/v73/shu/014.png",
+      "bytes": 204765,
+      "sha256": "1ea047783ef6d72cfd2adf5b750446b7352383c4a81e0d0ae47c12f8c9e8a17c"
+    },
+    {
+      "path": "assets/portraits/v73/shu/015.png",
+      "bytes": 204568,
+      "sha256": "d93caf14b015379d7e9c99beb311c70171afa1df3db0984e20d972a86f60e5d5"
+    },
+    {
+      "path": "assets/portraits/v73/shu/016.png",
+      "bytes": 214478,
+      "sha256": "dc49da115e7b83dea6e2d51520d65b7bd5e43a4a97c6b62865862c0b2c269d46"
+    },
+    {
+      "path": "assets/portraits/v73/shu/017.png",
+      "bytes": 208669,
+      "sha256": "3d37c7c604664497d3d7a263f3b5d38986aceb5b24aa6429f9941bc3d58ffe90"
+    },
+    {
+      "path": "assets/portraits/v73/shu/018.png",
+      "bytes": 203342,
+      "sha256": "2bb20235a2d9f0f80746da4f94d2602aba93d6121834238082c5f6431b19bfba"
+    },
+    {
+      "path": "assets/portraits/v73/shu/019.png",
+      "bytes": 202495,
+      "sha256": "cbfdb92b0a0ea3eb861361b4e0e74c4b05651530c282aecc6a03ffb07671f3e2"
+    },
+    {
+      "path": "assets/portraits/v73/shu/020.png",
+      "bytes": 203396,
+      "sha256": "99d18155116b1f3a0a93b4061724641c70b9ee80f10ca0cc34f56cfe1cdf3bb9"
+    },
+    {
+      "path": "assets/portraits/v73/shu/021.png",
+      "bytes": 200616,
+      "sha256": "a8e1024000b56724eb638f63b346a833483dd263a6c770ec74a279a20262db9e"
+    },
+    {
+      "path": "assets/portraits/v73/shu/022.png",
+      "bytes": 204097,
+      "sha256": "8b37a485c62f2b6dec290de39fd5e2c0d7ea71348b23b9b751953b4aab96f852"
+    },
+    {
+      "path": "assets/portraits/v73/shu/023.png",
+      "bytes": 204350,
+      "sha256": "2e6b05cf592e983f12502726457673e92c27f39791baf81f2bfa36bfe2f6b9fa"
+    },
+    {
+      "path": "assets/portraits/v73/shu/024.png",
+      "bytes": 202054,
+      "sha256": "5ad63a10e41133b18d5d0791b87ead935693af43565b381b47487f5104aaf96f"
+    },
+    {
+      "path": "assets/portraits/v73/shu/025.png",
+      "bytes": 201944,
+      "sha256": "1d9faf406e058b8c55a6b0450a1a7fb2a4f0d086c87541577d26e0269ef2aecc"
+    },
+    {
+      "path": "assets/portraits/v73/shu/026.png",
+      "bytes": 201146,
+      "sha256": "e60fa3867d3cbed77db60bc2601fcf1667ccb46e859119d00dadf3da5c19303e"
+    },
+    {
+      "path": "assets/portraits/v73/shu/027.png",
+      "bytes": 202057,
+      "sha256": "b9a99bec2d58d526477ab6358af2d1afaa6701fabe47a864166171fc5e970fe4"
+    },
+    {
+      "path": "assets/portraits/v73/shu/028.png",
+      "bytes": 201988,
+      "sha256": "f758a073f887ecaafa91ff845b883d76377b2fb80ccd98bf1db0a3b291aec0a4"
+    },
+    {
+      "path": "assets/portraits/v73/shu/029.png",
+      "bytes": 200062,
+      "sha256": "a23c2e6df8e9cf706e5ce44e6841799543fefae7f480666aac36e68b0f9f96e6"
+    },
+    {
+      "path": "assets/portraits/v73/shu/030.png",
+      "bytes": 204178,
+      "sha256": "32472c0a63490b783462bf3a8ea726a3b04692efc167bd6d1d8abf8be8b522ad"
+    },
+    {
+      "path": "assets/portraits/v73/shu/031.png",
+      "bytes": 204931,
+      "sha256": "6390f257dabc2567ccd84cf749ca11927c41e079244acf7d32c19f2d8bba0f84"
+    },
+    {
+      "path": "assets/portraits/v73/shu/032.png",
+      "bytes": 201994,
+      "sha256": "872cc63a8ad47ca1bdc4e74d19126b8637b8cb11034c691b1874dd5cb2270a76"
+    },
+    {
+      "path": "assets/portraits/v73/shu/033.png",
+      "bytes": 202285,
+      "sha256": "703f7bd5332471907b7a42a3b43f64cb6e0a2380bad1cb62c7950f7a17fdc5fa"
+    },
+    {
+      "path": "assets/portraits/v73/shu/034.png",
+      "bytes": 199002,
+      "sha256": "9f9649230368098ee12ac594cac006ac53a0cd0ee21ae8e8c2dd3515f5abcafd"
+    },
+    {
+      "path": "assets/portraits/v73/shu/035.png",
+      "bytes": 197951,
+      "sha256": "be7ad3529c884d8dac43e35ed06372c5ca5be204104e9fce6d97879a535886eb"
+    },
+    {
+      "path": "assets/portraits/v73/shu/036.png",
+      "bytes": 206136,
+      "sha256": "1ce462ea145b942d635c3fcbaf6692588178980547035581101b4621c13fc819"
+    },
+    {
+      "path": "assets/portraits/v73/shu/037.png",
+      "bytes": 205023,
+      "sha256": "b6ecc4ba1b8f0e72b0d25660c9013a161444e633f3fb923479ecf76ba2f16250"
+    },
+    {
+      "path": "assets/portraits/v73/shu/038.png",
+      "bytes": 204549,
+      "sha256": "4ef2cc815990e92feb06ce171feb390b13755104df9dd3956d783a3385497fba"
+    },
+    {
+      "path": "assets/portraits/v73/shu/039.png",
+      "bytes": 206300,
+      "sha256": "30eb90a548fabd9d051d43ad546c0fc74fc8328367fdbb7ee9f80f89c8f41404"
+    },
+    {
+      "path": "assets/portraits/v73/shu/040.png",
+      "bytes": 204805,
+      "sha256": "aa25a7b6c27250d5fc72997602078134bce11747597c4e22589ac7adcd1cf1dd"
+    },
+    {
+      "path": "assets/portraits/v73/shu/041.png",
+      "bytes": 201137,
+      "sha256": "d0cb30f9a926a99eeb692cd3a57d6d0ca66a94e342f42415ea388d7ca40d8291"
+    },
+    {
+      "path": "assets/portraits/v73/shu/042.png",
+      "bytes": 204892,
+      "sha256": "9185ab20483744dd20a64cbd1c18cc463ceb4c71be63e785fb2818852d4bfb9e"
+    },
+    {
+      "path": "assets/portraits/v73/shu/043.png",
+      "bytes": 204102,
+      "sha256": "99d8ac89885d192cd1da1af36b8234b598f4f6e9b29d32f27b445733ab3bd547"
+    },
+    {
+      "path": "assets/portraits/v73/shu/044.png",
+      "bytes": 204092,
+      "sha256": "2f92a4a318fa670a8fb0579de29213d74f81149bf6fb887bd11f66755ed8d542"
+    },
+    {
+      "path": "assets/portraits/v73/shu/045.png",
+      "bytes": 203562,
+      "sha256": "b00ce80e1e60f44eb953c41aa93949801fb45b494b11f8bbdd9eed4db267bbba"
+    },
+    {
+      "path": "assets/portraits/v73/shu/046.png",
+      "bytes": 203329,
+      "sha256": "751501b59783dee653b81d6b6a042dfd915433ffdccde8b52a6452ad095587a5"
+    },
+    {
+      "path": "assets/portraits/v73/shu/047.png",
+      "bytes": 199385,
+      "sha256": "3d99c713b81cab36c7a574b0a64709fa878a0b5247f0392025c0c90b47c358c7"
+    },
+    {
+      "path": "assets/portraits/v73/shu/048.png",
+      "bytes": 203205,
+      "sha256": "c8f2b07c7d4cb38fefc06fd042a47cc1855c1f8d0aa2558c110835c6cc41c3fe"
+    },
+    {
+      "path": "assets/portraits/v73/shu/049.png",
+      "bytes": 201339,
+      "sha256": "efcbcdd567e216168666e169602b6b5395600cc4ab6d5535b6fbfdbe125c5100"
+    },
+    {
+      "path": "assets/portraits/v73/shu/050.png",
+      "bytes": 202009,
+      "sha256": "af1422e10593888359ef3896aaca16f7ddb46fe8526ff59b771e9df5e5b5be68"
+    },
+    {
+      "path": "assets/portraits/v73/shu/051.png",
+      "bytes": 203656,
+      "sha256": "4803828df5ab9ad23f05b2e5a20869213cadb84a66805ccf0cf007913fa162ff"
+    },
+    {
+      "path": "assets/portraits/v73/shu/052.png",
+      "bytes": 202275,
+      "sha256": "47b3ba699af1a20f26d7ce0309a85bd39a4a4b492dd9511a6c7d8eff3bba4a71"
+    },
+    {
+      "path": "assets/portraits/v73/shu/053.png",
+      "bytes": 200911,
+      "sha256": "5a199c8d611e90430451eb4aae301ac93316f96b700ec1038a2cdd6d1594cad7"
+    },
+    {
+      "path": "assets/portraits/v73/shu/054.png",
+      "bytes": 203060,
+      "sha256": "945fa5244d1cecbf8feb132094ac4ab60d764fe85d2b75f14299ab47ed04e9a5"
+    },
+    {
+      "path": "assets/portraits/v73/shu/055.png",
+      "bytes": 214622,
+      "sha256": "54f5ee36b531976df067b1268c451a4d6d984a0b5f4d30b3d75d9ea5aa78be96"
+    },
+    {
+      "path": "assets/portraits/v73/shu/056.png",
+      "bytes": 207780,
+      "sha256": "e05be02595067ec601e58c619e79f5822d8f3047d7d9a9b295e5a0f518bda414"
+    },
+    {
+      "path": "assets/portraits/v73/shu/057.png",
+      "bytes": 212937,
+      "sha256": "c10cceb1582c0558febad5d258652cbbf367cc6642d6d01e413f64e0f7e2e27d"
+    },
+    {
+      "path": "assets/portraits/v73/shu/058.png",
+      "bytes": 199928,
+      "sha256": "1b2540fd0ea7c7860214b0531a404e188e7ff0fe3dfcb6a493aefc13cfd6ecf0"
+    },
+    {
+      "path": "assets/portraits/v73/shu/059.png",
+      "bytes": 203741,
+      "sha256": "63346badc918eb8cfffbc3d6226aa84668fbe3a7e1a8a5e4bba4a1ce60ddd346"
+    },
+    {
+      "path": "assets/portraits/v73/shu/060.png",
+      "bytes": 202425,
+      "sha256": "d667a3b17d02d1fa5e8106248f3c34f15872867f32ed6af6c3e4f19dfe2e59cc"
+    },
+    {
+      "path": "assets/portraits/v73/shu/061.png",
+      "bytes": 200396,
+      "sha256": "7cc2ec2df98bc6d7b5307607ee482b3a4cbeb4cc81e34947ba43ab70a6fa799a"
+    },
+    {
+      "path": "assets/portraits/v73/shu/062.png",
+      "bytes": 205529,
+      "sha256": "d1ab734ef26b706bed611095bd598f4cd5cb3c0464c24728185bfe9252bc2e21"
+    },
+    {
+      "path": "assets/portraits/v73/shu/063.png",
+      "bytes": 207142,
+      "sha256": "bc5ea8f8443d0709787e225a8878b0e6542bf322bbb4f95969366fbc6a15e625"
+    },
+    {
+      "path": "assets/portraits/v73/shu/064.png",
+      "bytes": 200562,
+      "sha256": "5f38d472e0575e0848f818ca5ec6f82e5cc878c2873487a51094f81bf9ab8d4c"
+    },
+    {
+      "path": "assets/portraits/v73/shu/065.png",
+      "bytes": 206239,
+      "sha256": "c12f5b11d604cfcfecf8f54ce76c68e517d5dbc045ebfd6f9ef95b186617849b"
+    },
+    {
+      "path": "assets/portraits/v73/shu/066.png",
+      "bytes": 204827,
+      "sha256": "cad57c4bd67e0d63bb3536f7fadc7e821ab457ac8a3340330d1c062554316eb7"
+    },
+    {
+      "path": "assets/portraits/v73/shu/067.png",
+      "bytes": 203209,
+      "sha256": "de04038e435ef530ec6e65c8813d1dc8e1b1cd85cd8ddd020fe76a4710dd475d"
+    },
+    {
+      "path": "assets/portraits/v73/shu/068.png",
+      "bytes": 204557,
+      "sha256": "f3e60380fa03e0677957f6864741eee4d601520f463137edb644d258db3315eb"
+    },
+    {
+      "path": "assets/portraits/v73/shu/069.png",
+      "bytes": 201718,
+      "sha256": "3811915e59f6a917866e68a265aea3ce0200b34b14e2b2eca16c992706fbc426"
+    },
+    {
+      "path": "assets/portraits/v73/shu/070.png",
+      "bytes": 204321,
+      "sha256": "60ac54b665094a613e7fd574b3d8c6c9fc42c0cef2ed8ad5c920101708e2971f"
+    },
+    {
+      "path": "assets/portraits/v73/shu/071.png",
+      "bytes": 203004,
+      "sha256": "dbbbc138171975651e1b23d2b32c6726a9ce973cac643d3678727b1ed55face4"
+    },
+    {
+      "path": "assets/portraits/v73/shu/072.png",
+      "bytes": 203005,
+      "sha256": "c2c91d97c8e83069c988835609b597bd890ca50bd6898a3ae89194c70cbabb0c"
+    },
+    {
+      "path": "assets/portraits/v73/shu/073.png",
+      "bytes": 200015,
+      "sha256": "a05b80b842a9c9c4eecf1aab850af23e32e3bb5455a19da6edda83e4acddd55a"
+    },
+    {
+      "path": "assets/portraits/v73/shu/074.png",
+      "bytes": 203059,
+      "sha256": "2b0fc70233157db5cd1896d33dc99c854bdd24d46e54f54f8d6019ffecddfa45"
+    },
+    {
+      "path": "assets/portraits/v73/shu/075.png",
+      "bytes": 204477,
+      "sha256": "a7492e949215e8bb3ab8bab7c23486e6347aa2361d8f1753ce6801592ccceb21"
+    },
+    {
+      "path": "assets/portraits/v73/shu/076.png",
+      "bytes": 203325,
+      "sha256": "eaea644464d7ddbe89af711c8a8130732571a8ec7262503a4da5306d5833080f"
+    },
+    {
+      "path": "assets/portraits/v73/shu/077.png",
+      "bytes": 202155,
+      "sha256": "19bbb68acc23dc17cd2784abb6a6967c336952fe13b11474a91ca1f389d679ac"
+    },
+    {
+      "path": "assets/portraits/v73/shu/078.png",
+      "bytes": 203755,
+      "sha256": "c82ae0c0a3af43fb7ac5c36e380b51e9a0de31314561b81048080428ecb374ad"
+    },
+    {
+      "path": "assets/portraits/v73/shu/079.png",
+      "bytes": 204009,
+      "sha256": "122e73c6efb6f3e9d027d30c26750464af49d6b9e8cf9fce41b76cbffe3294b5"
+    },
+    {
+      "path": "assets/portraits/v73/shu/080.png",
+      "bytes": 207196,
+      "sha256": "e52c731cb85ae62f9aed39746a7715299880ef3407c5681f33c74bd517204b0c"
+    },
+    {
+      "path": "assets/portraits/v73/shu/081.png",
+      "bytes": 202361,
+      "sha256": "786469be66e571f438976c10bda3b5bd83df5ef58f830884fcd3af1327eff498"
+    },
+    {
+      "path": "assets/portraits/v73/shu/082.png",
+      "bytes": 197015,
+      "sha256": "cf1b72f8cc556be76aa610f68a33f60745f796cadb6af48dc14bb2392b69aaa5"
+    },
+    {
+      "path": "assets/portraits/v73/shu/083.png",
+      "bytes": 204866,
+      "sha256": "aaefae4466fbd9f1477c872fd95f1e605a52ca76f40c9556ea17c8a31b0de366"
+    },
+    {
+      "path": "assets/portraits/v73/shu/084.png",
+      "bytes": 203559,
+      "sha256": "1b42052aae7819f1792eb3af090a1bf99e0592b25ea5d59f1f34c19c4a55d25c"
+    },
+    {
+      "path": "assets/portraits/v73/shu/085.png",
+      "bytes": 200522,
+      "sha256": "3050422c0bbe7774e884acf0918fe3f9dfc9f2f3e0d6aee687122f3dd82fcc2b"
+    },
+    {
+      "path": "assets/portraits/v73/shu/086.png",
+      "bytes": 203922,
+      "sha256": "ae7c761212b749e4bb50b01056969c84ddaa8f30001f5d90c6066cf1e5a8a30b"
+    },
+    {
+      "path": "assets/portraits/v73/shu/087.png",
+      "bytes": 204886,
+      "sha256": "cf82f1e3c3d123224926ee7e4de3813d1a7820cb2df1e8ea9c48521a1c155a32"
+    },
+    {
+      "path": "assets/portraits/v73/shu/088.png",
+      "bytes": 203012,
+      "sha256": "e842bcf8d0e619136689f9b1d134b89cbb7d343766cbfb37abfc71a3cc276042"
+    },
+    {
+      "path": "assets/portraits/v73/shu/089.png",
+      "bytes": 207230,
+      "sha256": "9d57d536611a7c527c917bae556aee2c3cdfe8012e93e350b472740b86be2cee"
+    },
+    {
+      "path": "assets/portraits/v73/shu/090.png",
+      "bytes": 202948,
+      "sha256": "6292e90a499f98d0fc877d6dd53c8079fa712045af83ef87c8aff0eefc5b4895"
+    },
+    {
+      "path": "assets/portraits/v73/shu/091.png",
+      "bytes": 205176,
+      "sha256": "3f6f21739d6dfe46b108a3f71aab245e0bd36bec3bf156685ceffe267bb0a309"
+    },
+    {
+      "path": "assets/portraits/v73/shu/092.png",
+      "bytes": 204394,
+      "sha256": "7749324cd5280764e0d452208da64903c9abdf22310307911a50c269ee0c0524"
+    },
+    {
+      "path": "assets/portraits/v73/shu/093.png",
+      "bytes": 203820,
+      "sha256": "71863fc716d309fd5ddab4cf8bf1bf1d08ae90485dab661daf4d1e55bf9236d9"
+    },
+    {
+      "path": "assets/portraits/v73/shu/094.png",
+      "bytes": 202365,
+      "sha256": "adda5f08cfc7bf395601eba6d8843a95d801d643a37a44d6352b1f9337fcf0f2"
+    },
+    {
+      "path": "assets/portraits/v73/shu/095.png",
+      "bytes": 195458,
+      "sha256": "e5421974e82252429255aa6120118cf5213ba1796b1b4e590d1dda34c942e0cc"
+    },
+    {
+      "path": "assets/portraits/v73/shu/096.png",
+      "bytes": 198071,
+      "sha256": "1d0b9156cdde0cfd16238315ffc96cb23e4d487724448ca0d1910dd5c5c2af9a"
+    },
+    {
+      "path": "assets/portraits/v73/shu/097.png",
+      "bytes": 192000,
+      "sha256": "cab2a28763595d90555940591fb997adcde2d8adfa7068b6ee7e005890851dd2"
+    },
+    {
+      "path": "assets/portraits/v73/shu/098.png",
+      "bytes": 201855,
+      "sha256": "38a3b5567529c133069014c7c11c3753024c05724f7d5e897cf4bdc84da20bba"
+    },
+    {
+      "path": "assets/portraits/v73/shu/099.png",
+      "bytes": 204140,
+      "sha256": "97b14e63e9177586be6ba30e602c01b2b4ee7a8a21f334d1b7784152b7d7b2bb"
+    },
+    {
+      "path": "assets/portraits/v73/shu/100.png",
+      "bytes": 202343,
+      "sha256": "82a41da99ebc60f7ca3df2a4a0a75177da1fbe99d9b88e17ab6abffbe70c63ff"
+    },
+    {
+      "path": "assets/portraits/wei/cheng-ji.png",
+      "bytes": 18059,
+      "sha256": "4acc0a777240e6a7217aaa771ebacbd12c602579a3dc3e64aad5f469b7422251"
+    },
+    {
+      "path": "assets/portraits/wei/deng-ai-v2.png",
+      "bytes": 2462338,
+      "sha256": "4073b2e250ee524b8fcc1273dfc4238273e213c80c3c218e2eae80661c367588"
+    },
+    {
+      "path": "assets/portraits/wei/guanqiu-jian.png",
+      "bytes": 19009,
+      "sha256": "f9dc6feae83feaafeebba81a46b9c9ff8defb115d672fd7f0ef2781eb1b884a9"
+    },
+    {
+      "path": "assets/portraits/wei/le-lin.png",
+      "bytes": 18941,
+      "sha256": "036214a21c8ac781fd5b45803831228de1d5f8c08adc0a0cd9cee7debd46e34b"
+    },
+    {
+      "path": "assets/portraits/wei/qian-zhao.png",
+      "bytes": 24342,
+      "sha256": "36521a7a505e742f206faf6ff19badac37476c08f7c713971602d6fec574d16d"
+    },
+    {
+      "path": "assets/portraits/wei/wang-ji.png",
+      "bytes": 18784,
+      "sha256": "8ca6ffd0f7508e2fe7f85427705c53af6bc7e8d2b00b227dd6c25f4e3828c54b"
+    },
+    {
+      "path": "assets/portraits/wei/wen-qin.png",
+      "bytes": 19169,
+      "sha256": "3e6656d95623f18e2d9225e6e7ff6856033d5afdf436f1567522c07f9d139378"
+    },
+    {
+      "path": "assets/portraits/wei/zhuge-dan.png",
+      "bytes": 18561,
+      "sha256": "966f628b5cc30c974806f9bd54507ecb58ef4aadda3e50aacf16041af72b6298"
+    },
+    {
+      "path": "assets/portraits/wu/zhou-chu.png",
+      "bytes": 2744637,
+      "sha256": "1f3d8ab319e38f71db0bae948283750a95a10361b9035cdf4c97b882593bcce5"
+    },
+    {
+      "path": "assets/ui/base.css",
+      "bytes": 103372,
+      "sha256": "397c5d78a6e6d8a52f9a43bc8be6870815cf00762dce9689a1a19824ea821366"
+    },
+    {
+      "path": "assets/ui/components.css",
+      "bytes": 56860,
+      "sha256": "4bdf60b54ab0588f061da32b4a0150d1bf84df9245e6a35682234c4cbc342f95"
+    },
+    {
+      "path": "assets/ui/court-ink-palace.png",
+      "bytes": 2001002,
+      "sha256": "2c9f1a8414c5185d96e43c2eb6ac857c86e5cbc7b6c23a6d15b3d0bc49273310"
+    },
+    {
+      "path": "assets/ui/modules.css",
+      "bytes": 99167,
+      "sha256": "93d5c929c6796e4a2234c7c0b63b4e75221dc2572aa59f083f3d8304580c2287"
+    },
+    {
+      "path": "assets/ui/responsive.css",
+      "bytes": 10610,
+      "sha256": "ccec12125b9d0b2a5865f005ea9a35737ab82fdd911f54d1ae72370664636699"
+    },
+    {
+      "path": "assets/ui/tokens.css",
+      "bytes": 2018,
+      "sha256": "7f260592b5899e56a1df909830892afc217399bea3068d6bb43e390db2281935"
+    },
+    {
+      "path": "assets/vendor/element-plus/index.css",
+      "bytes": 339861,
+      "sha256": "a8f36a018c0aab2e3cfe939af8fb7086a16d0e1505af865a0da534076bbe854a"
+    },
+    {
+      "path": "assets/vendor/element-plus/index.full.min.js",
+      "bytes": 1069733,
+      "sha256": "095e4cff1f5ffe7567ccf988949f6b0eca58cfbfbfd47163c0d18013795f0583"
+    },
+    {
+      "path": "assets/vendor/vue/vue.global.min.js",
+      "bytes": 218437,
+      "sha256": "1c888e4de1724c9e3bc34ee05c40bdf564181e1ff45cf1186a6ef68cc56d85b3"
+    },
+    {
+      "path": "data/administrative-index.js",
+      "bytes": 4910,
+      "sha256": "2b7673b5d452c282567702728473445a7aa21358da4555c9a18c41b3bfa51f9a"
+    },
+    {
+      "path": "data/battle-records.js",
+      "bytes": 28284,
+      "sha256": "b773e805dedae9d96fb309fbfda0cf16941e11ef8a50df81b838bec62c9ba8ae"
+    },
+    {
+      "path": "data/general-titles.js",
+      "bytes": 55061,
+      "sha256": "a5d38cac412065a0d5e5a3d2dc2d1a310610e75827822f1f596f53193c79b20d"
+    },
+    {
+      "path": "data/han-bai-guan-zhi.js",
+      "bytes": 7772,
+      "sha256": "4e55a33aa3fa70c355c1774bb0da6f198550bc5dbe1d234a491442e95d284bd2"
+    },
+    {
+      "path": "data/history-evidence.js",
+      "bytes": 21120,
+      "sha256": "950a206a29c00beb43d4f88a6e778a658e296de4d30a4586f9499f1da07615e5"
+    },
+    {
+      "path": "data/jinshi-schema.js",
+      "bytes": 11031,
+      "sha256": "5d05944d79752991803cc4344dc31e0b17fdf245b4864934101eab525e56e600"
+    },
+    {
+      "path": "data/kaifu-policies.js",
+      "bytes": 5085,
+      "sha256": "3ea50f253f99ecf11fa161ea1e1d6c49535da8e84e5a7836949b28ecef5b49b1"
+    },
+    {
+      "path": "data/map-period-registry.js",
+      "bytes": 16362,
+      "sha256": "02f769ed968a60413532b1a2ddeb4c4d8144550912fa8c97b03e0f7ac117ba58"
+    },
+    {
+      "path": "data/office-order-policies.js",
+      "bytes": 2353,
+      "sha256": "6157089bffee3b42b61f425e09d527be5d8a902dbe094e4c00dd43f7f1688841"
+    },
+    {
+      "path": "data/office-residences.js",
+      "bytes": 10797,
+      "sha256": "a6c628bc338069d121cba74f3fa57db0610ba022d8a0f178c90075db64b2ff61"
+    },
+    {
+      "path": "data/office-seat-policies.js",
+      "bytes": 3955,
+      "sha256": "2d02f1601c7ccac3b30862308a27e78723fddbf6772f10f08715dd0d17588f22"
+    },
+    {
+      "path": "data/person-identities.js",
+      "bytes": 17576,
+      "sha256": "f974a1fa1405286a26c925d8b832634465db3881247cab865b4d883f89b584f6"
+    },
+    {
+      "path": "data/person-name-normalization.js",
+      "bytes": 3253,
+      "sha256": "b8d3a6b00c41343a67de3380f6afdb0a1af4da21c76f5e155256b4604fc205b1"
+    },
+    {
+      "path": "data/portrait-manifest.js",
+      "bytes": 798919,
+      "sha256": "dd3eaca745ac3447f1105be8c441647f371bacddc2ef595e6c0d02766375159f"
+    },
+    {
+      "path": "data/portrait-manifest.json",
+      "bytes": 1085413,
+      "sha256": "8298336e19b9e082bb9c25c364404c8a3961b8d2571ea0277e746c9ad6310875"
+    },
+    {
+      "path": "data/portrait-variants.js",
+      "bytes": 217,
+      "sha256": "224028f14aa54021bea576b0f40279efbe2604d26dd2c3a0ef08bb49a7b231ec"
+    },
+    {
+      "path": "data/research-model.js",
+      "bytes": 43327,
+      "sha256": "69e7456adf728587fe4f33b1dcaa3d13a69514b305a446c7e305dec2f22b6e9c"
+    },
+    {
+      "path": "data/reviewed-office-succession.js",
+      "bytes": 11000,
+      "sha256": "5fa8a402ab3d8df2b49ec82823506f10500e24c6fbebcbf9f1549bb5e3146ae4"
+    },
+    {
+      "path": "data/shihuo-records.js",
+      "bytes": 51655,
+      "sha256": "f04f8f6cd5165fc82087ae711039e181b0ff0061a2f57ce944275fb79237afd5"
+    },
+    {
+      "path": "data/v62-jinshi-display.js",
+      "bytes": 1940,
+      "sha256": "99830efc5ced7efb0ba50fe376ca171c97363e47169ff4baeaf5dbd3e2a0cde8"
+    },
+    {
+      "path": "data/v63-reader-people.js",
+      "bytes": 571577,
+      "sha256": "72833502dd153bd15d7b74ede36809f447f23cd02140b24b719d4f84f076782e"
+    },
+    {
+      "path": "data/v63-reader-people.json",
+      "bytes": 813802,
+      "sha256": "f52fb64593a26b3fc72ef342c1f71a0a89ef5f739b2cbbe5869835540e7a53c9"
+    },
+    {
+      "path": "data/v63-reader-person-relations.js",
+      "bytes": 442535,
+      "sha256": "83c88cb0934c414bd5c93179f16c9e1774aad94a18622fc0c6eab1a196577e69"
+    },
+    {
+      "path": "data/v63-reader-person-relations.json",
+      "bytes": 542847,
+      "sha256": "d1b60b580c9b77ef1c15126552b7e932f09bd3bbb7e867aa1cc56f0136b420c6"
+    },
+    {
+      "path": "data/v66-peerage-stages.js",
+      "bytes": 178445,
+      "sha256": "a198148f0f255d37486e7416b11b79e4b4d9765dcca9877518aa8cc7dba6882d"
+    },
+    {
+      "path": "data/v69-battle-person-links.js",
+      "bytes": 21228,
+      "sha256": "c71e8f0c7f18f5e1703775ecb7f3b54d441413e98a1356976755a6ce775b62b4"
+    },
+    {
+      "path": "data/v69-epigraphic-records.js",
+      "bytes": 205217,
+      "sha256": "19ecef5d6e6aa1ae9321777f5494413e65c9873ad1529f72c683ea5f437018cb"
+    },
+    {
+      "path": "data/v69-fangzhen-reader.js",
+      "bytes": 255991,
+      "sha256": "b573b318c7feb2d5d865e2815e57dba75ae5b836e366a165dd68a8b788e2d359"
+    },
+    {
+      "path": "data/v69-person-profiles.js",
+      "bytes": 695118,
+      "sha256": "3087b7c639bfe42d1f9564278442813d2554822508351d82650dce1b2cd54e1c"
+    },
+    {
+      "path": "data/v73-review-status-ledger.js",
+      "bytes": 1811,
+      "sha256": "4377dbb10b407e08688dc56ae6406a6cab870b14896131c93cc0d46040ca7a63"
+    },
+    {
+      "path": "index.html",
+      "bytes": 694888,
+      "sha256": "c2f59572814853d7b251a687b203f3a44d7ad884a461e9a1527f48f7c6067396"
+    },
+    {
+      "path": "portraits.html",
+      "bytes": 2403,
+      "sha256": "056e3375597d8a23d940f9ad7bba9f19f202aa2772dcdad4c11664918efaebca"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "restarting-page-checks",
+  "reason": "Preemptive correction: full-queue report filename exceeds filesystem component limit; use compact range report keys.",
+  "coreChecksPreserved": {
+    "sourceTests": 58,
+    "builtSuiteTests": 247
+  },
+  "stoppedExactPipelineProcesses": 15,
+  "siteSourceUnchanged": true,
+  "sourceOrArtworkDeleted": false,
+  "actualInitialFailure": "ENAMETOOLONG while writing concatenated full-queue report filename",
+  "correctedReportKeys": [
+    "portrait-new-batch-1-100-all.json",
+    "portrait-redraw-batch-1-150-all.json"
+  ],
+  "finalAllPagesRerun": true
+}

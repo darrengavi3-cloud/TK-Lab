@@ -11,6 +11,7 @@ const ledger=JSON.parse(fs.readFileSync(kind==='redraw'?'atlas/data/accepted-ind
 if(kind==='new')ledger.records=ledger.records.map(row=>({...row,legacyPortraitId:row.portraitId,portraitId:'portrait:additional:20261004:'+String(row.order).padStart(3,'0')}));
 const readerIds=new Set(JSON.parse(fs.readFileSync(path.join(root,'data/v63-reader-people.json'),'utf8')).people.map(person=>person.personId));
 const orders=process.argv[2]?.split(',').map(Number);
+const batchKey=orders?.length>50?`${orders[0]}-${orders.at(-1)}-all`:(orders?.join('-')||'all');
 if(orders) ledger.records=ledger.records.filter(row=>orders.includes(row.order));
 assert.ok(ledger.records.length,'Empty batch');
 const mime={'.html':'text/html;charset=utf-8','.js':'text/javascript;charset=utf-8','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp'};
@@ -48,6 +49,6 @@ try{
   }
   await context.close();
  }
- fs.mkdirSync('work/validation',{recursive:true});fs.writeFileSync('work/validation/portrait-'+kind+'-batch-'+(orders?.join('-')||'all')+(built?'-built':'')+'.json',JSON.stringify({status:'passed',checks:results},null,2)+'\n');
+ fs.mkdirSync('work/validation',{recursive:true});fs.writeFileSync('work/validation/portrait-'+kind+'-batch-'+batchKey+(built?'-built':'')+'.json',JSON.stringify({status:'passed',checks:results},null,2)+'\n');
  console.log(JSON.stringify({status:'passed',portraits:ledger.records.length,viewportChecks:results.length}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
