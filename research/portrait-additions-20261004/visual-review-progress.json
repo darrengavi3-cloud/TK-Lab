@@ -4006,6 +4006,94 @@
       },
       "reviewedAt": "2026-10-06",
       "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 89,
+      "portraitId": "portrait:asset:dbbf27ee004f637bfbbd",
+      "personId": "person:source:ab32fb630e93",
+      "sha256": "c30c5a2936fda57ecd5cd4cd656e03ccdd96baa4955ae3088131eee7d89d2323",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 90,
+      "portraitId": "portrait:asset:48cbe8850e8416f25f00",
+      "personId": "person:wu:sun-hao",
+      "sha256": "faf7ec9bad9d0d1aa9552f2cc96abdb15d46c84be773c77dde6f3c7dfea3e917",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 91,
+      "portraitId": "portrait:asset:f597744de01ee7692269",
+      "personId": "person:source:541aa70629a7",
+      "sha256": "e617108258d2c02ab165ff127256b91c540a843f46ba953779b7451498b9af59",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
+    },
+    {
+      "kind": "existing",
+      "order": 92,
+      "portraitId": "portrait:asset:502454ae6d367468aeaa",
+      "personId": "person:wu:dai-liang",
+      "sha256": "d076ff1241ef85c8750b364bf343e5d70345d73e67e8b747bbe2deb5727d341a",
+      "visualReview": {
+        "frontal": true,
+        "strictFrontal": true,
+        "directGaze": true,
+        "shouldersFrontal": true,
+        "ageAppropriate": true,
+        "independentSinglePerson": true,
+        "completeCrown": true,
+        "completeHands": true,
+        "standingComposition": true,
+        "completeFeet": true,
+        "fullBody": true
+      },
+      "reviewedAt": "2026-10-06",
+      "reviewBasis": "Root inspected original generated PNG face, gaze, shoulders, body, age, crown, hands and feet."
     }
   ],
   "revisionReason": "User requests independent recreation of early crop-derived assets; previous frontal-only early edits retained as archived candidates and require new review."
