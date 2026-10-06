@@ -1,0 +1,10 @@
+{
+  "status": "recovered",
+  "observation": "Packaging with an early-yield command left a tar.gz that later failed gzip integrity. Packaging with exec_command yield_time_ms=30000 completed in 4.22 seconds before returning and remained byte-exact on a separate read. Underlying infrastructure cause is not asserted.",
+  "verifiedArchive": "work/guanshitai-complete-call.tar.gz",
+  "bytes": 66972504,
+  "sha256": "1421076c5ac6158cae675976ec02b0e064e13994eb568cec87802be5049c3191",
+  "gzipTests": 2,
+  "hashReads": 2,
+  "nextAction": "Use a complete command for final packaging after matching source push; pass archive to native save/deploy."
+}
