@@ -1,0 +1,70 @@
+{
+  "status": "待考",
+  "boundary": "形貌、年龄阶段、衣冠颜色形制纹样均为艺术选择，不作为史实复原。",
+  "records": [
+    {
+      "order": 29,
+      "portraitId": "portrait:asset:ed32e81cd45d35581f7e",
+      "personId": "person:wei:xiahou-xuan",
+      "name": "夏侯玄",
+      "originalSrc": "./assets/portraits/v51/person-source-ab63a1750cf5.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 32,
+      "ageBasis": "艺术表现年龄32岁，选取青年成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "c9e9ad76b6bc138d809c208d723e3370722422c6e1bd722c0fde780763d9c4fd",
+      "outputStem": "portrait-asset-ed32e81cd45d35581f7e-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：夏侯玄，男性，艺术表现年龄32岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：修长青年脸、少量修整短须，墨黑外袍与赭色内领。"
+    },
+    {
+      "order": 30,
+      "portraitId": "portrait:asset:403d161fe69236256a9f",
+      "personId": "person:jin:sima-wang",
+      "name": "司马望",
+      "originalSrc": "./assets/portraits/v51/person-source-2831848a9591.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "b30b2c1c1d2ca0e82bec846616589258572987a3564dfa62b65bd5fdb7894a12",
+      "outputStem": "portrait-asset-403d161fe69236256a9f-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：司马望，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方圆脸、平眉、黑短须，深灰外袍与暗红内领。"
+    },
+    {
+      "order": 31,
+      "portraitId": "portrait:asset:8d6da92cbcf5e069524a",
+      "personId": "person:wei:xu-miao",
+      "name": "徐邈",
+      "originalSrc": "./assets/portraits/v51/person-source-1341c89829db.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "17d5b6e0edc0c84f0bc1348cd6f3aecc4cbc03251873bcee7ce6ff4588a8c938",
+      "outputStem": "portrait-asset-8d6da92cbcf5e069524a-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：徐邈，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：略高颧骨、长方脸、黑短须，赭红外袍与深蓝内领。"
+    },
+    {
+      "order": 32,
+      "portraitId": "portrait:asset:9e4f2cbc311a9121e6c8",
+      "personId": "person:source:0e535702e1a5",
+      "name": "卢毓",
+      "originalSrc": "./assets/portraits/v51/person-source-0e535702e1a5.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "887230d139fc83dc2fedcb0663febfe00e3dbf4cc478a50c2161988162bc6644",
+      "outputStem": "portrait-asset-9e4f2cbc311a9121e6c8-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：卢毓，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：宽额方脸、直眉、细黑须，深褐外袍与蓝灰内领。"
+    }
+  ]
+}
