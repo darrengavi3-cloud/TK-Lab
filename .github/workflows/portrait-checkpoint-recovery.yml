@@ -1,0 +1,35 @@
+name: Recover verified portrait checkpoint
+on:
+  push:
+    branches: [codex/frontal-portraits-20261004]
+    paths: [.github/workflows/portrait-checkpoint-recovery.yml]
+permissions:
+  contents: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            atlas/assets/portraits/20261004
+            research/portrait-additions-20261004
+      - name: Package only accepted assets
+        run: |
+          python - <<'PY'
+          import json,hashlib,zipfile
+          from pathlib import Path
+          p=json.loads(Path('research/portrait-additions-20261004/production-progress.json').read_text())
+          rows=p['new']+[r for r in p['existing'] if r.get('productionMethod')=='independent-redraw']
+          with zipfile.ZipFile('verified-portrait-checkpoint.zip','w',zipfile.ZIP_STORED) as z:
+            for r in rows:
+              path=Path(r['path'])
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==r['sha256']
+              z.write(path,str(path))
+          print('Verified accepted assets:',len(rows))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-portrait-checkpoint
+          path: verified-portrait-checkpoint.zip
+          retention-days: 1
