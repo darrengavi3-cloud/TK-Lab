@@ -1,0 +1,70 @@
+{
+  "status": "待考",
+  "boundary": "衣冠形制颜色纹样、表现年龄及个人面貌均为艺术选择，非真实肖像复原。",
+  "records": [
+    {
+      "order": 25,
+      "portraitId": "portrait:asset:ea84ab90308885835022",
+      "personId": "person:wei:sun-li",
+      "name": "孙礼",
+      "originalSrc": "./assets/portraits/v51/person-source-23b3d654e08b.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "e242eef899bfdd91701c2487f7a322409557b00186999f0d5733dbcce37d01ef",
+      "outputStem": "portrait-asset-ea84ab90308885835022-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：孙礼，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：宽额方脸、直眉、黑短须，暗红外袍与深蓝内领。"
+    },
+    {
+      "order": 26,
+      "portraitId": "portrait:asset:b5de634c2bcdad2173b0",
+      "personId": "person:source:ef20cd1a60a8",
+      "name": "孙资",
+      "originalSrc": "./assets/portraits/v51/person-source-ef20cd1a60a8.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "0dea9968743390b4e3c72b918ab97c170cf311997b1c0982b0801173187d7531",
+      "outputStem": "portrait-asset-b5de634c2bcdad2173b0-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：孙资，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：椭圆脸、柔和眼角、细须，深蓝外袍与赭色交领。"
+    },
+    {
+      "order": 27,
+      "portraitId": "portrait:asset:7daceaa85d9775814ad2",
+      "personId": "person:jin:sima-fu",
+      "name": "司马孚",
+      "originalSrc": "./assets/portraits/v51/person-source-812d000d43b1.png",
+      "originalKind": "ai-illustration-v52-reassigned",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "e4d3778ebc25ceca34e13ef2ab1df83759394b83387bf8d6c10d3546eeb6acf7",
+      "outputStem": "portrait-asset-7daceaa85d9775814ad2-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：司马孚，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：长方脸、宽颌、修整短须，墨灰外袍与暗红内领。"
+    },
+    {
+      "order": 28,
+      "portraitId": "portrait:asset:1ebb4f5877f4ec62079d",
+      "personId": "person:jin:zheng-chong",
+      "name": "郑冲",
+      "originalSrc": "./assets/portraits/v51/person-source-d04dd2bef1e2.png",
+      "originalKind": "ai-illustration-v51",
+      "reason": "early-generation-provenance-review",
+      "requiredMethod": "independent-redraw",
+      "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+      "designAge": 40,
+      "ageBasis": "艺术表现年龄；采用成年生涯阶段，不作为新增生年卒年或真实肖像。",
+      "originalSha256": "c6b023ad100a8a19c6ca8d0be99116ca0ba1f9eaee21a169b2f18b7100b1b23d",
+      "outputStem": "portrait-asset-1ebb4f5877f4ec62079d-redraw",
+      "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：郑冲，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。士人，朴素汉魏晋交领长袍与低矮布巾。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方圆脸、浓平眉、黑短须，深褐外袍与蓝灰内领。"
+    }
+  ]
+}
