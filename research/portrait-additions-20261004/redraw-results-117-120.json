@@ -1,0 +1,94 @@
+[
+  {
+    "order": 117,
+    "portraitId": "portrait:asset:12d23c4bb0e34a35af89",
+    "personId": "person:workbook:10602094ff4cb2ed",
+    "name": "王基",
+    "originalSrc": "./assets/portraits/wei/wang-ji.png",
+    "originalKind": "reference-crop",
+    "reason": "explicit-reference-crop",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 40,
+    "ageBasis": "艺术表现年龄40岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "8ca6ffd0f7508e2fe7f85427705c53af6bc7e8d2b00b227dd6c25f4e3828c54b",
+    "outputStem": "portrait-asset-12d23c4bb0e34a35af89-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：王基，男性，艺术表现年龄40岁，为生涯阶段设计而非史实肖像。武将艺术形象，简朴札甲与交领内袍、低矮布巾，甲片形制及材质细节待考。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：修长脸、平眉、细短须，墨青外袍与灰白内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-05f9f79d-8b33-4443-a2fb-79c4c000d1dc.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-12d23c4bb0e34a35af89-redraw.png",
+    "sha256": "be45ebcf9bf1d53430c1e7901b95c58967e71569db24ff02e2b5e6436f16a095",
+    "dimensions": [
+      940,
+      1672
+    ]
+  },
+  {
+    "order": 118,
+    "portraitId": "portrait:asset:4c884e41880ba524cce7",
+    "personId": "person:workbook:232a9f6a939d9949",
+    "name": "牵招",
+    "originalSrc": "./assets/portraits/wei/qian-zhao.png",
+    "originalKind": "reference-crop",
+    "reason": "explicit-reference-crop",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 50,
+    "ageBasis": "艺术表现年龄50岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "36521a7a505e742f206faf6ff19badac37476c08f7c713971602d6fec574d16d",
+    "outputStem": "portrait-asset-4c884e41880ba524cce7-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：牵招，男性，艺术表现年龄50岁，为生涯阶段设计而非史实肖像。武将艺术形象，简朴札甲与交领内袍、低矮布巾，甲片形制及材质细节待考。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：方脸、浓眉、修整短须，深褐外袍与暗红内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0b1cd5ea-566c-4a39-91ff-ecef617511cd.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-4c884e41880ba524cce7-redraw.png",
+    "sha256": "02551a374ce56406928b03c29cfb0108ff09dea999d2224167ba97074fb6679c",
+    "dimensions": [
+      941,
+      1672
+    ]
+  },
+  {
+    "order": 119,
+    "portraitId": "portrait:asset:b5a0d76c8a0feb4b2064",
+    "personId": "person:source:4f57385c8b1c",
+    "name": "邓艾",
+    "originalSrc": "./assets/portraits/wei/deng-ai-v2.png",
+    "originalKind": "ai-illustration-v2",
+    "reason": "early-generation-provenance-review",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 55,
+    "ageBasis": "艺术表现年龄55岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "4073b2e250ee524b8fcc1273dfc4238273e213c80c3c218e2eae80661c367588",
+    "outputStem": "portrait-asset-b5a0d76c8a0feb4b2064-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：邓艾，男性，艺术表现年龄55岁，为生涯阶段设计而非史实肖像。武将艺术形象，简朴札甲与交领内袍、低矮布巾，甲片形制及材质细节待考。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：高颧骨、长方脸、细短须，蓝灰外袍与赭色内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-78604af0-98ec-4995-9e15-5b79b46326c8.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png",
+    "sha256": "cd36713e3e30ef28181d3e8215810f8f6b0092e71ded1e1be53f0fc8201af796",
+    "dimensions": [
+      941,
+      1672
+    ]
+  },
+  {
+    "order": 120,
+    "portraitId": "portrait:asset:b6adac4a2c1d32628af3",
+    "personId": "person:workbook:699340a4a842aeda",
+    "name": "诸葛瞻",
+    "originalSrc": "./assets/portraits/v42/诸葛瞻.png",
+    "originalKind": "ai-illustration",
+    "reason": "visible-multi-person-sheet",
+    "requiredMethod": "independent-redraw",
+    "requiredComposition": "one person, strict frontal, 9:16 standing portrait, crown to below knees or full body",
+    "designAge": 36,
+    "ageBasis": "艺术表现年龄36岁，选取成年或老年生涯阶段；不作为史实年龄或容貌证据。",
+    "originalSha256": "0dd039923d5a99bceb237d8214652df9c6a376a7d5df9eb255a09d314cb5bfc4",
+    "outputStem": "portrait-asset-b6adac4a2c1d32628af3-redraw",
+    "actualPrompt": "Use case: historical-scene. Asset type: 观史台独立人物立绘，一人一张PNG。人物：诸葛瞻，男性，艺术表现年龄36岁，为生涯阶段设计而非史实肖像。武将艺术形象，简朴札甲与交领内袍、低矮布巾，甲片形制及材质细节待考。半写实中国历史游戏人物水墨淡彩，温暖象牙纸，细腻面部骨骼和布帛纹理。9:16竖幅，严格正面平视站姿，头、双肩、躯干正对镜头，双眼直视观众，两侧面部和双肩自然对称。全身从完整冠巾到双脚鞋底，头顶鞋底留边，双手自然垂放完整可见。淡纸本极淡水墨远景。不要其他人物、拼图、书卷扇子、文字水印、夸张奇幻甲胄、兽首肩甲、胸镜披风王冠、明清服装。服饰颜色形制细节均为艺术设计，史料不足待考，不写图中文字。不要照抄其他人物的面貌。\n个体设计差异（艺术选择，非史实容貌证据）：椭圆脸、直眉、短须，墨黑外袍与深青内领。",
+    "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-22b6a7ba-d0fe-4b89-94a2-13f10d7da116.png",
+    "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/redraw-images/portrait-asset-b6adac4a2c1d32628af3-redraw.png",
+    "sha256": "6ebd9c7bffc42758fa8ba7cb9fbf2a657d2e7e932dd6881286877b047cbcbd5a",
+    "dimensions": [
+      941,
+      1672
+    ]
+  }
+]
