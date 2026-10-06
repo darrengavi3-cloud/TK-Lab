@@ -1,0 +1,22 @@
+{
+  "order": 5,
+  "name": "袁术",
+  "personId": "person:workbook:89859ca6be315566",
+  "designAge": 42,
+  "referenceImagePath": "/workspace/scratch/ea3fed8f4c52/atlas/assets/portraits/20261004/005-1499ed95fea7.png",
+  "referenceImageSha256": "3077c80d8028dc41b06de0b977258f65c4cc75ad9b439a9a8657286ab1463e7e",
+  "previousPath": "atlas/assets/portraits/20261004/005-1499ed95fea7.png",
+  "outputStem": "005-1499ed95fea7-fullbody-v2",
+  "evidenceStatus": "待考",
+  "operation": "identity-preserving-fullbody-edit",
+  "prompt": "Use case: identity-preserve. 观史台袁术立绘编辑。唯一身份绑定personId person:workbook:89859ca6be315566，直接以此原图为参考，不猜配身份。保持同一人物的原有面貌、艺术表现年龄约42岁、发冠、衣色和纹样、水墨淡彩半写实纸本风格。主要修改：把被裁去的下半身及双脚延展为完整全身站立构图，完整发冠、双手、袍下摆和两只鞋底都必须在画面内，冠顶和脚底保留安全边距。9:16竖幅，头肩身体严格正面，眼睛直视观众；不侧身，不改变原有基本五官。保留原衣冠设计，不添加新道具、兵器、兽首肩甲、胸镜、王冠、尖刺等装饰；若原图已有装饰不扩张其细节。衣冠形制、颜色、纹样及新增鞋履为艺术设计，史料不足待考，不能宣称真实肖像或精确复原。保持冠与双手完整，身体自然站立，不让袍下摆遮蔽鞋底。无文字、姓名、印章、水印、拼图或其他人物。保存新的独立PNG，禁止覆盖参考原图。",
+  "sourcePath": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-8eca425e-bf40-45a4-b2e9-0d4d2f4ed3de.png",
+  "outputPath": "/workspace/scratch/ea3fed8f4c52/work/portraits-20261004/fullbody-images/005-1499ed95fea7-fullbody-v2.png",
+  "sha256": "d4d877ce11c771e900d462ffd7a8541f694bb64d3f9457e2778a87b22b174b2e",
+  "dimensions": [
+    941,
+    1672
+  ],
+  "actualPrompt": "Use case: identity-preserve. 观史台袁术立绘编辑。唯一身份绑定personId person:workbook:89859ca6be315566，直接以此原图为参考，不猜配身份。保持同一人物的原有面貌、艺术表现年龄约42岁、发冠、衣色和纹样、水墨淡彩半写实纸本风格。主要修改：把被裁去的下半身及双脚延展为完整全身站立构图，完整发冠、双手、袍下摆和两只鞋底都必须在画面内，冠顶和脚底保留安全边距。9:16竖幅，头肩身体严格正面，眼睛直视观众；不侧身，不改变原有基本五官。保留原衣冠设计，不添加新道具、兵器、兽首肩甲、胸镜、王冠、尖刺等装饰；若原图已有装饰不扩张其细节。衣冠形制、颜色、纹样及新增鞋履为艺术设计，史料不足待考，不能宣称真实肖像或精确复原。保持冠与双手完整，身体自然站立，不让袍下摆遮蔽鞋底。无文字、姓名、印章、水印、拼图或其他人物。保存新的独立PNG，禁止覆盖参考原图。",
+  "generationMethod": "builtin-imagegen-identity-preserving-fullbody-edit"
+}
