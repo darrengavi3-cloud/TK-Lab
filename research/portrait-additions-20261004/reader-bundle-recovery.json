@@ -1,0 +1,8 @@
+{
+  "failedCheckpoint": "085-048",
+  "observedError": "ENOTEMPTY during generated reader-bundle replacement",
+  "source": "site-recovery/atlas/scripts/build-reader-bundle.mjs",
+  "change": "rmSync maxRetries=3, retryDelay=100 ms; only existing generated output replacement",
+  "status": "verification-running",
+  "originalAcceptedFilesUnchanged": true
+}

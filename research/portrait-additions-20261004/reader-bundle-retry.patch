@@ -1,0 +1,13 @@
+diff --git a/atlas/scripts/build-reader-bundle.mjs b/atlas/scripts/build-reader-bundle.mjs
+index c184512..41da540 100644
+--- a/atlas/scripts/build-reader-bundle.mjs
++++ b/atlas/scripts/build-reader-bundle.mjs
+@@ -1278,7 +1278,7 @@ for (const item of bundleManifest.files) {
+   if (buffer.length !== item.bytes || sha256(buffer) !== item.sha256) fail(`reader-bundle.json 写入后校验不匹配：${item.path}`);
+ }
+ 
+-fs.rmSync(outputPath, { recursive: true, force: true });
++fs.rmSync(outputPath, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
+ fs.renameSync(stagingPath, outputPath);
+ console.log(`已生成 V69 读者 Web 包：${outputPath}`);
+ console.log(`读者包：${bundleManifest.fileCount + 1} 文件，${bundleManifest.totalBytes} 字节，${bundleManifest.personCount} 人，${bundleManifest.portraitCount} 张立绘`);

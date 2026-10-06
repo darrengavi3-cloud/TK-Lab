@@ -1,8 +1,8 @@
 {
   "status": "in-progress",
   "expectedNew": 100,
-  "newProduced": 85,
-  "newAccepted": 85,
+  "newProduced": 89,
+  "newAccepted": 89,
   "expectedExisting": 500,
   "expectedIndependentRedraw": 150,
   "existingIndependentRedrawProduced": 48,
@@ -95,11 +95,11 @@
   ],
   "siteIntegratedNewCount": 81,
   "siteValidatedIndependentRedrawCount": 44,
-  "siteLocalIntegratedNewCount": 81,
-  "siteLocalIndependentRedrawCount": 44,
-  "latestSavedSiteVersion": 63,
-  "latestSavedSiteSource": "d55ce5097098b1310180f9f23491f5ad86b979e5",
-  "latestDeploymentStatus": "succeeded",
+  "siteLocalIntegratedNewCount": 85,
+  "siteLocalIndependentRedrawCount": 48,
+  "latestSavedSiteVersion": 64,
+  "latestSavedSiteSource": "e93741275485dce7167ba282f1222bde81e43d42",
+  "latestDeploymentStatus": "building",
   "publishedNewCount": 77,
   "publishedIndependentRedrawCount": 40
 }
