@@ -1,0 +1,316 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build
+> npm run build:atlas && npm run sync:reader && npm run build:site
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:atlas
+> node atlas/scripts/build-all.mjs
+
+V60 工作簿未提供；使用已提交且受 sources.lock.json 保护的生成结果。
+V61 工作簿未全部提供；使用已提交且受 sources.lock.json 保护的生成结果。
+
+▶ build-v46-portrait-manifest.mjs
+{"defaultPeople":123,"assetRecords":600,"indexedPersonIds":598,"specificPortraits":600,"designOnlyPortraits":0,"fallbackPortraits":0,"v62PortraitRecords":100,"peopleWithMultiplePortraits":2,"legacyPersonIdAliases":31,"figmaBoardRecords":50,"figmaBoardMapped":50,"v58PortraitRecords":20,"v58PortraitMapped":20,"v70PortraitRecords":50,"v73PortraitRecords":100,"dengAiSrc":"./assets/portraits/20261004/frontal/portrait-asset-b5a0d76c8a0feb4b2064-redraw.png","plannedV62Portraits":100,"readyV62Portraits":100}
+
+▶ build-v63-person-registry.mjs
+{
+  "ok": true,
+  "people": 5234,
+  "readerPeople": 3621,
+  "readerScopeVersion": "V90",
+  "readerScopePeople": 3621,
+  "scopeExcludedPeople": 29,
+  "nonPersonExclusions": 29,
+  "legacyMappings": 1140,
+  "sourceRecordMappings": 2013,
+  "ziConflicts": 17,
+  "isolatedSnapshotRecords": 18,
+  "addedJinLegacyMappings": 9,
+  "protectedExistingPeople": 10,
+  "portraitAssets": 600,
+  "portraitPersonIds": 598,
+  "unresolvedPortraits": 0,
+  "verifiedFieldCounts": {
+    "name": 3621,
+    "aliases": 499,
+    "zi": 122,
+    "birthplace": 71,
+    "birthYear": 38,
+    "deathYear": 61,
+    "bio": 102,
+    "bioCitations": 28,
+    "bioClassical": 0,
+    "dynastyTags": 3209,
+    "historicalAffiliations": 46,
+    "appointments": 146,
+    "peerage": 371,
+    "portraits": 598
+  }
+}
+
+▶ build-v66-peerage-stages.mjs
+{
+  "sourceReaderVisibleEvents": 525,
+  "sourceReaderVisibleRelations": 542,
+  "sourceReaderVisiblePeople": 374,
+  "closedEvents": 525,
+  "linkedEvents": 194,
+  "hanPredecessorEvents": 79,
+  "rankAmbiguousEvents": 22,
+  "dynastyReviewEvents": 2,
+  "postWeiReviewEvents": 2,
+  "missingYearEvents": 227,
+  "stageMisalignedEvents": 1,
+  "partiallyLinkedEvents": 1,
+  "rankStages": 603,
+  "titleStages": 641,
+  "multiRankEvents": 50,
+  "stageAlignmentReviewEvents": 29,
+  "linkedRelations": 194,
+  "linkedPeople": 166,
+  "dispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 194,
+    "missing-year": 227,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "phaseCounts": {
+    "han-predecessor": 79,
+    "missing-year-review": 227,
+    "mixed-stages": 1,
+    "post-wei-review": 2,
+    "wei-inherited-han": 159,
+    "wei-xianxi-five-rank": 57
+  },
+  "stageDispositionCounts": {
+    "han-predecessor": 79,
+    "linked": 195,
+    "missing-year": 304,
+    "post-wei-review": 2,
+    "rank-ambiguous": 22,
+    "stage-misaligned": 1
+  },
+  "titleClassifiedMarquisStages": 289,
+  "xianxiFiveRankMarquisStages": 16
+}
+
+▶ build-v66-fangzhen-seats.mjs
+{
+  "totalRecords": 533,
+  "v65ReaderVisible": 45,
+  "seatVerified": 27,
+  "readerVisible": 45,
+  "reviewOnly": 488,
+  "readerVisibleWithSeat": 27,
+  "readerVisibleWithoutSeat": 18,
+  "upstreamReviewOnly": 488,
+  "upstreamVisibleSeatUnresolved": 18,
+  "v62JinTotal": 29,
+  "v62JinReaderVisible": 29,
+  "v62JinSeatVisible": 25,
+  "v62JinSeatSuppressed": 4,
+  "bySeatResolution": {
+    "not-assessed-upstream-review-only": 488,
+    "unresolved": 18,
+    "verified": 27
+  },
+  "byPublication": {
+    "reader-visible": 45,
+    "review-only": 488
+  }
+}
+
+▶ build-reader-bundle.mjs --relations-only
+已生成 V63 纯净读者人物关联：任官 263，封爵关系 535
+
+▶ build-office-succession.mjs
+已生成 3 个职官的同源历任投影。
+
+▶ build-v69-data.mjs
+{
+  "ok": true,
+  "people": {
+    "people": 3621,
+    "rulers": 16,
+    "peopleWithLifeEvents": 514,
+    "lifeEvents": 947
+  },
+  "portraitCandidates": {
+    "candidates": 100,
+    "existingPortraitAssets": 600,
+    "expectedAfterProduction": 375
+  },
+  "battles": {
+    "records": 62,
+    "linkedRecords": 49,
+    "noExplicitPersonRecords": 12,
+    "ambiguousRecords": 1,
+    "links": 106
+  },
+  "fangzhen": {
+    "records": 523,
+    "verified": 45,
+    "candidate": 478,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 99,
+      "魏": 173,
+      "吴": 213,
+      "西晋": 31,
+      "东晋": 1
+    }
+  },
+  "epigraphy": {
+    "records": 166,
+    "withInscription": 59,
+    "withoutInscription": 107,
+    "dynasties": {
+      "后汉": 6,
+      "季汉": 8,
+      "魏": 20,
+      "吴": 15,
+      "西晋": 56,
+      "东晋": 61
+    }
+  },
+  "aggregate": "f068bb462860511734ba315eb39053f57e93a5a41132a13937582b948eaaa2e3"
+}
+
+▶ build-v73-review-status-ledger.mjs
+{
+  "ok": true,
+  "totals": {
+    "verified": 3960,
+    "pending": 2641,
+    "disputed": 94,
+    "suppressed": 108
+  },
+  "modules": [
+    {
+      "label": "人物实体",
+      "verified": 3621,
+      "pending": 1599,
+      "disputed": 14,
+      "suppressed": 29,
+      "excludedFromStatistics": 1642
+    },
+    {
+      "label": "任官事实",
+      "verified": 263,
+      "pending": 507,
+      "disputed": 2,
+      "suppressed": 79,
+      "excludedFromStatistics": 588
+    },
+    {
+      "label": "州镇职任",
+      "verified": 45,
+      "pending": 408,
+      "disputed": 70,
+      "suppressed": 0,
+      "excludedFromStatistics": 503
+    },
+    {
+      "label": "金石记录",
+      "verified": 31,
+      "pending": 127,
+      "disputed": 8,
+      "suppressed": 0,
+      "excludedFromStatistics": 105
+    }
+  ]
+}
+
+▶ build-release-summary.mjs
+{"people":3621,"appointments":{"verified":263,"pending":507,"disputed":2,"suppressed":79},"biographies":101,"portraitAssets":600,"peopleWithPortraits":593,"peopleWithEvents":514}
+
+▶ build-local-data.mjs
+已校验并生成十六期注册表脚本：huangjin → shaodi → dongzhuo → xingping → jianbing → guandu → chibi → xiangfan → sanguo → beifa → guijin → hanwang → jinchu → taikang → hui_di → yongjia
+已校验并生成本地州郡几何脚本：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/assets/map/data/All_Provinces.json
+已校验并生成 V7 历史证据脚本：16 期、19 条来源
+确定性写入：0 个产物发生变化，4 个产物与规范源已一致
+
+▶ build-reader-bundle.mjs
+已生成 V69 读者 Web 包：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-读者版
+读者包：871 文件，922860318 字节，3621 人，600 张立绘
+泄露扫描：本机绝对路径0，审校运行文件0，禁止投影字段0
+
+▶ build-portable-export.mjs
+已生成轻量联网单文件：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-轻量单文件版.html（52674809 字节）
+已更新兼容便携路径：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/三国职官谱-单文件版.html
+单文件立绘：内嵌 8/598 张，原图预算 18867998/18874368 字节
+已生成真离线 ZIP：/workspace/scratch/ea3fed8f4c52/site-recovery/atlas/exports/观史台-离线版.zip（871 个文件，908605747 字节，远程运行依赖 0）
+
+▶ build-asset-manifest.mjs
+已生成资源清单：1113 个文件，1072432381 字节
+
+▶ build-deployment-manifest.mjs
+已生成部署清单：873 个文件，1884304213 字节
+部署聚合哈希：d6ecbd91065ee3ac2ed26e83e1d9739d171327d95134aed11fa5a7df9f7e0818
+
+V90 build-all 已完成。
+输入锁：ef1a9f1622912f96833d78afd2d4161f770487fef5e7afc8b4866d17e292cb37
+产物：读者 Web 包／轻量单 HTML／离线 ZIP／本地资源清单／部署清单
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 sync:reader
+> node scripts/sync-reader-bundle.mjs
+
+已同步读者版：871 个文件，来源哈希 8be613c5f4660dab6731c9f262715a90f947866621b4a76e1ae2ac89f054a267
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:site
+> npm run build:catalogue && WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build && node scripts/prune-site-build.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 build:catalogue
+> node scripts/build-catalogue.mjs
+
+{"baselineRecords":7155,"seedBytes":41591093,"codeId":"9477b2bd58aa5de9d043f2911b61261114583f6a5d3687789b46ebcb45f7817a"}
+
+  vinext build  (Vite 8.0.16)
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+[1/5] analyze client references...
+[2Ktransforming...✓ 283 modules transformed.
+rendering chunks...
+✓ built in 1.60s
+[2/5] analyze server references...
+[2Ktransforming...✓ 145 modules transformed.
+rendering chunks...
+✓ built in 223ms
+[3/5] build rsc environment...
+[2Ktransforming...✓ 274 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 2.67s
+[4/5] build client environment...
+[2Ktransforming...✓ 150 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 2.46s
+[5/5] build ssr environment...
+[2Ktransforming...✓ 143 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 533ms
+[0m
+  Route (app)
+  ─ ? /
+
+  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+Sites build pruned: kept 600 runtime portraits; removed 174 files (123943711 bytes); optimized 350 portraits (102388084 bytes); optimized 1 ui decorations (1951200 bytes); deployment manifest 2591 files (c13c1260b507ab6a7c2025ac3ce3577c64d5065d8ecaac5f41ac91d0b017d80c).

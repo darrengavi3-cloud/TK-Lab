@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "archive": "/workspace/scratch/ea3fed8f4c52/work/guanshitai-100-150-private-ready.tar.gz",
+  "archiveBytes": 715457506,
+  "archiveSha256": "1a88de79da2c98c28296ac0a3f8cdd7d3c1f1df49640097c4101a8872d038148",
+  "archiveEntries": 2654,
+  "originalPngSha256Checks": 250,
+  "hosting": {
+    "project_id": "appgprj_6a70bf90f5e08191b1d0e91084c2e123",
+    "d1": "DB",
+    "r2": "BUCKET"
+  },
+  "newCount": 100,
+  "redrawCount": 150,
+  "publiclyPublished": false,
+  "mainWritten": false,
+  "sourceCommit": "07f7ebc21f80927d7ffbb5d529e1a3dfd5042647",
+  "sourceBranch": "codex/portrait-delivery-100-150-20261007",
+  "buildCommand": "npm run build",
+  "buildExitCode": 0,
+  "builtTestsRerun": 247,
+  "builtTestsPassed": 247,
+  "builtTestsFailed": 0,
+  "ownerAccessTestsRerun": 2,
+  "ownerAccessTestsPassed": 2,
+  "priorPageChecks": 1000,
+  "priorPageChecksReused": "Recovered original application tree exactly; reader code and all 250 accepted PNG bytes unchanged. Current deployment PNG bytes additionally checked.",
+  "priorUiTests": 54,
+  "publishedVersion": 68,
+  "latestSavedVersion": 69,
+  "pendingPublication": 1,
+  "pendingClarification": "Permission to update only Sites internal publication repository main; do not modify TK-Lab/main or formal database."
+}
