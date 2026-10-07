@@ -1,5 +1,5 @@
 {
-  "status": "in-progress",
+  "status": "assets-complete",
   "expectedNew": 100,
   "expectedExisting": 500,
   "new": [
@@ -312,7 +312,7 @@
       "sha256": "1aa55d87e8105c63ce3079df164091b069d59e5bb4d628d059bfd733b6a79678",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 18,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -338,7 +338,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-cff460ab-bf1f-4cab-af94-084c297aa49f.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-010.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 11,
@@ -349,7 +350,7 @@
       "sha256": "15eee5508200afecebdfabe89de51ab1ceb16167cb837fbec6b99a92d1e9abd8",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -375,7 +376,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-707b0769-3ec9-44e2-b870-5461b57e8a2c.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-011.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 12,
@@ -386,7 +388,7 @@
       "sha256": "036fe0de189cb253944e92930b52df707ca133f84338563b1d4aa24201ca7867",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 47,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -412,7 +414,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-26a1e15f-55b9-4a40-afbe-151b7221fcab.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-012.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 13,
@@ -423,7 +426,7 @@
       "sha256": "366ee59ea3eeaed2e886029df15aa5c50e18fc4efd942ccaeef0b5c1390d875a",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 37,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -449,7 +452,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-332eebc0-d722-459f-bd55-45936988f059.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-013.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 14,
@@ -460,7 +464,7 @@
       "sha256": "c124167b05b8e186fba8a065d94b74883fd33c5b1b1dfb59e9cbf09ddbe49202",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "independent-generation",
@@ -480,7 +484,8 @@
       "reviewedAt": "2026-10-06",
       "evidenceStatus": "待考",
       "polity": "汉",
-      "recoveryReview": "Verified original bytes; frontal standing portrait. Early accepted framing may stop below knees; retained per trusted 41/100 checkpoint, not labelled complete feet."
+      "recoveryReview": "Verified original bytes; frontal standing portrait. Early accepted framing may stop below knees; retained per trusted 41/100 checkpoint, not labelled complete feet.",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 15,
@@ -491,7 +496,7 @@
       "sha256": "14690ff83ca1f668385dcfc10664f38cbf2f9a4a7851e95ef36f31b0b36a5b67",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 47,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -517,7 +522,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-ac32a84e-52cf-4f31-9c9f-fcb7763095c6.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-015.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 16,
@@ -528,7 +534,7 @@
       "sha256": "55cfc268b0d467fea6ac29380bcba8db8097b12a672beb6b0eccfec8a3b5ae1a",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 32,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -554,7 +560,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f1802f5f-8ff6-42d7-9b35-42f1cc264ca5.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-016.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 17,
@@ -565,7 +572,7 @@
       "sha256": "d7ad581a59452d60bbe8d72e0b38268b3997588bfa0733642b815f98d505307d",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -591,7 +598,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-0021c080-9659-4299-9289-88e10e48f808.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-017.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 18,
@@ -602,7 +610,7 @@
       "sha256": "d88b0ba918a6b85b91e30677f4f0a5e1729c3aa247ed88550edd51177ef63868",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 47,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -628,7 +636,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-f63831d1-9d69-4f2f-8f9d-c5baa6348899.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-018.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 19,
@@ -639,7 +648,7 @@
       "sha256": "f9d91e379c1f6cd775e959e346dc1fa93bb3d821c848e546b1af6f459c21b222",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 37,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -665,7 +674,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-1cf1365b-e090-4d2c-a02c-df854732a68e.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-019.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 20,
@@ -676,7 +686,7 @@
       "sha256": "a1fd73e8e609191345960596c448756993a1d735b93e97987bb58bfacfb6d102",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -702,7 +712,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-fd7bf9fe-93d9-4fa3-bf9d-959af9eae1af.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-020.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 21,
@@ -713,7 +724,7 @@
       "sha256": "dc8fa0df16745a6e6f6e3bdd119da5538d573455d9c91009e181138cf0c7f2d5",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 40,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -739,7 +750,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-88d32dc4-e186-43d3-9a85-2d786683526b.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-021.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 22,
@@ -750,7 +762,7 @@
       "sha256": "c759299255462443168e347b37a7d95fd7adf6496781cbcb5a0c9cb1bca94ca4",
       "width": 940,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 37,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -776,7 +788,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d11ff0a0-0151-4bcf-af83-983dc2aebdef.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-022.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 23,
@@ -787,7 +800,7 @@
       "sha256": "aa7b85d004ac293cdedb8ac3e97c6b3eef660ba2e3924eb4c5e999c7ce6c3a86",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -813,7 +826,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d5de23c5-ad49-4b68-83e1-c8e3c5d3fb30.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-023.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 24,
@@ -824,7 +838,7 @@
       "sha256": "ca5e608fac69a404fd9a1b85a066c2d81e97ae7a9aaee5fbb408d467ce264daf",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 47,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "independent-generation",
@@ -844,7 +858,8 @@
       "reviewedAt": "2026-10-06",
       "evidenceStatus": "待考",
       "polity": "汉",
-      "recoveryReview": "Verified original bytes; frontal standing portrait. Early accepted framing may stop below knees; retained per trusted 41/100 checkpoint, not labelled complete feet."
+      "recoveryReview": "Verified original bytes; frontal standing portrait. Early accepted framing may stop below knees; retained per trusted 41/100 checkpoint, not labelled complete feet.",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 25,
@@ -855,7 +870,7 @@
       "sha256": "3e44d574063f0be435ffebd05883692d6c3b5219e614b009957c9a789b269b0e",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 37,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -881,7 +896,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-869c587d-3d9a-4417-836a-3c0643c6495f.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-025.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 26,
@@ -892,7 +908,7 @@
       "sha256": "e87d9d46ebb6b93a5df9a6a23a660a0204a12033eef344cccdd63c4317c1e18e",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -918,7 +934,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6b223dc1-442c-4537-8aae-6456ed451729.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-026.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 27,
@@ -929,7 +946,7 @@
       "sha256": "000e2cad2d8bf9f5655b29fd147415b91dd9f306d82048e4419b08375b3a1d97",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 47,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -955,7 +972,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-6602fc98-5642-4c85-9dc9-1d1eddb11b1c.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-027.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 28,
@@ -966,7 +984,7 @@
       "sha256": "78ebfc5f9ae04df9fb634f02a18ab80dcf0259e413adb65028d8dc83b7b04147",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 37,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -992,7 +1010,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-d98ea671-20d8-43f4-b9a0-a4911bf0b682.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-028.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 29,
@@ -1003,7 +1022,7 @@
       "sha256": "7bf01f26021483dee6bb0c8d5e42b088a04520e27533a7ab7d640cf18a7acb44",
       "width": 941,
       "height": 1672,
-      "status": "ready",
+      "status": "complete",
       "designAge": 42,
       "ageBasis": "艺术表现年龄；选取人物成年生涯阶段，不作为新增史实生年或卒年。",
       "productionMethod": "identity-preserving-fullbody-edit",
@@ -1029,7 +1048,8 @@
       "revisionReason": "保留原图，直接引用原PNG编辑补全下半身和双脚",
       "generationSource": "/workspace/scratch/ea3fed8f4c52/generated_images/exec-51804d98-a60f-4b36-bef3-3c406e89bf75.png",
       "generationRecord": "research/portrait-additions-20261004/fullbody-result-029.json",
-      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json"
+      "promptRecord": "research/portrait-additions-20261004/fullbody-revision-plan.json",
+      "acceptanceRecord": "portrait-acceptance-record.csv"
     },
     {
       "order": 30,
@@ -8152,5 +8172,7 @@
       "generationRecord": "research/portrait-additions-20261004/redraw-results-149-150.json",
       "promptRecord": "research/portrait-additions-20261004/redraw-prompts-149-150.json"
     }
-  ]
+  ],
+  "expectedIndependentRedraw": 150,
+  "publicationPending": 1
 }

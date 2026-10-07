@@ -1,0 +1,71 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> site-creator-vinext-starter@0.1.0 test:source
+> node --test tests/reader-semantics.test.mjs tests/office-succession.test.mjs tests/research-worklist.test.mjs tests/access-policy.test.mjs tests/reader-refinement.test.mjs tests/reader-product.test.mjs
+
+✔ records an owner-only Sites access check; release requires freshness (13.675827ms)
+✔ release access rejects expired, future, malformed and widened snapshots (5.389297ms)
+✔ twenty representative journeys retain reviewed identities, appointments and matching timeline facts (20.234084ms)
+✔ reviewed succession replaces stale cached dates and preserves separate acting/restoration events (1.109632ms)
+✔ succession preserves unknown years, acting office names and independent institution history (0.446793ms)
+✔ public office projection fails closed for missing identities or citations (7.340816ms)
+✔ all visible modules share host routes and reading return (1.827232ms)
+✔ boot timeout accepts late readiness and ignores disposed timers (0.495176ms)
+✔ host rejects foreign readiness and prevents handshake loops (1.694392ms)
+✔ retry restores selected detail without reporting stale failure (1.322892ms)
+✔ single HTML resolves shared imports once and retains navigation (3.501444ms)
+✔ identity and portrait gates reject same-count replacements (26.814675ms)
+✔ global search prepares lazy domains, opens stable records and keeps pending records visible by default (1.742795ms)
+✔ food withdrawal is closed across records, events and metrics while source is preserved (17.598755ms)
+✔ food facts retain independent source and uncertain dates without silently upgrading estimates (16.439024ms)
+✔ cross-module reading trail restores exact filtered context and rejects external destinations (1.259657ms)
+✔ food pagination reacts when its lazy module and records finish loading (23.297117ms)
+✔ actual reading-return handler uses browser history even when editor history exists (6.39465ms)
+✔ office-holder handler ignores a late load after navigation changes (4.919824ms)
+✔ food all-period scope and explicit candidate inclusion survive actual URL handlers (8.178728ms)
+✔ shared filters count, name and clear only active conditions across reader modules (6.631777ms)
+✔ V75 removes five false people and consolidates corroboration without losing source evidence (704.704058ms)
+✔ V74 chancellery evidence preserves refutations, corrected subjects and unknown dates (81.273223ms)
+✔ reviewed identities extend the frozen roster without losing ids or publishing the old Wei candidate (393.713697ms)
+✔ identity resolution cannot publish an unreviewed appointment; source edits invalidate review (1.464536ms)
+✔ all 149 formerly published assertions have dispositions; corrected subjects and negations survive rebuild (11.397033ms)
+✔ snapshots contain confirmed, bounded tenures only, including inclusive endpoints (7.943992ms)
+✔ verified administrative tenures resolve into person timelines; candidates do not (17.551671ms)
+✔ person links switch module, await data, and prevent stale results from replacing a later selection (0.413002ms)
+✔ host routes require the expected frame and origin, and preserve archive context (2.613566ms)
+✔ a history restore within people cancels an older in-flight person link (0.260152ms)
+✔ canonical, portable scripts and shared reader templates compile (541.935163ms)
+✔ all existing inscriptions, sections and variants are preserved verbatim (5.135393ms)
+✔ the final reader retains all six reviewed transcriptions and variants without legacy overlays (10.442555ms)
+✔ reviewed Wei texts reach the final reader with lacunae and provenance intact (2.654657ms)
+✔ epigraphy publication rejects changed sources, edited text and overwrites (8.547852ms)
+✔ epigraphy dates do not coerce unknown years into the Han period (2.743521ms)
+✔ the inscription filter includes transmitted and fragmentary texts without rewriting their status (2.425312ms)
+✔ reviewed old commentary retains its text and rejects altered apparatus (1.618818ms)
+✔ reviewed biographies pin identities and evidence without replacing existing biographies (37.641362ms)
+✔ Tai Shi corrections preserve source years and reject stale or ambiguous reviews (15.746823ms)
+✔ the next Jin texts preserve all 56 existing texts and keep the Yang Zhao variant separate (5.29309ms)
+✔ V76 corrects succession chronology and requires explicit guards for revised reviews (258.845053ms)
+✔ V76 biography corrections preserve old wording and reject stale or unreviewed replacements (24.636469ms)
+✔ V80 withdraws seven false identities while freezing all ten associated sources and original portrait files (210.488712ms)
+✔ research triage remains unapproved and preserves exact input evidence (22.367948ms)
+✔ all 59 existing inscriptions retain exact text including variants (14.969935ms)
+✔ first source-review batch resolves 19 candidates without changing the 197 published facts (16.91868ms)
+✔ reviewed annals preserve retrospective dates, Wei polity stages, refusal subjects and office transitions (8.287451ms)
+✔ second source-review batch preserves all 213 published facts and freezes its 20 decisions (23.09323ms)
+✔ second batch fixes subjects, preserves qualifications and refuses ambiguous or unregistered assignments (9.829323ms)
+✔ third source-review batch freezes 20 decisions and preserves all 225 previously published facts (16.658208ms)
+✔ fourth batch reviews exactly frozen rows 61–80 and preserves prior facts except one guarded citation correction (45.505224ms)
+✔ fourth batch keeps corrected subjects, East Palace scope, full offices and unknown end dates (7.337151ms)
+✔ V81 prior-review corrections pin immutable decisions and reconcile the 80-item queue without double counting (8.223996ms)
+✔ fifth batch reviews exactly frozen rows 81–100 while preserving all 251 prior facts and identity boundaries (27.745607ms)
+✔ fifth batch distinguishes refusal, exemption from bowing, posthumous titles and complete offices (319.266121ms)
+✔ V82 closes the frozen queue as 66 approved, 25 excluded and 9 pending without rewriting prior checkpoints (6.045163ms)
+ℹ tests 58
+ℹ suites 0
+ℹ pass 58
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2612.116207

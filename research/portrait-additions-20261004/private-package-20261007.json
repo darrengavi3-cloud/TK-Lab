@@ -27,7 +27,19 @@
   "priorPageChecksReused": "Recovered original application tree exactly; reader code and all 250 accepted PNG bytes unchanged. Current deployment PNG bytes additionally checked.",
   "priorUiTests": 54,
   "publishedVersion": 68,
-  "latestSavedVersion": 69,
+  "latestSavedVersion": 72,
   "pendingPublication": 1,
-  "pendingClarification": "Permission to update only Sites internal publication repository main; do not modify TK-Lab/main or formal database."
+  "pendingClarification": null,
+  "publicationPending": 1,
+  "siteInternalMainUpdateAuthorized": true,
+  "tkLabMainWritten": false,
+  "finalPackageEvidence": "site-version-072.json",
+  "publicationBlocker": {
+    "type": "external-hosting-resource-limit",
+    "archiveUploadLimitBytes": 536870912,
+    "acceptedOriginalPngBytes": 655912294,
+    "localArchiveBytes": 715453902,
+    "remoteBuildFailure": "ENOSPC while sync:reader copies complete portrait assets to public/.legacy-reader-stage. Full reader and reader-only deployment manifest succeeded.",
+    "remoteDiskQuotaControlAvailable": false
+  }
 }
